@@ -1,164 +1,327 @@
 ---
 name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+description: Use when shaping new features, behavior changes, product ideas, or brownfield enhancements before implementation—especially when user value, scope, constraints, trade-offs, or requirements need to be turned into an approved design spec.
 ---
 
-# Brainstorming Ideas Into Designs
+# Brainstorming
 
-Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
+## Overview
 
-Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design and get user approval.
+Brainstorming is guided discovery that turns an idea into:
 
-<HARD-GATE>
-Do NOT invoke any implementation skill, write any code, scaffold any project, or take any implementation action until you have presented a design and the user has approved it. This applies to EVERY project regardless of perceived simplicity.
-</HARD-GATE>
+1. an approved design spec, and
+2. a GSD-ready handoff packet.
 
-## Anti-Pattern: "This Is Too Simple To Need A Design"
+Do **not** write code, scaffold projects, or invoke implementation skills until the design spec is approved and the next-step handoff is ready.
 
-Every project goes through this process. A todo list, a single-function utility, a config change — all of them. "Simple" projects are where unexamined assumptions cause the most wasted work. The design can be short (a few sentences for truly simple projects), but you MUST present it and get approval.
+### Default terminal state
 
-## Checklist
+The default terminal state is:
 
-You MUST create a task for each of these items and complete them in order:
+- a reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
+- a reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 
-1. **Explore project context** — check files, docs, recent commits
-2. **Offer visual companion** (if topic will involve visual questions) — this is its own message, not combined with a clarifying question. See the Visual Companion section below.
-3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
-4. **Propose 2-3 approaches** — with trade-offs and your recommendation
-5. **Present design** — in sections scaled to their complexity, get user approval after each section
-6. **Write design doc** — save to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` and commit
-7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
-8. **User reviews written spec** — ask user to review the spec file before proceeding
-9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
+Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2.
 
-## Process Flow
+## When to Use
 
-```dot
-digraph brainstorming {
-    "Explore project context" [shape=box];
-    "Visual questions ahead?" [shape=diamond];
-    "Offer Visual Companion\n(own message, no other content)" [shape=box];
-    "Ask clarifying questions" [shape=box];
-    "Propose 2-3 approaches" [shape=box];
-    "Present design sections" [shape=box];
-    "User approves design?" [shape=diamond];
-    "Write design doc" [shape=box];
-    "Spec self-review\n(fix inline)" [shape=box];
-    "User reviews spec?" [shape=diamond];
-    "Invoke writing-plans skill" [shape=doublecircle];
+Use this skill when:
 
-    "Explore project context" -> "Visual questions ahead?";
-    "Visual questions ahead?" -> "Offer Visual Companion\n(own message, no other content)" [label="yes"];
-    "Visual questions ahead?" -> "Ask clarifying questions" [label="no"];
-    "Offer Visual Companion\n(own message, no other content)" -> "Ask clarifying questions";
-    "Ask clarifying questions" -> "Propose 2-3 approaches";
-    "Propose 2-3 approaches" -> "Present design sections";
-    "Present design sections" -> "User approves design?";
-    "User approves design?" -> "Present design sections" [label="no, revise"];
-    "User approves design?" -> "Write design doc" [label="yes"];
-    "Write design doc" -> "Spec self-review\n(fix inline)";
-    "Spec self-review\n(fix inline)" -> "User reviews spec?";
-    "User reviews spec?" -> "Write design doc" [label="changes requested"];
-    "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
-}
-```
+- a user wants to create a new feature, project, workflow, UI, API, integration, automation, or behavior change
+- the user has an idea but the scope, requirements, or trade-offs are still fuzzy
+- the request touches an existing codebase and you need to understand current constraints before proposing a solution
+- the user wants a design spec, proposal, plan-ready design, or GSD handoff
+- the user asks for implementation work that would benefit from a design first
 
-**The terminal state is invoking writing-plans.** Do NOT invoke frontend-design, mcp-builder, or any other implementation skill. The ONLY skill you invoke after brainstorming is writing-plans.
+## When NOT to Use
 
-## The Process
+Do **not** use this skill when:
 
-**Understanding the idea:**
+- there is already a current, approved spec and the user wants pure implementation against that spec
+- the task is purely mechanical, tightly bounded, and already governed by a validated plan
+- the user only wants analysis or research with no design/spec output
 
-- Check out the current project state first (files, docs, recent commits)
-- Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
-- If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
-- For appropriately-scoped projects, ask questions one at a time to refine the idea
-- Prefer multiple choice questions when possible, but open-ended is fine too
-- Only one question per message - if a topic needs more exploration, break it into multiple questions
-- Focus on understanding: purpose, constraints, success criteria
+## Core principle
 
-**Exploring approaches:**
+**Guided choices beat open-ended interrogation.**
 
-- Propose 2-3 different approaches with trade-offs
-- Present options conversationally with your recommendation and reasoning
-- Lead with your recommended option and explain why
+You are not here to make the user invent the design from scratch. Your job is to:
 
-**Presenting the design:**
+- understand the real goal
+- retrieve context before guessing
+- frame decisions as 2–3 viable options
+- recommend a default with reasoning
+- bound the work before the spec hardens
+- turn the result into a spec and a GSD-ready handoff
 
-- Once you believe you understand what you're building, present the design
-- Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
-- Ask after each section whether it looks right so far
-- Cover: architecture, components, data flow, error handling, testing
-- Be ready to go back and clarify if something doesn't make sense
+## Required workflow
 
-**Design for isolation and clarity:**
+Create a task for each of the following and complete them in order.
 
-- Break the system into smaller units that each have one clear purpose, communicate through well-defined interfaces, and can be understood and tested independently
-- For each unit, you should be able to answer: what does it do, how do you use it, and what does it depend on?
-- Can someone understand what a unit does without reading its internals? Can you change the internals without breaking consumers? If not, the boundaries need work.
-- Smaller, well-bounded units are also easier for you to work with - you reason better about code you can hold in context at once, and your edits are more reliable when files are focused. When a file grows large, that's often a signal that it's doing too much.
+1. **Explore project context**
+   - If the request is tied to this repo and likely needs topic-specific codebase context, invoke `gathering-topic-context` before reflection.
+   - Use `gathering-topic-context` by default for brownfield work, bugfixes, architecture-led changes, and repo-specific feature requests.
+   - Skip `gathering-topic-context` for pure greenfield/product ideation that is not grounded in this repo.
+   - Use the returned Topic Context Bundle to ground track selection, framing, and the first guided question.
+   - If `gathering-topic-context` cannot run, fall back to local inspection and say why.
 
-**Working in existing codebases:**
+2. **Offer the visual companion** *(only if an upcoming question is genuinely visual)*
+   - This must be its own message.
+   - Do not combine it with summaries or clarifying questions.
+   - Use the current platform's dedicated question tool for the offer when available.
+   - On Codex/OpenCode, that tool is `request_user_input`.
+   - On Copilot, that tool is `ask_questions`.
+   - If accepted, read `visual-companion.md` before using it.
 
-- Explore the current structure before proposing changes. Follow existing patterns.
-- Where existing code has problems that affect the work (e.g., a file that's grown too large, unclear boundaries, tangled responsibilities), include targeted improvements as part of the design - the way a good developer improves code they're working in.
-- Don't propose unrelated refactoring. Stay focused on what serves the current goal.
+3. **Reflect before questioning**
+   - Restate what you think the user wants.
+   - Name the major capabilities or moving pieces you heard.
+   - Give a rough scope read.
+   - Deliver the confirmation prompt with the current platform's dedicated question tool when available.
+   - Ask if you got it right **before** diving into detailed questions.
 
-## After the Design
+4. **Choose a track**
+   - Read `references/track-selection.md`.
+   - Pick the best-fit track:
+     - greenfield
+     - brownfield-major-feature
+     - brownfield-small-feature
+     - bugfix-regression
+     - architecture-led-change
 
-**Documentation:**
+5. **Build the framing brief**
+   - Use `references/framing-brief-template.md`.
+   - Capture user, problem, desired outcome, success signal, constraints, and non-goals.
+   - Keep it concise and decision-oriented.
 
-- Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
-  - (User preferences for spec location override this default)
-- Use elements-of-style:writing-clearly-and-concisely skill if available
-- Commit the design document to git
+6. **Run guided discovery**
+   - Read `references/guided-choice-protocol.md`.
+   - Ask **one question per message**.
+   - Use the current platform's dedicated question tool for discovery questions, boundary checks, and review gates when available.
+   - Prefer **2–3 framed options** over open-ended questions.
+   - Always include a recommendation when the choice is design-shaping.
+   - If you ask an open-ended question, the **next turn** must reframe the answer into options.
 
-**Spec Self-Review:**
-After writing the spec document, look at it with fresh eyes:
+7. **Present option cards**
+   - Use `references/option-cards-template.md`.
+   - Show 2–3 viable approaches with trade-offs.
+   - Evaluate them using `references/decision-lens.md`.
+   - Lead with your recommended option and why it wins **now**.
 
-1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
-2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
-3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
-4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
+8. **Set boundaries and appetite**
+   - Define first delivery boundary, rabbit holes, no-gos, and what must stay unchanged.
+   - In brownfield work, explicitly capture invariants, rollout constraints, compatibility constraints, migration concerns, and integration risks before proposing architecture-heavy solutions.
 
-Fix any issues inline. No need to re-review — just fix and move on.
+9. **Present the design in sections**
+   - Use `references/spec-template.md`.
+   - Present the design incrementally.
+   - After each major section, ask whether it looks right so far.
+   - Revise before moving on.
 
-**User Review Gate:**
-After the spec review loop passes, ask the user to review the written spec before proceeding:
+10. **Add example mapping**
+    - Use `references/example-mapping-template.md`.
+    - For each major capability, capture:
+      - rules
+      - examples
+      - open questions
+      - out-of-scope / deferred items
 
-> "Spec written and committed to `<path>`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan."
+11. **Write the design spec**
+    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
+    - User preference overrides the default location.
+    - Commit the spec to git.
 
-Wait for the user's response. If they request changes, make them and re-run the spec review loop. Only proceed once the user approves.
+12. **Write the GSD handoff**
+    - Use `references/gsd-handoff-template.md`.
+    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
+    - Commit the handoff to git.
 
-**Implementation:**
+13. **Run the review loop**
+    - Read `references/spec-review-checklist.md`.
+    - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
+    - Review both the spec and the GSD handoff.
+    - Fix blocking issues and re-dispatch.
+    - Maximum 5 iterations, then surface to the human.
 
-- Invoke the writing-plans skill to create a detailed implementation plan
-- Do NOT invoke any other skill. writing-plans is the next step.
+14. **User review gate**
+    - Ask the user to review the written spec and handoff before proceeding.
+    - Use the current platform's dedicated question tool for that review prompt when available.
+    - If they request changes, make them and re-run the review loop.
 
-## Key Principles
+15. **Transition**
+    - Default: stop with approved spec + approved GSD handoff.
+    - If the user explicitly wants to continue inside Superpowers, invoke `writing-plans`.
 
-- **One question at a time** - Don't overwhelm with multiple questions
-- **Multiple choice preferred** - Easier to answer than open-ended when possible
-- **YAGNI ruthlessly** - Remove unnecessary features from all designs
-- **Explore alternatives** - Always propose 2-3 approaches before settling
-- **Incremental validation** - Present design, get approval before moving on
-- **Be flexible** - Go back and clarify when something doesn't make sense
+## Track routing
 
-## Visual Companion
+Read `references/track-selection.md` before deep questioning.
 
-A browser-based companion for showing mockups, diagrams, and visual options during brainstorming. Available as a tool — not a mode. Accepting the companion means it's available for questions that benefit from visual treatment; it does NOT mean every question goes through the browser.
+### Decomposition rule
 
-**Offering the companion:** When you anticipate that upcoming questions will involve visual content (mockups, layouts, diagrams), offer it once for consent:
-> "Some of what we're working on might be easier to explain if I can show it to you in a web browser. I can put together mockups, diagrams, comparisons, and other visuals as we go. This feature is still new and can be token-intensive. Want to try it? (Requires opening a local URL)"
+If the request really describes multiple independent subsystems, do **not** force a single giant spec.
 
-**This offer MUST be its own message.** Do not combine it with clarifying questions, context summaries, or any other content. The message should contain ONLY the offer above and nothing else. Wait for the user's response before continuing. If they decline, proceed with text-only brainstorming.
+Instead:
 
-**Per-question decision:** Even after the user accepts, decide FOR EACH QUESTION whether to use the browser or the terminal. The test: **would the user understand this better by seeing it than reading it?**
+- identify the independent pieces
+- explain how they relate
+- suggest an order
+- brainstorm the **first** sub-project through the normal flow
 
-- **Use the browser** for content that IS visual — mockups, wireframes, layout comparisons, architecture diagrams, side-by-side visual designs
-- **Use the terminal** for content that is text — requirements questions, conceptual choices, tradeoff lists, A/B/C/D text options, scope decisions
+Each sub-project gets its own spec and handoff.
 
-A question about a UI topic is not automatically a visual question. "What does personality mean in this context?" is a conceptual question — use the terminal. "Which wizard layout works better?" is a visual question — use the browser.
+## Guided discovery rules
 
-If they agree to the companion, read the detailed guide before proceeding:
-`skills/brainstorming/visual-companion.md`
+Read `references/guided-choice-protocol.md`.
+
+These rules are non-negotiable:
+
+- **One question per message**
+- **Use the current platform's dedicated question tool whenever a guided question or review gate is needed and the tool is available**
+- **2–3 options max**
+- **Recommendation included**
+- **No more than one open-ended question in a row**
+- **Synthesize every 2–3 turns**
+- **Never leave the user holding an unframed decision**
+
+If you need concrete question shapes, use `references/question-bank.md`.
+
+Current platform question tools:
+
+- Codex/OpenCode: `request_user_input`
+- Copilot: `ask_questions`
+
+When using the platform question tool:
+
+- keep it to one decision at a time
+- put the recommended option first
+- use `Other` only for genuine escape hatches or corrections
+- prefer `yes / adjust / no` style confirmation for reflection checks
+- if the tool is unavailable, fall back to a plain-text question with the same framing
+
+## Decision quality rules
+
+When comparing options:
+
+- optimize for user value and codebase fit first
+- avoid cleverness that increases delivery or operational risk without strong payoff
+- prefer reversible choices when confidence is low
+- name what each option makes harder, not just what it makes possible
+
+Use `references/decision-lens.md` for a consistent rubric.
+
+## Brownfield rules
+
+In existing codebases:
+
+- prefer `gathering-topic-context` over ad hoc scanning when topic-specific codebase context is needed
+- inspect the current structure before proposing changes
+- follow existing patterns unless there is a strong reason not to
+- include targeted cleanup only when it directly reduces risk for the current goal
+- do not smuggle in unrelated refactors
+- explicitly call out invariants and rollout constraints
+- if inspection has not happened yet, the next guided question must focus on current behavior, existing workflow boundaries, and what must stay unchanged rather than jumping to architecture
+
+## Track-specific guardrails
+
+### Brownfield major feature
+
+- after the reflection turn, inspect current patterns before committing to solution shape
+- the first design-shaping question must surface the workflow insertion point plus at least one of: invariant, rollout constraint, migration concern, or compatibility constraint
+- do not jump to workflow-engine or architecture-heavy options until those constraints are explicit
+
+### Brownfield small feature
+
+- stay on the lite path
+- ask only for the minimum behavior change, the unchanged behavior, and the safest extension point
+- one recommended option plus one fallback is usually enough
+
+### Bugfix / regression
+
+- treat the first discovery turn as behavior clarification, not feature ideation
+- capture current behavior, expected behavior, and unchanged behavior before discussing solution shape
+- the first guided question after reflection must confirm both the target behavior and the non-regression boundary in the same turn
+- ask about regression safety explicitly: what must keep working, what reproduces the issue, or what verification would prove the fix is safe
+- prefer a recommended target rule over speculative root-cause architecture
+
+## Design quality bar
+
+Your design is not done when it sounds plausible. It is done when:
+
+- the framing is clear
+- the scope is bounded
+- the chosen direction is justified
+- edge cases and failure modes are covered
+- acceptance examples exist
+- the spec can be handed to GSD-2 with minimal extra questioning
+
+## Output artifacts
+
+### 1. Design spec
+
+Use `references/spec-template.md`.
+
+Default path:
+`docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
+
+### 2. GSD handoff
+
+Use `references/gsd-handoff-template.md`.
+
+Default path:
+`docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
+
+The handoff must be strong enough that a fresh GSD project can start with `/gsd` and use the handoff file as the primary vision input.
+
+## Review loop
+
+After writing both artifacts:
+
+1. Dispatch the reviewer using `spec-document-reviewer-prompt.md`
+2. Use `references/spec-review-checklist.md` as the quality bar
+3. Fix blocking issues
+4. Re-dispatch until approved or until 5 iterations are exhausted
+5. Ask the user to review the written files
+
+Do **not** proceed to implementation planning until the written artifacts are approved.
+
+## Visual companion
+
+Offer the visual companion only when the upcoming question is easier to understand by **seeing** than by reading.
+
+Examples:
+
+- visual layouts
+- wireframes
+- journey maps
+- architecture diagrams
+- side-by-side UI or information architecture comparisons
+
+Do **not** use the browser for:
+
+- trade-off lists
+- conceptual scope choices
+- constraints questions
+- most architecture or API decisions unless a diagram materially clarifies the choice
+
+If the user accepts the visual companion, read `visual-companion.md`.
+
+## Common mistakes to avoid
+
+- asking several open-ended questions in a row
+- presenting more than 3 options
+- presenting options without a recommendation
+- skipping boundaries because the feature "seems simple"
+- writing the spec before the choice is actually settled
+- writing a polished spec without acceptance examples
+- handing off to GSD-2 without explicit requirements seeds and milestone recommendations
+- invoking implementation skills before the written artifacts are approved
+
+## Terminal states
+
+### Default
+Approved spec + approved GSD handoff.
+
+### Optional
+If the user explicitly says to keep going inside Superpowers after approval, invoke `writing-plans`.
+
+Do **not** invoke implementation skills earlier than that.

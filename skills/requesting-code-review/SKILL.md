@@ -5,18 +5,23 @@ description: Use when completing tasks, implementing major features, or before m
 
 # Requesting Code Review
 
-Dispatch superpowers:code-reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+Dispatch a dedicated reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+
+- Codex multi-agent role: `sp_code_reviewer`
+- Other platforms with named agents: `superpowers:code-reviewer`
 
 **Core principle:** Review early, review often.
 
 ## When to Request Review
 
 **Mandatory:**
+
 - After each task in subagent-driven development
 - After completing major feature
 - Before merge to main
 
 **Optional but valuable:**
+
 - When stuck (fresh perspective)
 - Before refactoring (baseline check)
 - After fixing complex bug
@@ -24,6 +29,7 @@ Dispatch superpowers:code-reviewer subagent to catch issues before they cascade.
 ## How to Request
 
 **1. Get git SHAs:**
+
 ```bash
 BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
 HEAD_SHA=$(git rev-parse HEAD)
@@ -31,16 +37,42 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 **2. Dispatch code-reviewer subagent:**
 
-Use Task tool with superpowers:code-reviewer type, fill template at `code-reviewer.md`
+**Step 1 — Read the reviewer instructions:**
 
-**Placeholders:**
-- `{WHAT_WAS_IMPLEMENTED}` - What you just built
-- `{PLAN_OR_REQUIREMENTS}` - What it should do
-- `{BASE_SHA}` - Starting commit
-- `{HEAD_SHA}` - Ending commit
-- `{DESCRIPTION}` - Brief summary
+Read `skills/requesting-code-review/code-reviewer.md` in full before constructing the prompt.
+
+**Step 2 — Build the subagent prompt:**
+
+Paste the FULL content of `skills/requesting-code-review/code-reviewer.md` verbatim, substituting the placeholders:
+
+| Placeholder              | Replace with                               |
+| ------------------------ | ------------------------------------------ |
+| `{WHAT_WAS_IMPLEMENTED}` | What you just built                        |
+| `{PLAN_OR_REQUIREMENTS}` | What it should do                          |
+| `{DESCRIPTION}`          | Brief summary                              |
+| `{BASE_SHA}`             | Starting commit SHA                        |
+| `{HEAD_SHA}`             | Ending commit SHA                          |
+| `{SUPERPOWERS_DIR}`      | Absolute path to the superpowers directory |
+
+**Step 3 — Dispatch:**
+
+Use the `Task tool (superpowers:code-reviewer)` block structure for the tool call, but only send the content of `code-reviewer.md` (with substitutions applied) as the subagent's actual prompt.
+
+For Codex multi-agent roles, spawn the agent with `agent_type = "sp_code_reviewer"` and use the same substituted prompt body.
+
+```
+Task tool (superpowers:code-reviewer):
+  [Full content of skills/requesting-code-review/code-reviewer.md with substitutions applied]
+```
+
+Codex equivalent:
+
+```text
+spawn_agent(agent_type="sp_code_reviewer", prompt=[substituted code-reviewer.md content])
+```
 
 **3. Act on feedback:**
+
 - Fix Critical issues immediately
 - Fix Important issues before proceeding
 - Note Minor issues for later
@@ -77,27 +109,32 @@ You: [Fix progress indicators]
 ## Integration with Workflows
 
 **Subagent-Driven Development:**
+
 - Review after EACH task
 - Catch issues before they compound
 - Fix before moving to next task
 
 **Executing Plans:**
+
 - Review after each batch (3 tasks)
 - Get feedback, apply, continue
 
 **Ad-Hoc Development:**
+
 - Review before merge
 - Review when stuck
 
 ## Red Flags
 
 **Never:**
+
 - Skip review because "it's simple"
 - Ignore Critical issues
 - Proceed with unfixed Important issues
 - Argue with valid technical feedback
 
 **If reviewer wrong:**
+
 - Push back with technical reasoning
 - Show code/tests that prove it works
 - Request clarification

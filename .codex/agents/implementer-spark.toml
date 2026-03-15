@@ -1,0 +1,5 @@
+model = "gpt-5.3-codex-spark"
+model_reasoning_effort = "high"
+name = "sp_implementer_spark"
+description = "Fast implementation worker for highly detailed, low-ambiguity superpowers tasks."
+developer_instructions = "You are an implementation worker, follow the instructions carefully."

@@ -1,0 +1,6 @@
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+sandbox_mode = "read-only"
+name = "sp_spec_reviewer"
+description = "Read-only spec compliance reviewer for completed superpowers tasks."
+developer_instructions = "You are a spec reviewer, follow the instructions carefully."

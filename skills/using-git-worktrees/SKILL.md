@@ -9,6 +9,14 @@ description: Use when starting feature work that needs isolation from current wo
 
 Git worktrees create isolated workspaces sharing the same repository, allowing work on multiple branches simultaneously without switching.
 
+## Note: Submodules
+
+If your workspace uses git submodules heavily, worktrees can become cumbersome.
+
+You **MUST** use branch-based isolation instead:
+
+- **RECOMMENDED:** Use `superpowers:using-feature-branches-with-submodules`
+
 **Core principle:** Systematic directory selection + safety verification = reliable isolation.
 
 **Announce at start:** "I'm using the using-git-worktrees skill to set up an isolated workspace."
@@ -30,7 +38,7 @@ ls -d worktrees 2>/dev/null      # Alternative
 ### 2. Check CLAUDE.md
 
 ```bash
-grep -i "worktree.*director" CLAUDE.md 2>/dev/null
+grep -i "worktree.*directory" CLAUDE.md 2>/dev/null
 ```
 
 **If preference specified:** Use it without asking.
@@ -143,15 +151,15 @@ Ready to implement <feature-name>
 
 ## Quick Reference
 
-| Situation | Action |
-|-----------|--------|
-| `.worktrees/` exists | Use it (verify ignored) |
-| `worktrees/` exists | Use it (verify ignored) |
-| Both exist | Use `.worktrees/` |
-| Neither exists | Check CLAUDE.md → Ask user |
-| Directory not ignored | Add to .gitignore + commit |
-| Tests fail during baseline | Report failures + ask |
-| No package.json/Cargo.toml | Skip dependency install |
+| Situation                  | Action                     |
+|----------------------------|----------------------------|
+| `.worktrees/` exists       | Use it (verify ignored)    |
+| `worktrees/` exists        | Use it (verify ignored)    |
+| Both exist                 | Use `.worktrees/`          |
+| Neither exists             | Check CLAUDE.md → Ask user |
+| Directory not ignored      | Add to .gitignore + commit |
+| Tests fail during baseline | Report failures + ask      |
+| No package.json/Cargo.toml | Skip dependency install    |
 
 ## Common Mistakes
 

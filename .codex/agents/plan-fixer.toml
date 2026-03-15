@@ -1,0 +1,5 @@
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+name = "sp_plan_fixer"
+description = "High-judgment plan fixer for correcting flawed superpowers implementation plans."
+developer_instructions = "You are a plan fixer, follow the instructions carefully."

@@ -2,18 +2,23 @@
 
 Skills use Claude Code tool names. When you encounter these in a skill, use your platform equivalent:
 
-| Skill references | Codex equivalent |
-|-----------------|------------------|
-| `Task` tool (dispatch subagent) | `spawn_agent` (see [Named agent dispatch](#named-agent-dispatch)) |
-| Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls |
-| Task returns result | `wait` |
-| Task completes automatically | `close_agent` to free slot |
-| `TodoWrite` (task tracking) | `update_plan` |
-| `Skill` tool (invoke a skill) | Skills load natively — just follow the instructions |
-| `Read`, `Write`, `Edit` (files) | Use your native file tools |
-| `Bash` (run commands) | Use your native shell tools |
+| Skill references                 | Codex equivalent                                    |
+| -------------------------------- | --------------------------------------------------- |
+| `Task` tool (dispatch subagent)  | `spawn_agent` with prompt                           |
+| `Task` tool (named role)`*`      | `spawn_agent` with prompt and `agent_type`          |
+| Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls with prompt            |
+| Task returns result              | `wait`                                              |
+| Task completes automatically     | `close_agent` to free slot                          |
+| `TodoWrite` (task tracking)      | `update_plan`                                       |
+| `AskUserQuestion`                | `request_user_input`                                |
+| `vscode/askQuestions`            | `request_user_input`                                |
+| `Skill` tool (invoke a skill)    | Skills load natively — just follow the instructions |
+| `Read`, `Write`, `Edit` (files)  | Use your native file tools                          |
+| `Bash` (run commands)            | Use your native shell tools                         |
 
-## Subagent dispatch requires multi-agent support
+`*` Example: when a skill says to use the Codex role `sp_code_reviewer`, spawn the agent with `agent_type = "sp_code_reviewer"` and pass the filled prompt template as the agent prompt.
+
+## Subagent dispatch requires multi_agent
 
 Add to your Codex config (`~/.codex/config.toml`):
 
@@ -22,79 +27,40 @@ Add to your Codex config (`~/.codex/config.toml`):
 multi_agent = true
 ```
 
-This enables `spawn_agent`, `wait`, and `close_agent` for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+This enables the subagents tools for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
 
-## Named agent dispatch
+## Subagent lifecycle
 
-Claude Code skills reference named agent types like `superpowers:code-reviewer`.
-Codex does not have a named agent registry — `spawn_agent` creates generic agents
-from built-in roles (`default`, `explorer`, `worker`).
+Codex manages subagents through five tools:
 
-When a skill says to dispatch a named agent type:
+| Step            | Tool           | Purpose                                                                                              |
+| --------------- | -------------- | ---------------------------------------------------------------------------------------------------- |
+| **Create**      | `spawn_agent`  | Spawn a sub-agent for a well-scoped task. Returns the agent ID for all further communication.        |
+| **Communicate** | `send_input`   | Send a follow-up message to a running agent. Supports `interrupt` to redirect work immediately.      |
+| **Monitor**     | `wait`         | Block until one or more agents reach a final status. Returns the agent's final message or times out. |
+| **Revive**      | `resume_agent` | Resume a previously closed agent so it can receive `send_input` and `wait` calls again.              |
+| **Terminate**   | `close_agent`  | Shut down an agent that is no longer needed, free its thread slot, and return its last status.       |
 
-1. Find the agent's prompt file (e.g., `agents/code-reviewer.md` or the skill's
-   local prompt template like `code-quality-reviewer-prompt.md`)
-2. Read the prompt content
-3. Fill any template placeholders (`{BASE_SHA}`, `{WHAT_WAS_IMPLEMENTED}`, etc.)
-4. Spawn a `worker` agent with the filled content as the `message`
+### Key rules
 
-| Skill instruction | Codex equivalent |
-|-------------------|------------------|
-| `Task tool (superpowers:code-reviewer)` | `spawn_agent(agent_type="worker", message=...)` with `code-reviewer.md` content |
-| `Task tool (general-purpose)` with inline prompt | `spawn_agent(message=...)` with the same prompt |
+- Always `close_agent` when done to free the thread slot — there is a configurable `agents.max_threads` limit (default 10).
+- Prefer longer `timeout_ms` values in `wait` to avoid busy polling.
+- `spawn_agent` enforces a maximum nesting depth — agents cannot spawn subagents indefinitely.
+- A closed agent can be brought back with `resume_agent`; Use only if explicitlty instructed to do so.
 
-### Message framing
+## Interactive questions (Codex)
 
-The `message` parameter is user-level input, not a system prompt. Structure it
-for maximum instruction adherence:
+Use `request_user_input` when a skill requires structured user choices.
 
-```
-Your task is to perform the following. Follow the instructions below exactly.
+- Prefer 1 question per call (up to 3 when tightly related).
+- In standard Codex behavior, this tool is available in Plan mode (and may be enabled in Default mode by feature flag).
+- Questions should present meaningful choices and avoid asking for information discoverable from local context.
+- If unavailable in the current mode, ask a concise plain-text question instead.
 
-<agent-instructions>
-[filled prompt content from the agent's .md file]
-</agent-instructions>
+### `request_user_input` schema-first checklist
 
-Execute this now. Output ONLY the structured response following the format
-specified in the instructions above.
-```
-
-- Use task-delegation framing ("Your task is...") rather than persona framing ("You are...")
-- Wrap instructions in XML tags — the model treats tagged blocks as authoritative
-- End with an explicit execution directive to prevent summarization of the instructions
-
-### When this workaround can be removed
-
-This approach compensates for Codex's plugin system not yet supporting an `agents`
-field in `plugin.json`. When `RawPluginManifest` gains an `agents` field, the
-plugin can symlink to `agents/` (mirroring the existing `skills/` symlink) and
-skills can dispatch named agent types directly.
-
-## Environment Detection
-
-Skills that create worktrees or finish branches should detect their
-environment with read-only git commands before proceeding:
-
-```bash
-GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
-GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
-BRANCH=$(git branch --show-current)
-```
-
-- `GIT_DIR != GIT_COMMON` → already in a linked worktree (skip creation)
-- `BRANCH` empty → detached HEAD (cannot branch/push/PR from sandbox)
-
-See `using-git-worktrees` Step 0 and `finishing-a-development-branch`
-Step 1 for how each skill uses these signals.
-
-## Codex App Finishing
-
-When the sandbox blocks branch/push operations (detached HEAD in an
-externally managed worktree), the agent commits all work and informs
-the user to use the App's native controls:
-
-- **"Create branch"** — names the branch, then commit/push/PR via App UI
-- **"Hand off to local"** — transfers work to the user's local checkout
-
-The agent can still run tests, stage files, and output suggested branch
-names, commit messages, and PR descriptions for the user to copy.
+- Include stable `id` (snake_case) for answer mapping.
+- Use short `header` and one-sentence `question`.
+- Provide 2-3 meaningful `options` with `label` + `description`.
+- Keep options mutually exclusive for single-choice decisions.
+- Put your recommended option first when relevant.

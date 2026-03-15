@@ -1,0 +1,6 @@
+model = "gpt-5.3-codex-spark"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+name = "sp_topic_context"
+description = "Read-only topic context gatherer for superpowers brainstorming and planning."
+developer_instructions = "You are a topic context gatherer, follow the instructions carefully."

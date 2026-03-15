@@ -1,0 +1,5 @@
+model = "gpt-5.3-codex"
+model_reasoning_effort = "medium"
+name = "sp_implementer_standard"
+description = "Implementation worker for normal superpowers tasks with moderate coordination."
+developer_instructions = "You are an implementation worker, follow the instructions carefully."

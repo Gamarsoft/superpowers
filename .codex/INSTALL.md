@@ -27,6 +27,18 @@ Enable superpowers skills in Codex via native skill discovery. Just clone and sy
 
 3. **Restart Codex** (quit and relaunch the CLI) to discover the skills.
 
+4. **Enable multi-agent support** if you want skills to dispatch named sub-agents:
+
+   ```toml
+   [features]
+   multi_agent = true
+   ```
+
+5. **Optional: use the bundled superpowers role pack** in `.codex/config.toml`.
+   - This works automatically when you trust this repo in Codex.
+   - For a user-scoped setup, copy the `[agents.*]` stanzas into `~/.codex/config.toml` and point `config_file` at the role TOML files under `~/.codex/superpowers/.codex/agents/`.
+   - The bundled role names use the short `sp_*` prefix.
+
 ## Migrating from old bootstrap
 
 If you installed superpowers before native skill discovery, you need to:

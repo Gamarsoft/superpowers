@@ -1,0 +1,5 @@
+model = "gpt-5.3-codex"
+model_reasoning_effort = "high"
+name = "sp_implementer_deep"
+description = "High-judgment implementation worker for complex superpowers tasks and rescues."
+developer_instructions = "You are an implementation worker, follow the instructions carefully."

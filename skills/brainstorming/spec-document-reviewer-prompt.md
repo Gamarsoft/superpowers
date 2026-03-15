@@ -1,49 +1,89 @@
 # Spec Document Reviewer Prompt Template
 
-Use this template when dispatching a spec document reviewer subagent.
+Use this template when dispatching a spec reviewer subagent.
 
-**Purpose:** Verify the spec is complete, consistent, and ready for implementation planning.
+**Purpose:** Verify that the design spec and GSD handoff are complete, bounded, internally consistent, and ready for implementation planning or GSD intake.
 
-**Dispatch after:** Spec document is written to docs/superpowers/specs/
+**Dispatch after:** Both written artifacts exist.
 
+## Inputs to provide
+
+- `[SPEC_FILE_PATH]`
+- `[GSD_HANDOFF_FILE_PATH]`
+- `[TRACK]` — one of:
+  - greenfield
+  - brownfield-major-feature
+  - brownfield-small-feature
+  - bugfix-regression
+  - architecture-led-change
+
+Also provide a short human-written context note describing:
+- the user's stated goal
+- the chosen direction
+- any known unresolved questions that are intentionally left open
+
+Do **not** pass your full session history. Pass only the minimum review context needed.
+
+---
+
+## Prompt template
+
+```text
+You are a spec document reviewer.
+
+Review the design artifacts for implementation readiness and GSD handoff quality.
+
+Artifacts:
+- Spec: [SPEC_FILE_PATH]
+- GSD handoff: [GSD_HANDOFF_FILE_PATH]
+- Track: [TRACK]
+
+Review using the checklist in `skills/brainstorming/references/spec-review-checklist.md`.
+
+Focus on blocking issues first.
+
+Look especially hard for:
+- weak framing
+- unclear first delivery boundary
+- options with no real trade-offs
+- contradictions between the spec and the handoff
+- missing example mapping or vague acceptance language
+- brownfield safety gaps
+- TODO / TBD / placeholder content
+- handoff sections too vague to seed GSD planning
+
+Do not redesign the feature unless the current design is clearly unsafe, incoherent, or unbounded.
+
+Output exactly:
+
+## Spec Review
+
+**Status:** ✅ Approved | ❌ Issues Found
+
+### Blocking Issues
+- [Section or file]: [specific issue]
+- Why it matters:
+- What needs to change:
+
+### Advisory Suggestions
+- [optional improvement]
 ```
-Task tool (general-purpose):
-  description: "Review spec document"
-  prompt: |
-    You are a spec document reviewer. Verify this spec is complete and ready for planning.
 
-    **Spec to review:** [SPEC_FILE_PATH]
+---
 
-    ## What to Check
+## Reviewer instructions
 
-    | Category | What to Look For |
-    |----------|------------------|
-    | Completeness | TODOs, placeholders, "TBD", incomplete sections |
-    | Consistency | Internal contradictions, conflicting requirements |
-    | Clarity | Requirements ambiguous enough to cause someone to build the wrong thing |
-    | Scope | Focused enough for a single plan — not covering multiple independent subsystems |
-    | YAGNI | Unrequested features, over-engineering |
+- Be strict on blocking issues, but concise.
+- Prefer a short list of high-signal issues over a long list of minor comments.
+- If there are no blocking issues, say so clearly.
+- If the same structural problem affects multiple sections, report it once at the highest leverage point.
 
-    ## Calibration
+## Approval bar
 
-    **Only flag issues that would cause real problems during implementation planning.**
-    A missing section, a contradiction, or a requirement so ambiguous it could be
-    interpreted two different ways — those are issues. Minor wording improvements,
-    stylistic preferences, and "sections less detailed than others" are not.
+Approval means:
 
-    Approve unless there are serious gaps that would lead to a flawed plan.
-
-    ## Output Format
-
-    ## Spec Review
-
-    **Status:** Approved | Issues Found
-
-    **Issues (if any):**
-    - [Section X]: [specific issue] - [why it matters for planning]
-
-    **Recommendations (advisory, do not block approval):**
-    - [suggestions for improvement]
-```
-
-**Reviewer returns:** Status, Issues (if any), Recommendations
+- the framing is concrete
+- the chosen direction is justified
+- scope is bounded
+- acceptance examples exist
+- the GSD handoff can seed requirements and milestone discussion with minimal extra questioning

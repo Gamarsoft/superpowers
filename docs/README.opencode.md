@@ -104,6 +104,16 @@ Skills written for Claude Code are automatically adapted for OpenCode:
 - `Skill` tool → OpenCode's native `skill` tool
 - File operations → Native OpenCode tools
 
+### Context7 usage and caching
+
+When you run Context7 MCP tools (`resolve-library-id`, `query-docs`) during research, paste the summarized "Context7 Findings" into the conversation and into any implementation plan or task context. This prevents repeated Context7 queries by downstream steps and subagents.
+
+Guidance:
+
+- Paste a short Findings block (libraries, chosen libraryId, key doc excerpts, decisions, caveats).
+- Include installed versions when known to avoid version-ambiguous queries.
+- Subagents should reuse the pasted Findings; only re-run Context7 when new unknowns appear.
+
 ## Troubleshooting
 
 ### Plugin not loading

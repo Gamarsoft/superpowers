@@ -1,0 +1,6 @@
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+sandbox_mode = "read-only"
+name = "sp_plan_reviewer"
+description = "Read-only reviewer for superpowers implementation plan chunks."
+developer_instructions = "You are a plan reviewer, follow the instructions carefully."
