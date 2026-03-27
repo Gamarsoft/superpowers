@@ -51,6 +51,12 @@ function startServer() {
   });
 }
 
+function startServerWithEnv(extraEnv) {
+  return spawn('node', [SERVER_PATH], {
+    env: { ...process.env, BRAINSTORM_PORT: TEST_PORT, BRAINSTORM_DIR: TEST_DIR, ...extraEnv }
+  });
+}
+
 async function waitForServer(server) {
   let stdout = '';
   let stderr = '';
@@ -380,6 +386,42 @@ async function runTests() {
       await sleep(500);
 
       assert(stdoutAccum.includes('screen-updated'), 'Should log screen-updated');
+    });
+
+    await test('falls back when fs.watch is unavailable', async () => {
+      server.kill();
+      cleanup();
+
+      const fallbackServer = startServerWithEnv({ BRAINSTORM_FORCE_POLL_WATCH: '1' });
+      let fallbackStdout = '';
+      fallbackServer.stdout.on('data', (data) => { fallbackStdout += data.toString(); });
+      await waitForServer(fallbackServer);
+
+      const ws = new WebSocket(`ws://localhost:${TEST_PORT}`);
+      await new Promise(resolve => ws.on('open', resolve));
+
+      let gotReload = false;
+      ws.on('message', (data) => {
+        if (JSON.parse(data.toString()).type === 'reload') gotReload = true;
+      });
+
+      const eventsFile = path.join(STATE_DIR, 'events');
+      fs.writeFileSync(eventsFile, '{"choice":"a"}\n');
+      fs.writeFileSync(path.join(CONTENT_DIR, 'poll-watch.html'), '<h2>Poll Watch</h2>');
+      await sleep(700);
+
+      assert(gotReload, 'Should send reload when polling fallback is active');
+      assert(!fs.existsSync(eventsFile), 'Should clear state/events when polling fallback sees a new screen');
+      assert(fallbackStdout.includes('screen-added'), 'Should log screen-added under polling fallback');
+
+      ws.close();
+      fallbackServer.kill();
+
+      cleanup();
+      const restartedServer = startServer();
+      stdoutAccum = '';
+      restartedServer.stdout.on('data', (data) => { stdoutAccum += data.toString(); });
+      await waitForServer(restartedServer);
     });
 
     // ========== Helper.js Content ==========

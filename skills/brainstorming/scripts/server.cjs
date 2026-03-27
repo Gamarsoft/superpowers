@@ -79,6 +79,8 @@ const URL_HOST = process.env.BRAINSTORM_URL_HOST || (HOST === '127.0.0.1' ? 'loc
 const SESSION_DIR = process.env.BRAINSTORM_DIR || '/tmp/brainstorm';
 const CONTENT_DIR = path.join(SESSION_DIR, 'content');
 const STATE_DIR = path.join(SESSION_DIR, 'state');
+const FORCE_POLL_WATCH = process.env.BRAINSTORM_FORCE_POLL_WATCH === '1';
+const POLL_INTERVAL_MS = Number(process.env.BRAINSTORM_POLL_INTERVAL_MS || 100);
 let ownerPid = process.env.BRAINSTORM_OWNER_PID ? Number(process.env.BRAINSTORM_OWNER_PID) : null;
 
 const MIME_TYPES = {
@@ -122,6 +124,15 @@ function getNewestScreen() {
     })
     .sort((a, b) => b.mtime - a.mtime);
   return files.length > 0 ? files[0].path : null;
+}
+
+function listHtmlFilesWithMtime() {
+  return fs.readdirSync(CONTENT_DIR)
+    .filter(f => f.endsWith('.html'))
+    .map(f => {
+      const fp = path.join(CONTENT_DIR, f);
+      return { name: f, path: fp, mtime: fs.statSync(fp).mtime.getTime() };
+    });
 }
 
 // ========== HTTP Request Handler ==========
@@ -263,40 +274,110 @@ function startServer() {
   if (!fs.existsSync(CONTENT_DIR)) fs.mkdirSync(CONTENT_DIR, { recursive: true });
   if (!fs.existsSync(STATE_DIR)) fs.mkdirSync(STATE_DIR, { recursive: true });
 
-  // Track known files to distinguish new screens from updates.
-  // macOS fs.watch reports 'rename' for both new files and overwrites,
-  // so we can't rely on eventType alone.
-  const knownFiles = new Set(
-    fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.html'))
-  );
-
   const server = http.createServer(handleRequest);
   server.on('upgrade', handleUpgrade);
+  const knownFiles = new Map(
+    listHtmlFilesWithMtime().map(file => [file.name, file.mtime])
+  );
+  let watcher = null;
+  let pollInterval = null;
+  let usingPolling = false;
 
-  const watcher = fs.watch(CONTENT_DIR, (eventType, filename) => {
-    if (!filename || !filename.endsWith('.html')) return;
+  function handleScreenChange(filename, isNew) {
+    const filePath = path.join(CONTENT_DIR, filename);
+    if (!fs.existsSync(filePath)) return;
+    touchActivity();
 
-    if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
-    debounceTimers.set(filename, setTimeout(() => {
-      debounceTimers.delete(filename);
-      const filePath = path.join(CONTENT_DIR, filename);
+    if (isNew) {
+      const eventsFile = path.join(STATE_DIR, 'events');
+      if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
+      console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
+    } else {
+      console.log(JSON.stringify({ type: 'screen-updated', file: filePath }));
+    }
 
-      if (!fs.existsSync(filePath)) return; // file was deleted
-      touchActivity();
+    broadcast({ type: 'reload' });
+  }
 
-      if (!knownFiles.has(filename)) {
-        knownFiles.add(filename);
-        const eventsFile = path.join(STATE_DIR, 'events');
-        if (fs.existsSync(eventsFile)) fs.unlinkSync(eventsFile);
-        console.log(JSON.stringify({ type: 'screen-added', file: filePath }));
-      } else {
-        console.log(JSON.stringify({ type: 'screen-updated', file: filePath }));
+  function startPollingWatcher(reason) {
+    if (usingPolling) return;
+    usingPolling = true;
+
+    if (watcher) {
+      watcher.close();
+      watcher = null;
+    }
+
+    if (reason) {
+      console.error('fs.watch error:', reason.message || reason);
+      console.log(JSON.stringify({ type: 'watch-fallback', mode: 'polling', reason: reason.code || reason.message || String(reason) }));
+    }
+
+    pollInterval = setInterval(() => {
+      let files;
+      try {
+        files = listHtmlFilesWithMtime();
+      } catch (e) {
+        console.error('poll watcher error:', e.message);
+        return;
       }
 
-      broadcast({ type: 'reload' });
-    }, 100));
-  });
-  watcher.on('error', (err) => console.error('fs.watch error:', err.message));
+      const seen = new Set();
+      for (const file of files) {
+        seen.add(file.name);
+        const previousMtime = knownFiles.get(file.name);
+        if (previousMtime === undefined) {
+          knownFiles.set(file.name, file.mtime);
+          handleScreenChange(file.name, true);
+        } else if (previousMtime !== file.mtime) {
+          knownFiles.set(file.name, file.mtime);
+          handleScreenChange(file.name, false);
+        }
+      }
+
+      for (const filename of Array.from(knownFiles.keys())) {
+        if (!seen.has(filename)) knownFiles.delete(filename);
+      }
+    }, POLL_INTERVAL_MS);
+    pollInterval.unref();
+  }
+
+  function startFsWatcher() {
+    watcher = fs.watch(CONTENT_DIR, (eventType, filename) => {
+      if (!filename || !filename.endsWith('.html')) return;
+
+      if (debounceTimers.has(filename)) clearTimeout(debounceTimers.get(filename));
+      debounceTimers.set(filename, setTimeout(() => {
+        debounceTimers.delete(filename);
+        const filePath = path.join(CONTENT_DIR, filename);
+
+        if (!fs.existsSync(filePath)) {
+          knownFiles.delete(filename);
+          return;
+        }
+
+        const currentMtime = fs.statSync(filePath).mtime.getTime();
+        const previousMtime = knownFiles.get(filename);
+        if (previousMtime === undefined) {
+          knownFiles.set(filename, currentMtime);
+          handleScreenChange(filename, true);
+        } else if (previousMtime !== currentMtime) {
+          knownFiles.set(filename, currentMtime);
+          handleScreenChange(filename, false);
+        }
+      }, 100));
+    });
+    watcher.on('error', (err) => startPollingWatcher(err));
+  }
+
+  if (FORCE_POLL_WATCH) startPollingWatcher('forced polling mode');
+  else {
+    try {
+      startFsWatcher();
+    } catch (err) {
+      startPollingWatcher(err);
+    }
+  }
 
   function shutdown(reason) {
     console.log(JSON.stringify({ type: 'server-stopped', reason }));
@@ -306,7 +387,10 @@ function startServer() {
       path.join(STATE_DIR, 'server-stopped'),
       JSON.stringify({ reason, timestamp: Date.now() }) + '\n'
     );
-    watcher.close();
+    if (watcher) watcher.close();
+    if (pollInterval) clearInterval(pollInterval);
+    for (const timer of debounceTimers.values()) clearTimeout(timer);
+    debounceTimers.clear();
     clearInterval(lifecycleCheck);
     server.close(() => process.exit(0));
   }

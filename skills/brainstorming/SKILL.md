@@ -66,12 +66,15 @@ Create a task for each of the following and complete them in order.
    - If `gathering-topic-context` cannot run, fall back to local inspection and say why.
 
 2. **Offer the visual companion** *(only if an upcoming question is genuinely visual)*
+   - Offer it once for consent.
    - This must be its own message.
    - Do not combine it with summaries or clarifying questions.
    - Use the current platform's dedicated question tool for the offer when available.
    - On Codex/OpenCode, that tool is `request_user_input`.
    - On Copilot, that tool is `ask_questions`.
-   - If accepted, read `visual-companion.md` before using it.
+   - Wait for the user's answer before continuing.
+   - Acceptance makes the browser available; it does **not** mean every later question should use it.
+   - If accepted, read `visual-companion.md` before the first browser turn.
 
 3. **Reflect before questioning**
    - Restate what you think the user wants.
@@ -286,7 +289,7 @@ Do **not** proceed to implementation planning until the written artifacts are ap
 
 ## Visual companion
 
-Offer the visual companion only when the upcoming question is easier to understand by **seeing** than by reading.
+The visual companion is a tool, not a mode. Offer it only when the upcoming question is easier to understand by **seeing** than by reading.
 
 Examples:
 
@@ -303,7 +306,14 @@ Do **not** use the browser for:
 - constraints questions
 - most architecture or API decisions unless a diagram materially clarifies the choice
 
-If the user accepts the visual companion, read `visual-companion.md`.
+After the user accepts, decide question by question whether the browser helps more than the terminal.
+
+A question about UI is not automatically a visual question.
+
+- "What should onboarding optimize for?" -> terminal
+- "Which onboarding layout feels clearer?" -> browser
+
+If the user accepts the visual companion, read `visual-companion.md` before the first browser turn.
 
 ## Common mistakes to avoid
 
