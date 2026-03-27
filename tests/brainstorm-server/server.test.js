@@ -62,23 +62,30 @@ async function waitForServer(server) {
   let stderr = '';
 
   return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error(`Server didn't start. stderr: ${stderr}`));
+    }, 5000);
+
     server.stdout.on('data', (data) => {
       stdout += data.toString();
       if (stdout.includes('server-started')) {
+        clearTimeout(timeoutId);
         resolve({ stdout, stderr, getStdout: () => stdout });
       }
     });
-    server.stderr.on('data', (data) => { stderr += data.toString(); });
-    server.on('error', reject);
 
-    setTimeout(() => reject(new Error(`Server didn't start. stderr: ${stderr}`)), 5000);
+    server.stderr.on('data', (data) => { stderr += data.toString(); });
+    server.on('error', (err) => {
+      clearTimeout(timeoutId);
+      reject(err);
+    });
   });
 }
 
 async function runTests() {
   cleanup();
 
-  const server = startServer();
+  let server = startServer();
   let stdoutAccum = '';
   server.stdout.on('data', (data) => { stdoutAccum += data.toString(); });
 
@@ -151,6 +158,7 @@ async function runTests() {
       assert(res.body.includes('<h1>Custom Page</h1>'), 'Should contain original content');
       assert(res.body.includes('WebSocket'), 'Should still inject helper.js');
       assert(!res.body.includes('indicator-bar'), 'Should NOT wrap in frame template');
+      assert(!res.body.includes('data-comparison-kit="fragment-shell"'), 'Should NOT leak fragment-only shell hook');
     });
 
     await test('wraps content fragments in frame template', async () => {
@@ -160,6 +168,7 @@ async function runTests() {
 
       const res = await fetch(`http://localhost:${TEST_PORT}/`);
       assert(res.body.includes('indicator-bar'), 'Fragment should get indicator bar');
+      assert(res.body.includes('data-comparison-kit="fragment-shell"'), 'Fragment should expose fragment-only shell hook');
       assert(!res.body.includes('<!-- CONTENT -->'), 'Placeholder should be replaced');
       assert(res.body.includes('Pick a layout'), 'Fragment content should be present');
       assert(res.body.includes('data-choice="a"'), 'Fragment interactive elements intact');
@@ -418,10 +427,10 @@ async function runTests() {
       fallbackServer.kill();
 
       cleanup();
-      const restartedServer = startServer();
+      server = startServer();
       stdoutAccum = '';
-      restartedServer.stdout.on('data', (data) => { stdoutAccum += data.toString(); });
-      await waitForServer(restartedServer);
+      server.stdout.on('data', (data) => { stdoutAccum += data.toString(); });
+      await waitForServer(server);
     });
 
     // ========== Helper.js Content ==========
@@ -449,6 +458,7 @@ async function runTests() {
       assert(template.includes('indicator-text'), 'Should have indicator text');
       assert(template.includes('<!-- CONTENT -->'), 'Should have content placeholder');
       assert(template.includes('claude-content'), 'Should have content container');
+      assert(template.includes('data-comparison-kit="fragment-shell"'), 'Should include fragment-only shell hook marker');
       return Promise.resolve();
     });
 

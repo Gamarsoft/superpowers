@@ -57,6 +57,19 @@ Use this as the blocking quality bar for both the design spec and the GSD handof
 - Are constraints and integration points explicit?
 - Are slice candidates or boundary hints strong enough to seed GSD planning?
 
+## 10. Visual-companion protocol regression checks (conditional, blocking when relevant)
+Apply this subsection only when the reviewed design spec or GSD handoff changes, describes, or depends on the visual-companion workflow. If the workflow is not in scope, skip this subsection silently.
+
+Before approving, compare **both** the design spec and the GSD handoff against `skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md`.
+
+Fail the review if either artifact is missing, weakens, or contradicts any required outcome below:
+- **first-turn startup** — the first later genuinely visual turn must start the companion path instead of remaining terminal-only.
+- **artifact-first sequencing** — for each qualifying visual turn, the visual artifact must be authored or refreshed, made viewable, and explained before the terminal decision or confirmation prompt.
+- **terminal question-tool continuity** — even after earlier browser use, each qualifying visual turn must still deliver the terminal decision or confirmation prompt through the dedicated question tool when available.
+- **explicit degraded fallback** — if the dedicated question tool is unavailable, plain terminal fallback must be named as degraded behavior explicitly rather than normalized as the standard path.
+
+Treat spec↔handoff drift on any of these four outcomes as a blocking issue even if one artifact is correct.
+
 ## Advisory checks
 
 - Could any section be shorter and clearer?

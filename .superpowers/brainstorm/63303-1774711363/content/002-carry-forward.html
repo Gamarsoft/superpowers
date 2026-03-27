@@ -1,0 +1,51 @@
+<h2>Decision checkpoint: export flow</h2>
+<p class="subtitle">Use this terminal-only follow-up when the next screen must stay explicit about what is settled, what remains unresolved, and whether richer design context was unavailable.</p>
+
+<div class="section">
+  <div class="label">Degraded mode</div>
+  <p class="subtitle">Design context was unavailable for this checkpoint, so the carry-forward stays structural and low-assumption instead of pretending a product-specific visual system was known.</p>
+</div>
+
+<div class="section">
+  <div class="label">Chosen direction</div>
+  <p class="subtitle">This part is settled and safe to carry forward even if no browser click happened before this screen was authored.</p>
+  <div class="options">
+    <div class="option selected" data-choice="drawer-based-export" onclick="toggleSelect(this)">
+      <div class="letter">✓</div>
+      <div class="content">
+        <h3>Chosen direction: drawer-based export flow</h3>
+        <p>Keep users on the report page and open a right-side drawer for format, scope, and destination.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="label">Still open</div>
+  <p class="subtitle">These items remain unresolved and should not be treated as finalized decisions.</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="permission-error-copy" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>Still open: permission fallback copy</h3>
+        <p>Choose final wording for users without export permissions.</p>
+      </div>
+    </div>
+
+    <div class="option" data-choice="default-format" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>Still open: default file format</h3>
+        <p>Decide whether CSV or XLSX is preselected for first-time exports.</p>
+      </div>
+    </div>
+
+    <div class="option" data-choice="post-export-notification" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>Still open: post-export completion signal</h3>
+        <p>Confirm toast-only feedback versus toast + activity log entry.</p>
+      </div>
+    </div>
+  </div>
+</div>

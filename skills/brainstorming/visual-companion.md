@@ -1,380 +1,201 @@
-# Visual Companion Guide
+# Visual Companion Guide (comparison-first contract)
 
-Browser-based visual brainstorming companion for showing mockups, diagrams, journey maps, and side-by-side options.
+Use the visual companion to help the user decide between alternatives, not to generate polished mockups.
 
-## Role in the workflow
+## v1 authoring contract
 
-Use the visual companion to reduce ambiguity after the design has enough shape to compare visually.
+The companion is **comparison-first**. Every screen should map to exactly one of these four archetypes:
 
-It is a tool for:
+1. **side-by-side comparison**
+   - Use when two directions are both credible and the user needs visual contrast.
+   - Keep both options visible at once and comparable on the same decision axis.
+2. **ranked alternatives**
+   - Use when 3+ options are valid but one is currently strongest.
+   - Keep all options visible and clearly show the current winner without hiding trade-offs.
+3. **annotated recommendation**
+   - Use when you have a recommended direction and need visual callouts explaining why.
+   - Show recommendation + rationale + known constraints on one screen.
+4. **carry-forward summary**
+   - Use after a decision checkpoint.
+   - Show both **Chosen direction** and **Still open** so downstream work does not assume unresolved items are settled.
+   - If the screen is being authored in degraded mode, show that visibly in the screen copy instead of implying richer design context existed.
 
-- seeing layout differences
-- comparing information architecture
-- showing flow diagrams
-- sketching architecture or state relationships
-- clarifying spatial or visual trade-offs
+Do not invent extra archetypes in v1.
 
-It is not a substitute for recommendation, scoping, or conceptual questioning.
+### Carry-forward authoring rule
+
+Carry-forward continuity must live in visible authored copy, not in helper state, hidden metadata, or persisted browser events.
+
+- Use **Chosen direction** when a recommendation or decision is being carried forward to the next screen.
+- Use **Still open** when comparison work remains unresolved and should stay visibly unsettled.
+- Use **Degraded mode** when richer design context was unavailable, declined, or insufficient so the screen remains honest about its low-assumption status.
+- These labels should stay correct whether `state/events` exists, is empty, or was cleared on a newer screen.
+
+### Copyable archetype example kit
+
+Start from these authored fragments before inventing new structure:
+
+- **side-by-side comparison** → [`examples/visual-companion/side-by-side-comparison.html`](examples/visual-companion/side-by-side-comparison.html)
+  - Copy when exactly two directions are both credible and you need direct visual contrast on the same decision axis.
+- **ranked alternatives** → [`examples/visual-companion/ranked-alternatives.html`](examples/visual-companion/ranked-alternatives.html)
+  - Copy when three or more options are viable and you must show a visible current winner while keeping lower-ranked options visible.
+- **annotated recommendation** → [`examples/visual-companion/annotated-recommendation.html`](examples/visual-companion/annotated-recommendation.html)
+  - Copy when one recommendation is emerging and you need rationale plus known constraints on the same screen.
+- **carry-forward summary** → [`examples/visual-companion/carry-forward-summary.html`](examples/visual-companion/carry-forward-summary.html)
+  - Copy after a checkpoint so downstream work can see both what is decided and what remains unresolved.
+
+### Active example refresh boundary (M002)
+
+Refresh only `side-by-side-comparison.html`, `ranked-alternatives.html`, and `annotated-recommendation.html` in M002.
+`carry-forward-summary.html` stays outside this refresh boundary unless a direct contradiction is found.
+
+All examples stay fragment-first and use only the existing `data-choice` interaction boundary.
+
+## Screen creation rule
+
+When creating or revising companion screens, route the structuring step through **`/frontend-design`** or **`$frontend-design`**.
+
+This is a **brainstorming structuring pass**, not a requirement for near-final visual polish. The purpose is:
+
+- clear layout hierarchy
+- comparable alternatives
+- readable decision annotations
+- reusable fragment structure
+
+If a screen does not improve decision clarity, stay in terminal mode.
+
+## First-use design-context workflow (bounded, required order)
+
+Before the first companion screen in a session, follow this exact order:
+
+1. **Instruction context first**
+   - Reuse constraints already present in system/developer/user instructions.
+2. **Repo design-context source if present**
+   - Reuse repository context files (for example `.impeccable.md`) if they exist.
+3. **One-time minimal session capture**
+   - If context is still missing, capture only the minimum needed design cues once, then reuse for the session.
+4. **Explicit degraded mode**
+   - If context is unavailable, declined, or insufficient, proceed in **degraded mode** and say so explicitly.
+
+Degraded mode means: keep screens low-assumption, emphasize structure over style, and avoid pretending project-specific design context exists.
 
 ## Offer rule
 
-If an upcoming question is genuinely visual, offer the companion once for consent.
+Offer the companion once for consent only when the upcoming question is genuinely visual.
 
-The offer must be its own message and contain only the offer.
-
-Use the current platform's dedicated question tool for the offer when available.
-
-Suggested message:
+Suggested offer message:
 
 > Some of what we're working on might be easier to explain if I can show it to you in a web browser. I can put together mockups, diagrams, comparisons, and other visuals as we go. This feature is still new and can be token-intensive. Want to try it? (Requires opening a local URL)
 
-Wait for the user's response before continuing.
+Wait for acceptance before browser work.
 
-## Per-question decision
+## Per-question decision rule
 
-Even after the user accepts, decide for each question whether the browser helps more than text. Acceptance makes the browser available; it does not switch the session into browser mode.
+Even after acceptance, decide per turn whether browser output helps more than text.
 
-The test:
+Test: **Is this materially easier to judge by seeing than by reading?**
 
-**Would the user understand this better by seeing it than reading it?**
+If yes, the first later genuinely visual question starts the companion path instead of remaining terminal-only, and each qualifying visual turn stays artifact-first: author or refresh the visual artifact first, make it viewable, tell the user what they are viewing and what decision it supports, then ask the decision or confirmation in terminal with the platform question tool when available.
+Even after earlier browser use, that terminal decision prompt still applies on later qualifying visual turns.
+If the platform question tool is unavailable, fall back to plain terminal text with the same framing, and name that as degraded behavior instead of normalizing it.
 
-## Use the browser for
+For conceptual, scope, and text-first turns, stay in terminal.
 
-- wireframes and layout comparisons
-- architecture diagrams
-- journey maps and service flows
-- state or relationship diagrams
-- side-by-side visual option comparisons
-- visual hierarchy or information density questions
+## Pre-display quality gate
 
-## Use the terminal for
+Before showing a screen, verify all four checks in order:
 
-- trade-off lists
-- scope decisions
-- recommendation + rationale
-- requirements and constraints
-- most conceptual questions
-- most API or data-model decisions unless a diagram materially helps
+1. **Genuinely visual fit**
+   - The decision must be materially easier to judge by seeing than by reading.
+2. **Concrete subject-specific visual content**
+   - The screen must show artifacts tied to the actual subject, workflow, or options under discussion.
+3. **Visible differences that support the decision**
+   - The compared directions must differ visually on the axis the user is choosing between.
+4. **Clear recommendation or comparison legibility**
+   - The current winner, rationale, or comparison labels must be readable without narration doing all the work.
 
-A question about UI is not automatically a visual question.
+No placeholder screens.
+If any checklist item fails, revise the artifact or stay in terminal.
 
-- "What should the first-time setup optimize for?" -> terminal
-- "Which setup layout feels clearer?" -> browser
+## Runtime compatibility boundary (do not exceed)
 
-## Workflow fit
+The current runtime contract is intentionally small:
 
-Good places to use visuals:
+- Fragment-first authoring is default.
+- `full-document` screens remain supported for compatibility, but they are not the v1 default surface.
+- Required interaction metadata stays bounded to `data-choice`.
+- Use `toggleSelect(this)` on selectable cards/options so helper state and indicator text stay consistent.
+- `.options` and `.cards` are recognized selection containers.
+- `data-multiselect` is optional and only for true multi-select behavior.
 
-- after the framing brief, to compare product directions
-- during option shaping, when two options differ visually
-- during the spec phase, for architecture or flow diagrams
-- before final approval, if a diagram clarifies a complex system or workflow
+Do not introduce new required metadata keys beyond `data-choice` in v1.
 
-Avoid using visuals too early when the actual decision is still conceptual.
+## How the server behaves
 
-## How it works
+- Server serves the newest `.html` in `screen_dir`.
+- If content is a fragment, runtime wraps it in the shared frame template.
+- If content is a `full-document`, runtime serves it as-is (plus helper injection).
+- Browser clicks with `data-choice` are appended to `state_dir/events`.
 
-The server watches a content directory for HTML files and serves the newest one to the browser. You write HTML to `screen_dir`, the browser reloads automatically, and user clicks are written to `state_dir/events`.
+## Start and loop
 
-The startup JSON includes:
-
-- `url`: open this in the browser
-- `screen_dir`: where you write `.html` screens
-- `state_dir`: where runtime state is written
-
-`screen_dir` and `state_dir` are usually peer directories inside one session folder:
-
-- `<session>/content`
-- `<session>/state`
-
-### Content fragments vs full documents
-
-If your HTML starts with `<!DOCTYPE` or `<html`, the server serves it as a full document and only injects the helper script.
-
-Otherwise, the server wraps your content in the shared frame template, which provides:
-
-- the page header
-- theme CSS
-- the indicator bar
-- common layout classes
-- click handling infrastructure
-
-Write content fragments by default. Use a full document only when you need complete control over the page.
-
-## Starting a session
-
-Start the server with a persistent project directory so screens survive restarts:
+### Start session
 
 ```bash
 scripts/start-server.sh --project-dir /path/to/project
 ```
 
-Typical startup output:
+Capture:
 
-```json
-{
-  "type": "server-started",
-  "port": 52341,
-  "host": "127.0.0.1",
-  "url_host": "localhost",
-  "url": "http://localhost:52341",
-  "screen_dir": "/path/to/project/.superpowers/brainstorm/12345-1706000000/content",
-  "state_dir": "/path/to/project/.superpowers/brainstorm/12345-1706000000/state"
-}
-```
+- `url`
+- `screen_dir`
+- `state_dir`
 
-Save `screen_dir` and `state_dir`. Tell the user to open `url`.
+### Iteration loop
 
-If you launched the server without capturing stdout, read `state_dir/server-info`.
+1. Confirm server is alive (`state_dir/server-info`; restart if `state_dir/server-stopped` exists).
+2. Write a new `.html` file into `screen_dir` (never reuse filenames).
+3. Tell the user what they are viewing and what decision it supports.
+4. On the next turn, combine terminal feedback with `state_dir/events` (terminal feedback remains primary).
+5. Iterate or move forward with a new file name (`*-v2.html`, etc.).
+6. When returning to terminal-only discussion, push a waiting/transition screen.
 
-When using `--project-dir`, remind the user to ignore `.superpowers/` in git if needed.
+## Fragment authoring baseline
 
-## Launching the server by platform
-
-### Claude Code
-
-```bash
-scripts/start-server.sh --project-dir /path/to/project
-```
-
-### Codex
-
-```bash
-scripts/start-server.sh --project-dir /path/to/project
-```
-
-### Gemini CLI
-
-```bash
-scripts/start-server.sh --project-dir /path/to/project --foreground
-```
-
-If the URL is unreachable from the browser, bind a non-loopback host:
-
-```bash
-scripts/start-server.sh \
-  --project-dir /path/to/project \
-  --host 0.0.0.0 \
-  --url-host localhost
-```
-
-## The loop
-
-1. **Check the server is alive**
-   - Confirm `state_dir/server-info` exists.
-   - If `state_dir/server-stopped` exists, the server exited and must be restarted.
-   - The server may auto-exit after inactivity.
-
-2. **Write a fresh HTML file**
-   - Write to `screen_dir`.
-   - Use semantic filenames.
-   - Never reuse filenames.
-   - The server serves the newest `.html` file and reloads the browser automatically.
-
-3. **Tell the user what they are looking at**
-   - Repeat the URL.
-   - Give a short summary.
-   - Ask them to review it and reply in the terminal.
-
-4. **On the next turn**
-   - Read `state_dir/events` if present.
-   - Merge browser interactions with the user's terminal feedback.
-   - The terminal reply is the primary feedback; `events` adds structured interaction data.
-
-5. **Iterate or advance**
-   - Revise the current visual or move forward.
-   - If the current decision changed, write a new file such as `layout-v2.html`.
-
-6. **Unload when returning to terminal**
-   - Push a waiting screen so stale visuals do not stay on screen:
+Minimal selectable fragment:
 
 ```html
-<div style="display:flex;align-items:center;justify-content:center;min-height:60vh">
-  <p class="subtitle">Continuing in terminal...</p>
-</div>
-```
-
-## Writing content fragments
-
-Write only the content that belongs inside the page body. The server frame already provides the shell and helper behavior.
-
-Minimal example:
-
-```html
-<h2>Which layout works better?</h2>
-<p class="subtitle">Consider readability and visual hierarchy.</p>
+<h2>Which direction should we carry forward?</h2>
+<p class="subtitle">Compare clarity, implementation risk, and extensibility.</p>
 
 <div class="options">
   <div class="option" data-choice="a" onclick="toggleSelect(this)">
     <div class="letter">A</div>
     <div class="content">
-      <h3>Single Column</h3>
-      <p>Clean, focused reading experience</p>
+      <h3>Option A</h3>
+      <p>Short explanation.</p>
     </div>
   </div>
 
   <div class="option" data-choice="b" onclick="toggleSelect(this)">
     <div class="letter">B</div>
     <div class="content">
-      <h3>Two Column</h3>
-      <p>Sidebar navigation with main content</p>
+      <h3>Option B</h3>
+      <p>Short explanation.</p>
     </div>
   </div>
 </div>
 ```
 
-That is enough. You do not need to write `<html>`, CSS, or a custom script for normal use.
+## Diagnostic references
 
-## Authoring rules
-
-These matter more than styling:
-
-- interactive choices must carry `data-choice`
-- clickable options should call `toggleSelect(this)` so the selection state and indicator bar stay in sync
-- `.options` and `.cards` containers are recognized by the helper for selection tracking
-- add `data-multiselect` to an `.options` or `.cards` container when multiple selections should remain active
-
-## Available classes and patterns
-
-The shared frame template gives you a small authoring kit.
-
-### Option list
-
-Use for A/B/C text-heavy decisions:
-
-```html
-<div class="options">
-  <div class="option" data-choice="a" onclick="toggleSelect(this)">
-    <div class="letter">A</div>
-    <div class="content">
-      <h3>Option A</h3>
-      <p>Short explanation</p>
-    </div>
-  </div>
-</div>
-```
-
-### Multi-select option list
-
-```html
-<div class="options" data-multiselect>
-  <div class="option" data-choice="alpha" onclick="toggleSelect(this)">
-    <div class="letter">A</div>
-    <div class="content">
-      <h3>Alpha</h3>
-      <p>Keep this selectable with others.</p>
-    </div>
-  </div>
-</div>
-```
-
-### Visual cards
-
-Use for comparing mockups or design directions:
-
-```html
-<div class="cards">
-  <div class="card" data-choice="design-1" onclick="toggleSelect(this)">
-    <div class="card-image"><!-- mockup content --></div>
-    <div class="card-body">
-      <h3>Design One</h3>
-      <p>Compact dashboard with left navigation.</p>
-    </div>
-  </div>
-</div>
-```
-
-### Mockup container
-
-```html
-<div class="mockup">
-  <div class="mockup-header">Preview: Dashboard Layout</div>
-  <div class="mockup-body"><!-- your mockup HTML --></div>
-</div>
-```
-
-### Split view
-
-```html
-<div class="split">
-  <div class="mockup"><!-- left --></div>
-  <div class="mockup"><!-- right --></div>
-</div>
-```
-
-### Pros and cons
-
-```html
-<div class="pros-cons">
-  <div class="pros"><h4>Pros</h4><ul><li>Benefit</li></ul></div>
-  <div class="cons"><h4>Cons</h4><ul><li>Trade-off</li></ul></div>
-</div>
-```
-
-### Wireframe building blocks
-
-```html
-<div class="mock-nav">Logo | Home | About | Contact</div>
-<div style="display:flex">
-  <div class="mock-sidebar">Navigation</div>
-  <div class="mock-content">Main content area</div>
-</div>
-<button class="mock-button">Action Button</button>
-<input class="mock-input" placeholder="Input field">
-<div class="placeholder">Placeholder area</div>
-```
-
-### Typography helpers
-
-- `h2`: page title
-- `h3`: section heading
-- `.subtitle`: secondary text under a heading
-- `.section`: vertically separated content block
-- `.label`: small uppercase label text
-
-## Browser events format
-
-When the user clicks in the browser, interactions are appended to `state_dir/events`, one JSON object per line. The file is cleared automatically when a brand-new screen file is added.
-
-Example:
-
-```jsonl
-{"type":"click","text":"Option A Clean focused reading experience","choice":"a","id":null,"timestamp":1706000101000}
-{"type":"click","text":"Option B Sidebar navigation with main content","choice":"b","id":null,"timestamp":1706000115000}
-```
-
-Important details:
-
-- the full event stream shows exploration, not just the last click
-- if `state_dir/events` does not exist, the user did not interact in the browser
-- current persistence is keyed off `choice`, so use `data-choice` on selectable elements
-
-## Design tips
-
-- scale fidelity to the question
-- explain the question on each page
-- keep screens focused on one decision
-- prefer 2-4 options per screen
-- use realistic content when it changes the judgment
-- iterate before advancing to a new decision
-
-## File naming
-
-- use semantic names such as `layout.html`, `layout-v2.html`, `platform.html`
-- never reuse filenames
-- treat each new file as a new screen
+- Frame template: `skills/brainstorming/scripts/frame-template.html`
+- Helper behavior + `data-choice` handling: `skills/brainstorming/scripts/helper.js`
+- Runtime fragment/full-document behavior: `skills/brainstorming/scripts/server.cjs`
+- Runtime regressions: `tests/brainstorm-server/server.test.js`, `tests/brainstorm-server/ws-protocol.test.js`
 
 ## Cleanup
-
-Stop the session with:
 
 ```bash
 scripts/stop-server.sh /path/to/session-dir
 ```
-
-Persistent sessions created with `--project-dir` keep their files. Temporary `/tmp` sessions are removed on stop.
-
-## Reference
-
-- Frame template: `scripts/frame-template.html`
-- Helper script: `scripts/helper.js`

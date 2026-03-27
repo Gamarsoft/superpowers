@@ -1,0 +1,83 @@
+<h2>Rank three release-note entry points</h2>
+<p class="subtitle">Judged for repeat discoverability inside the analytics product after launch-day hype fades, not for one-time announcement reach alone.</p>
+
+<p class="subtitle"><strong>Current winner:</strong> Option A is the <strong>Recommended</strong> starting point this sprint because it stays visible in the reporting workflow without forcing an interruption. Options B and C remain worth seeing because they trade reach against calmness and implementation effort differently.</p>
+
+<div class="options">
+  <div class="option selected" data-choice="inline-release-banner" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>Option A · Inline release banner</h3>
+      <p>A slim banner sits directly under the dashboard date filters with a one-line summary, a “What changed in forecasting” link, and a dismiss action that remembers the current release version.</p>
+      <div class="mockup" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+        <div class="mockup-header">Visible where analysts already work</div>
+        <div class="mockup-body" style="padding: 0.95rem; display: grid; gap: 0.6rem;">
+          <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+            <div style="padding: 0.22rem 0.5rem; border-radius: 999px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border); font-size: 0.65rem;">Last 30 days</div>
+            <div style="padding: 0.22rem 0.5rem; border-radius: 999px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border); font-size: 0.65rem;">Channel mix</div>
+            <div style="padding: 0.22rem 0.5rem; border-radius: 999px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border); font-size: 0.65rem;">Forecast</div>
+          </div>
+          <div style="border: 1px solid rgba(0,113,227,0.22); background: linear-gradient(90deg, rgba(0,113,227,0.12), rgba(0,113,227,0.04)); border-radius: 10px; padding: 0.7rem 0.8rem; display: flex; justify-content: space-between; gap: 0.8rem; align-items: center;">
+            <div>
+              <div style="font-size: 0.73rem; font-weight: 700; color: var(--text-primary);">Forecasting just got release notes in-context</div>
+              <div style="font-size: 0.67rem; color: var(--text-secondary);">See assumptions, model confidence, and API changes without leaving the report.</div>
+            </div>
+            <div style="font-size: 0.66rem; font-weight: 700; color: var(--accent); white-space: nowrap;">What changed →</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 0.55rem;">
+            <div style="height: 4.3rem; border-radius: 10px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border);"></div>
+            <div style="height: 4.3rem; border-radius: 10px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border);"></div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Why it ranks first:</strong> it is visible exactly where analysts return every week, stays discoverable after the first session, and does not block someone who opened the dashboard to finish a report quickly.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="activity-feed-card" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h3>Option B · Activity feed card</h3>
+      <p>A richer card appears in the existing right-rail activity feed with thumbnail, headline, and two bullets about what changed in the release.</p>
+      <div class="mockup" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+        <div class="mockup-header">Lower interruption, weaker default visibility</div>
+        <div class="mockup-body" style="padding: 0.95rem; display: grid; grid-template-columns: 1.5fr 0.9fr; gap: 0.7rem; align-items: stretch;">
+          <div style="display: grid; gap: 0.5rem;">
+            <div style="height: 1rem; width: 58%; border-radius: 999px; background: var(--bg-tertiary);"></div>
+            <div style="height: 5.2rem; border-radius: 10px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border);"></div>
+          </div>
+          <div style="border: 1px solid var(--comparison-soft-border); border-radius: 12px; background: var(--bg-secondary); padding: 0.65rem; display: grid; gap: 0.45rem;">
+            <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em;">Activity feed</div>
+            <div style="height: 3rem; border-radius: 8px; background: linear-gradient(180deg, rgba(255,159,10,0.16), rgba(255,159,10,0.06)); border: 1px solid rgba(255,159,10,0.2);"></div>
+            <div style="height: 0.6rem; width: 92%; border-radius: 999px; background: var(--bg-tertiary);"></div>
+            <div style="height: 0.6rem; width: 80%; border-radius: 999px; background: var(--bg-tertiary);"></div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Why it ranks second:</strong> it is calmer than a banner and almost free to ship, but the feed is often collapsed on narrower laptops and many users skip the rail entirely when they are heads-down.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="modal-on-first-login" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>Option C · Modal on first login</h3>
+      <p>A centered modal takes over the screen once per release with three bullets, a hero illustration, and a primary CTA to open the full changelog.</p>
+      <div class="mockup" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+        <div class="mockup-header">Highest attention spike, weakest repeat discoverability</div>
+        <div class="mockup-body" style="padding: 0.95rem; background: linear-gradient(180deg, rgba(15,23,42,0.10), rgba(15,23,42,0.02));">
+          <div style="height: 6.6rem; border-radius: 12px; border: 1px solid var(--comparison-soft-border); background: rgba(255,255,255,0.72); max-width: 320px; margin: 0 auto; padding: 0.8rem; display: grid; gap: 0.45rem; backdrop-filter: blur(2px);">
+            <div style="height: 1.7rem; border-radius: 8px; background: linear-gradient(90deg, rgba(0,113,227,0.18), rgba(0,113,227,0.06)); border: 1px solid rgba(0,113,227,0.16);"></div>
+            <div style="height: 0.6rem; width: 80%; border-radius: 999px; background: var(--bg-tertiary);"></div>
+            <div style="height: 0.6rem; width: 88%; border-radius: 999px; background: var(--bg-tertiary);"></div>
+            <div style="display: flex; gap: 0.45rem; margin-top: 0.2rem;">
+              <div style="flex: 1; height: 1.8rem; border-radius: 8px; background: var(--comparison-soft-bg); border: 1px solid var(--comparison-soft-border);"></div>
+              <div style="flex: 1; height: 1.8rem; border-radius: 8px; background: rgba(0,113,227,0.16); border: 1px solid rgba(0,113,227,0.18);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Why it ranks third:</strong> it guarantees attention once, but it is the most interruptive treatment, weak for repeat discovery, and easy for users to dismiss before they understand what changed.</p>
+    </div>
+  </div>
+</div>

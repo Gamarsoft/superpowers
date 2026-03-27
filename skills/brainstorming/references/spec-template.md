@@ -12,6 +12,13 @@ Default path:
 - Keep sections as short as the complexity allows
 - For simple work, a short spec is fine
 - For nuanced work, add appendices rather than bloating the main narrative
+- A durable wireframe appendix is optional. Add one only when a spatial or layout decision materially affects later implementation or review.
+- Store durable wireframes as separate markdown files in a dedicated sibling folder named after the spec slug, for example `{spec-slug}-wireframes/`.
+- Keep each wireframe low-fidelity and structure-first: ASCII sketches, block diagrams, or equivalent are preferred over polished mockups.
+- Name wireframe files in a stable review order such as `01-screen-name.md`, `02-dialog-name.md`, and tie each file to a specific decision and short rationale.
+- In the spec doc, add an appendix that links to the wireframe files with one-line descriptions of the screen or state each file preserves.
+- Do not create wireframe files for every visual turn or as routine paperwork.
+- If a later GSD handoff depends on those wireframes, link back to the existing appendix rather than duplicating it.
 
 ## Main template
 
@@ -84,11 +91,18 @@ Default path:
 ## Appendix C. Example Mapping
 [Use the example-mapping template]
 
-## Appendix D. Decisions / ADR Notes
+## Appendix D. Wireframes
+[Optional. Link to durable wireframe files in a sibling `{spec-slug}-wireframes/` folder. Use one bullet per file with a short description.]
+
+Example:
+- [Master-detail layout]({spec-slug}-wireframes/01-master-detail-layout.md) — overall page structure with search, results list, and detail pane
+- [Profile stacked sections]({spec-slug}-wireframes/02-profile-stacked-sections.md) — header, metrics, bookings, note, and merge candidates
+
+## Appendix E. Decisions / ADR Notes
 [Only if architectural trade-offs matter]
 
-## Appendix E. GSD Handoff Seed
-[Short seed or link to the handoff file]
+## Appendix F. GSD Handoff Seed
+[Short seed or link to the handoff file. If existing wireframe files materially shape implementation, the later handoff may link back to this appendix.]
 ```
 
 ## Optional track-specific sections

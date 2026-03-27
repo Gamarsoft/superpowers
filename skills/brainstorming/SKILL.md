@@ -289,31 +289,29 @@ Do **not** proceed to implementation planning until the written artifacts are ap
 
 ## Visual companion
 
-The visual companion is a tool, not a mode. Offer it only when the upcoming question is easier to understand by **seeing** than by reading.
+The visual companion is a tool, not a mode. Offer it only when the upcoming question is materially easier to judge by seeing than by reading.
 
-Examples:
+If accepted, follow the **same comparison-first contract** in `visual-companion.md`:
 
-- visual layouts
-- wireframes
-- journey maps
-- architecture diagrams
-- side-by-side UI or information architecture comparisons
+- Use exactly four archetypes: **side-by-side comparison**, **ranked alternatives**, **annotated recommendation**, and **carry-forward summary**.
+- Route screen structuring through **`/frontend-design`** or **`$frontend-design`**.
+- Treat that route as a brainstorming structuring pass, not a near-final mockup requirement.
+- Follow first-use workflow in order: instruction context → repo design-context source if present (for example `.impeccable.md`) → one-time minimal session capture → explicit **degraded mode**.
+- Preserve compatibility boundary language: fragment-first default, `full-document` compatibility support, and no new required metadata beyond `data-choice`.
 
-Do **not** use the browser for:
-
-- trade-off lists
-- conceptual scope choices
-- constraints questions
-- most architecture or API decisions unless a diagram materially clarifies the choice
-
-After the user accepts, decide question by question whether the browser helps more than the terminal.
+Use browser screens for visual decisions (layout contrasts, IA comparisons, diagrams). For conceptual, scope, and text-first turns, stay in terminal.
 
 A question about UI is not automatically a visual question.
 
 - "What should onboarding optimize for?" -> terminal
 - "Which onboarding layout feels clearer?" -> browser
 
-If the user accepts the visual companion, read `visual-companion.md` before the first browser turn.
+After consent, the first later genuinely visual question must start the companion path instead of remaining terminal-only.
+For each qualifying visual turn, follow the artifact-first sequence in `visual-companion.md`: author or refresh the visual artifact first, make it viewable, tell the user what they are viewing and what decision it supports, then ask the decision or confirmation in terminal with the platform question tool when available.
+The terminal decision prompt must stay present for qualifying visual turns even after the companion has already been opened earlier in the session.
+If the platform question tool is unavailable, the agent may fall back to plain terminal text, but that is degraded behavior and should be named as such.
+
+Read `visual-companion.md` before the first browser turn in every accepted visual-companion session.
 
 ## Common mistakes to avoid
 

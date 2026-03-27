@@ -40,6 +40,8 @@ Artifacts:
 
 Review using the checklist in `skills/brainstorming/references/spec-review-checklist.md`.
 
+If the reviewed spec or GSD handoff changes, describes, or depends on the visual-companion workflow, apply the checklist's visual-companion protocol regression subsection before approving. Use that checklist gate to compare both artifacts against `skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md` and fail missing or weakened coverage for first-turn startup, artifact-first sequencing, terminal question-tool continuity, or explicit degraded fallback.
+
 Focus on blocking issues first.
 
 Look especially hard for:
@@ -51,6 +53,7 @@ Look especially hard for:
 - brownfield safety gaps
 - TODO / TBD / placeholder content
 - handoff sections too vague to seed GSD planning
+- when visual-companion workflow changes are in scope, the named M003 regression family via the checklist gate: first-turn startup, artifact-first sequencing, terminal question-tool continuity, or explicit degraded fallback
 
 Do not redesign the feature unless the current design is clearly unsafe, incoherent, or unbounded.
 

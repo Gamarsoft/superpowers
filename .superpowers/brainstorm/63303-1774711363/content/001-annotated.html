@@ -1,0 +1,49 @@
+<h2>Annotated recommendation: settings information architecture</h2>
+<p class="subtitle">Use this click-assisted follow-up when one direction is ready to carry forward and the authored screen should keep that status explicit on its own.</p>
+
+<div class="section">
+  <div class="label">Chosen direction</div>
+  <p class="subtitle">Carry forward this recommendation directly on the screen rather than relying on prior browser events to explain what won.</p>
+  <div class="mockup">
+    <div class="mockup-header">Current winner · Task-grouped settings sections</div>
+    <div class="mockup-body">
+      <h3>Task-grouped settings</h3>
+      <p>Group controls by user intent (Notifications, Privacy, Billing) instead of technical categories.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Why this wins</h4>
+          <ul>
+            <li>Users find controls faster by intent.</li>
+            <li>Matches support-ticket phrasing.</li>
+            <li>Scales to future preferences without nav sprawl.</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Known constraints</h4>
+          <ul>
+            <li>Needs one migration pass for legacy labels.</li>
+            <li>Requires analytics remap for section names.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options">
+  <div class="option selected" data-choice="task-grouped-settings" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Chosen direction: task-grouped settings</h3>
+      <p>Carry this recommendation forward with the rationale and constraints shown above.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="technical-stack-settings" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Still open alternative: technical-stack sections</h3>
+      <p>Lower migration effort, but weaker mental model for non-technical users.</p>
+    </div>
+  </div>
+</div>
