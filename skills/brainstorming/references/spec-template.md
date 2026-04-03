@@ -7,18 +7,16 @@ Default path:
 
 ## Authoring rules
 
-- Reader-first, not writer-first
-- Put the chosen direction early
-- Keep sections as short as the complexity allows
-- For simple work, a short spec is fine
-- For nuanced work, add appendices rather than bloating the main narrative
+- Reader-first, not writer-first.
+- Put the chosen direction early.
+- Keep sections as short as the complexity allows.
+- For simple work, a short spec is fine.
+- For nuanced work, add appendices rather than bloating the main narrative.
+- If a frontend direction packet exists, keep this spec structural and behavioral; link to the packet instead of duplicating detailed visual-system guidance.
 - A durable wireframe appendix is optional. Add one only when a spatial or layout decision materially affects later implementation or review.
 - Store durable wireframes as separate markdown files in a dedicated sibling folder named after the spec slug, for example `{spec-slug}-wireframes/`.
 - Keep each wireframe low-fidelity and structure-first: ASCII sketches, block diagrams, or equivalent are preferred over polished mockups.
-- Name wireframe files in a stable review order such as `01-screen-name.md`, `02-dialog-name.md`, and tie each file to a specific decision and short rationale.
-- In the spec doc, add an appendix that links to the wireframe files with one-line descriptions of the screen or state each file preserves.
-- Do not create wireframe files for every visual turn or as routine paperwork.
-- If a later GSD handoff depends on those wireframes, link back to the existing appendix rather than duplicating it.
+- If a frontend direction packet exists later, let the packet inherit from or link back to those wireframes rather than rewriting them.
 
 ## Main template
 
@@ -54,10 +52,12 @@ Default path:
 
 ## 5. User Experience / Behavior
 - Primary flows
+- Key screens or views (only the structural overview)
 - Key states
 - Failure / edge cases
 - Error handling
 - Operational or admin behavior if relevant
+- Link to frontend direction packet if one exists
 
 ## 6. System Design
 - Components / units
@@ -77,6 +77,7 @@ Default path:
 - What must be tested or verified
 - Key acceptance checks
 - Observability / rollout checks if needed
+- Frontend verification link if a frontend direction packet exists
 
 ## 9. Open Questions
 - Questions intentionally left open
@@ -92,17 +93,21 @@ Default path:
 [Use the example-mapping template]
 
 ## Appendix D. Wireframes
-[Optional. Link to durable wireframe files in a sibling `{spec-slug}-wireframes/` folder. Use one bullet per file with a short description.]
+[Optional. Link to durable wireframe files in a sibling `{spec-slug}-wireframes/` folder.]
+
+## Appendix E. Frontend Direction Packet
+[Only if applicable. Link to `{spec-slug}--frontend-direction.md` and the supporting asset folder.]
 
 Example:
-- [Master-detail layout]({spec-slug}-wireframes/01-master-detail-layout.md) — overall page structure with search, results list, and detail pane
-- [Profile stacked sections]({spec-slug}-wireframes/02-profile-stacked-sections.md) — header, metrics, bookings, note, and merge candidates
+- [Frontend direction packet]({spec-slug}--frontend-direction.md) — selected visual direction, state coverage, responsive rules, and implementation contract
+- [Screen index]({spec-slug}--frontend/screen-index.md) — key screens and state coverage
+- [Prompt pack]({spec-slug}--frontend/stitch-prompt-pack.md) — reusable generation prompts and review notes
 
-## Appendix E. Decisions / ADR Notes
+## Appendix F. Decisions / ADR Notes
 [Only if architectural trade-offs matter]
 
-## Appendix F. GSD Handoff Seed
-[Short seed or link to the handoff file. If existing wireframe files materially shape implementation, the later handoff may link back to this appendix.]
+## Appendix G. GSD Handoff Seed
+[Short seed or link to the handoff file.]
 ```
 
 ## Optional track-specific sections
@@ -138,4 +143,5 @@ A strong spec:
 - makes the chosen direction explicit
 - names risks honestly
 - includes enough behavior detail to build or hand off safely
+- stays consistent with the frontend direction packet when one exists
 - is consistent with the handoff file

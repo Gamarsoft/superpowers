@@ -1,58 +1,51 @@
 ---
 name: brainstorming
-description: Use when shaping new features, behavior changes, product ideas, or brownfield enhancements before implementation—especially when user value, scope, constraints, trade-offs, or requirements need to be turned into an approved design spec.
+description: Use when shaping new features, behavior changes, product ideas, brownfield enhancements, or UI-heavy work before implementation—especially when scope, requirements, trade-offs, screen behavior, or frontend direction must be turned into an approved design spec, optional frontend direction packet, and GSD/Codex-ready handoff.
 ---
 
 # Brainstorming
 
 ## Overview
 
-Brainstorming is guided discovery that turns an idea into:
+Brainstorming is guided discovery that turns an idea into approved implementation inputs.
 
-1. an approved design spec, and
-2. a GSD-ready handoff packet.
+Default outputs:
 
-Do **not** write code, scaffold projects, or invoke implementation skills until the design spec is approved and the next-step handoff is ready.
+1. a reviewed design spec
+2. a reviewed GSD-ready handoff
+3. a reviewed frontend direction packet **when UI/UX materially shapes implementation**
 
-### Default terminal state
+Do **not** write production code, scaffold projects, or invoke implementation skills until the required written artifacts are approved.
 
-The default terminal state is:
+## Default terminal states
 
-- a reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
-- a reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
+### Non-UI-heavy work
 
-Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2.
+- reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
+- reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 
-## When to Use
+### UI-heavy work
 
-Use this skill when:
+- reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
+- reviewed frontend direction packet written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
+- reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
+- supporting frontend assets written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
 
-- a user wants to create a new feature, project, workflow, UI, API, integration, automation, or behavior change
-- the user has an idea but the scope, requirements, or trade-offs are still fuzzy
-- the request touches an existing codebase and you need to understand current constraints before proposing a solution
-- the user wants a design spec, proposal, plan-ready design, or GSD handoff
-- the user asks for implementation work that would benefit from a design first
-
-## When NOT to Use
-
-Do **not** use this skill when:
-
-- there is already a current, approved spec and the user wants pure implementation against that spec
-- the task is purely mechanical, tightly bounded, and already governed by a validated plan
-- the user only wants analysis or research with no design/spec output
+Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2 or Codex implementation.
 
 ## Core principle
 
 **Guided choices beat open-ended interrogation.**
 
-You are not here to make the user invent the design from scratch. Your job is to:
+Your job is to:
 
 - understand the real goal
 - retrieve context before guessing
 - frame decisions as 2–3 viable options
 - recommend a default with reasoning
 - bound the work before the spec hardens
-- turn the result into a spec and a GSD-ready handoff
+- create visual direction when the implementation agent would otherwise have to invent UI
+- turn the result into written artifacts that another agent can execute with minimal extra questioning
 
 ## Required workflow
 
@@ -61,8 +54,7 @@ Create a task for each of the following and complete them in order.
 1. **Explore project context**
    - If the request is tied to this repo and likely needs topic-specific codebase context, invoke `gathering-topic-context` before reflection.
    - Use `gathering-topic-context` by default for brownfield work, bugfixes, architecture-led changes, and repo-specific feature requests.
-   - Skip `gathering-topic-context` for pure greenfield/product ideation that is not grounded in this repo.
-   - Use the returned Topic Context Bundle to ground track selection, framing, and the first guided question.
+   - Skip it for pure greenfield ideation that is not grounded in this repo.
    - If `gathering-topic-context` cannot run, fall back to local inspection and say why.
 
 2. **Offer the visual companion** *(only if an upcoming question is genuinely visual)*
@@ -73,7 +65,6 @@ Create a task for each of the following and complete them in order.
    - On Codex/OpenCode, that tool is `request_user_input`.
    - On Copilot, that tool is `ask_questions`.
    - Wait for the user's answer before continuing.
-   - Acceptance makes the browser available; it does **not** mean every later question should use it.
    - If accepted, read `visual-companion.md` before the first browser turn.
 
 3. **Reflect before questioning**
@@ -92,36 +83,54 @@ Create a task for each of the following and complete them in order.
      - bugfix-regression
      - architecture-led-change
 
-5. **Build the framing brief**
+5. **Decide whether a frontend-direction phase is required**
+   - Read `references/frontend-direction-phase.md`.
+   - Treat frontend intensity as a second axis, not a replacement for the chosen track.
+   - Activate the phase when pages, screens, flows, layout hierarchy, visual language, or interaction details materially shape implementation.
+   - Skip it for backend-only work, purely mechanical UI tweaks that already fit a stable pattern, or when an approved frontend direction packet already exists and remains current.
+
+6. **Build the framing brief**
    - Use `references/framing-brief-template.md`.
    - Capture user, problem, desired outcome, success signal, constraints, and non-goals.
    - Keep it concise and decision-oriented.
 
-6. **Run guided discovery**
+7. **Run guided discovery**
    - Read `references/guided-choice-protocol.md`.
    - Ask **one question per message**.
-   - Use the current platform's dedicated question tool for discovery questions, boundary checks, and review gates when available.
    - Prefer **2–3 framed options** over open-ended questions.
    - Always include a recommendation when the choice is design-shaping.
    - If you ask an open-ended question, the **next turn** must reframe the answer into options.
 
-7. **Present option cards**
+8. **Present option cards**
    - Use `references/option-cards-template.md`.
    - Show 2–3 viable approaches with trade-offs.
    - Evaluate them using `references/decision-lens.md`.
    - Lead with your recommended option and why it wins **now**.
 
-8. **Set boundaries and appetite**
+9. **Set boundaries and appetite**
    - Define first delivery boundary, rabbit holes, no-gos, and what must stay unchanged.
    - In brownfield work, explicitly capture invariants, rollout constraints, compatibility constraints, migration concerns, and integration risks before proposing architecture-heavy solutions.
 
-9. **Present the design in sections**
-   - Use `references/spec-template.md`.
-   - Present the design incrementally.
-   - After each major section, ask whether it looks right so far.
-   - Revise before moving on.
+10. **Stabilize the experience before final writing**
+    - Confirm the primary flows, key states, and first delivery boundary.
+    - If durable wireframes are needed, add them before the final writing pass.
+    - Do **not** start the frontend-direction phase until the experience is stable enough to anchor screens.
 
-10. **Add example mapping**
+11. **Run the frontend-direction phase** *(conditional)*
+    - If step 5 activated it, read `references/frontend-direction-phase.md` fully.
+    - Build the screen inventory using `references/screen-index-template.md`.
+    - Build the prompt pack using `references/stitch-prompt-pack-template.md`.
+    - Write the frontend direction packet using `references/frontend-direction-template.md`.
+    - Prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill.
+    - Treat Stitch outputs as first-class visual references, not as permission to invent product requirements.
+
+12. **Present the design in sections**
+    - Use `references/spec-template.md`.
+    - Present the design incrementally.
+    - After each major section, ask whether it looks right so far.
+    - Revise before moving on.
+
+13. **Add example mapping**
     - Use `references/example-mapping-template.md`.
     - For each major capability, capture:
       - rules
@@ -129,48 +138,40 @@ Create a task for each of the following and complete them in order.
       - open questions
       - out-of-scope / deferred items
 
-11. **Write the design spec**
-    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
+14. **Write the design spec**
+    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`.
     - User preference overrides the default location.
+    - If a frontend direction packet exists, keep the spec structural and behavioral; link to the packet instead of duplicating visual-system detail.
     - Commit the spec to git.
 
-12. **Write the GSD handoff**
+15. **Write the frontend direction packet** *(conditional)*
+    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`.
+    - Save supporting files to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`.
+    - When Stitch MCP is available and the work is repo-tied, refresh `.stitch/DESIGN.md` if that improves reuse.
+    - Commit all frontend-direction artifacts to git.
+
+16. **Write the GSD handoff**
     - Use `references/gsd-handoff-template.md`.
-    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
+    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`.
+    - If a frontend direction packet exists, link it explicitly and tell downstream agents to treat it as first-class input for UI implementation.
     - Commit the handoff to git.
 
-13. **Run the review loop**
+17. **Run the review loop**
     - Read `references/spec-review-checklist.md`.
+    - If a frontend direction packet exists, also read `references/frontend-review-checklist.md`.
     - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
-    - Review both the spec and the GSD handoff.
+    - Review every written artifact in scope.
     - Fix blocking issues and re-dispatch.
     - Maximum 5 iterations, then surface to the human.
 
-14. **User review gate**
-    - Ask the user to review the written spec and handoff before proceeding.
+18. **User review gate**
+    - Ask the user to review the written artifacts before proceeding.
     - Use the current platform's dedicated question tool for that review prompt when available.
     - If they request changes, make them and re-run the review loop.
 
-15. **Transition**
-    - Default: stop with approved spec + approved GSD handoff.
+19. **Transition**
+    - Default: stop with approved artifacts.
     - If the user explicitly wants to continue inside Superpowers, invoke `writing-plans`.
-
-## Track routing
-
-Read `references/track-selection.md` before deep questioning.
-
-### Decomposition rule
-
-If the request really describes multiple independent subsystems, do **not** force a single giant spec.
-
-Instead:
-
-- identify the independent pieces
-- explain how they relate
-- suggest an order
-- brainstorm the **first** sub-project through the normal flow
-
-Each sub-project gets its own spec and handoff.
 
 ## Guided discovery rules
 
@@ -209,6 +210,7 @@ When comparing options:
 - avoid cleverness that increases delivery or operational risk without strong payoff
 - prefer reversible choices when confidence is low
 - name what each option makes harder, not just what it makes possible
+- when UI direction is in scope, prefer clarity, hierarchy, and codebase/design-system fit over generic visual flourish
 
 Use `references/decision-lens.md` for a consistent rubric.
 
@@ -223,8 +225,11 @@ In existing codebases:
 - do not smuggle in unrelated refactors
 - explicitly call out invariants and rollout constraints
 - if inspection has not happened yet, the next guided question must focus on current behavior, existing workflow boundaries, and what must stay unchanged rather than jumping to architecture
+- when frontend direction is active, preserve the existing design system and surface language unless the user explicitly wants redesign
 
 ## Track-specific guardrails
+
+Track summaries in `references/track-selection.md` do not replace the guardrails below.
 
 ### Brownfield major feature
 
@@ -246,17 +251,6 @@ In existing codebases:
 - ask about regression safety explicitly: what must keep working, what reproduces the issue, or what verification would prove the fix is safe
 - prefer a recommended target rule over speculative root-cause architecture
 
-## Design quality bar
-
-Your design is not done when it sounds plausible. It is done when:
-
-- the framing is clear
-- the scope is bounded
-- the chosen direction is justified
-- edge cases and failure modes are covered
-- acceptance examples exist
-- the spec can be handed to GSD-2 with minimal extra questioning
-
 ## Output artifacts
 
 ### 1. Design spec
@@ -266,24 +260,39 @@ Use `references/spec-template.md`.
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
 
-### 2. GSD handoff
+### 2. Frontend direction packet *(conditional)*
+
+Use `references/frontend-direction-template.md`.
+
+Default path:
+`docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
+
+Supporting folder:
+`docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
+
+Recommended contents:
+- `screen-index.md`
+- `stitch-prompt-pack.md`
+- `screenshots/`
+- `selected-direction/`
+
+### 3. GSD handoff
 
 Use `references/gsd-handoff-template.md`.
 
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 
-The handoff must be strong enough that a fresh GSD project can start with `/gsd` and use the handoff file as the primary vision input.
-
 ## Review loop
 
-After writing both artifacts:
+After writing the required artifacts:
 
 1. Dispatch the reviewer using `spec-document-reviewer-prompt.md`
-2. Use `references/spec-review-checklist.md` as the quality bar
-3. Fix blocking issues
-4. Re-dispatch until approved or until 5 iterations are exhausted
-5. Ask the user to review the written files
+2. Use `references/spec-review-checklist.md` as the baseline quality bar
+3. Use `references/frontend-review-checklist.md` as an additional blocking bar when a frontend direction packet exists
+4. Fix blocking issues
+5. Re-dispatch until approved or until 5 iterations are exhausted
+6. Ask the user to review the written files
 
 Do **not** proceed to implementation planning until the written artifacts are approved.
 
@@ -291,27 +300,23 @@ Do **not** proceed to implementation planning until the written artifacts are ap
 
 The visual companion is a tool, not a mode. Offer it only when the upcoming question is materially easier to judge by seeing than by reading.
 
-If accepted, follow the **same comparison-first contract** in `visual-companion.md`:
+If accepted, follow the comparison-first contract in `visual-companion.md`.
 
-- Use exactly four archetypes: **side-by-side comparison**, **ranked alternatives**, **annotated recommendation**, and **carry-forward summary**.
-- Route screen structuring through **`/frontend-design`** or **`$frontend-design`**.
-- Treat that route as a brainstorming structuring pass, not a near-final mockup requirement.
-- Follow first-use workflow in order: instruction context → repo design-context source if present (for example `.impeccable.md`) → one-time minimal session capture → explicit **degraded mode**.
-- Preserve compatibility boundary language: fragment-first default, `full-document` compatibility support, and no new required metadata beyond `data-choice`.
+Use browser screens for:
 
-Use browser screens for visual decisions (layout contrasts, IA comparisons, diagrams). For conceptual, scope, and text-first turns, stay in terminal.
+- visual direction contrasts
+- screen hierarchy comparisons
+- IA comparisons
+- annotated recommendations
+- selected Stitch or screenshot references that help settle a decision
+
+Stay in terminal for:
+
+- conceptual or scope questions
+- backend-only design work
+- requirements and boundary checks that do not benefit from visual contrast
 
 A question about UI is not automatically a visual question.
-
-- "What should onboarding optimize for?" -> terminal
-- "Which onboarding layout feels clearer?" -> browser
-
-After consent, the first later genuinely visual question must start the companion path instead of remaining terminal-only.
-For each qualifying visual turn, follow the artifact-first sequence in `visual-companion.md`: author or refresh the visual artifact first, make it viewable, tell the user what they are viewing and what decision it supports, then ask the decision or confirmation in terminal with the platform question tool when available.
-The terminal decision prompt must stay present for qualifying visual turns even after the companion has already been opened earlier in the session.
-If the platform question tool is unavailable, the agent may fall back to plain terminal text, but that is degraded behavior and should be named as such.
-
-Read `visual-companion.md` before the first browser turn in every accepted visual-companion session.
 
 ## Common mistakes to avoid
 
@@ -319,15 +324,16 @@ Read `visual-companion.md` before the first browser turn in every accepted visua
 - presenting more than 3 options
 - presenting options without a recommendation
 - skipping boundaries because the feature "seems simple"
-- writing the spec before the choice is actually settled
-- writing a polished spec without acceptance examples
-- handing off to GSD-2 without explicit requirements seeds and milestone recommendations
+- writing the spec before the key choice is actually settled
+- handing UI-heavy work to implementation with only prose + low-fidelity wireframes when visual direction is still implicit
+- treating Stitch outputs as the product decision instead of evidence inside the decision
+- handing off to GSD-2 or Codex without explicit requirements seeds, milestone recommendations, and frontend inputs when relevant
 - invoking implementation skills before the written artifacts are approved
 
 ## Terminal states
 
 ### Default
-Approved spec + approved GSD handoff.
+Approved required artifacts for the chosen scope.
 
 ### Optional
 If the user explicitly says to keep going inside Superpowers after approval, invoke `writing-plans`.

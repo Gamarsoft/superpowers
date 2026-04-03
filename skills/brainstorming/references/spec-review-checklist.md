@@ -1,6 +1,6 @@
 # Spec Review Checklist
 
-Use this as the blocking quality bar for both the design spec and the GSD handoff.
+Use this as the blocking quality bar for the design spec, optional frontend direction packet, and GSD handoff.
 
 ## Status language
 
@@ -57,23 +57,37 @@ Use this as the blocking quality bar for both the design spec and the GSD handof
 - Are constraints and integration points explicit?
 - Are slice candidates or boundary hints strong enough to seed GSD planning?
 
-## 10. Visual-companion protocol regression checks (conditional, blocking when relevant)
-Apply this subsection only when the reviewed design spec or GSD handoff changes, describes, or depends on the visual-companion workflow. If the workflow is not in scope, skip this subsection silently.
+## 10. Frontend packet quality (conditional, blocking when relevant)
+Apply this section when a frontend direction packet exists or when the work clearly depends on frontend direction.
 
-Before approving, compare **both** the design spec and the GSD handoff against `skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md`.
+- Is there a visual thesis and screen inventory?
+- Are key screens and critical states covered?
+- Are Must preserve / May adapt / Explicit no-gos clearly separated?
+- Are responsive, accessibility, and verification rules present?
+- Are linked screenshots, wireframes, or DESIGN.md references real rather than placeholder mentions?
 
-Fail the review if either artifact is missing, weakens, or contradicts any required outcome below:
-- **first-turn startup** — the first later genuinely visual turn must start the companion path instead of remaining terminal-only.
-- **artifact-first sequencing** — for each qualifying visual turn, the visual artifact must be authored or refreshed, made viewable, and explained before the terminal decision or confirmation prompt.
-- **terminal question-tool continuity** — even after earlier browser use, each qualifying visual turn must still deliver the terminal decision or confirmation prompt through the dedicated question tool when available.
-- **explicit degraded fallback** — if the dedicated question tool is unavailable, plain terminal fallback must be named as degraded behavior explicitly rather than normalized as the standard path.
+## 11. Cross-artifact UI alignment (conditional, blocking when relevant)
+- Do the spec, frontend packet, and GSD handoff agree on scope and behavior?
+- Are deferred visual ideas kept out of Active requirements?
+- Can an implementation agent tell which visual sources are authoritative?
 
-Treat spec↔handoff drift on any of these four outcomes as a blocking issue even if one artifact is correct.
+## 12. Visual-companion protocol regression checks (conditional, blocking when relevant)
+Apply this subsection only when the reviewed artifacts change, describe, or depend on the visual-companion workflow. If the workflow is not in scope, skip this subsection silently.
+
+Before approving, compare the relevant artifacts against `skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md`.
+
+Fail the review if the artifacts are missing, weaken, or contradict any required outcome below:
+- **first-turn startup** — the first later genuinely visual turn must start the companion path instead of remaining terminal-only
+- **artifact-first sequencing** — for each qualifying visual turn, the visual artifact must be authored or refreshed, made viewable, and explained before the terminal decision or confirmation prompt
+- **terminal question-tool continuity** — even after earlier browser use, each qualifying visual turn must still deliver the terminal decision or confirmation prompt through the dedicated question tool when available
+- **explicit degraded fallback** — if the dedicated question tool is unavailable, plain terminal fallback must be named as degraded behavior explicitly rather than normalized as the standard path
+
+Treat spec↔packet↔handoff drift on any of these outcomes as a blocking issue even if one artifact is correct.
 
 ## Advisory checks
 
 - Could any section be shorter and clearer?
-- Are there optional diagrams that would materially improve understanding?
+- Are there optional diagrams or screenshots that would materially improve understanding?
 - Is there over-engineering not justified by current needs?
 - Are there assumptions that deserve stronger evidence?
 

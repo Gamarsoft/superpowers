@@ -22,7 +22,18 @@ The companion is **comparison-first**. Every screen should map to exactly one of
 
 Do not invent extra archetypes in v1.
 
-### Carry-forward authoring rule
+## Frontend-design alignment
+
+When the frontend-direction phase is active, the companion should usually show one of these:
+
+- selected or competing Stitch-generated references
+- annotated screenshots from the current product
+- wireframe-to-direction comparisons
+- carry-forward summaries of the chosen visual direction
+
+The companion is still for **decision-making**, not for pretending the chosen screenshot is already the final implemented UI.
+
+## Carry-forward authoring rule
 
 Carry-forward continuity must live in visible authored copy, not in helper state, hidden metadata, or persisted browser events.
 
@@ -31,29 +42,9 @@ Carry-forward continuity must live in visible authored copy, not in helper state
 - Use **Degraded mode** when richer design context was unavailable, declined, or insufficient so the screen remains honest about its low-assumption status.
 - These labels should stay correct whether `state/events` exists, is empty, or was cleared on a newer screen.
 
-### Copyable archetype example kit
-
-Start from these authored fragments before inventing new structure:
-
-- **side-by-side comparison** → [`examples/visual-companion/side-by-side-comparison.html`](examples/visual-companion/side-by-side-comparison.html)
-  - Copy when exactly two directions are both credible and you need direct visual contrast on the same decision axis.
-- **ranked alternatives** → [`examples/visual-companion/ranked-alternatives.html`](examples/visual-companion/ranked-alternatives.html)
-  - Copy when three or more options are viable and you must show a visible current winner while keeping lower-ranked options visible.
-- **annotated recommendation** → [`examples/visual-companion/annotated-recommendation.html`](examples/visual-companion/annotated-recommendation.html)
-  - Copy when one recommendation is emerging and you need rationale plus known constraints on the same screen.
-- **carry-forward summary** → [`examples/visual-companion/carry-forward-summary.html`](examples/visual-companion/carry-forward-summary.html)
-  - Copy after a checkpoint so downstream work can see both what is decided and what remains unresolved.
-
-### Active example refresh boundary (M002)
-
-Refresh only `side-by-side-comparison.html`, `ranked-alternatives.html`, and `annotated-recommendation.html` in M002.
-`carry-forward-summary.html` stays outside this refresh boundary unless a direct contradiction is found.
-
-All examples stay fragment-first and use only the existing `data-choice` interaction boundary.
-
 ## Screen creation rule
 
-When creating or revising companion screens, route the structuring step through **`/frontend-design`** or **`$frontend-design`**.
+When creating or revising companion screens, route the structuring step through **`/frontend-direction`** or **`$frontend-direction`** when that skill exists.
 
 This is a **brainstorming structuring pass**, not a requirement for near-final visual polish. The purpose is:
 
@@ -71,7 +62,7 @@ Before the first companion screen in a session, follow this exact order:
 1. **Instruction context first**
    - Reuse constraints already present in system/developer/user instructions.
 2. **Repo design-context source if present**
-   - Reuse repository context files (for example `.impeccable.md`) if they exist.
+   - Reuse repository context files (for example `.impeccable.md` or `.stitch/DESIGN.md`) if they exist.
 3. **One-time minimal session capture**
    - If context is still missing, capture only the minimum needed design cues once, then reuse for the session.
 4. **Explicit degraded mode**
@@ -96,7 +87,9 @@ Even after acceptance, decide per turn whether browser output helps more than te
 Test: **Is this materially easier to judge by seeing than by reading?**
 
 If yes, the first later genuinely visual question starts the companion path instead of remaining terminal-only, and each qualifying visual turn stays artifact-first: author or refresh the visual artifact first, make it viewable, tell the user what they are viewing and what decision it supports, then ask the decision or confirmation in terminal with the platform question tool when available.
+
 Even after earlier browser use, that terminal decision prompt still applies on later qualifying visual turns.
+
 If the platform question tool is unavailable, fall back to plain terminal text with the same framing, and name that as degraded behavior instead of normalizing it.
 
 For conceptual, scope, and text-first turns, stay in terminal.
@@ -136,6 +129,7 @@ Do not introduce new required metadata keys beyond `data-choice` in v1.
 - If content is a fragment, runtime wraps it in the shared frame template.
 - If content is a `full-document`, runtime serves it as-is (plus helper injection).
 - Browser clicks with `data-choice` are appended to `state_dir/events`.
+- Explicit `window.brainstorm.choice(...)` events are also persisted.
 
 ## Start and loop
 

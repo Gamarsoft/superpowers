@@ -36,6 +36,41 @@ Does that boundary feel right?
 
 ---
 
+## Frontend-heavy questions
+
+### Preserve vs refresh
+```text
+I think the safest default is to preserve the current design language and only refresh the screens that need new hierarchy.
+Alternative is a broader redesign, but that adds more design and implementation risk.
+Should we optimize for continuity first, or is a visible redesign part of the goal?
+```
+
+### Primary screen to perfect
+```text
+I recommend we perfect [screen / flow] first and let the other screens inherit from it.
+Alternative is spreading attention across several surfaces at once, but that usually makes the visual direction blurry.
+Which screen or step has to feel most right in the first release?
+```
+
+### Density / hierarchy bias
+```text
+I see two sensible directions:
+- denser, operational UI that helps expert users scan quickly
+- calmer, more guided UI that slows the pace but improves onboarding clarity
+
+I recommend [choice] because [reason tied to the primary user].
+Which bias is closer to what this feature needs?
+```
+
+### Visual reference appetite
+```text
+I recommend we generate 2–3 variants for the key screen only, then lock the direction before expanding coverage.
+Alternative is generating many references up front, but that creates noise.
+Does that sequencing feel right?
+```
+
+---
+
 ## Greenfield questions
 
 ### First release scope

@@ -29,6 +29,15 @@ Choose the first track that clearly fits.
 
 If multiple tracks seem plausible, choose the **more constrained** one first. You can always expand later.
 
+## Second axis: frontend intensity
+
+After picking the track, decide whether the work also needs the **frontend-direction phase**.
+
+Read `references/frontend-direction-phase.md` and treat that decision as orthogonal to the track:
+
+- the track controls discovery and delivery weight
+- the frontend-direction phase adds visual-direction work and an extra artifact only when UI/UX materially shapes implementation
+
 ---
 
 ## Track summaries
@@ -52,6 +61,7 @@ Shape a new capability from user/problem framing through first delivery boundary
 - spec
 - example mapping
 - GSD handoff
+- frontend direction packet **when UI is implementation-shaping**
 
 ### Typical question themes
 - who is this for?
@@ -80,6 +90,7 @@ Everything from greenfield **plus**:
 - invariants
 - rollout constraints
 - explicit interaction with existing workflows
+- frontend direction packet **when new or changed screens materially affect delivery**
 
 ### Typical question themes
 - where does this hook into the current system?
@@ -87,6 +98,11 @@ Everything from greenfield **plus**:
 - what existing patterns should we preserve?
 - what rollout, migration, or support burden does this create?
 - what is the safest first slice?
+
+### Guardrails
+- inspect current patterns before committing to solution shape
+- make the first design-shaping question surface the workflow insertion point plus at least one of: invariant, rollout constraint, migration concern, or compatibility constraint
+- do not jump to architecture-heavy options before those constraints are explicit
 
 ---
 
@@ -109,12 +125,18 @@ Use the **lite path**:
 - short spec
 - mini example map
 - GSD handoff
+- frontend direction packet only when the UI change introduces meaningful new hierarchy, state, or visual-contract ambiguity
 
 ### Typical question themes
 - what exact behavior should change?
 - what should remain unchanged?
 - what is the smallest useful first version?
 - what existing surface is safest to extend?
+
+### Guardrails
+- stay on the lite path
+- ask only for the minimum behavior change, the unchanged behavior, and the safest extension point
+- prefer one recommended option plus one fallback unless the extra branch is genuinely necessary
 
 ---
 
@@ -137,6 +159,7 @@ The spec can be short, but it must include:
 - safety constraints
 - acceptance and non-regression examples
 - rollout / verification notes if needed
+- frontend direction packet only when the fix changes meaningful screen behavior and the visual contract must be re-established
 
 ### Typical question themes
 - what is failing now?
@@ -144,6 +167,12 @@ The spec can be short, but it must include:
 - what related behavior must remain unchanged?
 - how will we know the fix is complete?
 - what tests or examples prevent recurrence?
+
+### Guardrails
+- treat the first discovery turn as behavior clarification, not feature ideation
+- confirm both the target behavior and the non-regression boundary before discussing solution shape
+- ask what must keep working, what reproduces the issue, or what verification would prove the fix is safe
+- prefer a recommended target rule over speculative root-cause architecture
 
 ---
 
@@ -165,6 +194,7 @@ Choose a technical direction, then bound the implementation implications.
 - decision rationale
 - ADR-style appendix in the spec
 - explicit GSD milestone recommendation
+- frontend direction packet only when architectural choices change how key screens, navigation, or interaction boundaries must work
 
 ### Typical question themes
 - what is the architectural pain?

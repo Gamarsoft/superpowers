@@ -1,5 +1,4 @@
 interface:
-  display_name: "Brainstorming & Design"
-  short_description: "Frame ideas into specs"
-  brand_color: "#2563EB"
-  default_prompt: "Use $brainstorming to turn this idea into a framed design spec and GSD-ready handoff."
+  display_name: "Brainstorming & Frontend Direction"
+  short_description: "Turn ideas into specs and UI direction"
+  default_prompt: "Use $brainstorming to turn this idea into a bounded design spec, frontend direction packet when UI matters, and implementation handoff."
