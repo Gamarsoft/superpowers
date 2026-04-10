@@ -1,6 +1,6 @@
 ---
-description: Hidden subagent that verifies the rendered UI in the integrated browser. Use as a subagent to inspect the live app, capture screenshots, check console-visible issues, exercise interactions, and report concrete rendered UI problems and regressions.
-name: ui-browser-verifier
+description: "Hidden subagent that verifies the rendered UI in the integrated browser. Use as a subagent to inspect the live app, capture screenshots, check console-visible issues, exercise interactions, and report concrete rendered UI problems and regressions against either the frontend packet or the strongest derived working contract."
+name: "ui-browser-verifier"
 user-invocable: false
 tools:
   - read
@@ -25,6 +25,8 @@ Use the integrated browser to verify the real rendered experience.
 
 Browser tools are strongest when the app can run locally and the main agent can tell you which route, component, or scenario matters.
 
+If no frontend packet exists, compare the rendered UI against the approved spec and handoff when present, otherwise against the current brownfield product language and the derived working contract.
+
 ## Focus
 
 - rendered hierarchy and spacing
@@ -32,7 +34,7 @@ Browser tools are strongest when the app can run locally and the main agent can 
 - breakpoint behavior
 - overflow or clipping
 - console-visible UI issues
-- whether the implemented UI actually matches the packet and selected references
+- whether the implemented UI actually matches the packet or derived working contract and selected references
 
 ## Output format
 
@@ -42,7 +44,7 @@ Return:
 - **Concrete issues found**
 - **Exact reproduction steps**
 - **Suggested fix direction**
-- **What looked good and matched the packet**
+- **What looked good and matched the active contract**
 
 Do not make file edits.
 Return evidence-rich findings to the main agent.

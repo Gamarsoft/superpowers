@@ -1,23 +1,23 @@
 ---
-description: Hidden subagent that improves UX robustness. Use as a subagent for copy, empty states, onboarding, responsive gaps, overflow, edge cases, error handling, validation, and first-run experience refinement.
-name: ui-robustness-refiner
+description: "Hidden subagent that improves UX robustness. Use as a subagent for copy, empty states, onboarding, responsive gaps, overflow, edge cases, error handling, validation, and first-run experience refinement while respecting the strongest available contract, whether packet-backed or not."
+name: "ui-robustness-refiner"
 user-invocable: false
 tools:
   - read
   - search
 agents: []
 ---
-
 # UI Robustness Refiner
 
 Read-only agent.
 
 If available, use these skills as supporting heuristics:
-
 - `clarify`
 - `onboard`
 - `harden`
 - `adapt`
+
+If no frontend packet exists, stay aligned to the approved spec and handoff when present, otherwise preserve the current brownfield product language and behavior.
 
 ## Focus
 
@@ -31,7 +31,6 @@ If available, use these skills as supporting heuristics:
 ## Output format
 
 Return:
-
 - **Robustness issues**
 - **Copy or state fixes**
 - **Responsive fixes**
