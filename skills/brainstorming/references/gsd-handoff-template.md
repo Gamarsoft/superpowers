@@ -203,7 +203,7 @@ Treat the Active requirements as the starting candidate requirements.
 Treat Deferred and Out of Scope exactly as written unless you find a contradiction.
 Seed the first milestone around the Milestone Recommendation section.
 If docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md exists, treat it as a co-equal UI implementation input for layout, hierarchy, states, and responsive behavior.
-If an implementation-time `gsd-frontend-design` skill is available, tell it to consume the frontend direction packet, selected screenshots, and `.stitch/DESIGN.md` before inventing any new visual direction.
+If an implementation-time `gsd-frontend-design` skill is available, tell it to consume the frontend direction packet, `stitch-sources.json`, selected screenshots, local HTML or metadata mirrors, and `.stitch/DESIGN.md` before inventing any new visual direction.
 Only ask follow-up questions about unresolved items, contradictions, or missing implementation-shaping decisions.
 ```
 

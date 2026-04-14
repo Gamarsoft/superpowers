@@ -29,6 +29,10 @@ Look at the current UI and identify the highest-value visual refinements that im
 - signal-to-noise ratio
 - overall visual confidence
 
+If Stitch source manifests or local mirrors exist, use them as the strongest visual reference before relying on packet preview images.
+
+If a Stitch screenshot reference is a raw `lh3.googleusercontent.com` URL without `=s0`, treat it as preview-only evidence. Do not overfit spacing, typography, or hierarchy judgments to that low-resolution source.
+
 If no frontend packet exists, prefer refinements that preserve and clarify the existing brownfield language instead of changing the product’s visual identity.
 
 ## Output format

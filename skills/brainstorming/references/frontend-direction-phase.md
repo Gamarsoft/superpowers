@@ -44,11 +44,14 @@ Write:
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/screen-index.md`
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/stitch-prompt-pack.md`
+- `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/stitch-sources.json` _(when Stitch is used)_
 
 When you generated or gathered reference imagery, also write:
 
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/screenshots/`
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/selected-direction/`
+- `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/selected-direction/*.html` _(when available)_
+- `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/selected-direction/*.meta.json` _(when available)_
 
 When the work is repo-tied and Stitch MCP is available, optionally refresh:
 
@@ -94,16 +97,22 @@ When the work is repo-tied and Stitch MCP is available, optionally refresh:
    - Prefer side-by-side comparison, ranked alternatives, or annotated recommendation.
    - Record why the chosen direction wins and what was rejected.
 
-8. **Expand the contract**
+8. **Capture Stitch source artifacts**
+   - Use `references/stitch-source-capture-workflow.md` when Stitch is involved.
+   - Persist `projectId`, `screenId`, resource name, device, size, full-resolution screenshot mirror, HTML mirror, and metadata mirror for each retained screen.
+   - Write `stitch-sources.json` so later implementation and refinement agents can recover the exact selected screens.
+
+9. **Expand the contract**
    - Fill in responsive behavior, interaction cues, state coverage, accessibility constraints, and implementation flex points.
    - Separate **must preserve** from **may adapt** so implementation agents know where they have freedom.
 
-9. **Write the packet**
-   - Use `references/frontend-direction-template.md`.
-   - Link screenshots and prompt-pack entries instead of burying them in prose.
-   - Be explicit when the packet is in degraded mode.
+10. **Write the packet**
 
-10. **Feed the result back into the main artifacts**
+- Use `references/frontend-direction-template.md`.
+- Link screenshots and prompt-pack entries instead of burying them in prose.
+- Be explicit when the packet is in degraded mode.
+
+11. **Feed the result back into the main artifacts**
     - Link the packet from the design spec.
     - Link the packet from the GSD handoff.
     - Review all artifacts together for drift.
@@ -127,4 +136,5 @@ A strong frontend-direction phase produces:
 - treating wireframes as enough visual guidance when the implementation agent still has to guess tone and hierarchy
 - drifting into a redesign when the user really wanted brownfield continuity
 - writing a frontend packet with screenshots but no explanation of why they were chosen
+- saving only low-resolution preview images when Stitch-backed source manifests and mirrors should be captured
 - failing to separate fixed constraints from flexible implementation details

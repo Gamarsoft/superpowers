@@ -16,6 +16,10 @@ Use the current implementation plus the strongest available contract source to c
 
 If available, use the relevant **Impeccable** design skills, especially `critique` and `shape`, as supporting heuristics.
 
+If Stitch source manifests or HTML or screenshot mirrors exist, use them before judging the UI from packet preview images alone.
+
+If the only Stitch screenshot evidence is a raw `lh3.googleusercontent.com` URL without `=s0`, treat it as preview-only and lower confidence accordingly.
+
 If no frontend packet exists, stay conservative and judge the UI against the approved spec and handoff when present, otherwise against the existing brownfield product language.
 
 ## Focus

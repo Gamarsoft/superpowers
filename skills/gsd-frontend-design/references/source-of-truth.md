@@ -6,13 +6,23 @@ Read this before designing or changing code.
 
 Use the strongest available source in this order:
 
+### Functional contract
+
+1. **Approved spec and approved handoff**
+2. **Current product behavior** when the spec is silent
+
+### Visual contract
+
 1. **Existing product UI and design system** for brownfield work
 2. **Frontend direction packet**
-3. **`.stitch/DESIGN.md`**
-4. **Selected Stitch screenshots or chosen variants**
-5. **Existing component library, tokens, and app-shell conventions**
-6. **This skill's design-quality references**
-7. **Freeform invention** only for genuinely unspecified gaps
+3. **`stitch-sources.json` and inline per-screen Stitch source metadata**
+4. **Live Stitch screen retrieval** by `projectId` + `screenId`
+5. **Local HTML mirrors**
+6. **Local full-resolution screenshot mirrors**
+7. **`.stitch/DESIGN.md`**
+8. **Existing component library, tokens, and app-shell conventions**
+9. **This skill's design-quality references**
+10. **Freeform invention** only for genuinely unspecified gaps
 
 Later items never overrule earlier items without an explicit reason.
 
@@ -30,6 +40,7 @@ Capture these before coding:
 - **May adapt**
 - **Explicit no-gos**
 - verification plan
+- Stitch source manifest and retained screen keys when Stitch is used
 
 ## Brownfield rule
 
@@ -50,7 +61,8 @@ Only diverge when the packet or spec explicitly authorizes it.
 2. Check whether the existing code pattern is a local inconsistency rather than a system rule.
 3. Prefer the packet for intentional new direction.
 4. Prefer the existing system when the packet is silent.
-5. If the conflict remains material, surface it instead of silently choosing.
+5. If Stitch-backed source evidence exists, use it to clarify the intended layout or hierarchy before guessing.
+6. If the conflict remains material, surface it instead of silently choosing.
 
 ## Degraded mode
 
@@ -72,4 +84,5 @@ If you must deviate from the packet or design system, record:
 - what changed
 - why the original direction could not be implemented as written
 - whether the deviation is visual only or behavior-affecting
+- whether Stitch source evidence was consulted
 - what should be updated in the packet after implementation

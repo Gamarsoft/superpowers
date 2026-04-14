@@ -30,6 +30,7 @@ Do **not** write production code, scaffold projects, or invoke implementation sk
 - reviewed frontend direction packet written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
 - reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 - supporting frontend assets written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
+- when Stitch is used, a `stitch-sources.json` manifest plus full-resolution `selected-direction/*.png`, `*.html`, and `*.meta.json` mirrors
 
 Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2 or Codex implementation.
 
@@ -57,7 +58,7 @@ Create a task for each of the following and complete them in order.
    - Skip it for pure greenfield ideation that is not grounded in this repo.
    - If `gathering-topic-context` cannot run, fall back to local inspection and say why.
 
-2. **Offer the visual companion** *(only if an upcoming question is genuinely visual)*
+2. **Offer the visual companion** _(only if an upcoming question is genuinely visual)_
    - Offer it once for consent.
    - This must be its own message.
    - Do not combine it with summaries or clarifying questions.
@@ -116,10 +117,12 @@ Create a task for each of the following and complete them in order.
     - If durable wireframes are needed, add them before the final writing pass.
     - Do **not** start the frontend-direction phase until the experience is stable enough to anchor screens.
 
-11. **Run the frontend-direction phase** *(conditional)*
+11. **Run the frontend-direction phase** _(conditional)_
     - If step 5 activated it, read `references/frontend-direction-phase.md` fully.
     - Build the screen inventory using `references/screen-index-template.md`.
     - Build the prompt pack using `references/stitch-prompt-pack-template.md`.
+    - Capture Stitch-backed source metadata using `references/stitch-source-capture-workflow.md` when Stitch is used.
+    - When a Stitch screenshot URL is served from `lh3.googleusercontent.com`, append `=s0` before mirroring the PNG. The raw MCP URL is usually a 512px-wide preview; `=s0` requests the original asset.
     - Write the frontend direction packet using `references/frontend-direction-template.md`.
     - Prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill.
     - Treat Stitch outputs as first-class visual references, not as permission to invent product requirements.
@@ -144,9 +147,11 @@ Create a task for each of the following and complete them in order.
     - If a frontend direction packet exists, keep the spec structural and behavioral; link to the packet instead of duplicating visual-system detail.
     - Commit the spec to git.
 
-15. **Write the frontend direction packet** *(conditional)*
+15. **Write the frontend direction packet** _(conditional)_
     - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`.
     - Save supporting files to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`.
+    - When Stitch is used, write `stitch-sources.json` plus full-resolution `selected-direction/*.png`, `*.html`, and `*.meta.json` so later agents can retrieve exact screen sources.
+    - For Stitch screenshots hosted on `lh3.googleusercontent.com`, use the `=s0` URL variant for the local PNG mirror instead of saving the default 512px preview URL as-is.
     - When Stitch MCP is available and the work is repo-tied, refresh `.stitch/DESIGN.md` if that improves reuse.
     - Commit all frontend-direction artifacts to git.
 
@@ -260,7 +265,7 @@ Use `references/spec-template.md`.
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
 
-### 2. Frontend direction packet *(conditional)*
+### 2. Frontend direction packet _(conditional)_
 
 Use `references/frontend-direction-template.md`.
 
@@ -271,10 +276,13 @@ Supporting folder:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
 
 Recommended contents:
+
 - `screen-index.md`
 - `stitch-prompt-pack.md`
 - `screenshots/`
 - `selected-direction/`
+- `stitch-sources.json` when Stitch is used
+- `selected-direction/*.html` and `selected-direction/*.meta.json` when Stitch is used
 
 ### 3. GSD handoff
 
@@ -333,9 +341,11 @@ A question about UI is not automatically a visual question.
 ## Terminal states
 
 ### Default
+
 Approved required artifacts for the chosen scope.
 
 ### Optional
+
 If the user explicitly says to keep going inside Superpowers after approval, invoke `writing-plans`.
 
 Do **not** invoke implementation skills earlier than that.

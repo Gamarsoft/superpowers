@@ -15,6 +15,7 @@ Supporting folder:
 - Keep product requirements in the main spec; keep visual-system, screen, and implementation-UX guidance here.
 - Separate **must preserve** from **may adapt**.
 - If the packet is in degraded mode, say so explicitly.
+- If Stitch is used, record machine-usable source handles, not just preview images.
 
 ## Template
 
@@ -22,13 +23,20 @@ Supporting folder:
 # [Feature / Project Name] — Frontend Direction Packet
 
 ## 1. Packet Summary
+
 - Linked design spec:
 - Linked wireframes:
 - Design-system source:
+- Stitch project ID:
+- Stitch design system ID:
+- Selected Stitch source manifest: `./{slug}--frontend/stitch-sources.json`
+- Stitch retrieval mode: live MCP + local mirror | local mirror only | preview only (degraded)
+- Selected screen mirrors: `./{slug}--frontend/selected-direction/`
 - Brownfield preserve vs redesign call:
 - Packet status: full-fidelity | degraded
 
 ## 2. Visual Thesis
+
 - Intended first impression:
 - Hierarchy / density bias:
 - Visual anchor:
@@ -36,13 +44,23 @@ Supporting folder:
 - Anti-patterns to avoid:
 
 ## 3. Screen Inventory
+
 - Link: `./{slug}--frontend/screen-index.md`
 - Key screens / flows covered:
 - Critical states covered:
 - Still deferred:
 
-## 4. Chosen Directions for Key Screens
+## 4. Stitch Source Manifest
+
+- Link: `./{slug}--frontend/stitch-sources.json`
+- Purpose: durable machine-usable mapping from packet screen keys to exact Stitch screens and local mirrors
+- Use in implementation: prefer live Stitch retrieval by screen ID, then local HTML mirror, then full-resolution screenshot mirror, then packet preview image
+- Use in refinement: critique and refine against the strongest available Stitch-backed source rather than the small embedded preview image
+
+## 5. Chosen Directions for Key Screens
+
 ### [Screen / flow name]
+
 - User goal:
 - Selected reference(s):
 - Why this direction won:
@@ -51,10 +69,27 @@ Supporting folder:
 - Important states:
 - What remains flexible:
 
+**Stitch source**
+
+- Screen key:
+- Selection status: preferred | comparison | rejected-but-retained | state-only
+- Project ID:
+- Screen ID:
+- Resource:
+- Screen title:
+- Device:
+- Size:
+- Screenshot mirror:
+- HTML mirror:
+- Metadata:
+- Notes:
+
 ### [Screen / flow name]
+
 - ...
 
-## 5. Design System Contract
+## 6. Design System Contract
+
 - Color roles:
 - Typography roles:
 - Spacing / layout rhythm:
@@ -62,20 +97,23 @@ Supporting folder:
 - Icon / media / illustration guidance:
 - Copy / content voice:
 
-## 6. Interaction and Motion
+## 7. Interaction and Motion
+
 - Primary transitions:
 - Feedback patterns:
 - Hover / focus / pressed states:
 - Motion constraints:
 
-## 7. Responsive Contract
+## 8. Responsive Contract
+
 - Viewport families:
 - What reflows:
 - What stays fixed:
 - Mobile priorities:
 - Desktop priorities:
 
-## 8. State Coverage
+## 9. State Coverage
+
 - Loading:
 - Empty:
 - Error:
@@ -83,45 +121,61 @@ Supporting folder:
 - Permissions / role variants:
 - Destructive / confirmation flows:
 
-## 9. Accessibility and Content Constraints
+## 10. Accessibility and Content Constraints
+
 - Heading / landmark structure:
 - Focus and keyboard expectations:
 - Contrast / non-color cues:
 - Copy length / truncation rules:
 - Localization or RTL notes:
 
-## 10. Implementation Contract
+## 11. Implementation Contract
+
 ### Must preserve
+
 - ...
 
 ### May adapt
+
 - ...
 
 ### Explicit no-gos
+
 - ...
 
 ### Source references
-- `./{slug}--frontend/screenshots/...` — why it matters
-- `.stitch/DESIGN.md` — if applicable
 
-## 11. Verification Plan
+- `./{slug}--frontend/stitch-sources.json` — exact Stitch screen mapping
+- `./{slug}--frontend/selected-direction/...` — HTML mirrors, full-resolution screenshots, metadata mirrors
+- `.stitch/DESIGN.md` — design-system continuity if applicable
+
+## 12. Verification Plan
+
 - Required viewports:
 - Screenshot checks:
 - Interaction checks:
 - Acceptance tie-back to main spec:
 - Known visual risks:
 
-## 12. Open Questions and Deferred Design Work
+## 13. Open Questions and Deferred Design Work
+
 - Open question:
 - Deferred improvement:
 
-## Appendix A. Screenshot Index
+## Appendix A. Screenshot Preview Index
+
 - `./{slug}--frontend/screenshots/...` — description
 
-## Appendix B. Stitch Prompt Pack
+## Appendix B. Stitch Source Manifest
+
+- `./{slug}--frontend/stitch-sources.json`
+
+## Appendix C. Stitch Prompt Pack
+
 - `./{slug}--frontend/stitch-prompt-pack.md`
 
-## Appendix C. DESIGN.md Parity Notes
+## Appendix D. DESIGN.md Parity Notes
+
 - What this packet inherits from `.stitch/DESIGN.md`
 - Any intentional deviations
 ```
@@ -135,3 +189,4 @@ A strong packet:
 - names what implementation must preserve
 - keeps product scope aligned with the main spec
 - gives Codex, Copilot, or GSD enough direction to build UI without inventing the design from scratch
+- gives implementation and refinement agents enough source metadata to recover exact Stitch screens later

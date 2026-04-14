@@ -102,6 +102,7 @@ Example:
 - [Frontend direction packet]({spec-slug}--frontend-direction.md) — selected visual direction, state coverage, responsive rules, and implementation contract
 - [Screen index]({spec-slug}--frontend/screen-index.md) — key screens and state coverage
 - [Prompt pack]({spec-slug}--frontend/stitch-prompt-pack.md) — reusable generation prompts and review notes
+- [Stitch source manifest]({spec-slug}--frontend/stitch-sources.json) — exact Stitch screen mapping and mirror paths when Stitch is used
 
 ## Appendix F. Decisions / ADR Notes
 [Only if architectural trade-offs matter]

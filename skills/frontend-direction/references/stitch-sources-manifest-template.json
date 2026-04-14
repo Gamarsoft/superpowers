@@ -1,0 +1,29 @@
+{
+  "packet": {
+    "packetPath": "docs/superpowers/specs/YYYY-MM-DD--slug--frontend-direction.md",
+    "screenIndexPath": "docs/superpowers/specs/YYYY-MM-DD--slug--frontend/screen-index.md",
+    "retrievalMode": "live MCP + local mirror",
+    "projectId": null,
+    "designSystemId": null,
+    "notes": "Fill actual IDs when available. Use null and explain gaps instead of inventing values."
+  },
+  "screens": [
+    {
+      "screenKey": "s1-preferred",
+      "packetSection": "5. Chosen Directions for Key Screens",
+      "selectionStatus": "preferred",
+      "projectId": null,
+      "screenId": null,
+      "resourceName": null,
+      "screenTitle": null,
+      "deviceType": null,
+      "width": null,
+      "height": null,
+      "screenshotPath": "docs/superpowers/specs/YYYY-MM-DD--slug--frontend/selected-direction/s1-preferred.png",
+      "htmlPath": "docs/superpowers/specs/YYYY-MM-DD--slug--frontend/selected-direction/s1-preferred.html",
+      "metaPath": "docs/superpowers/specs/YYYY-MM-DD--slug--frontend/selected-direction/s1-preferred.meta.json",
+      "whySelected": "Explain why this screen was retained.",
+      "notes": "Record missing metadata honestly if live Stitch retrieval is unavailable."
+    }
+  ]
+}
