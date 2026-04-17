@@ -42,7 +42,7 @@ Artifacts:
 - Track: [TRACK]
 
 Review using the checklist in `skills/brainstorming/references/spec-review-checklist.md`.
-If a frontend direction packet exists, also use `skills/brainstorming/references/frontend-review-checklist.md`.
+If a frontend direction packet exists, also use `skills/frontend-direction/references/frontend-review-checklist.md`.
 
 If the reviewed artifacts change, describe, or depend on the visual-companion workflow, apply the checklist's visual-companion protocol regression subsection before approving. Use that checklist gate to compare the relevant artifacts against `skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md`.
 
@@ -56,6 +56,8 @@ Look especially hard for:
 - missing example mapping or vague acceptance language
 - brownfield safety gaps
 - frontend packets that do not tell an implementation agent what is fixed vs flexible
+- missing or weak brownfield extraction when brownfield UI work is in scope
+- missing or weak Pencil workset references
 - TODO / TBD / placeholder content
 - handoff sections too vague to seed GSD planning
 - visual-companion regressions when that workflow is in scope

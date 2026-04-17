@@ -1,13 +1,13 @@
 ---
 name: brainstorming
-description: Use when shaping new features, behavior changes, product ideas, brownfield enhancements, or UI-heavy work before implementation—especially when scope, requirements, trade-offs, screen behavior, or frontend direction must be turned into an approved design spec, optional frontend direction packet, and GSD/Codex-ready handoff.
+description: Use when shaping product work before implementation—especially when scope, trade-offs, brownfield continuity, and frontend direction must become an approved spec, a Pencil-first frontend packet, and a GSD/Codex-ready handoff.
 ---
 
 # Brainstorming
 
 ## Overview
 
-Brainstorming is guided discovery that turns an idea into approved implementation inputs.
+Brainstorming turns an idea into approved implementation inputs.
 
 Default outputs:
 
@@ -23,20 +23,22 @@ Do **not** write production code, scaffold projects, or invoke implementation sk
 
 - reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
 - reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
+- ready-to-paste GSD steering note delivered to the user, linking the spec and handoff
 
 ### UI-heavy work
 
 - reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
 - reviewed frontend direction packet written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
+- supporting frontend artifacts written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
+- repo-local Pencil workset created or refreshed under `design/pencil/` when Pencil is available
 - reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
-- supporting frontend assets written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
-- when Stitch is used, a `stitch-sources.json` manifest plus full-resolution `selected-direction/*.png`, `*.html`, and `*.meta.json` mirrors
+- ready-to-paste GSD steering note delivered to the user, linking the spec, handoff, frontend direction packet, and primary frontend artifacts
 
 Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2 or Codex implementation.
 
 ## Core principle
 
-**Guided choices beat open-ended interrogation.**
+**Extract → choose adapter → explore → converge.**
 
 Your job is to:
 
@@ -45,8 +47,23 @@ Your job is to:
 - frame decisions as 2–3 viable options
 - recommend a default with reasoning
 - bound the work before the spec hardens
-- create visual direction when the implementation agent would otherwise have to invent UI
+- when UI matters, extract current product truth before exploring visual deltas
+- use HTML browser artifacts only for temporary comparisons or decision support
+- use Pencil as the primary visual workspace when available
+- pick the correct Pencil adapter for the target stack
+- translate any chosen HTML companion idea back into `.pen` files before treating it as durable direction
 - turn the result into written artifacts that another agent can execute with minimal extra questioning
+
+## Skill composition for UI-heavy work
+
+When the frontend-direction phase is active:
+
+- use `pencil-design-core` for repo-grounded `.pen` work, visual extraction, screenshots, and design-to-code preparation
+- choose the adapter via `references/pencil-skill-selection.md`
+  - default to `pencil-design-angular-nebular` for Angular + Nebular, brownfield operator UIs, and dense administrative products
+  - use `pencil-design-react-tailwind` only when the actual target stack is React / Next / Tailwind / shadcn
+- prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill
+- treat the visual companion as an HTML comparison surface, not as a durable packet artifact
 
 ## Required workflow
 
@@ -63,8 +80,6 @@ Create a task for each of the following and complete them in order.
    - This must be its own message.
    - Do not combine it with summaries or clarifying questions.
    - Use the current platform's dedicated question tool for the offer when available.
-   - On Codex/OpenCode, that tool is `request_user_input`.
-   - On Copilot, that tool is `ask_questions`.
    - Wait for the user's answer before continuing.
    - If accepted, read `visual-companion.md` before the first browser turn.
 
@@ -85,7 +100,7 @@ Create a task for each of the following and complete them in order.
      - architecture-led-change
 
 5. **Decide whether a frontend-direction phase is required**
-   - Read `references/frontend-direction-phase.md`.
+   - Read `../frontend-direction/references/frontend-direction-phase.md`.
    - Treat frontend intensity as a second axis, not a replacement for the chosen track.
    - Activate the phase when pages, screens, flows, layout hierarchy, visual language, or interaction details materially shape implementation.
    - Skip it for backend-only work, purely mechanical UI tweaks that already fit a stable pattern, or when an approved frontend direction packet already exists and remains current.
@@ -118,14 +133,24 @@ Create a task for each of the following and complete them in order.
     - Do **not** start the frontend-direction phase until the experience is stable enough to anchor screens.
 
 11. **Run the frontend-direction phase** _(conditional)_
-    - If step 5 activated it, read `references/frontend-direction-phase.md` fully.
-    - Build the screen inventory using `references/screen-index-template.md`.
-    - Build the prompt pack using `references/stitch-prompt-pack-template.md`.
-    - Capture Stitch-backed source metadata using `references/stitch-source-capture-workflow.md` when Stitch is used.
-    - When a Stitch screenshot URL is served from `lh3.googleusercontent.com`, append `=s0` before mirroring the PNG. The raw MCP URL is usually a 512px-wide preview; `=s0` requests the original asset.
-    - Write the frontend direction packet using `references/frontend-direction-template.md`.
+    - If step 5 activated it, read:
+      - `../frontend-direction/references/frontend-direction-phase.md`
+      - `../frontend-direction/references/design-source-priority.md`
+      - `references/pencil-skill-selection.md`
+      - `../frontend-direction/references/frontend-packet-folder-template.md`
+    - Build the screen inventory using `../frontend-direction/references/screen-index-template.md`.
+    - In brownfield work, create `brownfield-ui-extraction.md` using `../frontend-direction/references/brownfield-ui-extraction-template.md` before asking for variants.
+    - Build the Pencil workset plan using `../frontend-direction/references/pencil-workset-template.md`.
+    - Use Pencil as the primary workspace when available:
+      - recreate the current shell and patterns first
+      - choose the correct adapter for the target stack
+      - explore only the decision-bearing deltas
+      - keep `.pen` files in the repo
+    - Use the HTML visual companion only for temporary comparison artifacts when a decision is materially easier to judge in-browser than in prose.
+    - If a companion artifact influences the choice, translate the chosen direction back into `.pen` boards, screenshots, and packet prose before treating it as durable.
+    - Review the packet against `../frontend-direction/references/frontend-review-checklist.md` and `../frontend-direction/references/frontend-packet-completeness-checklist.md`.
     - Prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill.
-    - Treat Stitch outputs as first-class visual references, not as permission to invent product requirements.
+    - Treat generated visuals as references, not as permission to invent product requirements.
 
 12. **Present the design in sections**
     - Use `references/spec-template.md`.
@@ -145,25 +170,44 @@ Create a task for each of the following and complete them in order.
     - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`.
     - User preference overrides the default location.
     - If a frontend direction packet exists, keep the spec structural and behavioral; link to the packet instead of duplicating visual-system detail.
-    - Commit the spec to git.
 
 15. **Write the frontend direction packet** _(conditional)_
     - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`.
     - Save supporting files to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`.
-    - When Stitch is used, write `stitch-sources.json` plus full-resolution `selected-direction/*.png`, `*.html`, and `*.meta.json` so later agents can retrieve exact screen sources.
-    - For Stitch screenshots hosted on `lh3.googleusercontent.com`, use the `=s0` URL variant for the local PNG mirror instead of saving the default 512px preview URL as-is.
-    - When Stitch MCP is available and the work is repo-tied, refresh `.stitch/DESIGN.md` if that improves reuse.
-    - Commit all frontend-direction artifacts to git.
+    - Default supporting files:
+      - `screen-index.md`
+      - `brownfield-ui-extraction.md`
+      - `pencil-workset.md`
+      - `screenshots/`
+    - When Pencil is available, create or refresh repo-local `.pen` files under `design/pencil/`.
+    - Name the Pencil skills downstream agents should load.
+    - Record exact `.pen` files, board/frame names, and any HTML companion decisions that were translated back into durable artifacts.
 
 16. **Write the GSD handoff**
     - Use `references/gsd-handoff-template.md`.
     - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`.
+    - If the repo already has `.gsd/REQUIREMENTS.md` or prior milestone requirements in the same domain, reconcile them explicitly in the handoff instead of introducing parallel truths.
+    - For each overlapping requirement, state whether this handoff:
+      - reuses it unchanged
+      - reactivates it from deferred
+      - narrows, splits, or clarifies it
+      - supersedes earlier wording for this scope
+      - leaves the remainder deferred
+    - Prepare the corresponding steering note with the real artifact paths filled in.
     - If a frontend direction packet exists, link it explicitly and tell downstream agents to treat it as first-class input for UI implementation.
-    - Commit the handoff to git.
+    - Make sure the steering note links all primary artifacts:
+      - design spec
+      - GSD handoff
+      - frontend direction packet when present
+      - primary frontend supporting artifacts when present
+    - Record which Pencil skills and which exact `.pen` files are expected downstream.
+    - Make clear that temporary HTML companion screens are not binding once the chosen direction has been translated into Pencil and packet artifacts.
 
 17. **Run the review loop**
     - Read `references/spec-review-checklist.md`.
-    - If a frontend direction packet exists, also read `references/frontend-review-checklist.md`.
+    - If a frontend direction packet exists, also read:
+      - `../frontend-direction/references/frontend-review-checklist.md`
+      - `../frontend-direction/references/frontend-packet-completeness-checklist.md`
     - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
     - Review every written artifact in scope.
     - Fix blocking issues and re-dispatch.
@@ -175,7 +219,8 @@ Create a task for each of the following and complete them in order.
     - If they request changes, make them and re-run the review loop.
 
 19. **Transition**
-    - Default: stop with approved artifacts.
+    - Default: stop with approved artifacts and give the user the ready-to-paste steering note.
+    - The final response must include the steering note, not just mention that one exists.
     - If the user explicitly wants to continue inside Superpowers, invoke `writing-plans`.
 
 ## Guided discovery rules
@@ -215,7 +260,8 @@ When comparing options:
 - avoid cleverness that increases delivery or operational risk without strong payoff
 - prefer reversible choices when confidence is low
 - name what each option makes harder, not just what it makes possible
-- when UI direction is in scope, prefer clarity, hierarchy, and codebase/design-system fit over generic visual flourish
+- when UI direction is in scope, prefer clarity, hierarchy, brownfield continuity, and design-system fit over generic visual flourish
+- when HTML companion screens are used, prefer them for comparison speed only; durable truth must still converge into `.pen` files and packet prose
 
 Use `references/decision-lens.md` for a consistent rubric.
 
@@ -231,6 +277,8 @@ In existing codebases:
 - explicitly call out invariants and rollout constraints
 - if inspection has not happened yet, the next guided question must focus on current behavior, existing workflow boundaries, and what must stay unchanged rather than jumping to architecture
 - when frontend direction is active, preserve the existing design system and surface language unless the user explicitly wants redesign
+- do not let generated concepts outrank observed product truth
+- preserve shell, navigation, density, and shared component language before exploring cosmetic novelty
 
 ## Track-specific guardrails
 
@@ -255,97 +303,3 @@ Track summaries in `references/track-selection.md` do not replace the guardrails
 - the first guided question after reflection must confirm both the target behavior and the non-regression boundary in the same turn
 - ask about regression safety explicitly: what must keep working, what reproduces the issue, or what verification would prove the fix is safe
 - prefer a recommended target rule over speculative root-cause architecture
-
-## Output artifacts
-
-### 1. Design spec
-
-Use `references/spec-template.md`.
-
-Default path:
-`docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
-
-### 2. Frontend direction packet _(conditional)_
-
-Use `references/frontend-direction-template.md`.
-
-Default path:
-`docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
-
-Supporting folder:
-`docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
-
-Recommended contents:
-
-- `screen-index.md`
-- `stitch-prompt-pack.md`
-- `screenshots/`
-- `selected-direction/`
-- `stitch-sources.json` when Stitch is used
-- `selected-direction/*.html` and `selected-direction/*.meta.json` when Stitch is used
-
-### 3. GSD handoff
-
-Use `references/gsd-handoff-template.md`.
-
-Default path:
-`docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
-
-## Review loop
-
-After writing the required artifacts:
-
-1. Dispatch the reviewer using `spec-document-reviewer-prompt.md`
-2. Use `references/spec-review-checklist.md` as the baseline quality bar
-3. Use `references/frontend-review-checklist.md` as an additional blocking bar when a frontend direction packet exists
-4. Fix blocking issues
-5. Re-dispatch until approved or until 5 iterations are exhausted
-6. Ask the user to review the written files
-
-Do **not** proceed to implementation planning until the written artifacts are approved.
-
-## Visual companion
-
-The visual companion is a tool, not a mode. Offer it only when the upcoming question is materially easier to judge by seeing than by reading.
-
-If accepted, follow the comparison-first contract in `visual-companion.md`.
-
-Use browser screens for:
-
-- visual direction contrasts
-- screen hierarchy comparisons
-- IA comparisons
-- annotated recommendations
-- selected Stitch or screenshot references that help settle a decision
-
-Stay in terminal for:
-
-- conceptual or scope questions
-- backend-only design work
-- requirements and boundary checks that do not benefit from visual contrast
-
-A question about UI is not automatically a visual question.
-
-## Common mistakes to avoid
-
-- asking several open-ended questions in a row
-- presenting more than 3 options
-- presenting options without a recommendation
-- skipping boundaries because the feature "seems simple"
-- writing the spec before the key choice is actually settled
-- handing UI-heavy work to implementation with only prose + low-fidelity wireframes when visual direction is still implicit
-- treating Stitch outputs as the product decision instead of evidence inside the decision
-- handing off to GSD-2 or Codex without explicit requirements seeds, milestone recommendations, and frontend inputs when relevant
-- invoking implementation skills before the written artifacts are approved
-
-## Terminal states
-
-### Default
-
-Approved required artifacts for the chosen scope.
-
-### Optional
-
-If the user explicitly says to keep going inside Superpowers after approval, invoke `writing-plans`.
-
-Do **not** invoke implementation skills earlier than that.

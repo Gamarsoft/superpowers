@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Direction"
-  short_description: "Turn specs and wireframes into UI direction"
-  default_prompt: "Use $frontend-direction to turn this approved spec, wireframes, and current UI context into a frontend direction packet, screen index, Stitch prompt pack, and selected visual references."
+  short_description: "Turn specs, screenshots, and repo context into a Pencil-first frontend packet"
+  default_prompt: "Use $frontend-direction to turn this approved spec, current UI context, and screenshots into a Pencil-first frontend direction packet, screen index, brownfield extraction, repo-local workset, and downstream implementation contract."

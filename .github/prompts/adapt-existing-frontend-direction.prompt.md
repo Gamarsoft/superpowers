@@ -1,49 +1,39 @@
-Adapt an existing frontend direction packet to the Stitch source-aware format.
+Adapt an existing frontend direction packet to the current durable Pencil-first format.
 
 Inputs you should locate first:
 
 - the existing `--frontend-direction.md` file
 - the matching `screen-index.md`
-- the matching `stitch-prompt-pack.md`
 - any selected-direction screenshots already saved locally
-- `.stitch/DESIGN.md` and `.stitch/BOOTSTRAP.md` when present
-- live Stitch project and screen data when available through MCP
+- any packet-linked `.pen` files
+- any temporary HTML companion artifacts that influenced the chosen direction
 
 Goals:
 
 1. Preserve the packet's current human-readable thesis, rationale, and verification content.
-2. Upgrade it so later agents can retrieve exact Stitch sources.
-3. Keep the packet brownfield-safe; Stitch remains reference evidence, not implementation code.
+2. Upgrade it so later agents can recover the durable `.pen` and screenshot references first.
+3. Keep the packet brownfield-safe; temporary HTML companion artifacts remain comparison evidence, not implementation truth.
 
 Required edits:
 
 1. In **Packet Summary**, add:
-   - selected Stitch source manifest path
-   - Stitch retrieval mode
-   - selected screen mirror path
-2. Add a new section after **Screen Inventory** named **Stitch Source Manifest** that links to `stitch-sources.json` and explains how implementation and refinement should use it.
-3. For each retained screen in the packet gallery, add a **Stitch source** block containing:
+   - packet-linked `.pen` files
+   - Pencil transport expectation for downstream work
+   - screenshot / export locations
+2. Add or update the section that explains durable visual references so it names the exact `.pen` files, boards / frames, and screenshots implementation should use.
+3. For each retained key screen in the packet gallery, add a source block containing:
    - screen key
-   - Project ID
-   - Screen ID
-   - full resource name
-   - device type
-   - width × height
-   - screenshot mirror path
-   - HTML mirror path
-   - metadata JSON path
-4. Create or update `stitch-sources.json` using the manifest template.
-5. Update or create `screen-index.md` so each key screen has Stitch source columns.
-6. Mirror each selected or retained Stitch screen into:
-   - `selected-direction/*.png`
-   - `selected-direction/*.html`
-   - `selected-direction/*.meta.json`
-7. If live Stitch MCP is available, fetch actual screen IDs and actual source metadata from the real Stitch project.
-8. If live Stitch MCP is not available, do **not** invent IDs. Use explicit TODO placeholders or `null` values and mark the packet `preview only (degraded)` until source capture is completed.
+   - primary visual source
+   - `.pen` file path
+   - board / frame name
+   - screenshot / export path
+   - whether a temporary HTML companion artifact influenced the choice
+4. Update or create `screen-index.md` so each key screen has durable Pencil reference columns.
+5. If temporary HTML companion artifacts influenced a retained direction, summarize that only as translated outcome notes; do not make the raw HTML file the durable packet source.
 
 Important rules:
 
-- prefer live Stitch screen -> HTML mirror -> full-resolution screenshot mirror -> packet preview image
+- prefer packet-linked `.pen` file -> retained screenshot / export -> current rendered UI
 - do not remove the existing gallery prose or acceptance checks
-- do not guess screen IDs
-- call out missing data honestly
+- do not treat raw HTML companion files as binding implementation references
+- call out missing durable references honestly

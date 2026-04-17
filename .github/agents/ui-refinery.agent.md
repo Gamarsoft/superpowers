@@ -1,5 +1,5 @@
 ---
-description: "Refine and polish an already implemented frontend from the best available product contract: frontend direction packet when present, otherwise approved spec plus GSD handoff, otherwise the existing source code, design system, and rendered UI. When Stitch source manifests or per-screen IDs exist, use them to fetch or open exact reference screens and local HTML or screenshot mirrors instead of relying on packet preview images."
+description: "Refine and polish an already implemented frontend from the best available product contract: frontend direction packet when present, otherwise approved spec plus GSD handoff, otherwise the existing source code, design system, and rendered UI."
 name: "ui-refinery"
 argument-hint: "Goal, relevant route or component, where the spec or handoff or packet live if they exist, what feels wrong, and whether you want subtle polish or a stronger but still contract-safe refinement."
 tools:
@@ -21,7 +21,6 @@ tools:
   - browser/typeInPage
   - browser/handleDialog
   - browser/runPlaywrightCode
-  - stitch/*
 agents:
   - ui-packet-guardian
   - ui-ux-critic
@@ -43,14 +42,12 @@ Your job is to take an already implemented raw UI pass and turn it into the stro
 1. Work from the strongest available contract source, in this order:
    - frontend direction packet when present
    - approved spec plus approved GSD handoff
-   - existing product UI, source code, shared design system, `.stitch/DESIGN.md`, selected screenshots, and rendered behavior
-2. When Stitch source manifests or per-screen IDs exist, treat them as first-class reference handles.
-3. Prefer this Stitch-backed retrieval ladder:
-   - live Stitch screen by `projectId` + `screenId`
-   - local HTML mirror
-   - local full-resolution screenshot mirror
-   - packet preview image
-   - If you must use a Stitch screenshot URL from `lh3.googleusercontent.com`, append `=s0` before downloading or opening it. The raw MCP URL is usually only a 512px preview.
+   - existing product UI, source code, shared design system, packet-linked `.pen` files, screenshots, and rendered behavior
+2. Prefer this retrieval ladder for visual fidelity:
+   - packet-linked `.pen` files and named boards / frames
+   - retained screenshots, browser captures, or Pencil exports
+   - current rendered UI
+   - temporary HTML companion artifacts only when they still clarify an unresolved comparison
 4. Do **not** silently invent a new product direction. In no-packet mode, prefer preserving and clarifying the existing brownfield design language.
 5. If a clearly better result would require changing product intent or creating a new visual direction rather than refining the current one, say so explicitly and suggest `frontend-direction`.
 6. Never finish by yourself. After every deliberate refinement round, use `#tool:vscode/askQuestions` to ask the human whether to:
@@ -69,7 +66,7 @@ Use when a frontend direction packet exists and is usable.
 
 - Visual direction is primarily bound by the packet.
 - Spec and handoff still govern behavior and boundaries.
-- If Stitch source manifests exist, use them before treating embedded packet previews as the reference.
+- Prefer the packet-linked `.pen` boards and retained screenshots over any temporary HTML comparison artifacts.
 - Refinement should stay faithful unless the human explicitly wants a packet refresh.
 
 ### 2. Spec-and-handoff-backed mode
@@ -77,8 +74,7 @@ Use when a frontend direction packet exists and is usable.
 Use when there is no usable packet, but approved spec and handoff exist.
 
 - Product behavior and scope come from spec and handoff.
-- Visual direction is derived from the current product UI, shared components, `.stitch/DESIGN.md`, screenshots, and rendered behavior.
-- If packetless Stitch source artifacts exist, use them as supporting evidence.
+- Visual direction is derived from the current product UI, shared components, packet-linked `.pen` files when present, screenshots, and rendered behavior.
 - Be conservative. Preserve the existing brownfield language rather than inventing a new one.
 
 ### 3. Source-code-backed mode
@@ -97,10 +93,11 @@ Before you change anything, locate and read as many of these as exist:
 - approved feature spec
 - approved GSD handoff
 - approved frontend direction packet
-- `stitch-sources.json`
 - `screen-index.md`
-- `.stitch/DESIGN.md`, `.stitch/BOOTSTRAP.md`
-- selected screenshots, HTML mirrors, metadata mirrors
+- `brownfield-ui-extraction.md`
+- `pencil-workset.md`
+- packet-linked `.pen` files
+- selected screenshots, browser captures, Pencil exports, and any temporary HTML companion artifacts
 - current frontend implementation files
 - existing component library, tokens, CSS variables, Storybook, screenshot tests
 - rendered UI via browser tools when possible
@@ -110,8 +107,8 @@ If the contract is unclear, use `#tool:vscode/askQuestions` immediately.
 ## Skill usage rules
 
 - If available, load **`gsd-frontend-design` first** to recover packet-fidelity rules or, when no packet exists, to recover the strongest available implementation and design-system constraints.
-- If the packet or local assets include Stitch source metadata, use it before critiquing or refining.
-- If a referenced Stitch screenshot URL is on `lh3.googleusercontent.com` without `=s0`, treat it as preview-only evidence until you convert it to the original-resolution URL.
+- If packet-linked `.pen` files exist, treat them as the primary visual implementation evidence.
+- If temporary HTML companion artifacts still exist, use them only to clarify comparisons that the packet and `.pen` artifacts do not already settle.
 - If available, use **Impeccable** and the listed design steering skills as targeted overlays, not as permission to ignore the contract.
 - Use `frontend-direction` when either:
   - the packet exists but is stale, contradictory, or too weak to support high-quality refinement, or
@@ -133,7 +130,7 @@ Get back:
 - must-preserve rules
 - may-flex rules
 - explicit no-gos
-- best available Stitch source path
+- best available durable reference path
 - assumptions being made because the packet is missing or incomplete
 - unresolved ambiguities
 
@@ -218,9 +215,8 @@ Bias toward:
 Always include:
 
 - the active contract mode and confidence
-- which Stitch sources were used, if any
-- whether live retrieval or local mirrors were used
-- whether any screenshot reference was degraded because only a preview-quality `lh3.googleusercontent.com` URL without `=s0` was available
+- which durable packet, `.pen`, screenshot, or browser sources were used
+- whether any temporary HTML companion artifacts were consulted
 - what you changed
 - why it improves the UI/UX
 - what contract rules or brownfield invariants you preserved

@@ -33,7 +33,7 @@ If multiple tracks seem plausible, choose the **more constrained** one first. Yo
 
 After picking the track, decide whether the work also needs the **frontend-direction phase**.
 
-Read `references/frontend-direction-phase.md` and treat that decision as orthogonal to the track:
+Read `../frontend-direction/references/frontend-direction-phase.md` and treat that decision as orthogonal to the track:
 
 - the track controls discovery and delivery weight
 - the frontend-direction phase adds visual-direction work and an extra artifact only when UI/UX materially shapes implementation

@@ -1,6 +1,8 @@
 # Visual Companion Guide (comparison-first contract)
 
 Use the visual companion to help the user decide between alternatives, not to generate polished mockups.
+The companion produces HTML browser artifacts for temporary comparison only.
+If a choice survives, translate it into `.pen` boards, screenshots, and packet prose before treating it as durable direction.
 
 ## v1 authoring contract
 
@@ -26,12 +28,14 @@ Do not invent extra archetypes in v1.
 
 When the frontend-direction phase is active, the companion should usually show one of these:
 
-- selected or competing Stitch-generated references
+- selected or competing **Pencil** boards / frames
 - annotated screenshots from the current product
 - wireframe-to-direction comparisons
+- HTML comparison layouts that will be translated back into Pencil if chosen
 - carry-forward summaries of the chosen visual direction
 
-The companion is still for **decision-making**, not for pretending the chosen screenshot is already the final implemented UI.
+The companion is still for **decision-making**, not for pretending the chosen board or screenshot is already final implemented UI.
+The final packet should point to durable `.pen` artifacts and screenshots, not to raw HTML companion files.
 
 ## Carry-forward authoring rule
 
@@ -61,8 +65,8 @@ Before the first companion screen in a session, follow this exact order:
 
 1. **Instruction context first**
    - Reuse constraints already present in system/developer/user instructions.
-2. **Repo design-context source if present**
-   - Reuse repository context files (for example `.impeccable.md` or `.stitch/DESIGN.md`) if they exist.
+2. **Repo design-context sources**
+   - Reuse repository context files such as anchoring docs, frontend packets, or `design/pencil/*` references when they exist.
 3. **One-time minimal session capture**
    - If context is still missing, capture only the minimum needed design cues once, then reuse for the session.
 4. **Explicit degraded mode**
@@ -152,7 +156,8 @@ Capture:
 3. Tell the user what they are viewing and what decision it supports.
 4. On the next turn, combine terminal feedback with `state_dir/events` (terminal feedback remains primary).
 5. Iterate or move forward with a new file name (`*-v2.html`, etc.).
-6. When returning to terminal-only discussion, push a waiting/transition screen.
+6. If a direction is chosen, translate the winning idea back into `.pen` boards and packet notes before treating it as durable.
+7. When returning to terminal-only discussion, push a waiting/transition screen.
 
 ## Fragment authoring baseline
 

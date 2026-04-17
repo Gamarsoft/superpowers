@@ -101,8 +101,9 @@ Default path:
 Example:
 - [Frontend direction packet]({spec-slug}--frontend-direction.md) — selected visual direction, state coverage, responsive rules, and implementation contract
 - [Screen index]({spec-slug}--frontend/screen-index.md) — key screens and state coverage
-- [Prompt pack]({spec-slug}--frontend/stitch-prompt-pack.md) — reusable generation prompts and review notes
-- [Stitch source manifest]({spec-slug}--frontend/stitch-sources.json) — exact Stitch screen mapping and mirror paths when Stitch is used
+- [Brownfield UI extraction]({spec-slug}--frontend/brownfield-ui-extraction.md) — preserve vs improve analysis for current product truth
+- [Pencil workset]({spec-slug}--frontend/pencil-workset.md) — repo-local visual workset plan and active `.pen` files
+- [Companion translation notes]({spec-slug}--frontend-direction.md) — any HTML companion idea that survived should be captured here only through its translated Pencil outcome
 
 ## Appendix F. Decisions / ADR Notes
 [Only if architectural trade-offs matter]

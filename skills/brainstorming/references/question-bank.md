@@ -212,3 +212,48 @@ I think the real question is not just the end-state architecture, but the migrat
 I recommend [migration approach] because [risk reason].
 Does that fit the reality of this system?
 ```
+
+---
+
+## Brownfield UI / frontend-direction questions
+
+### Preserve vs improve
+```text
+My current read is:
+- Must preserve: [existing shell / workflow / pattern]
+- Safe to improve now: [specific pain point]
+
+I recommend we preserve the first and improve the second.
+Is that the right boundary?
+```
+
+### Existing pattern reuse
+```text
+I recommend we extend the existing [table / card / settings / dialog] pattern instead of inventing a new one.
+Does the current pattern already fit if we tighten [hierarchy / grouping / mobile behavior], or do we need a genuinely new pattern?
+```
+
+### Density question
+```text
+I think the real UI decision is about density:
+- Option A: preserve current throughput and density
+- Option B: reduce density for clarity
+
+I recommend [option] for the first release because [reason].
+Does that match how this screen is actually used?
+```
+
+### Mobile adaptation
+```text
+I recommend we treat mobile as an adaptation of the current workflow, not a miniature desktop clone.
+Which is the better first move?
+- A: preserve current actions and convert rows into progressive disclosure cards
+- B: keep compact rows and move secondary actions behind a details view
+```
+
+### Generated-idea safety check
+```text
+Before we explore new visual ideas, I want to confirm the guardrail:
+should we preserve the current product language and only improve [specific pain point], or is this intentionally a redesign?
+```
+

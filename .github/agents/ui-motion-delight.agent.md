@@ -18,9 +18,9 @@ If available, use these skills as supporting heuristics:
 
 ## Rules
 
-If Stitch source manifests or local mirrors exist, ensure motion ideas support the selected direction rather than a preview-image-only interpretation.
+If packet-linked `.pen` files, retained screenshots, or browser captures exist, ensure motion ideas support the selected direction rather than a preview-image-only interpretation.
 
-If a Stitch screenshot reference is a raw `lh3.googleusercontent.com` URL without `=s0`, treat it as preview-only evidence before inferring detail-sensitive motion timing or choreography.
+If temporary HTML companion artifacts still exist, use them only to clarify direction, not to infer fine-grained motion timing or choreography.
 
 - motion is optional, not mandatory
 - motion must improve clarity, feedback, or delight

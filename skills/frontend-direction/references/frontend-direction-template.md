@@ -15,7 +15,8 @@ Supporting folder:
 - Keep product requirements in the main spec; keep visual-system, screen, and implementation-UX guidance here.
 - Separate **must preserve** from **may adapt**.
 - If the packet is in degraded mode, say so explicitly.
-- If Stitch is used, record machine-usable source handles, not just preview images.
+- Treat repo-local Pencil files as primary visual references when available.
+- If HTML companion screens were used during decision-making, capture only the translated outcome here, not the raw HTML artifact path.
 
 ## Template
 
@@ -26,16 +27,38 @@ Supporting folder:
 
 - Linked design spec:
 - Linked wireframes:
-- Design-system source:
-- Stitch project ID:
-- Stitch design system ID:
-- Selected Stitch source manifest: `./{slug}--frontend/stitch-sources.json`
-- Stitch retrieval mode: live MCP + local mirror | local mirror only | preview only (degraded)
-- Selected screen mirrors: `./{slug}--frontend/selected-direction/`
+- Design source priority: current UI → code patterns → extraction docs → Pencil → wireframes → temporary HTML companion artifacts
 - Brownfield preserve vs redesign call:
 - Packet status: full-fidelity | degraded
+- Packet folder: `./{slug}--frontend/`
+- Screen index: `./{slug}--frontend/screen-index.md`
+- Brownfield extraction: `./{slug}--frontend/brownfield-ui-extraction.md`
+- Pencil workset: `./{slug}--frontend/pencil-workset.md`
+- Repo-local Pencil files:
+  - `design/pencil/_shared/00-foundations.pen`
+  - `design/pencil/_shared/10-shell.pen`
+  - `design/pencil/_shared/20-patterns.pen`
+  - `design/pencil/{slug}/30-{slug}.pen`
+- Retained screenshots:
+  - `./{slug}--frontend/screenshots/...`
+- HTML companion status: not used | used and translated into Pencil
 
-## 2. Visual Thesis
+## 2. Downstream Skill Plan
+
+### Skills used to create this packet
+- `pencil-design-core`
+- `[chosen adapter]`
+
+### Skills downstream implementation should load
+- `gsd-frontend-design`
+- `pencil-design-core`
+- `[chosen adapter]`
+
+### Explicit non-assumptions
+- [e.g. do not assume React/Tailwind]
+- [e.g. do not invent a new shell]
+
+## 3. Visual Thesis
 
 - Intended first impression:
 - Hierarchy / density bias:
@@ -43,52 +66,40 @@ Supporting folder:
 - Tone / trust cues:
 - Anti-patterns to avoid:
 
-## 3. Screen Inventory
+## 4. Brownfield Extraction Summary
+
+- Strong patterns to preserve:
+- Known drift / pain points:
+- Safe improvements in this slice:
+- Explicit no-gos:
+
+## 5. Screen Inventory
 
 - Link: `./{slug}--frontend/screen-index.md`
 - Key screens / flows covered:
 - Critical states covered:
 - Still deferred:
 
-## 4. Stitch Source Manifest
-
-- Link: `./{slug}--frontend/stitch-sources.json`
-- Purpose: durable machine-usable mapping from packet screen keys to exact Stitch screens and local mirrors
-- Use in implementation: prefer live Stitch retrieval by screen ID, then local HTML mirror, then full-resolution screenshot mirror, then packet preview image
-- Use in refinement: critique and refine against the strongest available Stitch-backed source rather than the small embedded preview image
-
-## 5. Chosen Directions for Key Screens
+## 6. Chosen Directions for Key Screens
 
 ### [Screen / flow name]
 
 - User goal:
 - Selected reference(s):
+- Primary visual source:
+- Pencil file and board/frame:
 - Why this direction won:
 - Layout / hierarchy notes:
 - Content priority:
+- Component reuse:
 - Important states:
 - What remains flexible:
-
-**Stitch source**
-
-- Screen key:
-- Selection status: preferred | comparison | rejected-but-retained | state-only
-- Project ID:
-- Screen ID:
-- Resource:
-- Screen title:
-- Device:
-- Size:
-- Screenshot mirror:
-- HTML mirror:
-- Metadata:
-- Notes:
 
 ### [Screen / flow name]
 
 - ...
 
-## 6. Design System Contract
+## 7. Design System Contract
 
 - Color roles:
 - Typography roles:
@@ -96,23 +107,26 @@ Supporting folder:
 - Component patterns to reuse:
 - Icon / media / illustration guidance:
 - Copy / content voice:
+- Known normalization targets:
+- Things that must stay implementation-native to the target stack:
 
-## 7. Interaction and Motion
+## 8. Interaction and Motion
 
 - Primary transitions:
 - Feedback patterns:
 - Hover / focus / pressed states:
 - Motion constraints:
 
-## 8. Responsive Contract
+## 9. Responsive Contract
 
 - Viewport families:
 - What reflows:
 - What stays fixed:
 - Mobile priorities:
 - Desktop priorities:
+- Dense-data adaptation rules:
 
-## 9. State Coverage
+## 10. State Coverage
 
 - Loading:
 - Empty:
@@ -121,7 +135,7 @@ Supporting folder:
 - Permissions / role variants:
 - Destructive / confirmation flows:
 
-## 10. Accessibility and Content Constraints
+## 11. Accessibility and Content Constraints
 
 - Heading / landmark structure:
 - Focus and keyboard expectations:
@@ -129,27 +143,22 @@ Supporting folder:
 - Copy length / truncation rules:
 - Localization or RTL notes:
 
-## 11. Implementation Contract
+## 12. Implementation Contract
 
 ### Must preserve
-
 - ...
 
 ### May adapt
-
 - ...
 
 ### Explicit no-gos
-
 - ...
 
-### Source references
+### Stack / framework notes
+- [Angular / Nebular / existing component or CSS constraints]
+- [what not to generate or assume]
 
-- `./{slug}--frontend/stitch-sources.json` — exact Stitch screen mapping
-- `./{slug}--frontend/selected-direction/...` — HTML mirrors, full-resolution screenshots, metadata mirrors
-- `.stitch/DESIGN.md` — design-system continuity if applicable
-
-## 12. Verification Plan
+## 13. Verification Plan
 
 - Required viewports:
 - Screenshot checks:
@@ -157,27 +166,27 @@ Supporting folder:
 - Acceptance tie-back to main spec:
 - Known visual risks:
 
-## 13. Open Questions and Deferred Design Work
+## 14. Open Questions and Deferred Design Work
 
 - Open question:
 - Deferred improvement:
 
-## Appendix A. Screenshot Preview Index
+## Appendix A. Screen Index
+- `./{slug}--frontend/screen-index.md`
 
-- `./{slug}--frontend/screenshots/...` — description
+## Appendix B. Brownfield UI Extraction
+- `./{slug}--frontend/brownfield-ui-extraction.md`
 
-## Appendix B. Stitch Source Manifest
+## Appendix C. Pencil Workset
+- `./{slug}--frontend/pencil-workset.md`
+- `design/pencil/_shared/...`
+- `design/pencil/{slug}/30-{slug}.pen`
 
-- `./{slug}--frontend/stitch-sources.json`
+## Appendix D. Screenshot Preview Index
+- `./{slug}--frontend/screenshots/...`
 
-## Appendix C. Stitch Prompt Pack
-
-- `./{slug}--frontend/stitch-prompt-pack.md`
-
-## Appendix D. DESIGN.md Parity Notes
-
-- What this packet inherits from `.stitch/DESIGN.md`
-- Any intentional deviations
+## Appendix E. Companion Translation Notes
+- [Optional. Summarize any HTML companion decision that was translated into Pencil and packet prose.]
 ```
 
 ## Quality bar
@@ -187,6 +196,7 @@ A strong packet:
 - makes the intended visual direction legible without guessing
 - covers the main screens and key states
 - names what implementation must preserve
+- names the exact downstream Pencil skills and adapter
 - keeps product scope aligned with the main spec
-- gives Codex, Copilot, or GSD enough direction to build UI without inventing the design from scratch
-- gives implementation and refinement agents enough source metadata to recover exact Stitch screens later
+- gives Copilot, Codex, or GSD enough direction to build UI without inventing the design from scratch
+- points to stable repo-local visual references instead of ephemeral generation output

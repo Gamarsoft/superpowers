@@ -17,9 +17,9 @@ If available, use these skills as supporting heuristics:
 - `harden`
 - `adapt`
 
-If Stitch source manifests or local mirrors exist, use them as supporting evidence for state treatment and responsive expectations.
+If packet-linked `.pen` files, retained screenshots, or browser captures exist, use them as supporting evidence for state treatment and responsive expectations.
 
-If a Stitch screenshot reference is a raw `lh3.googleusercontent.com` URL without `=s0`, treat it as preview-only evidence rather than a trustworthy full-resolution source for responsive judgments.
+If temporary HTML companion artifacts still exist, use them only to clarify unresolved comparison intent rather than as the durable responsive source.
 
 If no frontend packet exists, stay aligned to the approved spec and handoff when present, otherwise preserve the current brownfield product language and behavior.
 

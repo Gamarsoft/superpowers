@@ -53,6 +53,8 @@ Use this as the blocking quality bar for the design spec, optional frontend dire
 
 ## 9. GSD handoff completeness
 - Are Active / Deferred / Out of Scope separated?
+- If existing `.gsd/REQUIREMENTS.md` or prior milestone requirements overlap, does the handoff reconcile them explicitly?
+- Does the handoff say which requirements are reused, reactivated, narrowed, superseded, or still deferred?
 - Is the first milestone recommendation clear?
 - Are constraints and integration points explicit?
 - Are slice candidates or boundary hints strong enough to seed GSD planning?
@@ -70,6 +72,13 @@ Apply this section when a frontend direction packet exists or when the work clea
 - Do the spec, frontend packet, and GSD handoff agree on scope and behavior?
 - Are deferred visual ideas kept out of Active requirements?
 - Can an implementation agent tell which visual sources are authoritative?
+
+## 11a. Requirement lineage alignment (blocking when relevant)
+Apply this subsection when the new work overlaps with an existing `.gsd/REQUIREMENTS.md`, earlier milestone requirements, or previously deferred work in the same area.
+
+- Does the handoff avoid silently duplicating or contradicting existing requirements?
+- If a formerly deferred requirement is now partly active, is the reactivated subset explicit and is the remainder still deferred explicitly?
+- If older active or validated wording is now too broad, does the handoff mark the new narrower rule as a clarification or supersession for this scope?
 
 ## 12. Visual-companion protocol regression checks (conditional, blocking when relevant)
 Apply this subsection only when the reviewed artifacts change, describe, or depend on the visual-companion workflow. If the workflow is not in scope, skip this subsection silently.

@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Design"
-  short_description: "Implement UI from packet and design context"
-  default_prompt: "Use $gsd-frontend-design to implement this UI from the approved frontend direction packet, selected screenshots, DESIGN.md context, and existing frontend patterns. Preserve what is fixed, adapt only where allowed, and verify responsive and interaction fidelity."
+  short_description: "Implement UI from packet, Pencil worksets, repo truth, and the right stack adapter"
+  default_prompt: "Use $gsd-frontend-design to implement this UI from the approved frontend direction packet, the relevant Pencil workset and .pen files, retained screenshots, existing frontend patterns, and the right Pencil skills. Load $pencil-design-core when .pen files are in scope and use the correct stack adapter before translating the design into code."
