@@ -7,6 +7,7 @@ The scenarios below are intentionally short. Adapt them to the current repo and 
 ## Shared Rules
 
 - Brownfield default: preserve first, improve second.
+- For browser interaction, use `browser-use:browser` in Codex App and `playwright-cli` otherwise.
 - If no durable design evidence exists yet, create a faithful baseline from the running product before exploring variants.
 - Use HTML companion artifacts for comparison only.
 - Converge durable truth into screenshots, packet prose, and `.pen` files.

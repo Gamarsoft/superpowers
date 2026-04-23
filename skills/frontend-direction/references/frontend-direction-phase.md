@@ -69,6 +69,7 @@ When Pencil is available, also create or refresh:
    - Anchoring docs, audits, or prior approved packets
 
 2. **If the work is brownfield and durable evidence is missing, capture a runtime baseline first**
+   - Apply `references/browser-surface-selection.md` before starting browser interaction.
    - Use browser-grounded evidence from the running app before inferring layout from code alone.
    - Capture desktop and narrow/mobile views for the current screen.
    - Capture the key local states for the changed area: loading, empty, validation/error, disabled/permission when relevant.

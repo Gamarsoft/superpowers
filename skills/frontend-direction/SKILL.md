@@ -37,18 +37,21 @@ When Pencil is available, also maintain:
 1. Read `references/design-source-priority.md`.
 2. Read `references/use-cases-prompts-and-flows.md` when you need a concrete scenario flow or prompt shape.
 3. Read `references/pencil-skill-selection.md`.
-4. Read `references/frontend-packet-folder-template.md`.
-5. Read `references/brownfield-ui-extraction-template.md` when the work is brownfield.
-6. Read `references/screen-index-template.md`.
-7. Read `references/pencil-workset-template.md`.
-8. Read `references/frontend-direction-template.md`.
-9. Read `references/frontend-review-checklist.md`.
-10. Read `references/frontend-packet-completeness-checklist.md` before finalizing.
+4. Read `references/browser-surface-selection.md` when browser interaction is needed.
+5. Read `references/impeccable-brownfield-quality-layer.md` when brownfield quality refinement is in scope.
+6. Read `references/frontend-packet-folder-template.md`.
+7. Read `references/brownfield-ui-extraction-template.md` when the work is brownfield.
+8. Read `references/screen-index-template.md`.
+9. Read `references/pencil-workset-template.md`.
+10. Read `references/frontend-direction-template.md`.
+11. Read `references/frontend-review-checklist.md`.
+12. Read `references/frontend-packet-completeness-checklist.md` before finalizing.
 
 ## Workflow
 
 1. Gather the approved or near-approved spec, durable wireframes, current screenshots, and design-system context.
 2. In brownfield work, decide whether a runtime baseline capture pass is required:
+   - read `references/browser-surface-selection.md` before browser interaction
    - if the current screen truth exists only in source code and the running app, capture browser-grounded evidence before inventing any packet artifacts
    - gather desktop and narrow/mobile screenshots for the current screen
    - gather key states for the changed area: loading, empty, validation/error, disabled/permission when relevant
@@ -73,8 +76,9 @@ When Pencil is available, also maintain:
    - keep the workset faithful to the target stack
    - generate or edit only 1–2 bounded variants for the real decision axis
 9. If UI/UX quality work is needed beyond faithful reproduction, run it as a bounded layer on top of the baseline:
+   - read `references/impeccable-brownfield-quality-layer.md`
    - if a project-level `.impeccable.md` already exists, do not re-run `impeccable teach`
-   - use `critique`, and `audit` after the baseline exists, not before
+   - use `impeccable extract`, `critique`, and `audit` after the baseline exists, not before
    - treat Impeccable findings as refinement input, not as permission to outrank brownfield truth
 10. Select the preferred directions and record why they won.
 11. Use the HTML visual companion only for temporary comparison artifacts when a choice is materially easier to judge in-browser than in prose.

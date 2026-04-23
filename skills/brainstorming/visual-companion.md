@@ -37,6 +37,15 @@ When the frontend-direction phase is active, the companion should usually show o
 The companion is still for **decision-making**, not for pretending the chosen board or screenshot is already final implemented UI.
 The final packet should point to durable `.pen` artifacts and screenshots, not to raw HTML companion files.
 
+## Browser surface rule
+
+When browser interaction is needed for companion work:
+
+- if running in Codex App, use `browser-use:browser` and the in-app browser
+- otherwise, use `playwright-cli`
+
+Do not default to `playwright-cli` when the Codex App in-app browser is available.
+
 ## Carry-forward authoring rule
 
 Carry-forward continuity must live in visible authored copy, not in helper state, hidden metadata, or persisted browser events.

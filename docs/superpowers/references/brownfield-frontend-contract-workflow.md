@@ -43,6 +43,11 @@ Source code is necessary, but browser evidence is more trustworthy for layout, s
 
 When source code and runtime presentation disagree, runtime evidence wins unless there is a known bug.
 
+Browser surface selection:
+
+- in Codex App, use `browser-use:browser` and the in-app browser
+- otherwise, use `playwright-cli`
+
 ### Principle 3: Separate observed truth from approved change
 
 Each screen should distinguish:

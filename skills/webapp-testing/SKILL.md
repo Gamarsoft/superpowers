@@ -1,13 +1,18 @@
 ---
 name: webapp-testing
-description: Use when validating or debugging local web UI behavior (navigation, forms, buttons, auth flows) and you need reliable DOM state, snapshots/refs, screenshots, console logs, network evidence, or traces via Playwright CLI mode (playwright-cli)
+description: Use when validating or debugging local web UI behavior and you need browser-grounded evidence such as snapshots, screenshots, console logs, or traces. In Codex App use `browser-use:browser`; otherwise use `playwright-cli`.
 ---
 
-# Webapp Testing (Playwright CLI mode)
+# Webapp Testing
 
 ## Overview
 
-Use the token-efficient Playwright CLI mode (`playwright-cli`) to drive a real browser with snapshots and element refs.
+Use a real browser to validate local UI behavior, collect runtime evidence, and verify flows.
+
+Browser surface selection:
+
+- in Codex App: use `browser-use:browser` with the in-app browser
+- otherwise: use `playwright-cli` and prefer `playwright-cli open --headed ...`
 
 Core workflow: open -> wait (if needed) -> snapshot -> act by ref -> re-snapshot -> verify -> collect evidence.
 
@@ -22,9 +27,18 @@ Usually NOT needed for:
 - Pure backend logic (use unit/integration tests).
 - Static inspection where no runtime JS state matters.
 
+## Browser Selection
+
+Apply this rule first:
+
+- if running in Codex App, prefer the in-app browser through `browser-use:browser`
+- otherwise use `playwright-cli` and favor headed mode with `--headed`
+
+Do not default to `playwright-cli` when the in-app browser is available.
+
 ## Setup
 
-This skill assumes the `playwright-cli` command is available in your environment.
+For the `playwright-cli` path, assume the command is available in your environment.
 
 Sanity check:
 
@@ -32,10 +46,10 @@ Sanity check:
 playwright-cli --help
 ```
 
-## Quick Start
+## Quick Start (`playwright-cli` fallback)
 
 ```bash
-playwright-cli open http://localhost:5173
+playwright-cli open --headed http://localhost:5173
 playwright-cli snapshot
 
 # pick refs from the snapshot output, then interact
@@ -52,7 +66,7 @@ playwright-cli snapshot
 ### 1) Navigate
 
 ```bash
-playwright-cli open http://localhost:5173
+playwright-cli open --headed http://localhost:5173
 ```
 
 ### 2) Stabilize (only if needed)
@@ -129,12 +143,12 @@ playwright-cli tracing-start
 playwright-cli tracing-stop
 ```
 
-## Command Cheat Sheet (from playwright-cli)
+## Command Cheat Sheet (`playwright-cli` fallback)
 
 Core:
 
 ```bash
-playwright-cli open https://example.com/
+playwright-cli open --headed https://example.com/
 playwright-cli close
 playwright-cli type "search query"
 playwright-cli click e3
@@ -187,7 +201,7 @@ playwright-cli tracing-stop
 Sessions:
 
 ```bash
-playwright-cli --session=mysession open example.com
+playwright-cli --session=mysession open --headed example.com
 playwright-cli --session=mysession click e6
 playwright-cli session-list
 playwright-cli session-stop mysession
