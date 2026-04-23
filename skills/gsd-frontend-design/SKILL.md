@@ -1,6 +1,6 @@
 ---
 name: gsd-frontend-design
-description: Implement UI from packet, Pencil worksets, repo design truth, and the correct stack adapter. Preserve what is fixed, adapt only where approved, and use Pencil CLI interactive mode only for `.pen` work in GSD workflows.
+description: Use when implementing frontend work from an approved spec or packet, especially when `.pen` files, brownfield preservation rules, or stack-specific design evidence must guide code changes.
 ---
 
 # Frontend Design
@@ -39,6 +39,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 
 1. Locate the current spec, frontend direction packet, `pencil-workset.md`, `brownfield-ui-extraction.md`, `screen-index.md`, the relevant `.pen` files, retained screenshots, and existing component patterns.
 2. Extract **Must preserve**, **May adapt**, and **Explicit no-gos** before touching code.
+   - If the packet distinguishes `observed current truth`, `conservative normalization target`, and `approved change`, carry those boundaries into implementation.
 3. If Pencil artifacts exist, load `pencil-design-core` and use Pencil CLI interactive mode before touching app code:
    - use Pencil CLI interactive mode for inspection, export, and modification
    - for CLI interactive edits, prefer a distinct output path rather than in-place save-back to the same `.pen` file
@@ -48,6 +49,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 7. Implement the required screens, states, and responsive behavior.
 8. Use the reference files in `references/` as fallback heuristics and quality checks, not as permission to redesign the product.
 9. If the packet or workset is incomplete, fill gaps conservatively and keep new invention tightly bounded.
+   - If the current screen baseline is incomplete, prefer the retained browser evidence and current product behavior over code-only visual inference.
 10. If you must deviate from the packet, `.pen` files, or existing system, make the deviation explicit and explain why.
 11. Read `references/pencil-source-consumption.md` when Pencil-backed sources exist.
 12. Read `references/implementation-review-checklist.md` before considering the work done.

@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: Use when shaping product work before implementation—especially when scope, trade-offs, brownfield continuity, and frontend direction must become an approved spec, a Pencil-first frontend packet, and a GSD/Codex-ready handoff.
+description: Use when product or feature work is still being shaped before implementation, especially for repo-specific requests where scope, trade-offs, brownfield continuity, or UI direction are not yet stable.
 ---
 
 # Brainstorming
@@ -64,6 +64,7 @@ When the frontend-direction phase is active:
   - use `pencil-design-react-tailwind` only when the actual target stack is React / Next / Tailwind / shadcn
 - prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill
 - treat the visual companion as an HTML comparison surface, not as a durable packet artifact
+- use `../frontend-direction/references/use-cases-prompts-and-flows.md` when you need a concrete frontend workflow for brownfield existing-screen work, brownfield new-screen work, or greenfield screen creation
 
 ## Required workflow
 
@@ -136,9 +137,14 @@ Create a task for each of the following and complete them in order.
     - If step 5 activated it, read:
       - `../frontend-direction/references/frontend-direction-phase.md`
       - `../frontend-direction/references/design-source-priority.md`
+      - `../frontend-direction/references/use-cases-prompts-and-flows.md`
       - `references/pencil-skill-selection.md`
       - `../frontend-direction/references/frontend-packet-folder-template.md`
     - Build the screen inventory using `../frontend-direction/references/screen-index-template.md`.
+    - In brownfield work with no durable design evidence yet, treat runtime baseline capture as mandatory before packet writing:
+      - capture the current screen and key neighboring states from the running app
+      - prefer browser-grounded evidence over code-only layout inference
+      - treat the first frontend artifact as a faithful baseline, not an improved redesign
     - In brownfield work, create `brownfield-ui-extraction.md` using `../frontend-direction/references/brownfield-ui-extraction-template.md` before asking for variants.
     - Build the Pencil workset plan using `../frontend-direction/references/pencil-workset-template.md`.
     - Use Pencil as the primary workspace when available:

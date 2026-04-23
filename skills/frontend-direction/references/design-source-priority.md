@@ -67,6 +67,7 @@ Start from the spec and user goal, but still prefer a converged Pencil workset o
 ## Rules
 
 - Never let a lower-priority source silently override a higher-priority source.
+- If no durable frontend baseline exists yet, create retained browser evidence from the running app before treating generated artifacts as trustworthy.
 - If a generated concept conflicts with a must-preserve brownfield pattern, the pattern wins unless the human explicitly approves change.
 - The frontend packet should point to **stable repo artifacts** first:
   - screenshots

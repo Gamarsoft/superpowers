@@ -68,34 +68,41 @@ When Pencil is available, also create or refresh:
    - Durable wireframes if they exist
    - Anchoring docs, audits, or prior approved packets
 
-2. **Decide the source of design truth**
+2. **If the work is brownfield and durable evidence is missing, capture a runtime baseline first**
+   - Use browser-grounded evidence from the running app before inferring layout from code alone.
+   - Capture desktop and narrow/mobile views for the current screen.
+   - Capture the key local states for the changed area: loading, empty, validation/error, disabled/permission when relevant.
+   - Treat the first design artifact as a faithful baseline of the current screen, not as an improved redesign.
+
+3. **Decide the source of design truth**
    - Read `references/design-source-priority.md`.
    - Brownfield default: preserve and extend the current system.
    - Greenfield default: still converge to a Pencil workset instead of scattered generated images.
    - If a redesign is intentional, say so explicitly instead of drifting into redesign by accident.
 
-3. **Select Pencil skills**
+4. **Select Pencil skills**
    - Read `references/pencil-skill-selection.md`.
    - Pick the core skill plus the correct adapter for the target stack.
    - Record the chosen skills in the packet and handoff.
 
-4. **Run brownfield extraction first** _(brownfield default)_
+5. **Run brownfield extraction first** _(brownfield default)_
    - Use `references/brownfield-ui-extraction-template.md`.
    - Capture what is already strong, what must be preserved, and what is safe to improve now.
+   - Separate `observed current truth`, `conservative normalization target`, and `optional exploration`.
    - Do not start variant generation before this exists.
 
-5. **Build the screen inventory**
+6. **Build the screen inventory**
    - Use `references/screen-index-template.md`.
    - Cover primary screens plus the most important loading, empty, error, validation, and permission states.
    - Do not design every screen in detail before choosing a direction.
 
-6. **Create or refresh the Pencil workset**
+7. **Create or refresh the Pencil workset**
    - Use `references/pencil-workset-template.md`.
    - Recreate current foundations, shell, and shared patterns first.
    - Put durable design references in repo-local `.pen` files.
    - Keep the workset small and reusable.
 
-7. **Explore bounded variants in Pencil**
+8. **Explore bounded variants in Pencil**
    - Use `pencil-design-core` plus the chosen adapter.
    - Explore only the decision axis that matters:
      - hierarchy
@@ -106,32 +113,32 @@ When Pencil is available, also create or refresh:
      - trust / clarity / error treatment
    - Prefer baseline + 1–2 variants, not large galleries.
 
-8. **Review and select a direction**
+9. **Review and select a direction**
    - Use the visual companion when the choice is materially easier to judge by seeing.
    - Prefer side-by-side comparison, ranked alternatives, or annotated recommendation.
    - Record why the chosen direction wins and what was rejected.
 
-9. **Companion-assisted comparison** _(optional)_
+10. **Companion-assisted comparison** _(optional)_
    - Use the visual companion only when a very specific visual question is materially easier to judge in HTML than in prose.
    - Keep the comparison bounded to the decision axis that matters.
    - Translate any selected concept back into Pencil before treating it as real design direction.
 
-10. **Expand the implementation contract**
+11. **Expand the implementation contract**
     - Fill in responsive behavior, interaction cues, state coverage, accessibility constraints, and implementation flex points.
     - Separate **must preserve** from **may adapt** so implementation agents know where they have freedom.
     - Record the exact Pencil skills to load downstream.
 
-11. **Write the packet**
+12. **Write the packet**
     - Use `references/frontend-direction-template.md`.
     - Link screenshots and Pencil files instead of burying them in prose.
     - Be explicit when the packet is in degraded mode.
 
-12. **Run completeness checks**
+13. **Run completeness checks**
     - Review against:
       - `references/frontend-review-checklist.md`
       - `references/frontend-packet-completeness-checklist.md`
 
-13. **Feed the result back into the main artifacts**
+14. **Feed the result back into the main artifacts**
     - Link the packet from the design spec.
     - Link the packet from the GSD handoff.
     - Review all artifacts together for drift.

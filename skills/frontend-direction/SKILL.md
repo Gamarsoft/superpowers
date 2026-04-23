@@ -1,6 +1,6 @@
 ---
 name: frontend-direction
-description: Use after product direction is stable to create the frontend direction packet, the supporting frontend folder, and the repo-local Pencil workset that downstream GSD/Codex implementation should follow.
+description: Use after product direction is stable but visual direction is not, especially when brownfield UI work needs a durable frontend contract, screen inventory, or repo-local Pencil workset before implementation.
 ---
 
 # Frontend Direction
@@ -35,38 +35,51 @@ When Pencil is available, also maintain:
 ## Read order
 
 1. Read `references/design-source-priority.md`.
-2. Read `references/pencil-skill-selection.md`.
-3. Read `references/frontend-packet-folder-template.md`.
-4. Read `references/brownfield-ui-extraction-template.md` when the work is brownfield.
-5. Read `references/screen-index-template.md`.
-6. Read `references/pencil-workset-template.md`.
-7. Read `references/frontend-direction-template.md`.
-8. Read `references/frontend-review-checklist.md`.
-9. Read `references/frontend-packet-completeness-checklist.md` before finalizing.
+2. Read `references/use-cases-prompts-and-flows.md` when you need a concrete scenario flow or prompt shape.
+3. Read `references/pencil-skill-selection.md`.
+4. Read `references/frontend-packet-folder-template.md`.
+5. Read `references/brownfield-ui-extraction-template.md` when the work is brownfield.
+6. Read `references/screen-index-template.md`.
+7. Read `references/pencil-workset-template.md`.
+8. Read `references/frontend-direction-template.md`.
+9. Read `references/frontend-review-checklist.md`.
+10. Read `references/frontend-packet-completeness-checklist.md` before finalizing.
 
 ## Workflow
 
 1. Gather the approved or near-approved spec, durable wireframes, current screenshots, and design-system context.
-2. Decide the design-truth source:
+2. In brownfield work, decide whether a runtime baseline capture pass is required:
+   - if the current screen truth exists only in source code and the running app, capture browser-grounded evidence before inventing any packet artifacts
+   - gather desktop and narrow/mobile screenshots for the current screen
+   - gather key states for the changed area: loading, empty, validation/error, disabled/permission when relevant
+   - capture focused close-ups for high-risk regions and record short notes on hierarchy, spacing, density, and action placement
+   - use the running app as the layout truth; use source code as support, not as the only visual source
+3. Decide the design-truth source:
    - brownfield default: preserve and extend the current product language
    - redesign: only when explicitly intended
    - degraded mode: when richer design context is unavailable
-3. Choose the downstream stack adapter via `references/pencil-skill-selection.md`.
-4. In brownfield work, create `brownfield-ui-extraction.md` before asking for visual variants.
-5. Build the screen index for the key screens and key states only.
-6. Create or refresh the Pencil workset:
+4. Choose the downstream stack adapter via `references/pencil-skill-selection.md`.
+5. In brownfield work, create `brownfield-ui-extraction.md` before asking for visual variants.
+   - separate `observed current truth`, `conservative normalization target`, and `optional exploration`
+   - for existing-screen work with no prior durable evidence, the first packet job is faithful reproduction, not improvement
+6. Build the screen index for the key screens and key states only.
+7. Create or refresh the Pencil workset:
    - foundations
    - shell
    - shared patterns
    - feature-specific boards
-7. In Pencil, use `pencil-design-core` plus the chosen adapter to:
+8. In Pencil, use `pencil-design-core` plus the chosen adapter to:
    - recreate the current structure first
    - keep the workset faithful to the target stack
    - generate or edit only 1–2 bounded variants for the real decision axis
-8. Select the preferred directions and record why they won.
-9. Use the HTML visual companion only for temporary comparison artifacts when a choice is materially easier to judge in-browser than in prose.
-10. If an HTML companion artifact influenced a choice, translate the chosen concept back into Pencil boards, screenshots, and packet prose before treating it as durable direction.
-11. Expand the implementation contract:
+9. If UI/UX quality work is needed beyond faithful reproduction, run it as a bounded layer on top of the baseline:
+   - if a project-level `.impeccable.md` already exists, do not re-run `impeccable teach`
+   - use `critique`, and `audit` after the baseline exists, not before
+   - treat Impeccable findings as refinement input, not as permission to outrank brownfield truth
+10. Select the preferred directions and record why they won.
+11. Use the HTML visual companion only for temporary comparison artifacts when a choice is materially easier to judge in-browser than in prose.
+12. If an HTML companion artifact influenced a choice, translate the chosen concept back into Pencil boards, screenshots, and packet prose before treating it as durable direction.
+13. Expand the implementation contract:
 
 - responsive behavior
 - interaction cues
@@ -76,7 +89,7 @@ When Pencil is available, also maintain:
 - explicit no-gos
 - downstream skills and adapter to load
 
-12. Review against the checklist until the packet is implementation-usable.
+14. Review against the checklist until the packet is implementation-usable.
 
 ## Tooling preference
 
@@ -90,6 +103,7 @@ When Pencil is available, also maintain:
 ## Operating rules
 
 - Current product truth outranks generated imagery in brownfield work.
+- When no durable baseline exists, create one from browser-grounded evidence before you explore improvements.
 - HTML companion screens are temporary decision artifacts, not durable packet artifacts.
 - The packet should point to stable repo artifacts first:
   - `brownfield-ui-extraction.md`

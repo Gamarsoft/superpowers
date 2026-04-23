@@ -26,6 +26,19 @@ For brownfield work, think in layers instead of only a flat ranking:
 
 Later items do not overrule earlier items without an explicit reason.
 
+## Brownfield baseline rule
+
+If no durable frontend packet or `.pen` baseline exists yet for the changed screen, treat retained browser evidence from the running app as mandatory input.
+
+Do not rely on code-only visual inference for:
+
+- spacing rhythm
+- shell hierarchy
+- responsive breakpoints
+- empty/loading/error state treatment
+- action placement
+- density and scan path
+
 ## Pencil skill rule
 
 `pencil-design-core` and any stack adapter are **interpretation tools**.

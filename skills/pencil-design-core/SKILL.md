@@ -1,6 +1,6 @@
 ---
 name: pencil-design-core
-description: Framework-agnostic Pencil operating discipline for `.pen` files, brownfield extraction, reusable component reuse, variable discipline, layout correctness, visual verification, asset reuse, and stack-neutral design-to-code handoff. Use when working from Pencil artifacts through either Pencil MCP or Pencil CLI.
+description: Use when creating, extracting, or maintaining durable `.pen` design evidence, especially for brownfield UI capture, shared worksets, reusable components, tokens, screenshots, or design-to-code handoff.
 ---
 
 # Pencil Design Core
@@ -137,11 +137,15 @@ Read `references/pencil-tooling-modes.md` when you need command syntax, headless
 ## Required preflight for every `.pen` task
 
 1. inspect the packet / screenshots / current browser evidence
-2. choose the Pencil transport:
+2. if brownfield truth exists only in source code and the running app, gather browser-grounded baseline evidence before touching the `.pen` file:
+   - capture the current screen at desktop and narrow/mobile widths
+   - capture the key local states for the changed area
+   - record what is observed current truth versus what is only inferred from code
+3. choose the Pencil transport:
    - MCP for stable local manipulation
    - CLI interactive mode for deterministic tool-level edits, exports, and scripted inspection
-3. inventory document structure, reusable components, and variables using the chosen transport
-4. determine the mode:
+4. inventory document structure, reusable components, and variables using the chosen transport
+5. determine the mode:
    - brownfield extraction
    - shared primitive build
    - faithful approved change
@@ -182,6 +186,7 @@ For each logical section:
    - observed current truth
    - conservative normalization target
    - optional exploration
+5. if a runtime baseline exists, mirror it faithfully before exploring variants
 
 ## MCP tool quick reference
 
