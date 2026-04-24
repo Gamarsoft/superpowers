@@ -50,6 +50,7 @@ When Pencil is available, also maintain:
 ## Workflow
 
 1. Gather the approved or near-approved spec, durable wireframes, current screenshots, and design-system context.
+   - If the repo uses Impeccable v3, also gather any project-level `PRODUCT.md` and `DESIGN.md`.
 2. In brownfield work, decide whether a runtime baseline capture pass is required:
    - read `references/browser-surface-selection.md` before browser interaction
    - if the current screen truth exists only in source code and the running app, capture browser-grounded evidence before inventing any packet artifacts
@@ -61,6 +62,7 @@ When Pencil is available, also maintain:
    - brownfield default: preserve and extend the current product language
    - redesign: only when explicitly intended
    - degraded mode: when richer design context is unavailable
+   - when present, treat `PRODUCT.md` as product/register context and `DESIGN.md` as reusable system documentation, but keep current runtime truth above both in brownfield work
 4. Choose the downstream stack adapter via `references/pencil-skill-selection.md`.
 5. In brownfield work, create `brownfield-ui-extraction.md` before asking for visual variants.
    - separate `observed current truth`, `conservative normalization target`, and `optional exploration`
@@ -77,8 +79,10 @@ When Pencil is available, also maintain:
    - generate or edit only 1–2 bounded variants for the real decision axis
 9. If UI/UX quality work is needed beyond faithful reproduction, run it as a bounded layer on top of the baseline:
    - read `references/impeccable-brownfield-quality-layer.md`
-   - if a project-level `.impeccable.md` already exists, do not re-run `impeccable teach`
-   - use `impeccable extract`, `critique`, and `audit` after the baseline exists, not before
+   - if `PRODUCT.md` already exists and is still accurate, do not re-run `/impeccable teach`
+   - if `DESIGN.md` is missing or stale, prefer `/impeccable document` to refresh it from the current codebase
+   - use `/impeccable extract`, `/impeccable critique`, and `/impeccable audit` after the baseline exists, not before
+   - use `/impeccable live` only as a bounded refinement surface on supported stacks; accepted ideas must still converge back into packet prose, screenshots, and `.pen` files
    - treat Impeccable findings as refinement input, not as permission to outrank brownfield truth
 10. Select the preferred directions and record why they won.
 11. Use the HTML visual companion only for temporary comparison artifacts when a choice is materially easier to judge in-browser than in prose.
@@ -107,6 +111,7 @@ When Pencil is available, also maintain:
 ## Operating rules
 
 - Current product truth outranks generated imagery in brownfield work.
+- In Impeccable v3 projects, `PRODUCT.md` and `DESIGN.md` are strong context inputs, but they do not outrank current runtime truth, the approved packet, or repo-local Pencil artifacts.
 - When no durable baseline exists, create one from browser-grounded evidence before you explore improvements.
 - HTML companion screens are temporary decision artifacts, not durable packet artifacts.
 - The packet should point to stable repo artifacts first:

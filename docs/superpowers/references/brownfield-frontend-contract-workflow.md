@@ -73,6 +73,12 @@ Durable truth must converge into repo-local artifacts:
 
 Improvements to typography, hierarchy, spacing, copy, accessibility, and motion should refine the existing product family unless redesign is explicitly approved.
 
+### Principle 6: Pencil transport is contextual
+
+Pencil MCP and Pencil CLI are transport layers over the same `.pen` truth.
+
+Use MCP for stable local design work when appropriate. For GSD-facing workflows, use Pencil CLI interactive mode only. Do not use Pencil MCP or Pencil CLI agent mode in those workflows.
+
 ## Recommended Skill Stack
 
 Use these skills in this order:
@@ -84,13 +90,15 @@ Use these skills in this order:
 5. exactly one adapter:
    - `superpowers:pencil-design-angular-nebular`
    - `superpowers:pencil-design-react-tailwind`
-6. Impeccable skills as a quality layer:
-   - `impeccable teach`
+6. Impeccable skills only when a quality layer is in scope:
    - `impeccable extract`
    - `impeccable critique`
    - `impeccable audit`
+   - `impeccable document` when `DESIGN.md` is missing or stale
    - targeted refinement skills such as `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish`
 7. `superpowers:gsd-frontend-design` for implementation
+
+Use `impeccable teach` only when product context is missing, stale, or intentionally changing. If a current `PRODUCT.md` exists, treat it as product/register context instead of rerunning teach.
 
 ## Workflow Overview
 
@@ -119,6 +127,8 @@ Required outputs:
 - `Must preserve`
 - `May adapt`
 - `Explicit no-gos`
+
+For repo-specific brownfield work, `brainstorming` should prefer `gathering-topic-context` before reflection so the scope is grounded in the current codebase and workflow.
 
 For brownfield UI work, this phase must explicitly capture:
 
@@ -175,16 +185,18 @@ Use:
 - `superpowers:pencil-design-core`
 - correct Pencil adapter
 
+For Angular + Nebular targets, confirm the repo's Angular and Nebular versions before applying adapter assumptions. Use `context7-research` for Angular guidance and the local Nebular checkout/source for Nebular component APIs when available.
+
 Create these baseline artifacts before exploring improvements:
 
 - `brownfield-ui-extraction.md`
 - `screen-index.md`
 - `pencil-workset.md`
 - repo-local `.pen` files for:
-  - foundations
-  - shell
-  - shared patterns
-  - current feature baseline
+  - `design/pencil/_shared/00-foundations.pen`
+  - `design/pencil/_shared/10-shell.pen`
+  - `design/pencil/_shared/20-patterns.pen`
+  - `design/pencil/{slug}/30-{slug}.pen`
 
 The baseline extraction must record three layers for each relevant surface:
 
@@ -231,17 +243,21 @@ Use Impeccable as a quality layer, not as a replacement source of truth.
 
 Recommended sequence:
 
-1. `impeccable teach`
-2. `impeccable extract`
-3. `impeccable critique`
-4. `impeccable audit`
+1. read current `PRODUCT.md` and `DESIGN.md` when they exist
+2. use `impeccable document` if `DESIGN.md` is missing or stale
+3. use `impeccable extract` after baseline capture to identify reusable tokens and patterns
+4. use `impeccable critique` after the faithful baseline exists
+5. use `impeccable audit` before implementation and again after implementation when measurable implementation quality is in scope
 
 Interpretation:
 
-- `teach` establishes audience, use case, and tone so quality work is not generic
+- `PRODUCT.md` establishes audience, use case, tone, and register so quality work is not generic
+- `DESIGN.md` documents the reusable system; `DESIGN.json` is auxiliary tooling output, not the durable contract
 - `extract` helps surface reusable design patterns and tokens
 - `critique` evaluates UX quality, hierarchy, cognitive load, and AI-slop risk
 - `audit` evaluates measurable implementation quality: accessibility, responsiveness, theming, performance, anti-patterns
+
+Use `impeccable teach` only when product context is missing, stale, or intentionally changing. Do not let Impeccable output outrank runtime truth, the approved packet, screenshots, or `.pen` files.
 
 Use the findings to populate two lists:
 
@@ -347,7 +363,7 @@ Implement the approved UI without reopening design discovery.
 Use:
 - `superpowers:gsd-frontend-design`
 - `superpowers:pencil-design-core`
-- same adapter used during packet creation
+- correct adapter for the implementation target, normally the same adapter used during packet creation
 
 Implementation rules:
 
@@ -357,6 +373,11 @@ Implementation rules:
 - reuse real codebase primitives and shell patterns
 - fill gaps conservatively
 - record any material deviation from packet or baseline truth
+- when `.pen` files are in scope, use Pencil CLI interactive mode only
+- prefer distinct output paths for CLI interactive `.pen` edits, then replace deliberately after verification
+- do not use Pencil MCP or Pencil CLI agent mode in GSD-facing workflows
+- fall back to direct `.pen` text editing only in explicit degraded mode
+- use implementation-quality references for typography, color/contrast, spacing, interaction, motion, responsive behavior, UX writing, and accessibility as fallback heuristics, not as design authority
 
 Verification must include:
 
@@ -389,6 +410,8 @@ For each brownfield feature with meaningful UI work, maintain this minimum artif
 - feature-specific `.pen`
 
 ### Quality evidence
+
+Include this when quality refinement beyond faithful reproduction was in scope:
 
 - critique summary
 - audit summary
@@ -440,11 +463,15 @@ Order:
 
 Use Impeccable selectively:
 
-- `impeccable teach` at the start of quality work
+- `impeccable teach` only when `PRODUCT.md` is missing, stale, or intentionally changing
+- `impeccable document` when `DESIGN.md` is missing or stale
 - `impeccable extract` after baseline capture to identify reusable tokens and patterns
 - `impeccable critique` after the baseline exists
-- `impeccable audit` before implementation and again after implementation
+- `impeccable audit` before implementation and again after implementation when measurable quality checks are in scope
+- `impeccable live` only as a bounded refinement surface on supported stacks after the baseline and packet direction exist
 - `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish` only after the scope of allowed change is explicit
+
+Treat `PRODUCT.md` as product/register context, `DESIGN.md` as reusable system documentation, and `DESIGN.json` as auxiliary tooling output. None of them outrank current runtime truth in brownfield work.
 
 Avoid using:
 
@@ -477,8 +504,5 @@ Capture the real screen, extract the real system, critique the faithful baseline
 
 This workflow aligns with:
 
-- OpenAI guidance to front-load visual direction and verification for GPT-5.4-era frontend work:
-  - https://developers.openai.com/blog/designing-delightful-frontends-with-gpt-5-4
-  - https://developers.openai.com/api/docs/guides/prompt-guidance#prompting-patterns-for-coding-tasks
 - local Superpowers frontend-direction and Pencil workflow skills
 - local Impeccable design-quality skills and references

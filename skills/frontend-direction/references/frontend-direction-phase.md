@@ -67,6 +67,7 @@ When Pencil is available, also create or refresh:
    - Existing product screenshots or current UI surfaces if brownfield
    - Durable wireframes if they exist
    - Anchoring docs, audits, or prior approved packets
+   - `PRODUCT.md` and `DESIGN.md` when the repo uses Impeccable v3
 
 2. **If the work is brownfield and durable evidence is missing, capture a runtime baseline first**
    - Apply `references/browser-surface-selection.md` before starting browser interaction.
@@ -116,6 +117,7 @@ When Pencil is available, also create or refresh:
 
 9. **Review and select a direction**
    - Use the visual companion when the choice is materially easier to judge by seeing.
+   - Use `/impeccable live` only as an optional refinement surface on supported stacks after the baseline and packet direction already exist.
    - Prefer side-by-side comparison, ranked alternatives, or annotated recommendation.
    - Record why the chosen direction wins and what was rejected.
 
@@ -164,6 +166,7 @@ A strong frontend-direction phase produces:
 - generating many screens before choosing a direction
 - treating wireframes as enough visual guidance when the implementation agent still has to guess tone and hierarchy
 - drifting into a redesign when the user really wanted brownfield continuity
+- treating `PRODUCT.md`, `DESIGN.md`, or `/impeccable live` output as permission to skip baseline capture or packet convergence
 - writing a frontend packet with screenshots but no explanation of why they were chosen
 - relying on generated screenshots without stable repo-local artifacts
 - leaving a winning HTML companion idea in HTML instead of translating it back into `.pen` artifacts

@@ -19,9 +19,10 @@ Use this precedence order:
 4. `pencil-workset.md`, `brownfield-ui-extraction.md`, and `screen-index.md`
 5. Relevant `.pen` files in `design/pencil/` or packet-linked paths
 6. Retained screenshots, browser captures, or Pencil exports that the packet treats as binding evidence
-7. Existing component library, tokens, and app-shell conventions
-8. The implementation-quality reference files in this skill
-9. Freeform invention only for genuinely unspecified gaps
+7. Project-level `PRODUCT.md` and current `DESIGN.md` when present
+8. Existing component library, tokens, and app-shell conventions
+9. The implementation-quality reference files in this skill
+10. Freeform invention only for genuinely unspecified gaps
 
 ## Skill composition
 
@@ -37,7 +38,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 
 ## Workflow
 
-1. Locate the current spec, frontend direction packet, `pencil-workset.md`, `brownfield-ui-extraction.md`, `screen-index.md`, the relevant `.pen` files, retained screenshots, and existing component patterns.
+1. Locate the current spec, frontend direction packet, `pencil-workset.md`, `brownfield-ui-extraction.md`, `screen-index.md`, the relevant `.pen` files, retained screenshots, existing component patterns, and any project-level `PRODUCT.md` or `DESIGN.md`.
 2. Extract **Must preserve**, **May adapt**, and **Explicit no-gos** before touching code.
    - If the packet distinguishes `observed current truth`, `conservative normalization target`, and `approved change`, carry those boundaries into implementation.
 3. If Pencil artifacts exist, load `pencil-design-core` and use Pencil CLI interactive mode before touching app code:
@@ -48,6 +49,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 6. Inspect the existing codebase and reuse its components, tokens, spacing system, interaction patterns, and shell conventions unless the packet explicitly changes them.
 7. Implement the required screens, states, and responsive behavior.
 8. Use the reference files in `references/` as fallback heuristics and quality checks, not as permission to redesign the product.
+   - treat `PRODUCT.md` as audience/register context and `DESIGN.md` as system documentation, not as permission to outrank the packet or brownfield baseline
 9. If the packet or workset is incomplete, fill gaps conservatively and keep new invention tightly bounded.
    - If the current screen baseline is incomplete, prefer the retained browser evidence and current product behavior over code-only visual inference.
 10. If you must deviate from the packet, `.pen` files, or existing system, make the deviation explicit and explain why.

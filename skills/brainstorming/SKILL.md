@@ -48,6 +48,7 @@ Your job is to:
 - recommend a default with reasoning
 - bound the work before the spec hardens
 - when UI matters, extract current product truth before exploring visual deltas
+- when Impeccable v3 is present, treat `PRODUCT.md` and `DESIGN.md` as design-memory inputs, not as replacements for brownfield runtime truth
 - use HTML browser artifacts only for temporary comparisons or decision support
 - use Pencil as the primary visual workspace when available
 - pick the correct Pencil adapter for the target stack
@@ -145,6 +146,10 @@ Create a task for each of the following and complete them in order.
       - capture the current screen and key neighboring states from the running app
       - prefer browser-grounded evidence over code-only layout inference
       - treat the first frontend artifact as a faithful baseline, not an improved redesign
+    - If the repo uses Impeccable v3, read any project-level `PRODUCT.md` and `DESIGN.md` before refinement:
+      - use `PRODUCT.md` as audience, brand/personality, anti-reference, and register context
+      - use `DESIGN.md` as reusable system evidence when it is current
+      - treat `DESIGN.json` as auxiliary tooling output, not the primary durable contract
     - In brownfield work, create `brownfield-ui-extraction.md` using `../frontend-direction/references/brownfield-ui-extraction-template.md` before asking for variants.
     - Build the Pencil workset plan using `../frontend-direction/references/pencil-workset-template.md`.
     - Use Pencil as the primary workspace when available:

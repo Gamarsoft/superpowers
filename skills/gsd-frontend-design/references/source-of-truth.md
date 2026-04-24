@@ -20,11 +20,14 @@ For brownfield work, think in layers instead of only a flat ranking:
 3. **`pencil-workset.md`, `brownfield-ui-extraction.md`, and `screen-index.md`** as the packet’s implementation evidence
 4. **Relevant `.pen` files** in `design/pencil/` or packet-linked paths
 5. **Retained screenshots, browser captures, or Pencil exports** that the packet treats as binding evidence
-6. **Existing component library, tokens, and app-shell conventions**
-7. **Pencil skills and this skill’s implementation-quality references**
-8. **Freeform invention** only for genuinely unspecified gaps
+6. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
+7. **Existing component library, tokens, and app-shell conventions**
+8. **Pencil skills and this skill’s implementation-quality references**
+9. **Freeform invention** only for genuinely unspecified gaps
 
 Later items do not overrule earlier items without an explicit reason.
+
+`DESIGN.json` is auxiliary Impeccable tooling output, not a stronger source than the packet, `.pen` files, or retained browser evidence.
 
 ## Brownfield baseline rule
 

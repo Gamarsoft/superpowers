@@ -22,6 +22,8 @@ Higher sources outrank lower sources unless the human explicitly approves a rede
 
 3. **Repo-level anchoring docs, audits, and prior art**
    - frontend anchoring docs
+   - `PRODUCT.md`
+   - `DESIGN.md`
    - prior design reviews
    - implementation notes about what must stay unchanged
    - previous approved frontend direction packets that are still current
@@ -68,6 +70,7 @@ Start from the spec and user goal, but still prefer a converged Pencil workset o
 
 - Never let a lower-priority source silently override a higher-priority source.
 - If no durable frontend baseline exists yet, create retained browser evidence from the running app before treating generated artifacts as trustworthy.
+- In Impeccable v3 projects, use `PRODUCT.md` and `DESIGN.md` as anchoring context, but do not let them silently override observed brownfield runtime truth.
 - If a generated concept conflicts with a must-preserve brownfield pattern, the pattern wins unless the human explicitly approves change.
 - The frontend packet should point to **stable repo artifacts** first:
   - screenshots

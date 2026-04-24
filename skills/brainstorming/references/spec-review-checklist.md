@@ -66,7 +66,7 @@ Apply this section when a frontend direction packet exists or when the work clea
 - Are key screens and critical states covered?
 - Are Must preserve / May adapt / Explicit no-gos clearly separated?
 - Are responsive, accessibility, and verification rules present?
-- Are linked screenshots, wireframes, or DESIGN.md references real rather than placeholder mentions?
+- Are linked screenshots, wireframes, `PRODUCT.md`, or `DESIGN.md` references real rather than placeholder mentions?
 
 ## 11. Cross-artifact UI alignment (conditional, blocking when relevant)
 - Do the spec, frontend packet, and GSD handoff agree on scope and behavior?

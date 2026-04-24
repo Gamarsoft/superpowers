@@ -28,7 +28,7 @@ The intended flow is:
 1. `brainstorming`
 2. `frontend-direction` when UI materially shapes implementation
 3. `pencil-design-core` plus exactly one adapter while creating or refining durable design evidence
-4. `gsd-frontend-design` plus `pencil-design-core` plus the same adapter during implementation
+4. `gsd-frontend-design` plus `pencil-design-core` plus the correct adapter for the implementation target, normally the same adapter selected during packet creation
 
 ## Shared Principles
 
@@ -36,10 +36,12 @@ These skills repeat the same control rules in different phases:
 
 - Brownfield product truth outranks generated novelty.
 - Approved specs and packets outrank casual interpretation.
+- Functional requirements and visual direction are separate contracts: approved spec, handoff, and acceptance criteria define behavior; current product UI and approved frontend packets define visual change.
 - `.pen` files and retained screenshots are durable evidence.
 - Adapters interpret design for a stack; they do not outrank the packet or the product system.
 - HTML companion artifacts are temporary comparison surfaces, not durable truth.
 - In brownfield work, preservation is the default unless change is explicitly approved.
+- `PRODUCT.md` and `DESIGN.md` are useful design-memory inputs, but they do not outrank runtime truth, approved packets, or repo-local Pencil evidence.
 
 ## Independent Roles
 
@@ -49,9 +51,11 @@ Purpose:
 Turn a request into approved implementation inputs before code is written.
 
 What it produces:
-- design spec
-- GSD handoff
-- frontend direction packet and supporting artifacts when UI direction is implementation-shaping
+- reviewed design spec
+- reviewed GSD handoff
+- ready-to-paste steering note
+- reviewed frontend direction packet and supporting artifacts when UI direction is implementation-shaping
+- repo-local Pencil workset when UI-heavy work has Pencil available
 
 What it controls:
 - track selection
@@ -60,6 +64,7 @@ What it controls:
 - option shaping
 - review loop
 - decision on whether the frontend-direction phase is required
+- use of `gathering-topic-context` before reflection for repo-specific brownfield work
 
 What it should not do:
 - write production code
@@ -77,7 +82,7 @@ What it produces:
 - `brownfield-ui-extraction.md`
 - `pencil-workset.md`
 - screenshots
-- repo-local Pencil workset files
+- repo-local Pencil workset files such as `design/pencil/_shared/00-foundations.pen`, `design/pencil/_shared/10-shell.pen`, `design/pencil/_shared/20-patterns.pen`, and `design/pencil/{slug}/30-{slug}.pen`
 
 What it controls:
 - source of design truth
@@ -85,6 +90,7 @@ What it controls:
 - screen inventory
 - bounded variant exploration
 - implementation contract such as must-preserve vs may-adapt
+- Impeccable v3 inputs when present: `PRODUCT.md` for audience/register context, `DESIGN.md` for reusable system documentation, and `DESIGN.json` only as auxiliary tooling output
 
 What it should not do:
 - act as a coding skill
@@ -103,7 +109,8 @@ What it controls:
 - screenshot-based verification
 - asset reuse
 - brownfield-first extraction
-- transport choice between Pencil MCP and Pencil CLI
+- transport choice between Pencil MCP and Pencil CLI for general Pencil work
+- GSD-facing Pencil work via CLI interactive mode only
 
 What it should not do:
 - decide framework-specific code structure
@@ -121,6 +128,7 @@ What it emphasizes:
 - module and forms discipline
 - operator density
 - conservative mobile adaptation for dense workflows
+- preflight against the real repo: confirm Angular/Nebular versions, use `context7-research` for Angular guidance, and inspect local Nebular docs/source for component APIs and module wiring
 
 What it should not do:
 - import React or Tailwind assumptions into an Angular brownfield repo
@@ -147,7 +155,7 @@ Purpose:
 Implement UI from the strongest approved design truth.
 
 What it consumes:
-- approved spec and handoff
+- approved spec, handoff, and acceptance criteria
 - approved frontend direction packet
 - `screen-index.md`
 - `brownfield-ui-extraction.md`
@@ -155,12 +163,15 @@ What it consumes:
 - relevant `.pen` files
 - retained screenshots
 - existing UI system and component library
+- `PRODUCT.md` and `DESIGN.md` when present, as context rather than stronger authority
 
 What it controls:
 - source-of-truth precedence during implementation
 - extraction of `Must preserve`, `May adapt`, and `Explicit no-gos`
 - implementation mode selection
 - conservative gap filling when artifacts are incomplete
+- Pencil source consumption through CLI interactive mode when `.pen` files are in scope
+- implementation-quality checks for typography, color/contrast, spacing, interaction, motion, responsive behavior, UX writing, and accessibility as fallback heuristics
 
 What it should not do:
 - reopen product or design discovery without cause
@@ -176,6 +187,8 @@ Use `brainstorming` to determine:
 - which track applies
 - what the first delivery boundary is
 - whether the UI is important enough to justify a frontend-direction phase
+
+For repo-specific brownfield work, gather topic context before committing to the problem shape.
 
 This is the product-shaping and artifact-authoring phase.
 
@@ -206,7 +219,7 @@ This is the design-evidence and translation-preparation phase.
 
 Use `gsd-frontend-design` with:
 - `pencil-design-core`
-- the same stack adapter used to shape or consume the workset
+- the correct stack adapter for the implementation target, normally the same adapter used to shape or consume the workset
 
 This phase reads the approved evidence in precedence order and changes real frontend code conservatively.
 
@@ -238,15 +251,24 @@ This is the implementation phase.
 
 When these skills work correctly together, they preserve the same hierarchy:
 
-1. approved spec and approved handoff for functional intent
-2. current product UI and design system for brownfield baseline truth
-3. approved frontend direction packet for intentional visual change
-4. packet support files such as `brownfield-ui-extraction.md`, `screen-index.md`, and `pencil-workset.md`
-5. relevant repo-local `.pen` files
-6. retained screenshots and exports treated as binding evidence
+Functional contract:
+
+1. approved spec, handoff, and acceptance criteria
+2. current product behavior when the approved functional contract is silent
+
+Visual contract:
+
+1. existing product UI and design system for brownfield baseline truth
+2. approved frontend direction packet for intentional in-scope visual change
+3. packet support files such as `brownfield-ui-extraction.md`, `screen-index.md`, and `pencil-workset.md`
+4. relevant repo-local `.pen` files
+5. retained screenshots, browser captures, and Pencil exports treated as binding evidence
+6. `PRODUCT.md` and current `DESIGN.md` as product/register and documented-system context
 7. existing component library, tokens, shell conventions, and shared primitives
 8. skill references and adapters as interpretation tools
 9. freeform invention only for genuinely unspecified gaps
+
+`DESIGN.json` is auxiliary Impeccable tooling output, not a primary durable contract.
 
 ## Adapter Selection Rule
 
@@ -257,7 +279,21 @@ Then choose one adapter only:
 - Angular + Nebular or similar operator-heavy brownfield UI: `pencil-design-angular-nebular`
 - React / Next / Tailwind / shadcn: `pencil-design-react-tailwind`
 
+The actual production target wins. If earlier packet guidance selected the wrong adapter, correct it during implementation and record the mismatch.
+
+For Angular + Nebular work, confirm Angular and Nebular versions before applying adapter assumptions. Use `context7-research` for Angular and the local Nebular checkout/source for Nebular APIs when available.
+
 Do not load the React adapter for an Angular product just because a design workflow elsewhere was React-first.
+
+## Pencil Transport Rule
+
+Pencil MCP and Pencil CLI are transport layers over the same `.pen` truth.
+
+- general Pencil design work may use MCP when the local session is stable
+- GSD-facing workflows must plan around Pencil CLI interactive mode only
+- do not use Pencil MCP or Pencil CLI agent mode in GSD workflows
+- prefer distinct output paths when editing `.pen` files through CLI interactive mode, then replace deliberately after verification
+- if CLI interactive persistence fails, declare degraded mode instead of silently direct-editing `.pen` JSON
 
 ## Common Failure Modes
 
@@ -268,6 +304,7 @@ Do not load the React adapter for an Angular product just because a design workf
 - Letting HTML companion artifacts become durable truth instead of translating the chosen direction back into `.pen` files and packet prose.
 - Treating the adapter as higher priority than the packet or current product system.
 - Using a modern consumer-dashboard aesthetic to overwrite a dense brownfield operator UI.
+- Using Pencil MCP in a GSD-facing workflow when the current skills require CLI interactive mode.
 
 ## Short Mental Model
 

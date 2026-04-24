@@ -11,7 +11,8 @@ The scenarios below are intentionally short. Adapt them to the current repo and 
 - If no durable design evidence exists yet, create a faithful baseline from the running product before exploring variants.
 - Use HTML companion artifacts for comparison only.
 - Converge durable truth into screenshots, packet prose, and `.pen` files.
-- If a project-level `.impeccable.md` already exists, do not re-run `impeccable teach`.
+- If a project-level `PRODUCT.md` already exists and is still accurate, do not re-run `/impeccable teach`.
+- If the repo has Impeccable v3, read `PRODUCT.md` and `DESIGN.md` before refinement. Treat `DESIGN.json` as auxiliary tooling output, not the primary contract.
 
 ## 1. Brownfield: New Feature on an Existing Screen
 
@@ -87,8 +88,8 @@ Use `frontend-direction` for a brownfield improvement pass on an existing screen
 2. write observed current truth
 3. list conservative normalization targets
 4. run bounded quality analysis:
-   - `critique`
-   - `audit`
+   - `/impeccable critique`
+   - `/impeccable audit`
 5. approve only the improvements that fit the current scope
 6. update packet, screenshots, and `.pen` boards
 7. implement and verify
@@ -136,9 +137,9 @@ Use `brainstorming` and `frontend-direction` to define the product and frontend 
 ### Flow
 
 1. stabilize product framing
-2. if needed, ensure `.impeccable.md` exists or run `impeccable teach`
+2. if needed, ensure `PRODUCT.md` exists or run `/impeccable teach`
 3. create the baseline design direction in Pencil
-4. use `critique` or `audit` to pressure-test quality
+4. if present, read `DESIGN.md`; use `/impeccable critique` or `/impeccable audit` to pressure-test quality
 5. refine with bounded improvements
 6. finalize the packet and workset
 7. implement from the approved contract
