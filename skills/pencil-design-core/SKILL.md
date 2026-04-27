@@ -122,7 +122,21 @@ This skill governs Pencil operating discipline, not final code shape.
 
 Read `references/design-to-code-principles.md`.
 
-### Rule 8 — Choose the transport layer deliberately
+### Rule 8 — Board intent must be explicit before handoff
+
+**Never leave implementation agents to guess whether a Pencil board is visual truth or guidance.**
+
+For every board, frame, screenshot, or retained visual reference that may guide implementation, record:
+
+1. intent mode: `visual-truth`, `semantic-guidance`, or `reference-only`
+2. what is binding
+3. what is non-binding
+4. approval status
+5. pending questions or blockers
+
+If intent is not approved, mark it pending. Do not promote the board to implementation-ready visual truth.
+
+### Rule 9 — Choose the transport layer deliberately
 
 Pencil MCP and Pencil CLI are execution surfaces, not competing sources of truth.
 
@@ -151,6 +165,11 @@ Read `references/pencil-tooling-modes.md` when you need command syntax, headless
    - faithful approved change
    - controlled exploration
    - design-to-code handoff
+6. classify board intent for every implementation-facing board or screenshot:
+   - `visual-truth`
+   - `semantic-guidance`
+   - `reference-only`
+7. record approval status before treating any board as implementation-ready
 
 ## Recommended workflow
 

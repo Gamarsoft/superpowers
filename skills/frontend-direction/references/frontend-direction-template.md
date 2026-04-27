@@ -16,6 +16,8 @@ Supporting folder:
 - Separate **must preserve** from **may adapt**.
 - If the packet is in degraded mode, say so explicitly.
 - Treat repo-local Pencil files as primary visual references when available.
+- Classify every board, screenshot, or retained visual reference that may guide implementation as `visual-truth`, `semantic-guidance`, or `reference-only`.
+- Get human approval for board-intent classifications before handing the packet to implementation.
 - If HTML companion screens were used during decision-making, capture only the translated outcome here, not the raw HTML artifact path.
 
 ## Template
@@ -29,6 +31,7 @@ Supporting folder:
 - Linked wireframes:
 - Design source priority: current UI → code patterns → extraction docs → Pencil → wireframes → temporary HTML companion artifacts
 - Brownfield preserve vs redesign call:
+- Board intent approval status: approved | pending | incomplete
 - Packet status: full-fidelity | degraded
 - Packet folder: `./{slug}--frontend/`
 - Screen index: `./{slug}--frontend/screen-index.md`
@@ -82,12 +85,22 @@ Supporting folder:
 
 ## 6. Chosen Directions for Key Screens
 
+### Board intent modes
+
+- `visual-truth`: binding visual treatment; implementation must verify board parity.
+- `semantic-guidance`: behavior, content priority, workflow, or state coverage is binding; visual treatment may adapt to the product system.
+- `reference-only`: inspiration or comparison aid; not an acceptance target unless promoted later.
+
 ### [Screen / flow name]
 
 - User goal:
 - Selected reference(s):
 - Primary visual source:
 - Pencil file and board/frame:
+- Board intent: visual-truth | semantic-guidance | reference-only
+- Intent approved by: [human / date / pending]
+- If semantic-guidance, binding intent:
+- If reference-only, why retained:
 - Why this direction won:
 - Layout / hierarchy notes:
 - Content priority:
@@ -161,7 +174,10 @@ Supporting folder:
 ## 13. Verification Plan
 
 - Required viewports:
-- Screenshot checks:
+- Screenshot checks by board intent:
+  - visual-truth parity checks:
+  - semantic-guidance intent-fit checks:
+  - reference-only items excluded from acceptance:
 - Interaction checks:
 - Acceptance tie-back to main spec:
 - Known visual risks:

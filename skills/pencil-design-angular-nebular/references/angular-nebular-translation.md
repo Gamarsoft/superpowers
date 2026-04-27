@@ -109,6 +109,10 @@ Avoid:
 - repeated card scroll logic per page
 - `::ng-deep` unless no cleaner option exists
 
+If a `visual-truth` board intentionally changes local hierarchy or control emphasis, scoped page-local SCSS is allowed after checking shared wrappers and theme variables. This is not a redesign when it preserves shell and behavior while implementing the approved visual delta. If the board is `semantic-guidance`, preserve the demonstrated behavior and content priority without forcing a visual restyle.
+
+Nebular defaults do not automatically satisfy visual intent. For example, `nb-select` is rendered through a `button[nbButton]` internally, so it can read as a primary action unless the status, wrapper, or scoped style makes it match a `visual-truth` board's neutral control role.
+
 ## Nebular primitive reminders
 
 - `NbButtonModule` powers `nbButton`

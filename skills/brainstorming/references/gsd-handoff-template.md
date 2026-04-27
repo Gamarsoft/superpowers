@@ -107,6 +107,11 @@ none | required | attached
 - `pencil-workset.md`:
 - repo-local `.pen` files:
 - retained screenshots:
+- board intent approvals:
+  - `visual-truth`:
+  - `semantic-guidance`:
+  - `reference-only`:
+  - pending / blocker:
 
 ### Pencil skills to load downstream
 - `gsd-frontend-design`
@@ -117,6 +122,9 @@ none | required | attached
 - Must preserve:
 - May adapt:
 - Explicit no-gos:
+- Board intent rule:
+  - Do not treat an unapproved board as visual truth.
+  - If board intent is missing or pending, ask for confirmation before visual changes.
 
 ## 6. Roadmap Seed
 
@@ -229,6 +237,8 @@ Load:
 - the adapter named in the packet
 
 Use the frontend packet and Pencil workset as the durable UI references.
+Respect approved board intent modes in the packet. `visual-truth` boards require visual parity; `semantic-guidance` boards require behavior, content-priority, and state-fit; `reference-only` boards are not acceptance targets.
+If board intent is missing or pending, ask for confirmation before treating the board as a redesign or visual parity target.
 Do not treat temporary HTML companion screens as binding once the chosen direction has been translated into Pencil and packet artifacts.
 Do not invent a new visual direction unless the handoff explicitly says redesign.
 Only ask follow-up questions about unresolved items, contradictions, or missing implementation-shaping decisions.

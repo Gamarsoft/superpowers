@@ -24,10 +24,20 @@ Tokens, statuses, hierarchy, and information priority matter more than node-for-
 ### 4. Record gaps honestly
 If the design leaves something unresolved, document the gap instead of inventing silently.
 
-### 5. Delegate final code shape to the adapter
+### 5. Do not infer board intent during implementation
+
+Every implementation-facing board or screenshot needs approved intent:
+
+- `visual-truth`: visual treatment is binding.
+- `semantic-guidance`: behavior, workflow, content priority, or state coverage is binding; visual treatment can adapt.
+- `reference-only`: not an acceptance target.
+
+If approval is missing, record the gap and ask before implementation. Do not let the code agent decide whether a board is a redesign target.
+
+### 6. Delegate final code shape to the adapter
 The core should not decide Angular/Nebular or React/Tailwind structure.
 
-### 6. Treat design and code as a two-way system
+### 7. Treat design and code as a two-way system
 
 - brownfield work can start from code-to-design recreation, not only fresh design invention
 - keep repo-local `.pen` files near the implementation context so agents can inspect both design and code
@@ -37,10 +47,11 @@ The core should not decide Angular/Nebular or React/Tailwind structure.
 
 1. read packet and relevant `.pen` files
 2. identify shared patterns and repeated tokens
-3. identify what must be shared versus page-local
-4. translate to adapter-specific implementation guidance
-5. verify against screenshots and browser output
-6. record deviations, compromises, and follow-up items
+3. confirm approved board intent for each implementation reference
+4. identify what must be shared versus page-local
+5. translate to adapter-specific implementation guidance
+6. verify against screenshots and browser output using the approved intent mode
+7. record deviations, compromises, and follow-up items
 
 ## Brownfield import prompts
 

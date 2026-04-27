@@ -36,9 +36,19 @@ Before creating new template structures, map the Pencil pattern to the closest e
 - existing shell pattern
 - existing page archetype
 
+Nebular primitives are implementation primitives, not visual authority. If a `visual-truth` board uses a Nebular component in a calmer or more neutral role than the default theme renders, translate the component through theme variables, semantic wrappers, or scoped SCSS instead of accepting the default visual priority.
+
+Not every Pencil board is visual truth. Before restyling Nebular defaults, confirm the board has approved intent as `visual-truth`, `semantic-guidance`, or `reference-only`. If intent is missing or pending, ask for confirmation before visual changes. For `semantic-guidance`, preserve the demonstrated behavior, content priority, and states while adapting the visual treatment to the existing product system.
+
 ### Rule 3 — Normalize drift toward shared theme anchors
 When a page is inconsistent, pull it toward shared tokens, wrappers, and patterns.
 Do not add more page-local drift to imitate the Pencil image mechanically.
+
+This does not block approved visual deltas. A scoped page-level style is acceptable when:
+- the packet or a `visual-truth` board explicitly changes a local surface, control treatment, or action hierarchy
+- no existing shared primitive expresses that treatment
+- the style uses Nebular theme helpers or existing semantic tokens where possible
+- the deviation from shared primitives is recorded as local and bounded
 
 ### Rule 4 — Respect operational density
 Dense screens can remain dense.
@@ -90,20 +100,27 @@ Before translating Pencil into Angular/Nebular guidance:
 3. read the relevant packet, `.pen` files, and screenshots
 4. inspect the current Angular/Nebular primitives, module ownership, and theme anchors
 5. use Pencil CLI interactive mode for deterministic reads, screenshots, exports, and bounded edits
-6. choose the mode:
+6. read approved board intent:
+   - `visual-truth`
+   - `semantic-guidance`
+   - `reference-only`
+   - ask for confirmation if intent is missing or pending
+7. choose the implementation mode:
    - preserve and codify
    - implement approved change
    - normalize and harden
    - mobile dense-data adaptation
-7. translate the design into:
+8. translate the design into:
    - component choice
    - template structure
    - Angular binding and structural-directive shape
    - module/import implications
    - theme/token usage
    - shared-vs-local responsibility
+   - visual-truth deltas that must override Nebular defaults
+   - semantic-guidance behavior that should not force visual redesign
    - browser verification points
-8. verify the result still reads like the current product family
+9. verify the result still reads like the current product family
 
 ## Translation checklist
 
@@ -115,6 +132,11 @@ Before proposing implementation:
 - [ ] should this be reactive forms instead of template-driven forms?
 - [ ] what should be shared versus page-local?
 - [ ] what token or semantic style should be reused?
+- [ ] which board-level surfaces, controls, or action priorities intentionally differ from the current page?
+- [ ] which boards are visual truth versus semantic guidance?
+- [ ] are those board intent modes approved, or do you need confirmation before visual changes?
+- [ ] which Nebular defaults must be neutralized or restyled to match `visual-truth` boards?
+- [ ] which semantic-guidance boards should preserve behavior without forcing a redesign?
 - [ ] are runtime states and action priorities preserved?
 - [ ] does mobile behavior still support the operator workflow?
 
@@ -124,6 +146,9 @@ Before proposing implementation:
 |---|---|
 | rebuilding a shared card or page shell from scratch | map to existing wrapper and Nebular structure |
 | copying a Pencil screenshot literally into page-local SCSS | translate to existing shared primitives and token usage |
+| preserving a Nebular default that contradicts a `visual-truth` board | restyle through theme variables, semantic wrappers, or scoped SCSS and record the local delta |
+| restyling Nebular globally to match a board that was only semantic guidance | keep the existing product visual system and implement the demonstrated behavior/state/content priority |
+| treating "brownfield preservation" as "keep the flawed current page styling" | preserve shell and behavior, then implement the approved local visual correction |
 | replacing a dense operator screen with a “cleaner” consumer layout | preserve operational density and information priority |
 | solving every pixel mismatch with `::ng-deep` | fix shared primitives, wrapper classes, or theme tokens where possible |
 | emitting Tailwind utilities in an Angular/Nebular repo | use Angular templates, Nebular APIs, and SCSS tied to the repo’s theme strategy |

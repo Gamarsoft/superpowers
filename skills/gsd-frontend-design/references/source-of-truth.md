@@ -18,12 +18,13 @@ For brownfield work, think in layers instead of only a flat ranking:
 1. **Existing product UI and design system** as the baseline system truth
 2. **Approved frontend direction packet** for the intentional in-scope change
 3. **`pencil-workset.md`, `brownfield-ui-extraction.md`, and `screen-index.md`** as the packet’s implementation evidence
-4. **Relevant `.pen` files** in `design/pencil/` or packet-linked paths
-5. **Retained screenshots, browser captures, or Pencil exports** that the packet treats as binding evidence
-6. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
-7. **Existing component library, tokens, and app-shell conventions**
-8. **Pencil skills and this skill’s implementation-quality references**
-9. **Freeform invention** only for genuinely unspecified gaps
+4. **Approved board intent metadata** for relevant `.pen` boards, screenshots, browser captures, or Pencil exports
+5. **Relevant `.pen` files** in `design/pencil/` or packet-linked paths
+6. **Retained screenshots, browser captures, or Pencil exports** according to their approved intent mode
+7. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
+8. **Existing component library, tokens, and app-shell conventions**
+9. **Pencil skills and this skill’s implementation-quality references**
+10. **Freeform invention** only for genuinely unspecified gaps
 
 Later items do not overrule earlier items without an explicit reason.
 
@@ -62,6 +63,7 @@ Capture these before you edit code:
 - **May adapt**
 - **Explicit no-gos**
 - the exact `.pen` files and screenshots that are in scope
+- approved board intent for each implementation-facing board or screenshot
 - which Pencil skills should be loaded
 - verification plan
 
@@ -85,15 +87,17 @@ Preserve unless the packet explicitly changes them:
 2. Check whether the current code pattern is a system rule or just a local inconsistency.
 3. Prefer the packet for intentional new direction inside the approved scope.
 4. Prefer the existing system when the packet is silent.
-5. Use the `.pen` file or retained screenshot to resolve ambiguity before guessing.
+5. Use the approved board intent, `.pen` file, or retained screenshot to resolve ambiguity before acting.
 6. If the conflict remains material, surface it instead of silently choosing.
 
 ### `.pen` file vs current code
 1. Confirm that you opened the correct `.pen` file for the current task.
-2. Check whether the `.pen` file expresses a local screen change or a shared system pattern.
-3. If it is a local screen change, implement the in-scope change while preserving shared system rules.
-4. If it looks like a system-wide pattern change but the packet does not authorize it, do not expand the change silently.
-5. Record any mismatch that should trigger a packet or workset refresh.
+2. Check the approved board intent.
+3. If intent is missing or pending, ask for confirmation before visual changes.
+4. If confirmation is unavailable, do not treat the board as visual truth; record degraded mode or a blocker.
+5. If the `.pen` file expresses an approved local screen change, implement the in-scope change while preserving shared system rules.
+6. If it looks like a system-wide pattern change but the packet does not authorize it, do not expand the change silently.
+7. Record any mismatch that should trigger a packet or workset refresh.
 
 ### Stack adapter vs repo reality
 1. The adapter may suggest a translation pattern.

@@ -29,6 +29,7 @@ design/
 - Use variants only for real decisions.
 - Keep the shared files genuinely reusable.
 - State which adapter the workset is optimized for.
+- State each board's implementation intent and approval status.
 
 ## Template
 
@@ -74,11 +75,19 @@ design/
 - [other pattern]
 
 ## 6. Boards / Frames to Maintain
-- Baseline current-state board:
-- Chosen-direction board:
-- Comparison board(s):
-- State coverage board:
-- Responsive board:
+
+Intent modes:
+- `visual-truth`: binding visual treatment; verify parity during implementation.
+- `semantic-guidance`: binding behavior, workflow, content priority, or state coverage; adapt visuals to the product system.
+- `reference-only`: inspiration or comparison aid; not an acceptance target.
+
+| Board / frame | File | Intent mode | Approval status | Binding details | Non-binding details | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| Baseline current-state board | `design/pencil/{slug}/30-{slug}.pen` | visual-truth / semantic-guidance / reference-only | approved / pending | [...] | [...] | [...] |
+| Chosen-direction board | `design/pencil/{slug}/30-{slug}.pen` | visual-truth / semantic-guidance / reference-only | approved / pending | [...] | [...] | [...] |
+| Comparison board(s) | `design/pencil/{slug}/30-{slug}.pen` | reference-only | approved / pending | [...] | [...] | [...] |
+| State coverage board | `design/pencil/{slug}/30-{slug}.pen` | visual-truth / semantic-guidance | approved / pending | [...] | [...] | [...] |
+| Responsive board | `design/pencil/{slug}/30-{slug}.pen` | visual-truth / semantic-guidance | approved / pending | [...] | [...] | [...] |
 
 ## 7. Decision Axes to Explore
 - [mobile density]
@@ -105,6 +114,7 @@ For each axis:
 - Chosen boards / frames
 - Notes on what must preserve vs may adapt
 - Exact board/frame references for implementation
+- Board intent modes and approval status for each implementation reference
 - Any unresolved question that still needs human review
 ```
 
@@ -117,3 +127,4 @@ A strong Pencil workset:
 - records the right core skill plus adapter
 - makes comparisons easy for humans and agents
 - is concrete enough that Copilot or Codex can implement from it without guessing
+- prevents implementation agents from guessing whether a board is visual truth or semantic guidance

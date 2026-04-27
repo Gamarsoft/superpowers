@@ -46,15 +46,32 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - for CLI interactive edits, prefer a distinct output path rather than in-place save-back to the same `.pen` file
 4. Open the relevant `.pen` files and retained screenshots before editing application code.
 5. Load the correct stack adapter for the implementation target.
-6. Inspect the existing codebase and reuse its components, tokens, spacing system, interaction patterns, and shell conventions unless the packet explicitly changes them.
-7. Implement the required screens, states, and responsive behavior.
-8. Use the reference files in `references/` as fallback heuristics and quality checks, not as permission to redesign the product.
+6. Build a **visual implementation contract** before editing application code:
+   - read the approved intent for each named board or screenshot
+   - use `visual-truth` when the board is binding for visual treatment and needs board-parity verification
+   - use `semantic-guidance` when the board demonstrates behavior, layout intent, content priority, or workflow while allowing product-system adaptation
+   - use `reference-only` when the board is inspiration, exploration, or a comparison aid
+   - if intent is missing or pending, propose a classification and ask for confirmation before visual changes
+   - if confirmation is unavailable, do not treat the board as visual truth; implement only behavior clearly required by the spec and record degraded mode or a blocker
+   - for `visual-truth`, extract the visible deltas the implementation must carry: surfaces, background containers, control emphasis, primary/secondary action hierarchy, spacing rhythm, typography emphasis, section backgrounds, and mobile flow
+   - for `semantic-guidance`, extract required behavior, information hierarchy, state coverage, workflow, and adaptation boundaries
+   - separate functional acceptance from visual acceptance
+   - for Angular/Nebular work, name any Nebular defaults that must be neutralized or restyled to match `visual-truth` boards
+7. Inspect the existing codebase and reuse its components, tokens, spacing system, interaction patterns, and shell conventions unless the packet explicitly changes them.
+8. Implement the required screens, states, and responsive behavior.
+   - Brownfield preservation means preserve shell, behavior, contracts, and product family.
+   - It does not mean preserving flawed local styling that the approved packet explicitly changes.
+   - When a `visual-truth` board changes a local surface, control treatment, spacing, or action priority, implement that visual delta with the repo’s primitives and scoped styles.
+   - When a `semantic-guidance` board demonstrates a capability, implement the capability and intent without unnecessary visual redesign.
+9. Use the reference files in `references/` as fallback heuristics and quality checks, not as permission to redesign the product.
    - treat `PRODUCT.md` as audience/register context and `DESIGN.md` as system documentation, not as permission to outrank the packet or brownfield baseline
-9. If the packet or workset is incomplete, fill gaps conservatively and keep new invention tightly bounded.
+10. If the packet or workset is incomplete, fill gaps conservatively and keep new invention tightly bounded.
    - If the current screen baseline is incomplete, prefer the retained browser evidence and current product behavior over code-only visual inference.
-10. If you must deviate from the packet, `.pen` files, or existing system, make the deviation explicit and explain why.
-11. Read `references/pencil-source-consumption.md` when Pencil-backed sources exist.
-12. Read `references/implementation-review-checklist.md` before considering the work done.
+11. If you must deviate from the packet, `.pen` files, or existing system, make the deviation explicit and explain why.
+12. Read `references/pencil-source-consumption.md` when Pencil-backed sources exist.
+13. Read `references/implementation-review-checklist.md` before considering the work done.
+14. Do not report completion for Pencil-backed UI work until the approved board-intent checklist is complete.
+   - Completion is allowed with visual mismatches only by explicit waiver: list the mismatch, source board, implementation constraint, accepted fallback, and follow-up owner.
 
 ## Reference loading guide
 
@@ -75,6 +92,11 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - Default to preservation in brownfield projects.
 - Treat the frontend direction packet and approved Pencil worksets as primary intent, not optional inspiration.
 - Treat `.pen` files and retained screenshots as implementation evidence, not as generated production code.
+- Pencil boards do not all mean the same thing. Use approved board intent before implementation:
+  - `visual-truth` boards bind visual hierarchy, surface treatment, control emphasis, spacing rhythm, and primary/secondary action priority.
+  - `semantic-guidance` boards bind capability, workflow, content priority, and state coverage while allowing product-system visual adaptation.
+  - `reference-only` boards are not acceptance targets unless promoted by the packet or human.
+- If intent is unclear, ask for approval before visual changes. Do not silently infer whether a board is a redesign target or visual parity target.
 - Treat HTML visual-companion artifacts as temporary comparison aids only; once a direction is translated into `.pen` files and packet prose, those durable artifacts win.
 - Do not let a stack adapter overrule the packet or the current product system.
 - Do not replace an explicit visual direction with a new aesthetic thesis unless the human explicitly asks for redesign.
@@ -93,5 +115,6 @@ A strong result:
 - matches the approved direction and existing system where required
 - covers the main states and responsive behavior
 - preserves the current shell and component language unless change is explicitly approved
+- carries `visual-truth` deltas through the real stack and treats `semantic-guidance` boards as behavior/workflow evidence, not automatic redesign targets
 - improves accessibility and implementation quality without drifting into redesign
-- records the exact `.pen` files, screenshots, Pencil CLI usage, and Pencil skills used for later verification
+- records the exact `.pen` files, screenshots, board intent modes, Pencil CLI usage, Pencil skills, board-intent checks, and any waived mismatches used for later verification

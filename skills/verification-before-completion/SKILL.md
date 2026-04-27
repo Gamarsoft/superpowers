@@ -48,6 +48,7 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| Pencil-backed UI matches direction | Runtime screenshots plus approved board-intent checklist (`visual-truth` parity or `semantic-guidance` intent fit) | DOM tests, screenshot capture without intent comparison |
 
 ## Red Flags - STOP
 
@@ -98,6 +99,14 @@ Skip any step = lying, not verifying
 ✅ Re-read plan → Create checklist → Verify each → Report gaps or completion
 ❌ "Tests pass, phase complete"
 ```
+
+**Pencil-backed UI:**
+```
+✅ Capture runtime screenshots → Confirm approved board intent → Compare `visual-truth` parity or `semantic-guidance` intent fit → Report pass/mismatch/waived items
+❌ "Screenshots saved" / "DOM checks pass" / "Looks close"
+```
+
+For Pencil-backed UI, screenshot capture is not evidence by itself. Evidence is the approved-intent comparison: parity for `visual-truth` boards, or behavior, information hierarchy, state coverage, and product-system adaptation for `semantic-guidance` boards.
 
 **Agent delegation:**
 ```

@@ -39,6 +39,8 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 - Does the packet include `pencil-workset.md`?
 - Are the key `.pen` files named clearly?
 - Could another agent tell which board/frame is the durable reference for each key screen?
+- Is each board/frame classified as `visual-truth`, `semantic-guidance`, or `reference-only`?
+- Are implementation-affecting board intent classifications approved by the human?
 - Is the workset small, stable, and implementation-usable rather than a vague “we used Pencil” note?
 
 ### 7. Skills and adapter integrity
@@ -51,6 +53,7 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 
 - Does each key screen explain why the chosen direction won?
 - Are selected references linked or clearly named?
+- Does each selected reference state what is binding and what is non-binding?
 - Is there enough direction to build without guessing the basic layout or hierarchy?
 
 ### 9. Design system contract
@@ -79,6 +82,8 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 ### 13. Verification readiness
 
 - Are required viewports and screenshot checks named?
+- Are visual-truth parity checks separated from semantic-guidance intent-fit checks?
+- Are reference-only boards excluded from acceptance unless explicitly promoted?
 - Are the references strong enough to support visual verification during implementation?
 - Can a later agent recover the chosen direction from the packet and repo without guessing?
 

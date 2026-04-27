@@ -73,10 +73,13 @@ When Pencil is available, also maintain:
    - shell
    - shared patterns
    - feature-specific boards
+   - board intent metadata for every board or screenshot that may guide implementation
 8. In Pencil, use `pencil-design-core` plus the chosen adapter to:
    - recreate the current structure first
    - keep the workset faithful to the target stack
    - generate or edit only 1–2 bounded variants for the real decision axis
+   - classify each board as `visual-truth`, `semantic-guidance`, or `reference-only`
+   - ask the human to approve any classification that affects implementation
 9. If UI/UX quality work is needed beyond faithful reproduction, run it as a bounded layer on top of the baseline:
    - read `references/impeccable-brownfield-quality-layer.md`
    - if `PRODUCT.md` already exists and is still accurate, do not re-run `/impeccable teach`
@@ -95,6 +98,7 @@ When Pencil is available, also maintain:
 - accessibility constraints
 - must preserve vs may adapt
 - explicit no-gos
+- approved board intent for each `.pen` board, screenshot, and retained visual reference
 - downstream skills and adapter to load
 
 14. Review against the checklist until the packet is implementation-usable.
@@ -123,6 +127,7 @@ When Pencil is available, also maintain:
 - Record the exact Pencil skills downstream agents should load.
 - Record that Pencil CLI interactive mode is the intended downstream transport when it matters for reproducibility.
 - Treat generated code from design tools as reference evidence, not production-ready output for legacy Angular stacks.
+- Do not leave board intent for implementation agents to infer. If a board's intent is unclear, ask for approval or mark the packet incomplete.
 - If exact visual direction cannot be stabilized, record the gap explicitly instead of pretending the packet is complete.
 
 ## Quality bar
@@ -134,4 +139,5 @@ A strong result:
 - preserves or intentionally updates the current design system
 - gives implementation agents enough direction to build without inventing the UI from scratch
 - tells downstream agents which `.pen` files, board names, screenshots, and Pencil skills to use
+- tells downstream agents whether each board is `visual-truth`, `semantic-guidance`, or `reference-only`
 - stays consistent with the product spec and handoff

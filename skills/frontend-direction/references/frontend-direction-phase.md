@@ -129,6 +129,8 @@ When Pencil is available, also create or refresh:
 11. **Expand the implementation contract**
     - Fill in responsive behavior, interaction cues, state coverage, accessibility constraints, and implementation flex points.
     - Separate **must preserve** from **may adapt** so implementation agents know where they have freedom.
+    - Classify every board, screenshot, or retained visual reference as `visual-truth`, `semantic-guidance`, or `reference-only`.
+    - Get human approval for any classification that will affect implementation. Do not leave classification for downstream implementation agents to infer.
     - Record the exact Pencil skills to load downstream.
 
 12. **Write the packet**
@@ -155,6 +157,7 @@ A strong frontend-direction phase produces:
 - a brownfield extraction summary when applicable
 - a Pencil workset that holds the durable design truth
 - selected references for the key screens
+- approved board intent modes for all implementation references
 - explicit state coverage
 - a must-preserve vs may-adapt implementation contract
 - exact downstream skill and adapter guidance
@@ -171,4 +174,5 @@ A strong frontend-direction phase produces:
 - relying on generated screenshots without stable repo-local artifacts
 - leaving a winning HTML companion idea in HTML instead of translating it back into `.pen` artifacts
 - failing to separate fixed constraints from flexible implementation details
+- leaving board intent ambiguous and forcing implementation agents to guess whether a board is visual truth or semantic guidance
 - failing to state the downstream adapter, causing implementation drift

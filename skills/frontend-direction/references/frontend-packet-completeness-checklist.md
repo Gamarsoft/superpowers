@@ -14,6 +14,8 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 - Are `brownfield-ui-extraction.md`, `screen-index.md`, and `pencil-workset.md` present when required?
 - Are the exact `.pen` files listed?
 - Are board/frame names listed for the key screens?
+- Are board/frame intent modes listed and approved?
+- Are ambiguous or pending board-intent items marked as blockers or degraded-mode constraints?
 - Are retained screenshots or browser captures linked?
 
 ## 3. Pencil skills and adapter
@@ -40,6 +42,7 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 
 - Does each important screen explain why the chosen direction won?
 - Are alternative ideas either rejected or bounded?
+- Does each important screen say whether its board is visual truth, semantic guidance, or reference-only?
 - Could another agent build the layout and hierarchy without guessing?
 
 ## 7. Responsive and accessibility contract
@@ -64,4 +67,5 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 
 - Could GSD populate `## Frontend References` in `CONTEXT.md` from this packet alone?
 - Could Codex or Copilot tell which `.pen` files, screenshots, and skills to use?
+- Could Codex or Copilot tell which boards require visual parity and which boards only demonstrate intent?
 - Is there enough evidence to verify implementation on desktop and mobile?

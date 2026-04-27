@@ -132,6 +132,7 @@ Create a task for each of the following and complete them in order.
 10. **Stabilize the experience before final writing**
     - Confirm the primary flows, key states, and first delivery boundary.
     - If durable wireframes are needed, add them before the final writing pass.
+    - If UI boards, mockups, screenshots, or Pencil artifacts will be used, confirm whether they are intended as visual truth, semantic guidance, or reference-only evidence before final writing.
     - Do **not** start the frontend-direction phase until the experience is stable enough to anchor screens.
 
 11. **Run the frontend-direction phase** _(conditional)_
@@ -157,6 +158,8 @@ Create a task for each of the following and complete them in order.
       - choose the correct adapter for the target stack
       - explore only the decision-bearing deltas
       - keep `.pen` files in the repo
+      - record board intent before handoff: `visual-truth`, `semantic-guidance`, or `reference-only`
+    - Get explicit human approval for any board-intent classification that will affect implementation. Do not let downstream implementation agents infer whether a board is a redesign target.
     - Use the HTML visual companion only for temporary comparison artifacts when a decision is materially easier to judge in-browser than in prose.
     - If a companion artifact influences the choice, translate the chosen direction back into `.pen` boards, screenshots, and packet prose before treating it as durable.
     - Review the packet against `../frontend-direction/references/frontend-review-checklist.md` and `../frontend-direction/references/frontend-packet-completeness-checklist.md`.
