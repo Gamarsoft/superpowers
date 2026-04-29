@@ -1,10 +1,12 @@
 # Pencil Skill Selection
 
-Use this file to choose the right Pencil skills for the packet and for downstream implementation.
+Use this file to choose the right Pencil skills for the packet and for downstream implementation when Pencil remains possible or selected.
 
 ## Core rule
 
-Always use `pencil-design-core` when `.pen` files, screenshots, extraction, reusable patterns, or design-to-code handoff are in scope.
+Use `pencil-design-core` when Pencil is selected and `.pen` files, screenshots, extraction, reusable patterns, or design-to-code handoff are in scope.
+
+If the packet selects approved ChatGPT Images 2 references as implementation visual truth, omit Pencil skills and adapters for that scope.
 
 Then choose **one** adapter for the target stack.
 
@@ -45,11 +47,12 @@ The frontend direction packet should explicitly record:
 
 - which Pencil skills were used during packet creation
 - which Pencil skills downstream agents should load during implementation
+- whether Pencil is omitted because approved ChatGPT Images 2 references are the visual truth
 - any skill or framework the downstream agent should **not** assume
 
 ## Brownfield default
 
-If the product is brownfield and the UI is a dense business/operator application, default to:
+If Pencil is selected and the product is brownfield and the UI is a dense business/operator application, default to:
 
 - `pencil-design-core`
 - `pencil-design-angular-nebular`
@@ -59,5 +62,5 @@ unless the actual production target says otherwise.
 ## Guardrails
 
 - Do not load the React adapter for an Angular product “just because the prompt library online used React.”
-- Do not keep the adapter implicit. Write it down in the packet and handoff.
+- Do not keep the adapter or Pencil omission implicit. Write it down in the packet and handoff.
 - Do not let the adapter overrule the packet or the current product system.

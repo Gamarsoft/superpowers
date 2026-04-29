@@ -2,6 +2,8 @@
 
 Use this whenever the frontend packet includes `pencil-workset.md`, `screen-index.md`, or relevant `.pen` files.
 
+Do not use this file when the packet explicitly selects `chatgpt-image-2` as the implementation visual-truth source and omits Pencil. In that mode, consume the approved generated image files through the main `gsd-frontend-design` workflow.
+
 ## Goal
 
 Recover the exact approved visual reference before implementing or refining the UI.

@@ -1,13 +1,13 @@
 # Pencil Workset Template
 
-Use this to plan the repo-local Pencil workset that will support the frontend direction packet.
+Use this to plan the repo-local Pencil workset that will support the frontend direction packet when Pencil is the selected implementation visual-truth source.
 
 Default file:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/pencil-workset.md`
 
 ## Purpose
 
-The workset exists so the durable visual references live in the repo, not only in chat history or generated screenshots.
+The workset exists so durable Pencil visual references live in the repo, not only in chat history or generated screenshots. Omit this workset when the human selects approved ChatGPT Images 2 references as the implementation visual truth.
 
 ## Recommended default repo structure
 
@@ -30,6 +30,8 @@ design/
 - Keep the shared files genuinely reusable.
 - State which adapter the workset is optimized for.
 - State each board's implementation intent and approval status.
+- If ChatGPT Images 2 references were requested or used, do not start this workset until approved generated images exist beside the prompt files and the human selects the `pencil` visual-truth path.
+- If the human selects `chatgpt-image-2` as visual truth, do not create this file.
 
 ## Template
 
@@ -44,6 +46,8 @@ design/
 - Core skill: `pencil-design-core`
 - Adapter: `[pencil-design-angular-nebular | pencil-design-react-tailwind | other]`
 - Pencil transport: `CLI interactive`
+- Pre-Pencil image reference gate: not used | approved generated references available and Pencil selected
+- ChatGPT Images 2 folder: `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/chatgpt-image-2/`
 - Why this adapter fits:
 - What downstream agents should assume:
 - What downstream agents should not assume:

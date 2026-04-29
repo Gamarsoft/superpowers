@@ -10,7 +10,7 @@ The scenarios below are intentionally short. Adapt them to the current repo and 
 - For browser interaction, use `browser-use:browser` in Codex App and `playwright-cli` otherwise.
 - If no durable design evidence exists yet, create a faithful baseline from the running product before exploring variants.
 - Use HTML companion artifacts for comparison only.
-- Converge durable truth into screenshots, packet prose, and `.pen` files.
+- Converge durable truth into screenshots, packet prose, and either approved ChatGPT Images 2 files or `.pen` files.
 - In the split workflow, use `brainstorming` first to approve the spec and GSD handoff, then start `frontend-direction` from the follow-on prompt in a fresh or compacted session.
 - If a project-level `PRODUCT.md` already exists and is still accurate, do not re-run `/impeccable teach`.
 - If the repo has Impeccable v3, read `PRODUCT.md` and `DESIGN.md` before refinement. Treat `DESIGN.json` as auxiliary tooling output, not the primary contract.
@@ -25,7 +25,7 @@ The scenarios below are intentionally short. Adapt them to the current repo and 
 
 ### Prompt shape
 
-Use `brainstorming` first for the product spec and GSD handoff. Then use the follow-on prompt with `frontend-direction`: the screen already exists in the running app, but there is no durable design evidence yet. Preserve the current shell and product language, capture a faithful runtime baseline first, then produce the frontend packet and Pencil workset before implementation.
+Use `brainstorming` first for the product spec and GSD handoff. Then use the follow-on prompt with `frontend-direction`: the screen already exists in the running app, but there is no durable design evidence yet. Preserve the current shell and product language, capture a faithful runtime baseline first, then produce the frontend packet and choose whether approved ChatGPT Images 2 references or Pencil boards are the implementation visual truth.
 
 ### Flow
 
@@ -38,10 +38,12 @@ Use `brainstorming` first for the product spec and GSD handoff. Then use the fol
    - key state screenshots for the changed area
 5. write `brownfield-ui-extraction.md`
 6. create `screen-index.md`
-7. recreate the existing screen baseline in Pencil
-8. explore only the approved delta
-9. finalize packet and workset
-10. implement with `gsd-frontend-design`
+7. use ChatGPT Images 2 prompts when image-native references are needed
+8. ask the human to select ChatGPT Images 2 image-only visual truth or Pencil translation
+9. if Pencil is selected, recreate the existing screen baseline in Pencil
+10. explore only the approved delta
+11. finalize packet and selected visual-truth references
+12. implement with `gsd-frontend-design`
 
 ### Main risk
 
@@ -57,7 +59,7 @@ Jumping from code inspection to improved mockups without first reproducing the a
 
 ### Prompt shape
 
-Use `brainstorming` first, then run `frontend-direction` from the follow-on prompt for the new screen in a brownfield product. Preserve the existing shell, navigation rhythm, component language, and density. Build a packet and Pencil workset that show how the new screen fits the current system before implementation.
+Use `brainstorming` first, then run `frontend-direction` from the follow-on prompt for the new screen in a brownfield product. Preserve the existing shell, navigation rhythm, component language, and density. Build a packet and selected visual-truth references that show how the new screen fits the current system before implementation.
 
 ### Flow
 
@@ -68,9 +70,10 @@ Use `brainstorming` first, then run `frontend-direction` from the follow-on prom
 5. document `Must preserve`, `May adapt`, and `Explicit no-gos`
 6. create `brownfield-ui-extraction.md`
 7. create the new screen inventory and key states
-8. build shared `.pen` boards first, then the feature board
-9. explore 1-2 bounded variants if needed
-10. finalize packet and implement conservatively
+8. create ChatGPT Images 2 references if useful, then ask for the visual-truth choice
+9. build shared `.pen` boards first, then the feature board only if Pencil is selected
+10. explore 1-2 bounded variants if needed
+11. finalize packet and implement conservatively
 
 ### Main risk
 
@@ -96,7 +99,7 @@ Use `frontend-direction` for a brownfield improvement pass on an existing screen
    - `/impeccable critique`
    - `/impeccable audit`
 5. approve only the improvements that fit the current scope
-6. update packet, screenshots, and `.pen` boards
+6. update packet, screenshots, and approved image or `.pen` references
 7. implement and verify
 
 ### Main risk
@@ -112,7 +115,7 @@ Using quality feedback as permission to redesign the product.
 
 ### Prompt shape
 
-Use `brainstorming` for greenfield work, then start a separate `frontend-direction` session from the follow-on prompt to create a durable frontend contract before implementation. Converge the chosen direction into a Pencil workset and implementation-ready packet instead of relying on loose screenshots.
+Use `brainstorming` for greenfield work, then start a separate `frontend-direction` session from the follow-on prompt to create a durable frontend contract before implementation. Converge the chosen direction into approved ChatGPT Images 2 references or a Pencil workset plus an implementation-ready packet instead of relying on loose screenshots.
 
 ### Flow
 
@@ -121,10 +124,12 @@ Use `brainstorming` for greenfield work, then start a separate `frontend-directi
 3. approve the design spec and GSD handoff
 4. start frontend-direction from the follow-on prompt
 5. create the screen index and key states
-6. build the Pencil workset
-7. explore baseline plus 1-2 variants on the real decision axis
-8. finalize the packet
-9. implement with `gsd-frontend-design`
+6. create ChatGPT Images 2 references when useful
+7. ask the human to select image-only visual truth or Pencil
+8. build the Pencil workset only if Pencil is selected
+9. explore baseline plus 1-2 variants on the real decision axis
+10. finalize the packet
+11. implement with `gsd-frontend-design`
 
 ### Main risk
 
@@ -139,7 +144,7 @@ Leaving too much visual direction implicit and forcing implementation to invent 
 
 ### Prompt shape
 
-Use `brainstorming` to define the product, then use a separate `frontend-direction` session to define the frontend contract. If design-quality refinement is needed, use Impeccable after product framing is stable. Keep the result grounded in the chosen audience, use case, and tone, then converge the winning direction into packet prose and `.pen` files.
+Use `brainstorming` to define the product, then use a separate `frontend-direction` session to define the frontend contract. If design-quality refinement is needed, use Impeccable after product framing is stable. Keep the result grounded in the chosen audience, use case, and tone, then converge the winning direction into packet prose and the selected visual-truth source.
 
 ### Flow
 
@@ -147,10 +152,10 @@ Use `brainstorming` to define the product, then use a separate `frontend-directi
 2. approve the design spec and GSD handoff
 3. start frontend-direction from the follow-on prompt
 4. if needed, ensure `PRODUCT.md` exists or run `/impeccable teach`
-5. create the baseline design direction in Pencil
+5. create ChatGPT Images 2 references or the baseline design direction in Pencil
 6. if present, read `DESIGN.md`; use `/impeccable critique` or `/impeccable audit` to pressure-test quality
 7. refine with bounded improvements
-8. finalize the packet and workset
+8. finalize the packet and selected visual-truth references
 9. implement from the approved contract
 
 ### Main risk

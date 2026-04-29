@@ -13,8 +13,9 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 ### 2. Design source integrity
 
 - Does the packet follow the declared source priority instead of letting generated ideas silently dominate?
+- Does the packet declare the implementation visual-truth source: approved ChatGPT Images 2 references, Pencil boards, or degraded current UI?
 - Are current UI and code-pattern sources clearly represented where relevant?
-- If HTML companion screens were used, were they translated back into Pencil and packet prose rather than retained as the durable source of truth?
+- If HTML companion screens were used, were they translated back into the approved visual-truth source and packet prose rather than retained as the durable source of truth?
 
 ### 3. Brownfield extraction completeness
 
@@ -34,19 +35,20 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 - Are critical loading, empty, error, validation, and permission states covered where relevant?
 - Is deferred visual work separated from committed direction?
 
-### 6. Pencil workset completeness
+### 6. Visual-truth reference completeness
 
-- Does the packet include `pencil-workset.md`?
-- Are the key `.pen` files named clearly?
-- Could another agent tell which board/frame is the durable reference for each key screen?
-- Is each board/frame classified as `visual-truth`, `semantic-guidance`, or `reference-only`?
-- Are implementation-affecting board intent classifications approved by the human?
-- Is the workset small, stable, and implementation-usable rather than a vague “we used Pencil” note?
+- If ChatGPT Images 2 is selected, are approved generated image files named clearly for each key screen/state and is Pencil explicitly omitted?
+- If Pencil is selected, does the packet include `pencil-workset.md` and clearly name the key `.pen` files?
+- Could another agent tell which image or board/frame is the durable reference for each key screen?
+- Is each image, board/frame, or screenshot classified as `visual-truth`, `semantic-guidance`, or `reference-only`?
+- Are implementation-affecting visual-reference intent classifications approved by the human?
+- Is the selected reference set small, stable, and implementation-usable rather than a vague “we used images/Pencil” note?
 
 ### 7. Skills and adapter integrity
 
-- Does the packet name the exact Pencil skills to load downstream?
-- Is the chosen adapter correct for the target stack?
+- Does the packet name the exact Pencil skills to load downstream only when Pencil is selected?
+- If ChatGPT Images 2 is selected, does the packet say not to load Pencil skills or adapters for visual consumption?
+- Is the chosen adapter correct for the target stack when Pencil is selected?
 - Does the packet explicitly block the wrong framework assumptions when needed?
 
 ### 8. Chosen directions for key screens
@@ -83,7 +85,7 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 
 - Are required viewports and screenshot checks named?
 - Are visual-truth parity checks separated from semantic-guidance intent-fit checks?
-- Are reference-only boards excluded from acceptance unless explicitly promoted?
+- Are reference-only images or boards excluded from acceptance unless explicitly promoted?
 - Are the references strong enough to support visual verification during implementation?
 - Can a later agent recover the chosen direction from the packet and repo without guessing?
 

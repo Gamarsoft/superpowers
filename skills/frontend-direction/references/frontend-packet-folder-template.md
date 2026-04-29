@@ -12,7 +12,8 @@ docs/superpowers/specs/
 └── YYYY-MM-DD--<slug>--frontend/
     ├── brownfield-ui-extraction.md
     ├── screen-index.md
-    ├── pencil-workset.md
+    ├── chatgpt-image-2/          # when image reference generation is used before visual-truth selection
+    ├── pencil-workset.md         # only when Pencil is the selected visual-truth source
     └── screenshots/
 ```
 
@@ -39,7 +40,8 @@ The human-readable implementation contract:
 - state coverage
 - accessibility notes
 - must preserve / may adapt / no-gos
-- exact Pencil skills to load downstream
+- selected visual-truth source
+- exact Pencil skills to load downstream only when Pencil is selected
 
 ### `brownfield-ui-extraction.md`
 Current product truth:
@@ -52,8 +54,17 @@ Current product truth:
 Coverage map:
 - key screens
 - key states
-- primary visual source
-- exact `.pen` file / board references
+- primary visual source: approved ChatGPT Images 2 image, Pencil board, or current UI capture
+- exact approved image, `.pen` file, or board references
+
+### `chatgpt-image-2/`
+ChatGPT Images 2 reference prompt pack:
+- shared image-generation context
+- prompt files per screen/state
+- attachment map for `design/baseline/*` screenshots
+- generated reference images saved beside matching prompt files after human generation
+- approval notes before any generated image becomes visual truth or influences Pencil
+- selected approved images when the human chooses image-only implementation visual truth
 
 ### `pencil-workset.md`
 The plan for durable repo-local design files:
@@ -62,6 +73,8 @@ The plan for durable repo-local design files:
 - boards to maintain
 - decision axes to explore
 - skill / adapter plan
+
+Omit this file when the human selects approved ChatGPT Images 2 references as the implementation visual truth.
 
 ### `screenshots/`
 Retained visual evidence:

@@ -30,13 +30,14 @@ Skip the phase when **all** of these are true:
 - capture what must be preserved from the current product or design system
 - create a small number of high-signal visual references for the most important screens
 - tell implementation agents what is fixed, what is flexible, and what to avoid
-- keep the durable visual truth in repo-local artifacts, especially `.pen` files and packet docs
+- keep the durable visual truth in repo-local artifacts: approved ChatGPT Images 2 files, `.pen` files when selected, and packet docs
 
 ## Tooling preference
 
-- Prefer **Pencil** as the primary visual workspace.
-- Prefer repo-local `.pen` files over chat-only imagery.
-- Choose the correct adapter via `references/pencil-skill-selection.md`.
+- Prefer an explicit, human-approved visual-truth source.
+- Pencil is the default durable board path; approved ChatGPT Images 2 references are valid when the human selects the image-only path.
+- Prefer repo-local `.pen` files when Pencil is selected.
+- Choose the correct adapter via `references/pencil-skill-selection.md` only when Pencil is selected.
 - Treat GitHub Copilot and Codex as the main implementation-facing agents.
 - Treat HTML visual-companion screens as temporary comparison artifacts, not as durable packet evidence.
 - If Pencil is unavailable, stay honest about degraded mode and still produce a usable packet from repo context, screenshots, and wireframes.
@@ -48,13 +49,20 @@ Write:
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/screen-index.md`
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/brownfield-ui-extraction.md` _(brownfield default)_
+
+When ChatGPT Images 2 references are requested or needed before visual-truth selection, also write:
+
+- `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/chatgpt-image-2/`
+
+When Pencil is selected as the visual-truth source, also write:
+
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/pencil-workset.md`
 
 When you generated or gathered reference imagery, also write:
 
 - `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/screenshots/`
 
-When Pencil is available, also create or refresh:
+When Pencil is selected as the visual-truth source, also create or refresh:
 
 - `design/pencil/_shared/00-foundations.pen`
 - `design/pencil/_shared/10-shell.pen`
@@ -82,13 +90,13 @@ When Pencil is available, also create or refresh:
 3. **Decide the source of design truth**
    - Read `references/design-source-priority.md`.
    - Brownfield default: preserve and extend the current system.
-   - Greenfield default: still converge to a Pencil workset instead of scattered generated images.
+   - Greenfield default: still converge to a human-approved visual-truth source instead of scattered generated images.
    - If a redesign is intentional, say so explicitly instead of drifting into redesign by accident.
 
-4. **Select Pencil skills**
+4. **Identify target stack and possible Pencil skills**
    - Read `references/pencil-skill-selection.md`.
-   - Pick the core skill plus the correct adapter for the target stack.
-   - Record the chosen skills in the packet and handoff.
+   - Pick the core skill plus the correct adapter for the target stack only if Pencil remains possible or selected.
+   - Record the chosen visual-truth source and any chosen skills in the packet and handoff.
 
 5. **Run brownfield extraction first** _(brownfield default)_
    - Use `references/brownfield-ui-extraction-template.md`.
@@ -101,14 +109,19 @@ When Pencil is available, also create or refresh:
    - Cover primary screens plus the most important loading, empty, error, validation, and permission states.
    - Do not design every screen in detail before choosing a direction.
 
-7. **Create or refresh the Pencil workset**
+7. **Run ChatGPT Images 2 reference generation when needed**
+   - Use `creating-chatgpt-image-upload-packs` when the user wants image references or visual truth is unstable.
+   - Stop after the prompt pack until the human generates images, saves approved images beside matching prompts, and chooses the visual-truth path.
+   - If approved ChatGPT Images 2 references are selected as visual truth, omit Pencil and record the exact image files as binding references.
+
+8. **Create or refresh the Pencil workset when Pencil is selected**
    - Use `references/pencil-workset-template.md`.
    - Recreate current foundations, shell, and shared patterns first.
    - Put durable design references in repo-local `.pen` files.
    - Keep the workset small and reusable.
 
-8. **Explore bounded variants in Pencil**
-   - Use `pencil-design-core` plus the chosen adapter.
+9. **Explore bounded variants in the selected source**
+   - Use `pencil-design-core` plus the chosen adapter only in the Pencil path.
    - Explore only the decision axis that matters:
      - hierarchy
      - density
@@ -118,35 +131,35 @@ When Pencil is available, also create or refresh:
      - trust / clarity / error treatment
    - Prefer baseline + 1–2 variants, not large galleries.
 
-9. **Review and select a direction**
+10. **Review and select a direction**
    - Use the visual companion when the choice is materially easier to judge by seeing.
    - Use `/impeccable live` only as an optional refinement surface on supported stacks after the baseline and packet direction already exist.
    - Prefer side-by-side comparison, ranked alternatives, or annotated recommendation.
    - Record why the chosen direction wins and what was rejected.
 
-10. **Companion-assisted comparison** _(optional)_
+11. **Companion-assisted comparison** _(optional)_
    - Use the visual companion only when a very specific visual question is materially easier to judge in HTML than in prose.
    - Keep the comparison bounded to the decision axis that matters.
-   - Translate any selected concept back into Pencil before treating it as real design direction.
+   - Translate any selected concept back into the approved visual-truth source before treating it as real design direction.
 
-11. **Expand the implementation contract**
+12. **Expand the implementation contract**
     - Fill in responsive behavior, interaction cues, state coverage, accessibility constraints, and implementation flex points.
     - Separate **must preserve** from **may adapt** so implementation agents know where they have freedom.
-    - Classify every board, screenshot, or retained visual reference as `visual-truth`, `semantic-guidance`, or `reference-only`.
+    - Classify every board, approved ChatGPT Images 2 image, screenshot, or retained visual reference as `visual-truth`, `semantic-guidance`, or `reference-only`.
     - Get human approval for any classification that will affect implementation. Do not leave classification for downstream implementation agents to infer.
-    - Record the exact Pencil skills to load downstream.
+    - Record the exact Pencil skills to load downstream only when Pencil is selected.
 
-12. **Write the packet**
+13. **Write the packet**
     - Use `references/frontend-direction-template.md`.
-    - Link screenshots and Pencil files instead of burying them in prose.
+    - Link approved ChatGPT Images 2 files, screenshots, and Pencil files when selected instead of burying them in prose.
     - Be explicit when the packet is in degraded mode.
 
-13. **Run completeness checks**
+14. **Run completeness checks**
     - Review against:
       - `references/frontend-review-checklist.md`
       - `references/frontend-packet-completeness-checklist.md`
 
-14. **Feed the result back into the main artifacts**
+15. **Feed the result back into the main artifacts**
     - Link the packet from the design spec.
     - Link the packet from the GSD handoff.
     - Review all artifacts together for drift.
@@ -158,9 +171,10 @@ A strong frontend-direction phase produces:
 - a visible visual thesis
 - a clear screen inventory
 - a brownfield extraction summary when applicable
-- a Pencil workset that holds the durable design truth
+- a declared implementation visual-truth source
+- approved ChatGPT Images 2 references or a Pencil workset that holds the durable design truth
 - selected references for the key screens
-- approved board intent modes for all implementation references
+- approved intent modes for all implementation references
 - explicit state coverage
 - a must-preserve vs may-adapt implementation contract
 - exact downstream skill and adapter guidance
@@ -174,8 +188,8 @@ A strong frontend-direction phase produces:
 - drifting into a redesign when the user really wanted brownfield continuity
 - treating `PRODUCT.md`, `DESIGN.md`, or `/impeccable live` output as permission to skip baseline capture or packet convergence
 - writing a frontend packet with screenshots but no explanation of why they were chosen
-- relying on generated screenshots without stable repo-local artifacts
-- leaving a winning HTML companion idea in HTML instead of translating it back into `.pen` artifacts
+- relying on generated screenshots without approval, matching filenames, and a recorded visual-truth role
+- leaving a winning HTML companion idea in HTML instead of translating it back into the approved visual-truth source
 - failing to separate fixed constraints from flexible implementation details
-- leaving board intent ambiguous and forcing implementation agents to guess whether a board is visual truth or semantic guidance
-- failing to state the downstream adapter, causing implementation drift
+- leaving image or board intent ambiguous and forcing implementation agents to guess whether a reference is visual truth or semantic guidance
+- failing to state whether Pencil is omitted or selected, causing implementation drift

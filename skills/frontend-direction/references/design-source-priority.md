@@ -31,9 +31,11 @@ Higher sources outrank lower sources unless the human explicitly approves a rede
 4. **Approved frontend packet support files**
    - `brownfield-ui-extraction.md`
    - `screen-index.md`
-   - `pencil-workset.md`
+   - `chatgpt-image-2/` approved generated images when selected as visual truth
+   - `pencil-workset.md` when Pencil is selected
 
-5. **Repo-local Pencil workset**
+5. **Selected durable visual-truth source**
+   - approved ChatGPT Images 2 generated image files saved in the packet folder when the human selected image-only visual truth
    - `.pen` files that intentionally mirror current reality
    - extracted foundations, shell, pattern boards, and feature boards
    - selected Pencil variants that were consciously chosen
@@ -46,12 +48,12 @@ Higher sources outrank lower sources unless the human explicitly approves a rede
 7. **Temporary HTML visual-companion artifacts**
    - only for bounded comparison or explanation
    - never the durable packet source of truth
-   - ideas must be translated back into Pencil or the packet before they are considered real design direction
+   - ideas must be translated back into the approved visual-truth source or the packet before they are considered real design direction
 
 ## Adapter rule
 
-The chosen Pencil adapter does **not** outrank product truth.
-It only helps interpret the design in a way that fits the target stack.
+The chosen Pencil adapter does **not** outrank product truth or the selected visual-truth source.
+It only helps interpret Pencil-backed design in a way that fits the target stack.
 
 Examples:
 - Angular + Nebular brownfield -> `pencil-design-angular-nebular`
@@ -64,7 +66,7 @@ Preserve and extend the current product language.
 Start from extraction, not invention.
 
 ### Greenfield
-Start from the spec and user goal, but still prefer a converged Pencil workset over scattered generated screenshots.
+Start from the spec and user goal, but still prefer a converged approved visual-truth source over scattered generated screenshots. That source may be Pencil boards or approved ChatGPT Images 2 references saved in the packet folder.
 
 ## Rules
 
@@ -75,7 +77,8 @@ Start from the spec and user goal, but still prefer a converged Pencil workset o
 - The frontend packet should point to **stable repo artifacts** first:
   - screenshots
   - extraction notes
-  - `.pen` files
+  - approved ChatGPT Images 2 generated images when selected as visual truth
+  - `.pen` files when Pencil is selected
 - HTML companion screens can support a decision, but should not become the durable reference set.
 
 ## Brownfield continuity checks

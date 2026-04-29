@@ -90,9 +90,11 @@ This artifact forces the agent to:
 - [redesign move that would overreach]
 - [pattern break that would increase risk]
 
-## 9. Inputs Required for Pencil
-- Shared `.pen` files to create or refresh:
-- Feature `.pen` files to create or refresh:
+## 9. Inputs Required for Visual Truth
+- Candidate visual-truth path: ChatGPT Images 2 | Pencil | current UI/degraded
+- ChatGPT Images 2 prompts/images to create or approve:
+- Shared `.pen` files to create or refresh if Pencil is selected:
+- Feature `.pen` files to create or refresh if Pencil is selected:
 - Screens to recreate first:
 - Variants worth exploring:
 - Screenshots to capture:
@@ -104,5 +106,5 @@ A strong extraction artifact:
 - captures what the current product already knows
 - makes preserve-vs-change explicit
 - identifies only the most relevant drift and pain points
-- gives Pencil a grounded starting point
+- gives ChatGPT Images 2 prompts or Pencil boards a grounded starting point
 - prevents accidental redesign

@@ -15,9 +15,11 @@ Supporting folder:
 - Keep product requirements in the main spec; keep visual-system, screen, and implementation-UX guidance here.
 - Separate **must preserve** from **may adapt**.
 - If the packet is in degraded mode, say so explicitly.
-- Treat repo-local Pencil files as primary visual references when available.
+- Declare the implementation visual-truth source explicitly: `chatgpt-image-2`, `pencil`, or `current-ui/degraded`.
+- Treat repo-local Pencil files as primary visual references only when Pencil is the selected source.
+- Treat approved ChatGPT Images 2 files as primary visual references only when the human selected the image-only path.
 - Classify every board, screenshot, or retained visual reference that may guide implementation as `visual-truth`, `semantic-guidance`, or `reference-only`.
-- Get human approval for board-intent classifications before handing the packet to implementation.
+- Get human approval for board/image/screenshot intent classifications before handing the packet to implementation.
 - If HTML companion screens were used during decision-making, capture only the translated outcome here, not the raw HTML artifact path.
 
 ## Template
@@ -29,37 +31,45 @@ Supporting folder:
 
 - Linked design spec:
 - Linked wireframes:
-- Design source priority: current UI → code patterns → extraction docs → Pencil → wireframes → temporary HTML companion artifacts
+- Implementation visual-truth source: chatgpt-image-2 | pencil | current-ui/degraded
+- Visual-truth approval status: approved | pending | incomplete
+- Design source priority: current UI → code patterns → extraction docs → approved visual-truth source → wireframes → temporary HTML companion artifacts
 - Brownfield preserve vs redesign call:
-- Board intent approval status: approved | pending | incomplete
+- Visual reference intent approval status: approved | pending | incomplete
 - Packet status: full-fidelity | degraded
 - Packet folder: `./{slug}--frontend/`
 - Screen index: `./{slug}--frontend/screen-index.md`
 - Brownfield extraction: `./{slug}--frontend/brownfield-ui-extraction.md`
-- Pencil workset: `./{slug}--frontend/pencil-workset.md`
+- ChatGPT Images 2 pack: not used | pending generation | generated pending approval | approved references available
+- ChatGPT Images 2 folder: `./{slug}--frontend/chatgpt-image-2/`
+- Pencil status: selected | omitted by human visual-truth decision | not used | pending
+- Pencil workset: `./{slug}--frontend/pencil-workset.md` | not created
 - Repo-local Pencil files:
-  - `design/pencil/_shared/00-foundations.pen`
-  - `design/pencil/_shared/10-shell.pen`
-  - `design/pencil/_shared/20-patterns.pen`
-  - `design/pencil/{slug}/30-{slug}.pen`
+  - not used
+  - or `design/pencil/_shared/00-foundations.pen`
+  - or `design/pencil/_shared/10-shell.pen`
+  - or `design/pencil/_shared/20-patterns.pen`
+  - or `design/pencil/{slug}/30-{slug}.pen`
 - Retained screenshots:
   - `./{slug}--frontend/screenshots/...`
-- HTML companion status: not used | used and translated into Pencil
+- HTML companion status: not used | used and translated into approved visual-truth source
 
 ## 2. Downstream Skill Plan
 
 ### Skills used to create this packet
-- `pencil-design-core`
-- `[chosen adapter]`
+- `creating-chatgpt-image-upload-packs` (if ChatGPT Images 2 references were used)
+- `pencil-design-core` (only when Pencil was selected)
+- `[chosen Pencil adapter]` (only when Pencil was selected)
 
 ### Skills downstream implementation should load
 - `gsd-frontend-design`
-- `pencil-design-core`
-- `[chosen adapter]`
+- `pencil-design-core` (only when Pencil is the visual-truth source)
+- `[chosen Pencil adapter]` (only when Pencil is the visual-truth source)
 
 ### Explicit non-assumptions
 - [e.g. do not assume React/Tailwind]
 - [e.g. do not invent a new shell]
+- [e.g. do not load Pencil skills when ChatGPT Images 2 is the selected visual-truth source]
 
 ## 3. Visual Thesis
 
@@ -91,13 +101,17 @@ Supporting folder:
 - `semantic-guidance`: behavior, content priority, workflow, or state coverage is binding; visual treatment may adapt to the product system.
 - `reference-only`: inspiration or comparison aid; not an acceptance target unless promoted later.
 
+These modes apply to Pencil boards, approved ChatGPT Images 2 generated images, screenshots, and browser captures.
+
 ### [Screen / flow name]
 
 - User goal:
 - Selected reference(s):
-- Primary visual source:
-- Pencil file and board/frame:
-- Board intent: visual-truth | semantic-guidance | reference-only
+- ChatGPT Images 2 reference status: not used | reference-only | visual-truth | approved for Pencil translation | rejected
+- Primary visual source: ChatGPT Images 2 approved image | Pencil board | current UI/browser capture
+- Approved ChatGPT Images 2 file(s):
+- Pencil file and board/frame: not used | path + board/frame
+- Reference intent: visual-truth | semantic-guidance | reference-only
 - Intent approved by: [human / date / pending]
 - If semantic-guidance, binding intent:
 - If reference-only, why retained:
@@ -174,8 +188,8 @@ Supporting folder:
 ## 13. Verification Plan
 
 - Required viewports:
-- Screenshot checks by board intent:
-  - visual-truth parity checks:
+- Screenshot checks by reference intent:
+  - visual-truth parity checks against approved ChatGPT Images 2 images or Pencil boards:
   - semantic-guidance intent-fit checks:
   - reference-only items excluded from acceptance:
 - Interaction checks:
@@ -194,15 +208,25 @@ Supporting folder:
 - `./{slug}--frontend/brownfield-ui-extraction.md`
 
 ## Appendix C. Pencil Workset
-- `./{slug}--frontend/pencil-workset.md`
-- `design/pencil/_shared/...`
-- `design/pencil/{slug}/30-{slug}.pen`
+- Pencil selected: yes | no
+- If yes:
+  - `./{slug}--frontend/pencil-workset.md`
+  - `design/pencil/_shared/...`
+  - `design/pencil/{slug}/30-{slug}.pen`
+- If no: omitted by human visual-truth decision; implementation must not require Pencil boards for this scope.
 
-## Appendix D. Screenshot Preview Index
+## Appendix D. ChatGPT Images 2 References
+- `./{slug}--frontend/chatgpt-image-2/`
+- Approved generated references:
+- References selected as implementation visual truth:
+- Rejected generated references:
+- Human approval note/date:
+
+## Appendix E. Screenshot Preview Index
 - `./{slug}--frontend/screenshots/...`
 
-## Appendix E. Companion Translation Notes
-- [Optional. Summarize any HTML companion decision that was translated into Pencil and packet prose.]
+## Appendix F. Companion Translation Notes
+- [Optional. Summarize any HTML companion decision that was translated into the approved visual-truth source and packet prose.]
 ```
 
 ## Quality bar
@@ -212,7 +236,8 @@ A strong packet:
 - makes the intended visual direction legible without guessing
 - covers the main screens and key states
 - names what implementation must preserve
-- names the exact downstream Pencil skills and adapter
+- names the selected implementation visual-truth source
+- names the exact downstream Pencil skills and adapter only when Pencil is selected
 - keeps product scope aligned with the main spec
 - gives Copilot, Codex, or GSD enough direction to build UI without inventing the design from scratch
-- points to stable repo-local visual references instead of ephemeral generation output
+- points to stable repo-local visual references, including approved generated images saved in the packet folder when image-only visual truth is selected

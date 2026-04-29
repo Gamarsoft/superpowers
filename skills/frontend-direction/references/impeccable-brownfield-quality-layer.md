@@ -46,7 +46,7 @@ For brownfield frontend direction:
 
 1. capture the current runtime baseline
 2. write `brownfield-ui-extraction.md`
-3. recreate the baseline in Pencil
+3. create the baseline in the selected visual-truth source, or keep the runtime baseline if ChatGPT Images 2 image-only visual truth will be selected later
 4. read `PRODUCT.md` and `DESIGN.md` when they exist
 5. if design-quality work is needed:
    - use `/impeccable extract`
@@ -54,7 +54,7 @@ For brownfield frontend direction:
    - use `/impeccable audit`
    - use `/impeccable live` only on supported stacks and only for bounded refinement
 6. turn findings into bounded approved deltas
-7. update packet prose, screenshots, and `.pen` files
+7. update packet prose, screenshots, and the selected visual-truth references
 
 ## What Each Impeccable Command Is Good For
 
@@ -97,7 +97,7 @@ Best fit:
 - quick comparison of 2-3 implementation-grounded variants
 
 Guardrail:
-- accepted live variants still need to be reflected in packet prose, screenshots, and `.pen` files if they become durable direction
+- accepted live variants still need to be reflected in packet prose, screenshots, and the selected visual-truth source if they become durable direction
 
 ### Targeted refinement commands
 

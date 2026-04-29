@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChatGPT Image Packs"
+  short_description: "Create image prompt packs before visual-truth selection"
+  default_prompt: "Use $creating-chatgpt-image-upload-packs to create optimized ChatGPT Images 2 upload packs from this frontend-direction packet, screen index, brownfield extraction, design spec, and repo baseline screenshots before the human chooses whether approved images become implementation visual truth or feed Pencil translation."

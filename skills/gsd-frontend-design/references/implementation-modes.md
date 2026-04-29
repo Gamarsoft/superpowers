@@ -13,8 +13,8 @@ Use when:
 Load:
 
 - `gsd-frontend-design`
-- `pencil-design-core` if `.pen` files or worksets exist
-- the correct stack adapter for implementation translation
+- `pencil-design-core` only if Pencil is the selected visual-truth source
+- the correct stack adapter only for Pencil-backed implementation translation
 
 Allowed:
 
@@ -34,7 +34,7 @@ Not allowed:
 
 Use when:
 
-- an approved packet and `.pen` file define a deliberate UI change
+- an approved packet and approved image or `.pen` file define a deliberate UI change
 
 Allowed:
 
@@ -93,7 +93,7 @@ Allowed:
 
 - produce a small number of bounded alternatives
 - compare them against current system constraints
-- converge back into an approved Pencil workset before production implementation
+- converge back into the approved visual-truth source before production implementation
 
 Not allowed:
 
