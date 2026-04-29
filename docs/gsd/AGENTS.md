@@ -6,6 +6,7 @@
 - After the focused proof passes, run the broader project verification relevant to the change before claiming completion.
 - If two fix attempts fail, stop stacking patches. Revisit root cause, task framing, or architecture before changing more code.
 - Do not mark a task, slice, or milestone complete without fresh verification evidence; use `gsd-verification-before-completion`.
+- If pre-commit formatting change only the code syntax, do not re-run verification before completion or code review. If the formatting change also changes behavior, run verification and code review as normal.
 - When a task depends on third-party libraries, frameworks, SDKs, APIs, or version-sensitive tooling, use `gsd-context7-research` before editing code.
 
 ## Code Review Policy
@@ -15,7 +16,7 @@
 - The default pattern is:
   1. implementation task
   2. review-and-resolve follow-up task
-- At the end of the implementation task, after implementation and verification but before the task completes, run one fresh-context review pass in a `worker` subagent.
+- At the end of the implementation task, after implementation, verification, submodule commits and before the task completes, run one fresh-context review pass in a `worker` subagent.
 - That review pass writes one authoritative artifact for the implementation task being reviewed: `Txx-REVIEW.md`.
 - The implementation task still completes normally after that first review pass whether the verdict is `APPROVE`, `REQUEST_CHANGES`, or `ESCALATE`.
 - The follow-up review-and-resolve task is a no-op if `Txx-REVIEW.md` says `verdict: APPROVE`.
@@ -23,6 +24,7 @@
 - Only the fresh-context reviewer creates or overwrites `REVIEW.md`.
 - Use at most 4 fresh review cycles inside the follow-up task. If `REVIEW.md` still does not say `APPROVE` after 4 cycles, stop and escalate through `replan-slice` or `blocker_discovered: true`.
 - If `.gitmodules` exists, every review must inspect real submodule diffs, not only superproject pointer bumps.
+- Fresh-context review pass should be started only after target submodule commits are done.
 - For any non-trivial slice, add a final `Review and resolve slice findings` task before `complete-slice`, using a single slice-level `REVIEW.md` artifact.
 - Skip paired review tasks only for trivial work such as docs-only edits, copy-only edits, renames, formatting-only changes, or other clearly mechanical non-behavioral changes.
 
