@@ -59,6 +59,7 @@
 ## Spec and handoff projection policy
 
 - Treat approved specs and GSD handoff docs as upstream source documents, then project their implementation-relevant context into native GSD workflow artifacts so later units inherit that context automatically.
+- If a GSD handoff says frontend packet status is `required`, do not plan or execute frontend implementation yet. Run the referenced frontend-direction follow-on prompt first, then return with the approved frontend packet and support artifacts.
 - For each active milestone or slice, maintain a `## Source Documents` section in the relevant `CONTEXT.md` with exact relative paths to the approved spec, GSD handoff, frontend direction packet, `pencil-workset.md`, `brownfield-ui-extraction.md`, `screen-index.md`, the relevant `.pen` files, retained screenshots, any temporary HTML companion artifacts that still matter, any `PRODUCT.md` or `DESIGN.md` files that materially guided the work, and any other binding source documents.
 - In milestone or slice `CONTEXT.md`, summarize only what the downstream unit needs: in-scope capabilities, affected screens, routes, components, APIs, data contracts, constraints, open questions, verification notes, and any required `.pen` file or evidence paths.
 - Keep `.gsd/REQUIREMENTS.md` aligned with the approved spec and handoff. Record active requirements, validated requirements, deferred items, explicit non-goals, and scope boundaries that matter to implementation.

@@ -13,9 +13,9 @@ This note captures how these Superpowers skills work on their own and as a coord
 
 These skills form a pipeline, not a flat list of interchangeable tools.
 
-`brainstorming` decides what is being built, how uncertain it still is, and whether a visual-direction phase is required.
+`brainstorming` decides what is being built, how uncertain it still is, and whether a visual-direction phase is required. It stops after the reviewed spec, GSD handoff, and a follow-on prompt for the frontend-direction session.
 
-`frontend-direction` creates the explicit visual contract once product direction is stable enough to anchor screens and states.
+`frontend-direction` creates the explicit visual contract in a separate session once product direction is stable enough to anchor screens and states.
 
 `pencil-design-core` governs how durable design evidence is created and maintained in `.pen` files. It is the operating discipline for Pencil work, not a stack-specific implementation guide.
 
@@ -26,9 +26,10 @@ These skills form a pipeline, not a flat list of interchangeable tools.
 The intended flow is:
 
 1. `brainstorming`
-2. `frontend-direction` when UI materially shapes implementation
-3. `pencil-design-core` plus exactly one adapter while creating or refining durable design evidence
-4. `gsd-frontend-design` plus `pencil-design-core` plus the correct adapter for the implementation target, normally the same adapter selected during packet creation
+2. manual compaction or a new session when UI materially shapes implementation
+3. `frontend-direction`
+4. `pencil-design-core` plus exactly one adapter while creating or refining durable design evidence
+5. `gsd-frontend-design` plus `pencil-design-core` plus the correct adapter for the implementation target, normally the same adapter selected during packet creation
 
 ## Shared Principles
 
@@ -54,8 +55,7 @@ What it produces:
 - reviewed design spec
 - reviewed GSD handoff
 - ready-to-paste steering note
-- reviewed frontend direction packet and supporting artifacts when UI direction is implementation-shaping
-- repo-local Pencil workset when UI-heavy work has Pencil available
+- frontend-direction follow-on prompt when UI direction is implementation-shaping
 
 What it controls:
 - track selection
@@ -65,9 +65,11 @@ What it controls:
 - review loop
 - decision on whether the frontend-direction phase is required
 - use of `gathering-topic-context` before reflection for repo-specific brownfield work
+- visual companion decisions as temporary brainstorming context
 
 What it should not do:
 - write production code
+- create the full frontend packet, screenshots, or Pencil workset in the default brainstorming session
 - skip discovery and jump straight to implementation
 - invent visual direction before current truth and boundaries are understood
 
@@ -190,11 +192,17 @@ Use `brainstorming` to determine:
 
 For repo-specific brownfield work, gather topic context before committing to the problem shape.
 
-This is the product-shaping and artifact-authoring phase.
+This phase produces the approved design spec, GSD handoff, and, when needed, a follow-on prompt for a separate frontend-direction session. It should not create the full frontend packet by default.
 
-### Phase 2: Lock visual intent
+### Phase 2: Reset Context
 
-If UI materially affects implementation, use `frontend-direction`.
+If UI materially affects implementation, manually compact or start a new session using the follow-on prompt from brainstorming.
+
+This protects the frontend-direction work from context-window pressure and preserves the approved product decisions as explicit inputs.
+
+### Phase 3: Lock visual intent
+
+Use `frontend-direction`.
 
 This phase:
 - chooses the design-truth source
@@ -205,7 +213,7 @@ This phase:
 
 This is the visual-contract phase.
 
-### Phase 3: Build durable design evidence
+### Phase 4: Build durable design evidence
 
 Use `pencil-design-core` whenever `.pen` files are involved.
 
@@ -215,7 +223,7 @@ Then choose one adapter:
 
 This is the design-evidence and translation-preparation phase.
 
-### Phase 4: Implement from approved evidence
+### Phase 5: Implement from approved evidence
 
 Use `gsd-frontend-design` with:
 - `pencil-design-core`
@@ -229,8 +237,8 @@ This is the implementation phase.
 
 | Skill | Primary purpose | Typical inputs | Typical outputs | Must pair with | Must not be mistaken for |
 | --- | --- | --- | --- | --- | --- |
-| `brainstorming` | Shape the problem and produce approved written artifacts | user request, repo context, discovery answers, current product truth | spec, handoff, optional frontend packet request path | `frontend-direction` when UI matters | a coding or direct implementation skill |
-| `frontend-direction` | Create explicit visual direction | approved or near-approved spec, screenshots, current UI patterns, wireframes | frontend packet, screen index, extraction doc, workset plan, screenshots, `.pen` files | `pencil-design-core` plus one adapter when Pencil work is real | a frontend coding skill |
+| `brainstorming` | Shape the problem and produce approved written artifacts | user request, repo context, discovery answers, current product truth | spec, handoff, optional frontend-direction follow-on prompt | `frontend-direction` in a separate session when UI matters | a coding or direct implementation skill |
+| `frontend-direction` | Create explicit visual direction | approved spec, GSD handoff, follow-on prompt, screenshots, current UI patterns, wireframes | frontend packet, screen index, extraction doc, workset plan, screenshots, `.pen` files | `pencil-design-core` plus one adapter when Pencil work is real | a frontend coding skill |
 | `pencil-design-core` | Enforce durable `.pen` discipline | packet, screenshots, current UI, existing `.pen` files, design tokens | stable `.pen` artifacts and verified design evidence | exactly one stack adapter when code translation matters | a framework-specific translation skill |
 | `pencil-design-angular-nebular` | Translate Pencil evidence for Angular + Nebular | approved `.pen` evidence, packet, current Angular/Nebular patterns | Angular/Nebular-oriented implementation guidance | `pencil-design-core` | a generic frontend adapter |
 | `pencil-design-react-tailwind` | Translate Pencil evidence for React + Tailwind | approved `.pen` evidence, packet, token system, component conventions | React/Tailwind-oriented implementation guidance | `pencil-design-core` | a universal design-to-code adapter |

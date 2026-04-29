@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Direction"
-  short_description: "Turn specs, screenshots, and repo context into a Pencil-first frontend packet"
-  default_prompt: "Use $frontend-direction to turn this approved spec, current UI context, and screenshots into a Pencil-first frontend direction packet, screen index, brownfield extraction, repo-local workset, and downstream implementation contract."
+  short_description: "Turn approved specs, handoffs, and follow-on prompts into a Pencil-first frontend packet"
+  default_prompt: "Use $frontend-direction to turn this approved spec, GSD handoff, frontend-direction follow-on prompt, current UI context, and screenshots into a Pencil-first frontend direction packet, screen index, brownfield extraction, repo-local workset, and downstream implementation contract."

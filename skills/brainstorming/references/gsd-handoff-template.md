@@ -5,7 +5,7 @@ Use this after the design spec is stable and example mapping is complete.
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 
-This file is designed to be the primary implementation-shaping vision input when starting or extending work in GSD-2, alongside the linked spec and optional frontend direction packet.
+This file is designed to be the primary implementation-shaping vision input when starting or extending work in GSD-2, alongside the linked spec and, when UI is implementation-shaping, the separate frontend direction packet created after brainstorming.
 
 ## Template
 
@@ -98,8 +98,13 @@ Do not leave overlap implicit. If a new Active item touches a previously active,
 ### Packet status
 none | required | attached
 
+Use `required` when brainstorming determined that UI/UX materially shapes implementation but the frontend-direction phase has intentionally been deferred to a separate session.
+
 ### Frontend direction packet
 - [path or none]
+
+### Frontend-direction follow-on prompt
+- [paste/link prompt or none]
 
 ### Supporting frontend artifacts
 - `brownfield-ui-extraction.md`:
@@ -122,6 +127,9 @@ none | required | attached
 - Must preserve:
 - May adapt:
 - Explicit no-gos:
+- Frontend implementation gate:
+  - If packet status is `required`, do not implement frontend UI yet.
+  - Run the separate frontend-direction phase first and attach its approved packet.
 - Board intent rule:
   - Do not treat an unapproved board as visual truth.
   - If board intent is missing or pending, ask for confirmation before visual changes.
@@ -210,10 +218,12 @@ Primary artifacts for this work:
 - Spec: docs/superpowers/specs/YYYY-MM-DD--{slug}.md
 - GSD handoff: docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md
 - Frontend direction: docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md (if present)
+- Frontend-direction follow-on prompt: included below / linked separately (if packet status is required)
 
 Use the GSD handoff as the primary milestone/requirements seed.
 Use the spec as the canonical product and behavior contract.
 If the frontend direction packet exists, use it as the canonical UI implementation contract.
+If packet status is `required`, do not implement frontend UI yet. First run the follow-on frontend-direction prompt in a fresh or compacted session, then return to GSD with the approved packet.
 
 Treat the Active requirements in the handoff as the starting candidate requirements.
 Treat Deferred and Out of Scope exactly as written unless you find a contradiction.
@@ -223,23 +233,24 @@ Keep the three primary artifacts aligned:
 - the spec owns product scope, behavior, and rules
 - the handoff owns GSD seeding, milestone framing, and implementation intake guidance
 - the frontend direction packet, when present, owns layout, hierarchy, states, responsive behavior, and UI implementation constraints
+- the frontend-direction follow-on prompt owns the next-session bootstrap only until the packet exists
 
-Also consume:
+After the frontend direction packet exists, also consume:
 - brownfield-ui-extraction.md
 - screen-index.md
 - pencil-workset.md
 - repo-local Pencil `.pen` files
 - retained screenshots
 
-Load:
+For frontend implementation after the packet exists, load:
 - gsd-frontend-design
 - pencil-design-core
 - the adapter named in the packet
 
-Use the frontend packet and Pencil workset as the durable UI references.
-Respect approved board intent modes in the packet. `visual-truth` boards require visual parity; `semantic-guidance` boards require behavior, content-priority, and state-fit; `reference-only` boards are not acceptance targets.
-If board intent is missing or pending, ask for confirmation before treating the board as a redesign or visual parity target.
-Do not treat temporary HTML companion screens as binding once the chosen direction has been translated into Pencil and packet artifacts.
+Use the frontend packet and Pencil workset as the durable UI references after they exist.
+Respect approved board intent modes in the packet after it exists. `visual-truth` boards require visual parity; `semantic-guidance` boards require behavior, content-priority, and state-fit; `reference-only` boards are not acceptance targets.
+If board intent is missing or pending after frontend-direction, ask for confirmation before treating the board as a redesign or visual parity target.
+Do not treat temporary HTML companion screens from brainstorming as binding unless the separate frontend-direction packet translates them into durable Pencil and packet artifacts.
 Do not invent a new visual direction unless the handoff explicitly says redesign.
 Only ask follow-up questions about unresolved items, contradictions, or missing implementation-shaping decisions.
 ```

@@ -1,6 +1,6 @@
 # Frontend Direction Skill
 
-Use this skill after product direction is stable to create:
+Use this skill after product direction is stable, usually from a brainstorming follow-on prompt, to create:
 - the frontend direction packet
 - the packet support folder
 - the repo-local Pencil workset

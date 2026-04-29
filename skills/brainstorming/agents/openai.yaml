@@ -1,4 +1,4 @@
 interface:
-  display_name: "Brainstorming & Pencil Packet"
-  short_description: "Turn ideas into specs, Pencil-first frontend packets, and implementation handoffs"
-  default_prompt: "Use $brainstorming to turn this idea into a bounded design spec, a Pencil-first frontend direction packet when UI matters, and a GSD/Codex-ready handoff."
+  display_name: "Brainstorming & Handoff"
+  short_description: "Turn ideas into specs, GSD handoffs, and frontend-direction follow-on prompts"
+  default_prompt: "Use $brainstorming to turn this idea into a bounded design spec, a GSD/Codex-ready handoff, and a frontend-direction follow-on prompt when UI matters."

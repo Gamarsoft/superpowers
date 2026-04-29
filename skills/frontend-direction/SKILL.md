@@ -7,7 +7,8 @@ description: Use after product direction is stable but visual direction is not, 
 
 Create explicit visual direction before production frontend code is written.
 
-This skill is for the design-direction step between product discovery and implementation. It produces the packet and reference assets that later implementation agents should follow.
+This skill is for the design-direction step between product discovery and implementation. It usually starts from an approved design spec, approved GSD handoff, and frontend-direction follow-on prompt produced by `brainstorming`.
+It produces the packet and reference assets that later implementation agents should follow.
 For downstream GSD workflows, assume Pencil CLI interactive mode is the only allowed Pencil transport.
 
 Do **not** use this skill as a frontend coding skill.
@@ -49,8 +50,9 @@ When Pencil is available, also maintain:
 
 ## Workflow
 
-1. Gather the approved or near-approved spec, durable wireframes, current screenshots, and design-system context.
+1. Gather the approved spec, approved GSD handoff, frontend-direction follow-on prompt, durable wireframes, current screenshots, and design-system context.
    - If the repo uses Impeccable v3, also gather any project-level `PRODUCT.md` and `DESIGN.md`.
+   - Treat the follow-on prompt as startup context, not as a substitute for the actual packet.
 2. In brownfield work, decide whether a runtime baseline capture pass is required:
    - read `references/browser-surface-selection.md` before browser interaction
    - if the current screen truth exists only in source code and the running app, capture browser-grounded evidence before inventing any packet artifacts
@@ -115,6 +117,7 @@ When Pencil is available, also maintain:
 ## Operating rules
 
 - Current product truth outranks generated imagery in brownfield work.
+- Approved spec and GSD handoff define product scope and behavior; this skill defines the UI implementation contract.
 - In Impeccable v3 projects, `PRODUCT.md` and `DESIGN.md` are strong context inputs, but they do not outrank current runtime truth, the approved packet, or repo-local Pencil artifacts.
 - When no durable baseline exists, create one from browser-grounded evidence before you explore improvements.
 - HTML companion screens are temporary decision artifacts, not durable packet artifacts.

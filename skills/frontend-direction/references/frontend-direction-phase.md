@@ -4,6 +4,8 @@ Use this phase after the product direction, primary flows, and first delivery bo
 
 This phase exists because implementation agents are much stronger when visual direction is explicit instead of implied.
 
+In the split workflow, `brainstorming` produces the approved spec, GSD handoff, and follow-on prompt first. Run this phase in a fresh or manually compacted session to preserve context-window budget.
+
 ## Activate when
 
 Activate the phase when **any** of these are true:
@@ -62,8 +64,9 @@ When Pencil is available, also create or refresh:
 ## Workflow
 
 1. **Gather inputs**
-   - Approved or near-approved framing brief
-   - Current design spec draft
+   - Approved design spec
+   - Approved GSD handoff
+   - Frontend-direction follow-on prompt from brainstorming, when present
    - Existing product screenshots or current UI surfaces if brownfield
    - Durable wireframes if they exist
    - Anchoring docs, audits, or prior approved packets

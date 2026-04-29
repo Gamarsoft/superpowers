@@ -13,9 +13,11 @@ Default outputs:
 
 1. a reviewed design spec
 2. a reviewed GSD-ready handoff
-3. a reviewed frontend direction packet **when UI/UX materially shapes implementation**
+3. when UI/UX materially shapes implementation, a follow-on prompt to bootstrap a separate `frontend-direction` session
 
 Do **not** write production code, scaffold projects, or invoke implementation skills until the required written artifacts are approved.
+
+Do **not** run the full frontend-direction phase inside brainstorming by default. Split it into a new session or a manually compacted continuation to avoid losing design decisions to context-window pressure.
 
 ## Default terminal states
 
@@ -28,11 +30,9 @@ Do **not** write production code, scaffold projects, or invoke implementation sk
 ### UI-heavy work
 
 - reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
-- reviewed frontend direction packet written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
-- supporting frontend artifacts written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`
-- repo-local Pencil workset created or refreshed under `design/pencil/` when Pencil is available
 - reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
-- ready-to-paste GSD steering note delivered to the user, linking the spec, handoff, frontend direction packet, and primary frontend artifacts
+- frontend-direction follow-on prompt delivered to the user, linking the approved spec and handoff and carrying any visual-companion decisions
+- ready-to-paste GSD steering note delivered to the user, linking the spec and handoff and stating that frontend implementation must wait for the separate frontend-direction packet
 
 Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2 or Codex implementation.
 
@@ -47,25 +47,22 @@ Your job is to:
 - frame decisions as 2–3 viable options
 - recommend a default with reasoning
 - bound the work before the spec hardens
-- when UI matters, extract current product truth before exploring visual deltas
+- when UI matters, capture enough product and experience intent to seed a later frontend-direction session
 - when Impeccable v3 is present, treat `PRODUCT.md` and `DESIGN.md` as design-memory inputs, not as replacements for brownfield runtime truth
 - use HTML browser artifacts only for temporary comparisons or decision support
-- use Pencil as the primary visual workspace when available
-- pick the correct Pencil adapter for the target stack
-- translate any chosen HTML companion idea back into `.pen` files before treating it as durable direction
+- keep visual companion decisions inside brainstorming as decision context, not durable frontend packet artifacts
 - turn the result into written artifacts that another agent can execute with minimal extra questioning
 
-## Skill composition for UI-heavy work
+## UI-heavy work split
 
-When the frontend-direction phase is active:
+When frontend direction is required:
 
-- use `pencil-design-core` for repo-grounded `.pen` work, visual extraction, screenshots, and design-to-code preparation
-- choose the adapter via `references/pencil-skill-selection.md`
-  - default to `pencil-design-angular-nebular` for Angular + Nebular, brownfield operator UIs, and dense administrative products
-  - use `pencil-design-react-tailwind` only when the actual target stack is React / Next / Tailwind / shadcn
-- prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill
-- treat the visual companion as an HTML comparison surface, not as a durable packet artifact
-- use `../frontend-direction/references/use-cases-prompts-and-flows.md` when you need a concrete frontend workflow for brownfield existing-screen work, brownfield new-screen work, or greenfield screen creation
+- stay in brainstorming long enough to stabilize product behavior, flows, states, constraints, and first delivery boundary
+- allow the visual companion for decision support during brainstorming
+- do not create the frontend direction packet, Pencil workset, or screenshots in the same default brainstorming session
+- write the spec and GSD handoff with `packet status: required`
+- produce a follow-on prompt for a separate `frontend-direction` session
+- include any visual-companion decisions as context for that follow-on prompt
 
 ## Required workflow
 
@@ -104,7 +101,7 @@ Create a task for each of the following and complete them in order.
 5. **Decide whether a frontend-direction phase is required**
    - Read `../frontend-direction/references/frontend-direction-phase.md`.
    - Treat frontend intensity as a second axis, not a replacement for the chosen track.
-   - Activate the phase when pages, screens, flows, layout hierarchy, visual language, or interaction details materially shape implementation.
+   - Mark frontend direction as required when pages, screens, flows, layout hierarchy, visual language, or interaction details materially shape implementation.
    - Skip it for backend-only work, purely mechanical UI tweaks that already fit a stable pattern, or when an approved frontend direction packet already exists and remains current.
 
 6. **Build the framing brief**
@@ -131,48 +128,16 @@ Create a task for each of the following and complete them in order.
 
 10. **Stabilize the experience before final writing**
     - Confirm the primary flows, key states, and first delivery boundary.
-    - If durable wireframes are needed, add them before the final writing pass.
-    - If UI boards, mockups, screenshots, or Pencil artifacts will be used, confirm whether they are intended as visual truth, semantic guidance, or reference-only evidence before final writing.
-    - Do **not** start the frontend-direction phase until the experience is stable enough to anchor screens.
+    - If frontend direction is required, capture the screen families, user goals, key states, current-product constraints, and any visual-companion decisions that the later frontend-direction session must inherit.
+    - Do **not** create the frontend direction packet in this session by default.
 
-11. **Run the frontend-direction phase** _(conditional)_
-    - If step 5 activated it, read:
-      - `../frontend-direction/references/frontend-direction-phase.md`
-      - `../frontend-direction/references/design-source-priority.md`
-      - `../frontend-direction/references/use-cases-prompts-and-flows.md`
-      - `references/pencil-skill-selection.md`
-      - `../frontend-direction/references/frontend-packet-folder-template.md`
-    - Build the screen inventory using `../frontend-direction/references/screen-index-template.md`.
-    - In brownfield work with no durable design evidence yet, treat runtime baseline capture as mandatory before packet writing:
-      - capture the current screen and key neighboring states from the running app
-      - prefer browser-grounded evidence over code-only layout inference
-      - treat the first frontend artifact as a faithful baseline, not an improved redesign
-    - If the repo uses Impeccable v3, read any project-level `PRODUCT.md` and `DESIGN.md` before refinement:
-      - use `PRODUCT.md` as audience, brand/personality, anti-reference, and register context
-      - use `DESIGN.md` as reusable system evidence when it is current
-      - treat `DESIGN.json` as auxiliary tooling output, not the primary durable contract
-    - In brownfield work, create `brownfield-ui-extraction.md` using `../frontend-direction/references/brownfield-ui-extraction-template.md` before asking for variants.
-    - Build the Pencil workset plan using `../frontend-direction/references/pencil-workset-template.md`.
-    - Use Pencil as the primary workspace when available:
-      - recreate the current shell and patterns first
-      - choose the correct adapter for the target stack
-      - explore only the decision-bearing deltas
-      - keep `.pen` files in the repo
-      - record board intent before handoff: `visual-truth`, `semantic-guidance`, or `reference-only`
-    - Get explicit human approval for any board-intent classification that will affect implementation. Do not let downstream implementation agents infer whether a board is a redesign target.
-    - Use the HTML visual companion only for temporary comparison artifacts when a decision is materially easier to judge in-browser than in prose.
-    - If a companion artifact influences the choice, translate the chosen direction back into `.pen` boards, screenshots, and packet prose before treating it as durable.
-    - Review the packet against `../frontend-direction/references/frontend-review-checklist.md` and `../frontend-direction/references/frontend-packet-completeness-checklist.md`.
-    - Prefer a local `frontend-direction` skill when installed; otherwise execute the phase directly from this skill.
-    - Treat generated visuals as references, not as permission to invent product requirements.
-
-12. **Present the design in sections**
+11. **Present the design in sections**
     - Use `references/spec-template.md`.
     - Present the design incrementally.
     - After each major section, ask whether it looks right so far.
     - Revise before moving on.
 
-13. **Add example mapping**
+12. **Add example mapping**
     - Use `references/example-mapping-template.md`.
     - For each major capability, capture:
       - rules
@@ -180,24 +145,12 @@ Create a task for each of the following and complete them in order.
       - open questions
       - out-of-scope / deferred items
 
-14. **Write the design spec**
+13. **Write the design spec**
     - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`.
     - User preference overrides the default location.
-    - If a frontend direction packet exists, keep the spec structural and behavioral; link to the packet instead of duplicating visual-system detail.
+    - If frontend direction is required, keep the spec structural and behavioral. Record that visual direction will be handled by a separate frontend-direction packet.
 
-15. **Write the frontend direction packet** _(conditional)_
-    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`.
-    - Save supporting files to `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/`.
-    - Default supporting files:
-      - `screen-index.md`
-      - `brownfield-ui-extraction.md`
-      - `pencil-workset.md`
-      - `screenshots/`
-    - When Pencil is available, create or refresh repo-local `.pen` files under `design/pencil/`.
-    - Name the Pencil skills downstream agents should load.
-    - Record exact `.pen` files, board/frame names, and any HTML companion decisions that were translated back into durable artifacts.
-
-16. **Write the GSD handoff**
+14. **Write the GSD handoff**
     - Use `references/gsd-handoff-template.md`.
     - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`.
     - If the repo already has `.gsd/REQUIREMENTS.md` or prior milestone requirements in the same domain, reconcile them explicitly in the handoff instead of introducing parallel truths.
@@ -208,33 +161,44 @@ Create a task for each of the following and complete them in order.
       - supersedes earlier wording for this scope
       - leaves the remainder deferred
     - Prepare the corresponding steering note with the real artifact paths filled in.
-    - If a frontend direction packet exists, link it explicitly and tell downstream agents to treat it as first-class input for UI implementation.
+    - If frontend direction is required but not yet created, set packet status to `required` and tell downstream agents not to implement UI until the frontend-direction packet exists and is approved.
     - Make sure the steering note links all primary artifacts:
       - design spec
       - GSD handoff
-      - frontend direction packet when present
-      - primary frontend supporting artifacts when present
-    - Record which Pencil skills and which exact `.pen` files are expected downstream.
-    - Make clear that temporary HTML companion screens are not binding once the chosen direction has been translated into Pencil and packet artifacts.
+      - frontend direction packet when present, or frontend-direction follow-on prompt when packet status is `required`
+    - If frontend direction is required, record the expected downstream Pencil skills and adapter candidates only as guidance for the follow-on prompt, not as finalized implementation evidence.
+    - Make clear that temporary HTML companion screens are brainstorming decision aids until a later frontend-direction packet translates them into durable artifacts.
 
-17. **Run the review loop**
+15. **Write the frontend-direction follow-on prompt** _(conditional)_
+    - Required when step 5 marked frontend direction as required and no current approved packet exists.
+    - Use `references/frontend-direction-follow-on-prompt-template.md`.
+    - Include:
+      - approved design spec path
+      - approved GSD handoff path
+      - feature slug and target repo
+      - track and first delivery boundary
+      - screen families, flows, and key states discovered during brainstorming
+      - brownfield invariants and no-gos
+      - visual companion decisions or artifacts, explicitly marked as non-durable decision context
+      - likely target stack and adapter candidates
+      - board-intent approval requirement for the later packet
+    - Deliver the prompt in the final answer so the user can start a fresh session after manual compaction.
+
+16. **Run the review loop**
     - Read `references/spec-review-checklist.md`.
-    - If a frontend direction packet exists, also read:
-      - `../frontend-direction/references/frontend-review-checklist.md`
-      - `../frontend-direction/references/frontend-packet-completeness-checklist.md`
     - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
-    - Review every written artifact in scope.
+    - Review the design spec, GSD handoff, and frontend-direction follow-on prompt if one is required.
     - Fix blocking issues and re-dispatch.
     - Maximum 5 iterations, then surface to the human.
 
-18. **User review gate**
+17. **User review gate**
     - Ask the user to review the written artifacts before proceeding.
     - Use the current platform's dedicated question tool for that review prompt when available.
     - If they request changes, make them and re-run the review loop.
 
-19. **Transition**
+18. **Transition**
     - Default: stop with approved artifacts and give the user the ready-to-paste steering note.
-    - The final response must include the steering note, not just mention that one exists.
+    - The final response must include the steering note and, when frontend direction is required, the follow-on frontend-direction prompt.
     - If the user explicitly wants to continue inside Superpowers, invoke `writing-plans`.
 
 ## Guided discovery rules
@@ -290,7 +254,7 @@ In existing codebases:
 - do not smuggle in unrelated refactors
 - explicitly call out invariants and rollout constraints
 - if inspection has not happened yet, the next guided question must focus on current behavior, existing workflow boundaries, and what must stay unchanged rather than jumping to architecture
-- when frontend direction is active, preserve the existing design system and surface language unless the user explicitly wants redesign
+- when frontend direction is required, preserve the existing design system and surface language unless the user explicitly wants redesign
 - do not let generated concepts outrank observed product truth
 - preserve shell, navigation, density, and shared component language before exploring cosmetic novelty
 

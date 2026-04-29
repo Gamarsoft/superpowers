@@ -2,7 +2,7 @@
 
 Use the visual companion to help the user decide between alternatives, not to generate polished mockups.
 The companion produces HTML browser artifacts for temporary comparison only.
-If a choice survives, translate it into `.pen` boards, screenshots, and packet prose before treating it as durable direction.
+If a choice survives, carry it into the frontend-direction follow-on prompt. The later frontend-direction session must translate it into `.pen` boards, screenshots, and packet prose before treating it as durable direction.
 
 ## v1 authoring contract
 
@@ -26,16 +26,16 @@ Do not invent extra archetypes in v1.
 
 ## Frontend-design alignment
 
-When the frontend-direction phase is active, the companion should usually show one of these:
+When frontend direction is required, the companion should usually show one of these:
 
 - selected or competing **Pencil** boards / frames
 - annotated screenshots from the current product
 - wireframe-to-direction comparisons
-- HTML comparison layouts that will be translated back into Pencil if chosen
+- HTML comparison layouts that the follow-on frontend-direction session can translate into Pencil if chosen
 - carry-forward summaries of the chosen visual direction
 
 The companion is still for **decision-making**, not for pretending the chosen board or screenshot is already final implemented UI.
-The final packet should point to durable `.pen` artifacts and screenshots, not to raw HTML companion files.
+The follow-on frontend-direction packet should point to durable `.pen` artifacts and screenshots, not to raw HTML companion files.
 
 ## Browser surface rule
 
@@ -57,7 +57,7 @@ Carry-forward continuity must live in visible authored copy, not in helper state
 
 ## Screen creation rule
 
-When creating or revising companion screens, route the structuring step through **`/frontend-direction`** or **`$frontend-direction`** when that skill exists.
+When creating or revising companion screens, use frontend-direction heuristics for structure and comparison clarity when helpful, but do not start the full frontend-direction phase inside brainstorming.
 
 This is a **brainstorming structuring pass**, not a requirement for near-final visual polish. The purpose is:
 

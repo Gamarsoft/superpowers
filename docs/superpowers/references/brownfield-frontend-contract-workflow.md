@@ -84,33 +84,35 @@ Use MCP for stable local design work when appropriate. For GSD-facing workflows,
 Use these skills in this order:
 
 1. `superpowers:brainstorming`
-2. `superpowers:frontend-direction` when UI materially shapes implementation
-3. `superpowers:webapp-testing` for browser-grounded capture and verification
-4. `superpowers:pencil-design-core`
-5. exactly one adapter:
+2. manual compaction or a new session using the frontend-direction follow-on prompt when UI materially shapes implementation
+3. `superpowers:frontend-direction`
+4. `superpowers:webapp-testing` for browser-grounded capture and verification
+5. `superpowers:pencil-design-core`
+6. exactly one adapter:
    - `superpowers:pencil-design-angular-nebular`
    - `superpowers:pencil-design-react-tailwind`
-6. Impeccable skills only when a quality layer is in scope:
+7. Impeccable skills only when a quality layer is in scope:
    - `impeccable extract`
    - `impeccable critique`
    - `impeccable audit`
    - `impeccable document` when `DESIGN.md` is missing or stale
    - targeted refinement skills such as `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish`
-7. `superpowers:gsd-frontend-design` for implementation
+8. `superpowers:gsd-frontend-design` for implementation
 
 Use `impeccable teach` only when product context is missing, stale, or intentionally changing. If a current `PRODUCT.md` exists, treat it as product/register context instead of rerunning teach.
 
 ## Workflow Overview
 
-The workflow has seven phases.
+The workflow has eight phases.
 
 1. Scope and preservation framing
-2. Runtime capture of current truth
-3. Extraction into durable baseline artifacts
-4. Controlled quality analysis
-5. Approved change exploration
-6. Durable contract finalization
-7. Implementation and verification
+2. Session split / frontend-direction bootstrap
+3. Runtime capture of current truth
+4. Extraction into durable baseline artifacts
+5. Controlled quality analysis
+6. Approved change exploration
+7. Durable contract finalization
+8. Implementation and verification
 
 ## Phase 1: Scope and Preservation Framing
 
@@ -127,6 +129,9 @@ Required outputs:
 - `Must preserve`
 - `May adapt`
 - `Explicit no-gos`
+- reviewed design spec
+- reviewed GSD handoff
+- frontend-direction follow-on prompt when UI direction is required
 
 For repo-specific brownfield work, `brainstorming` should prefer `gathering-topic-context` before reflection so the scope is grounded in the current codebase and workflow.
 
@@ -141,7 +146,29 @@ For brownfield UI work, this phase must explicitly capture:
 
 If these are not written down early, later quality work will drift.
 
-## Phase 2: Runtime Capture of Current Truth
+## Phase 2: Session Split / Frontend-Direction Bootstrap
+
+Goal:
+Preserve context by starting frontend-direction after the spec and handoff are approved.
+
+Use:
+- the follow-on prompt from `superpowers:brainstorming`
+- `superpowers:frontend-direction`
+
+The follow-on prompt should carry:
+
+- approved spec path
+- approved GSD handoff path
+- first delivery boundary
+- screen families and key states
+- brownfield invariants
+- visual-companion decisions as non-durable context
+- likely stack and adapter candidates
+- board-intent approval requirement
+
+Do not start frontend implementation while packet status is `required`.
+
+## Phase 3: Runtime Capture of Current Truth
 
 Goal:
 Create a reliable visual and behavioral baseline from the running application.
@@ -175,7 +202,7 @@ Output location:
 
 This phase is mandatory when no durable baseline already exists.
 
-## Phase 3: Extraction into Durable Baseline Artifacts
+## Phase 4: Extraction into Durable Baseline Artifacts
 
 Goal:
 Turn raw browser evidence into reusable, durable design truth.
@@ -234,7 +261,7 @@ Examples:
 
 If these layers are not separated, every future artifact becomes ambiguous.
 
-## Phase 4: Controlled Quality Analysis
+## Phase 5: Controlled Quality Analysis
 
 Goal:
 Improve judgment without losing fidelity.
@@ -285,7 +312,7 @@ Examples:
 
 Impeccable should not authorize redesign by itself.
 
-## Phase 5: Approved Change Exploration
+## Phase 6: Approved Change Exploration
 
 Goal:
 Explore only the delta that matters for the approved change.
@@ -327,7 +354,7 @@ Every chosen direction must be translated back into:
 
 Do not leave the winning idea only in HTML.
 
-## Phase 6: Durable Contract Finalization
+## Phase 7: Durable Contract Finalization
 
 Goal:
 Produce artifacts that an implementation agent can follow without inventing the UI.
@@ -355,7 +382,7 @@ Each changed screen should answer:
 - what is intentionally changed?
 - what evidence is binding for implementation?
 
-## Phase 7: Implementation and Verification
+## Phase 8: Implementation and Verification
 
 Goal:
 Implement the approved UI without reopening design discovery.
@@ -408,6 +435,7 @@ For each brownfield feature with meaningful UI work, maintain this minimum artif
 - shared shell `.pen`
 - shared patterns `.pen`
 - feature-specific `.pen`
+- board intent approval for every implementation-facing board or screenshot
 
 ### Quality evidence
 
@@ -489,6 +517,7 @@ Do not do these:
 - generate a "better" screen before documenting the current one
 - treat source code structure as enough evidence for visual fidelity
 - let HTML companion artifacts become the only visual truth
+- start frontend implementation while the GSD handoff still says frontend packet status is `required`
 - mix current truth, normalization, and proposed change into one board with no labeling
 - use Impeccable to overwrite the product family
 - let the stack adapter decide design direction

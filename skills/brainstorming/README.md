@@ -2,8 +2,8 @@
 
 Use this skill to shape product work into:
 - an approved design spec
-- a Pencil-first frontend packet when UI matters
 - a GSD/Codex-ready handoff
+- a frontend-direction follow-on prompt when UI matters
 
-This skill is discovery-first and packet-first.
+This skill is discovery-first and handoff-first.
 It should not be used as an implementation skill.

@@ -1,6 +1,6 @@
 # Spec Review Checklist
 
-Use this as the blocking quality bar for the design spec, optional frontend direction packet, and GSD handoff.
+Use this as the blocking quality bar for the design spec, GSD handoff, and optional frontend-direction follow-on prompt.
 
 ## Status language
 
@@ -59,19 +59,20 @@ Use this as the blocking quality bar for the design spec, optional frontend dire
 - Are constraints and integration points explicit?
 - Are slice candidates or boundary hints strong enough to seed GSD planning?
 
-## 10. Frontend packet quality (conditional, blocking when relevant)
-Apply this section when a frontend direction packet exists or when the work clearly depends on frontend direction.
+## 10. Frontend-direction follow-on prompt quality (conditional, blocking when relevant)
+Apply this section when the work clearly depends on frontend direction.
 
-- Is there a visual thesis and screen inventory?
-- Are key screens and critical states covered?
-- Are Must preserve / May adapt / Explicit no-gos clearly separated?
-- Are responsive, accessibility, and verification rules present?
-- Are linked screenshots, wireframes, `PRODUCT.md`, or `DESIGN.md` references real rather than placeholder mentions?
+- Does the handoff mark frontend packet status as `required` when no packet exists yet?
+- Does the follow-on prompt link the approved spec and GSD handoff?
+- Does it carry screen families, primary flows, key states, first delivery boundary, and brownfield invariants?
+- Does it preserve visual-companion decisions as context rather than durable design truth?
+- Does it require board-intent approval for every implementation-facing board, screenshot, or retained visual reference?
+- Does it block UI implementation until the separate frontend-direction packet is approved?
 
 ## 11. Cross-artifact UI alignment (conditional, blocking when relevant)
-- Do the spec, frontend packet, and GSD handoff agree on scope and behavior?
+- Do the spec, GSD handoff, and follow-on prompt agree on scope and behavior?
 - Are deferred visual ideas kept out of Active requirements?
-- Can an implementation agent tell which visual sources are authoritative?
+- Can the next frontend-direction agent tell what product decisions are settled and what visual work remains?
 
 ## 11a. Requirement lineage alignment (blocking when relevant)
 Apply this subsection when the new work overlaps with an existing `.gsd/REQUIREMENTS.md`, earlier milestone requirements, or previously deferred work in the same area.

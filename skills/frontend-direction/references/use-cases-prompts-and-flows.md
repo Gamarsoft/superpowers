@@ -11,6 +11,7 @@ The scenarios below are intentionally short. Adapt them to the current repo and 
 - If no durable design evidence exists yet, create a faithful baseline from the running product before exploring variants.
 - Use HTML companion artifacts for comparison only.
 - Converge durable truth into screenshots, packet prose, and `.pen` files.
+- In the split workflow, use `brainstorming` first to approve the spec and GSD handoff, then start `frontend-direction` from the follow-on prompt in a fresh or compacted session.
 - If a project-level `PRODUCT.md` already exists and is still accurate, do not re-run `/impeccable teach`.
 - If the repo has Impeccable v3, read `PRODUCT.md` and `DESIGN.md` before refinement. Treat `DESIGN.json` as auxiliary tooling output, not the primary contract.
 
@@ -24,21 +25,23 @@ The scenarios below are intentionally short. Adapt them to the current repo and 
 
 ### Prompt shape
 
-Use `brainstorming` for a brownfield existing-screen feature. The screen already exists in the running app, but there is no durable design evidence yet. Preserve the current shell and product language, capture a faithful runtime baseline first, then produce the frontend packet and Pencil workset before implementation.
+Use `brainstorming` first for the product spec and GSD handoff. Then use the follow-on prompt with `frontend-direction`: the screen already exists in the running app, but there is no durable design evidence yet. Preserve the current shell and product language, capture a faithful runtime baseline first, then produce the frontend packet and Pencil workset before implementation.
 
 ### Flow
 
-1. choose brownfield-small-feature or brownfield-major-feature
-2. capture current runtime baseline:
+1. choose brownfield-small-feature or brownfield-major-feature in brainstorming
+2. approve the design spec and GSD handoff
+3. start a new or compacted frontend-direction session from the follow-on prompt
+4. capture current runtime baseline:
    - desktop screenshot
    - narrow/mobile screenshot
    - key state screenshots for the changed area
-3. write `brownfield-ui-extraction.md`
-4. create `screen-index.md`
-5. recreate the existing screen baseline in Pencil
-6. explore only the approved delta
-7. finalize packet and workset
-8. implement with `gsd-frontend-design`
+5. write `brownfield-ui-extraction.md`
+6. create `screen-index.md`
+7. recreate the existing screen baseline in Pencil
+8. explore only the approved delta
+9. finalize packet and workset
+10. implement with `gsd-frontend-design`
 
 ### Main risk
 
@@ -54,18 +57,20 @@ Jumping from code inspection to improved mockups without first reproducing the a
 
 ### Prompt shape
 
-Use `brainstorming` and `frontend-direction` for a new screen in a brownfield product. Preserve the existing shell, navigation rhythm, component language, and density. Build a packet and Pencil workset that show how the new screen fits the current system before implementation.
+Use `brainstorming` first, then run `frontend-direction` from the follow-on prompt for the new screen in a brownfield product. Preserve the existing shell, navigation rhythm, component language, and density. Build a packet and Pencil workset that show how the new screen fits the current system before implementation.
 
 ### Flow
 
-1. classify scope and affected workflow
-2. extract shell, shared patterns, and neighboring screens
-3. document `Must preserve`, `May adapt`, and `Explicit no-gos`
-4. create `brownfield-ui-extraction.md`
-5. create the new screen inventory and key states
-6. build shared `.pen` boards first, then the feature board
-7. explore 1-2 bounded variants if needed
-8. finalize packet and implement conservatively
+1. classify scope and affected workflow in brainstorming
+2. approve the design spec and GSD handoff
+3. start frontend-direction from the follow-on prompt
+4. extract shell, shared patterns, and neighboring screens
+5. document `Must preserve`, `May adapt`, and `Explicit no-gos`
+6. create `brownfield-ui-extraction.md`
+7. create the new screen inventory and key states
+8. build shared `.pen` boards first, then the feature board
+9. explore 1-2 bounded variants if needed
+10. finalize packet and implement conservatively
 
 ### Main risk
 
@@ -107,17 +112,19 @@ Using quality feedback as permission to redesign the product.
 
 ### Prompt shape
 
-Use `brainstorming` for greenfield work, then `frontend-direction` to create a durable frontend contract before implementation. Converge the chosen direction into a Pencil workset and implementation-ready packet instead of relying on loose screenshots.
+Use `brainstorming` for greenfield work, then start a separate `frontend-direction` session from the follow-on prompt to create a durable frontend contract before implementation. Converge the chosen direction into a Pencil workset and implementation-ready packet instead of relying on loose screenshots.
 
 ### Flow
 
 1. choose the greenfield track
 2. stabilize the first delivery boundary and key flows
-3. create the screen index and key states
-4. build the Pencil workset
-5. explore baseline plus 1-2 variants on the real decision axis
-6. finalize the packet
-7. implement with `gsd-frontend-design`
+3. approve the design spec and GSD handoff
+4. start frontend-direction from the follow-on prompt
+5. create the screen index and key states
+6. build the Pencil workset
+7. explore baseline plus 1-2 variants on the real decision axis
+8. finalize the packet
+9. implement with `gsd-frontend-design`
 
 ### Main risk
 
@@ -132,17 +139,19 @@ Leaving too much visual direction implicit and forcing implementation to invent 
 
 ### Prompt shape
 
-Use `brainstorming` and `frontend-direction` to define the product and frontend contract. If design-quality refinement is needed, use Impeccable after product framing is stable. Keep the result grounded in the chosen audience, use case, and tone, then converge the winning direction into packet prose and `.pen` files.
+Use `brainstorming` to define the product, then use a separate `frontend-direction` session to define the frontend contract. If design-quality refinement is needed, use Impeccable after product framing is stable. Keep the result grounded in the chosen audience, use case, and tone, then converge the winning direction into packet prose and `.pen` files.
 
 ### Flow
 
-1. stabilize product framing
-2. if needed, ensure `PRODUCT.md` exists or run `/impeccable teach`
-3. create the baseline design direction in Pencil
-4. if present, read `DESIGN.md`; use `/impeccable critique` or `/impeccable audit` to pressure-test quality
-5. refine with bounded improvements
-6. finalize the packet and workset
-7. implement from the approved contract
+1. stabilize product framing in brainstorming
+2. approve the design spec and GSD handoff
+3. start frontend-direction from the follow-on prompt
+4. if needed, ensure `PRODUCT.md` exists or run `/impeccable teach`
+5. create the baseline design direction in Pencil
+6. if present, read `DESIGN.md`; use `/impeccable critique` or `/impeccable audit` to pressure-test quality
+7. refine with bounded improvements
+8. finalize the packet and workset
+9. implement from the approved contract
 
 ### Main risk
 

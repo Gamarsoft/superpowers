@@ -36,7 +36,8 @@ After picking the track, decide whether the work also needs the **frontend-direc
 Read `../frontend-direction/references/frontend-direction-phase.md` and treat that decision as orthogonal to the track:
 
 - the track controls discovery and delivery weight
-- the frontend-direction phase adds visual-direction work and an extra artifact only when UI/UX materially shapes implementation
+- brainstorming marks frontend direction as required when UI/UX materially shapes implementation
+- the frontend-direction phase runs separately after the spec and GSD handoff are approved, usually in a fresh or manually compacted session
 
 ---
 
@@ -61,7 +62,7 @@ Shape a new capability from user/problem framing through first delivery boundary
 - spec
 - example mapping
 - GSD handoff
-- frontend direction packet **when UI is implementation-shaping**
+- frontend-direction follow-on prompt **when UI is implementation-shaping**
 
 ### Typical question themes
 - who is this for?
@@ -90,7 +91,7 @@ Everything from greenfield **plus**:
 - invariants
 - rollout constraints
 - explicit interaction with existing workflows
-- frontend direction packet **when new or changed screens materially affect delivery**
+- frontend-direction follow-on prompt **when new or changed screens materially affect delivery**
 
 ### Typical question themes
 - where does this hook into the current system?
@@ -125,7 +126,7 @@ Use the **lite path**:
 - short spec
 - mini example map
 - GSD handoff
-- frontend direction packet only when the UI change introduces meaningful new hierarchy, state, or visual-contract ambiguity
+- frontend-direction follow-on prompt only when the UI change introduces meaningful new hierarchy, state, or visual-contract ambiguity
 
 ### Typical question themes
 - what exact behavior should change?
@@ -159,7 +160,7 @@ The spec can be short, but it must include:
 - safety constraints
 - acceptance and non-regression examples
 - rollout / verification notes if needed
-- frontend direction packet only when the fix changes meaningful screen behavior and the visual contract must be re-established
+- frontend-direction follow-on prompt only when the fix changes meaningful screen behavior and the visual contract must be re-established
 
 ### Typical question themes
 - what is failing now?
@@ -194,7 +195,7 @@ Choose a technical direction, then bound the implementation implications.
 - decision rationale
 - ADR-style appendix in the spec
 - explicit GSD milestone recommendation
-- frontend direction packet only when architectural choices change how key screens, navigation, or interaction boundaries must work
+- frontend-direction follow-on prompt only when architectural choices change how key screens, navigation, or interaction boundaries must work
 
 ### Typical question themes
 - what is the architectural pain?

@@ -12,7 +12,7 @@ Default path:
 - Keep sections as short as the complexity allows.
 - For simple work, a short spec is fine.
 - For nuanced work, add appendices rather than bloating the main narrative.
-- If a frontend direction packet exists, keep this spec structural and behavioral; link to the packet instead of duplicating detailed visual-system guidance.
+- If frontend direction is required, keep this spec structural and behavioral; link to the follow-on prompt or later packet instead of duplicating detailed visual-system guidance.
 - A durable wireframe appendix is optional. Add one only when a spatial or layout decision materially affects later implementation or review.
 - Store durable wireframes as separate markdown files in a dedicated sibling folder named after the spec slug, for example `{spec-slug}-wireframes/`.
 - Keep each wireframe low-fidelity and structure-first: ASCII sketches, block diagrams, or equivalent are preferred over polished mockups.
@@ -57,7 +57,7 @@ Default path:
 - Failure / edge cases
 - Error handling
 - Operational or admin behavior if relevant
-- Link to frontend direction packet if one exists
+- Link to frontend-direction follow-on prompt or packet if applicable
 
 ## 6. System Design
 - Components / units
@@ -77,7 +77,7 @@ Default path:
 - What must be tested or verified
 - Key acceptance checks
 - Observability / rollout checks if needed
-- Frontend verification link if a frontend direction packet exists
+- Frontend verification link if a frontend direction packet exists later
 
 ## 9. Open Questions
 - Questions intentionally left open
@@ -95,10 +95,11 @@ Default path:
 ## Appendix D. Wireframes
 [Optional. Link to durable wireframe files in a sibling `{spec-slug}-wireframes/` folder.]
 
-## Appendix E. Frontend Direction Packet
-[Only if applicable. Link to `{spec-slug}--frontend-direction.md` and the supporting asset folder.]
+## Appendix E. Frontend Direction
+[Only if applicable. Link to the follow-on prompt now, and later to `{spec-slug}--frontend-direction.md` and the supporting asset folder.]
 
 Example:
+- [Frontend-direction follow-on prompt](#) — prompt to create the frontend packet in a separate session
 - [Frontend direction packet]({spec-slug}--frontend-direction.md) — selected visual direction, state coverage, responsive rules, and implementation contract
 - [Screen index]({spec-slug}--frontend/screen-index.md) — key screens and state coverage
 - [Brownfield UI extraction]({spec-slug}--frontend/brownfield-ui-extraction.md) — preserve vs improve analysis for current product truth
@@ -145,5 +146,5 @@ A strong spec:
 - makes the chosen direction explicit
 - names risks honestly
 - includes enough behavior detail to build or hand off safely
-- stays consistent with the frontend direction packet when one exists
+- stays consistent with the frontend-direction follow-on prompt or packet when applicable
 - is consistent with the handoff file

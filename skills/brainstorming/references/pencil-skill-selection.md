@@ -1,6 +1,6 @@
 # Pencil Skill Selection
 
-Use this file to choose the right Pencil skills for the packet and for downstream implementation.
+Use this file to choose likely Pencil skills for the frontend-direction follow-on prompt and downstream implementation.
 
 ## Core rule
 
@@ -39,9 +39,11 @@ This adapter emphasizes:
 - responsive mapping
 - component API thinking for that stack
 
-## Packet requirements
+## Follow-on prompt requirements
 
-The frontend direction packet should explicitly record:
+The brainstorming follow-on prompt should record adapter candidates without treating them as final packet evidence.
+
+The later frontend direction packet should explicitly record:
 
 - which Pencil skills were used during packet creation
 - which Pencil skills downstream agents should load during implementation
@@ -59,5 +61,5 @@ unless the actual production target says otherwise.
 ## Guardrails
 
 - Do not load the React adapter for an Angular product “just because the prompt library online used React.”
-- Do not keep the adapter implicit. Write it down in the packet and handoff.
+- Do not keep the adapter implicit. Write the likely adapter in the follow-on prompt, then finalize it in the packet and handoff after frontend-direction.
 - Do not let the adapter overrule the packet or the current product system.
