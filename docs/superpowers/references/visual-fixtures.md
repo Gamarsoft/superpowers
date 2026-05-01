@@ -50,6 +50,18 @@ state=missing-context → assert page-local missing context state
 
 That gives deterministic visual coverage without mutating Customer Service, UAA, feature flags, Keycloak roles, or database rows.
 
+## One-off browser monkeypatches
+
+An in-browser XHR or `fetch` monkeypatch can be useful as a spike to prove that a state can render from a contract-shaped response.
+
+Treat it as temporary proof only:
+
+- acceptable for a quick lane trial
+- label it as ad-hoc fixture evidence in UAT
+- do not treat it as the reusable fixture harness
+- do not use it as the final review lane when a repeatable network fixture or proxy can be added in scope
+- convert successful spikes into Playwright/network fixtures or a local mock proxy before relying on them across tasks or slices
+
 ## Why I prefer e2e/network fixtures over app-level fixture switches
 
 An app-level switch like `?creditParkFixture=active` inside Angular is convenient, but riskier:
@@ -137,9 +149,10 @@ I’d propose a future task/slice pattern:
 1. Add a `credit-park.visual-fixtures/` catalog with typed Customer Service DTO JSON.
 2. Add a Playwright or local proxy harness that can serve each fixture state.
 3. Add browser/UAT scripts that render each state in desktop and mobile.
-4. Update UAT language to separate:
+4. If an ad-hoc browser monkeypatch was used first, replace it with the harness before making the fixture lane repeatable.
+5. Update UAT language to separate:
    - live integration proof
    - fixture visual-state proof
-5. Keep screenshots/debug dumps ephemeral unless explicitly requested.
+6. Keep screenshots/debug dumps ephemeral unless explicitly requested.
 
 That would make this kind of visual-truth work much more reliable without pretending fixture data proves backend state.

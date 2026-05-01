@@ -102,6 +102,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - Keep live mode for integration proof: auth, routing, feature flags, tenant context, real API composition, persistence, and service wiring.
    - Use fixture mode for visual proof: hard-to-reach states, responsive behavior, copy, action hierarchy, and reference-intent parity.
    - Prefer browser/e2e network fixtures or a local mock proxy that intercepts selected API responses while the frontend runs normally.
+   - Treat in-browser XHR/fetch monkeypatches as ad-hoc spikes only; label them as temporary fixture evidence and convert successful lanes into a repeatable network fixture or proxy harness before relying on them across tasks or slices.
    - Keep fixtures contract-shaped, using the same DTO/API shape as the real service; do not invent UI-only blobs.
    - Label fixture evidence as fixture evidence in UAT, summaries, and visual review artifacts. Do not present fixture evidence as live integration proof.
    - Avoid app-level fixture switches. If unavoidable, guard them to dev/test builds, make the UI visibly marked as fixture data, disable real writes, and prove they cannot activate in production config.

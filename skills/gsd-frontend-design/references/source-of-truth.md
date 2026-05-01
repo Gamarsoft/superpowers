@@ -135,8 +135,9 @@ Preserve unless the packet explicitly changes them:
 ### Live proof vs visual fixture proof
 1. Live runtime proof uses real backend services and proves integration, auth, routing, feature flags, tenant context, real API composition, persistence, and service wiring for the available state.
 2. Visual fixture proof uses deterministic contract-shaped API responses to render hard-to-reach visual states. It proves state rendering, responsive behavior, copy, action hierarchy, and reference-intent parity.
-3. Prefer browser/e2e network fixtures or a local mock proxy. Avoid production app fixture switches unless they are dev/test-only, visibly marked, write-disabled, and proven unavailable in production config.
-4. Fixture evidence must be labeled as fixture evidence in UAT, summaries, and review artifacts. It must not be used to claim live backend state, authorization, or persistence behavior.
+3. Prefer browser/e2e network fixtures or a local mock proxy. In-browser XHR/fetch monkeypatches are temporary spikes, not reusable fixture infrastructure.
+4. Avoid production app fixture switches unless they are dev/test-only, visibly marked, write-disabled, and proven unavailable in production config.
+5. Fixture evidence must be labeled as fixture evidence in UAT, summaries, and review artifacts. It must not be used to claim live backend state, authorization, or persistence behavior.
 
 ## Degraded mode
 

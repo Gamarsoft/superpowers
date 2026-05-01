@@ -66,7 +66,7 @@ Use GPT-5.5-style efficiency to remove redundant prompt scaffolding, not to weak
 - Validate before handoff: specs go through the spec reviewer, frontend packets go through packet completeness checks, and implementations verify against the selected visual-truth source.
 - For non-trivial UI implementation, use fresh-context visual review as the final quality gate. In GSD-2, this means a `worker` subagent writes `VISUAL-REVIEW.md` after browser/reference verification.
 - Record the conclusion of runtime browser evidence in durable UAT, summary, checklist, or review files. Put raw screenshots/traces/log dumps under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit them.
-- When fixtures are needed for state coverage, prefer browser/e2e network fixtures or a local mock proxy, label evidence as fixture evidence, and do not use it to claim backend authorization, persistence, or service wiring.
+- When fixtures are needed for state coverage, prefer browser/e2e network fixtures or a local mock proxy, label evidence as fixture evidence, and do not use it to claim backend authorization, persistence, or service wiring. Treat in-browser XHR/fetch monkeypatches as temporary spikes to convert into repeatable fixture lanes.
 - Do not treat shorter prompts as permission to skip the frontend-direction split, requirement reconciliation, board/image intent approval, or GSD packet gates.
 
 ## Independent Roles
