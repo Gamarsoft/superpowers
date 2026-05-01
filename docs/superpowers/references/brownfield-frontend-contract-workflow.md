@@ -27,7 +27,7 @@ Instead, the real source of truth is split across:
 - implicit spacing and theming rules
 - loading, error, and empty states only visible in a running app
 
-If the agent starts from code alone, both HTML companion artifacts and Pencil worksets tend to drift. They look plausible, but they are not faithful enough to serve as extension-grade contracts.
+If the agent starts from code alone, HTML companion artifacts, generated image references, and Pencil worksets tend to drift. They look plausible, but they are not faithful enough to serve as extension-grade contracts.
 
 ## Core Principles
 
@@ -66,18 +66,29 @@ Durable truth must converge into repo-local artifacts:
 
 - packet prose
 - screenshots
-- `.pen` files
+- approved ChatGPT Images 2 files when selected as visual truth
+- `.pen` files when Pencil is selected
 - extracted screen/state inventories
 
 ### Principle 5: Quality work must respect brownfield continuity
 
 Improvements to typography, hierarchy, spacing, copy, accessibility, and motion should refine the existing product family unless redesign is explicitly approved.
 
-### Principle 6: Pencil transport is contextual
+### Principle 6: Visual truth is selected explicitly
+
+The frontend packet must declare one implementation visual-truth source:
+
+- `chatgpt-image-2`: approved generated images are binding visual references; Pencil is omitted for that scope.
+- `pencil`: approved Pencil boards and workset files are binding visual references.
+- `current-ui/degraded`: no generated image or Pencil visual truth is approved; preserve current UI conservatively.
+
+Generated images remain `reference-only` until the human approves them and chooses their role.
+
+### Principle 7: Pencil transport is contextual
 
 Pencil MCP and Pencil CLI are transport layers over the same `.pen` truth.
 
-Use MCP for stable local design work when appropriate. For GSD-facing workflows, use Pencil CLI interactive mode only. Do not use Pencil MCP or Pencil CLI agent mode in those workflows.
+Use MCP for stable local design work when appropriate. For GSD-facing workflows, use Pencil CLI interactive mode only when Pencil is selected. Do not use Pencil MCP or Pencil CLI agent mode in those workflows.
 
 ## Recommended Skill Stack
 
@@ -87,32 +98,34 @@ Use these skills in this order:
 2. manual compaction or a new session using the frontend-direction follow-on prompt when UI materially shapes implementation
 3. `superpowers:frontend-direction`
 4. `superpowers:webapp-testing` for browser-grounded capture and verification
-5. `superpowers:pencil-design-core`
-6. exactly one adapter:
+5. `superpowers:creating-chatgpt-image-upload-packs` when ChatGPT Images 2 references are requested or needed before visual-truth selection
+6. `superpowers:pencil-design-core` only when Pencil is selected
+7. exactly one adapter when Pencil is selected:
    - `superpowers:pencil-design-angular-nebular`
    - `superpowers:pencil-design-react-tailwind`
-7. Impeccable skills only when a quality layer is in scope:
+8. Impeccable skills only when a quality layer is in scope:
    - `impeccable extract`
    - `impeccable critique`
    - `impeccable audit`
    - `impeccable document` when `DESIGN.md` is missing or stale
    - targeted refinement skills such as `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish`
-8. `superpowers:gsd-frontend-design` for implementation
+9. `superpowers:gsd-frontend-design` for implementation
 
 Use `impeccable teach` only when product context is missing, stale, or intentionally changing. If a current `PRODUCT.md` exists, treat it as product/register context instead of rerunning teach.
 
 ## Workflow Overview
 
-The workflow has eight phases.
+The workflow has nine phases.
 
 1. Scope and preservation framing
 2. Session split / frontend-direction bootstrap
 3. Runtime capture of current truth
 4. Extraction into durable baseline artifacts
-5. Controlled quality analysis
-6. Approved change exploration
-7. Durable contract finalization
-8. Implementation and verification
+5. Optional ChatGPT Images 2 reference pack
+6. Controlled quality analysis
+7. Approved change exploration
+8. Durable contract finalization
+9. Implementation and verification
 
 ## Phase 1: Scope and Preservation Framing
 
@@ -164,7 +177,8 @@ The follow-on prompt should carry:
 - brownfield invariants
 - visual-companion decisions as non-durable context
 - likely stack and adapter candidates
-- board-intent approval requirement
+- whether ChatGPT Images 2 references may be useful before visual-truth selection
+- visual-reference intent approval requirement
 
 Do not start frontend implementation while packet status is `required`.
 
@@ -209,8 +223,8 @@ Turn raw browser evidence into reusable, durable design truth.
 
 Use:
 - `superpowers:frontend-direction`
-- `superpowers:pencil-design-core`
-- correct Pencil adapter
+- `superpowers:pencil-design-core` only when Pencil is selected
+- correct Pencil adapter only when Pencil is selected
 
 For Angular + Nebular targets, confirm the repo's Angular and Nebular versions before applying adapter assumptions. Use `context7-research` for Angular guidance and the local Nebular checkout/source for Nebular component APIs when available.
 
@@ -218,8 +232,8 @@ Create these baseline artifacts before exploring improvements:
 
 - `brownfield-ui-extraction.md`
 - `screen-index.md`
-- `pencil-workset.md`
-- repo-local `.pen` files for:
+- `pencil-workset.md` only when Pencil is selected
+- repo-local `.pen` files only when Pencil is selected:
   - `design/pencil/_shared/00-foundations.pen`
   - `design/pencil/_shared/10-shell.pen`
   - `design/pencil/_shared/20-patterns.pen`
@@ -261,7 +275,39 @@ Examples:
 
 If these layers are not separated, every future artifact becomes ambiguous.
 
-## Phase 5: Controlled Quality Analysis
+## Phase 5: Optional ChatGPT Images 2 Reference Pack
+
+Goal:
+Create image-native references before implementation visual truth is selected, when pictures would clarify the approved direction better than prose alone.
+
+Use:
+- `superpowers:creating-chatgpt-image-upload-packs`
+
+Run this phase when:
+
+- the user requests ChatGPT Images 2 or generated UI references
+- exact visual direction is still unstable after baseline capture and extraction
+- generated image references are intended to become candidates for implementation visual truth
+- baseline screenshots need image-native exploration before Pencil or image-only truth is chosen
+
+Rules:
+
+- write the pack under `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/chatgpt-image-2/`
+- include `README.md`, `00-shared-image-context.md`, `attachment-map.md`, and prompt files
+- use screen families and parent/child state prompts so state variants inherit the same layout
+- stop after the pack until the human generates images externally
+- require approved images to be saved beside matching prompt files
+- keep generated images `reference-only` until the human approves them and chooses their visual-truth role
+
+Human visual-truth choices:
+
+- `chatgpt-image-2`: approved generated images bind implementation; omit Pencil artifacts for that scope.
+- `pencil`: approved generated images feed later Pencil boards; create Pencil artifacts only after this choice.
+- `current-ui/degraded` or defer: no generated or Pencil visual truth is approved; continue conservatively or wait.
+
+Do not create `pencil-workset.md`, shared Pencil files, feature `.pen` boards, or Pencil screenshots while this choice is pending.
+
+## Phase 6: Controlled Quality Analysis
 
 Goal:
 Improve judgment without losing fidelity.
@@ -284,7 +330,7 @@ Interpretation:
 - `critique` evaluates UX quality, hierarchy, cognitive load, and AI-slop risk
 - `audit` evaluates measurable implementation quality: accessibility, responsiveness, theming, performance, anti-patterns
 
-Use `impeccable teach` only when product context is missing, stale, or intentionally changing. Do not let Impeccable output outrank runtime truth, the approved packet, screenshots, or `.pen` files.
+Use `impeccable teach` only when product context is missing, stale, or intentionally changing. Do not let Impeccable output outrank runtime truth, the approved packet, screenshots, or the selected visual-truth source.
 
 Use the findings to populate two lists:
 
@@ -312,15 +358,15 @@ Examples:
 
 Impeccable should not authorize redesign by itself.
 
-## Phase 6: Approved Change Exploration
+## Phase 7: Approved Change Exploration
 
 Goal:
 Explore only the delta that matters for the approved change.
 
 Use:
 - `superpowers:frontend-direction`
-- `superpowers:pencil-design-core`
-- correct adapter
+- `superpowers:pencil-design-core` only when Pencil is selected
+- correct adapter only when Pencil is selected
 - optional HTML companion artifacts for comparison only
 
 Rules:
@@ -348,13 +394,13 @@ Bad decision axes:
 
 Every chosen direction must be translated back into:
 
-- `.pen` boards
+- the selected visual-truth source
 - packet prose
 - updated screenshots when needed
 
-Do not leave the winning idea only in HTML.
+Do not leave the winning idea only in HTML. If `chatgpt-image-2` is selected, list exact approved generated image files. If Pencil is selected, translate the decision into `.pen` boards.
 
-## Phase 7: Durable Contract Finalization
+## Phase 8: Durable Contract Finalization
 
 Goal:
 Produce artifacts that an implementation agent can follow without inventing the UI.
@@ -364,10 +410,12 @@ Required final packet contents:
 - `--frontend-direction.md`
 - `screen-index.md`
 - `brownfield-ui-extraction.md`
-- `pencil-workset.md`
+- implementation visual-truth source: `chatgpt-image-2`, `pencil`, or `current-ui/degraded`
+- `chatgpt-image-2/` files and approved generated image references when selected
+- `pencil-workset.md` when Pencil is selected
 - retained screenshots
-- exact `.pen` paths and board names
-- declared downstream Pencil skills
+- exact `.pen` paths and board names when Pencil is selected
+- declared downstream Pencil skills only when Pencil is selected
 - `Must preserve`
 - `May adapt`
 - `Explicit no-gos`
@@ -381,34 +429,36 @@ Each changed screen should answer:
 - what is normalized only?
 - what is intentionally changed?
 - what evidence is binding for implementation?
+- is Pencil selected, omitted by image-only visual truth, or unavailable in degraded mode?
 
-## Phase 8: Implementation and Verification
+## Phase 9: Implementation and Verification
 
 Goal:
 Implement the approved UI without reopening design discovery.
 
 Use:
 - `superpowers:gsd-frontend-design`
-- `superpowers:pencil-design-core`
-- correct adapter for the implementation target, normally the same adapter used during packet creation
+- `superpowers:pencil-design-core` and the correct adapter only when the packet selects Pencil
 
 Implementation rules:
 
 - read the packet before touching code
-- open the relevant `.pen` files and screenshots first
+- determine the declared implementation visual-truth source before touching code
+- when `chatgpt-image-2` is selected, open approved generated image files first and do not require Pencil
+- when `pencil` is selected, open the relevant `.pen` files and screenshots first
 - extract `Must preserve`, `May adapt`, and `Explicit no-gos`
 - reuse real codebase primitives and shell patterns
 - fill gaps conservatively
 - record any material deviation from packet or baseline truth
 - when `.pen` files are in scope, use Pencil CLI interactive mode only
 - prefer distinct output paths for CLI interactive `.pen` edits, then replace deliberately after verification
-- do not use Pencil MCP or Pencil CLI agent mode in GSD-facing workflows
+- do not use Pencil MCP or Pencil CLI agent mode in GSD-facing workflows when Pencil is selected
 - fall back to direct `.pen` text editing only in explicit degraded mode
 - use implementation-quality references for typography, color/contrast, spacing, interaction, motion, responsive behavior, UX writing, and accessibility as fallback heuristics, not as design authority
 
 Verification must include:
 
-- browser check against retained screenshots
+- browser check against retained screenshots and approved generated images when `chatgpt-image-2` is selected
 - responsive check for the approved widths
 - state verification for loading, empty, error, and validation states where relevant
 - accessibility-sensitive checks for focus, labels, and keyboard navigation
@@ -422,20 +472,23 @@ For each brownfield feature with meaningful UI work, maintain this minimum artif
 - feature-level frontend direction packet
 - screen index
 - brownfield UI extraction note
-- Pencil workset note
+- declared implementation visual-truth source
+- Pencil workset note only when Pencil is selected
 
 ### Visual evidence
 
 - current-state screenshots
 - approved-direction screenshots when they differ materially
+- approved ChatGPT Images 2 files when selected
 
 ### Durable design evidence
 
-- shared foundations `.pen`
-- shared shell `.pen`
-- shared patterns `.pen`
-- feature-specific `.pen`
-- board intent approval for every implementation-facing board or screenshot
+- approved ChatGPT Images 2 files with matching prompt stems when image-only truth is selected
+- shared foundations `.pen` when Pencil is selected
+- shared shell `.pen` when Pencil is selected
+- shared patterns `.pen` when Pencil is selected
+- feature-specific `.pen` when Pencil is selected
+- approved intent for every implementation-facing image, board, or screenshot
 
 ### Quality evidence
 
@@ -460,7 +513,7 @@ Symptoms:
 Response:
 - capture more runtime states
 - inspect real components and tokens
-- rebuild the baseline in Pencil first
+- rebuild the baseline in the selected visual-truth source first
 
 ### When quality is the main problem
 
@@ -484,8 +537,9 @@ Order:
 1. make the baseline faithful
 2. critique and audit the faithful baseline
 3. approve improvement deltas
-4. update the durable contract
-5. implement
+4. choose and record the visual-truth source
+5. update the durable contract
+6. implement
 
 ## Practical Impeccable Usage in This Workflow
 
@@ -517,8 +571,11 @@ Do not do these:
 - generate a "better" screen before documenting the current one
 - treat source code structure as enough evidence for visual fidelity
 - let HTML companion artifacts become the only visual truth
+- treat ChatGPT Images 2 prompts or unapproved generated images as implementation visual truth
+- create Pencil artifacts while ChatGPT Images 2 approval and visual-truth selection are still pending
+- require Pencil when the packet explicitly selects `chatgpt-image-2`
 - start frontend implementation while the GSD handoff still says frontend packet status is `required`
-- mix current truth, normalization, and proposed change into one board with no labeling
+- mix current truth, normalization, and proposed change into one artifact with no labeling
 - use Impeccable to overwrite the product family
 - let the stack adapter decide design direction
 - implement from memory instead of from packet plus evidence
@@ -527,11 +584,12 @@ Do not do these:
 
 Use this sentence as the working rule:
 
-Capture the real screen, extract the real system, critique the faithful baseline, approve the bounded delta, converge it into Pencil and packet artifacts, then implement conservatively from that contract.
+Capture the real screen, extract the real system, critique the faithful baseline, approve the bounded delta, select visual truth, converge it into approved image or Pencil plus packet artifacts, then implement conservatively from that contract.
 
 ## Reference Inputs
 
 This workflow aligns with:
 
 - local Superpowers frontend-direction and Pencil workflow skills
+- local Superpowers ChatGPT Images 2 upload-pack workflow
 - local Impeccable design-quality skills and references
