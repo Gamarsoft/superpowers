@@ -11,3 +11,4 @@ This version is designed to work with:
 - stack adapters such as `pencil-design-angular-nebular` or `pencil-design-react-tailwind`
 
 It is **not** a redesign skill. It is an implementation and verification skill.
+For GSD-2, non-trivial UI work should receive a fresh-context visual review from a `worker` subagent before completion.

@@ -110,6 +110,7 @@ Use these skills in this order:
    - `impeccable document` when `DESIGN.md` is missing or stale
    - targeted refinement skills such as `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish`
 9. `superpowers:gsd-frontend-design` for implementation
+10. Fresh-context visual review for non-trivial UI implementation, using the active workflow's reviewer mechanism. In GSD-2, this is a `worker` subagent that writes `VISUAL-REVIEW.md`.
 
 Use `impeccable teach` only when product context is missing, stale, or intentionally changing. If a current `PRODUCT.md` exists, treat it as product/register context instead of rerunning teach.
 
@@ -462,6 +463,8 @@ Verification must include:
 - responsive check for the approved widths
 - state verification for loading, empty, error, and validation states where relevant
 - accessibility-sensitive checks for focus, labels, and keyboard navigation
+- fresh-context visual quality review for non-trivial UI work
+- review artifact recording evidence inspected, Impeccable critique/audit checks applied when available, findings by severity, verdict, and review decision
 
 ## Required Artifact Model
 
@@ -497,6 +500,7 @@ Include this when quality refinement beyond faithful reproduction was in scope:
 - critique summary
 - audit summary
 - explicit list of accepted quality improvements for this scope
+- fresh-context visual review artifact for non-trivial UI implementation, such as `VISUAL-REVIEW.md`
 
 ## Decision Rules
 
@@ -577,6 +581,7 @@ Do not do these:
 - start frontend implementation while the GSD handoff still says frontend packet status is `required`
 - mix current truth, normalization, and proposed change into one artifact with no labeling
 - use Impeccable to overwrite the product family
+- treat implementer self-review as the final visual quality gate for non-trivial UI implementation
 - let the stack adapter decide design direction
 - implement from memory instead of from packet plus evidence
 
@@ -584,7 +589,7 @@ Do not do these:
 
 Use this sentence as the working rule:
 
-Capture the real screen, extract the real system, critique the faithful baseline, approve the bounded delta, select visual truth, converge it into approved image or Pencil plus packet artifacts, then implement conservatively from that contract.
+Capture the real screen, extract the real system, critique the faithful baseline, approve the bounded delta, select visual truth, converge it into approved image or Pencil plus packet artifacts, implement conservatively from that contract, then require fresh-context visual review before completion.
 
 ## Reference Inputs
 

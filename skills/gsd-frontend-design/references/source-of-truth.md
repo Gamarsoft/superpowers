@@ -27,8 +27,10 @@ For brownfield work, think in layers instead of only a flat ranking:
 9. **Retained screenshots, browser captures, or Pencil exports** according to their approved intent mode
 10. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
 11. **Existing component library, tokens, and app-shell conventions**
-12. **This skill's implementation-quality references and Pencil skills when Pencil is selected**
-13. **Freeform invention** only for genuinely unspecified gaps
+12. **Fresh-context visual review artifacts** as quality review evidence
+13. **Impeccable critique/audit findings** as quality review evidence, not design authority
+14. **This skill's implementation-quality references and Pencil skills when Pencil is selected**
+15. **Freeform invention** only for genuinely unspecified gaps
 
 Later items do not overrule earlier items without an explicit reason.
 
@@ -117,6 +119,13 @@ Preserve unless the packet explicitly changes them:
 2. Once the chosen direction is translated into approved images, `.pen` files, or packet prose, the durable selected visual-truth source wins.
 3. Do not implement directly from stale HTML companion screens when the packet and selected visual-truth source already converged.
 
+### Impeccable findings vs approved direction
+1. Impeccable critique and audit are review tools.
+2. Use findings to identify quality gaps, accessibility issues, responsive failures, theming drift, cognitive load, and AI-slop tells.
+3. Prefer fresh-context reviewer findings over the implementer's own visual self-assessment for the final gate.
+4. If a finding conflicts with the approved packet, visual-truth source, or brownfield must-preserve rule, surface the conflict instead of silently redesigning.
+5. Apply only bounded fixes that preserve the approved direction, or record follow-up work that needs human approval.
+
 ## Degraded mode
 
 If no packet or no approved visual-truth source exists, say so explicitly.
@@ -141,4 +150,6 @@ If you must deviate from the packet, the workset, or the current system, record:
 - whether the deviation is visual only or behavior-affecting
 - whether approved ChatGPT Images 2 files, `.pen` files, or retained screenshots were consulted
 - which Pencil skills were loaded, if any
+- which fresh-context visual review artifact was produced, or why it was unavailable
+- which Impeccable critique/audit checks ran, or why they were skipped
 - whether the packet, image references, or workset should be updated after implementation

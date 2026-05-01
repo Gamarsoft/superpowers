@@ -24,7 +24,7 @@ These skills form a pipeline, not a flat list of interchangeable tools.
 
 `pencil-design-angular-nebular` and `pencil-design-react-tailwind` are mutually exclusive adapters. They translate Pencil evidence into stack-native guidance for the real frontend target.
 
-`gsd-frontend-design` is the implementation skill. It consumes the approved packet, declared visual-truth source, selected references, screenshots, and current product system, then changes application code without silently redesigning the product. If the packet selects `chatgpt-image-2`, GSD uses approved generated images as binding visual screenshots and omits Pencil skills for that scope.
+`gsd-frontend-design` is the implementation skill. It consumes the approved packet, declared visual-truth source, selected references, screenshots, and current product system, then changes application code without silently redesigning the product. If the packet selects `chatgpt-image-2`, GSD uses approved generated images as binding visual screenshots and omits Pencil skills for that scope. For non-trivial UI work, completion requires fresh-context visual review rather than implementer self-review alone.
 
 The intended flow is:
 
@@ -62,6 +62,7 @@ Use GPT-5.5-style efficiency to remove redundant prompt scaffolding, not to weak
 - Preserve visible preambles and phase-aware intermediate updates in tool-heavy sessions so the user can follow long-running work.
 - Separate source-backed facts from creative direction. Product behavior, routes, states, customer claims, metrics, and current UI facts need evidence. Visual phrasing, sample copy, and bounded variants may be creative but must not invent product facts.
 - Validate before handoff: specs go through the spec reviewer, frontend packets go through packet completeness checks, and implementations verify against the selected visual-truth source.
+- For non-trivial UI implementation, use fresh-context visual review as the final quality gate. In GSD-2, this means a `worker` subagent writes `VISUAL-REVIEW.md` after browser/reference verification.
 - Do not treat shorter prompts as permission to skip the frontend-direction split, requirement reconciliation, board/image intent approval, or GSD packet gates.
 
 ## Independent Roles
@@ -221,6 +222,7 @@ What it controls:
 - ChatGPT Images 2 source consumption when approved generated images are selected
 - Pencil source consumption through CLI interactive mode when `.pen` files are in scope
 - implementation-quality checks for typography, color/contrast, spacing, interaction, motion, responsive behavior, UX writing, and accessibility as fallback heuristics
+- fresh-context visual review for non-trivial UI work, with Impeccable critique/audit findings treated as review evidence rather than design authority
 
 What it should not do:
 - reopen product or design discovery without cause
@@ -282,6 +284,8 @@ Use `gsd-frontend-design` with:
 
 This phase reads the approved evidence in precedence order and changes real frontend code conservatively.
 
+For non-trivial UI work, this phase also needs a fresh-context visual reviewer after browser/reference verification. In GSD-2, use a `worker` subagent and record `VISUAL-REVIEW.md` beside the normal review artifact.
+
 This is the implementation phase.
 
 ## Skill Matrix
@@ -294,7 +298,7 @@ This is the implementation phase.
 | `pencil-design-core` | Enforce durable `.pen` discipline | packet, screenshots, current UI, existing `.pen` files, design tokens | stable `.pen` artifacts and verified design evidence | exactly one stack adapter when code translation matters | a framework-specific translation skill |
 | `pencil-design-angular-nebular` | Translate Pencil evidence for Angular + Nebular | approved `.pen` evidence, packet, current Angular/Nebular patterns | Angular/Nebular-oriented implementation guidance | `pencil-design-core` | a generic frontend adapter |
 | `pencil-design-react-tailwind` | Translate Pencil evidence for React + Tailwind | approved `.pen` evidence, packet, token system, component conventions | React/Tailwind-oriented implementation guidance | `pencil-design-core` | a universal design-to-code adapter |
-| `gsd-frontend-design` | Implement frontend code from approved design truth | spec, handoff, packet, selected visual truth, support docs, screenshots, existing code patterns | implemented UI changes aligned to approved evidence | Pencil skills only when Pencil sources exist | a discovery or redesign skill |
+| `gsd-frontend-design` | Implement frontend code from approved design truth | spec, handoff, packet, selected visual truth, support docs, screenshots, existing code patterns | implemented UI changes aligned to approved evidence plus visual review artifact for non-trivial UI work | Pencil skills only when Pencil sources exist | a discovery or redesign skill |
 
 ## Trigger Matrix
 
@@ -329,8 +333,10 @@ Visual contract:
 8. retained screenshots, browser captures, and Pencil exports treated as binding evidence
 9. `PRODUCT.md` and current `DESIGN.md` as product/register and documented-system context
 10. existing component library, tokens, shell conventions, and shared primitives
-11. skill references and adapters as interpretation tools
-12. freeform invention only for genuinely unspecified gaps
+11. fresh-context visual review artifacts as quality review evidence
+12. Impeccable critique/audit findings as quality review evidence, not design authority
+13. skill references and adapters as interpretation tools
+14. freeform invention only for genuinely unspecified gaps
 
 `DESIGN.json` is auxiliary Impeccable tooling output, not a primary durable contract.
 
@@ -372,6 +378,7 @@ Pencil MCP and Pencil CLI are transport layers over the same `.pen` truth.
 - Treating the adapter as higher priority than the packet or current product system.
 - Using a modern consumer-dashboard aesthetic to overwrite a dense brownfield operator UI.
 - Using Pencil MCP in a GSD-facing workflow when the current skills require CLI interactive mode.
+- Treating implementer self-review as enough visual QA for non-trivial UI implementation.
 
 ## Short Mental Model
 

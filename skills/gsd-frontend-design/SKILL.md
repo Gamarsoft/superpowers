@@ -101,9 +101,19 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 12. If you must deviate from the packet, approved images, `.pen` files, or existing system, make the deviation explicit and explain why.
 13. Read `references/pencil-source-consumption.md` when Pencil-backed sources exist.
 14. Read `references/implementation-review-checklist.md` before considering the work done.
-15. Do not report completion for image-backed or Pencil-backed UI work until runtime browser evidence and the approved reference-intent checklist are complete.
+15. Run a fresh-context visual quality review before considering non-trivial UI work done.
+   - Do not rely on implementer self-review as the final visual gate for non-trivial UI work.
+   - In GSD-2, after implementation and browser/reference verification, spawn a fresh `worker` subagent reviewer.
+   - Tell the reviewer to load Impeccable, apply `$impeccable critique` and `$impeccable audit` as applicable, inspect the approved packet, visual-truth sources, reference-intent checklist, and runtime evidence, then write one review artifact: `.gsd/{milestoneId}/slices/{sliceId}/tasks/{taskId}-VISUAL-REVIEW.md` or `.gsd/{milestoneId}/slices/{sliceId}/VISUAL-REVIEW.md`.
+   - The artifact should name the target, evidence inspected, checks applied, findings by severity, `Verdict: APPROVE | REQUEST_CHANGES | ESCALATE`, and `Review Decision: no_action | remediate_and_rereview | escalate_replan`.
+   - In GSD-2 implementation-end review, the visual review pass is evidence collection. If a paired review-and-resolve task exists, unresolved blocking or important visual findings belong there unless they prevent basic verification from running.
+   - Outside GSD-2, use the active workflow's equivalent fresh-context reviewer, or record why fresh-context review was unavailable.
+   - The reviewer reports blocking, important, and minor visual findings; it does not rewrite the UI.
+   - Treat Impeccable findings as review evidence and refinement input, not as authority to override the approved packet, visual-truth source, or brownfield baseline.
+   - If Impeccable cannot run or its preflight gates cannot pass, record why and use the implementation review checklist plus browser evidence as the fallback.
+16. Do not report completion for image-backed or Pencil-backed UI work until runtime browser evidence and the approved reference-intent checklist are complete.
    - Completion is allowed with visual mismatches only by explicit waiver: list the mismatch, source image or board, implementation constraint, accepted fallback, and follow-up owner.
-16. Record the frontend sources and proof in the relevant task, slice, or implementation summary. Keep `Frontend References` in `CONTEXT.md` current when those workflow artifacts are in scope.
+17. Record the frontend sources, visual review findings, and proof in the relevant task, slice, or implementation summary. Keep `Frontend References` in `CONTEXT.md` current when those workflow artifacts are in scope.
 
 ## Reference loading guide
 
@@ -135,6 +145,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - Do not let a stack adapter overrule the packet or the current product system.
 - Do not replace an explicit visual direction with a new aesthetic thesis unless the human explicitly asks for redesign.
 - Do not use the reference files to overrule product constraints, accessibility constraints, framework constraints, or existing design-system rules.
+- Do not use Impeccable critique or audit findings to silently redesign approved work. Turn findings into bounded fixes or explicit follow-up questions.
 - When no packet or approved visual-truth source exists, say so and operate in degraded mode rather than pretending the direction is settled.
 - Do not translate generic React, Tailwind, or design-tool output directly into production Angular or Nebular code without adapting it to the repo’s real primitives.
 - Do not use Pencil MCP in GSD workflows.
@@ -150,5 +161,6 @@ A strong result:
 - covers the main states and responsive behavior
 - preserves the current shell and component language unless change is explicitly approved
 - carries `visual-truth` deltas through the real stack and treats `semantic-guidance` images or boards as behavior/workflow evidence, not automatic redesign targets
+- includes visual review evidence from Impeccable critique/audit when available, or a recorded fallback when unavailable
 - improves accessibility and implementation quality without drifting into redesign
 - records the exact selected visual-truth source, approved images or `.pen` files, screenshots, reference intent modes, Pencil CLI usage only when Pencil was selected, reference-intent checks, and any waived mismatches used for later verification

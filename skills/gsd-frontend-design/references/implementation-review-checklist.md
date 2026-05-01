@@ -100,6 +100,12 @@ A waiver is acceptable only when it names the source image or board, approved in
 
 - Did you compare the result against the chosen approved images, `.pen` files, or retained references?
 - Did runtime browser evidence support the reference-intent checklist?
+- For non-trivial UI work, did a fresh-context reviewer perform the final visual quality review?
+- In GSD-2, was that reviewer a `worker` subagent and was its `VISUAL-REVIEW.md` artifact recorded?
+- Did you run a visual quality review with `$impeccable critique` when available, or record why it was skipped?
+- Did you run measurable implementation quality review with `$impeccable audit` when available, or record why it was skipped?
+- Were Impeccable findings treated as bounded review findings rather than permission to override the packet or visual-truth source?
+- Were blocking and important visual findings fixed, explicitly disproved, waived, or moved into the paired review-and-resolve task?
 - If ChatGPT Images 2 was selected, did you compare the result against the approved generated image files and not require Pencil parity?
 - Did you verify the required viewports?
 - Did you check any acceptance criteria or screenshot checks named in the packet?
