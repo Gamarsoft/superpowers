@@ -38,6 +38,11 @@ The user should be reacting to shaped decisions, not inventing the whole design 
 10. **Never leave the user holding an unframed decision**
     - If the user says "I'm not sure," that is a cue to sharpen your recommendation, not ask another vague question.
 
+11. **Do not under-question to look efficient**
+    - GPT-5.5-style concise prompting is about removing noise, not skipping discovery.
+    - Prefer one more well-framed question over hardening a weak feature frame.
+    - Continue discovery until user value, scope, invariants, key states, failure behavior, and first delivery boundary are stable enough to write.
+
 ---
 
 ## Standard message shapes
@@ -138,6 +143,23 @@ Your recommendation must say:
 - why it is the best choice **for now**
 
 Do not present options as if all are equally good.
+
+## Discovery stop rule
+
+After each answer, decide whether the next artifact can be drafted without hiding an implementation-shaping unknown.
+
+Move forward when:
+
+- the remaining unknowns are non-blocking, or
+- the unknowns are explicitly recorded with the decision they block.
+
+Keep asking when:
+
+- the primary user or success signal is still fuzzy
+- the first delivery boundary is not testable
+- brownfield invariants, rollout, migration, or compatibility constraints are missing
+- key UI states, failure behavior, or non-regression boundaries are unclear
+- option trade-offs would be speculative without one more answer
 
 ---
 

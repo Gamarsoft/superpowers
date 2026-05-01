@@ -9,6 +9,19 @@ description: Use when product or feature work is still being shaped before imple
 
 Brainstorming turns an idea into approved implementation inputs.
 
+## Outcome-first success contract
+
+A brainstorming session succeeds when another agent can continue with minimal rediscovery:
+
+- the problem, user, success signal, first delivery boundary, non-goals, and open questions are explicit
+- the chosen track and recommended direction are justified by real trade-offs
+- brownfield invariants, rollout constraints, compatibility constraints, and integration risks are recorded when relevant
+- each major capability has concrete examples or rules that make implementation testable
+- the design spec, GSD handoff, and optional frontend-direction follow-on prompt agree with each other
+- UI-heavy work is gated until the separate frontend-direction packet exists and is approved
+
+Use this contract as the destination. The workflow below is the default path for reaching it without skipping required gates.
+
 Default outputs:
 
 1. a reviewed design spec
@@ -68,6 +81,12 @@ When frontend direction is required:
 
 Create a task for each of the following and complete them in order.
 
+### Gate strength
+
+- **Hard gates:** no production code during brainstorming; reflect before detailed questioning; one guided question per message; preserve the frontend-direction split; write the required artifacts; run the review loop; ask for user review before transition.
+- **Default path:** follow the numbered sequence unless the selected track's lite path explicitly compresses artifact depth. Compression may shorten prose, but it must not remove decisions, examples, review, or handoff gates.
+- **Stop rule:** after each discovery or artifact pass, ask whether the success contract above can be satisfied with current evidence. If yes, move to the next artifact or review step. If no, ask the smallest next framed question or retrieve the smallest missing evidence.
+
 1. **Explore project context**
    - If the request is tied to this repo and likely needs topic-specific codebase context, invoke `gathering-topic-context` before reflection.
    - Use `gathering-topic-context` by default for brownfield work, bugfixes, architecture-led changes, and repo-specific feature requests.
@@ -115,6 +134,8 @@ Create a task for each of the following and complete them in order.
    - Prefer **2–3 framed options** over open-ended questions.
    - Always include a recommendation when the choice is design-shaping.
    - If you ask an open-ended question, the **next turn** must reframe the answer into options.
+   - Do not optimize for the fewest questions. Ask enough guided questions to prevent a poorly framed feature, especially around user value, boundaries, invariants, rollout, state coverage, and failure behavior.
+   - Stop discovery only when the remaining unknowns are either non-blocking or explicitly carried as open questions with the decision they block.
 
 8. **Present option cards**
    - Use `references/option-cards-template.md`.

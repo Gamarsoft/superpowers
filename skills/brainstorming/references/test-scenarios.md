@@ -79,3 +79,12 @@ Failure if:
 - the skill skips `gathering-topic-context` and jumps straight to generic design questions
 - it does not use topic-specific codebase context before reflection or track selection
 - it treats the request like pure greenfield ideation
+
+## Scenario 10 — outcome-first does not mean premature convergence
+User says:
+> Use the newer GPT guidance and keep this brainstorming session efficient. I want approval workflows in the existing invoicing system.
+
+Failure if:
+- the skill treats efficiency as a reason to skip guided discovery
+- it writes the spec before user value, first delivery boundary, invariants, rollout concerns, and failure behavior are stable
+- it fails to carry remaining implementation-shaping unknowns as explicit open questions

@@ -107,6 +107,16 @@ If the platform question tool is unavailable, fall back to plain terminal text w
 
 For conceptual, scope, and text-first turns, stay in terminal.
 
+## Companion stop rule
+
+Stop using the companion for the current decision when the visual artifact has done its job:
+
+- the user can choose, reject, or defer the visible direction
+- the remaining decision is textual, behavioral, or implementation-boundary work
+- the winning idea can be summarized for the frontend-direction follow-on prompt
+
+Do not keep refreshing browser artifacts to polish presentation, add ornamental variants, or replace guided discovery. If more visual work is still needed, the next artifact must answer a specific visual question and pass the pre-display quality gate.
+
 ## Pre-display quality gate
 
 Before showing a screen, verify all four checks in order:

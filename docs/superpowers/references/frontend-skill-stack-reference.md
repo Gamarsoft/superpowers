@@ -42,6 +42,7 @@ The intended flow is:
 
 These skills repeat the same control rules in different phases:
 
+- Outcome-first prompting improves the pipeline only when it preserves the contracts: each phase should state the intended artifact, success criteria, source evidence, validation gate, and stop condition before expanding process detail.
 - Brownfield product truth outranks generated novelty.
 - Approved specs and packets outrank casual interpretation.
 - Functional requirements and visual direction are separate contracts: approved spec, handoff, and acceptance criteria define behavior; current product UI and approved frontend packets define visual change.
@@ -51,6 +52,17 @@ These skills repeat the same control rules in different phases:
 - HTML companion artifacts are temporary comparison surfaces, not durable truth.
 - In brownfield work, preservation is the default unless change is explicitly approved.
 - `PRODUCT.md` and `DESIGN.md` are useful design-memory inputs, but they do not outrank runtime truth, approved packets, or selected visual-truth evidence.
+
+## GPT-5.5 Prompting Alignment
+
+Use GPT-5.5-style efficiency to remove redundant prompt scaffolding, not to weaken discovery, review, or visual-truth gates.
+
+- Keep each phase outcome-first: name the artifact to produce, what approval means, what evidence is binding, and when to stop.
+- Use retrieval budgets: gather enough source evidence to support the next decision, then stop unless a missing fact would change scope, risk, visual truth, or implementation acceptance.
+- Preserve visible preambles and phase-aware intermediate updates in tool-heavy sessions so the user can follow long-running work.
+- Separate source-backed facts from creative direction. Product behavior, routes, states, customer claims, metrics, and current UI facts need evidence. Visual phrasing, sample copy, and bounded variants may be creative but must not invent product facts.
+- Validate before handoff: specs go through the spec reviewer, frontend packets go through packet completeness checks, and implementations verify against the selected visual-truth source.
+- Do not treat shorter prompts as permission to skip the frontend-direction split, requirement reconciliation, board/image intent approval, or GSD packet gates.
 
 ## Independent Roles
 

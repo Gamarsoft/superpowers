@@ -43,6 +43,20 @@ After: infer topic terms, scan targeted files, then ask focused questions.
 
 **Depth rule:** Use deep by default. Use light only when the user explicitly requests it.
 
+## Retrieval Budget
+
+Gather the minimum topic evidence needed to make the next brainstorming or planning step concrete, then stop.
+
+Enough evidence means the bundle can name:
+
+- likely scope and search terms
+- affected files or areas
+- current behavior or data flow
+- constraints, tests, dependencies, risks, and edge cases
+- suggested track and decision hooks
+
+Search again only when a missing fact would change the track, first delivery boundary, integration risk, brownfield invariant, or next guided question. Do not keep searching to make the bundle feel exhaustive, improve prose, or collect unrelated project background.
+
 ## Implementation
 
 ### Subagent Flow (Default)

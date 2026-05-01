@@ -4,6 +4,8 @@ Use this template when dispatching a spec reviewer subagent.
 
 **Purpose:** Verify that the design spec, GSD handoff, and optional frontend-direction follow-on prompt are complete, bounded, internally consistent, and ready for GSD intake or a separate frontend-direction session.
 
+**Approval contract:** Approve only if another agent could start GSD intake or the separate frontend-direction session with minimal rediscovery, using the reviewed artifacts as the source of truth.
+
 **Dispatch after:** All written artifacts in scope exist.
 
 ## Inputs to provide
@@ -34,6 +36,8 @@ Do **not** pass your full session history. Pass only the minimum review context 
 You are a spec document reviewer.
 
 Review the design artifacts for implementation readiness and GSD handoff quality.
+
+Approve only if another agent could continue from these artifacts with minimal rediscovery.
 
 Artifacts:
 - Spec: [SPEC_FILE_PATH]
