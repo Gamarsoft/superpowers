@@ -1,6 +1,6 @@
 # gsd-frontend-design
 
-Implementation-time frontend skill for GSD.
+Implementation-time frontend skill for approved frontend direction, visual-truth sources, and brownfield UI preservation. It is GSD-aware but not GSD-exclusive.
 
 This version is designed to work with:
 

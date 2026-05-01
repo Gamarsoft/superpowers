@@ -1,6 +1,6 @@
 ---
 name: gsd-context7-research
-description: GSD-tuned docs-first research for external libraries, frameworks, APIs, and version-sensitive tooling. Use during GSD research, planning, or execution before editing code when correctness depends on current docs.
+description: Use when GSD work depends on external libraries, frameworks, APIs, SDKs, services, or version-sensitive tooling.
 ---
 
 # GSD Context7 Research
@@ -50,6 +50,8 @@ For each relevant library or service:
 - look for version caveats, migrations, or deprecated patterns
 
 Do not spray broad doc lookups across unrelated tools.
+
+Stop when the docs answer the API, config, workflow, or version decision needed for the current GSD unit. Search again only if a missing version, option, migration note, or caveat would change the implementation or proof path.
 
 ### 3. Turn docs into GSD artifacts
 

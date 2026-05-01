@@ -1,6 +1,6 @@
 ---
 name: gsd-frontend-design
-description: Use when implementing frontend work from an approved spec or packet, especially when approved ChatGPT Images 2 references, `.pen` files, brownfield preservation rules, or stack-specific design evidence must guide code changes.
+description: Use when frontend work researches, plans, implements, verifies, or refines user-facing UI, UX, browser behavior, visual evidence, approved packets, images, or `.pen` sources.
 ---
 
 # Frontend Design
@@ -17,6 +17,8 @@ Before planning or coding, read the frontend direction packet and determine its 
 
 Functional requirements still come from the spec, handoff, acceptance criteria, and current product behavior. The visual-truth mode controls which visual references may bind implementation.
 
+If a handoff, `CONTEXT.md`, or equivalent workflow artifact says frontend packet status is `required` and no approved packet exists, stop frontend planning or implementation. Run the referenced frontend-direction follow-on prompt first; do not treat this as degraded-mode permission to invent UI.
+
 ## Source-of-truth order
 
 Read `references/source-of-truth.md` first.
@@ -25,16 +27,17 @@ Use this precedence order:
 
 1. Approved spec, handoff, and acceptance criteria
 2. Existing product UI and design system for brownfield work
-3. Approved frontend direction packet
-4. The packet's declared implementation visual-truth source
-5. Approved ChatGPT Images 2 generated image files when `chatgpt-image-2` is selected
-6. `pencil-workset.md` and relevant `.pen` files when `pencil` is selected
-7. `brownfield-ui-extraction.md` and `screen-index.md`
-8. Retained screenshots, browser captures, or Pencil exports that the packet treats as binding evidence
-9. Project-level `PRODUCT.md` and current `DESIGN.md` when present
-10. Existing component library, tokens, and app-shell conventions
-11. The implementation-quality reference files in this skill
-12. Freeform invention only for genuinely unspecified gaps
+3. Relevant workflow context such as milestone or slice `CONTEXT.md`, especially `Frontend References` when present
+4. Approved frontend direction packet
+5. The packet's declared implementation visual-truth source
+6. Approved ChatGPT Images 2 generated image files when `chatgpt-image-2` is selected
+7. `pencil-workset.md` and relevant `.pen` files when `pencil` is selected
+8. `brownfield-ui-extraction.md` and `screen-index.md`
+9. Retained screenshots, browser captures, or Pencil exports that the packet treats as binding evidence
+10. Project-level `PRODUCT.md` and current `DESIGN.md` when present
+11. Existing component library, tokens, and app-shell conventions
+12. The implementation-quality reference files in this skill
+13. Freeform invention only for genuinely unspecified gaps
 
 ## Skill composition
 
@@ -51,13 +54,14 @@ When the packet selects `pencil` or Pencil-backed sources are in scope:
 - load the correct stack adapter for the implementation target
   - `pencil-design-angular-nebular` for Angular + Nebular / similar brownfield operator UIs
   - `pencil-design-react-tailwind` only when the actual target stack is React / Next / Tailwind / shadcn
-- use Pencil CLI interactive mode as the only allowed Pencil transport in GSD workflows
+- use Pencil CLI interactive mode as the only allowed Pencil transport in GSD workflows; outside GSD, follow the active workflow's Pencil transport policy
 
 Read `references/pencil-skills-integration.md` before implementation when `.pen` files are in scope.
 
 ## Workflow
 
-1. Locate the current spec, frontend direction packet, `brownfield-ui-extraction.md`, `screen-index.md`, retained screenshots, existing component patterns, and any project-level `PRODUCT.md` or `DESIGN.md`.
+1. Locate the current spec, handoff, acceptance criteria, relevant workflow context such as milestone or slice `CONTEXT.md` when present, frontend direction packet, `brownfield-ui-extraction.md`, `screen-index.md`, retained screenshots, existing component patterns, and any project-level `PRODUCT.md` or `DESIGN.md`.
+   - If the handoff, `CONTEXT.md`, or equivalent workflow artifact says packet status is `required` and no approved packet exists, stop and run the frontend-direction follow-on prompt before planning or implementing UI.
    - If the packet selects `chatgpt-image-2`, locate the approved generated image files and do not require Pencil artifacts.
    - If the packet selects `pencil`, locate `pencil-workset.md` and the relevant `.pen` files.
 2. Extract **Must preserve**, **May adapt**, and **Explicit no-gos** before touching code.
@@ -97,8 +101,9 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 12. If you must deviate from the packet, approved images, `.pen` files, or existing system, make the deviation explicit and explain why.
 13. Read `references/pencil-source-consumption.md` when Pencil-backed sources exist.
 14. Read `references/implementation-review-checklist.md` before considering the work done.
-15. Do not report completion for image-backed or Pencil-backed UI work until the approved reference-intent checklist is complete.
+15. Do not report completion for image-backed or Pencil-backed UI work until runtime browser evidence and the approved reference-intent checklist are complete.
    - Completion is allowed with visual mismatches only by explicit waiver: list the mismatch, source image or board, implementation constraint, accepted fallback, and follow-up owner.
+16. Record the frontend sources and proof in the relevant task, slice, or implementation summary. Keep `Frontend References` in `CONTEXT.md` current when those workflow artifacts are in scope.
 
 ## Reference loading guide
 

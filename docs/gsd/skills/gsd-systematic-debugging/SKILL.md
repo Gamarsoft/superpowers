@@ -1,6 +1,6 @@
 ---
 name: gsd-systematic-debugging
-description: GSD-tuned root-cause debugging for failed verification, broken tasks, regressions, and unexpected behavior. Use before proposing or implementing fixes when a GSD task is not behaving as expected.
+description: Use when GSD verification fails, behavior is unexpected, a regression appears, UAT fails, or a task no longer matches reality.
 ---
 
 # GSD Systematic Debugging
@@ -98,7 +98,7 @@ If the debugging work materially changes what the next unit needs to know, captu
 
 - If the task boundary was wrong, prefer replanning over forcing a bad task shape
 - If the fix is not proven, do not mark the task complete
-- If three speculative fixes fail, stop and reassess the task or slice plan instead of continuing to thrash
+- If two fix attempts fail, stop and reassess the task or slice plan instead of continuing to thrash
 - If the real proof surface is browser behavior, debug against the browser rather than pretending unit tests alone are enough
 
 ## Anti-Patterns

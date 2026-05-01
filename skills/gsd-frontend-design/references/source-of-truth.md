@@ -9,24 +9,26 @@ Use the strongest available source in this order.
 ### Functional contract
 
 1. **Approved spec, approved handoff, and acceptance criteria**
-2. **Current product behavior** when the spec is silent
+2. **Relevant workflow context** such as milestone or slice `CONTEXT.md` when present, for projected scope, source paths, and verification notes
+3. **Current product behavior** when the spec is silent
 
 ### Visual contract
 
 For brownfield work, think in layers instead of only a flat ranking:
 
 1. **Existing product UI and design system** as the baseline system truth
-2. **Approved frontend direction packet** for the intentional in-scope change
-3. **Declared implementation visual-truth source** in the packet: `chatgpt-image-2`, `pencil`, or `current-ui/degraded`
-4. **Approved visual-reference intent metadata** for relevant ChatGPT Images 2 images, `.pen` boards, screenshots, browser captures, or Pencil exports
-5. **Approved ChatGPT Images 2 generated image files** when `chatgpt-image-2` is selected
-6. **`pencil-workset.md` and relevant `.pen` files** when `pencil` is selected
-7. **`brownfield-ui-extraction.md` and `screen-index.md`** as the packet’s implementation evidence
-8. **Retained screenshots, browser captures, or Pencil exports** according to their approved intent mode
-9. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
-10. **Existing component library, tokens, and app-shell conventions**
-11. **This skill’s implementation-quality references and Pencil skills when Pencil is selected**
-12. **Freeform invention** only for genuinely unspecified gaps
+2. **Relevant workflow reference lists** such as `CONTEXT.md` Frontend References when present, for exact packet, image, `.pen`, screenshot, and intent paths
+3. **Approved frontend direction packet** for the intentional in-scope change
+4. **Declared implementation visual-truth source** in the packet: `chatgpt-image-2`, `pencil`, or `current-ui/degraded`
+5. **Approved visual-reference intent metadata** for relevant ChatGPT Images 2 images, `.pen` boards, screenshots, browser captures, or Pencil exports
+6. **Approved ChatGPT Images 2 generated image files** when `chatgpt-image-2` is selected
+7. **`pencil-workset.md` and relevant `.pen` files** when `pencil` is selected
+8. **`brownfield-ui-extraction.md` and `screen-index.md`** as the packet's implementation evidence
+9. **Retained screenshots, browser captures, or Pencil exports** according to their approved intent mode
+10. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
+11. **Existing component library, tokens, and app-shell conventions**
+12. **This skill's implementation-quality references and Pencil skills when Pencil is selected**
+13. **Freeform invention** only for genuinely unspecified gaps
 
 Later items do not overrule earlier items without an explicit reason.
 
@@ -118,6 +120,8 @@ Preserve unless the packet explicitly changes them:
 ## Degraded mode
 
 If no packet or no approved visual-truth source exists, say so explicitly.
+
+Do not use degraded mode to bypass a handoff, `CONTEXT.md`, or equivalent workflow artifact that says frontend packet status is `required`; run the frontend-direction follow-on prompt first.
 
 Then use, in order:
 

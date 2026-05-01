@@ -1,6 +1,6 @@
 ---
 name: gsd-verification-before-completion
-description: GSD-tuned completion gate. Use before marking tasks, slices, or milestones complete, before writing completion artifacts, and before claiming work passes.
+description: Use when marking GSD tasks, slices, or milestones complete, writing completion artifacts, preparing UAT, or claiming work passes.
 ---
 
 # GSD Verification Before Completion
@@ -57,6 +57,8 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - If a human-only check is still required, say so plainly and leave the artifact in that state
 - `UAT` must state both what it proved and what it did **not** prove
 - A green linter is not a substitute for the relevant proof command
+- Review gates must name the required review artifact, recorded verdict, and truthful follow-up state
+- Image-backed or Pencil-backed UI also needs the approved reference-intent parity or intent-fit checklist; screenshots alone are not enough
 
 ## Not Sufficient
 
@@ -73,6 +75,7 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - **UI work:** real browser verification, not assumption
 - **Bug fixes:** original repro no longer fails, plus no obvious regression
 - **Artifacts:** the expected file exists and its required contents are truthful
+- **Reviews:** review artifact exists, verdict is recorded, and required follow-up state matches the verdict
 
 ## If You Cannot Prove Completion
 

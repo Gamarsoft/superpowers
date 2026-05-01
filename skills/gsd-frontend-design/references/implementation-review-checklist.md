@@ -4,7 +4,8 @@ Use this before declaring the UI done.
 
 ## 1. Input fidelity
 
-- Did you read the spec, frontend direction packet, `screen-index.md`, and the packet's declared visual-truth source first?
+- Did you read the spec, handoff, acceptance criteria, relevant workflow context such as milestone or slice `CONTEXT.md` when present, frontend direction packet, `screen-index.md`, and the packet's declared visual-truth source first?
+- If the handoff, `CONTEXT.md`, or equivalent workflow artifact said packet status was `required`, did you stop rather than plan or implement UI from degraded assumptions?
 - If ChatGPT Images 2 is selected, did you read the approved generated image files and omit Pencil-specific sources?
 - If Pencil is selected, did you read `pencil-workset.md` and the relevant `.pen` files first?
 - If brownfield, did you inspect the existing tokens, components, shell patterns, and interaction patterns?
@@ -98,8 +99,10 @@ A waiver is acceptable only when it names the source image or board, approved in
 ## 10. Verification
 
 - Did you compare the result against the chosen approved images, `.pen` files, or retained references?
+- Did runtime browser evidence support the reference-intent checklist?
 - If ChatGPT Images 2 was selected, did you compare the result against the approved generated image files and not require Pencil parity?
 - Did you verify the required viewports?
 - Did you check any acceptance criteria or screenshot checks named in the packet?
 - Can another agent recover the same frontend references from your recorded output?
+- Did you keep `Frontend References` in the relevant `CONTEXT.md` current when those workflow artifacts are in scope?
 - Did you avoid claiming completion from tests, DOM checks, or screenshot capture without reference-intent inspection?

@@ -1,6 +1,6 @@
 ---
 name: gsd-test-driven-development
-description: GSD-tuned TDD for feature work, bug fixes, and refactors. Use during execution before changing production code so tests drive the task and the proof lands in GSD artifacts.
+description: Use when executing GSD feature work, bug fixes, refactors, or behavior changes before production code is changed.
 ---
 
 # GSD Test-Driven Development
@@ -48,12 +48,7 @@ Start with:
 
 Do not invent a test workflow that conflicts with project guidance that already exists.
 
-If the task depends on a testing framework, runner, matcher library, browser harness, or build-integrated test tool and you are not fully sure about the current API, fetch current docs before writing the test.
-
-Use Context7:
-
-- `resolve_library`
-- `get_library_docs`
+If the task depends on a testing framework, runner, matcher library, browser harness, or build-integrated test tool and you are not fully sure about the current API, use `gsd-context7-research` before writing the test.
 
 This is especially important for frameworks and tools with shifting APIs or deprecated patterns such as JUnit, Karma, Jest, Playwright, Vitest, Cypress, or similar tools in the repo.
 
