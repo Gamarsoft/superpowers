@@ -128,6 +128,8 @@ The workflow has nine phases.
 8. Durable contract finalization
 9. Implementation and verification
 
+When live data cannot produce all visual states on demand, implementation verification may use dual runtime data modes: live mode for integration truth and visual fixture mode for deterministic state coverage.
+
 ## Phase 1: Scope and Preservation Framing
 
 Goal:
@@ -462,6 +464,7 @@ Verification must include:
 - browser check against retained screenshots and approved generated images when `chatgpt-image-2` is selected
 - responsive check for the approved widths
 - state verification for loading, empty, error, and validation states where relevant
+- separate live runtime proof and fixture visual-state proof when deterministic fixtures are needed
 - accessibility-sensitive checks for focus, labels, and keyboard navigation
 - fresh-context visual quality review for non-trivial UI work
 - review artifact recording evidence inspected, Impeccable critique/audit checks applied when available, findings by severity, verdict, and review decision
@@ -503,6 +506,7 @@ Include this when quality refinement beyond faithful reproduction was in scope:
 - explicit list of accepted quality improvements for this scope
 - fresh-context visual review artifact for non-trivial UI implementation, such as `VISUAL-REVIEW.md`
 - persisted raw runtime evidence path only when it was needed for review or replay; default to `/tmp`, another temporary directory, an ignored local path, or external redaction-safe storage
+- fixture catalog or harness references when visual fixture mode was used, with a claim boundary separating fixture visual proof from live integration proof
 
 ## Decision Rules
 
@@ -584,6 +588,7 @@ Do not do these:
 - mix current truth, normalization, and proposed change into one artifact with no labeling
 - use Impeccable to overwrite the product family
 - treat implementer self-review as the final visual quality gate for non-trivial UI implementation
+- claim fixture-rendered states as live backend integration proof
 - let the stack adapter decide design direction
 - implement from memory instead of from packet plus evidence
 

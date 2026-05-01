@@ -132,6 +132,12 @@ Preserve unless the packet explicitly changes them:
 4. If a finding conflicts with the approved packet, visual-truth source, or brownfield must-preserve rule, surface the conflict instead of silently redesigning.
 5. Apply only bounded fixes that preserve the approved direction, or record follow-up work that needs human approval.
 
+### Live proof vs visual fixture proof
+1. Live runtime proof uses real backend services and proves integration, auth, routing, feature flags, tenant context, real API composition, persistence, and service wiring for the available state.
+2. Visual fixture proof uses deterministic contract-shaped API responses to render hard-to-reach visual states. It proves state rendering, responsive behavior, copy, action hierarchy, and reference-intent parity.
+3. Prefer browser/e2e network fixtures or a local mock proxy. Avoid production app fixture switches unless they are dev/test-only, visibly marked, write-disabled, and proven unavailable in production config.
+4. Fixture evidence must be labeled as fixture evidence in UAT, summaries, and review artifacts. It must not be used to claim live backend state, authorization, or persistence behavior.
+
 ## Degraded mode
 
 If no packet or no approved visual-truth source exists, say so explicitly.
@@ -155,6 +161,7 @@ If you must deviate from the packet, the workset, or the current system, record:
 - why the original direction could not be implemented as written
 - whether the deviation is visual only or behavior-affecting
 - whether approved ChatGPT Images 2 files, `.pen` files, or retained screenshots were consulted
+- whether proof came from live runtime, visual fixtures, or both
 - whether any raw runtime evidence was persisted, where, and whether it was temp, local/ignored, external, or explicitly committed
 - which Pencil skills were loaded, if any
 - which fresh-context visual review artifact was produced, or why it was unavailable

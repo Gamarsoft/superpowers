@@ -58,6 +58,8 @@ A waiver is acceptable only when it names the source image or board, approved in
 - Are the key screens or components implemented?
 - Are loading, empty, error, validation, permission, and destructive states covered where required?
 - Do fallback and disabled states feel intentional rather than framework leftovers?
+- If live data could not produce required states, were visual fixtures used for deterministic state coverage?
+- If fixtures were used, were they contract-shaped API responses rather than UI-only data blobs?
 
 ## 4. Responsive fidelity
 
@@ -100,6 +102,8 @@ A waiver is acceptable only when it names the source image or board, approved in
 
 - Did you compare the result against the chosen approved images, `.pen` files, or retained references?
 - Did runtime browser evidence support the reference-intent checklist?
+- If fixture mode was used, did the artifact distinguish live runtime proof from fixture visual-state proof?
+- Were fixture claims limited to rendering/state coverage instead of backend integration, authorization, persistence, or service wiring?
 - If raw screenshots, traces, console logs, or network dumps were persisted, were they placed under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless explicitly requested as commit artifacts?
 - For non-trivial UI work, did a fresh-context reviewer perform the final visual quality review?
 - In GSD-2, was that reviewer a `worker` subagent and was its `VISUAL-REVIEW.md` artifact recorded?

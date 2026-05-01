@@ -49,6 +49,7 @@ These skills repeat the same control rules in different phases:
 - The packet must declare the implementation visual-truth source.
 - `.pen` files, approved ChatGPT Images 2 files, and retained screenshots are durable evidence only when their intent is approved.
 - Runtime screenshots, traces, console logs, and network dumps gathered during implementation verification are proof inputs, not durable repo artifacts by default.
+- Live runtime proof and visual fixture proof are different evidence types. Live mode proves real integration for available states; fixture mode proves hard-to-reach visual states with deterministic contract-shaped API responses.
 - Adapters interpret Pencil-backed design for a stack; they do not outrank the packet or the product system.
 - HTML companion artifacts are temporary comparison surfaces, not durable truth.
 - In brownfield work, preservation is the default unless change is explicitly approved.
@@ -65,6 +66,7 @@ Use GPT-5.5-style efficiency to remove redundant prompt scaffolding, not to weak
 - Validate before handoff: specs go through the spec reviewer, frontend packets go through packet completeness checks, and implementations verify against the selected visual-truth source.
 - For non-trivial UI implementation, use fresh-context visual review as the final quality gate. In GSD-2, this means a `worker` subagent writes `VISUAL-REVIEW.md` after browser/reference verification.
 - Record the conclusion of runtime browser evidence in durable UAT, summary, checklist, or review files. Put raw screenshots/traces/log dumps under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit them.
+- When fixtures are needed for state coverage, prefer browser/e2e network fixtures or a local mock proxy, label evidence as fixture evidence, and do not use it to claim backend authorization, persistence, or service wiring.
 - Do not treat shorter prompts as permission to skip the frontend-direction split, requirement reconciliation, board/image intent approval, or GSD packet gates.
 
 ## Independent Roles
@@ -225,6 +227,7 @@ What it controls:
 - Pencil source consumption through CLI interactive mode when `.pen` files are in scope
 - implementation-quality checks for typography, color/contrast, spacing, interaction, motion, responsive behavior, UX writing, and accessibility as fallback heuristics
 - fresh-context visual review for non-trivial UI work, with Impeccable critique/audit findings treated as review evidence rather than design authority
+- visual fixture mode for hard-to-reach state coverage, with UAT separating fixture visual proof from live integration proof
 
 What it should not do:
 - reopen product or design discovery without cause

@@ -88,6 +88,14 @@ pre_dispatch_hooks:
       - complete-slice
     action: modify
     prepend: Frontend visual review policy. If this unit includes non-trivial UI work, after implementation and browser/reference verification but before completion, run one fresh-context visual quality review in a `worker` subagent. Tell the reviewer to load Impeccable, apply critique/audit as applicable, inspect the approved packet, visual-truth sources, reference-intent checklist, and runtime evidence, then write `.gsd/{milestoneId}/slices/{sliceId}/tasks/{taskId}-VISUAL-REVIEW.md` or slice-level `.gsd/{milestoneId}/slices/{sliceId}/VISUAL-REVIEW.md` with `Verdict, APPROVE | REQUEST_CHANGES | ESCALATE` and `Review Decision, no_action | remediate_and_rereview | escalate_replan`. Treat findings as review evidence, not permission to redesign. If this is an implementation-end pass and a paired review-and-resolve task exists, unresolved blocking and important findings belong to that follow-up unless they prevent basic verification from running. Do not rely on implementer self-review as the final visual gate for non-trivial UI work.
+  - name: frontend-visual-fixture-policy
+    before:
+      - plan-slice
+      - replan-slice
+      - execute-task
+      - complete-slice
+    action: modify
+    prepend: Frontend visual fixture policy. If live runtime data cannot produce required visual states on demand, use dual runtime data modes. Live mode proves integration, auth, routing, feature flags, tenant context, and service composition for the available real state. Visual fixture mode proves hard-to-reach visual states, responsive behavior, copy, action hierarchy, and reference-intent parity with deterministic contract-shaped API responses. Prefer browser/e2e network fixtures or a local mock proxy over production app fixture switches. Label fixture evidence as fixture evidence, never as live integration proof. UAT must separate live runtime proof from fixture visual-state proof and state the claim boundary for each.
   - name: review-resolve-task-policy
     before:
       - execute-task
