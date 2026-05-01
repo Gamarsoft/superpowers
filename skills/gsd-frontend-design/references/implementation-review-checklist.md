@@ -100,6 +100,7 @@ A waiver is acceptable only when it names the source image or board, approved in
 
 - Did you compare the result against the chosen approved images, `.pen` files, or retained references?
 - Did runtime browser evidence support the reference-intent checklist?
+- If raw screenshots, traces, console logs, or network dumps were persisted, were they placed under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless explicitly requested as commit artifacts?
 - For non-trivial UI work, did a fresh-context reviewer perform the final visual quality review?
 - In GSD-2, was that reviewer a `worker` subagent and was its `VISUAL-REVIEW.md` artifact recorded?
 - Did you run a visual quality review with `$impeccable critique` when available, or record why it was skipped?

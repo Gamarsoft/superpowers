@@ -113,6 +113,8 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - If Impeccable cannot run or its preflight gates cannot pass, record why and use the implementation review checklist plus browser evidence as the fallback.
 16. Do not report completion for image-backed or Pencil-backed UI work until runtime browser evidence and the approved reference-intent checklist are complete.
    - Completion is allowed with visual mismatches only by explicit waiver: list the mismatch, source image or board, implementation constraint, accepted fallback, and follow-up owner.
+   - Runtime screenshots, traces, console logs, and network dumps are verification inputs, not default commit artifacts.
+   - Persist raw browser evidence only when needed for review or replay, and place it under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe artifact location unless the task explicitly says to commit those files.
 17. Record the frontend sources, visual review findings, and proof in the relevant task, slice, or implementation summary. Keep `Frontend References` in `CONTEXT.md` current when those workflow artifacts are in scope.
 
 ## Reference loading guide
@@ -146,6 +148,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - Do not replace an explicit visual direction with a new aesthetic thesis unless the human explicitly asks for redesign.
 - Do not use the reference files to overrule product constraints, accessibility constraints, framework constraints, or existing design-system rules.
 - Do not use Impeccable critique or audit findings to silently redesign approved work. Turn findings into bounded fixes or explicit follow-up questions.
+- Do not commit raw runtime evidence directories unless the task or human explicitly says those files are commit artifacts.
 - When no packet or approved visual-truth source exists, say so and operate in degraded mode rather than pretending the direction is settled.
 - Do not translate generic React, Tailwind, or design-tool output directly into production Angular or Nebular code without adapting it to the repo’s real primitives.
 - Do not use Pencil MCP in GSD workflows.

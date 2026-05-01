@@ -36,6 +36,12 @@ Later items do not overrule earlier items without an explicit reason.
 
 `DESIGN.json` is auxiliary Impeccable tooling output, not a stronger source than the packet, `.pen` files, or retained browser evidence.
 
+## Runtime proof vs retained evidence
+
+Retained screenshots, approved generated images, `.pen` exports, and packet support files are durable design evidence when the packet or `CONTEXT.md` names them as sources.
+
+Runtime screenshots, traces, console logs, and network dumps gathered during implementation verification are different: they prove the current run and feed the checklist or visual review. They are not default commit artifacts. Save raw runtime files only when needed for review or replay, and place them under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit them.
+
 ## Brownfield baseline rule
 
 If no durable frontend packet or approved visual-truth baseline exists yet for the changed screen, treat retained browser evidence from the running app as mandatory input.
@@ -149,6 +155,7 @@ If you must deviate from the packet, the workset, or the current system, record:
 - why the original direction could not be implemented as written
 - whether the deviation is visual only or behavior-affecting
 - whether approved ChatGPT Images 2 files, `.pen` files, or retained screenshots were consulted
+- whether any raw runtime evidence was persisted, where, and whether it was temp, local/ignored, external, or explicitly committed
 - which Pencil skills were loaded, if any
 - which fresh-context visual review artifact was produced, or why it was unavailable
 - which Impeccable critique/audit checks ran, or why they were skipped

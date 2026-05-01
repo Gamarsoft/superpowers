@@ -59,6 +59,8 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - A green linter is not a substitute for the relevant proof command
 - Review gates must name the required review artifact, recorded verdict, and truthful follow-up state
 - Image-backed or Pencil-backed UI also needs the approved reference-intent parity or intent-fit checklist; screenshots alone are not enough
+- Runtime screenshots, traces, console logs, and network dumps are verification inputs, not default commit artifacts. Record the durable conclusion in UAT, summary, checklist, or review files.
+- If raw runtime evidence must be saved for replay or review, place it under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit those files.
 
 ## Not Sufficient
 
@@ -76,6 +78,8 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - **Bug fixes:** original repro no longer fails, plus no obvious regression
 - **Artifacts:** the expected file exists and its required contents are truthful
 - **Reviews:** review artifact exists, verdict is recorded, and required follow-up state matches the verdict
+
+Raw browser output directories are local evidence storage by default. Do not stage or commit them unless the human or task contract explicitly says they are commit artifacts.
 
 ## If You Cannot Prove Completion
 

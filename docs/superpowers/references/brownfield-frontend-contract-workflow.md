@@ -465,6 +465,7 @@ Verification must include:
 - accessibility-sensitive checks for focus, labels, and keyboard navigation
 - fresh-context visual quality review for non-trivial UI work
 - review artifact recording evidence inspected, Impeccable critique/audit checks applied when available, findings by severity, verdict, and review decision
+- raw runtime screenshots, traces, console logs, and network dumps treated as `/tmp`, other temporary, ignored local, or external redaction-safe verification inputs unless explicitly approved as commit artifacts
 
 ## Required Artifact Model
 
@@ -501,6 +502,7 @@ Include this when quality refinement beyond faithful reproduction was in scope:
 - audit summary
 - explicit list of accepted quality improvements for this scope
 - fresh-context visual review artifact for non-trivial UI implementation, such as `VISUAL-REVIEW.md`
+- persisted raw runtime evidence path only when it was needed for review or replay; default to `/tmp`, another temporary directory, an ignored local path, or external redaction-safe storage
 
 ## Decision Rules
 

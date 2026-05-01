@@ -48,6 +48,7 @@ These skills repeat the same control rules in different phases:
 - Functional requirements and visual direction are separate contracts: approved spec, handoff, and acceptance criteria define behavior; current product UI and approved frontend packets define visual change.
 - The packet must declare the implementation visual-truth source.
 - `.pen` files, approved ChatGPT Images 2 files, and retained screenshots are durable evidence only when their intent is approved.
+- Runtime screenshots, traces, console logs, and network dumps gathered during implementation verification are proof inputs, not durable repo artifacts by default.
 - Adapters interpret Pencil-backed design for a stack; they do not outrank the packet or the product system.
 - HTML companion artifacts are temporary comparison surfaces, not durable truth.
 - In brownfield work, preservation is the default unless change is explicitly approved.
@@ -63,6 +64,7 @@ Use GPT-5.5-style efficiency to remove redundant prompt scaffolding, not to weak
 - Separate source-backed facts from creative direction. Product behavior, routes, states, customer claims, metrics, and current UI facts need evidence. Visual phrasing, sample copy, and bounded variants may be creative but must not invent product facts.
 - Validate before handoff: specs go through the spec reviewer, frontend packets go through packet completeness checks, and implementations verify against the selected visual-truth source.
 - For non-trivial UI implementation, use fresh-context visual review as the final quality gate. In GSD-2, this means a `worker` subagent writes `VISUAL-REVIEW.md` after browser/reference verification.
+- Record the conclusion of runtime browser evidence in durable UAT, summary, checklist, or review files. Put raw screenshots/traces/log dumps under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit them.
 - Do not treat shorter prompts as permission to skip the frontend-direction split, requirement reconciliation, board/image intent approval, or GSD packet gates.
 
 ## Independent Roles

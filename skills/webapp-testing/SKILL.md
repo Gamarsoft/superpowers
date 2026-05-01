@@ -112,12 +112,14 @@ If refs feel stale, re-snapshot and pick new refs.
 ## Token Discipline
 
 - Don’t paste full snapshots into chat unless necessary; copy only the 5-15 relevant lines.
-- Prefer artifacts (screenshot/trace) over long textual dumps.
+- Prefer concise evidence over long textual dumps. A screenshot or trace can be useful, but it does not need to become a repo commit artifact.
 - Re-snapshot after navigation/modals/major DOM changes to avoid stale refs.
 
 ## Evidence Collection
 
-Prefer producing at least one concrete artifact per debugging session.
+Prefer at least one concrete piece of evidence per debugging session: a browser assertion, targeted snapshot lines, screenshot, trace, console excerpt, or network observation.
+
+When evidence writes files, treat them as ephemeral by default. Use `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe path unless the user or task explicitly asks for committed artifacts.
 
 ### Screenshot / PDF
 
@@ -213,4 +215,4 @@ playwright-cli session-delete mysession
 ## Integration With Other Skills
 
 - Use **superpowers:systematic-debugging** for flaky/timing-sensitive issues; always capture evidence (console/network/trace).
-- Use **superpowers:verification-before-completion** before claiming “fixed”: include at least one artifact (screenshot/trace) plus a short description of verified behavior.
+- Use **superpowers:verification-before-completion** before claiming “fixed”: include concrete evidence plus a short description of verified behavior. Do not commit raw screenshot/trace output unless explicitly requested.
