@@ -127,6 +127,12 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
 - Must preserve:
 - May adapt:
 - Explicit no-gos:
+- UX copy source:
+  - approved copy deck:
+  - missing copy states:
+  - terminology rules:
+  - i18n variables / formatting:
+  - copy acceptance criteria:
 - Frontend implementation gate:
   - If packet status is `required`, do not implement frontend UI yet.
   - Run the separate frontend-direction phase first and attach its approved packet.

@@ -89,3 +89,16 @@ Each child state prompt should include:
 Child prompts should not recreate the parent as a full standalone screen. They preserve layout, shell, section order, density, typography feel, component choices, and copy tone from the parent. They should be as concrete as the parent about state-specific labels, values, messages, disabled/hidden actions, and row content.
 
 Keep child prompts state-pure. Do not mix disabled/not-enabled copy with unauthorized/read-only copy, and do not mix running backfill with completed reconciliation unless the screen index explicitly asks for a combined state.
+
+## Visible Text Quality
+
+Before generation, run `writing-ux-copy` or use an approved copy deck for every visible string in the prompt:
+
+- headings and subtitles
+- CTAs and secondary actions
+- warning, error, empty, pending, and permission messages
+- confirmation dialog copy
+- helper text and tooltips
+- table column labels and status labels
+
+Keep technical state descriptions in `State Semantics`. `Example Visible Text` should contain only production-quality UI text in the target locale, with correct accents, terminology, and i18n-safe variables.

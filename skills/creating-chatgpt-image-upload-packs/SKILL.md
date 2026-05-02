@@ -106,6 +106,9 @@ When the human selects `chatgpt-image-2` as the visual-truth source, the fronten
    - Include product tone, design tokens, source priority, and global no-gos.
 
 5. **Write parent and state prompts**
+   - Use `writing-ux-copy` before finalizing any prompt that contains literal visible UI text.
+   - Treat `Example Visible Text`, labels, CTAs, warning copy, error copy, empty states, confirmations, helper text, table labels, and permission messages as production UI copy, not rough prompt notes.
+   - Keep internal semantics in `State Semantics`; keep visible text plain, localized, and operator-facing.
    - Parent screen prompts include: deliverable, reference handling, goal, `Screen Family Reuse Contract`, child ID-to-state-name mapping, output style, exact screen structure, representative UI content, visual direction, typography/spacing constraints, avoid list, and a final production-readiness sentence when useful.
    - Child state prompts include: parent prompt to attach, inheritance statement, goal, output style, `Inherit From {parent}` section, `State Changes Only` section, state semantics when applicable, state-specific example text, and avoid list.
    - Quote important literal UI text.
@@ -255,6 +258,10 @@ Before calling the pack complete, verify:
 - rollout/backfill prompts distinguish setup rollout, running work, retryable failure, partial failure, and completed reconciliation when those states are in scope
 - permission prompts state visible data, hidden/disabled actions, read-only messaging, and explicitly avoid full-page 403/error treatment unless the screen index asks for it
 - prompts follow `references/openai-image-prompting.md` or fresher official OpenAI guidance
+- prompt-visible UI text has been reviewed with `writing-ux-copy` or an equivalent copy deck
+- prompt-visible UI text is in the final target locale, with correct accents, punctuation, and product terminology
+- prompt-visible UI text does not expose backend service names, internal state names, or technical terms unless those are established product-facing terms
+- prompt-visible UI text has i18n-safe variables and formatting notes when dates, counts, currencies, names, or statuses appear
 - generated imagery is labelled `reference-only` until the human approves images and selects the visual-truth path
 - the README explains both valid paths: image-only visual truth with Pencil omitted, or Pencil translation
 - current baseline screenshots outrank unapproved generated images in brownfield work; approved visual-truth images bind only the intentional in-scope deltas
@@ -273,4 +280,6 @@ Before calling the pack complete, verify:
 | Uploading every screenshot blindly | Attach only screenshots with a stated role. |
 | Letting generated images silently outrank runtime truth | Baseline screenshots remain higher authority until the human approves selected images and chooses their visual-truth role. |
 | Writing spec prose instead of image instructions | Use render target, viewpoint, layout, sample content, and avoid list. |
+| Letting rough or technical copy into generated images | Run `writing-ux-copy` first; quote only approved visible text in prompts. |
+| Putting backend semantics in visible text | Keep semantics in `State Semantics`; show the operator-facing effect in visible UI copy. |
 | Generating images yourself | Only author the upload pack unless the user explicitly asks for image generation. |

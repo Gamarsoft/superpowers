@@ -68,6 +68,8 @@ Use this as an additional blocking quality bar when a frontend direction packet 
 - Are viewport families or responsive expectations named?
 - Are interaction and motion cues explicit where they matter?
 - Are accessibility constraints strong enough to avoid obvious regressions?
+- Are approved UX copy sources, terminology, i18n variables, and visible text constraints named?
+- If ChatGPT Images 2 prompts are used, was prompt-visible text reviewed as production UI copy before image generation?
 
 ### 11. Implementation contract
 

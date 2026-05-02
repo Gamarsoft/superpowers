@@ -57,6 +57,12 @@ Default path:
 - Failure / edge cases
 - Error handling
 - Operational or admin behavior if relevant
+- UX writing / copy contract:
+  - copy deck path or inline copy table
+  - missing copy states
+  - terminology rules
+  - i18n variables and formatting notes
+  - copy acceptance criteria
 - Link to frontend-direction follow-on prompt or packet if applicable
 
 ## 6. System Design

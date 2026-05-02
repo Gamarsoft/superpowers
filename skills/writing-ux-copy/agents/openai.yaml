@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writing UX Copy"
+  short_description: "Make interface copy clear and implementation-ready"
+  default_prompt: "Use this skill to audit or write UI copy for screens, states, prompts, and implementation handoffs."

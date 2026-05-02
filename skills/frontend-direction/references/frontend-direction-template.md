@@ -40,6 +40,8 @@ Supporting folder:
 - Packet folder: `./{slug}--frontend/`
 - Screen index: `./{slug}--frontend/screen-index.md`
 - Brownfield extraction: `./{slug}--frontend/brownfield-ui-extraction.md`
+- UX copy source: spec copy deck | packet copy deck | existing i18n | pending
+- UX copy approval status: approved | pending | incomplete
 - ChatGPT Images 2 pack: not used | pending generation | generated pending approval | approved references available
 - ChatGPT Images 2 folder: `./{slug}--frontend/chatgpt-image-2/`
 - Pencil status: selected | omitted by human visual-truth decision | not used | pending
@@ -134,6 +136,9 @@ These modes apply to Pencil boards, approved ChatGPT Images 2 generated images, 
 - Component patterns to reuse:
 - Icon / media / illustration guidance:
 - Copy / content voice:
+- Approved terminology:
+- Copy deck / visible text source:
+- i18n variable and formatting rules:
 - Known normalization targets:
 - Things that must stay implementation-native to the target stack:
 
@@ -167,6 +172,7 @@ These modes apply to Pencil boards, approved ChatGPT Images 2 generated images, 
 - Heading / landmark structure:
 - Focus and keyboard expectations:
 - Contrast / non-color cues:
+- Approved labels, CTAs, helper text, warnings, empty states, errors, confirmations, and permission copy:
 - Copy length / truncation rules:
 - Localization or RTL notes:
 

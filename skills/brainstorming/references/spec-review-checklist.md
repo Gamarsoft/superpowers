@@ -69,6 +69,17 @@ Apply this section when the work clearly depends on frontend direction.
 - Does it require board-intent approval for every implementation-facing board, screenshot, or retained visual reference?
 - Does it block UI implementation until the separate frontend-direction packet is approved?
 
+## 10a. UX writing readiness (conditional, blocking when relevant)
+Apply this section when the work includes meaningful user-visible UI copy.
+
+- Did the author invoke `writing-ux-copy` or otherwise provide an equivalent copy deck?
+- Does the spec or handoff identify copy-bearing states: default, loading, empty, validation, warning, error, permission, destructive confirmation, pending, and success where relevant?
+- Are final or explicitly pending visible strings captured for labels, CTAs, warnings, errors, empty states, confirmations, helper text, and onboarding?
+- Are technical terms, backend service names, and internal state names kept out of user-facing copy unless they are established product terminology?
+- Are terminology, i18n variables, plural/date/number formatting, translation expansion, and accessibility labels covered?
+- If ChatGPT Images 2 prompts are expected, does the follow-on prompt require production-quality visible text in the prompts before image generation?
+- Are copy acceptance criteria included so implementation and review can verify the approved words, not invent new ones?
+
 ## 11. Cross-artifact UI alignment (conditional, blocking when relevant)
 - Do the spec, GSD handoff, and follow-on prompt agree on scope and behavior?
 - Are deferred visual ideas kept out of Active requirements?

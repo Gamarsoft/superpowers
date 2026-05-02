@@ -61,6 +61,7 @@ Your job is to:
 - recommend a default with reasoning
 - bound the work before the spec hardens
 - when UI matters, capture enough product and experience intent to seed a later frontend-direction session
+- when UI includes meaningful visible text, use `writing-ux-copy` to make copy a first-class state contract instead of leaving it to implementation
 - when Impeccable v3 is present, treat `PRODUCT.md` and `DESIGN.md` as design-memory inputs, not as replacements for brownfield runtime truth
 - use HTML browser artifacts only for temporary comparisons or decision support
 - keep visual companion decisions inside brainstorming as decision context, not durable frontend packet artifacts
@@ -150,6 +151,7 @@ Create a task for each of the following and complete them in order.
 10. **Stabilize the experience before final writing**
     - Confirm the primary flows, key states, and first delivery boundary.
     - If frontend direction is required, capture the screen families, user goals, key states, current-product constraints, and any visual-companion decisions that the later frontend-direction session must inherit.
+    - If the work includes user-visible labels, warnings, errors, empty states, confirmations, onboarding, helper text, or ChatGPT Images prompt visible text, invoke `writing-ux-copy` and draft a copy deck or explicit copy gaps before finalizing the spec.
     - Do **not** create the frontend direction packet in this session by default.
 
 11. **Present the design in sections**
@@ -183,6 +185,7 @@ Create a task for each of the following and complete them in order.
       - leaves the remainder deferred
     - Prepare the corresponding steering note with the real artifact paths filled in.
     - If frontend direction is required but not yet created, set packet status to `required` and tell downstream agents not to implement UI until the frontend-direction packet exists and is approved.
+    - If UX copy is implementation-shaping, link or embed the approved copy deck, missing copy states, i18n notes, and copy acceptance criteria.
     - Make sure the steering note links all primary artifacts:
       - design spec
       - GSD handoff
@@ -201,6 +204,7 @@ Create a task for each of the following and complete them in order.
       - screen families, flows, and key states discovered during brainstorming
       - brownfield invariants and no-gos
       - visual companion decisions or artifacts, explicitly marked as non-durable decision context
+      - UX writing decisions, copy deck path or copy gaps, and prompt-visible-text requirements for ChatGPT Images 2 prompts
       - likely target stack and adapter candidates
       - board-intent approval requirement for the later packet
     - Deliver the prompt in the final answer so the user can start a fresh session after manual compaction.

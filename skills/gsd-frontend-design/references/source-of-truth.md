@@ -24,13 +24,14 @@ For brownfield work, think in layers instead of only a flat ranking:
 6. **Approved ChatGPT Images 2 generated image files** when `chatgpt-image-2` is selected
 7. **`pencil-workset.md` and relevant `.pen` files** when `pencil` is selected
 8. **`brownfield-ui-extraction.md` and `screen-index.md`** as the packet's implementation evidence
-9. **Retained screenshots, browser captures, or Pencil exports** according to their approved intent mode
-10. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
-11. **Existing component library, tokens, and app-shell conventions**
-12. **Fresh-context visual review artifacts** as quality review evidence
-13. **Impeccable critique/audit findings** as quality review evidence, not design authority
-14. **This skill's implementation-quality references and Pencil skills when Pencil is selected**
-15. **Freeform invention** only for genuinely unspecified gaps
+9. **Approved UX copy deck, terminology rules, and i18n notes** for user-visible strings
+10. **Retained screenshots, browser captures, or Pencil exports** according to their approved intent mode
+11. **Project-level `PRODUCT.md` and current `DESIGN.md`** as product/register context and documented system guidance
+12. **Existing component library, tokens, and app-shell conventions**
+13. **Fresh-context visual review artifacts** as quality review evidence
+14. **Impeccable critique/audit findings** as quality review evidence, not design authority
+15. **This skill's implementation-quality references and Pencil skills when Pencil is selected**
+16. **Freeform invention** only for genuinely unspecified gaps
 
 Later items do not overrule earlier items without an explicit reason.
 
@@ -73,6 +74,7 @@ Capture these before you edit code:
 - responsive contract
 - state coverage
 - accessibility constraints
+- approved UX copy source, missing copy states, terminology rules, and i18n variables
 - **Must preserve**
 - **May adapt**
 - **Explicit no-gos**

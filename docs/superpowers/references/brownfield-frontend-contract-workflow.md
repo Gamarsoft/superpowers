@@ -98,19 +98,20 @@ Use these skills in this order:
 2. manual compaction or a new session using the frontend-direction follow-on prompt when UI materially shapes implementation
 3. `superpowers:frontend-direction`
 4. `superpowers:webapp-testing` for browser-grounded capture and verification
-5. `superpowers:creating-chatgpt-image-upload-packs` when ChatGPT Images 2 references are requested or needed before visual-truth selection
-6. `superpowers:pencil-design-core` only when Pencil is selected
-7. exactly one adapter when Pencil is selected:
+5. `superpowers:writing-ux-copy` when labels, CTAs, warnings, errors, empty states, confirmations, helper text, i18n strings, or ChatGPT Images prompt visible text are in scope
+6. `superpowers:creating-chatgpt-image-upload-packs` when ChatGPT Images 2 references are requested or needed before visual-truth selection
+7. `superpowers:pencil-design-core` only when Pencil is selected
+8. exactly one adapter when Pencil is selected:
    - `superpowers:pencil-design-angular-nebular`
    - `superpowers:pencil-design-react-tailwind`
-8. Impeccable skills only when a quality layer is in scope:
+9. Impeccable skills only when a quality layer is in scope:
    - `impeccable extract`
    - `impeccable critique`
    - `impeccable audit`
    - `impeccable document` when `DESIGN.md` is missing or stale
    - targeted refinement skills such as `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish`
-9. `superpowers:gsd-frontend-design` for implementation
-10. Fresh-context visual review for non-trivial UI implementation, using the active workflow's reviewer mechanism. In GSD-2, this is a `worker` subagent that writes `VISUAL-REVIEW.md`.
+10. `superpowers:gsd-frontend-design` for implementation
+11. Fresh-context visual review for non-trivial UI implementation, using the active workflow's reviewer mechanism. In GSD-2, this is a `worker` subagent that writes `VISUAL-REVIEW.md`.
 
 Use `impeccable teach` only when product context is missing, stale, or intentionally changing. If a current `PRODUCT.md` exists, treat it as product/register context instead of rerunning teach.
 
@@ -148,6 +149,7 @@ Required outputs:
 - reviewed design spec
 - reviewed GSD handoff
 - frontend-direction follow-on prompt when UI direction is required
+- UX copy deck or explicit missing copy states when user-visible text shapes the workflow
 
 For repo-specific brownfield work, `brainstorming` should prefer `gathering-topic-context` before reflection so the scope is grounded in the current codebase and workflow.
 
@@ -179,6 +181,7 @@ The follow-on prompt should carry:
 - screen families and key states
 - brownfield invariants
 - visual-companion decisions as non-durable context
+- UX writing decisions, copy deck path or copy gaps, and prompt-visible-text requirements
 - likely stack and adapter candidates
 - whether ChatGPT Images 2 references may be useful before visual-truth selection
 - visual-reference intent approval requirement
@@ -285,6 +288,7 @@ Create image-native references before implementation visual truth is selected, w
 
 Use:
 - `superpowers:creating-chatgpt-image-upload-packs`
+- `superpowers:writing-ux-copy` for every prompt-visible UI string
 
 Run this phase when:
 
@@ -298,6 +302,7 @@ Rules:
 - write the pack under `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/chatgpt-image-2/`
 - include `README.md`, `00-shared-image-context.md`, `attachment-map.md`, and prompt files
 - use screen families and parent/child state prompts so state variants inherit the same layout
+- quote production-quality visible copy in the target locale before generation; do not let generated images bake in rough, technical, or unapproved microcopy
 - stop after the pack until the human generates images externally
 - require approved images to be saved beside matching prompt files
 - keep generated images `reference-only` until the human approves them and chooses their visual-truth role

@@ -56,6 +56,8 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 - Are required viewports named?
 - Are mobile adaptation rules explicit where density is high?
 - Are accessibility-sensitive controls, labels, focus handling, and truncation rules covered?
+- Are approved visible copy, terminology rules, i18n variables, date/number/plural formatting, and translation expansion constraints covered?
+- If copy is still pending for a visual-truth image or board, is that marked as a blocker rather than left for implementation?
 
 ## 8. Implementation contract
 
@@ -68,6 +70,12 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 - If the HTML visual companion was not used, does the packet still stay fully usable?
 - If HTML companion screens were used, is every retained idea translated back into the approved visual-truth source or packet prose?
 - Does the packet avoid treating raw HTML companion files as the durable implementation reference?
+
+## 9a. ChatGPT Images prompt copy discipline
+
+- If ChatGPT Images 2 prompts exist, did `Example Visible Text` and every prompt-visible label, CTA, warning, empty state, error, confirmation, and table label go through `writing-ux-copy` or an equivalent copy review?
+- Are generated images prevented from becoming visual truth when they contain unapproved, technical, misspelled, unaccented, or non-localizable visible text?
+- Are prompt semantics separated from visible UI text so internal services, backend state names, and implementation jargon do not leak into the generated reference image?
 
 ## 10. Handoff readiness
 

@@ -77,9 +77,15 @@ A waiver is acceptable only when it names the source image or board, approved in
 
 ## 6. Copy and content
 
+- If new or changed copy was introduced, did you use `writing-ux-copy` or an approved copy deck before coding?
+- Does each changed copy-bearing state have approved visible text?
 - Do action labels describe outcomes clearly?
+- Do warnings, errors, permission messages, and destructive confirmations explain the user-visible consequence and next action?
 - Are errors actionable and specific?
 - Are empty states and confirmations aligned with product voice and terminology?
+- Are backend service names, internal state names, debug terms, and implementation jargon kept out of user-facing copy unless already product terminology?
+- Are i18n keys, semantic variables, plural/date/number/currency formatting, translation expansion, and accessible names covered?
+- If ChatGPT Images 2 references were used, did runtime copy match approved visible text rather than rough prompt wording or model-invented text?
 
 ## 7. Visual-source discipline
 

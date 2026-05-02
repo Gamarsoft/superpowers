@@ -78,13 +78,19 @@ When the human selects Pencil as the implementation visual-truth source, also ma
    - separate `observed current truth`, `conservative normalization target`, and `optional exploration`
    - for existing-screen work with no prior durable evidence, the first packet job is faithful reproduction, not improvement
 6. Build the screen index for the key screens and key states only.
-7. Decide whether a ChatGPT Images 2 reference phase is needed before the implementation visual-truth decision:
+7. If screens, states, images, prompts, or references contain user-visible text, use `writing-ux-copy` before visual-truth selection:
+   - carry approved copy from the spec or GSD handoff when present;
+   - create or update a copy deck for missing labels, CTAs, helper text, warnings, errors, empty states, confirmations, permission copy, and loading/pending states;
+   - record terminology, i18n variables, plural/date/number formatting, translation expansion, and accessibility-name constraints;
+   - treat unresolved copy for a `visual-truth` image or board as a packet blocker, not an implementation detail.
+8. Decide whether a ChatGPT Images 2 reference phase is needed before the implementation visual-truth decision:
    - run it when the user asks for ChatGPT/Image references, when exact visual direction is still unstable, when baseline screenshots need image-native exploration before durable visual truth, or when generated references are intended to become visual-truth candidates;
    - use `creating-chatgpt-image-upload-packs` to write the upload pack from the spec, frontend-direction draft, screen index, brownfield extraction, and `design/baseline/*`;
+   - before the pack is complete, audit all prompt-visible text with `writing-ux-copy` so generated references do not bake in technical or low-quality microcopy;
    - stop after the upload pack and ask the human to generate images externally;
    - do **not** create `pencil-workset.md`, shared Pencil files, feature `.pen` boards, or Pencil screenshots until the human confirms approved generated images exist in the `chatgpt-image-2/` folder using prompt-matching filenames and chooses the Pencil path;
    - keep generated images `reference-only` until the human explicitly approves them and chooses their role.
-8. If the ChatGPT Images 2 phase was used, resume only after human confirmation:
+9. If the ChatGPT Images 2 phase was used, resume only after human confirmation:
    - verify approved image files exist beside the prompt files;
    - record which generated references were approved, rejected, or deferred;
    - ask the human to choose the implementation visual-truth source:
@@ -92,47 +98,48 @@ When the human selects Pencil as the implementation visual-truth source, also ma
      - `pencil`: approved generated images are reference inputs for durable Pencil boards.
      - `current-ui/degraded`: no generated or Pencil visual truth is approved; use only conservative brownfield guidance and mark degraded mode.
    - update the frontend direction source priority and reference intent ledger before implementation.
-9. If the human chooses `chatgpt-image-2` as implementation visual truth:
+10. If the human chooses `chatgpt-image-2` as implementation visual truth:
    - do not create `pencil-workset.md`, shared Pencil files, feature `.pen` boards, or Pencil screenshots for that scope;
    - list every approved generated image file and screen/state it binds;
    - mark those approved images as `visual-truth` in the packet and `screen-index.md`;
    - mark Pencil status as `omitted by human visual-truth decision`;
    - set downstream skills to `gsd-frontend-design` only for visual consumption; do not tell implementers to load `pencil-design-core` or a Pencil stack adapter;
    - require runtime screenshot comparison against the approved ChatGPT Images 2 references during implementation verification.
-10. If the human chooses `pencil`, create or refresh the Pencil workset:
+11. If the human chooses `pencil`, create or refresh the Pencil workset:
    - foundations
    - shell
    - shared patterns
    - feature-specific boards
    - board intent metadata for every board or screenshot that may guide implementation
-11. In Pencil, use `pencil-design-core` plus the chosen adapter to:
+12. In Pencil, use `pencil-design-core` plus the chosen adapter to:
    - recreate the current structure first
    - keep the workset faithful to the target stack
    - generate or edit only 1–2 bounded variants for the real decision axis
    - classify each board as `visual-truth`, `semantic-guidance`, or `reference-only`
    - ask the human to approve any classification that affects implementation
-12. If UI/UX quality work is needed beyond faithful reproduction, run it as a bounded layer on top of the baseline:
+13. If UI/UX quality work is needed beyond faithful reproduction, run it as a bounded layer on top of the baseline:
    - read `references/impeccable-brownfield-quality-layer.md`
    - if `PRODUCT.md` already exists and is still accurate, do not re-run `/impeccable teach`
    - if `DESIGN.md` is missing or stale, prefer `/impeccable document` to refresh it from the current codebase
    - use `/impeccable extract`, `/impeccable critique`, and `/impeccable audit` after the baseline exists, not before
    - use `/impeccable live` only as a bounded refinement surface on supported stacks; accepted ideas must still converge back into packet prose, screenshots, and the selected visual-truth source, with `.pen` files only when Pencil is selected
    - treat Impeccable findings as refinement input, not as permission to outrank brownfield truth
-13. Select the preferred directions and record why they won.
-14. Use the HTML visual companion only for temporary comparison artifacts when a choice is materially easier to judge in-browser than in prose.
-15. If an HTML companion artifact influenced a choice, translate the chosen concept back into the approved visual-truth source, screenshots, and packet prose before treating it as durable direction.
-16. Expand the implementation contract:
+14. Select the preferred directions and record why they won.
+15. Use the HTML visual companion only for temporary comparison artifacts when a choice is materially easier to judge in-browser than in prose.
+16. If an HTML companion artifact influenced a choice, translate the chosen concept back into the approved visual-truth source, screenshots, and packet prose before treating it as durable direction.
+17. Expand the implementation contract:
 
-- responsive behavior
-- interaction cues
-- state coverage
-- accessibility constraints
-- must preserve vs may adapt
-- explicit no-gos
-- approved intent for each `.pen` board, ChatGPT Images 2 generated image, screenshot, and retained visual reference
-- downstream skills and adapter to load
+   - responsive behavior
+   - interaction cues
+   - state coverage
+   - accessibility constraints
+   - must preserve vs may adapt
+   - explicit no-gos
+   - approved UX copy source, missing copy states, and i18n constraints
+   - approved intent for each `.pen` board, ChatGPT Images 2 generated image, screenshot, and retained visual reference
+   - downstream skills and adapter to load
 
-17. Review against the checklist until the packet is implementation-usable.
+18. Review against the checklist until the packet is implementation-usable.
 
 ## Tooling preference
 

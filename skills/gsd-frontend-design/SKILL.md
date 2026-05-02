@@ -88,6 +88,8 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - for `semantic-guidance`, extract required behavior, information hierarchy, state coverage, workflow, and adaptation boundaries
    - separate functional acceptance from visual acceptance
    - for Angular/Nebular work, name any Nebular defaults that must be neutralized or restyled to match `visual-truth` images or boards
+   - extract the approved UX copy source, copy deck, terminology rules, i18n variables, and copy acceptance criteria before changing strings
+   - if approved copy is missing for a new or changed visible state, use `writing-ux-copy` before implementing that copy instead of inventing strings during coding
 8. Inspect the existing codebase and reuse its components, tokens, spacing system, interaction patterns, and shell conventions unless the packet explicitly changes them.
 9. Implement the required screens, states, and responsive behavior.
    - Brownfield preservation means preserve shell, behavior, contracts, and product family.

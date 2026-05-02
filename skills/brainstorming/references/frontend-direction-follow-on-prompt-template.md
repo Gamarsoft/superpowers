@@ -31,6 +31,7 @@ Product and delivery context:
 - Must preserve: [shell, workflow, density, components, behavior]
 - May adapt: [safe improvements]
 - Explicit no-gos: [do not redesign / do not change navigation / etc.]
+- UX writing: [approved copy deck path / inline copy decisions / missing copy states / terminology and i18n notes]
 
 Visual companion carry-forward:
 - [Summarize any visual companion decisions, selected options, rejected options, or screenshots.]
@@ -50,6 +51,8 @@ Frontend-direction requirements:
   - `visual-truth`
   - `semantic-guidance`
   - `reference-only`
+- For every implementation-facing prompt, board, screenshot, or retained visual reference that contains visible text, use `writing-ux-copy` to approve the visible copy before it becomes visual truth.
+- If ChatGPT Images 2 prompts are created, audit `Example Visible Text`, warning blocks, empty states, CTAs, confirmation copy, and table labels before generation.
 - Ask me to approve any board-intent classification that affects implementation.
 - Do not hand off to implementation until the frontend packet and board-intent modes are approved.
 ```
@@ -61,5 +64,6 @@ A strong follow-on prompt:
 - links the approved spec and handoff
 - carries product and flow decisions without copying the whole conversation
 - preserves visual-companion decisions as context, not durable truth
+- carries UX writing decisions and prompt-visible-text requirements
 - names the target repo, likely stack, and adapter candidate
 - makes board-intent approval a required frontend-direction output

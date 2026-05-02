@@ -18,6 +18,8 @@ These skills form a pipeline, not a flat list of interchangeable tools.
 
 `frontend-direction` creates the explicit visual contract in a separate session once product direction is stable enough to anchor screens and states. It now declares the implementation visual-truth source: `chatgpt-image-2`, `pencil`, or `current-ui/degraded`.
 
+`writing-ux-copy` creates or audits the state-level copy contract for labels, CTAs, warnings, errors, empty states, confirmations, helper text, i18n strings, and ChatGPT Images prompt visible text. It belongs before visual-truth images or implementation code depend on the words.
+
 `creating-chatgpt-image-upload-packs` runs inside frontend-direction work when ChatGPT Images 2 references are requested, useful, or needed before the implementation visual-truth decision. It creates prompt packs and stops for human generation, approval, and visual-truth selection.
 
 `pencil-design-core` governs how durable design evidence is created and maintained in `.pen` files. It is the operating discipline for Pencil work, not a stack-specific implementation guide. It applies only when Pencil is selected or `.pen` files are in scope.
@@ -31,12 +33,13 @@ The intended flow is:
 1. `brainstorming`
 2. manual compaction or a new session when UI materially shapes implementation
 3. `frontend-direction`
-4. `creating-chatgpt-image-upload-packs` when image-native references are requested or visual truth is still unstable
-5. one visual-truth path selected by the human:
+4. `writing-ux-copy` whenever UI text or prompt-visible text is part of the contract
+5. `creating-chatgpt-image-upload-packs` when image-native references are requested or visual truth is still unstable
+6. one visual-truth path selected by the human:
    - `chatgpt-image-2`, using approved generated image files and omitting Pencil
    - `pencil`, using `pencil-design-core` plus exactly one adapter
    - `current-ui/degraded`, using conservative brownfield guidance only
-6. `gsd-frontend-design`, with Pencil skills only when the packet selects Pencil
+7. `gsd-frontend-design`, with Pencil skills only when the packet selects Pencil
 
 ## Shared Principles
 
@@ -46,6 +49,7 @@ These skills repeat the same control rules in different phases:
 - Brownfield product truth outranks generated novelty.
 - Approved specs and packets outrank casual interpretation.
 - Functional requirements and visual direction are separate contracts: approved spec, handoff, and acceptance criteria define behavior; current product UI and approved frontend packets define visual change.
+- UX copy is also a contract: approved copy decks and prompt-visible text must be carried into images, i18n, implementation, and verification.
 - The packet must declare the implementation visual-truth source.
 - `.pen` files, approved ChatGPT Images 2 files, and retained screenshots are durable evidence only when their intent is approved.
 - Runtime screenshots, traces, console logs, and network dumps gathered during implementation verification are proof inputs, not durable repo artifacts by default.
@@ -118,8 +122,31 @@ What it controls:
 - screen inventory
 - bounded variant exploration
 - implementation contract such as must-preserve vs may-adapt
+- state-level visible copy source and prompt-visible text readiness when UI copy shapes the screen
 - Impeccable v3 inputs when present: `PRODUCT.md` for audience/register context, `DESIGN.md` for reusable system documentation, and `DESIGN.json` only as auxiliary tooling output
 - the visual-truth decision between approved ChatGPT Images 2 files, Pencil, and degraded current UI
+
+### `superpowers:writing-ux-copy`
+
+Purpose:
+Make user-visible UI copy implementation-ready before images or code depend on it.
+
+What it produces:
+- UX writing summary
+- missing copy states
+- copy deck
+- i18n and accessibility notes
+- copy acceptance criteria
+
+What it controls:
+- labels, CTAs, helper text, warnings, errors, empty states, confirmations, permission copy, loading/pending copy, and accessible names
+- ChatGPT Images 2 prompt visible text before generation
+- terminology and i18n-safe variables
+
+What it should not do:
+- invent product facts
+- expose backend semantics as user-facing copy
+- replace product terminology, existing i18n, or approved copy decks
 
 What it should not do:
 - act as a coding skill
@@ -299,6 +326,7 @@ This is the implementation phase.
 | --- | --- | --- | --- | --- | --- |
 | `brainstorming` | Shape the problem and produce approved written artifacts | user request, repo context, discovery answers, current product truth | spec, handoff, optional frontend-direction follow-on prompt | `frontend-direction` in a separate session when UI matters | a coding or direct implementation skill |
 | `frontend-direction` | Create explicit visual direction | approved spec, GSD handoff, follow-on prompt, screenshots, current UI patterns, wireframes | frontend packet, screen index, extraction doc, visual-truth decision, screenshots, optional image packs or `.pen` files | `creating-chatgpt-image-upload-packs` when image references are needed; Pencil skills only when Pencil is selected | a frontend coding skill |
+| `writing-ux-copy` | Make UI copy implementation-ready | spec, handoff, packet, screen states, current i18n, image prompts | copy deck, missing copy states, i18n/accessibility notes, acceptance criteria | brainstorming/frontend-direction/GSD when visible text is in scope | generic prose polish or product-fact invention |
 | `creating-chatgpt-image-upload-packs` | Create image-native prompt packs before visual-truth selection | spec, packet draft, screen index, extraction doc, baseline screenshots | `chatgpt-image-2/` prompt pack and attachment map | `frontend-direction` | an implementation or image-approval skill |
 | `pencil-design-core` | Enforce durable `.pen` discipline | packet, screenshots, current UI, existing `.pen` files, design tokens | stable `.pen` artifacts and verified design evidence | exactly one stack adapter when code translation matters | a framework-specific translation skill |
 | `pencil-design-angular-nebular` | Translate Pencil evidence for Angular + Nebular | approved `.pen` evidence, packet, current Angular/Nebular patterns | Angular/Nebular-oriented implementation guidance | `pencil-design-core` | a generic frontend adapter |
@@ -312,6 +340,7 @@ This is the implementation phase.
 | The request is still ambiguous and needs scope/options/spec work | `brainstorming` |
 | The product direction is mostly stable but implementation would still be guessing visually | `frontend-direction` |
 | Frontend direction needs ChatGPT Images 2 references before selecting visual truth | `creating-chatgpt-image-upload-packs` inside `frontend-direction` |
+| Labels, CTAs, warnings, errors, empty states, confirmations, helper text, i18n strings, or image-prompt visible text are being written or approved | `writing-ux-copy` |
 | A `.pen` workset must be created, updated, verified, or consumed | `pencil-design-core` |
 | The target repo is Angular + Nebular, especially dense brownfield/admin UI | `pencil-design-angular-nebular` with `pencil-design-core` |
 | The target repo is React / Next / Tailwind / shadcn | `pencil-design-react-tailwind` with `pencil-design-core` |
