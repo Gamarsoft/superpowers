@@ -115,6 +115,11 @@ A waiver is acceptable only when it names the source image or board, approved in
 - If raw screenshots, traces, console logs, or network dumps were persisted, were they placed under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless explicitly requested as commit artifacts?
 - For non-trivial UI work, did a fresh-context reviewer perform the final visual quality review?
 - In GSD-2, was that reviewer a `worker` subagent and was its `VISUAL-REVIEW.md` artifact recorded?
+- Did the visual reviewer read the relevant project instructions first, including `AGENTS.md`, `.gsd/**/CONTEXT.md`, `PRODUCT.md`, `DESIGN.md`, the task file, and slice or milestone instructions?
+- Did the visual reviewer use a fresh browser context when supported, and avoid reusing the implementer's browser session, storage, console state, or previously opened page?
+- Did the visual reviewer independently open the target route and recapture the required desktop/mobile evidence instead of relying only on implementer screenshots, assertions, or summaries?
+- If the target route could not be opened due to `ERR_CONNECTION_REFUSED`, connection refused, server unavailable, or equivalent runtime blockage, did the review avoid approval and use `REQUEST_CHANGES` or `ESCALATE`?
+- Did the visual review artifact include `Visual Review Completion Gates` with every missing gate called out?
 - Did you run a visual quality review with `$impeccable critique` when available, or record why it was skipped?
 - Did you run measurable implementation quality review with `$impeccable audit` when available, or record why it was skipped?
 - Were Impeccable findings treated as bounded review findings rather than permission to override the packet or visual-truth source?

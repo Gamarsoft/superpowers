@@ -111,7 +111,7 @@ Use these skills in this order:
    - `impeccable document` when `DESIGN.md` is missing or stale
    - targeted refinement skills such as `layout`, `typeset`, `clarify`, `harden`, `adapt`, `polish`
 10. `superpowers:gsd-frontend-design` for implementation
-11. Fresh-context visual review for non-trivial UI implementation, using the active workflow's reviewer mechanism. In GSD-2, this is a `worker` subagent that writes `VISUAL-REVIEW.md`.
+11. Fresh-context visual review for non-trivial UI implementation, using the active workflow's reviewer mechanism. In GSD-2, this is a `worker` subagent that reads project instructions first, uses fresh browser isolation when supported, independently opens and recaptures the target route, and writes `VISUAL-REVIEW.md`.
 
 Use `impeccable teach` only when product context is missing, stale, or intentionally changing. If a current `PRODUCT.md` exists, treat it as product/register context instead of rerunning teach.
 
@@ -472,7 +472,8 @@ Verification must include:
 - separate live runtime proof and fixture visual-state proof when deterministic fixtures are needed
 - accessibility-sensitive checks for focus, labels, and keyboard navigation
 - fresh-context visual quality review for non-trivial UI work
-- review artifact recording evidence inspected, Impeccable critique/audit checks applied when available, findings by severity, verdict, and review decision
+- review artifact recording project instructions read, fresh browser isolation or fallback, independent runtime recapture, evidence inspected, Impeccable critique/audit checks applied when available, findings by severity, verdict, and review decision
+- no visual review approval when the target route cannot be opened because of `ERR_CONNECTION_REFUSED`, connection refused, server unavailable, or equivalent runtime blockage
 - raw runtime screenshots, traces, console logs, and network dumps treated as `/tmp`, other temporary, ignored local, or external redaction-safe verification inputs unless explicitly approved as commit artifacts
 
 ## Required Artifact Model

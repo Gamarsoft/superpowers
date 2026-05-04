@@ -68,7 +68,7 @@ Use GPT-5.5-style efficiency to remove redundant prompt scaffolding, not to weak
 - Preserve visible preambles and phase-aware intermediate updates in tool-heavy sessions so the user can follow long-running work.
 - Separate source-backed facts from creative direction. Product behavior, routes, states, customer claims, metrics, and current UI facts need evidence. Visual phrasing, sample copy, and bounded variants may be creative but must not invent product facts.
 - Validate before handoff: specs go through the spec reviewer, frontend packets go through packet completeness checks, and implementations verify against the selected visual-truth source.
-- For non-trivial UI implementation, use fresh-context visual review as the final quality gate. In GSD-2, this means a `worker` subagent writes `VISUAL-REVIEW.md` after browser/reference verification.
+- For non-trivial UI implementation, use fresh-context visual review as the final quality gate. In GSD-2, this means a `worker` subagent writes `VISUAL-REVIEW.md` after browser/reference verification. The reviewer reads project instructions first, uses fresh browser isolation when supported, independently opens and recaptures the target route, and does not approve when runtime proof is blocked by connection refused or server unavailable errors.
 - Record the conclusion of runtime browser evidence in durable UAT, summary, checklist, or review files. Put raw screenshots/traces/log dumps under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit them.
 - When fixtures are needed for state coverage, prefer browser/e2e network fixtures or a local mock proxy, label evidence as fixture evidence, and do not use it to claim backend authorization, persistence, or service wiring. Treat in-browser XHR/fetch monkeypatches as temporary spikes to convert into repeatable fixture lanes.
 - Do not treat shorter prompts as permission to skip the frontend-direction split, requirement reconciliation, board/image intent approval, or GSD packet gates.
@@ -316,7 +316,7 @@ Use `gsd-frontend-design` with:
 
 This phase reads the approved evidence in precedence order and changes real frontend code conservatively.
 
-For non-trivial UI work, this phase also needs a fresh-context visual reviewer after browser/reference verification. In GSD-2, use a `worker` subagent and record `VISUAL-REVIEW.md` beside the normal review artifact.
+For non-trivial UI work, this phase also needs a fresh-context visual reviewer after browser/reference verification. In GSD-2, use a `worker` subagent that reads project instructions first, uses fresh browser isolation when supported, independently opens and recaptures the target route, and records `VISUAL-REVIEW.md` beside the normal review artifact. Do not approve visual review when runtime proof is blocked by connection refused or server unavailable errors.
 
 This is the implementation phase.
 
