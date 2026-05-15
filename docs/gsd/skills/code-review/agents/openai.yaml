@@ -1,0 +1,6 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Review diffs with Java production checks"
+  default_prompt: "Use $code-review to review the current implementation diff before marking the task done."
+policy:
+  allow_implicit_invocation: true

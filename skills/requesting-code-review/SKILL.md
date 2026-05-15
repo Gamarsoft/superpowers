@@ -1,6 +1,6 @@
 ---
 name: requesting-code-review
-description: Use when completing tasks, implementing major features, or before merging to verify work meets requirements
+description: Use when completing tasks, implementing major features, or before merging to verify work meets requirements, including Java 21/Spring Boot/JPA/GKE security and performance checks when applicable
 ---
 
 # Requesting Code Review
@@ -19,6 +19,7 @@ Dispatch a dedicated reviewer subagent to catch issues before they cascade. The 
 - After each task in subagent-driven development
 - After completing major feature
 - Before merge to main
+- After changes touching Java/Spring Boot/JPA/GKE runtime, security, persistence, or performance behavior
 
 **Optional but valuable:**
 

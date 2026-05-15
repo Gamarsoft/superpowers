@@ -6,7 +6,7 @@ You are reviewing code changes for production readiness.
 
 1. Review {WHAT_WAS_IMPLEMENTED}
 2. Compare against {PLAN_OR_REQUIREMENTS}
-3. Check code quality, architecture, testing
+3. Check code quality, architecture, security, testing, and Java/Spring/GKE concerns when applicable
 4. Categorize issues by severity
 5. Assess production readiness
 
@@ -51,6 +51,7 @@ git diff {BASE_SHA}..{HEAD_SHA}
 - Open these reference files before reviewing:
   - {SUPERPOWERS_DIR}/skills/requesting-code-review/references/solid-checklist.md
   - {SUPERPOWERS_DIR}/skills/requesting-code-review/references/security-checklist.md
+  - {SUPERPOWERS_DIR}/skills/requesting-code-review/references/java-21-spring-gke-checklist.md
   - {SUPERPOWERS_DIR}/skills/requesting-code-review/references/code-quality-checklist.md
 - If you need additional context, open related tests, configs, and entry points referenced by the diff.
 - If a file is not found, say which path you tried and ask for clarification instead of assuming it does not exist.
@@ -60,7 +61,7 @@ git diff {BASE_SHA}..{HEAD_SHA}
 | Name      | Description                                                   | Action                  |
 | --------- | ------------------------------------------------------------- | ----------------------- |
 | Critical  | Security vulnerability, data loss risk, correctness bug       | Must block merge        |
-| Important | Logic error, significant design issue, performance regression | Should fix before merge |
+| Important | Logic error, significant design issue, performance regression, N+1 query, unsafe transaction, missing test | Should fix before merge |
 | Minor     | Style, naming, minor suggestion                               | Optional                |
 
 ## Review Checklist
@@ -69,6 +70,7 @@ Use these checklists as coverage prompts:
 
 - SOLID: {SUPERPOWERS_DIR}/skills/requesting-code-review/references/solid-checklist.md
 - Security: {SUPERPOWERS_DIR}/skills/requesting-code-review/references/security-checklist.md
+- Java 21/Spring/GKE: {SUPERPOWERS_DIR}/skills/requesting-code-review/references/java-21-spring-gke-checklist.md
 - Code quality: {SUPERPOWERS_DIR}/skills/requesting-code-review/references/code-quality-checklist.md
 
 **Code Quality:**
@@ -86,6 +88,7 @@ Use these checklists as coverage prompts:
 - Scalability considerations?
 - Performance implications?
 - Security concerns?
+- For Java/Spring changes: safe service boundaries, transactions, persistence access, and runtime behavior?
 
 **Testing:**
 
@@ -107,6 +110,7 @@ Use these checklists as coverage prompts:
 - Backward compatibility considered?
 - Documentation complete?
 - No obvious bugs?
+- For Java/Spring/GKE changes: tenant/auth checks, JPA query behavior, resource bounds, and container readiness considered?
 
 ## Output Format
 
@@ -167,6 +171,7 @@ Use these checklists as coverage prompts:
 - Give feedback on code you didn't review
 - Be vague ("improve error handling")
 - Avoid giving a clear verdict
+- Recommend preview Java, incubator, or Valhalla/JEP 401 syntax for production Java 21 code
 
 ## Example Output
 
