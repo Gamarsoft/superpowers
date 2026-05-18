@@ -43,6 +43,7 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 - Are the key screens named?
 - Are loading, empty, error, validation, permission, and destructive states covered where relevant?
 - Are deferred design areas clearly marked as deferred?
+- For native or mobile-first work, does the packet name mobile jobs, screen entry/exit context, the primary action per screen, permission moments, offline/degraded behavior, and native-vs-web risks?
 
 ## 6. Chosen directions
 
@@ -56,6 +57,7 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 - Are required viewports named?
 - Are mobile adaptation rules explicit where density is high?
 - Are accessibility-sensitive controls, labels, focus handling, and truncation rules covered?
+- For mobile work, are required device families, safe areas, keyboard behavior, text scaling, tap targets, semantics, gesture alternatives, and permission denied states covered?
 - Are approved visible copy, terminology rules, i18n variables, date/number/plural formatting, and translation expansion constraints covered?
 - If copy is still pending for a visual-truth image or board, is that marked as a blocker rather than left for implementation?
 
@@ -84,3 +86,4 @@ Use this as a blocking checklist before handing the packet to GSD or Codex imple
 - Could Codex or Copilot tell which image files, `.pen` files, screenshots, and skills to use?
 - Could Codex or Copilot tell which images or boards require visual parity and which only demonstrate intent?
 - Is there enough evidence to verify implementation on desktop and mobile?
+- For non-trivial native/mobile-first work, did `mobile-design-review` run or is the missing review listed as a blocker/deferred item?

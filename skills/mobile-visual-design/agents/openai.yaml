@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile Visual Design"
+  short_description: "Improve mobile visual quality"
+  default_prompt: "Use $mobile-visual-design to define a polished native mobile visual direction."

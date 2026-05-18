@@ -60,12 +60,20 @@ Supporting folder:
 ## 2. Downstream Skill Plan
 
 ### Skills used to create this packet
+- `mobile-product-direction` (if native/mobile-first flow direction was shaped here)
+- `mobile-interaction-and-usability` (if mobile interaction, state behavior, or accessibility was shaped here)
+- `mobile-visual-design` (if mobile visual direction was shaped here)
+- `mobile-design-review` (if a mobile design review was run before handoff)
 - `creating-chatgpt-image-upload-packs` (if ChatGPT Images 2 references were used)
 - `pencil-design-core` (only when Pencil was selected)
 - `[chosen Pencil adapter]` (only when Pencil was selected)
 
 ### Skills downstream implementation should load
 - `gsd-frontend-design`
+- `mobile-product-direction` (only when mobile screen/flow direction remains unresolved)
+- `mobile-interaction-and-usability` (when implementing or verifying mobile navigation, forms, gestures, permissions, states, text scaling, semantics, or tap targets)
+- `mobile-visual-design` (when implementing or refining mobile hierarchy, visual polish, native feel, motion, or state visuals)
+- `mobile-design-review` (for non-trivial mobile UI review)
 - `pencil-design-core` (only when Pencil is the visual-truth source)
 - `[chosen Pencil adapter]` (only when Pencil is the visual-truth source)
   - use `pencil-design-flutter-material` for Flutter / Material 3 / app_ui targets
@@ -75,6 +83,7 @@ Supporting folder:
 - [e.g. do not invent a new shell]
 - [e.g. do not assume browser evidence for native Flutter]
 - [e.g. do not load Pencil skills when ChatGPT Images 2 is the selected visual-truth source]
+- [e.g. do not treat a native mobile app as a web page squeezed into a phone]
 
 ## 3. Visual Thesis
 
@@ -203,6 +212,14 @@ These modes apply to Pencil boards, approved ChatGPT Images 2 generated images, 
 ### Flutter / Mobile Implementation Notes
 - Target app:
 - Target package:
+- Mobile product mode:
+- Primary mobile jobs:
+- Navigation model:
+- Screen inventory and primary action per screen:
+- Critical mobile states:
+- Permission moments and denied-state fallbacks:
+- Offline/degraded behavior:
+- Native-vs-web risks:
 - Design-system package: `packages/app_ui` | not used | unknown
 - Theme source:
   - Material Theme Builder export:
@@ -220,17 +237,23 @@ These modes apply to Pencil boards, approved ChatGPT Images 2 generated images, 
   - large phone:
   - tablet / landscape, if relevant:
 - Text scaling requirements:
+- Tap target / reachability requirements:
+- Semantics / screen reader expectations:
+- Gesture alternatives:
 - Golden/widget test expectations:
 - Runtime screenshot expectations:
 
 ## 13. Verification Plan
 
 - Required viewports:
+- Required mobile device families:
 - Screenshot checks by reference intent:
   - visual-truth parity checks against approved ChatGPT Images 2 images or Pencil boards:
   - semantic-guidance intent-fit checks:
   - reference-only items excluded from acceptance:
 - Interaction checks:
+- Mobile usability checks:
+- Mobile design review status:
 - Acceptance tie-back to main spec:
 - Known visual risks:
 

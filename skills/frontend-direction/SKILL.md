@@ -44,17 +44,21 @@ When the human selects Pencil as the implementation visual-truth source, also ma
 
 1. Read `references/design-source-priority.md`.
 2. Read `references/use-cases-prompts-and-flows.md` when you need a concrete scenario flow or prompt shape.
-3. Read `references/pencil-skill-selection.md`.
-4. Read `references/browser-surface-selection.md` when browser interaction is needed.
-5. Read `references/impeccable-brownfield-quality-layer.md` when brownfield quality refinement is in scope.
-6. Read `references/frontend-packet-folder-template.md`.
-7. Read `references/brownfield-ui-extraction-template.md` when the work is brownfield.
-8. Read `references/screen-index-template.md`.
-9. Read `../creating-chatgpt-image-upload-packs/SKILL.md` when ChatGPT Images 2 references are requested, useful, or required to stabilize visual-truth candidates before implementation.
-10. Read `references/pencil-workset-template.md` when Pencil remains a possible or selected visual-truth source.
-11. Read `references/frontend-direction-template.md`.
-12. Read `references/frontend-review-checklist.md`.
-13. Read `references/frontend-packet-completeness-checklist.md` before finalizing.
+3. Read `../mobile-product-direction/SKILL.md` when the target is native mobile, mobile-first, or a greenfield app where mobile flow and screen direction are not already settled.
+4. Read `../mobile-interaction-and-usability/SKILL.md` when mobile navigation, forms, gestures, permissions, state behavior, text scaling, or accessibility materially shapes the packet.
+5. Read `../mobile-visual-design/SKILL.md` when mobile visual quality, native polish, hierarchy, or aesthetic direction is part of the packet.
+6. Read `references/pencil-skill-selection.md`.
+7. Read `references/browser-surface-selection.md` when browser interaction is needed.
+8. Read `references/impeccable-brownfield-quality-layer.md` when brownfield quality refinement is in scope.
+9. Read `references/frontend-packet-folder-template.md`.
+10. Read `references/brownfield-ui-extraction-template.md` when the work is brownfield.
+11. Read `references/screen-index-template.md`.
+12. Read `../creating-chatgpt-image-upload-packs/SKILL.md` when ChatGPT Images 2 references are requested, useful, or required to stabilize visual-truth candidates before implementation.
+13. Read `references/pencil-workset-template.md` when Pencil remains a possible or selected visual-truth source.
+14. Read `references/frontend-direction-template.md`.
+15. Read `../mobile-design-review/SKILL.md` before finalizing non-trivial native/mobile-first packets.
+16. Read `references/frontend-review-checklist.md`.
+17. Read `references/frontend-packet-completeness-checklist.md` before finalizing.
 
 ## Workflow
 
@@ -74,6 +78,9 @@ When the human selects Pencil as the implementation visual-truth source, also ma
    - degraded mode: when richer design context is unavailable
    - when present, treat `PRODUCT.md` as product/register context and `DESIGN.md` as reusable system documentation, but keep current runtime truth above both in brownfield work
 4. Identify the target frontend stack. Use `references/pencil-skill-selection.md` only to choose a downstream Pencil adapter if Pencil remains a possible or selected visual-truth source.
+   - If the target is native mobile or mobile-first and the mobile flow is not already settled, use `mobile-product-direction` to define the mobile jobs, screen inventory, primary actions, state matrix, and native-vs-web risks before visual-truth selection.
+   - If mobile interaction patterns are material, use `mobile-interaction-and-usability` to record navigation, forms, gestures, permissions, text scaling, tap targets, semantics, and recovery behavior.
+   - If mobile visual quality is material, use `mobile-visual-design` to record the product feel, first-screen impression, hierarchy, typography, spacing, color roles, motion, and anti-patterns.
 5. In brownfield work, create `brownfield-ui-extraction.md` before asking for visual variants.
    - separate `observed current truth`, `conservative normalization target`, and `optional exploration`
    - for existing-screen work with no prior durable evidence, the first packet job is faithful reproduction, not improvement
@@ -140,6 +147,7 @@ When the human selects Pencil as the implementation visual-truth source, also ma
    - downstream skills and adapter to load
 
 18. Review against the checklist until the packet is implementation-usable.
+   - For non-trivial mobile packets, use `mobile-design-review` before handoff and carry any blocking or important findings into the packet or open questions.
 
 ## Tooling preference
 
@@ -166,6 +174,7 @@ When the human selects Pencil as the implementation visual-truth source, also ma
   - screenshots
 - Record the exact downstream visual-truth source: `chatgpt-image-2`, `pencil`, or degraded current UI.
 - Record the exact Pencil skills downstream agents should load only when Pencil is selected.
+- Record the exact mobile design skills downstream agents should load only when mobile product direction, interaction/usability, visual design, or review remains relevant to implementation.
 - Record that Pencil CLI interactive mode is the intended downstream transport when Pencil is selected and it matters for reproducibility.
 - Treat generated code from design tools as reference evidence, not production-ready output for legacy Angular stacks.
 - Do not silently let generated imagery skip the visual-truth decision. If approved ChatGPT Images 2 references are chosen as implementation visual truth, record that Pencil is intentionally omitted.
@@ -178,6 +187,7 @@ A strong result:
 
 - makes the intended visual direction obvious
 - covers the main screens and key states
+- for mobile work, records native mobile jobs, primary actions, platform constraints, state coverage, and review gates
 - preserves or intentionally updates the current design system
 - gives implementation agents enough direction to build without inventing the UI from scratch
 - when Pencil is selected, tells downstream agents which `.pen` files, board names, screenshots, and Pencil skills to use

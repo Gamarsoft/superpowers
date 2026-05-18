@@ -1,6 +1,6 @@
 ---
 name: gsd-frontend-design
-description: Use when frontend work researches, plans, implements, verifies, or refines user-facing UI, UX, browser behavior, visual evidence, approved packets, images, or `.pen` sources.
+description: Use when frontend work researches, plans, implements, verifies, or refines user-facing UI, UX, mobile app design, browser behavior, visual evidence, approved packets, images, or `.pen` sources.
 ---
 
 # Frontend Design
@@ -40,6 +40,14 @@ Use this precedence order:
 13. Freeform invention only for genuinely unspecified gaps
 
 ## Skill composition
+
+When the target is native mobile or mobile-first:
+
+- use `mobile-product-direction` when mobile screen/flow direction is unresolved
+- use `mobile-interaction-and-usability` when navigation, forms, gestures, permissions, state behavior, text scaling, tap targets, semantics, or mobile accessibility are in scope
+- use `mobile-visual-design` when hierarchy, native polish, visual quality, motion, state visuals, or mobile aesthetic direction are in scope
+- use `mobile-design-review` for non-trivial mobile UI review after a concrete packet, mockup, screenshot, board, prototype, or implementation exists
+- do not load all mobile skills by default for trivial UI changes; load the smallest set that matches the task
 
 When the packet selects `chatgpt-image-2` visual truth:
 
@@ -92,6 +100,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - separate functional acceptance from visual acceptance
    - for Angular/Nebular work, name any Nebular defaults that must be neutralized or restyled to match `visual-truth` images or boards
    - for Flutter work, name target app/package, `app_ui` primitives, theme/token sources, routing impact, Bloc/Cubit or approved state impact, l10n keys, accessibility checks, and widget/golden/device verification
+   - for native/mobile-first work, name mobile jobs, primary action per screen, navigation model, permission moments, gesture alternatives, text scaling, tap targets, semantics, compact-screen risks, and platform evidence expectations
    - extract the approved UX copy source, copy deck, terminology rules, i18n variables, and copy acceptance criteria before changing strings
    - if approved copy is missing for a new or changed visible state, use `writing-ux-copy` before implementing that copy instead of inventing strings during coding
 8. Inspect the existing codebase and reuse its components, tokens, spacing system, interaction patterns, and shell conventions unless the packet explicitly changes them.
@@ -127,6 +136,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - If the target cannot be opened or recaptured because the server, app, simulator, device, route, or test harness is unavailable, the reviewer must not approve. Use `REQUEST_CHANGES` when a follow-up task can restore runnable evidence, or `ESCALATE` when the environment or task framing blocks review.
    - The artifact should name the target, evidence inspected, checks applied, findings by severity, `Verdict: APPROVE | REQUEST_CHANGES | ESCALATE`, and `Review Decision: no_action | remediate_and_rereview | escalate_replan`.
    - The artifact must include a `Visual Review Completion Gates` section covering project instructions read, fresh runtime isolation or recorded fallback, independent runtime recapture, approved reference checklist completion, platform scope, console/network or Flutter test/log checks when relevant, and any missing gate that prevents approval.
+   - For native/mobile-first work, tell the reviewer to load `mobile-design-review` and include mobile task clarity, native conventions, compact-screen fit, state coverage, text scaling, tap targets, semantics, gesture alternatives, and generic AI-mobile risks in the review artifact.
    - In GSD-2 implementation-end review, the visual review pass is evidence collection. If a paired review-and-resolve task exists, unresolved blocking or important visual findings belong there unless they prevent basic verification from running.
    - Outside GSD-2, use the active workflow's equivalent fresh-context reviewer, or record why fresh-context review was unavailable.
    - The reviewer reports blocking, important, and minor visual findings; it does not rewrite the UI.
@@ -148,6 +158,10 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - Read `references/pencil-skills-integration.md` to decide which Pencil skills to compose only when Pencil is selected.
 - Read `references/pencil-source-consumption.md` when the packet includes machine-usable Pencil worksets or `.pen` files.
 - Load `pencil-design-flutter-material` when Pencil is selected and the target is Flutter / Material 3 / app_ui.
+- Load `mobile-product-direction` when native/mobile-first screen or flow direction is still unresolved.
+- Load `mobile-interaction-and-usability` when mobile navigation, forms, gestures, permissions, state behavior, text scaling, semantics, or tap targets are in scope.
+- Load `mobile-visual-design` when mobile hierarchy, visual polish, native feel, motion, or state visuals are in scope.
+- Load `mobile-design-review` for non-trivial native/mobile-first UI review.
 - Read `references/typography.md` for type hierarchy, data density, numeric treatment, and conservative extension of the current scale.
 - Read `references/color-and-contrast.md` for token alignment, semantic color roles, contrast, and normalization of hard-coded colors.
 - Read `references/spatial-design.md` for layout rhythm, card structure, density, and shell preservation.
@@ -177,6 +191,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - When no packet or approved visual-truth source exists, say so and operate in degraded mode rather than pretending the direction is settled.
 - Do not translate generic React, Tailwind, Angular, Nebular, or design-tool output directly into production Flutter code without adapting it to the repo’s real Flutter primitives, theme, app_ui package, routes, state, and l10n conventions.
 - Do not translate generic React, Tailwind, or design-tool output directly into production Angular or Nebular code without adapting it to the repo’s real primitives.
+- Do not treat a native mobile app as a web page squeezed into a phone; preserve native navigation, platform affordances, compact-screen constraints, text scaling, safe areas, and gesture alternatives.
 - Do not use Pencil MCP in GSD workflows.
 - In GSD-2 or other headless contexts, do not treat a small `.pen` text edit as a reason to bypass Pencil CLI when Pencil is selected and CLI is available.
 - If CLI interactive persistence fails, say that interactive mode failed and why. Only fall back to direct text editing in explicit degraded mode.

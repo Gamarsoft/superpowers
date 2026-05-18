@@ -30,6 +30,14 @@ Also load:
 
 - `pencil-design-flutter-material`
 
+### If the implementation target is native mobile or mobile-first
+Load the smallest relevant mobile design skill set:
+
+- `mobile-product-direction` when screen/flow direction is unresolved
+- `mobile-interaction-and-usability` when navigation, gestures, forms, permissions, state behavior, text scaling, semantics, or tap targets matter
+- `mobile-visual-design` when hierarchy, native polish, visual quality, state visuals, or mobile aesthetic direction matter
+- `mobile-design-review` after a concrete artifact exists and review is needed
+
 ## Task-to-skill mapping
 
 ### Extract current UI into Pencil
@@ -62,6 +70,7 @@ Also load:
 - `gsd-frontend-design`
 - `pencil-design-core`
 - `pencil-design-flutter-material`
+- mobile skills only when the packet or task leaves mobile product direction, interaction/usability, visual quality, or review work in scope
 
 ## Guardrails
 
@@ -72,3 +81,4 @@ Also load:
 - never let the adapter overrule the approved packet or current product system
 - never use Pencil MCP in GSD workflows
 - never load Pencil skills just because `.pen` files exist elsewhere when the packet explicitly omits Pencil for the current scope
+- never load all mobile skills reflexively for trivial UI edits

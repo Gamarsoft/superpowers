@@ -29,11 +29,13 @@ This adapter is Flutter-specific, not app-specific. Keep product facts, brand de
 
 1. Read the frontend direction packet, `screen-index.md`, `pencil-workset.md`, and relevant `.pen` boards.
 2. Read repo instructions, `PRODUCT.md`, `DESIGN.md`, and Flutter package docs when present.
-3. Inspect the Flutter app and shared UI package before proposing implementation.
-4. Identify existing widgets, tokens, typography, spacing, radius, elevation, icons, motion, routes, states, and l10n conventions.
-5. Classify each board or retained screenshot as `visual-truth`, `semantic-guidance`, or `reference-only`.
-6. Build a Flutter implementation contract before editing code:
+3. If the packet includes mobile-product, interaction, visual, or review findings from `mobile-product-direction`, `mobile-interaction-and-usability`, `mobile-visual-design`, or `mobile-design-review`, treat them as upstream design evidence.
+4. Inspect the Flutter app and shared UI package before proposing implementation.
+5. Identify existing widgets, tokens, typography, spacing, radius, elevation, icons, motion, routes, states, and l10n conventions.
+6. Classify each board or retained screenshot as `visual-truth`, `semantic-guidance`, or `reference-only`.
+7. Build a Flutter implementation contract before editing code:
    - target app/package and target screen/widget
+   - mobile jobs, primary action per screen, navigation model, permission moments, state coverage, gesture alternatives, text scaling, tap targets, semantics, and compact-device risks
    - existing `app_ui` primitives to reuse
    - new shared components or tokens, only if reusable
    - feature package responsibilities
@@ -42,9 +44,9 @@ This adapter is Flutter-specific, not app-specific. Keep product facts, brand de
    - l10n keys and copy source
    - accessibility and text-scaling checks
    - widget, golden, and simulator/device verification
-7. Implement with existing primitives first.
-8. Promote a visual pattern to `app_ui` only when it is reusable across screens or required by the design system.
-9. Verify with the repo's Flutter commands and mobile evidence, not browser proof unless the target is Flutter Web.
+8. Implement with existing primitives first.
+9. Promote a visual pattern to `app_ui` only when it is reusable across screens or required by the design system.
+10. Verify with the repo's Flutter commands and mobile evidence, not browser proof unless the target is Flutter Web.
 
 ## Translation Checklist
 
@@ -58,6 +60,7 @@ This adapter is Flutter-specific, not app-specific. Keep product facts, brand de
 - Which route or shell owns the screen?
 - Which widget/golden/device evidence proves the approved intent?
 - Which accessibility checks cover semantics, focus, tap targets, contrast, and text scaling?
+- Which mobile design decisions came from the universal mobile skills and must not be lost during Flutter translation?
 
 ## Reference Loading Guide
 

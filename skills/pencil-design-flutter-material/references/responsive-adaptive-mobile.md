@@ -15,6 +15,8 @@ Do not treat a single Pencil phone frame as the only valid size.
 
 ## Mobile Layout Rules
 
+- Preserve the mobile product direction: user job, primary action, previous/next screen context, and required states.
+- Preserve the mobile interaction contract: navigation model, permission timing, gesture alternatives, tap targets, semantics, and text scaling.
 - Respect safe areas, system gestures, keyboard insets, and platform chrome.
 - Keep primary actions reachable and stable across compact devices.
 - Let content scroll instead of shrinking text or clipping containers.

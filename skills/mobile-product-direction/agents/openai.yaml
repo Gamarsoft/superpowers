@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile Product Direction"
+  short_description: "Shape mobile-first app flows"
+  default_prompt: "Use $mobile-product-direction to turn this app idea into a native mobile screen and flow direction."

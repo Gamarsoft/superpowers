@@ -74,6 +74,9 @@ A waiver is acceptable only when it names the source image or board, approved in
 - Are keyboard and screen-reader paths preserved?
 - Do hover, pressed, loading, and disabled states exist where needed?
 - Are overlays, dialogs, and forms usable and predictable?
+- For native/mobile-first work, did `mobile-interaction-and-usability` shape navigation, forms, gestures, permissions, state behavior, text scaling, tap targets, semantics, and recovery paths?
+- Are primary actions visible without relying on hidden gestures?
+- Do safe areas, keyboard insets, bottom bars, and compact phone constraints preserve critical controls?
 
 ## 6. Copy and content
 
@@ -130,6 +133,7 @@ A waiver is acceptable only when it names the source image or board, approved in
 - If ChatGPT Images 2 was selected, did you compare the result against the approved generated image files and not require Pencil parity?
 - Did you verify the required viewports?
 - For native Flutter, did you verify the required device families, safe areas, text scaling, tap targets, and semantics expectations named in the packet?
+- For non-trivial native/mobile-first work, did `mobile-design-review` run against the packet, reference images/boards, screenshots, or implementation evidence?
 - Did you check any acceptance criteria or screenshot checks named in the packet?
 - Can another agent recover the same frontend references from your recorded output?
 - Did you keep `Frontend References` in the relevant `CONTEXT.md` current when those workflow artifacts are in scope?

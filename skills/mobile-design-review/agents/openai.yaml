@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile Design Review"
+  short_description: "Review native mobile UI quality"
+  default_prompt: "Use $mobile-design-review to review this mobile screen, flow, mockup, or implementation."

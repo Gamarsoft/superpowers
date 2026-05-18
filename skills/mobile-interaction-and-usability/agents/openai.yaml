@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mobile Interaction And Usability"
+  short_description: "Design usable native mobile interactions"
+  default_prompt: "Use $mobile-interaction-and-usability to design mobile navigation, forms, gestures, states, and accessibility."
