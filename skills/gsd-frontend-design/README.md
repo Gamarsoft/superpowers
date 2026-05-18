@@ -8,7 +8,7 @@ This version is designed to work with:
 - approved ChatGPT Images 2 visual-truth references
 - Pencil worksets and `.pen` files
 - `pencil-design-core`
-- stack adapters such as `pencil-design-angular-nebular` or `pencil-design-react-tailwind`
+- stack adapters such as `pencil-design-angular-nebular`, `pencil-design-react-tailwind`, or `pencil-design-flutter-material`
 
 It is **not** a redesign skill. It is an implementation and verification skill.
 For GSD-2, non-trivial UI work should receive a fresh-context visual review from a `worker` subagent before completion.

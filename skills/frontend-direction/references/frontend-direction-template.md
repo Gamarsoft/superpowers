@@ -39,7 +39,8 @@ Supporting folder:
 - Packet status: full-fidelity | degraded
 - Packet folder: `./{slug}--frontend/`
 - Screen index: `./{slug}--frontend/screen-index.md`
-- Brownfield extraction: `./{slug}--frontend/brownfield-ui-extraction.md`
+- Brownfield extraction: `./{slug}--frontend/brownfield-ui-extraction.md` | not used for greenfield mobile
+- Greenfield mobile foundation notes: `./{slug}--frontend/mobile-foundation-notes.md` | not used
 - UX copy source: spec copy deck | packet copy deck | existing i18n | pending
 - UX copy approval status: approved | pending | incomplete
 - ChatGPT Images 2 pack: not used | pending generation | generated pending approval | approved references available
@@ -67,10 +68,12 @@ Supporting folder:
 - `gsd-frontend-design`
 - `pencil-design-core` (only when Pencil is the visual-truth source)
 - `[chosen Pencil adapter]` (only when Pencil is the visual-truth source)
+  - use `pencil-design-flutter-material` for Flutter / Material 3 / app_ui targets
 
 ### Explicit non-assumptions
 - [e.g. do not assume React/Tailwind]
 - [e.g. do not invent a new shell]
+- [e.g. do not assume browser evidence for native Flutter]
 - [e.g. do not load Pencil skills when ChatGPT Images 2 is the selected visual-truth source]
 
 ## 3. Visual Thesis
@@ -87,6 +90,11 @@ Supporting folder:
 - Known drift / pain points:
 - Safe improvements in this slice:
 - Explicit no-gos:
+- If greenfield mobile, record brand/reference inputs instead of pretending a brownfield UI baseline exists:
+  - Existing brand/product references:
+  - Design-system foundations to establish:
+  - Native mobile assumptions:
+  - Reference inputs that are non-binding:
 
 ## 5. Screen Inventory
 
@@ -189,7 +197,31 @@ These modes apply to Pencil boards, approved ChatGPT Images 2 generated images, 
 
 ### Stack / framework notes
 - [Angular / Nebular / existing component or CSS constraints]
+- [Flutter / Material 3 / app_ui constraints when target is Flutter]
 - [what not to generate or assume]
+
+### Flutter / Mobile Implementation Notes
+- Target app:
+- Target package:
+- Design-system package: `packages/app_ui` | not used | unknown
+- Theme source:
+  - Material Theme Builder export:
+  - `ThemeData` location:
+  - `ColorScheme` source:
+  - `TextTheme` source:
+  - `ThemeExtension` source:
+- Existing UI gallery / catalog:
+- Navigation system:
+- State-management system:
+- l10n source:
+- Required device families:
+  - compact iPhone:
+  - compact Android:
+  - large phone:
+  - tablet / landscape, if relevant:
+- Text scaling requirements:
+- Golden/widget test expectations:
+- Runtime screenshot expectations:
 
 ## 13. Verification Plan
 

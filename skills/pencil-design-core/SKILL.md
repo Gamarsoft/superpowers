@@ -27,7 +27,7 @@ Pencil MCP and Pencil CLI are both valid transports in general, but when this sk
 
 In those cases, load this core skill **plus** the correct adapter.
 
-## The 7 critical rules
+## The critical rules
 
 ### Rule 1 — Always reuse design-system components
 
@@ -118,6 +118,7 @@ This skill governs Pencil operating discipline, not final code shape.
 
 - use the Angular/Nebular adapter for Angular/Nebular brownfield repos
 - use the React/Tailwind adapter only for actual React/Tailwind repos
+- use the Flutter/Material adapter for actual Flutter / Material 3 / app_ui repos
 - do not emit framework-specific code from the core skill
 
 Read `references/design-to-code-principles.md`.
@@ -150,9 +151,9 @@ Read `references/pencil-tooling-modes.md` when you need command syntax, headless
 
 ## Required preflight for every `.pen` task
 
-1. inspect the packet / screenshots / current browser evidence
-2. if brownfield truth exists only in source code and the running app, gather browser-grounded baseline evidence before touching the `.pen` file:
-   - capture the current screen at desktop and narrow/mobile widths
+1. inspect the packet / screenshots / current runtime evidence
+2. if brownfield truth exists only in source code and the running app, gather platform-grounded baseline evidence before touching the `.pen` file:
+   - capture the current screen at relevant desktop, narrow/mobile, simulator, or device sizes
    - capture the key local states for the changed area
    - record what is observed current truth versus what is only inferred from code
 3. choose the Pencil transport:
@@ -237,4 +238,5 @@ For CLI-specific workflows, also read `references/pencil-tooling-modes.md`.
 7. `references/brownfield-extraction.md`
 8. `references/design-to-code-principles.md`
 9. `references/mcp-tool-quick-reference.md`
-10. `references/bulk-normalization.md` when consolidating drift
+10. `references/pencil-tooling-modes.md` when transport choice matters
+11. `references/bulk-normalization.md` when consolidating drift

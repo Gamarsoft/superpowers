@@ -25,6 +25,11 @@ Also load:
 
 - `pencil-design-react-tailwind`
 
+### If the implementation target is Flutter / Material 3 / app_ui
+Also load:
+
+- `pencil-design-flutter-material`
+
 ## Task-to-skill mapping
 
 ### Extract current UI into Pencil
@@ -33,6 +38,7 @@ Also load:
 ### Build shared foundations / shell / patterns in Pencil
 - `pencil-design-core`
 - `pencil-design-angular-nebular` if the target system is Angular + Nebular
+- `pencil-design-flutter-material` if the target system is Flutter / Material 3 / app_ui
 
 ### Plan a slice from a packet and `.pen` files
 - `gsd-frontend-design`
@@ -52,9 +58,16 @@ Also load:
 - `pencil-design-core`
 - `pencil-design-react-tailwind`
 
+### Translate approved design into Flutter / Material 3 implementation
+- `gsd-frontend-design`
+- `pencil-design-core`
+- `pencil-design-flutter-material`
+
 ## Guardrails
 
 - never load the React/Tailwind adapter for an Angular/Nebular repo just because the online Pencil skill was React-first
+- never load the React/Tailwind adapter for a Flutter repo just because the online Pencil skill was React-first
+- never load Angular/Nebular or React/Tailwind adapters when the target is native Flutter / Material 3
 - never let the core skill invent a stack-specific output format
 - never let the adapter overrule the approved packet or current product system
 - never use Pencil MCP in GSD workflows

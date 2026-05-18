@@ -58,6 +58,7 @@ It only helps interpret Pencil-backed design in a way that fits the target stack
 Examples:
 - Angular + Nebular brownfield -> `pencil-design-angular-nebular`
 - React / Tailwind / shadcn -> `pencil-design-react-tailwind`
+- Flutter / Material 3 / app_ui -> `pencil-design-flutter-material`
 
 ## Default call by project type
 
@@ -71,7 +72,8 @@ Start from the spec and user goal, but still prefer a converged approved visual-
 ## Rules
 
 - Never let a lower-priority source silently override a higher-priority source.
-- If no durable frontend baseline exists yet, create retained browser evidence from the running app before treating generated artifacts as trustworthy.
+- If no durable frontend baseline exists yet, create retained platform evidence from the running app before treating generated artifacts as trustworthy.
+- For greenfield native Flutter apps, use available product/brand references, Flutter design-system evidence, and simulator/device proof instead of inventing a fake browser baseline.
 - In Impeccable v3 projects, use `PRODUCT.md` and `DESIGN.md` as anchoring context, but do not let them silently override observed brownfield runtime truth.
 - If a generated concept conflicts with a must-preserve brownfield pattern, the pattern wins unless the human explicitly approves change.
 - The frontend packet should point to **stable repo artifacts** first:
@@ -102,3 +104,14 @@ In older Angular + Nebular products, preserve:
 - configuration grouping patterns that already work
 
 Do not let a tool collapse the product into a generic modern dashboard.
+
+## Flutter / Material note
+
+In native Flutter products, preserve or establish:
+- Material 3 theme roles through `ThemeData`, `ColorScheme`, `TextTheme`, and theme extensions
+- shared `app_ui` primitives and package boundaries
+- native mobile navigation, safe areas, touch targets, and text scaling
+- Bloc/Cubit, `go_router`, and ARB/l10n conventions when the repo uses them
+- widget/golden/simulator evidence instead of browser-only proof
+
+Do not let a web-oriented design-to-code example become React-shaped Flutter.

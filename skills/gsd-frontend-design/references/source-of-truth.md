@@ -35,7 +35,7 @@ For brownfield work, think in layers instead of only a flat ranking:
 
 Later items do not overrule earlier items without an explicit reason.
 
-`DESIGN.json` is auxiliary Impeccable tooling output, not a stronger source than the packet, `.pen` files, or retained browser evidence.
+`DESIGN.json` is auxiliary Impeccable tooling output, not a stronger source than the packet, `.pen` files, or retained platform evidence.
 
 ## Runtime proof vs retained evidence
 
@@ -45,7 +45,8 @@ Runtime screenshots, traces, console logs, and network dumps gathered during imp
 
 ## Brownfield baseline rule
 
-If no durable frontend packet or approved visual-truth baseline exists yet for the changed screen, treat retained browser evidence from the running app as mandatory input.
+If no durable frontend packet or approved visual-truth baseline exists yet for the changed screen, treat retained runtime evidence from the running app as mandatory input.
+For web targets this is usually browser evidence. For native Flutter targets this is simulator/device, widget/golden, UI-gallery, or other platform-appropriate evidence.
 
 Do not rely on code-only visual inference for:
 
@@ -137,7 +138,7 @@ Preserve unless the packet explicitly changes them:
 ### Live proof vs visual fixture proof
 1. Live runtime proof uses real backend services and proves integration, auth, routing, feature flags, tenant context, real API composition, persistence, and service wiring for the available state.
 2. Visual fixture proof uses deterministic contract-shaped API responses to render hard-to-reach visual states. It proves state rendering, responsive behavior, copy, action hierarchy, and reference-intent parity.
-3. Prefer browser/e2e network fixtures or a local mock proxy. In-browser XHR/fetch monkeypatches are temporary spikes, not reusable fixture infrastructure.
+3. Use platform-appropriate fixtures: browser/e2e network fixtures or a local mock proxy for web targets; widget-test pumps, Bloc/Cubit states, fake repositories, golden fixtures, or app-supported debug fixtures for Flutter targets. In-browser XHR/fetch monkeypatches are temporary web spikes, not reusable fixture infrastructure.
 4. Avoid production app fixture switches unless they are dev/test-only, visibly marked, write-disabled, and proven unavailable in production config.
 5. Fixture evidence must be labeled as fixture evidence in UAT, summaries, and review artifacts. It must not be used to claim live backend state, authorization, or persistence behavior.
 

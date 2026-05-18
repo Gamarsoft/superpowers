@@ -108,7 +108,9 @@ A waiver is acceptable only when it names the source image or board, approved in
 ## 10. Verification
 
 - Did you compare the result against the chosen approved images, `.pen` files, or retained references?
-- Did runtime browser evidence support the reference-intent checklist?
+- Did runtime evidence support the reference-intent checklist?
+- For web targets, did browser evidence include the relevant screenshots, route checks, console/network checks, or traces?
+- For native Flutter targets, did evidence include the relevant widget tests, golden tests, simulator/device screenshots, analysis/test commands, accessibility checks, or UI gallery verification?
 - If fixture mode was used, did the artifact distinguish live runtime proof from fixture visual-state proof?
 - Were fixture claims limited to rendering/state coverage instead of backend integration, authorization, persistence, or service wiring?
 - If a temporary monkeypatch proved a useful lane, was the follow-up to convert it into a repeatable network fixture or proxy harness recorded?
@@ -116,9 +118,10 @@ A waiver is acceptable only when it names the source image or board, approved in
 - For non-trivial UI work, did a fresh-context reviewer perform the final visual quality review?
 - In GSD-2, was that reviewer a `worker` subagent and was its `VISUAL-REVIEW.md` artifact recorded?
 - Did the visual reviewer read the relevant project instructions first, including `AGENTS.md`, `.gsd/**/CONTEXT.md`, `PRODUCT.md`, `DESIGN.md`, the task file, and slice or milestone instructions?
-- Did the visual reviewer use a fresh browser context when supported, and avoid reusing the implementer's browser session, storage, console state, or previously opened page?
-- Did the visual reviewer independently open the target route and recapture the required desktop/mobile evidence instead of relying only on implementer screenshots, assertions, or summaries?
-- If the target route could not be opened due to `ERR_CONNECTION_REFUSED`, connection refused, server unavailable, or equivalent runtime blockage, did the review avoid approval and use `REQUEST_CHANGES` or `ESCALATE`?
+- For web targets, did the visual reviewer use a fresh browser context when supported, and avoid reusing the implementer's browser session, storage, console state, or previously opened page?
+- For Flutter targets, did the visual reviewer use fresh simulator/device, widget-test, golden, or UI-gallery evidence when supported instead of relying only on implementer screenshots, assertions, or summaries?
+- Did the visual reviewer independently open the target route/screen and recapture the required platform evidence instead of relying only on implementer screenshots, assertions, or summaries?
+- If the target route/screen could not be opened due to `ERR_CONNECTION_REFUSED`, connection refused, server unavailable, simulator/device unavailable, test harness failure, or equivalent runtime blockage, did the review avoid approval and use `REQUEST_CHANGES` or `ESCALATE`?
 - Did the visual review artifact include `Visual Review Completion Gates` with every missing gate called out?
 - Did you run a visual quality review with `$impeccable critique` when available, or record why it was skipped?
 - Did you run measurable implementation quality review with `$impeccable audit` when available, or record why it was skipped?
@@ -126,6 +129,7 @@ A waiver is acceptable only when it names the source image or board, approved in
 - Were blocking and important visual findings fixed, explicitly disproved, waived, or moved into the paired review-and-resolve task?
 - If ChatGPT Images 2 was selected, did you compare the result against the approved generated image files and not require Pencil parity?
 - Did you verify the required viewports?
+- For native Flutter, did you verify the required device families, safe areas, text scaling, tap targets, and semantics expectations named in the packet?
 - Did you check any acceptance criteria or screenshot checks named in the packet?
 - Can another agent recover the same frontend references from your recorded output?
 - Did you keep `Frontend References` in the relevant `CONTEXT.md` current when those workflow artifacts are in scope?

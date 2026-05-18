@@ -25,7 +25,7 @@ design/
 ## Authoring rules
 
 - Prefer a few durable `.pen` files over many throwaway files.
-- Recreate current reality first.
+- Recreate current reality first for brownfield products; for greenfield mobile, establish shared foundations and approved brand/product references first.
 - Use variants only for real decisions.
 - Keep the shared files genuinely reusable.
 - State which adapter the workset is optimized for.
@@ -44,7 +44,7 @@ design/
 
 ## 2. Skill Plan
 - Core skill: `pencil-design-core`
-- Adapter: `[pencil-design-angular-nebular | pencil-design-react-tailwind | other]`
+- Adapter: `[pencil-design-angular-nebular | pencil-design-react-tailwind | pencil-design-flutter-material | other]`
 - Pencil transport: `CLI interactive`
 - Pre-Pencil image reference gate: not used | approved generated references available and Pencil selected
 - ChatGPT Images 2 folder: `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/chatgpt-image-2/`
@@ -106,11 +106,13 @@ For each axis:
 - why the chosen direction wins
 
 ## 8. Prompting Rules for Agents
-- Recreate first, then vary.
-- Preserve brownfield shell and component language.
+- Recreate first, then vary for brownfield work.
+- For greenfield Flutter mobile work, establish design-system foundations, native mobile structure, and approved brand/reference continuity before feature boards.
+- Preserve brownfield shell and component language when the product is brownfield.
 - Use the correct adapter.
 - Use Pencil CLI interactive mode for downstream GSD work. Do not use Pencil MCP.
 - Do not default to React/Tailwind output unless that is the actual target stack.
+- Do not default to browser evidence when the target is native Flutter.
 - Prefer implementation-usable structure over ornamental polish.
 
 ## 9. Expected Deliverables from the Workset

@@ -41,6 +41,23 @@ This adapter emphasizes:
 - responsive mapping
 - component API thinking for that stack
 
+### `pencil-design-flutter-material`
+Use this when the target is:
+
+- Flutter mobile app
+- Material 3 / custom Material theme
+- shared Flutter UI package such as `packages/app_ui`
+- Very Good CLI / Melos / package-based Flutter architecture
+- mobile-first flows where native feel, accessibility, and responsive constraints matter
+
+This adapter emphasizes:
+- mapping Pencil components to reusable Flutter widgets
+- using `ThemeData`, `ColorScheme`, `TextTheme`, and `ThemeExtension`
+- avoiding raw `Color`, `TextStyle`, spacing, radius, and shadow values outside the UI package
+- translating boards into idiomatic Flutter layouts, not absolute-positioned mockups
+- checking text scaling, semantics, tap targets, and golden/screenshot parity
+- keeping implementation inside the correct package boundary
+
 ## Packet requirements
 
 The frontend direction packet should explicitly record:
@@ -59,8 +76,19 @@ If Pencil is selected and the product is brownfield and the UI is a dense busine
 
 unless the actual production target says otherwise.
 
+## Greenfield Flutter mobile default
+
+If Pencil is selected and the target is a Flutter mobile app, default to:
+
+- `pencil-design-core`
+- `pencil-design-flutter-material`
+
+Do not use the React/Tailwind adapter just because Pencil examples online are web-first.
+Treat this as greenfield mobile UI with brownfield brand/reference inputs when the repo is a new mobile app guided by existing product or brand evidence.
+
 ## Guardrails
 
 - Do not load the React adapter for an Angular product “just because the prompt library online used React.”
+- Do not load the React adapter for a Flutter product “just because the prompt library online used React.”
 - Do not keep the adapter or Pencil omission implicit. Write it down in the packet and handoff.
 - Do not let the adapter overrule the packet or the current product system.

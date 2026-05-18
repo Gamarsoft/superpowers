@@ -10,7 +10,7 @@ Translate Pencil designs into implementation-ready guidance without losing syste
 Also read:
 
 - approved packet
-- screenshots / browser evidence
+- screenshots / platform runtime evidence
 - current code primitives
 - product constraints
 - adapter-specific rules
@@ -35,7 +35,7 @@ Every implementation-facing board or screenshot needs approved intent:
 If approval is missing, record the gap and ask before implementation. Do not let the code agent decide whether a board is a redesign target.
 
 ### 6. Delegate final code shape to the adapter
-The core should not decide Angular/Nebular or React/Tailwind structure.
+The core should not decide Angular/Nebular, React/Tailwind, or Flutter/Material structure.
 
 ### 7. Treat design and code as a two-way system
 
@@ -50,7 +50,7 @@ The core should not decide Angular/Nebular or React/Tailwind structure.
 3. confirm approved board intent for each implementation reference
 4. identify what must be shared versus page-local
 5. translate to adapter-specific implementation guidance
-6. verify against screenshots and browser output using the approved intent mode
+6. verify against screenshots and platform runtime output using the approved intent mode
 7. record deviations, compromises, and follow-up items
 
 ## Brownfield import prompts

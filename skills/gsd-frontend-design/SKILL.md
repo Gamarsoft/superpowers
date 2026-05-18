@@ -54,7 +54,10 @@ When the packet selects `pencil` or Pencil-backed sources are in scope:
 - load the correct stack adapter for the implementation target
   - `pencil-design-angular-nebular` for Angular + Nebular / similar brownfield operator UIs
   - `pencil-design-react-tailwind` only when the actual target stack is React / Next / Tailwind / shadcn
+  - `pencil-design-flutter-material` when the actual target stack is Flutter / Material 3 / app_ui
 - use Pencil CLI interactive mode as the only allowed Pencil transport in GSD workflows; outside GSD, follow the active workflow's Pencil transport policy
+
+For Flutter targets, treat `.pen` files as design evidence, not Flutter production code. Do not load Angular/Nebular or React/Tailwind adapters.
 
 Read `references/pencil-skills-integration.md` before implementation when `.pen` files are in scope.
 
@@ -88,6 +91,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
    - for `semantic-guidance`, extract required behavior, information hierarchy, state coverage, workflow, and adaptation boundaries
    - separate functional acceptance from visual acceptance
    - for Angular/Nebular work, name any Nebular defaults that must be neutralized or restyled to match `visual-truth` images or boards
+   - for Flutter work, name target app/package, `app_ui` primitives, theme/token sources, routing impact, Bloc/Cubit or approved state impact, l10n keys, accessibility checks, and widget/golden/device verification
    - extract the approved UX copy source, copy deck, terminology rules, i18n variables, and copy acceptance criteria before changing strings
    - if approved copy is missing for a new or changed visible state, use `writing-ux-copy` before implementing that copy instead of inventing strings during coding
 8. Inspect the existing codebase and reuse its components, tokens, spacing system, interaction patterns, and shell conventions unless the packet explicitly changes them.
@@ -99,12 +103,13 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 10. Use the reference files in `references/` as fallback heuristics and quality checks, not as permission to redesign the product.
    - treat `PRODUCT.md` as audience/register context and `DESIGN.md` as system documentation, not as permission to outrank the packet or brownfield baseline
 11. If the packet or selected visual-truth source is incomplete, fill gaps conservatively and keep new invention tightly bounded.
-   - If the current screen baseline is incomplete, prefer the retained browser evidence and current product behavior over code-only visual inference.
+   - If the current screen baseline is incomplete, prefer retained platform evidence and current product behavior over code-only visual inference.
 12. If live runtime data cannot produce every required visual state on demand, use visual fixture mode for state coverage.
    - Keep live mode for integration proof: auth, routing, feature flags, tenant context, real API composition, persistence, and service wiring.
    - Use fixture mode for visual proof: hard-to-reach states, responsive behavior, copy, action hierarchy, and reference-intent parity.
-   - Prefer browser/e2e network fixtures or a local mock proxy that intercepts selected API responses while the frontend runs normally.
-   - Treat in-browser XHR/fetch monkeypatches as ad-hoc spikes only; label them as temporary fixture evidence and convert successful lanes into a repeatable network fixture or proxy harness before relying on them across tasks or slices.
+   - For web targets, prefer browser/e2e network fixtures or a local mock proxy that intercepts selected API responses while the frontend runs normally.
+   - For Flutter targets, prefer widget-test pumps, Bloc/Cubit test states, fake repositories, golden fixtures, or app-supported debug fixtures that preserve real DTO/API shapes.
+   - Treat in-browser XHR/fetch monkeypatches as ad-hoc spikes only for web targets; label them as temporary fixture evidence and convert successful lanes into a repeatable network fixture or proxy harness before relying on them across tasks or slices.
    - Keep fixtures contract-shaped, using the same DTO/API shape as the real service; do not invent UI-only blobs.
    - Label fixture evidence as fixture evidence in UAT, summaries, and visual review artifacts. Do not present fixture evidence as live integration proof.
    - Avoid app-level fixture switches. If unavoidable, guard them to dev/test builds, make the UI visibly marked as fixture data, disable real writes, and prove they cannot activate in production config.
@@ -113,23 +118,26 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 15. Read `references/implementation-review-checklist.md` before considering the work done.
 16. Run a fresh-context visual quality review before considering non-trivial UI work done.
    - Do not rely on implementer self-review as the final visual gate for non-trivial UI work.
-   - In GSD-2, after implementation and browser/reference verification, spawn a fresh `worker` subagent reviewer.
+   - In GSD-2, after implementation and runtime/reference verification, spawn a fresh `worker` subagent reviewer.
    - Tell the reviewer to read project instructions before reviewing: nearest repo and workflow `AGENTS.md` files, relevant `.gsd/**/CONTEXT.md`, `PRODUCT.md`, `DESIGN.md`, the task file, and any slice or milestone instructions that affect the target route.
    - Tell the reviewer to load Impeccable, apply `$impeccable critique` and `$impeccable audit` as applicable, inspect the approved packet, visual-truth sources, reference-intent checklist, and runtime evidence, then write one review artifact: `.gsd/{milestoneId}/slices/{sliceId}/tasks/{taskId}-VISUAL-REVIEW.md` or `.gsd/{milestoneId}/slices/{sliceId}/VISUAL-REVIEW.md`.
-   - Tell the reviewer to use a fresh browser context, profile, window, or tab when the environment supports it. Do not reuse the implementer's browser session, route, storage, console state, or previously opened page. If the browser tool cannot isolate state, the reviewer records that limitation before navigating.
-   - Tell the reviewer to independently open the target route and recapture desktop and mobile evidence when the task has responsive UI scope. Implementer screenshots, assertions, or summaries are inputs to compare against, not a substitute for reviewer runtime proof.
-   - If the target cannot be opened or recaptured because the server is unavailable, the route returns `ERR_CONNECTION_REFUSED`, or equivalent connection refused / server unavailable errors occur, the reviewer must not approve. Use `REQUEST_CHANGES` when a follow-up task can restore runnable evidence, or `ESCALATE` when the environment or task framing blocks review.
+   - For web targets, tell the reviewer to use a fresh browser context, profile, window, or tab when the environment supports it. Do not reuse the implementer's browser session, route, storage, console state, or previously opened page. If the browser tool cannot isolate state, the reviewer records that limitation before navigating.
+   - For Flutter targets, tell the reviewer to use fresh simulator/device, golden, widget-test, or UI-gallery evidence when the environment supports it. Do not reuse only the implementer's screenshots, assertions, or summaries.
+   - Tell the reviewer to independently open the target route/screen and recapture the required platform evidence when the task has responsive UI scope.
+   - If the target cannot be opened or recaptured because the server, app, simulator, device, route, or test harness is unavailable, the reviewer must not approve. Use `REQUEST_CHANGES` when a follow-up task can restore runnable evidence, or `ESCALATE` when the environment or task framing blocks review.
    - The artifact should name the target, evidence inspected, checks applied, findings by severity, `Verdict: APPROVE | REQUEST_CHANGES | ESCALATE`, and `Review Decision: no_action | remediate_and_rereview | escalate_replan`.
-   - The artifact must include a `Visual Review Completion Gates` section covering project instructions read, fresh browser isolation or recorded fallback, independent runtime recapture, approved reference checklist completion, desktop/mobile scope, console/network checks, and any missing gate that prevents approval.
+   - The artifact must include a `Visual Review Completion Gates` section covering project instructions read, fresh runtime isolation or recorded fallback, independent runtime recapture, approved reference checklist completion, platform scope, console/network or Flutter test/log checks when relevant, and any missing gate that prevents approval.
    - In GSD-2 implementation-end review, the visual review pass is evidence collection. If a paired review-and-resolve task exists, unresolved blocking or important visual findings belong there unless they prevent basic verification from running.
    - Outside GSD-2, use the active workflow's equivalent fresh-context reviewer, or record why fresh-context review was unavailable.
    - The reviewer reports blocking, important, and minor visual findings; it does not rewrite the UI.
    - Treat Impeccable findings as review evidence and refinement input, not as authority to override the approved packet, visual-truth source, or brownfield baseline.
-   - If Impeccable cannot run or its preflight gates cannot pass, record why and use the implementation review checklist plus browser evidence as the fallback.
-17. Do not report completion for image-backed or Pencil-backed UI work until runtime browser evidence and the approved reference-intent checklist are complete.
+   - If Impeccable cannot run or its preflight gates cannot pass, record why and use the implementation review checklist plus platform-appropriate runtime evidence as the fallback.
+17. Do not report completion for image-backed or Pencil-backed UI work until runtime evidence and the approved reference-intent checklist are complete.
+   - For web targets, runtime evidence means browser screenshots, traces, console/network checks, or equivalent browser proof.
+   - For native Flutter targets, runtime evidence may come from widget tests for state rendering, golden tests, simulator/device screenshots, `flutter analyze`, `flutter test`, repo-level Melos commands, and UI gallery verification for shared components.
    - Completion is allowed with visual mismatches only by explicit waiver: list the mismatch, source image or board, implementation constraint, accepted fallback, and follow-up owner.
    - Runtime screenshots, traces, console logs, and network dumps are verification inputs, not default commit artifacts.
-   - Persist raw browser evidence only when needed for review or replay, and place it under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe artifact location unless the task explicitly says to commit those files.
+   - Persist raw runtime evidence only when needed for review or replay, and place it under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe artifact location unless the task explicitly says to commit those files.
 18. Record the frontend sources, visual review findings, and proof in the relevant task, slice, or implementation summary. Keep `Frontend References` in `CONTEXT.md` current when those workflow artifacts are in scope.
 
 ## Reference loading guide
@@ -139,6 +147,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - Read `references/chatgpt-image-source-consumption.md` when the packet declares `chatgpt-image-2` as the implementation visual-truth source.
 - Read `references/pencil-skills-integration.md` to decide which Pencil skills to compose only when Pencil is selected.
 - Read `references/pencil-source-consumption.md` when the packet includes machine-usable Pencil worksets or `.pen` files.
+- Load `pencil-design-flutter-material` when Pencil is selected and the target is Flutter / Material 3 / app_ui.
 - Read `references/typography.md` for type hierarchy, data density, numeric treatment, and conservative extension of the current scale.
 - Read `references/color-and-contrast.md` for token alignment, semantic color roles, contrast, and normalization of hard-coded colors.
 - Read `references/spatial-design.md` for layout rhythm, card structure, density, and shell preservation.
@@ -166,6 +175,7 @@ Read `references/pencil-skills-integration.md` before implementation when `.pen`
 - Do not treat fixture visual-state proof as live integration proof.
 - Do not commit raw runtime evidence directories unless the task or human explicitly says those files are commit artifacts.
 - When no packet or approved visual-truth source exists, say so and operate in degraded mode rather than pretending the direction is settled.
+- Do not translate generic React, Tailwind, Angular, Nebular, or design-tool output directly into production Flutter code without adapting it to the repo’s real Flutter primitives, theme, app_ui package, routes, state, and l10n conventions.
 - Do not translate generic React, Tailwind, or design-tool output directly into production Angular or Nebular code without adapting it to the repo’s real primitives.
 - Do not use Pencil MCP in GSD workflows.
 - In GSD-2 or other headless contexts, do not treat a small `.pen` text edit as a reason to bypass Pencil CLI when Pencil is selected and CLI is available.
