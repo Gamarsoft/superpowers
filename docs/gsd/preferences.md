@@ -129,6 +129,9 @@ pre_dispatch_hooks:
 custom_instructions:
   - .gsd/STATE.md is always untracked and should not be committed.
   - Raw runtime evidence directories are local by default and should not be committed unless the task or human explicitly says to commit those files.
+  - Keep `.gsd/REQUIREMENTS.md` compact. Store durable capability, ownership, and short validation references there, not narrative proof logs or verbose traceability cells.
+  - Keep `.gsd/DECISIONS.md` decision-only. Record stable choices and rationale there, not test transcripts, browser logs, or execution journals.
+  - Put detailed execution evidence in task summaries, slice summaries, UAT, checklists, or review artifacts, and link to those artifacts from requirements when needed.
   - Always announce skill usage
   - Detailed frontend, spec-projection, review, and superproject/submodule behavior lives in AGENTS.md and the pre-dispatch hooks above. Do not restate those policies here unless the hook cannot cover the command.
 models:

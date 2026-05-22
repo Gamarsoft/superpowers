@@ -46,9 +46,24 @@ Write the actual result into the GSD artifact:
 - what behavior was directly observed
 - what remains unproven
 
+Write narrative proof in the completion artifact that owns execution evidence, such as:
+
+- `T##-SUMMARY.md`
+- `S##-SUMMARY.md`
+- `S##-UAT.md`
+- review checklists or review artifacts
+
 ### 5. Only then mark complete
 
 Only after fresh evidence is in hand should you mark the task, slice, or milestone complete.
+
+## Artifact Boundaries
+
+- `REQUIREMENTS.md` is a capability and coverage contract, not the place for narrative proof logs
+- Requirement `Validation` fields should stay compact and reference the real proof artifact, for example `validated via S03-UAT` or `partial: focused test only`
+- Traceability tables are reference indexes only; keep cells short and structured, never multi-paragraph evidence dumps
+- `DECISIONS.md` records durable architectural or workflow decisions, not per-run test output, browser transcripts, or command histories
+- Put the detailed evidence in summaries, UAT, checklists, or review artifacts; if raw logs must be preserved, keep them in ignored or temporary storage unless the task explicitly requires committed evidence
 
 ## GSD-Specific Rules
 
@@ -56,6 +71,8 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - If the work is partial, write an honest partial summary instead of pretending it is done
 - If a human-only check is still required, say so plainly and leave the artifact in that state
 - `UAT` must state both what it proved and what it did **not** prove
+- If verification changes requirement state, update `REQUIREMENTS.md` with a compact state or reference update only; do not paste the underlying proof narrative there
+- If verification surfaces a durable decision, record the decision in `DECISIONS.md` without copying the surrounding test or browser evidence into the register
 - A green linter is not a substitute for the relevant proof command
 - Review gates must name the required review artifact, recorded verdict, and truthful follow-up state
 - Image-backed or Pencil-backed UI also needs the approved reference-intent parity or intent-fit checklist; screenshots alone are not enough
@@ -70,6 +87,11 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - "The agent already said it was done"
 - "The diff is small"
 - "The happy path worked once"
+
+## Not Allowed
+
+- pasting long proof narratives into `REQUIREMENTS.md` or traceability tables instead of linking to the owning artifact
+- using `DECISIONS.md` as a generic execution log
 
 ## Evidence Patterns
 

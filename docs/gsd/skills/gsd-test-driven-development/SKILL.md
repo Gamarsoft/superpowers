@@ -113,6 +113,12 @@ Capture the red-green evidence in the task summary:
 
 If the task changed architectural assumptions, append the durable decision to `.gsd/DECISIONS.md`.
 
+Keep artifact boundaries explicit:
+
+- Put red-green narrative in the task summary, slice summary, or UAT artifact that owns execution proof
+- If `REQUIREMENTS.md` needs updating, keep it to compact status or validation references only, not the full failing-then-passing story
+- If `DECISIONS.md` needs updating, record only the durable decision and rationale, not the test transcript
+
 ## GSD-Specific Guidance
 
 - Project testing guidance wins over generic TDD habits when they conflict
@@ -121,6 +127,8 @@ If the task changed architectural assumptions, append the durable decision to `.
 - If a task is too large to produce a clear failing test first, split the task
 - If browser behavior is the real proof surface, combine this skill with browser-based verification rather than pretending a unit test is enough
 - If you cannot create a meaningful failing test, state why plainly in the summary instead of faking TDD
+- Requirement traceability should stay compact; reference the proof artifact instead of expanding requirement rows into mini summaries
+- Do not let `DECISIONS.md` become a running log of red-green cycles; only stable decisions belong there
 
 ## Anti-Patterns
 
@@ -130,6 +138,8 @@ If the task changed architectural assumptions, append the durable decision to `.
 - using mocks so heavily that the test no longer proves real behavior
 - using deprecated test APIs, runners, matchers, or setup logic because they were remembered from older versions
 - skipping artifact updates after the test passes
+- copying detailed red-green evidence into `REQUIREMENTS.md` instead of the owning summary or UAT artifact
+- appending temporary debugging or test-run history to `.gsd/DECISIONS.md`
 
 ## Completion Standard
 
