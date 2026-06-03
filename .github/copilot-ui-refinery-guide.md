@@ -38,7 +38,7 @@ Use when there is no packet, but you still have an approved spec and GSD handoff
 
 The main agent derives a conservative working UI contract from:
 - the spec and handoff
-- packet-linked `.pen` files and screenshots when present
+- retained screenshots, browser captures, or approved generated-image references when present
 - the existing product UI and shared design system
 
 This is good for improving a raw implementation without inventing a new direction.

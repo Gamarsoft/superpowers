@@ -1,16 +1,14 @@
 # Frontend Direction Follow-On Prompt Template
 
-Use this when brainstorming determines that UI/UX materially shapes implementation but the frontend-direction phase must run in a separate session.
+Use when brainstorming determines that UI/UX materially shapes implementation but the frontend-direction phase should run separately.
 
-The prompt is a handoff artifact. It should be short enough to paste into a fresh Codex session after manual compaction, but specific enough to prevent rediscovery.
-
-## Template
+Keep the prompt short enough to paste into a fresh session.
 
 ```text
-Use $superpowers:frontend-direction with $superpowers:pencil-design-core and the correct Pencil adapter for this target stack.
+Use $superpowers:frontend-direction.
 
 Goal:
-Create the frontend direction packet and supporting artifacts for [feature / slug] from the already-approved brainstorming outputs.
+Create a concise frontend direction packet and supporting evidence for [feature / slug] from the approved brainstorming outputs.
 
 Approved upstream artifacts:
 - Design spec: [path]
@@ -19,8 +17,7 @@ Approved upstream artifacts:
 
 Target repo / product:
 - Repo: [path]
-- Stack: [Angular + Nebular / React + Tailwind / other / unknown]
-- Likely adapter: [pencil-design-angular-nebular | pencil-design-react-tailwind | decide during frontend-direction]
+- Stack: [Angular / React / Flutter / other / unknown]
 
 Product and delivery context:
 - Track: [greenfield | brownfield-major-feature | brownfield-small-feature | bugfix-regression | architecture-led-change]
@@ -31,12 +28,12 @@ Product and delivery context:
 - Must preserve: [shell, workflow, density, components, behavior]
 - May adapt: [safe improvements]
 - Explicit no-gos: [do not redesign / do not change navigation / etc.]
-- UX writing: [approved copy deck path / inline copy decisions / missing copy states / terminology and i18n notes]
+- UX writing: [copy deck path / inline decisions / missing states / terminology and i18n notes]
 
 Visual companion carry-forward:
-- [Summarize any visual companion decisions, selected options, rejected options, or screenshots.]
-- Treat these as brainstorming decision context, not durable design truth.
-- Translate any retained idea into packet prose, screenshots, and repo-local `.pen` files before implementation uses it.
+- [Summarize selected options, rejected options, screenshots, or comparison decisions.]
+- Treat these as decision context, not durable implementation evidence.
+- Capture retained ideas in packet prose, screenshots, browser captures, or approved generated images before implementation uses them.
 
 Frontend-direction requirements:
 - Capture brownfield runtime baseline first when current screen truth exists only in the app.
@@ -44,26 +41,16 @@ Frontend-direction requirements:
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend-direction.md`
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screen-index.md`
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/brownfield-ui-extraction.md` when brownfield
-  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/pencil-workset.md`
-  - retained screenshots under `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screenshots/`
-  - repo-local Pencil files under `design/pencil/` when Pencil is available
-- For every implementation-facing board, screenshot, or retained visual reference, record approved intent:
+  - retained screenshots under `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screenshots/` when useful
+- For every implementation-facing screenshot, browser capture, generated image, or retained reference, record approved intent:
   - `visual-truth`
   - `semantic-guidance`
   - `reference-only`
-- For every implementation-facing prompt, board, screenshot, or retained visual reference that contains visible text, use `writing-ux-copy` to approve the visible copy before it becomes visual truth.
-- If ChatGPT Images 2 prompts are created, audit `Example Visible Text`, warning blocks, empty states, CTAs, confirmation copy, and table labels before generation.
-- Ask me to approve any board-intent classification that affects implementation.
-- Do not hand off to implementation until the frontend packet and board-intent modes are approved.
+- Use `writing-ux-copy` for visible UI text that affects the packet, screenshots, or image prompts.
+- If ChatGPT Images 2 prompts are created, audit prompt-visible copy before generation and wait for human approval before treating generated images as references.
+- Do not hand off to implementation until the packet and implementation-affecting reference intent are approved or explicitly marked degraded.
 ```
 
 ## Quality Bar
 
-A strong follow-on prompt:
-
-- links the approved spec and handoff
-- carries product and flow decisions without copying the whole conversation
-- preserves visual-companion decisions as context, not durable truth
-- carries UX writing decisions and prompt-visible-text requirements
-- names the target repo, likely stack, and adapter candidate
-- makes board-intent approval a required frontend-direction output
+A strong follow-on prompt links the approved spec and handoff, carries only settled product decisions, names key screens/states, and states what evidence the frontend-direction packet must produce.

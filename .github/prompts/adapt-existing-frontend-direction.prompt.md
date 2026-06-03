@@ -1,39 +1,30 @@
-Adapt an existing frontend direction packet to the current durable Pencil-first format.
+Adapt an existing frontend direction packet to the current compact screenshot-first format.
 
-Inputs you should locate first:
+Inputs to locate first:
 
-- the existing `--frontend-direction.md` file
+- the existing frontend direction file
 - the matching `screen-index.md`
-- any selected-direction screenshots already saved locally
-- any packet-linked `.pen` files
+- `brownfield-ui-extraction.md` when present
+- selected-direction screenshots or browser captures saved locally
+- optional approved ChatGPT Images 2 files
 - any temporary HTML companion artifacts that influenced the chosen direction
 
 Goals:
 
-1. Preserve the packet's current human-readable thesis, rationale, and verification content.
-2. Upgrade it so later agents can recover the durable `.pen` and screenshot references first.
+1. Preserve the packet's human-readable thesis, rationale, and verification content.
+2. Make later agents recover source evidence, reference intent, and screenshots/captures first.
 3. Keep the packet brownfield-safe; temporary HTML companion artifacts remain comparison evidence, not implementation truth.
 
 Required edits:
 
-1. In **Packet Summary**, add:
-   - packet-linked `.pen` files
-   - Pencil transport expectation for downstream work
-   - screenshot / export locations
-2. Add or update the section that explains durable visual references so it names the exact `.pen` files, boards / frames, and screenshots implementation should use.
-3. For each retained key screen in the packet gallery, add a source block containing:
-   - screen key
-   - primary visual source
-   - `.pen` file path
-   - board / frame name
-   - screenshot / export path
-   - whether a temporary HTML companion artifact influenced the choice
-4. Update or create `screen-index.md` so each key screen has durable Pencil reference columns.
-5. If temporary HTML companion artifacts influenced a retained direction, summarize that only as translated outcome notes; do not make the raw HTML file the durable packet source.
+1. Convert the packet to this short shape: Summary, Source Evidence, Screens And States, Visual References, Implementation Contract, Verification, Open Questions.
+2. Add or update durable visual references with exact screenshot/capture/generated-image paths and approved reference intent.
+3. For each retained key screen, include screen key, primary visual source, screenshot/capture path, generated-image path if approved, reference intent, and whether a temporary companion artifact influenced the choice.
+4. Update or create `screen-index.md` with compact source, intent, approval, and notes columns.
+5. Call out missing evidence honestly and use degraded current-UI mode when required.
 
 Important rules:
 
-- prefer packet-linked `.pen` file -> retained screenshot / export -> current rendered UI
-- do not remove the existing gallery prose or acceptance checks
+- prefer packet source evidence, retained screenshots/captures, approved generated images, then current rendered UI
+- keep `Must preserve`, `May adapt`, `Explicit no-gos`, UX copy source, reference intent, and verification gates
 - do not treat raw HTML companion files as binding implementation references
-- call out missing durable references honestly

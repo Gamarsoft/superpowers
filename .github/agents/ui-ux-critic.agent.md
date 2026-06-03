@@ -16,7 +16,7 @@ Use the current implementation plus the strongest available contract source to c
 
 If available, use the relevant **Impeccable** design skills, especially `critique` and `shape`, as supporting heuristics.
 
-If packet-linked `.pen` files, retained screenshots, or browser captures exist, use them before judging the UI from packet preview images alone.
+If retained screenshots, browser captures, or approved generated-image references exist, use them before judging the UI from packet preview images alone.
 
 If temporary HTML companion artifacts exist, use them only to understand unresolved comparison intent, not as the durable source of truth.
 

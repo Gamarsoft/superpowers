@@ -29,9 +29,9 @@ Look at the current UI and identify the highest-value visual refinements that im
 - signal-to-noise ratio
 - overall visual confidence
 
-If packet-linked `.pen` files, retained screenshots, or browser captures exist, use them as the strongest visual reference before relying on packet preview images.
+If retained screenshots, browser captures, or approved generated-image references exist, use them as the strongest visual reference before relying on packet preview images.
 
-If temporary HTML companion artifacts still exist, use them only to clarify comparison intent. Do not overfit spacing, typography, or hierarchy judgments to a temporary comparison surface that has already been translated into Pencil.
+If temporary HTML companion artifacts still exist, use them only to clarify comparison intent. Do not overfit spacing, typography, or hierarchy judgments to a temporary comparison surface once the decision has been captured in the packet.
 
 If no frontend packet exists, prefer refinements that preserve and clarify the existing brownfield language instead of changing the product’s visual identity.
 

@@ -5,7 +5,7 @@ Use this reference when reviewing a mobile design artifact.
 ## Artifact Types
 
 - Product/flow direction: review jobs, screen inventory, primary actions, state coverage, and native assumptions.
-- Mockup/Pencil/image: review hierarchy, visual thesis, component roles, native fit, and missing states.
+- Mockup/image reference: review hierarchy, visual thesis, component roles, native fit, and missing states.
 - Implementation screenshot: compare against approved direction, platform evidence, accessibility, and compact devices.
 - Prototype: review navigation, interruption handling, gestures, forms, and recovery paths.
 

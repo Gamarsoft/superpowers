@@ -2,7 +2,7 @@
 
 Use the visual companion to help the user decide between alternatives, not to generate polished mockups.
 The companion produces HTML browser artifacts for temporary comparison only.
-If a choice survives, carry it into the frontend-direction follow-on prompt. The later frontend-direction session must translate it into `.pen` boards, screenshots, and packet prose before treating it as durable direction.
+If a choice survives, carry it into the frontend-direction follow-on prompt. The later frontend-direction session must capture it in packet prose, screenshots, browser captures, or approved generated images before treating it as durable direction.
 
 ## v1 authoring contract
 
@@ -28,14 +28,13 @@ Do not invent extra archetypes in v1.
 
 When frontend direction is required, the companion should usually show one of these:
 
-- selected or competing **Pencil** boards / frames
 - annotated screenshots from the current product
 - wireframe-to-direction comparisons
-- HTML comparison layouts that the follow-on frontend-direction session can translate into Pencil if chosen
+- HTML comparison layouts that the follow-on frontend-direction session can translate into packet prose and durable evidence if chosen
 - carry-forward summaries of the chosen visual direction
 
-The companion is still for **decision-making**, not for pretending the chosen board or screenshot is already final implemented UI.
-The follow-on frontend-direction packet should point to durable `.pen` artifacts and screenshots, not to raw HTML companion files.
+The companion is still for **decision-making**, not for pretending the chosen reference or screenshot is already final implemented UI.
+The follow-on frontend-direction packet should point to durable packet decisions, screenshots, browser captures, or approved generated images, not to raw HTML companion files.
 
 ## Browser surface rule
 
@@ -74,8 +73,8 @@ Before the first companion screen in a session, follow this exact order:
 
 1. **Instruction context first**
    - Reuse constraints already present in system/developer/user instructions.
-2. **Repo design-context sources**
-   - Reuse repository context files such as anchoring docs, frontend packets, or `design/pencil/*` references when they exist.
+2. **Repo design-context source if present**
+   - Reuse repository context files such as anchoring docs, frontend packets, screenshots, browser captures, or approved generated image references when they exist.
 3. **One-time minimal session capture**
    - If context is still missing, capture only the minimum needed design cues once, then reuse for the session.
 4. **Explicit degraded mode**
@@ -146,6 +145,25 @@ The current runtime contract is intentionally small:
 
 Do not introduce new required metadata keys beyond `data-choice` in v1.
 
+## Example kit
+
+- [side-by-side comparison](examples/visual-companion/side-by-side-comparison.html)
+- [ranked alternatives](examples/visual-companion/ranked-alternatives.html)
+- [annotated recommendation](examples/visual-companion/annotated-recommendation.html)
+- [carry-forward summary](examples/visual-companion/carry-forward-summary.html)
+
+### Active example refresh boundary (M002)
+
+Refresh only these active examples when maintaining the v1 companion contract:
+
+- `side-by-side-comparison.html`
+- `ranked-alternatives.html`
+- `annotated-recommendation.html`
+
+`carry-forward-summary.html` stays outside this refresh boundary unless a direct contradiction is found.
+
+All examples stay fragment-first and use only the existing `data-choice` interaction boundary.
+
 ## How the server behaves
 
 - Server serves the newest `.html` in `screen_dir`.
@@ -175,7 +193,7 @@ Capture:
 3. Tell the user what they are viewing and what decision it supports.
 4. On the next turn, combine terminal feedback with `state_dir/events` (terminal feedback remains primary).
 5. Iterate or move forward with a new file name (`*-v2.html`, etc.).
-6. If a direction is chosen, translate the winning idea back into `.pen` boards and packet notes before treating it as durable.
+6. If a direction is chosen, translate the winning idea into packet notes and durable visual evidence before treating it as durable.
 7. When returning to terminal-only discussion, push a waiting/transition screen.
 
 ## Fragment authoring baseline

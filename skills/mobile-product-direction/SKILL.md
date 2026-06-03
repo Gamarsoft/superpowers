@@ -9,7 +9,7 @@ description: Use when turning product requirements, specs, app ideas, onboarding
 
 Turn product intent into a native mobile flow contract. Use this before `frontend-direction` finalizes visual truth when mobile app structure, screen inventory, or state coverage is still being shaped.
 
-This skill is universal. Do not assume Flutter, Pencil, React, Tailwind, iOS-only, Android-only, or a specific app.
+This skill is universal. Do not assume Flutter, React, Tailwind, iOS-only, Android-only, or a specific app.
 
 ## Core Rule
 

@@ -9,7 +9,7 @@ description: Use when designing native mobile navigation, tabs, sheets, forms, s
 
 Design mobile interactions that are discoverable, recoverable, reachable, and accessible. Accessibility is part of interaction design here, not a late audit.
 
-This skill is universal. Compose it with Flutter, Pencil, React, or native implementation skills only after the interaction contract is clear.
+This skill is universal. Compose it with Flutter, React, or native implementation skills only after the interaction contract is clear.
 
 ## Core Rules
 

@@ -51,7 +51,7 @@ State prompts may change only status values, messages, enabled/hidden actions, r
 - no perspective distortion
 - no device frame
 - no browser chrome
-- no marketing presentation board
+- no marketing presentation layout
 - crisp legible text
 - compact enterprise SaaS admin aesthetic
 
@@ -181,7 +181,7 @@ Render the same S1 Credit Park control center layout in a disabled/not-enabled s
 - front-facing flat desktop view
 - crisp legible UI text
 - compact enterprise admin layout
-- no presentation board or annotations
+- no presentation layout or annotations
 
 ## Inherit From S1 Active
 

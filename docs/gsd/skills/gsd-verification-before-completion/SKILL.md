@@ -75,7 +75,7 @@ Only after fresh evidence is in hand should you mark the task, slice, or milesto
 - If verification surfaces a durable decision, record the decision in `DECISIONS.md` without copying the surrounding test or browser evidence into the register
 - A green linter is not a substitute for the relevant proof command
 - Review gates must name the required review artifact, recorded verdict, and truthful follow-up state
-- Image-backed or Pencil-backed UI also needs the approved reference-intent parity or intent-fit checklist; screenshots alone are not enough
+- Reference-backed UI also needs the approved reference-intent parity or intent-fit checklist; screenshots alone are not enough
 - If visual fixtures were used, separate live runtime proof from fixture visual-state proof and state the claim boundary for each
 - Runtime screenshots, traces, console logs, and network dumps are verification inputs, not default commit artifacts. Record the durable conclusion in UAT, summary, checklist, or review files.
 - If raw runtime evidence must be saved for replay or review, place it under `/tmp`, another temporary directory, an ignored local path, or an external redaction-safe location unless the task explicitly says to commit those files.

@@ -27,7 +27,7 @@ Browser tools are strongest when the app can run locally and the main agent can 
 
 If no frontend packet exists, compare the rendered UI against the approved spec and handoff when present, otherwise against the current brownfield product language and the derived working contract.
 
-If packet-linked `.pen` files, retained screenshots, or Pencil exports exist, prefer those sources over vague packet preview images or stale temporary HTML comparison artifacts.
+If retained screenshots, browser captures, or approved generated-image references exist, prefer those sources over vague packet preview images or stale temporary HTML comparison artifacts.
 
 ## Focus
 
@@ -47,7 +47,7 @@ Return:
 - **Exact reproduction steps**
 - **Suggested fix direction**
 - **What looked good and matched the active contract**
-- **Which reference source was used** (`.pen` export | retained screenshot | browser render | temporary HTML companion)
+- **Which reference source was used** (retained screenshot | browser capture | approved generated image | browser render | temporary HTML companion)
 
 Do not make file edits.
 Return evidence-rich findings to the main agent.

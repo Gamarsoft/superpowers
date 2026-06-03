@@ -5,7 +5,7 @@ Use this after the design spec is stable and example mapping is complete.
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 
-This file is designed to be the primary implementation-shaping vision input when starting or extending work in GSD-2, alongside the linked spec and, when UI is implementation-shaping, the separate frontend direction packet created after brainstorming.
+This file is the primary implementation-shaping vision input when starting or extending work in GSD, alongside the linked spec and, when UI is implementation-shaping, the separate frontend direction packet created after brainstorming.
 
 ## Template
 
@@ -42,19 +42,19 @@ This file is designed to be the primary implementation-shaping vision input when
 Fill this section whenever an existing `.gsd/REQUIREMENTS.md` or prior milestone requirements already cover part of the same domain.
 
 ### Reused unchanged
-- [existing requirement ID] — [why it still applies as-is]
+- [existing requirement ID] - [why it still applies as-is]
 
 ### Reactivated from deferred
-- [existing requirement ID] — [what is now active and why]
+- [existing requirement ID] - [what is now active and why]
 
 ### Narrowed / split / clarified
-- [existing requirement ID] — [how this handoff narrows or splits it]
+- [existing requirement ID] - [how this handoff narrows or splits it]
 
 ### Superseded for this scope
-- [existing requirement ID] — [what older wording no longer fits and what replaces it]
+- [existing requirement ID] - [what older wording no longer fits and what replaces it]
 
 ### Still deferred
-- [existing requirement ID] — [what remains deferred after this handoff]
+- [existing requirement ID] - [what remains deferred after this handoff]
 
 Do not leave overlap implicit. If a new Active item touches a previously active, validated, or deferred requirement, explain the relationship here.
 
@@ -98,7 +98,7 @@ Do not leave overlap implicit. If a new Active item touches a previously active,
 ### Packet status
 none | required | attached
 
-Use `required` when brainstorming determined that UI/UX materially shapes implementation but the frontend-direction phase has intentionally been deferred to a separate session.
+Use `required` when UI/UX materially shapes implementation but frontend-direction has not run yet.
 
 ### Frontend direction packet
 - [path or none]
@@ -109,19 +109,25 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
 ### Supporting frontend artifacts
 - `brownfield-ui-extraction.md`:
 - `screen-index.md`:
-- `pencil-workset.md`:
-- repo-local `.pen` files:
-- retained screenshots:
-- board intent approvals:
+- retained current UI screenshots / browser captures:
+- implementation runtime screenshots / browser captures:
+- approved generated image references:
+- visual reference intent approvals:
   - `visual-truth`:
   - `semantic-guidance`:
   - `reference-only`:
+  - degraded current-UI mode:
   - pending / blocker:
 
-### Pencil skills to load downstream
-- `gsd-frontend-design`
-- `pencil-design-core`
-- [chosen adapter]
+### Downstream frontend guidance
+- Skills / docs to load:
+  - `gsd-frontend-design`
+  - [repo-local framework or design-system guidance]
+- Evidence to preserve:
+  - approved packet path
+  - retained screenshots and runtime captures
+  - approved generated image paths and prompt pack metadata, if used
+  - source evidence from current UI, product docs, or design docs
 
 ### UX implementation contract
 - Must preserve:
@@ -133,12 +139,12 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
   - terminology rules:
   - i18n variables / formatting:
   - copy acceptance criteria:
-- Frontend implementation gate:
-  - If packet status is `required`, do not implement frontend UI yet.
-  - Run the separate frontend-direction phase first and attach its approved packet.
-- Board intent rule:
-  - Do not treat an unapproved board as visual truth.
-  - If board intent is missing or pending, ask for confirmation before visual changes.
+
+### Frontend implementation gate
+- If packet status is `required`, do not implement frontend UI yet.
+- Run the separate frontend-direction phase first and attach its approved packet.
+- Do not treat unapproved screenshots, temporary companion screens, or generated images as visual truth.
+- If visual reference intent is missing or pending, ask for confirmation or record degraded current-UI mode before visual changes.
 
 ## 6. Roadmap Seed
 
@@ -148,7 +154,7 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
 3. [slice]
 
 ### Risk order
-[Which slices should come first and why]
+[Which slices first and why]
 
 ### Depends-on notes
 - [dependency]
@@ -174,12 +180,12 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
    Then ...
 
 ### Validation ideas
-- [test or proof]
-- [test or proof]
+- [test/proof]
+- [test/proof]
 
 ### UAT notes
-- [operator or user checks]
-- [operator or user checks]
+- [operator/user check]
+- [operator/user check]
 
 ## 8. Decisions Register Seed
 
@@ -187,8 +193,8 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
 [summary]
 
 ### Alternatives rejected
-- [alternative] — [why rejected]
-- [alternative] — [why rejected]
+- [alternative] - [why rejected]
+- [alternative] - [why rejected]
 
 ### Trade-offs accepted
 - [trade-off]
@@ -200,15 +206,16 @@ Use `required` when brainstorming determined that UI/UX materially shapes implem
 A strong handoff:
 
 - lets GSD reflect the vision back with minimal reinterpretation
-- already distinguishes active vs deferred vs out of scope
-- explicitly reconciles overlapping existing requirements instead of silently creating parallel truths
+- distinguishes Active, Deferred, and Out of Scope requirements before planning starts
+- explicitly reconciles overlapping existing requirements instead of creating parallel truths
 - suggests a sensible first milestone
 - points to real constraints and integration points
 - points to frontend inputs explicitly when UI work is in scope
-- names the exact downstream Pencil skills and adapter
-- seeds slice thinking without over-planning every detail
+- preserves UX copy, state coverage, rollout, evidence, and verification details needed for implementation
+- preserves approved packet, runtime capture, screenshot, visual reference intent, and generated image details when frontend work is in scope
+- seeds slice thinking without over-planning every task
 
-## Using this with GSD-2
+## Using This With GSD
 
 For a new GSD project:
 
@@ -220,22 +227,22 @@ For a new GSD project:
 A good steering note is:
 
 ```text
-Primary artifacts for this work:
+Primary artifacts:
 - Spec: docs/superpowers/specs/YYYY-MM-DD--{slug}.md
 - GSD handoff: docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md
 - Frontend direction: docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md (if present)
 - Frontend-direction follow-on prompt: included below / linked separately (if packet status is required)
 
-Use the GSD handoff as the primary milestone/requirements seed.
-Use the spec as the canonical product and behavior contract.
-If the frontend direction packet exists, use it as the canonical UI implementation contract.
+Use the spec as the product and behavior contract.
+Use the handoff as the milestone and requirements seed.
+If the frontend direction packet exists, use it as the UI implementation contract.
 If packet status is `required`, do not implement frontend UI yet. First run the follow-on frontend-direction prompt in a fresh or compacted session, then return to GSD with the approved packet.
 
 Treat the Active requirements in the handoff as the starting candidate requirements.
 Treat Deferred and Out of Scope exactly as written unless you find a contradiction.
-If an existing `.gsd/REQUIREMENTS.md` already covers related capabilities, use the Requirements Reconciliation section to decide what is reused, reactivated, narrowed, superseded, or still deferred before creating parallel requirements.
+If an existing `.gsd/REQUIREMENTS.md` overlaps, use Requirements Reconciliation before creating parallel requirements.
 Seed the first milestone around the Milestone Recommendation section.
-Keep the three primary artifacts aligned:
+Keep the primary artifacts aligned:
 - the spec owns product scope, behavior, and rules
 - the handoff owns GSD seeding, milestone framing, and implementation intake guidance
 - the frontend direction packet, when present, owns layout, hierarchy, states, responsive behavior, and UI implementation constraints
@@ -244,23 +251,23 @@ Keep the three primary artifacts aligned:
 After the frontend direction packet exists, also consume:
 - brownfield-ui-extraction.md
 - screen-index.md
-- pencil-workset.md
-- repo-local Pencil `.pen` files
-- retained screenshots
+- retained current UI screenshots and browser captures
+- implementation runtime screenshots and browser captures
+- approved generated image paths and prompt pack metadata, if used
+- visual reference intent approvals
 
 For frontend implementation after the packet exists, load:
 - gsd-frontend-design
-- pencil-design-core
-- the adapter named in the packet
+- any repo-local framework, design-system, or implementation guidance named in the packet
 
-Use the frontend packet and Pencil workset as the durable UI references after they exist.
-Respect approved board intent modes in the packet after it exists. `visual-truth` boards require visual parity; `semantic-guidance` boards require behavior, content-priority, and state-fit; `reference-only` boards are not acceptance targets.
-If board intent is missing or pending after frontend-direction, ask for confirmation before treating the board as a redesign or visual parity target.
-Do not treat temporary HTML companion screens from brainstorming as binding unless the separate frontend-direction packet translates them into durable Pencil and packet artifacts.
+Use the frontend packet, runtime captures, retained screenshots, and approved generated image references as durable UI inputs after they exist.
+Respect approved visual reference intent modes in the packet. `visual-truth` references require visual parity; `semantic-guidance` references require behavior, content-priority, and state-fit; `reference-only` references are not acceptance targets.
+If visual reference intent is missing or pending after frontend-direction, ask for confirmation or record degraded current-UI mode before treating the reference as a redesign or visual parity target.
+Do not treat temporary HTML companion screens from brainstorming as binding unless the separate frontend-direction packet captures the decision in durable prose, screenshots, browser captures, or approved generated images.
 Do not invent a new visual direction unless the handoff explicitly says redesign.
 Only ask follow-up questions about unresolved items, contradictions, or missing implementation-shaping decisions.
 ```
 
-When handing this off to a human or to GSD, always include the corresponding steering note with the real artifact paths filled in.
+When handing this off to a human or to GSD, include the steering note with the real artifact paths filled in.
 
 For an existing GSD project, use the handoff with the current discussion flow rather than pretending it is a fresh project vision.

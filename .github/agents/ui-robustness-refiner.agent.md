@@ -17,7 +17,7 @@ If available, use these skills as supporting heuristics:
 - `harden`
 - `adapt`
 
-If packet-linked `.pen` files, retained screenshots, or browser captures exist, use them as supporting evidence for state treatment and responsive expectations.
+If retained screenshots, browser captures, or approved generated-image references exist, use them as supporting evidence for state treatment and responsive expectations.
 
 If temporary HTML companion artifacts still exist, use them only to clarify unresolved comparison intent rather than as the durable responsive source.
 

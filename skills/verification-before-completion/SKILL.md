@@ -48,7 +48,7 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
-| Pencil-backed UI matches direction | Runtime screenshots plus approved board-intent checklist (`visual-truth` parity or `semantic-guidance` intent fit) | DOM tests, screenshot capture without intent comparison |
+| Reference-backed UI matches direction | Runtime screenshots plus approved reference-intent checklist (`visual-truth` parity or `semantic-guidance` intent fit) | DOM tests, screenshot capture without intent comparison |
 
 ## Red Flags - STOP
 
@@ -100,13 +100,13 @@ Skip any step = lying, not verifying
 ❌ "Tests pass, phase complete"
 ```
 
-**Pencil-backed UI:**
+**Reference-backed UI:**
 ```
-✅ Capture runtime screenshots → Confirm approved board intent → Compare `visual-truth` parity or `semantic-guidance` intent fit → Report pass/mismatch/waived items
+✅ Capture runtime screenshots → Confirm approved reference intent → Compare `visual-truth` parity or `semantic-guidance` intent fit → Report pass/mismatch/waived items
 ❌ "Screenshots saved" / "DOM checks pass" / "Looks close"
 ```
 
-For Pencil-backed UI, screenshot capture is not evidence by itself. Evidence is the approved-intent comparison: parity for `visual-truth` boards, or behavior, information hierarchy, state coverage, and product-system adaptation for `semantic-guidance` boards.
+For reference-backed UI, screenshot capture is not evidence by itself. Evidence is the approved-intent comparison: parity for `visual-truth` references, or behavior, information hierarchy, state coverage, and product-system adaptation for `semantic-guidance` references.
 
 **Agent delegation:**
 ```

@@ -1,89 +1,22 @@
 # Frontend Packet Completeness Checklist
 
-Use this as a blocking checklist before handing the packet to GSD or Codex implementation.
+Use before handing a packet to implementation.
 
-## 1. Packet summary and source truth
+## Blocking Checks
 
-- Does the packet name the linked spec and handoff?
-- Does it declare brownfield preserve vs redesign?
-- Does it declare the design source order?
-- Does it declare the implementation visual-truth source: `chatgpt-image-2`, `pencil`, or `current-ui/degraded`?
-- Is degraded mode called out honestly when relevant?
+- Packet links the approved spec and handoff.
+- Brownfield work includes current UI evidence or explicitly states degraded mode.
+- `screen-index.md` names only key screens and important states.
+- `brownfield-ui-extraction.md` separates must-preserve, safe improvements, and no-gos when brownfield.
+- Every implementation-facing screenshot, browser capture, generated image, or retained reference has intent: `visual-truth`, `semantic-guidance`, or `reference-only`.
+- Implementation-affecting intent is approved or marked as a blocker.
+- Approved visible copy source is named, including terminology, i18n variables, and accessibility labels when relevant.
+- `Must preserve`, `May adapt`, and `Explicit no-gos` are concrete.
+- Required runtime screenshots/captures and checks are named.
+- ChatGPT Images 2 files are listed only when generated references were actually approved.
 
-## 2. Exact frontend references
+## Concision Check
 
-- Are `brownfield-ui-extraction.md` and `screen-index.md` present when required?
-- Is `pencil-workset.md` present only when Pencil is the selected visual-truth source?
-- If ChatGPT Images 2 references were requested or needed, is `chatgpt-image-2/` present with prompts, attachment map, and approved generated images saved beside matching prompt files?
-- If ChatGPT Images 2 references were used, did the human confirm generation, approve selected images, and choose whether they are image-only visual truth or Pencil inputs?
-- If ChatGPT Images 2 is the selected visual-truth source, are the exact approved generated image files listed for each key screen/state, and is Pencil explicitly omitted?
-- If Pencil is the selected visual-truth source, are the exact `.pen` files listed?
-- If Pencil is the selected visual-truth source, are board/frame names listed for the key screens?
-- Are board/image/screenshot intent modes listed and approved?
-- Are ambiguous or pending visual-reference intent items marked as blockers or degraded-mode constraints?
-- Are retained screenshots or browser captures linked?
-
-## 3. Pencil skills and adapter
-
-- Does the packet say which Pencil skills were used during packet creation only when Pencil was selected?
-- Does it say which Pencil skills downstream agents should load only when Pencil was selected?
-- If ChatGPT Images 2 is the selected visual-truth source, does the packet say not to load Pencil skills or adapters for visual consumption?
-- Is the target adapter explicit when Pencil is selected?
-- Does it explicitly say what framework assumptions should **not** leak in?
-
-## 4. Brownfield extraction integrity
-
-- Is current product truth clearly represented?
-- Are must-preserve patterns explicit?
-- Are safe improvements bounded?
-- Are no-go redesign moves explicit?
-
-## 5. Screen and state coverage
-
-- Are the key screens named?
-- Are loading, empty, error, validation, permission, and destructive states covered where relevant?
-- Are deferred design areas clearly marked as deferred?
-- For native or mobile-first work, does the packet name mobile jobs, screen entry/exit context, the primary action per screen, permission moments, offline/degraded behavior, and native-vs-web risks?
-
-## 6. Chosen directions
-
-- Does each important screen explain why the chosen direction won?
-- Are alternative ideas either rejected or bounded?
-- Does each important screen say whether its board, image, or screenshot is visual truth, semantic guidance, or reference-only?
-- Could another agent build the layout and hierarchy without guessing?
-
-## 7. Responsive and accessibility contract
-
-- Are required viewports named?
-- Are mobile adaptation rules explicit where density is high?
-- Are accessibility-sensitive controls, labels, focus handling, and truncation rules covered?
-- For mobile work, are required device families, safe areas, keyboard behavior, text scaling, tap targets, semantics, gesture alternatives, and permission denied states covered?
-- Are approved visible copy, terminology rules, i18n variables, date/number/plural formatting, and translation expansion constraints covered?
-- If copy is still pending for a visual-truth image or board, is that marked as a blocker rather than left for implementation?
-
-## 8. Implementation contract
-
-- Are **Must preserve**, **May adapt**, and **Explicit no-gos** clearly separated?
-- Is the component/system reuse strategy clear?
-- Are risky implementation areas called out?
-
-## 9. HTML companion translation discipline
-
-- If the HTML visual companion was not used, does the packet still stay fully usable?
-- If HTML companion screens were used, is every retained idea translated back into the approved visual-truth source or packet prose?
-- Does the packet avoid treating raw HTML companion files as the durable implementation reference?
-
-## 9a. ChatGPT Images prompt copy discipline
-
-- If ChatGPT Images 2 prompts exist, did `Example Visible Text` and every prompt-visible label, CTA, warning, empty state, error, confirmation, and table label go through `writing-ux-copy` or an equivalent copy review?
-- Are generated images prevented from becoming visual truth when they contain unapproved, technical, misspelled, unaccented, or non-localizable visible text?
-- Are prompt semantics separated from visible UI text so internal services, backend state names, and implementation jargon do not leak into the generated reference image?
-
-## 10. Handoff readiness
-
-- Could GSD populate `## Frontend References` in `CONTEXT.md` from this packet alone?
-- Could Codex or Copilot tell whether to use approved ChatGPT Images 2 references or Pencil boards as the visual truth?
-- Could Codex or Copilot tell which image files, `.pen` files, screenshots, and skills to use?
-- Could Codex or Copilot tell which images or boards require visual parity and which only demonstrate intent?
-- Is there enough evidence to verify implementation on desktop and mobile?
-- For non-trivial native/mobile-first work, did `mobile-design-review` run or is the missing review listed as a blocker/deferred item?
+- Remove duplicated product requirements already covered by the spec.
+- Remove exploratory options that were rejected.
+- Prefer one screenshot or row over a paragraph when it communicates the same decision.

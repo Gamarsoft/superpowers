@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Direction"
-  short_description: "Turn approved specs and handoffs into a frontend visual-truth packet"
-  default_prompt: "Use $frontend-direction to turn this approved spec, GSD handoff, frontend-direction follow-on prompt, current UI context, and screenshots into a frontend direction packet that records whether approved ChatGPT Images 2 references or Pencil boards are the implementation visual truth, plus the correct Pencil adapter such as $pencil-design-flutter-material for Flutter targets."
+  short_description: "Turn approved specs and handoffs into concise frontend packets"
+  default_prompt: "Use $frontend-direction to turn this approved spec, GSD handoff, frontend-direction follow-on prompt, current UI context, screenshots, and optional approved ChatGPT Images 2 references into a concise frontend packet with source evidence, reference intent, preserve/adapt/no-go boundaries, UX copy source, and verification gates."

@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Design"
-  short_description: "Implement UI from packet visual truth and repo truth"
-  default_prompt: "Use $gsd-frontend-design to implement this UI from the approved frontend direction packet, its declared visual-truth source, retained screenshots, and existing frontend patterns. If the packet selects ChatGPT Images 2, use the approved generated image files and omit Pencil. If the packet selects Pencil, load $pencil-design-core and the correct stack adapter, including $pencil-design-flutter-material for Flutter targets, before translating the design into code."
+  short_description: "Implement UI from approved packet and runtime evidence"
+  default_prompt: "Use $gsd-frontend-design to implement this UI from the approved frontend direction packet, its declared visual-truth source, retained screenshots/browser captures, optional approved ChatGPT Images 2 files, reference intent, UX copy source, and existing frontend patterns."

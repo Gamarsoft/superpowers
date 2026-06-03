@@ -9,7 +9,7 @@ description: Use when defining, improving, or critiquing native mobile visual di
 
 Create mobile screens with a clear visual thesis, strong hierarchy, and native polish. Visual design should clarify the task before it decorates the interface.
 
-This skill is universal. Do not emit framework-specific code or assume web, Flutter, Pencil, React, Tailwind, or any one design tool.
+This skill is universal. Do not emit framework-specific code or assume web, Flutter, React, Tailwind, or any one design tool.
 
 ## Core Pattern
 
@@ -23,7 +23,7 @@ This skill is universal. Do not emit framework-specific code or assume web, Flut
 
 ## Mobile Visual Contract
 
-Use this in frontend packets, Pencil worksets, or design reviews:
+Use this in frontend packets, screenshots, visual references, or design reviews:
 
 ```markdown
 ## Mobile Visual Direction

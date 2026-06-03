@@ -59,7 +59,7 @@ Look especially hard for:
 - missing example mapping or vague acceptance language
 - brownfield safety gaps
 - UI-heavy work with no frontend-direction follow-on prompt
-- follow-on prompts that fail to carry screen families, key states, brownfield constraints, visual-companion decisions, or board-intent approval requirements
+- follow-on prompts that fail to carry screen families, key states, brownfield constraints, visual-companion decisions, or reference-intent approval requirements
 - GSD handoffs that allow frontend implementation before the separate frontend-direction packet exists
 - TODO / TBD / placeholder content
 - handoff sections too vague to seed GSD planning

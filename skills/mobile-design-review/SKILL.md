@@ -1,6 +1,6 @@
 ---
 name: mobile-design-review
-description: Use when reviewing native mobile screens, flows, Pencil boards, screenshots, prototypes, visual references, Flutter/iOS/Android implementations, app store quality, usability, accessibility, or generic AI mobile UI risks.
+description: Use when reviewing native mobile screens, flows, screenshots, prototypes, visual references, Flutter/iOS/Android implementations, app store quality, usability, accessibility, or generic AI mobile UI risks.
 ---
 
 # Mobile Design Review
@@ -9,7 +9,7 @@ description: Use when reviewing native mobile screens, flows, Pencil boards, scr
 
 Review mobile design artifacts for task clarity, native fit, usability, accessibility, visual quality, and state coverage. Lead with concrete findings and evidence.
 
-Use this after there is something to inspect: a spec section, screen inventory, Pencil board, image reference, screenshot, prototype, or implementation.
+Use this after there is something to inspect: a spec section, screen inventory, image reference, screenshot, prototype, or implementation.
 
 ## Review Inputs
 
@@ -18,7 +18,7 @@ Gather what exists:
 - product goal and target users
 - target platform/device families
 - approved frontend direction packet or design brief
-- screenshots, Pencil boards, visual references, or implementation captures
+- screenshots, visual references, or implementation captures
 - screen inventory and state coverage
 - existing design system, if any
 - accessibility, localization, and runtime evidence when available

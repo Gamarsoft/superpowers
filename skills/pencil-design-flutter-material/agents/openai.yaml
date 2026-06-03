@@ -1,4 +1,0 @@
-interface:
-  display_name: "Pencil Design Flutter Material"
-  short_description: "Translate Pencil into Flutter Material UI"
-  default_prompt: "Use $pencil-design-flutter-material with $pencil-design-core to translate approved Pencil boards into idiomatic Flutter Material 3 and app_ui implementation guidance."

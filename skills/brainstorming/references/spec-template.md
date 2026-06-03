@@ -5,20 +5,21 @@ Use this for the main written artifact.
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
 
-## Authoring rules
+## Authoring Rules
 
 - Reader-first, not writer-first.
 - Put the chosen direction early.
 - Keep sections as short as the complexity allows.
+- Compact does not mean lossy: preserve implementation-shaping details, constraints, states, copy sources, and open questions.
 - For simple work, a short spec is fine.
 - For nuanced work, add appendices rather than bloating the main narrative.
-- If frontend direction is required, keep this spec structural and behavioral; link to the follow-on prompt or later packet instead of duplicating detailed visual-system guidance.
+- If frontend direction is required, keep this spec structural and behavioral; link the follow-on prompt or later packet instead of duplicating detailed visual-system guidance.
 - A durable wireframe appendix is optional. Add one only when a spatial or layout decision materially affects later implementation or review.
 - Store durable wireframes as separate markdown files in a dedicated sibling folder named after the spec slug, for example `{spec-slug}-wireframes/`.
 - Keep each wireframe low-fidelity and structure-first: ASCII sketches, block diagrams, or equivalent are preferred over polished mockups.
 - If a frontend direction packet exists later, let the packet inherit from or link back to those wireframes rather than rewriting them.
 
-## Main template
+## Main Template
 
 ```markdown
 # [Feature / Project Name]
@@ -48,22 +49,22 @@ Default path:
 - Out of scope
 - Rabbit holes
 - No-gos
-- Invariants / unchanged behavior (if applicable)
+- Invariants / unchanged behavior, if applicable
 
 ## 5. User Experience / Behavior
 - Primary flows
-- Key screens or views (only the structural overview)
+- Key screens or views, only the structural overview
 - Key states
 - Failure / edge cases
 - Error handling
-- Operational or admin behavior if relevant
+- Operational or admin behavior, if relevant
 - UX writing / copy contract:
   - copy deck path or inline copy table
   - missing copy states
   - terminology rules
   - i18n variables and formatting notes
   - copy acceptance criteria
-- Link to frontend-direction follow-on prompt or packet if applicable
+- Link to frontend-direction follow-on prompt or packet, if applicable
 
 ## 6. System Design
 - Components / units
@@ -71,7 +72,7 @@ Default path:
 - Data flow
 - Interfaces / boundaries
 - Dependencies and integration points
-- Rollout / migration / compatibility notes (if applicable)
+- Rollout / migration / compatibility notes, if applicable
 
 ## 7. Risks and Unknowns
 - Known risks
@@ -82,8 +83,8 @@ Default path:
 ## 8. Validation Plan
 - What must be tested or verified
 - Key acceptance checks
-- Observability / rollout checks if needed
-- Frontend verification link if a frontend direction packet exists later
+- Observability / rollout checks, if needed
+- Frontend verification link, if a frontend direction packet exists later
 
 ## 9. Open Questions
 - Questions intentionally left open
@@ -105,12 +106,13 @@ Default path:
 [Only if applicable. Link to the follow-on prompt now, and later to `{spec-slug}--frontend-direction.md` and the supporting asset folder.]
 
 Example:
-- [Frontend-direction follow-on prompt](#) — prompt to create the frontend packet in a separate session
-- [Frontend direction packet]({spec-slug}--frontend-direction.md) — selected visual direction, state coverage, responsive rules, and implementation contract
-- [Screen index]({spec-slug}--frontend/screen-index.md) — key screens and state coverage
-- [Brownfield UI extraction]({spec-slug}--frontend/brownfield-ui-extraction.md) — preserve vs improve analysis for current product truth
-- [Pencil workset]({spec-slug}--frontend/pencil-workset.md) — repo-local visual workset plan and active `.pen` files
-- [Companion translation notes]({spec-slug}--frontend-direction.md) — any HTML companion idea that survived should be captured here only through its translated Pencil outcome
+- [Frontend-direction follow-on prompt](#) - prompt to create the frontend packet in a separate session
+- [Frontend direction packet]({spec-slug}--frontend-direction.md) - selected visual direction, state coverage, responsive rules, and implementation contract
+- [Screen index]({spec-slug}--frontend/screen-index.md) - key screens and state coverage
+- [Brownfield UI extraction]({spec-slug}--frontend/brownfield-ui-extraction.md) - preserve vs improve analysis for current product truth
+- [Runtime screenshots and browser captures]({spec-slug}--frontend/) - retained current UI evidence and implementation proof
+- [Approved generated image references]({spec-slug}--frontend/) - optional ChatGPT Images 2 references, if explicitly used and approved
+- [Reference intent notes]({spec-slug}--frontend-direction.md) - visual-truth, semantic-guidance, reference-only, or degraded current-UI mode decisions
 
 ## Appendix F. Decisions / ADR Notes
 [Only if architectural trade-offs matter]
@@ -119,9 +121,10 @@ Example:
 [Short seed or link to the handoff file.]
 ```
 
-## Optional track-specific sections
+## Optional Track-Specific Sections
 
-### Bugfix / regression
+### Bugfix / Regression
+
 Add:
 - current behavior
 - expected behavior
@@ -129,14 +132,16 @@ Add:
 - reproduction shape
 - non-regression plan
 
-### Architecture-led change
+### Architecture-Led Change
+
 Add:
 - alternatives considered
 - consequences
 - migration path
 - reversibility
 
-### Brownfield major feature
+### Brownfield Major Feature
+
 Add:
 - current integration points
 - ownership and boundary fit
@@ -148,9 +153,11 @@ A strong spec:
 
 - says who it is for
 - says what problem it solves
-- says what is not in scope
 - makes the chosen direction explicit
-- names risks honestly
+- says what is not in scope
+- preserves relevant constraints, no-gos, and unchanged behavior
+- names risks and assumptions honestly
 - includes enough behavior detail to build or hand off safely
-- stays consistent with the frontend-direction follow-on prompt or packet when applicable
-- is consistent with the handoff file
+- captures important states, failure behavior, rollout concerns, and UX copy sources when applicable
+- links frontend direction, runtime evidence, screenshots, and approved generated image references when applicable
+- stays consistent with the handoff file

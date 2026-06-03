@@ -15,14 +15,14 @@ chatgpt-image-2/
 
 Include:
 
-- what to upload once: `PRODUCT.md`, `DESIGN.md`, shared context, baseline screenshots
+- what to upload once: `PRODUCT.md`, `DESIGN.md`, shared context, baseline screenshots/captures, and relevant packet excerpts
 - one-prompt-per-generation instruction
-- suggested model/quality/aspect ratio
+- suggested quality, aspect ratio, and viewport/device target
 - screen-family map: parent prompt for each screen, child prompt IDs, child state names, and child prompts that inherit it
 - parent + child attachment instructions for state variants
-- image naming convention
-- visual-truth choice gate
-- note that approved images may either become implementation visual truth with Pencil omitted or feed a later Pencil translation
+- image naming convention, including variant suffixes such as `--v2`
+- approval reminder: generated images remain `reference-only` until the human promotes them to `visual-truth` or `semantic-guidance`
+- packet handoff reminder: approved images must be listed in the frontend packet with file path, intent, approval status, and binding notes
 
 Example screen-family map:
 
@@ -35,12 +35,12 @@ Example screen-family map:
 
 Include:
 
-- reference-image instructions
-- product context and tone
-- design-system summary
-- source priority
+- reference-image instructions and source priority
+- product context, audience, and tone
+- design-system summary: shell, density, typography, color roles, surfaces, controls, and spacing rhythm
 - global scope and no-gos
-- generated image status: `reference-only` until human approval and visual-truth path selection
+- visible-copy rules and copy deck path, if any
+- generated image status and approval reminder
 
 ## attachment-map.md
 
@@ -48,10 +48,12 @@ Use a table:
 
 | Prompt | Parent prompt | Required screenshots | Optional screenshots | Why |
 | --- | --- | --- | --- | --- |
-| `01-s1-active.md` | none | `design/baseline/00-shell.png` | `design/baseline/03-statistics.png` | parent screen baseline |
+| `01-s1-active.md` | none | `screenshots/00-shell.png` | `screenshots/03-statistics.png` | parent screen baseline |
 | `02-s1-disabled.md` | `01-s1-active.md` | same as parent | none | child state; inherit layout and override disabled values |
-| `03-s1-rollout.md` | `01-s1-active.md` | same as parent | `design/baseline/05-operations-table.png` | child state; inherit layout and override rollout/backfill statuses, messages, and row values |
-| `04-s1-unauthorized.md` | `01-s1-active.md` | same as parent | none | child state; inherit layout and override permission affordances without creating a 403 page |
+| `03-s1-rollout.md` | `01-s1-active.md` | same as parent | `screenshots/05-operations-table.png` | child state; inherit layout and override rollout/backfill statuses, messages, and row values |
+| `04-s1-unauthorized.md` | `01-s1-active.md` | same as parent | none | child state; inherit layout and override permission affordances without creating a full-page error |
+
+Every attachment must have a role. Do not attach screenshots without saying what they should influence and what they must not influence.
 
 ## Parent Screen Prompt Files
 
@@ -70,6 +72,8 @@ Each parent prompt should include:
 11. avoid list
 12. final production-readiness sentence when useful
 
+The parent prompt is the canonical layout source for its child state prompts.
+
 ## Child State Prompt Files
 
 Each child state prompt should include:
@@ -82,7 +86,7 @@ Each child state prompt should include:
 6. `Inherit From {parent}` section
 7. `State Changes Only` section organized by parent regions
 8. `State Semantics` section when the state can be confused with another state, especially rollout/backfill/failure and permission states
-9. state-specific example text
+9. state-specific example visible text
 10. permission affordance rules when relevant: visible data, hidden actions, disabled actions, read-only copy, and allowed navigation
 11. avoid list that blocks new layout, alternate section order, different component rhythm, unrelated copy changes, analytics-dashboard drift, and full-page error treatment
 
@@ -102,3 +106,12 @@ Before generation, run `writing-ux-copy` or use an approved copy deck for every 
 - table column labels and status labels
 
 Keep technical state descriptions in `State Semantics`. `Example Visible Text` should contain only production-quality UI text in the target locale, with correct accents, terminology, and i18n-safe variables.
+
+## Completion Check
+
+- README has upload order, screen-family map, naming convention, and approval reminder.
+- Shared context explains source priority, reference roles, global no-gos, and copy source.
+- Attachment map names parent prompt dependencies and screenshot roles.
+- Parent prompts define reusable layout, screen structure, content, and visual constraints.
+- Child prompts inherit from parents and change only the named state details.
+- Approved generated images have a clear path back into the frontend packet.

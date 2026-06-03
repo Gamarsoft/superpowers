@@ -115,14 +115,13 @@ function assertRoutingRule() {
     ['visual-companion.md', guide],
     ['SKILL.md', skillEntrypoint]
   ]) {
-    assertIncludes(doc, '/frontend-design', name);
-    assertIncludes(doc, '$frontend-design', name);
+    assertIncludes(doc, 'frontend-direction', name);
   }
 
   assertIncludes(
     guide,
-    'route the structuring step through **`/frontend-design`** or **`$frontend-design`**',
-    'visual-companion.md routing rule'
+    'use frontend-direction heuristics for structure and comparison clarity when helpful, but do not start the full frontend-direction phase inside brainstorming',
+    'visual-companion.md frontend-direction split rule'
   );
 }
 

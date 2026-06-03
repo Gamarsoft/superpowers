@@ -1,110 +1,76 @@
 # Brownfield UI Extraction Template
 
-Use this before visual exploration in brownfield work.
+Use before visual exploration in brownfield work.
 
 Default file:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/brownfield-ui-extraction.md`
 
-## Why this exists
+## Purpose
 
-Brownfield frontend work fails when the agent starts by inventing.
+This artifact keeps agents from inventing. It captures the current product truth, names what should stay stable, and separates safe improvement from accidental redesign.
 
-This artifact forces the agent to:
-- inspect the current UI
-- name what is already strong
-- name what is drifting
-- separate safe improvement from accidental redesign
+## Authoring Rules
 
-## Authoring rules
-
-- Use current product truth, not aspirational design language.
-- Preserve what already works before critiquing what does not.
-- Distinguish **must preserve**, **should preserve**, and **safe to improve now**.
-- Keep this focused on the current slice. Do not turn it into a full product redesign audit unless that is the actual task.
+- Use current runtime and source truth, not aspirational design language.
+- Preserve what works before critiquing what does not.
+- Distinguish `must preserve`, `may adapt`, and `safe to improve now`.
+- Keep the scope local to the current slice.
 
 ## Template
 
 ```markdown
-# [Feature / Project Name] — Brownfield UI Extraction
+# [Feature / Project Name] - Brownfield UI Extraction
 
-## 1. Extraction Scope
-- Feature or workflow in scope:
-- Routes / screens reviewed:
+## 1. Source Evidence
+- Feature or workflow:
+- Routes/screens reviewed:
 - Code areas reviewed:
-- Runtime screenshots reviewed:
-- Existing docs / anchoring used:
+- Runtime screenshots/browser captures:
+- Existing docs or anchoring:
+- Missing evidence:
 
-## 2. Product Truth to Preserve
+## 2. Preserve / Adapt / No-Gos
 ### Must preserve
 - [shell / workflow / state / pattern]
 
-### Should preserve
+### May adapt
 - [useful but adaptable pattern]
 
-### Safe to improve now
-- [specific pain point]
+### Explicit no-gos
+- [redesign move that would overreach]
 
-## 3. Foundations Already Present
-- Color / theme source:
+## 3. Foundations Present
+- Color/theme source:
 - Typography source:
 - Spacing rhythm:
-- Surface / elevation treatment:
-- Existing variables / token files:
-- Known drift from shared foundations:
+- Surfaces/elevation:
+- Variables/token files:
+- Known drift:
 
-## 4. Shared Patterns and Components
-| Pattern / component | Where it exists today | Why it matters | Reuse call | Known issues |
-| --- | --- | --- | --- | --- |
-| [header] | [...] | [...] | preserve | [...] |
-| [card layout] | [...] | [...] | preserve + normalize | [...] |
-| [table + filters] | [...] | [...] | preserve + adapt mobile | [...] |
+## 4. Shared Patterns And Components
+| Pattern/component | Where it exists | Reuse call | Known issue |
+| --- | --- | --- | --- |
+| [header] | [...] | preserve | [...] |
+| [table + filters] | [...] | preserve + adapt mobile | [...] |
 
 ## 5. Screen Family Notes
-
 ### [Screen family]
 - User goal:
 - Current layout shape:
-- Density / hierarchy notes:
+- Density/hierarchy:
 - Primary actions:
 - Important states:
 - Mobile reality:
-- What feels strong:
-- What feels weak:
+- Strong points:
+- Weak points:
 
-### [Screen family]
-- ...
-
-## 6. Drift and Debt Hotspots
-- Theming drift:
-- Duplicated layout logic:
-- Fragile local overrides:
-- Accessibility weak points:
-- Error-state weaknesses:
-- Responsive pain points:
-
-## 7. Modernization Allowed in This Slice
-- [improvement that is safe now]
-- [improvement that is safe now]
-
-## 8. Explicit No-Gos
-- [redesign move that would overreach]
-- [pattern break that would increase risk]
-
-## 9. Inputs Required for Visual Truth
-- Candidate visual-truth path: ChatGPT Images 2 | Pencil | current UI/degraded
-- ChatGPT Images 2 prompts/images to create or approve:
-- Shared `.pen` files to create or refresh if Pencil is selected:
-- Feature `.pen` files to create or refresh if Pencil is selected:
-- Screens to recreate first:
-- Variants worth exploring:
-- Screenshots to capture:
+## 6. Approved Reference Needs
+- Candidate visual-truth source: approved images | retained screenshots/browser captures | current UI/degraded
+- ChatGPT Images 2 prompts/images to create or approve, if useful:
+- Screenshots/captures to retain:
+- States still missing evidence:
 ```
 
-## Quality bar
+## Quality Bar
 
-A strong extraction artifact:
-- captures what the current product already knows
-- makes preserve-vs-change explicit
-- identifies only the most relevant drift and pain points
-- gives ChatGPT Images 2 prompts or Pencil boards a grounded starting point
-- prevents accidental redesign
+A strong extraction artifact captures current product knowledge, makes boundaries explicit, identifies only relevant drift, gives optional image prompts a grounded starting point, and prevents accidental redesign.

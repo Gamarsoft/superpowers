@@ -22,6 +22,8 @@ A brainstorming session succeeds when another agent can continue with minimal re
 
 Use this contract as the destination. The workflow below is the default path for reaching it without skipping required gates.
 
+Compact does not mean lossy. Keep outputs concise, but preserve implementation-shaping details: user value, chosen direction, scope boundaries, invariants, state coverage, failure behavior, rollout constraints, integration risks, UX copy, verification expectations, and open questions with the decision each question blocks.
+
 Default outputs:
 
 1. a reviewed design spec
@@ -73,10 +75,38 @@ When frontend direction is required:
 
 - stay in brainstorming long enough to stabilize product behavior, flows, states, constraints, and first delivery boundary
 - allow the visual companion for decision support during brainstorming
-- do not create the frontend direction packet, Pencil workset, or screenshots in the same default brainstorming session
+- do not create the frontend direction packet or screenshots in the same default brainstorming session
 - write the spec and GSD handoff with `packet status: required`
 - produce a follow-on prompt for a separate `frontend-direction` session
 - include any visual-companion decisions as context for that follow-on prompt
+
+## Visual Companion
+
+Use the visual companion only when the decision is materially easier to judge by seeing than by reading. For conceptual, scope, and text-first turns, stay in terminal.
+
+After the user accepts the companion, the first later genuinely visual question must start the companion path instead of remaining terminal-only. Each qualifying visual turn remains artifact-first: author or refresh the visual artifact, make it viewable, then ask the decision in terminal.
+
+The terminal decision prompt must stay present for qualifying visual turns even after the companion has already been opened earlier in the session. If the platform question tool is unavailable, the agent may fall back to plain terminal text, but that is degraded behavior and should be named as such.
+
+follow first-use workflow in order:
+
+1. instruction context
+2. repo design-context source if present
+3. one-time minimal session capture
+4. degraded mode
+
+preserve compatibility boundary language:
+
+- `full-document` compatibility support remains available, but fragment-first screens are the default.
+- no new required metadata beyond `data-choice`.
+
+Read `visual-companion.md` before the first browser turn.
+
+## Common Mistakes to Avoid
+
+- Treating temporary companion screens as durable frontend direction.
+- Continuing browser work after the remaining decision is textual.
+- Skipping the frontend-direction follow-on prompt when UI direction must become implementation evidence.
 
 ## Required workflow
 
@@ -190,7 +220,7 @@ Create a task for each of the following and complete them in order.
       - design spec
       - GSD handoff
       - frontend direction packet when present, or frontend-direction follow-on prompt when packet status is `required`
-    - If frontend direction is required, record the expected downstream Pencil skills and adapter candidates only as guidance for the follow-on prompt, not as finalized implementation evidence.
+    - If frontend direction is required, record target stack and evidence needs as guidance for the follow-on prompt, not as finalized implementation evidence.
     - Make clear that temporary HTML companion screens are brainstorming decision aids until a later frontend-direction packet translates them into durable artifacts.
 
 15. **Write the frontend-direction follow-on prompt** _(conditional)_
@@ -206,7 +236,7 @@ Create a task for each of the following and complete them in order.
       - visual companion decisions or artifacts, explicitly marked as non-durable decision context
       - UX writing decisions, copy deck path or copy gaps, and prompt-visible-text requirements for ChatGPT Images 2 prompts
       - likely target stack and adapter candidates
-      - board-intent approval requirement for the later packet
+      - reference-intent approval requirement for the later packet
     - Deliver the prompt in the final answer so the user can start a fresh session after manual compaction.
 
 16. **Run the review loop**
@@ -264,7 +294,7 @@ When comparing options:
 - prefer reversible choices when confidence is low
 - name what each option makes harder, not just what it makes possible
 - when UI direction is in scope, prefer clarity, hierarchy, brownfield continuity, and design-system fit over generic visual flourish
-- when HTML companion screens are used, prefer them for comparison speed only; durable truth must still converge into `.pen` files and packet prose
+- when HTML companion screens are used, prefer them for comparison speed only; durable truth must still converge into packet prose, screenshots, browser captures, or approved generated images
 
 Use `references/decision-lens.md` for a consistent rubric.
 

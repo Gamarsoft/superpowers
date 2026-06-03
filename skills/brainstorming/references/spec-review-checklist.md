@@ -66,7 +66,7 @@ Apply this section when the work clearly depends on frontend direction.
 - Does the follow-on prompt link the approved spec and GSD handoff?
 - Does it carry screen families, primary flows, key states, first delivery boundary, and brownfield invariants?
 - Does it preserve visual-companion decisions as context rather than durable design truth?
-- Does it require board-intent approval for every implementation-facing board, screenshot, or retained visual reference?
+- Does it require reference-intent approval for every implementation-facing screenshot, generated image, or retained visual reference?
 - Does it block UI implementation until the separate frontend-direction packet is approved?
 
 ## 10a. UX writing readiness (conditional, blocking when relevant)

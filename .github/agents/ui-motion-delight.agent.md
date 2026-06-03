@@ -18,7 +18,7 @@ If available, use these skills as supporting heuristics:
 
 ## Rules
 
-If packet-linked `.pen` files, retained screenshots, or browser captures exist, ensure motion ideas support the selected direction rather than a preview-image-only interpretation.
+If retained screenshots, browser captures, or approved generated-image references exist, ensure motion ideas support the selected direction rather than a preview-image-only interpretation.
 
 If temporary HTML companion artifacts still exist, use them only to clarify direction, not to infer fine-grained motion timing or choreography.
 

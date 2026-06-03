@@ -23,12 +23,11 @@ Use these for product behavior and scope:
 
 ### Visual source order
 1. frontend direction packet when present
-2. `screen-index.md`, `brownfield-ui-extraction.md`, and `pencil-workset.md`
-3. packet-linked `.pen` files and named boards / frames
-4. packet-linked screenshots, browser captures, or Pencil exports
-5. current implementation, shared design system, tokens, CSS variables, Storybook, screenshot tests
-6. current rendered UI when browser findings are available
-7. temporary HTML companion artifacts only when they still clarify an unresolved comparison
+2. `screen-index.md` and `brownfield-ui-extraction.md`
+3. packet-linked screenshots, browser captures, or optional approved ChatGPT Images 2 files
+4. current implementation, shared design system, tokens, CSS variables, Storybook, screenshot tests
+5. current rendered UI when browser findings are available
+6. temporary HTML companion artifacts only when they still clarify an unresolved comparison
 
 If the `gsd-frontend-design` skill is available, use it as the fidelity rulebook.
 
