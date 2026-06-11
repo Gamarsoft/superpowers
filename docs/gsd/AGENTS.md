@@ -1,17 +1,17 @@
 # Workflow preferences
 
-- For implementation, bug fixes, refactors, and behavior changes, use `gsd-test-driven-development`.
+- For implementation, bug fixes, refactors, and behavior changes, use `tdd`.
 - Do not write or change production behavior before a focused failing test or an executable repro exists.
-- For failing verification, regressions, flaky behavior, or unexpected runtime behavior, use `gsd-systematic-debugging` before proposing or applying fixes.
+- For failing verification, regressions, flaky behavior, or unexpected runtime behavior, use `debug-like-expert` before proposing or applying fixes.
 - After the focused proof passes, run the broader project verification relevant to the change before claiming completion.
 - If two fix attempts fail, stop stacking patches. Revisit root cause, task framing, or architecture before changing more code.
-- Do not mark a task, slice, or milestone complete without fresh verification evidence; use `gsd-verification-before-completion`.
+- Do not mark a task, slice, or milestone complete without fresh verification evidence; use `verify-before-complete`.
 - If pre-commit formatting change only the code syntax, do not re-run verification before completion or code review. If the formatting change also changes behavior, run verification and code review as normal.
 - When a task depends on third-party libraries, frameworks, SDKs, APIs, or version-sensitive tooling, use `gsd-context7-research` before editing code.
 
 ## Code Review Policy
 
-- Use `code-review` for non-trivial implementation work, slice closeout, and any task touching auth, storage, external I/O, or superprojects with git submodules.
+- Use `gsd-code-review` for non-trivial implementation work, slice closeout, and any task touching auth, storage, external I/O, or superprojects with git submodules.
 - For non-trivial work, plan review as a paired follow-up task instead of treating independent review as part of the implementation task alone.
 - The default pattern is:
   1. implementation task
@@ -38,7 +38,7 @@
 - Before visual changes, classify each implementation-facing reference as `visual-truth`, `semantic-guidance`, or `reference-only`. If reference intent is missing, ask for confirmation or record degraded mode. Verify `visual-truth` with parity checks and `semantic-guidance` with intent-fit checks.
 - Brownfield work starts from a faithful runtime baseline. Preserve shell, product language, data density, and existing system rules unless the packet explicitly changes them. HTML companion decisions become durable only after they are captured in packet prose, screenshots/captures, or approved generated images.
 - Runtime screenshots, traces, console/network logs, Flutter logs, simulator/device captures, and golden outputs are verification inputs, not default commit artifacts. Save raw evidence only in temporary, ignored, or external redaction-safe storage unless the task explicitly requires committed evidence.
-- If live data cannot produce required visual states, use fixture mode for state rendering only and label it as fixture evidence. UAT and visual review must distinguish live runtime proof from fixture visual-state proof.
+- Live runtime is the default proof path for frontend/backend work. Use fixture mode only when live data cannot produce a required hard visual state on demand, and label it as fixture evidence. UAT and visual review must distinguish live integration proof from fixture visual-state proof.
 - For reference-backed UI verification, platform runtime evidence plus the approved reference checklist is required. Screenshots, DOM checks, compilation, linting, or test output alone are not enough. Any unresolved mismatch needs a waiver naming the source, approved intent, runtime mismatch, constraint, accepted fallback, and follow-up.
 - For non-trivial UI work, run one fresh-context visual review before completion. The reviewer must read project instructions first: nearest `AGENTS.md`, relevant `.gsd/**/CONTEXT.md`, `PRODUCT.md`, `DESIGN.md`, task file, and slice or milestone instructions. The reviewer inspects approved packet evidence, visual-truth sources, approved reference checklist completion, and runtime evidence, then writes `VISUAL-REVIEW.md`.
 - For web targets, the visual reviewer must use a fresh browser context when supported; do not reuse the implementer's browser session, route, storage, console state, or previously opened page. The reviewer must independently open the route/screen and recapture desktop/mobile evidence. Implementer screenshots, assertions, or summaries are comparison inputs, not a substitute for reviewer runtime proof.
