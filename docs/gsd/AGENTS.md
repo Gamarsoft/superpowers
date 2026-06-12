@@ -3,15 +3,22 @@
 - For implementation, bug fixes, refactors, and behavior changes, use `tdd`.
 - Do not write or change production behavior before a focused failing test or an executable repro exists.
 - For failing verification, regressions, flaky behavior, or unexpected runtime behavior, use `debug-like-expert` before proposing or applying fixes.
-- After the focused proof passes, run the broader project verification relevant to the change before claiming completion.
+- After the focused proof passes, always run the broader full project verification relevant to the change before claiming completion.
 - If two fix attempts fail, stop stacking patches. Revisit root cause, task framing, or architecture before changing more code.
 - Do not mark a task, slice, or milestone complete without fresh verification evidence; use `verify-before-complete`.
 - If pre-commit formatting change only the code syntax, do not re-run verification before completion or code review. If the formatting change also changes behavior, run verification and code review as normal.
 - When a task depends on third-party libraries, frameworks, SDKs, APIs, or version-sensitive tooling, use `gsd-context7-research` before editing code.
 
+## Live Runtime State-Proof Policy
+
+- When a project provides a live runtime, local database, state-shaping workflow, or dedicated skill for end-to-end verification, use that workflow before fixture or mock proof for frontend/backend, persistence, authorization, calculation, scheduler, service-wiring, and contract claims.
+- Fixture and mock evidence is visual-state evidence only. Use it only when explicitly requested or when the live runtime workflow cannot practically create the state on demand, and state that boundary in UAT, reviews, and summaries.
+- UAT, task summaries, and slice summaries must record concise proof notes: intended runtime state, source/schema files inspected, target environment, read queries or API paths used as evidence, any scoped writes, exercised browser/API/service path, observed backend/UI/DB result, and what was not proven.
+- Keep raw runtime logs, screenshots, database dumps, and browser captures out of commits unless the task explicitly asks for committed evidence.
+
 ## Code Review Policy
 
-- Use `gsd-code-review` for non-trivial implementation work, slice closeout, and any task touching auth, storage, external I/O, or superprojects with git submodules.
+- Use `gsd-code-review` for non-trivial implementation work, explicit review tasks, and any task touching auth, storage, external I/O, or superprojects with git submodules. Slice closeout should validate existing review artifacts and evidence instead of starting new review loops unless the slice is high risk or lacks required task-level review.
 - For non-trivial work, plan review as a paired follow-up task instead of treating independent review as part of the implementation task alone.
 - The default pattern is:
   1. implementation task
@@ -25,7 +32,7 @@
 - Use at most 4 fresh review cycles inside the follow-up task. If `REVIEW.md` still does not say `APPROVE` after 4 cycles, stop and escalate through `replan-slice` or `blocker_discovered: true`.
 - If `.gitmodules` exists, every review must inspect real submodule diffs, not only superproject pointer bumps.
 - Fresh-context review pass should be started only after target submodule commits are done.
-- For any non-trivial slice, add a final `Review and resolve slice findings` task before `complete-slice`, using a single slice-level `REVIEW.md` artifact.
+- Add a final `Review and resolve slice findings` task before `complete-slice` only for high-risk slices, cross-cutting behavior, auth, storage, external I/O, submodule-heavy changes, or non-trivial UI that lacks approved task-level visual review.
 - Skip paired review tasks only for trivial work such as docs-only edits, copy-only edits, renames, formatting-only changes, or other clearly mechanical non-behavioral changes.
 
 ## Frontend direction and visual-truth policy
@@ -38,11 +45,10 @@
 - Before visual changes, classify each implementation-facing reference as `visual-truth`, `semantic-guidance`, or `reference-only`. If reference intent is missing, ask for confirmation or record degraded mode. Verify `visual-truth` with parity checks and `semantic-guidance` with intent-fit checks.
 - Brownfield work starts from a faithful runtime baseline. Preserve shell, product language, data density, and existing system rules unless the packet explicitly changes them. HTML companion decisions become durable only after they are captured in packet prose, screenshots/captures, or approved generated images.
 - Runtime screenshots, traces, console/network logs, Flutter logs, simulator/device captures, and golden outputs are verification inputs, not default commit artifacts. Save raw evidence only in temporary, ignored, or external redaction-safe storage unless the task explicitly requires committed evidence.
-- Live runtime is the default proof path for frontend/backend work. Use fixture mode only when live data cannot produce a required hard visual state on demand, and label it as fixture evidence. UAT and visual review must distinguish live integration proof from fixture visual-state proof.
+- Live runtime state proof is the default for frontend/backend work. If the project provides database or state-shaping guidance, use it before fixture planning. Fixture mode remains a fallback for explicitly requested or impractical hard visual states only, and UAT plus visual review must separate live integration proof from fixture visual-state proof.
 - For reference-backed UI verification, platform runtime evidence plus the approved reference checklist is required. Screenshots, DOM checks, compilation, linting, or test output alone are not enough. Any unresolved mismatch needs a waiver naming the source, approved intent, runtime mismatch, constraint, accepted fallback, and follow-up.
-- For non-trivial UI work, run one fresh-context visual review before completion. The reviewer must read project instructions first: nearest `AGENTS.md`, relevant `.gsd/**/CONTEXT.md`, `PRODUCT.md`, `DESIGN.md`, task file, and slice or milestone instructions. The reviewer inspects approved packet evidence, visual-truth sources, approved reference checklist completion, and runtime evidence, then writes `VISUAL-REVIEW.md`.
+- For non-trivial UI implementation tasks, run one fresh-context visual review before task completion. The reviewer must read project instructions first: nearest `AGENTS.md`, relevant `.gsd/**/CONTEXT.md`, `PRODUCT.md`, `DESIGN.md`, task file, and slice or milestone instructions. The reviewer inspects approved packet evidence, visual-truth sources, approved reference checklist completion, and runtime evidence, then writes `VISUAL-REVIEW.md`. Slice completion should validate existing visual-review artifacts instead of launching a new visual review unless required evidence is missing.
 - For web targets, the visual reviewer must use a fresh browser context when supported; do not reuse the implementer's browser session, route, storage, console state, or previously opened page. The reviewer must independently open the route/screen and recapture desktop/mobile evidence. Implementer screenshots, assertions, or summaries are comparison inputs, not a substitute for reviewer runtime proof.
-- If the target cannot be opened or recaptured because of `ERR_CONNECTION_REFUSED`, connection refused, server unavailable, simulator/device unavailable, route failure, or test harness failure, the reviewer must not approve. Use `REQUEST_CHANGES` if a follow-up can restore evidence, or `ESCALATE` if environment or task framing blocks review. `Visual Review Completion Gates` must cover project instructions read, fresh runtime isolation or recorded fallback, independent runtime recapture, approved reference checklist completion, desktop/mobile scope, console/network or Flutter test/log checks, and missing gates.
 - Do not fall back to the bundled `frontend-design` skill when `gsd-frontend-design` and approved packet, image, screenshot, or runtime evidence artifacts are available.
 
 ## Spec and handoff projection policy
@@ -64,7 +70,7 @@
 
 ## Superproject + Submodule Commit Policy
 
-Before saying "Task complete" or "Slice complete":
+Before saying "Task complete" during an implementation or review-and-resolve task:
 
 **1. Detect submodules:**
 
@@ -106,6 +112,8 @@ git submodule foreach --quiet 'git status --short'
 **5. Do NOT touch the superproject git index.**
 Do not run `git add` or `git commit` in the superproject root.
 Once submodules are committed, the auto-commit system handles the superproject pointer update automatically — it stages the updated SHA pointers via `git add -A` and commits them as part of the normal `chore(<unitId>): auto-commit after <unitType>`.
+
+During `complete-slice`, do not create submodule commits. Only verify and report whether submodule working trees are clean and whether required task-level commits already exist.
 
 **Hard rules:**
 
