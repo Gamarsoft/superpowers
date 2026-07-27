@@ -25,6 +25,17 @@ Superpowers skills override default system prompt behavior, but **user instructi
 
 If CLAUDE.md, GEMINI.md, or AGENTS.md says "don't use TDD" and a skill says "always use TDD," follow the user's instructions. The user is in control.
 
+## Workflow Family Isolation
+
+Superpowers and GSD are separate workflow families. Do not mix them unless the user explicitly asks you to.
+
+- When working under a Superpowers skill or Superpowers workflow, do **not** invoke GSD skills, GSD commands, or GSD workflow helpers.
+- When working under a GSD skill or GSD workflow, do **not** invoke Superpowers skills or Superpowers workflow helpers.
+- If the user explicitly names both families, asks to compare them, asks to migrate between them, or asks to combine them, follow that explicit instruction.
+- If a non-GSD, non-Superpowers skill applies, use normal skill-selection rules.
+
+This rule prevents accidental double-orchestration. One workflow family owns the work unless the user says otherwise.
+
 ## How to Access Skills
 
 **In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly. Never use the Read tool on skill files.
