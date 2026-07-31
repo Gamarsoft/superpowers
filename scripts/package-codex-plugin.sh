@@ -295,6 +295,7 @@ case "$FORMAT" in
     # ZIP cannot represent dates earlier than 1980.
     TZ=UTC find "$STAGE" -exec touch -t 198001010000 {} +
     (
+      export TZ=UTC
       cd "$STAGE"
       rm -f "$OUTPUT"
       COPYFILE_DISABLE=1 zip -X -q - -@ <"$ARCHIVE_LIST" >"$OUTPUT"
