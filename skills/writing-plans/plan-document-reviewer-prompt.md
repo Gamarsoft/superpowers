@@ -53,6 +53,14 @@ Task tool (general-purpose):
     - Tasks that modify existing behavior without backward compatibility acceptance criteria
     - Spec-named classes, files, strategies, or seed data values that were paraphrased away instead of carried verbatim into the plan
 
+    ## Calibration
+
+    Block approval only for gaps that could make an implementer build the
+    wrong thing, violate a requirement, or get stuck: missing/contradictory
+    requirements, placeholders, untestable criteria, invalid task boundaries,
+    or omitted safety/invariant coverage. Put wording preferences and useful
+    polish under Recommendations; they do not block approval.
+
     ## Output Format
 
     ## Plan Review - Chunk N

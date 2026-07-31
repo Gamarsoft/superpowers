@@ -1,66 +1,72 @@
 # Codex Tool Mapping
 
-Skills use Claude Code tool names. When you encounter these in a skill, use your platform equivalent:
+Skills sometimes use Claude Code tool names. Translate them to the active
+Codex multi-agent and task APIs instead of copying a stale tool name.
 
-| Skill references                 | Codex equivalent                                    |
-| -------------------------------- | --------------------------------------------------- |
-| `Task` tool (dispatch subagent)  | `spawn_agent` with prompt                           |
-| `Task` tool (named role)`*`      | `spawn_agent` with prompt and `agent_type`          |
-| Multiple `Task` calls (parallel) | Multiple `spawn_agent` calls with prompt            |
-| Task returns result              | `wait`                                              |
-| Task completes automatically     | `close_agent` to free slot                          |
-| `TodoWrite` (task tracking)      | `update_plan`                                       |
-| `AskUserQuestion`                | `request_user_input`                                |
-| `vscode/askQuestions`            | `request_user_input`                                |
-| `Skill` tool (invoke a skill)    | Skills load natively — just follow the instructions |
-| `Read`, `Write`, `Edit` (files)  | Use your native file tools                          |
-| `Bash` (run commands)            | Use your native shell tools                         |
+| Skill reference | Codex equivalent |
+| --- | --- |
+| `Task` (dispatch a subagent) | `spawn_agent` with `task_name` and `message` |
+| `Task` (named role) | `spawn_agent` with `agent_type`; for checked-in typed roles use `fork_turns: "none"` |
+| Multiple independent `Task` calls | Spawn each bounded task; the agents then run concurrently |
+| Send context without starting a turn | `send_message` |
+| Resume an idle agent for a fix/follow-up | `followup_task` |
+| Stop or redirect the current agent turn | `interrupt_agent`, then send/follow up as needed |
+| Inspect live agent states | `list_agents` |
+| Wait for agent activity | `wait_agent` |
+| `TodoWrite` | `update_plan` |
+| `AskUserQuestion` / `vscode/askQuestions` | `request_user_input` when available; otherwise ask concise plain text |
+| `Skill` | Skills load natively; read and follow the selected skill instructions |
+| `Read`, `Write`, `Edit`, `Bash` | Use Codex's native file and shell tools |
 
-`*` Example: when a skill says to use the Codex role `sp_code_reviewer`, spawn the agent with `agent_type = "sp_code_reviewer"` and pass the filled prompt template as the agent prompt.
+Named roles contributed by this repository live in `.codex/agents/*.toml`.
+For example, when a skill selects `sp_code_reviewer`, call `spawn_agent`
+with `agent_type: "sp_code_reviewer"`, `fork_turns: "none"`, and the filled
+review prompt as `message`. Typed roles own their configured model and
+instructions; do not override them with inherited conversation history.
 
-## Subagent dispatch requires multi_agent
+## Subagent dispatch requires multi-agent support
 
-Add to your Codex config (`~/.codex/config.toml`):
+Add this to `~/.codex/config.toml` when the subagent tools are unavailable:
 
 ```toml
 [features]
 multi_agent = true
 ```
 
-This enables the subagents tools for skills like `dispatching-parallel-agents` and `subagent-driven-development`.
+## Current lifecycle
 
-## Subagent lifecycle
+1. **Create:** `spawn_agent` returns an agent ID/canonical task name.
+2. **Communicate:** use `send_message` while an agent is running, or
+   `followup_task` to trigger a new turn when it is idle.
+3. **Monitor:** `wait_agent` waits for mailbox activity; `list_agents`
+   provides a compact state snapshot.
+4. **Redirect:** `interrupt_agent` stops the current turn but keeps the agent
+   available for a corrected follow-up.
 
-Codex manages subagents through five tools:
+Final agent messages are delivered back to the parent automatically. There
+is no separate close/free-slot call in the current API, so do not invent one.
+Keep implementation agents available through their fix loop; reuse them with
+`followup_task` for rounds that require the original implementer.
 
-| Step            | Tool           | Purpose                                                                                              |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------------------- |
-| **Create**      | `spawn_agent`  | Spawn a sub-agent for a well-scoped task. Returns the agent ID for all further communication.        |
-| **Communicate** | `send_input`   | Send a follow-up message to a running agent. Supports `interrupt` to redirect work immediately.      |
-| **Monitor**     | `wait`         | Block until one or more agents reach a final status. Returns the agent's final message or times out. |
-| **Revive**      | `resume_agent` | Resume a previously closed agent so it can receive `send_input` and `wait` calls again.              |
-| **Terminate**   | `close_agent`  | Shut down an agent that is no longer needed, free its thread slot, and return its last status.       |
+## Environment detection
 
-### Key rules
+Skills that create worktrees or finish branches should detect the current
+checkout before mutating it:
 
-- Always `close_agent` when done to free the thread slot — there is a configurable `agents.max_threads` limit (default 10).
-- Prefer longer `timeout_ms` values in `wait` to avoid busy polling.
-- `spawn_agent` enforces a maximum nesting depth — agents cannot spawn subagents indefinitely.
-- A closed agent can be brought back with `resume_agent`; Use only if explicitlty instructed to do so.
+```bash
+GIT_DIR=$(cd "$(git rev-parse --git-dir)" 2>/dev/null && pwd -P)
+GIT_COMMON=$(cd "$(git rev-parse --git-common-dir)" 2>/dev/null && pwd -P)
+BRANCH=$(git branch --show-current)
+```
 
-## Interactive questions (Codex)
+- `GIT_DIR != GIT_COMMON` means the checkout is a linked worktree unless the
+  submodule guard in `using-git-worktrees` says otherwise.
+- An empty `BRANCH` means detached HEAD; follow the finishing skill's reduced
+  options and leave externally managed workspaces in place.
 
-Use `request_user_input` when a skill requires structured user choices.
+## Interactive questions
 
-- Prefer 1 question per call (up to 3 when tightly related).
-- In standard Codex behavior, this tool is available in Plan mode (and may be enabled in Default mode by feature flag).
-- Questions should present meaningful choices and avoid asking for information discoverable from local context.
-- If unavailable in the current mode, ask a concise plain-text question instead.
-
-### `request_user_input` schema-first checklist
-
-- Include stable `id` (snake_case) for answer mapping.
-- Use short `header` and one-sentence `question`.
-- Provide 2-3 meaningful `options` with `label` + `description`.
-- Keep options mutually exclusive for single-choice decisions.
-- Put your recommended option first when relevant.
+Use `request_user_input` for structured choices when it is available in the
+active mode. Prefer one question, provide mutually exclusive options, and do
+not ask for information that read-only inspection can discover. If the tool
+is unavailable, ask one concise plain-text question.

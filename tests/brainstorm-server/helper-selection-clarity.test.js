@@ -291,7 +291,7 @@ function run() {
 
   test('frame template exposes the clearer default selection guidance as a live status surface', () => {
     assert(
-      frameTemplate.includes(DEFAULT_INDICATOR_TEXT),
+      frameTemplate.replace(/\s+/g, ' ').includes(DEFAULT_INDICATOR_TEXT),
       'frame-template.html should expose the updated default selection guidance'
     );
     assert(

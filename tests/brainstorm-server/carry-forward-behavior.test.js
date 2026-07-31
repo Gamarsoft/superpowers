@@ -7,6 +7,7 @@ const assert = require('assert');
 const SERVER_PATH = path.join(__dirname, '../../skills/brainstorming/scripts/server.cjs');
 const EXAMPLES_DIR = path.join(__dirname, '../../skills/brainstorming/examples/visual-companion');
 const TEST_ROOT = path.join('/tmp', `brainstorm-carry-forward-${process.pid}`);
+const TOKEN = 'testtoken-carry-forward-0123456789abcdef';
 
 function cleanupDir(dirPath) {
   if (fs.existsSync(dirPath)) {
@@ -14,9 +15,9 @@ function cleanupDir(dirPath) {
   }
 }
 
-function fetch(url) {
+function fetch(url, cookie) {
   return new Promise((resolve, reject) => {
-    http.get(url, (res) => {
+    http.get(url, { headers: { Cookie: cookie } }, (res) => {
       let data = '';
       res.on('data', (chunk) => {
         data += chunk;
@@ -86,13 +87,15 @@ async function renderExample({ exampleFile, eventsPresent }) {
   const server = spawn('node', [SERVER_PATH], {
     env: {
       ...process.env,
-      BRAINSTORM_DIR: sessionDir
+      BRAINSTORM_DIR: sessionDir,
+      BRAINSTORM_TOKEN: TOKEN
     }
   });
 
   try {
     const info = await waitForServer(server);
-    const response = await fetch(info.url);
+    const cookie = `brainstorm-key-${info.port}=${TOKEN}`;
+    const response = await fetch(`http://${info.url_host}:${info.port}/`, cookie);
     const eventsPath = path.join(stateDir, 'events');
 
     return {

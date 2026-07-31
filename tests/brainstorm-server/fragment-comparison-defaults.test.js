@@ -11,6 +11,7 @@ const RECOMMENDATION_FIXTURE_PATH = path.join(FIXTURE_DIR, 'annotated-recommenda
 const CARRY_FORWARD_FIXTURE_PATH = path.join(FIXTURE_DIR, 'carry-forward-summary.html');
 
 const TEST_PORT = 35000 + Math.floor(Math.random() * 1000);
+const TOKEN = 'testtoken-fragment-defaults-0123456789abcdef';
 const TEST_DIR = `/tmp/brainstorm-fragment-defaults-${process.pid}-${Date.now()}`;
 const CONTENT_DIR = path.join(TEST_DIR, 'content');
 const ACTIVE_SCREEN = 'active-screen.html';
@@ -47,7 +48,7 @@ function sleep(ms) {
 function fetch(url) {
   return new Promise((resolve, reject) => {
     http
-      .get(url, (res) => {
+      .get(url, { headers: { Cookie: `brainstorm-key-${TEST_PORT}=${TOKEN}` } }, (res) => {
         let data = '';
         res.on('data', (chunk) => {
           data += chunk;
@@ -65,7 +66,8 @@ function startServer() {
     env: {
       ...process.env,
       BRAINSTORM_PORT: String(TEST_PORT),
-      BRAINSTORM_DIR: TEST_DIR
+      BRAINSTORM_DIR: TEST_DIR,
+      BRAINSTORM_TOKEN: TOKEN
     }
   });
 }

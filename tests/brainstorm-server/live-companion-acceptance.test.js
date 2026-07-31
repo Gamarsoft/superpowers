@@ -24,6 +24,8 @@ let sessionDir = '';
 let stateDir = '';
 let screenDir = '';
 let serverUrl = '';
+let sessionKey = '';
+let sessionCookie = '';
 let serverInfoPath = '';
 let serverLogPath = '';
 let stopAttempted = false;
@@ -82,7 +84,7 @@ function runScript(scriptPath, args, label) {
 function fetch(url) {
   return new Promise((resolve, reject) => {
     http
-      .get(url, (res) => {
+      .get(url, { headers: sessionCookie ? { Cookie: sessionCookie } : {} }, (res) => {
         let body = '';
         res.setEncoding('utf8');
         res.on('data', (chunk) => {
@@ -177,6 +179,7 @@ async function sendChoiceEvent(event) {
   const wsUrl = new URL(serverUrl);
   wsUrl.protocol = wsUrl.protocol === 'https:' ? 'wss:' : 'ws:';
   wsUrl.pathname = '/';
+  wsUrl.searchParams.set('key', sessionKey);
 
   return new Promise((resolve, reject) => {
     const ws = new WebSocket(wsUrl.toString());
@@ -280,7 +283,11 @@ async function run() {
 
   stateDir = startup.state_dir;
   screenDir = startup.screen_dir;
-  serverUrl = startup.url;
+  const startupUrl = new URL(startup.url);
+  sessionKey = startupUrl.searchParams.get('key');
+  assert(sessionKey, 'startup URL should carry the session key');
+  serverUrl = startupUrl.origin;
+  sessionCookie = `brainstorm-key-${startup.port}=${sessionKey}`;
   sessionDir = path.dirname(stateDir);
   serverInfoPath = path.join(stateDir, 'server-info');
   serverLogPath = path.join(stateDir, 'server.log');

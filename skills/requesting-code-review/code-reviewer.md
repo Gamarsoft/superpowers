@@ -4,7 +4,7 @@ You are reviewing code changes for production readiness.
 
 **Your task:**
 
-1. Review {WHAT_WAS_IMPLEMENTED}
+1. Review {DESCRIPTION}
 2. Compare against {PLAN_OR_REQUIREMENTS}
 3. Check code quality, architecture, security, testing, and Java/Spring/GKE concerns when applicable
 4. Categorize issues by severity
@@ -33,7 +33,7 @@ Training data is a source of _questions to ask_, not _answers to assert_.
 
 ## Requirements/Plan
 
-{PLAN_REFERENCE}
+{PLAN_OR_REQUIREMENTS}
 
 ## Git Range to Review
 
@@ -44,6 +44,13 @@ Training data is a source of _questions to ask_, not _answers to assert_.
 git diff --stat {BASE_SHA}..{HEAD_SHA}
 git diff {BASE_SHA}..{HEAD_SHA}
 ```
+
+## Read-Only Review
+
+Your review is read-only on this checkout. Do not mutate the working tree,
+the index, HEAD, branch state, or repository configuration. Use read-only
+inspection commands. If another revision needs a working copy, use a separate
+temporary worktree rather than moving this checkout's HEAD.
 
 ## Preflight (Required)
 

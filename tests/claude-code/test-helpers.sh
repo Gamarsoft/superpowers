@@ -1,6 +1,46 @@
 #!/usr/bin/env bash
 # Helper functions for Claude Code skill tests
 
+# Run a command with a wall-clock timeout on GNU/Linux and macOS. macOS does
+# not ship GNU `timeout`; Homebrew exposes it as `gtimeout`. Perl is the
+# dependency-free fallback available on supported macOS installations.
+run_with_timeout() {
+    local timeout_seconds="$1"
+    shift
+
+    if command -v timeout >/dev/null 2>&1; then
+        timeout "$timeout_seconds" "$@"
+        return $?
+    fi
+    if command -v gtimeout >/dev/null 2>&1; then
+        gtimeout "$timeout_seconds" "$@"
+        return $?
+    fi
+    if command -v perl >/dev/null 2>&1; then
+        perl -e '
+            my $seconds = shift @ARGV;
+            my $pid = fork();
+            die "fork failed: $!" unless defined $pid;
+            if ($pid == 0) { exec @ARGV; exit 127; }
+            $SIG{ALRM} = sub {
+                kill "TERM", $pid;
+                select undef, undef, undef, 0.2;
+                kill "KILL", $pid;
+                waitpid($pid, 0);
+                exit 124;
+            };
+            alarm $seconds;
+            waitpid($pid, 0);
+            alarm 0;
+            exit(($? & 127) ? 128 + ($? & 127) : $? >> 8);
+        ' "$timeout_seconds" "$@"
+        return $?
+    fi
+
+    echo "ERROR: timeout, gtimeout, or perl is required" >&2
+    return 127
+}
+
 # Run Claude Code with a prompt and capture output
 # Usage: run_claude "prompt text" [timeout_seconds] [allowed_tools]
 run_claude() {
@@ -9,14 +49,14 @@ run_claude() {
     local allowed_tools="${3:-}"
     local output_file=$(mktemp)
 
-    # Build command
-    local cmd="claude -p \"$prompt\""
+    # Build command as an argv array so timeout wraps claude directly.
+    local cmd=(claude -p "$prompt")
     if [ -n "$allowed_tools" ]; then
-        cmd="$cmd --allowed-tools=$allowed_tools"
+        cmd+=(--allowed-tools="$allowed_tools")
     fi
 
-    # Run Claude in headless mode with timeout
-    if timeout "$timeout" bash -c "$cmd" > "$output_file" 2>&1; then
+    # Run Claude in headless mode with a portable timeout
+    if run_with_timeout "$timeout" "${cmd[@]}" > "$output_file" 2>&1; then
         cat "$output_file"
         rm -f "$output_file"
         return 0
@@ -30,12 +70,14 @@ run_claude() {
 
 # Check if output contains a pattern
 # Usage: assert_contains "output" "pattern" "test name"
+# Matching is case-insensitive: patterns are prose keywords, and models
+# freely capitalize skill terms ("Do Not Trust", "Spec Compliance").
 assert_contains() {
     local output="$1"
     local pattern="$2"
     local test_name="${3:-test}"
 
-    if echo "$output" | grep -q "$pattern"; then
+    if echo "$output" | grep -qi "$pattern"; then
         echo "  [PASS] $test_name"
         return 0
     else
@@ -54,7 +96,7 @@ assert_not_contains() {
     local pattern="$2"
     local test_name="${3:-test}"
 
-    if echo "$output" | grep -q "$pattern"; then
+    if echo "$output" | grep -qi "$pattern"; then
         echo "  [FAIL] $test_name"
         echo "  Did not expect to find: $pattern"
         echo "  In output:"
@@ -74,7 +116,7 @@ assert_count() {
     local expected="$3"
     local test_name="${4:-test}"
 
-    local actual=$(echo "$output" | grep -c "$pattern" || echo "0")
+    local actual=$(echo "$output" | grep -ci "$pattern" || echo "0")
 
     if [ "$actual" -eq "$expected" ]; then
         echo "  [PASS] $test_name (found $actual instances)"
@@ -98,16 +140,20 @@ assert_order() {
     local test_name="${4:-test}"
 
     # Get line numbers where patterns appear
-    local line_a=$(echo "$output" | grep -n "$pattern_a" | head -1 | cut -d: -f1)
-    local line_b=$(echo "$output" | grep -n "$pattern_b" | head -1 | cut -d: -f1)
+    local line_a=$(echo "$output" | grep -ni "$pattern_a" | head -1 | cut -d: -f1)
+    local line_b=$(echo "$output" | grep -ni "$pattern_b" | head -1 | cut -d: -f1)
 
     if [ -z "$line_a" ]; then
         echo "  [FAIL] $test_name: pattern A not found: $pattern_a"
+        echo "  In output:"
+        echo "$output" | sed 's/^/    /'
         return 1
     fi
 
     if [ -z "$line_b" ]; then
         echo "  [FAIL] $test_name: pattern B not found: $pattern_b"
+        echo "  In output:"
+        echo "$output" | sed 's/^/    /'
         return 1
     fi
 
@@ -193,6 +239,7 @@ EOF
 
 # Export functions for use in tests
 export -f run_claude
+export -f run_with_timeout
 export -f assert_contains
 export -f assert_not_contains
 export -f assert_count

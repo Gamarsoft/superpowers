@@ -1,6 +1,7 @@
 .worktrees/
 .private-journal/
 .claude/
+.superpowers/
 .DS_Store
 .idea/
 .vscode/
@@ -37,3 +38,7 @@ vendor/
 coverage/
 .cache/
 tmp/
+
+# Eval harness is maintained in its own repository and cloned here only for
+# local development.
+evals/

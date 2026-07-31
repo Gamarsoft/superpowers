@@ -2,116 +2,79 @@
 
 Use this template when dispatching an implementer subagent.
 
-**Template integrity rule:** Paste this template in full. Replace placeholders, but do not remove sections. If a section is not applicable, write `N/A` with a short reason.
-
-**Dispatch validity check:** A valid implementer dispatch must include all of these headings exactly:
-
-- `## Task Description`
-- `## Context`
-- `## Context7 Findings`
-- `## Before You Write Any Code`
-- `## Writing Tests`
-- `## Writing Implementation`
-- `## When the Plan and Codebase Disagree`
-- `## Code Organization`
-- `## When You're in Over Your Head`
-- `## Before Reporting Back: Self-Review`
-- `## Report Format`
-
-If any heading is missing, the dispatch is invalid. Rebuild from this template before sending.
-
-**Wrapper rule:** Use the `Task tool (general-purpose)` block structure (`description` + `prompt: |`) for the tool call, but only send the content under `prompt: |` as the subagent's actual prompt.
-
-````
-Task tool (general-purpose):
+```
+Subagent (implementation role selected per SKILL.md; Codex uses an sp_implementer_* role):
   description: "Implement Task N: [task name]"
+  model: [MODEL — REQUIRED: choose per SKILL.md Model Selection; an omitted
+         model silently inherits the session's most expensive one]
   prompt: |
     You are implementing Task N: [task name]
 
     ## Task Description
 
-    [FULL TEXT of task from plan - paste it here, don't make subagent read file]
+    Read your task brief first: [BRIEF_FILE]
+    It contains the full task text from the plan.
 
     ## Context
 
     [Scene-setting: where this fits, dependencies, architectural context]
-    [From Plan Context, include ONLY items relevant to this task: applicable
-     invariants, terminology the task touches, non-goals that bound scope.
-     Omit items that don't apply — high signal over completeness.]
 
     ## Context7 Findings
 
-    [Required section. Use one form:
-    1) Findings provided:
-       - Source: [implementation plan header `Context7 Findings`]
-       - Findings: [bullet list of concrete API/library guidance]
-       - Constraints: [deprecated APIs, version caveats, gotchas to avoid]
-       - Requery policy: DO_NOT_REQUERY_CONTEXT7
-    2) Findings not needed:
-       - NONE — no external API/library uncertainty for this task]
+    [Required. Include the task-relevant findings copied from the plan, with
+    constraints and version caveats, followed by
+    `Requery policy: DO_NOT_REQUERY_CONTEXT7`; or write
+    `NONE — no external API/library uncertainty for this task`.]
 
-    If findings are provided, do NOT run Context7 again. If plan findings are missing,
-    conflicting, or stale for the code you're touching, stop and report NEEDS_CONTEXT.
+    If findings are provided, do not run Context7 again. If they appear
+    missing, conflicting, or stale for the code you must touch, stop and
+    report NEEDS_CONTEXT so the controller can refresh the shared research.
 
-    ## Before You Write Any Code
+    ## Before You Begin
 
-    You MUST read existing code before writing any new code.
+    Read the task brief and every codebase pointer it names before editing.
+    Identify existing naming, error-handling, testing, and dependency patterns,
+    and treat the brief's interfaces/contracts as architectural constraints.
 
-    1. Read every file listed in **Codebase pointers** in the task description
-    2. Understand the patterns: naming conventions, error handling style, test
-       structure, dependency injection approach
-    3. Read the **Interfaces and contracts** in the task — these are your
-       architectural constraints. You must respect them.
-    4. If anything in the task contradicts what you see in the codebase, STOP
-       and report NEEDS_CONTEXT. The codebase is the truth, not the plan.
+    If you have questions about:
+    - The requirements or acceptance criteria
+    - The approach or implementation strategy
+    - Dependencies or assumptions
+    - Anything unclear in the task description
 
-    If you have questions about requirements, acceptance criteria, approach,
-    dependencies, or anything unclear — **ask them now** before writing code.
+    **Ask them now.** Raise any concerns before starting work.
 
-    ## Writing Tests
+    ## Your Job
 
-    You write the tests. The plan gives you **acceptance criteria** — observable
-    behaviors stated as testable assertions. Your job:
-
-    1. Translate each acceptance criterion into one or more test methods
-    2. Follow the test patterns you found in the codebase (naming, assertions,
-       fixtures, test organization)
-    3. Cover both happy path and the edge cases listed in acceptance criteria
-    4. Tests must verify behavior, not implementation details
-    5. Run tests and confirm they FAIL before writing implementation
-
-    ## Writing Implementation
-
-    You write the code. The plan gives you **interfaces and contracts** — these
-    are boundaries you must respect. Your job:
-
-    1. Write minimal code to pass your failing tests
-    2. Follow the patterns you observed in the codebase
-    3. Respect the interfaces/contracts from the task — don't change public
-       signatures without reporting DONE_WITH_CONCERNS
-    4. If a contract feels wrong after reading the codebase, report
-       DONE_WITH_CONCERNS and explain why
-    5. Before writing new code, check if something in the codebase already
-       does it — reuse over reinvent (DRY)
-    6. Only build what the task requires right now, nothing extra (YAGNI)
-    7. One straightforward approach beats a "flexible" one (KISS)
+    Once you're clear on requirements:
+    1. Implement exactly what the task specifies
+    2. Write tests (following TDD if task says to)
+    3. Verify implementation works
+    4. Commit your work
+    5. Self-review (see below)
+    6. Report back
 
     Work from: [directory]
 
-    **While you work:** If you encounter something unexpected or unclear,
-    **ask questions**. It's always OK to pause and clarify. Don't guess.
+    **While you work:** If you encounter something unexpected or unclear, **ask questions**.
+    It's always OK to pause and clarify. Don't guess or make assumptions.
+
+    While iterating, run the focused test for what you're changing; run the
+    full suite once before committing, not after every edit.
 
     ## When the Plan and Codebase Disagree
 
-    The codebase is the source of truth for HOW code should be written.
-    The plan is the source of truth for WHAT should be built.
+    The codebase is the source of truth for HOW code should be written. The
+    task brief is the source of truth for WHAT behavior and interfaces must be
+    delivered.
 
-    - Plan naming doesn't match codebase conventions → follow codebase, note
-      the deviation in your report
-    - Plan contract feels wrong after reading codebase → report
-      DONE_WITH_CONCERNS and explain why
-    - Plan uses a pattern not present in codebase → follow the plan but note
-      it as a concern
+    - Follow established codebase naming and implementation patterns when the
+      brief leaves HOW open, and report the choice if it materially differs.
+    - Do not silently change an interface, contract, acceptance criterion, or
+      observable behavior. Stop with NEEDS_CONTEXT when the brief's WHAT and
+      the codebase cannot both be satisfied.
+    - If you can complete the task but a non-contract implementation detail
+      must deviate, use DONE_WITH_CONCERNS and category `PLAN_DEVIATION`.
 
     ## Code Organization
 
@@ -159,8 +122,6 @@ Task tool (general-purpose):
 
     **Discipline:**
     - Did I avoid overbuilding (YAGNI)?
-    - Is this the simplest solution that works (KISS)?
-    - Did I check for existing code before writing something new (DRY)?
     - Did I only build what was requested?
     - Did I follow existing patterns in the codebase?
 
@@ -168,37 +129,52 @@ Task tool (general-purpose):
     - Do tests actually verify behavior (not just mock behavior)?
     - Did I follow TDD if required?
     - Are tests comprehensive?
+    - Is the test output pristine (no stray warnings or noise)?
 
     If you find issues during self-review, fix them now before reporting.
 
+    ## After Review Findings
+
+    If the task review finds issues, you will be resumed with the findings.
+    Fix them, re-run the tests that cover the amended code, and append a fix
+    report to your report file: what you changed, the covering tests you
+    ran, the command, and the output. Reviewers will not re-run tests for
+    you — your report is the test evidence. Then reply with the same short
+    status contract as your first report.
+
     ## Report Format
 
-    When done, report:
-    - **Status:** DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT
+    Write your full report to [REPORT_FILE]:
     - What you implemented (or what you attempted, if blocked)
     - What you tested and test results
+    - **TDD Evidence** (if TDD was required for this task):
+      - RED: command run, relevant failing output before implementation, and why the failure was expected
+      - GREEN: command run and relevant passing output after implementation
     - Files changed
     - Self-review findings (if any)
     - Any issues or concerns
 
-    **DONE_WITH_CONCERNS categories** (use one per concern):
-    - `SAFETY_ADDITION` — you added production safety not in the plan (validation,
-      null checks, sanitization) that doesn't change specified behavior
-    - `PLAN_DEVIATION` — you deviated from plan contracts or interfaces because
-      the codebase required it
-    - `SCOPE_QUESTION` — you're unsure whether something is in scope for this task
-    - `OBSERVATION` — something noteworthy but not blocking (file growing large,
-      pattern inconsistency, future risk)
+    Categorize every DONE_WITH_CONCERNS item as one of:
+    - `SAFETY_ADDITION` — defensive production safety that preserves specified behavior
+    - `PLAN_DEVIATION` — an implementation-detail deviation needed to fit the codebase
+    - `SCOPE_QUESTION` — an unresolved scope boundary
+    - `OBSERVATION` — a non-blocking risk or maintainability observation
 
-    Format concerns as:
-    ```
-    Concern 1: [CATEGORY]
-    What: [what you did or want to do]
-    Why: [why you think it's needed]
-    Plan says: [what the plan says about this area, if anything]
-    ```
+    For each concern record `What`, `Why`, and `Brief says` so the controller
+    can route it without reconstructing your reasoning.
+
+    Then report back with ONLY (under 15 lines — the detail lives in the
+    report file):
+    - **Status:** DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT
+    - Commits created (short SHA + subject)
+    - One-line test summary (e.g. "14/14 passing, output pristine")
+    - Your concerns, if any
+    - The report file path
+
+    If BLOCKED or NEEDS_CONTEXT, put the specifics in the final message
+    itself — the controller acts on it directly.
 
     Use DONE_WITH_CONCERNS if you completed the work but have doubts about correctness.
     Use BLOCKED if you cannot complete the task. Use NEEDS_CONTEXT if you need
     information that wasn't provided. Never silently produce work you're unsure about.
-````
+```

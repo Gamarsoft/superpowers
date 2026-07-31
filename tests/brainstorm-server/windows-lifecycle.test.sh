@@ -33,6 +33,8 @@ session_dir=""
 state_dir=""
 screen_dir=""
 server_url=""
+session_key=""
+session_cookie=""
 server_pid=""
 startup_json_file="$ARTIFACT_DIR/startup.json"
 server_info_file=""
@@ -62,11 +64,11 @@ NODE
 }
 
 fetch_to_file() {
-  node - "$1" "$2" <<'NODE'
+  node - "$1" "$2" "$3" <<'NODE'
 const http = require('http');
 const fs = require('fs');
-const [url, outFile] = process.argv.slice(2);
-http.get(url, (res) => {
+const [url, outFile, cookie] = process.argv.slice(2);
+http.get(url, { headers: cookie ? { Cookie: cookie } : {} }, (res) => {
   let body = '';
   res.setEncoding('utf8');
   res.on('data', chunk => { body += chunk; });
@@ -87,11 +89,12 @@ NODE
 }
 
 send_choice_event() {
-  node - "$1" "$2" "$3" <<'NODE'
-const [baseUrl, choice, text] = process.argv.slice(2);
+  node - "$1" "$2" "$3" "$4" <<'NODE'
+const [baseUrl, sessionKey, choice, text] = process.argv.slice(2);
 const url = new URL(baseUrl);
 url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
 url.pathname = '/';
+url.searchParams.set('key', sessionKey);
 
 const ws = new WebSocket(url.toString());
 const timeout = setTimeout(() => {
@@ -159,7 +162,7 @@ wait_for_html_text() {
   start_ms=$(node -e 'process.stdout.write(String(Date.now()))')
 
   while true; do
-    if fetch_to_file "$url" "$out_file" && grep -Fq "$text" "$out_file"; then
+    if fetch_to_file "$url" "$out_file" "$session_cookie" && grep -Fq "$text" "$out_file"; then
       return 0
     fi
 
@@ -272,7 +275,11 @@ NODE
 
   state_dir="$(json_field "$startup_json_file" state_dir)"
   screen_dir="$(json_field "$startup_json_file" screen_dir)"
-  server_url="$(json_field "$startup_json_file" url)"
+  startup_url="$(json_field "$startup_json_file" url)"
+  server_port="$(json_field "$startup_json_file" port)"
+  server_url="$(node -e 'process.stdout.write(new URL(process.argv[1]).origin)' "$startup_url")"
+  session_key="$(node -e 'process.stdout.write(new URL(process.argv[1]).searchParams.get("key") || "")' "$startup_url")"
+  session_cookie="brainstorm-key-${server_port}=${session_key}"
   session_dir="$(dirname "$state_dir")"
   server_info_file="$state_dir/server-info"
   server_log_file="$state_dir/server.log"
@@ -301,7 +308,7 @@ fi
 
 echo ""
 echo "--- Helper-served HTML ---"
-if [[ -n "$server_url" ]] && fetch_to_file "$server_url/" "$WAITING_HTML"; then
+if [[ -n "$server_url" && -n "$session_key" ]] && fetch_to_file "$server_url/" "$WAITING_HTML" "$session_cookie"; then
   if grep -Fq 'Waiting for the agent to push a screen' "$WAITING_HTML" \
     && grep -Fq 'toggleSelect' "$WAITING_HTML" \
     && grep -Fq 'window.brainstorm' "$WAITING_HTML"; then
@@ -361,7 +368,7 @@ fi
 echo ""
 echo "--- Newest-screen selection and transient events ---"
 events_file="$state_dir/events"
-if send_choice_event "$server_url" 'older-choice' 'Older lifecycle choice'; then
+if send_choice_event "$server_url" "$session_key" 'older-choice' 'Older lifecycle choice'; then
   if wait_for_path_state "$events_file" present 5000 && grep -Fq 'older-choice' "$events_file"; then
     pass "choice interactions write state/events for the current screen"
   else

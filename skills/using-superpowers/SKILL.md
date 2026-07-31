@@ -52,6 +52,8 @@ Skills use Claude Code tool names. You MUST read the tool mapping file that corr
 
 - **Codex/OpenCode:** `references/codex-tools.md`
 - **Copilot (VS Code):** `references/copilot-tools.md`
+- **Pi:** `references/pi-tools.md`
+- **Antigravity:** `references/antigravity-tools.md`
 
 Gemini CLI users get the tool mapping loaded automatically via GEMINI.md
 

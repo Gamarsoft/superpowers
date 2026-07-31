@@ -4,6 +4,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/test-helpers.sh"
 cd "$SCRIPT_DIR"
 
 echo "========================================"
@@ -25,7 +26,8 @@ fi
 # Parse command line arguments
 VERBOSE=false
 SPECIFIC_TEST=""
-TIMEOUT=300  # Default 5 minute timeout per test
+TIMEOUT=900  # Per-test-file budget; must exceed the file's worst case
+             # (test-subagent-driven-development.sh: 9 prompts x 90s each)
 RUN_INTEGRATION=false
 
 while [[ $# -gt 0 ]]; do
@@ -52,7 +54,7 @@ while [[ $# -gt 0 ]]; do
             echo "Options:"
             echo "  --verbose, -v        Show verbose output"
             echo "  --test, -t NAME      Run only the specified test"
-            echo "  --timeout SECONDS    Set timeout per test (default: 300)"
+            echo "  --timeout SECONDS    Set timeout per test (default: 900)"
             echo "  --integration, -i    Run integration tests (slow, 10-30 min)"
             echo "  --help, -h           Show this help"
             echo ""
@@ -78,6 +80,11 @@ done
 
 # List of skill tests to run (fast unit tests)
 tests=(
+    "test-worktree-path-policy.sh"
+    "test-timeout-portability.sh"
+    "test-sdd-workspace.sh"
+    "test-sdd-custom-contracts.sh"
+    "test-custom-policy-contracts.sh"
     "test-subagent-driven-development.sh"
     "test-gsd-frontend-visual-review-policy.sh"
     "test-gsd-review-policy-detail.sh"
@@ -128,7 +135,7 @@ for test in "${tests[@]}"; do
     start_time=$(date +%s)
 
     if [ "$VERBOSE" = true ]; then
-        if timeout "$TIMEOUT" bash "$test_path"; then
+        if run_with_timeout "$TIMEOUT" bash "$test_path"; then
             end_time=$(date +%s)
             duration=$((end_time - start_time))
             echo ""
@@ -148,7 +155,7 @@ for test in "${tests[@]}"; do
         fi
     else
         # Capture output for non-verbose mode
-        if output=$(timeout "$TIMEOUT" bash "$test_path" 2>&1); then
+        if output=$(run_with_timeout "$TIMEOUT" bash "$test_path" 2>&1); then
             end_time=$(date +%s)
             duration=$((end_time - start_time))
             echo "  [PASS] (${duration}s)"

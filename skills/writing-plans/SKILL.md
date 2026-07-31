@@ -41,6 +41,14 @@ Before defining tasks, map out which files will be created or modified and what 
 
 This structure informs the task decomposition. Each task should produce self-contained changes that make sense independently.
 
+## Task Right-Sizing
+
+A task is the smallest unit that carries its own test cycle and is worth a
+fresh reviewer's gate. Fold setup, configuration, scaffolding, and
+documentation into the task whose deliverable needs them. Split tasks only
+where a reviewer could meaningfully reject one task while approving its
+neighbor. Every task must end with an independently testable deliverable.
+
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**
@@ -75,6 +83,13 @@ To avoid oversized responses and token overflows:
 **Architecture:** [2-3 sentences about approach]
 
 **Tech Stack:** [Key technologies/libraries]
+
+**Global Constraints:**
+
+- [Project-wide version floors, dependency limits, naming/copy rules,
+  platform requirements, and safety boundaries copied exactly from the spec]
+- [Every task implicitly inherits these constraints; map behavioral rules to
+  concrete acceptance criteria and verification below]
 
 **Context7 Findings (required if any external libs/APIs are involved):**
 

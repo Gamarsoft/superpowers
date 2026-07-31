@@ -48,7 +48,6 @@ Paste the FULL content of `skills/requesting-code-review/code-reviewer.md` verba
 
 | Placeholder              | Replace with                               |
 | ------------------------ | ------------------------------------------ |
-| `{WHAT_WAS_IMPLEMENTED}` | What you just built                        |
 | `{PLAN_OR_REQUIREMENTS}` | What it should do                          |
 | `{DESCRIPTION}`          | Brief summary                              |
 | `{BASE_SHA}`             | Starting commit SHA                        |
@@ -69,7 +68,12 @@ Task tool (superpowers:code-reviewer):
 Codex equivalent:
 
 ```text
-spawn_agent(agent_type="sp_code_reviewer", prompt=[substituted code-reviewer.md content])
+spawn_agent(
+  task_name="review_changes",
+  agent_type="sp_code_reviewer",
+  fork_turns="none",
+  message=[substituted code-reviewer.md content]
+)
 ```
 
 **3. Act on feedback:**
@@ -90,7 +94,7 @@ BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
 HEAD_SHA=$(git rev-parse HEAD)
 
 [Dispatch superpowers:code-reviewer subagent]
-  WHAT_WAS_IMPLEMENTED: Verification and repair functions for conversation index
+  DESCRIPTION: Verification and repair functions for conversation index
   PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
   BASE_SHA: a7981ec
   HEAD_SHA: 3df7661
@@ -139,5 +143,12 @@ You: [Fix progress indicators]
 - Push back with technical reasoning
 - Show code/tests that prove it works
 - Request clarification
+
+## Common Rationalizations
+
+| Excuse | Reality |
+| --- | --- |
+| "I'll review the diff inline." | The coordinator needs its context for execution; a dedicated read-only reviewer keeps the evidence and evaluation isolated. |
+| "The reviewer needs the whole session." | Give it the requirements, exact range, and template—not your thought process or accumulated history. |
 
 See template at: requesting-code-review/code-reviewer.md

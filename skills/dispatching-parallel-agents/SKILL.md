@@ -59,24 +59,29 @@ Each domain is independent - fixing tool approval doesn't affect abort tests.
 
 Each agent gets:
 - **Specific scope:** One test file or subsystem
-- **Clear goal:** Make these tests pass (imperative, not descriptive)
-- **Autonomy level:** Explicitly state what the agent may do without asking (e.g., "You have full autonomy to edit files, run tests, and commit within this scope")
+- **Clear goal:** Make these tests pass
+- **Autonomy level:** State which files the agent owns and whether it may
+  edit, run tests, and commit without asking
 - **Constraints:** Don't change other code
 - **Expected output:** Summary of what you found and fixed
 
-**Imperative framing matters.** Agents freeze when given architectural descriptions ("the system uses X pattern") without clear action items. Frame tasks as checklists:
-- "Do X, then Y, then Z" — not "X needs to be done"
-- "Edit file A to fix B" — not "File A has a problem with B"
+**Imperative framing matters.** Give agents concrete actions ("read X, fix
+Y, run Z") rather than only describing the architecture or desired state.
+Tell every editing agent it is not alone in the codebase: preserve other
+agents' edits and adjust to concurrent changes instead of reverting them.
 
 ### 3. Dispatch in Parallel
 
-```typescript
-// In Claude Code / AI environment
-Task("Fix agent-tool-abort.test.ts failures")
-Task("Fix batch-completion-behavior.test.ts failures")
-Task("Fix tool-approval-race-conditions.test.ts failures")
-// All three run concurrently
+Issue all three subagent dispatches in the same response — they run in parallel:
+
+```text
+Subagent (general-purpose): "Fix agent-tool-abort.test.ts failures"
+Subagent (general-purpose): "Fix batch-completion-behavior.test.ts failures"
+Subagent (general-purpose): "Fix tool-approval-race-conditions.test.ts failures"
+# All three run concurrently.
 ```
+
+Multiple dispatch calls in one response = parallel execution. One per response = sequential.
 
 ### 4. Review and Integrate
 
@@ -160,38 +165,10 @@ Agent 3 → Fix tool-approval-race-conditions.test.ts
 
 **Integration:** All fixes independent, no conflicts, full suite green
 
-**Time saved:** 3 problems solved in parallel vs sequentially
-
-## Key Benefits
-
-1. **Parallelization** - Multiple investigations happen simultaneously
-2. **Focus** - Each agent has narrow scope, less context to track
-3. **Independence** - Agents don't interfere with each other
-4. **Speed** - 3 problems solved in time of 1
-
 ## Verification
 
-After agents return, complete ALL steps before reporting done:
-
+After agents return:
 1. **Review each summary** - Understand what changed
 2. **Check for conflicts** - Did agents edit same code?
-3. **Run full suite** - This is a hard gate, not optional
-
-```bash
-npm test / cargo test / pytest / go test ./...
-```
-
-**If suite fails:** Stop. Do not report completion. Fix conflicts or re-dispatch the failing domain.
-
+3. **Run full suite** - Verify all fixes work together
 4. **Spot check** - Agents can make systematic errors
-
-**Never report integration complete without step 3 output in hand.**
-
-## Real-World Impact
-
-From debugging session (2025-10-03):
-- 6 failures across 3 files
-- 3 agents dispatched in parallel
-- All investigations completed concurrently
-- All fixes integrated successfully
-- Zero conflicts between agent changes
