@@ -7,7 +7,7 @@ Use when a concrete frontend workflow shape is useful.
 - Brownfield default: preserve first, improve second.
 - For browser interaction in Codex App, use `browser:control-in-app-browser`; if unavailable, discover installed browser capabilities, then fall back to `playwright-cli`. Outside Codex App, use `playwright-cli`.
 - If no durable visual evidence exists, capture a faithful runtime baseline before exploring variants.
-- HTML companion artifacts are comparison aids only.
+- HTML companion artifacts are temporary useful-artifact surfaces, not durable frontend-direction evidence.
 - Durable truth lives in concise packet prose, `screen-index.md`, `brownfield-ui-extraction.md`, retained screenshots/browser captures, and optional approved ChatGPT Images 2 files.
 - In the split workflow, use `brainstorming` first for spec and GSD handoff, then start `frontend-direction` from the follow-on prompt.
 - If `PRODUCT.md` and `DESIGN.md` already exist and are current, read them; do not regenerate them by default.

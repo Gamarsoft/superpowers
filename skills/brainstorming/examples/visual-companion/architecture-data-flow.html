@@ -8,10 +8,10 @@
     <desc id="flow-description">Browser requests enter the API, move through a queue to a worker, and finish in the database. Failed work enters bounded retry handling before returning to the queue or reaching a dead-letter queue.</desc>
     <defs>
       <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="currentColor"></path>
+        <path d="M0,0 L0,6 L9,3 z" fill="var(--text-primary)"></path>
       </marker>
     </defs>
-    <g fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#arrow)">
+    <g fill="none" stroke="var(--text-primary)" stroke-width="3" marker-end="url(#arrow)">
       <path d="M150 155 H210"></path>
       <path d="M330 155 H390"></path>
       <path d="M510 155 H570"></path>
@@ -20,7 +20,7 @@
       <path d="M470 325 H450 V205" stroke-dasharray="8 6"></path>
       <path d="M610 325 H720" stroke-dasharray="8 6"></path>
     </g>
-    <g fill="var(--bg, #fff)" stroke="currentColor" stroke-width="2">
+    <g fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="2">
       <rect x="30" y="105" width="120" height="100" rx="12"></rect>
       <rect x="210" y="105" width="120" height="100" rx="12"></rect>
       <rect x="390" y="105" width="120" height="100" rx="12"></rect>
@@ -29,7 +29,7 @@
       <rect x="470" y="285" width="140" height="80" rx="12"></rect>
       <rect x="720" y="285" width="180" height="80" rx="12"></rect>
     </g>
-    <g fill="currentColor" font-family="system-ui, sans-serif" text-anchor="middle">
+    <g fill="var(--text-primary)" font-family="system-ui, sans-serif" text-anchor="middle">
       <text x="90" y="145" font-size="19" font-weight="700">Browser</text>
       <text x="90" y="173" font-size="14">untrusted request</text>
       <text x="270" y="145" font-size="19" font-weight="700">API</text>

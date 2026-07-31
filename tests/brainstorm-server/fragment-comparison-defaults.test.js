@@ -9,6 +9,7 @@ const FIXTURE_DIR = path.join(__dirname, '../../skills/brainstorming/examples/vi
 const RANKED_FIXTURE_PATH = path.join(FIXTURE_DIR, 'ranked-alternatives.html');
 const RECOMMENDATION_FIXTURE_PATH = path.join(FIXTURE_DIR, 'annotated-recommendation.html');
 const CARRY_FORWARD_FIXTURE_PATH = path.join(FIXTURE_DIR, 'carry-forward-summary.html');
+const ARCHITECTURE_FIXTURE_PATH = path.join(FIXTURE_DIR, 'architecture-data-flow.html');
 
 const TEST_PORT = 35000 + Math.floor(Math.random() * 1000);
 const TOKEN = 'testtoken-fragment-defaults-0123456789abcdef';
@@ -188,6 +189,31 @@ async function run() {
     );
     assertSelectorProofs(carryForwardRes.body, CARRY_FORWARD_SELECTOR_PROOFS, 'carry-forward defaults');
 
+    const architectureRes = await renderFixtureAndFetch(ARCHITECTURE_FIXTURE_PATH);
+    assert.strictEqual(architectureRes.status, 200, 'Architecture fixture request should return 200');
+    assert(
+      architectureRes.body.includes(SHELL_HOOK),
+      'Non-interactive architecture fragment must render inside the fragment shell'
+    );
+    assert(
+      architectureRes.body.includes('Payment processing: request to durable outcome'),
+      'Wrapped architecture response should include the non-interactive diagram content'
+    );
+    assert(
+      architectureRes.body.includes('fill="var(--bg-secondary)" stroke="var(--border)"'),
+      'Architecture nodes must consume the wrapped frame background and border tokens'
+    );
+    assert(
+      architectureRes.body.includes('fill="var(--text-primary)"'),
+      'Architecture labels and connectors must consume the wrapped frame foreground token'
+    );
+    assert(
+      architectureRes.body.includes('--bg-secondary: #2d2d2f;') &&
+        architectureRes.body.includes('--text-primary: #f5f5f7;') &&
+        architectureRes.body.includes('--border: #424245;'),
+      'Wrapped architecture response must supply the alternate-scheme values for every diagram token'
+    );
+
     const fullDocument = [
       '<!DOCTYPE html>',
       '<html>',
@@ -214,7 +240,7 @@ async function run() {
       'Full-document passthrough must not leak fragment-only shell hook'
     );
 
-    console.log('PASS: fragment comparison defaults cover ranking, recommendation, carry-forward, and full-document boundary checks');
+    console.log('PASS: fragment defaults cover comparison, non-interactive architecture, and full-document boundary checks');
   } finally {
     server.kill();
     await sleep(120);

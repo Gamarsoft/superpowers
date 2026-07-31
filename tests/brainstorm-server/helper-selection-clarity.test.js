@@ -171,12 +171,13 @@ class FakeDocument {
     this.listeners.click({ target });
   }
 
-  dispatchKeydown(target, key) {
+  dispatchKeydown(target, key, { repeat = false } = {}) {
     assert(this.listeners.keydown, 'Expected helper to register a document keydown listener');
     let defaultPrevented = false;
     this.listeners.keydown({
       target,
       key,
+      repeat,
       preventDefault() {
         defaultPrevented = true;
       }
@@ -415,6 +416,42 @@ function run() {
     assert.strictEqual(harness.multiOptions[0].getAttribute('aria-pressed'), 'true');
     assert.strictEqual(harness.multiOptions[1].getAttribute('aria-pressed'), 'true');
     assert.strictEqual(harness.singleOptions[0].getAttribute('aria-pressed'), 'true');
+  });
+
+  test('repeated Enter does not add a click, event, or single-select transition', () => {
+    const harness = buildHarness({ selectedInSingle: [0] });
+
+    harness.document.dispatchKeydown(harness.singleOptions[1], 'Enter');
+    const repeatedEvent = harness.document.dispatchKeydown(
+      harness.singleOptions[1],
+      'Enter',
+      { repeat: true }
+    );
+
+    assert.strictEqual(repeatedEvent.defaultPrevented, false);
+    assert.strictEqual(harness.singleOptions[1].clickCount, 1);
+    assert.strictEqual(harness.websocketMessages.length, 1);
+    assert.strictEqual(harness.singleOptions[0].classList.contains('selected'), false);
+    assert.strictEqual(harness.singleOptions[1].classList.contains('selected'), true);
+    assert.strictEqual(harness.singleOptions[1].getAttribute('aria-pressed'), 'true');
+  });
+
+  test('repeated Space does not add a click, event, or multiselect transition', () => {
+    const harness = buildHarness();
+
+    const activationEvent = harness.document.dispatchKeydown(harness.multiOptions[1], ' ');
+    const repeatedEvent = harness.document.dispatchKeydown(
+      harness.multiOptions[1],
+      ' ',
+      { repeat: true }
+    );
+
+    assert.strictEqual(activationEvent.defaultPrevented, true, 'real Space activation should prevent scrolling');
+    assert.strictEqual(repeatedEvent.defaultPrevented, false, 'repeated Space should be a no-op');
+    assert.strictEqual(harness.multiOptions[1].clickCount, 1);
+    assert.strictEqual(harness.websocketMessages.length, 1);
+    assert.strictEqual(harness.multiOptions[1].classList.contains('selected'), true);
+    assert.strictEqual(harness.multiOptions[1].getAttribute('aria-pressed'), 'true');
   });
 
   test('native button Enter and Space rely on the browser click exactly once', () => {

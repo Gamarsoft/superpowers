@@ -365,6 +365,10 @@ function assertArchitectureDataFlowExample() {
   assertIncludes(example, 'Browser', 'architecture-data-flow.html browser node');
   assertIncludes(example, 'Database', 'architecture-data-flow.html database node');
   assertIncludes(example, 'Dead-letter', 'architecture-data-flow.html dead-letter node');
+  assertIncludes(example, 'fill="var(--bg-secondary)"', 'architecture-data-flow.html node background token');
+  assertIncludes(example, 'stroke="var(--border)"', 'architecture-data-flow.html node border token');
+  assertIncludes(example, 'fill="var(--text-primary)"', 'architecture-data-flow.html foreground token');
+  assert(!example.includes('var(--bg,'), 'Expected architecture example not to depend on an undefined --bg token');
   assert(!example.includes('data-choice'), 'Expected architecture example to omit data-choice');
   assert(!example.includes('toggleSelect(this)'), 'Expected architecture example to be non-interactive');
   assert(!/\bdata-[\w-]+/.test(example), 'Expected architecture example to use no runtime metadata');
@@ -391,6 +395,18 @@ function assertCompatibilityBoundary() {
     skillEntrypoint,
     'no new required metadata beyond `data-choice`',
     'SKILL.md metadata summary'
+  );
+}
+
+function assertFrontendDirectionDurabilityBoundary() {
+  assertIncludes(
+    useCases,
+    'HTML companion artifacts are temporary useful-artifact surfaces, not durable frontend-direction evidence.',
+    'use-cases-prompts-and-flows.md useful-artifact durability boundary'
+  );
+  assert(
+    !useCases.includes('HTML companion artifacts are comparison aids only.'),
+    'Expected frontend-direction guidance not to restrict companion artifacts to comparisons'
   );
 }
 
@@ -604,10 +620,11 @@ function run() {
   assertPreDisplayQualityGate();
   assertOperationalParity();
   assertCurrentBrowserRouting();
+  assertArchitectureDataFlowExample();
   assertCompatibilityBoundary();
+  assertFrontendDirectionDurabilityBoundary();
   assertExampleKitPresence();
   assertChoiceAccessibilityGuidanceAndThemeSafety();
-  assertArchitectureDataFlowExample();
   assertActiveExampleRefreshBoundary();
   assertCarryForwardGuidance();
   assertM003PressureScenarioArtifact();
