@@ -227,6 +227,7 @@
       ? e.target.closest('[data-choice]')
       : null;
     if (!target || (e.key !== 'Enter' && e.key !== ' ')) return;
+    if (String(target.tagName).toLowerCase() === 'button') return;
     if (e.key === ' ') e.preventDefault();
     target.click();
   });

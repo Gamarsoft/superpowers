@@ -194,8 +194,8 @@ function findById(node, id) {
   return null;
 }
 
-function createOption(label, choice, { selected = false, attributes = {} } = {}) {
-  const option = new FakeElement('div', {
+function createOption(label, choice, { selected = false, attributes = {}, tagName = 'div' } = {}) {
+  const option = new FakeElement(tagName, {
     classes: ['option'].concat(selected ? ['selected'] : []),
     dataset: { choice },
     attributes
@@ -247,8 +247,20 @@ function buildHarness({
     dataset: { multiselect: '' }
   }).append(...multiOptions);
   const standaloneChoice = createOption('Standalone choice', 'standalone-choice');
+  const nativeButton = createOption('Native button choice', 'native-button-choice', {
+    tagName: 'button'
+  });
+  const nativeContainer = new FakeElement('div', {
+    classes: ['options'],
+    dataset: { multiselect: '' }
+  }).append(nativeButton);
 
-  const root = new FakeElement('body').append(singleContainer, multiContainer, standaloneChoice);
+  const root = new FakeElement('body').append(
+    singleContainer,
+    multiContainer,
+    standaloneChoice,
+    nativeContainer
+  );
   if (includeIndicator) root.append(indicatorBar);
   const document = new FakeDocument(root);
   const websocketMessages = [];
@@ -293,7 +305,7 @@ function buildHarness({
     console
   }, { filename: helperPath });
 
-  [...singleOptions, ...multiOptions, standaloneChoice].forEach((option) => {
+  [...singleOptions, ...multiOptions, standaloneChoice, nativeButton].forEach((option) => {
     option.click = () => {
       option.clickCount += 1;
       window.toggleSelect(option);
@@ -307,6 +319,7 @@ function buildHarness({
     singleOptions,
     multiOptions,
     standaloneChoice,
+    nativeButton,
     websocketMessages,
     window
   };
@@ -402,6 +415,21 @@ function run() {
     assert.strictEqual(harness.multiOptions[0].getAttribute('aria-pressed'), 'true');
     assert.strictEqual(harness.multiOptions[1].getAttribute('aria-pressed'), 'true');
     assert.strictEqual(harness.singleOptions[0].getAttribute('aria-pressed'), 'true');
+  });
+
+  test('native button Enter and Space rely on the browser click exactly once', () => {
+    for (const key of ['Enter', ' ']) {
+      const harness = buildHarness();
+
+      const event = harness.document.dispatchKeydown(harness.nativeButton, key);
+      harness.nativeButton.click(); // Browser-synthesized native activation after keydown.
+
+      assert.strictEqual(event.defaultPrevented, false, `${JSON.stringify(key)} should preserve native behavior`);
+      assert.strictEqual(harness.nativeButton.clickCount, 1, `${JSON.stringify(key)} should click once`);
+      assert.strictEqual(harness.websocketMessages.length, 1, `${JSON.stringify(key)} should emit once`);
+      assert.strictEqual(harness.nativeButton.classList.contains('selected'), true);
+      assert.strictEqual(harness.nativeButton.getAttribute('aria-pressed'), 'true');
+    }
   });
 
   test('unrelated keys and targets do not activate choices', () => {
