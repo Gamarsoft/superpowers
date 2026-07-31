@@ -9,23 +9,31 @@ const pressureScenarioPath = path.join(
   __dirname,
   '../../skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md'
 );
+const webappTestingPath = path.join(__dirname, '../../skills/webapp-testing/SKILL.md');
+const browserSurfaceSelectionPath = path.join(
+  __dirname,
+  '../../skills/frontend-direction/references/browser-surface-selection.md'
+);
+const useCasesPath = path.join(
+  __dirname,
+  '../../skills/frontend-direction/references/use-cases-prompts-and-flows.md'
+);
 
 const guide = fs.readFileSync(guidePath, 'utf-8');
 const skillEntrypoint = fs.readFileSync(skillEntrypointPath, 'utf-8');
-
-const expectedArchetypes = [
-  'side-by-side comparison',
-  'ranked alternatives',
-  'annotated recommendation',
-  'carry-forward summary'
-];
+const webappTesting = fs.readFileSync(webappTestingPath, 'utf-8');
+const browserSurfaceSelection = fs.readFileSync(browserSurfaceSelectionPath, 'utf-8');
+const useCases = fs.readFileSync(useCasesPath, 'utf-8');
 
 const expectedExampleFiles = [
   'side-by-side-comparison.html',
   'ranked-alternatives.html',
   'annotated-recommendation.html',
-  'carry-forward-summary.html'
+  'carry-forward-summary.html',
+  'architecture-data-flow.html'
 ];
+
+const expectedArtifactIntents = ['compare', 'explain', 'map', 'experience', 'synthesize'];
 
 const expectedM002RefreshFiles = [
   'side-by-side-comparison.html',
@@ -34,6 +42,7 @@ const expectedM002RefreshFiles = [
 ];
 
 const expectedM003PressureScenarioHeadings = [
+  'direct relevant map instead of fake comparison',
   'first qualifying visual turn starts the companion path',
   'artifact-first sequencing before the terminal prompt',
   'question-tool continuity after earlier browser use',
@@ -91,23 +100,6 @@ function getMarkdownSection(content, heading, context) {
 
 function getH2Headings(content) {
   return [...content.matchAll(/^##\s+(.+)$/gm)].map((match) => match[1].trim().toLowerCase());
-}
-
-function assertArchetypeLabels() {
-  const v1Section = getBetween(
-    guide,
-    '## v1 authoring contract',
-    'Do not invent extra archetypes in v1.',
-    'visual-companion.md'
-  );
-
-  const listedArchetypes = getBoldNumberedLabels(v1Section);
-
-  assert.deepStrictEqual(
-    listedArchetypes,
-    expectedArchetypes,
-    `Expected exact v1 archetype list in order: ${expectedArchetypes.join(', ')}`
-  );
 }
 
 function assertRoutingRule() {
@@ -236,8 +228,9 @@ function assertPreDisplayQualityGate() {
     [
       'genuinely visual fit',
       'concrete subject-specific visual content',
-      'visible differences that support the decision',
-      'clear recommendation or comparison legibility'
+      'useful visual encoding',
+      'clear viewing task',
+      'honest fidelity'
     ],
     'Expected exact pre-display quality gate checklist labels in order'
   );
@@ -252,6 +245,87 @@ function assertPreDisplayQualityGate() {
     'If any checklist item fails, revise the artifact or stay in terminal.',
     'visual-companion.md revise-or-stay-terminal rule'
   );
+}
+
+function assertUsefulArtifactContract() {
+  const contractSection = getBetween(
+    guide.toLowerCase(),
+    '## useful-artifact authoring contract',
+    '## frontend-design alignment',
+    'visual-companion.md useful-artifact contract'
+  );
+  const intentLabels = getBoldNumberedLabels(contractSection);
+
+  assert.deepStrictEqual(
+    intentLabels,
+    expectedArtifactIntents,
+    `Expected useful artifact intents in order: ${expectedArtifactIntents.join(', ')}`
+  );
+  assertIncludes(contractSection, 'not an exhaustive whitelist', 'open artifact intent rule');
+  assertIncludes(contractSection, 'comparison patterns remain first-class', 'comparison-first rule');
+  assertIncludes(contractSection, 'side-by-side comparison', 'side-by-side recommendation');
+  assertIncludes(contractSection, 'ranked alternatives', 'ranked recommendation');
+  assertIncludes(contractSection, 'annotated recommendation', 'annotated recommendation');
+  assertIncludes(contractSection, 'carry-forward summary', 'carry-forward recommendation');
+
+  const qualityGate = getBetween(
+    guide.toLowerCase(),
+    '## pre-display quality gate',
+    '## runtime compatibility boundary (do not exceed)',
+    'visual-companion.md generalized quality gate'
+  );
+  assertIncludes(qualityGate, 'name the viewing task', 'viewing task requirement');
+  assertIncludes(qualityGate, 'irrelevant decoration', 'decoration rejection rule');
+  assertIncludes(qualityGate, 'stay in terminal', 'decoration terminal fallback');
+  assertIncludes(qualityGate, 'revise the artifact or stay in terminal', 'weak artifact fallback');
+}
+
+function assertOperationalParity() {
+  for (const phrase of [
+    'complete** URL',
+    '`--open`',
+    'same `--project-dir`',
+    'reconnects on its own',
+    '--host 0.0.0.0',
+    '`--url-host`',
+    'scripts/stop-server.sh $SESSION_DIR'
+  ]) {
+    assertIncludes(guide, phrase, `visual-companion.md operational guidance (${phrase})`);
+  }
+
+  for (const platform of ['**Claude Code:**', '**Codex:**', '**Gemini CLI:**', '**Copilot CLI:**']) {
+    assertIncludes(guide, platform, `visual-companion.md platform lifecycle (${platform})`);
+  }
+}
+
+function assertCurrentBrowserRouting() {
+  for (const [name, doc] of [
+    ['visual-companion.md', guide],
+    ['webapp-testing/SKILL.md', webappTesting],
+    ['browser-surface-selection.md', browserSurfaceSelection],
+    ['use-cases-prompts-and-flows.md', useCases]
+  ]) {
+    assertIncludes(doc, 'browser:control-in-app-browser', `${name} Codex App capability`);
+    assert(!doc.includes('browser-use:browser'), `Expected ${name} not to require browser-use:browser`);
+  }
+
+  assertIncludes(guide, 'installed capability discovery', 'visual-companion.md capability discovery fallback');
+  assertIncludes(guide, '`playwright-cli`', 'visual-companion.md playwright fallback');
+}
+
+function assertArchitectureDataFlowExample() {
+  const examplePath = path.join(examplesDir, 'architecture-data-flow.html');
+  assert(fs.existsSync(examplePath), `Expected architecture example to exist: ${examplePath}`);
+
+  const example = fs.readFileSync(examplePath, 'utf-8');
+  assertIncludes(example, '<svg', 'architecture-data-flow.html SVG diagram');
+  assertIncludes(example, 'Viewing task', 'architecture-data-flow.html viewing task');
+  assertIncludes(example, 'Browser', 'architecture-data-flow.html browser node');
+  assertIncludes(example, 'Database', 'architecture-data-flow.html database node');
+  assertIncludes(example, 'Dead-letter', 'architecture-data-flow.html dead-letter node');
+  assert(!example.includes('data-choice'), 'Expected architecture example to omit data-choice');
+  assert(!example.includes('toggleSelect(this)'), 'Expected architecture example to be non-interactive');
+  assert(!/\bdata-[\w-]+/.test(example), 'Expected architecture example to use no runtime metadata');
 }
 
 function assertCompatibilityBoundary() {
@@ -285,8 +359,10 @@ function assertExampleKitPresence() {
 
     const content = fs.readFileSync(filePath, 'utf-8');
     assert(content.trim().length > 0, `Expected example file to be non-empty: ${filePath}`);
-    assertIncludes(content, 'data-choice', `${fileName} interaction metadata`);
-    assertIncludes(content, 'toggleSelect(this)', `${fileName} selection behavior`);
+    if (fileName !== 'architecture-data-flow.html') {
+      assertIncludes(content, 'data-choice', `${fileName} interaction metadata`);
+      assertIncludes(content, 'toggleSelect(this)', `${fileName} selection behavior`);
+    }
   }
 
   const links = [...guide.matchAll(/\(examples\/visual-companion\/([a-z-]+\.html)\)/g)].map(
@@ -462,13 +538,16 @@ function assertM003QuestionToolContinuityAndDegradedFallback() {
 }
 
 function run() {
-  assertArchetypeLabels();
+  assertUsefulArtifactContract();
   assertRoutingRule();
   assertGenuinelyVisualRoutingBoundary();
   assertWorkflowAndDegradedMode();
   assertPreDisplayQualityGate();
+  assertOperationalParity();
+  assertCurrentBrowserRouting();
   assertCompatibilityBoundary();
   assertExampleKitPresence();
+  assertArchitectureDataFlowExample();
   assertActiveExampleRefreshBoundary();
   assertCarryForwardGuidance();
   assertM003PressureScenarioArtifact();
@@ -476,13 +555,13 @@ function run() {
   assertM003ArtifactFirstSequencing();
   assertM003QuestionToolContinuityAndDegradedFallback();
 
-  console.log('PASS: visual companion contract + archetype kit assertions passed');
+  console.log('PASS: visual companion useful-artifact contract assertions passed');
 }
 
 try {
   run();
 } catch (error) {
-  console.error('FAIL: visual companion contract + archetype kit assertions failed');
+  console.error('FAIL: visual companion useful-artifact contract assertions failed');
   console.error(error.message);
   process.exit(1);
 }

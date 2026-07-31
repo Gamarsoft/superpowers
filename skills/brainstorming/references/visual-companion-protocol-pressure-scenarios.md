@@ -4,6 +4,28 @@ Use these named pressure scenarios when evolving the visual-companion workflow. 
 
 Keep scenarios synthetic, protocol-focused, and reusable. They are not runtime logs.
 
+## direct relevant map instead of fake comparison
+
+### Setup
+
+User says:
+> Show how a payment flows from Browser to API to Queue to Worker to Database, including retries, dead-letter handling, and the trust boundary. There are no competing options.
+
+### Required outcome
+
+The agent names the viewing task and shows one subject-specific architecture/data-flow map. It does not stay in terminal or invent alternatives just to make a comparison. The diagram is non-interactive; terminal feedback remains primary.
+
+### Failure signature
+
+Failure if:
+- the docs reject a relevant non-comparative map because it lacks a choice
+- the workflow creates fake options instead of exposing the real sequence and relationships
+- decorative visual treatment is accepted without a subject-specific viewing task
+
+### Why current docs miss this
+
+A comparison-only taxonomy can force a direct architecture explanation into terminal prose or a fabricated decision screen, even though the runtime already supports a focused diagram.
+
 ## first qualifying visual turn starts the companion path
 
 ### Setup

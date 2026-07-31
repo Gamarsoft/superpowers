@@ -1,0 +1,53 @@
+<section class="section">
+  <p class="label">Architecture map</p>
+  <h2>Payment processing: request to durable outcome</h2>
+  <p class="subtitle"><strong>Viewing task:</strong> trace one payment from the browser through retry and dead-letter handling, and inspect where the trust boundary changes.</p>
+
+  <svg viewBox="0 0 960 440" role="img" aria-labelledby="flow-title flow-description" style="width:100%;height:auto;display:block">
+    <title id="flow-title">Payment processing data flow</title>
+    <desc id="flow-description">Browser requests enter the API, move through a queue to a worker, and finish in the database. Failed work enters bounded retry handling before returning to the queue or reaching a dead-letter queue.</desc>
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="currentColor"></path>
+      </marker>
+    </defs>
+    <g fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M150 155 H210"></path>
+      <path d="M330 155 H390"></path>
+      <path d="M510 155 H570"></path>
+      <path d="M710 155 H790"></path>
+      <path d="M640 205 V285" stroke-dasharray="8 6"></path>
+      <path d="M470 325 H450 V205" stroke-dasharray="8 6"></path>
+      <path d="M610 325 H720" stroke-dasharray="8 6"></path>
+    </g>
+    <g fill="var(--bg, #fff)" stroke="currentColor" stroke-width="2">
+      <rect x="30" y="105" width="120" height="100" rx="12"></rect>
+      <rect x="210" y="105" width="120" height="100" rx="12"></rect>
+      <rect x="390" y="105" width="120" height="100" rx="12"></rect>
+      <rect x="570" y="105" width="140" height="100" rx="12"></rect>
+      <rect x="790" y="105" width="140" height="100" rx="12"></rect>
+      <rect x="470" y="285" width="140" height="80" rx="12"></rect>
+      <rect x="720" y="285" width="180" height="80" rx="12"></rect>
+    </g>
+    <g fill="currentColor" font-family="system-ui, sans-serif" text-anchor="middle">
+      <text x="90" y="145" font-size="19" font-weight="700">Browser</text>
+      <text x="90" y="173" font-size="14">untrusted request</text>
+      <text x="270" y="145" font-size="19" font-weight="700">API</text>
+      <text x="270" y="173" font-size="14">validate + authorize</text>
+      <text x="450" y="145" font-size="19" font-weight="700">Queue</text>
+      <text x="450" y="173" font-size="14">durable handoff</text>
+      <text x="640" y="145" font-size="19" font-weight="700">Worker</text>
+      <text x="640" y="173" font-size="14">idempotent charge</text>
+      <text x="860" y="145" font-size="19" font-weight="700">Database</text>
+      <text x="860" y="173" font-size="14">final payment state</text>
+      <text x="540" y="318" font-size="18" font-weight="700">Retry</text>
+      <text x="540" y="343" font-size="14">bounded backoff</text>
+      <text x="810" y="318" font-size="18" font-weight="700">Dead-letter</text>
+      <text x="810" y="343" font-size="14">manual investigation</text>
+      <text x="180" y="140" font-size="13">trust boundary</text>
+      <text x="750" y="140" font-size="13">commit result</text>
+    </g>
+  </svg>
+
+  <p class="subtitle">Assumption: the worker owns retry policy and writes the final payment state after the provider confirms the charge.</p>
+</section>

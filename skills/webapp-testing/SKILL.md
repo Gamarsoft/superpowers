@@ -1,6 +1,6 @@
 ---
 name: webapp-testing
-description: Use when validating or debugging local web UI behavior and you need browser-grounded evidence such as snapshots, screenshots, console logs, or traces. In Codex App use `browser-use:browser`; otherwise use `playwright-cli`.
+description: Use when validating or debugging local web UI behavior and you need browser-grounded evidence such as snapshots, screenshots, console logs, or traces. In Codex App use `browser:control-in-app-browser`; otherwise use `playwright-cli`.
 ---
 
 # Webapp Testing
@@ -11,7 +11,7 @@ Use a real browser to validate local UI behavior, collect runtime evidence, and 
 
 Browser surface selection:
 
-- in Codex App: use `browser-use:browser` with the in-app browser
+- in Codex App: use `browser:control-in-app-browser` with the in-app browser
 - otherwise: use `playwright-cli` and prefer `playwright-cli open --headed ...`
 
 Core workflow: open -> wait (if needed) -> snapshot -> act by ref -> re-snapshot -> verify -> collect evidence.
@@ -31,7 +31,7 @@ Usually NOT needed for:
 
 Apply this rule first:
 
-- if running in Codex App, prefer the in-app browser through `browser-use:browser`
+- if running in Codex App, prefer the in-app browser through `browser:control-in-app-browser`
 - otherwise use `playwright-cli` and favor headed mode with `--headed`
 
 Do not default to `playwright-cli` when the in-app browser is available.
