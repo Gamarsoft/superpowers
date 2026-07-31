@@ -50,7 +50,7 @@ class FakeClassList {
 }
 
 class FakeElement {
-  constructor(tagName, { id = '', classes = [], dataset = {}, text = '' } = {}) {
+  constructor(tagName, { id = '', classes = [], dataset = {}, text = '', attributes = {} } = {}) {
     this.tagName = String(tagName).toLowerCase();
     this.id = id;
     this.dataset = { ...dataset };
@@ -59,6 +59,8 @@ class FakeElement {
     this.classList = new FakeClassList(this, classes);
     this._textContent = text;
     this.innerHTML = '';
+    this.attributes = new Map(Object.entries(attributes));
+    this.clickCount = 0;
   }
 
   append(...children) {
@@ -77,6 +79,18 @@ class FakeElement {
   set textContent(value) {
     this._textContent = String(value);
     this.innerHTML = '';
+  }
+
+  hasAttribute(name) {
+    return this.attributes.has(name);
+  }
+
+  getAttribute(name) {
+    return this.attributes.has(name) ? this.attributes.get(name) : null;
+  }
+
+  setAttribute(name, value) {
+    this.attributes.set(name, String(value));
   }
 
   matchesSimple(selector) {
@@ -156,6 +170,19 @@ class FakeDocument {
     assert(this.listeners.click, 'Expected helper to register a document click listener');
     this.listeners.click({ target });
   }
+
+  dispatchKeydown(target, key) {
+    assert(this.listeners.keydown, 'Expected helper to register a document keydown listener');
+    let defaultPrevented = false;
+    this.listeners.keydown({
+      target,
+      key,
+      preventDefault() {
+        defaultPrevented = true;
+      }
+    });
+    return { defaultPrevented };
+  }
 }
 
 function findById(node, id) {
@@ -167,10 +194,11 @@ function findById(node, id) {
   return null;
 }
 
-function createOption(label, choice, { selected = false } = {}) {
+function createOption(label, choice, { selected = false, attributes = {} } = {}) {
   const option = new FakeElement('div', {
     classes: ['option'].concat(selected ? ['selected'] : []),
-    dataset: { choice }
+    dataset: { choice },
+    attributes
   });
   const letter = new FakeElement('div', { classes: ['letter'], text: choice.slice(0, 1).toUpperCase() });
   const content = new FakeElement('div', { classes: ['content'] });
@@ -181,16 +209,23 @@ function createOption(label, choice, { selected = false } = {}) {
   return option;
 }
 
-function buildHarness({ selectedInSingle = [], selectedInMulti = [] } = {}) {
+function buildHarness({
+  selectedInSingle = [],
+  selectedInMulti = [],
+  singleAttributes = [],
+  includeIndicator = true
+} = {}) {
   const indicator = new FakeElement('span', { id: 'indicator-text', text: DEFAULT_INDICATOR_TEXT });
   const indicatorBar = new FakeElement('div', { classes: ['indicator-bar'] }).append(indicator);
 
   const singleOptions = [
     createOption('Option A · Inline release banner', 'inline-release-banner', {
-      selected: selectedInSingle.includes(0)
+      selected: selectedInSingle.includes(0),
+      attributes: singleAttributes[0]
     }),
     createOption('Option B · Activity feed card', 'activity-feed-card', {
-      selected: selectedInSingle.includes(1)
+      selected: selectedInSingle.includes(1),
+      attributes: singleAttributes[1]
     })
   ];
 
@@ -211,8 +246,10 @@ function buildHarness({ selectedInSingle = [], selectedInMulti = [] } = {}) {
     classes: ['options'],
     dataset: { multiselect: '' }
   }).append(...multiOptions);
+  const standaloneChoice = createOption('Standalone choice', 'standalone-choice');
 
-  const root = new FakeElement('body').append(singleContainer, multiContainer, indicatorBar);
+  const root = new FakeElement('body').append(singleContainer, multiContainer, standaloneChoice);
+  if (includeIndicator) root.append(indicatorBar);
   const document = new FakeDocument(root);
   const websocketMessages = [];
 
@@ -256,11 +293,20 @@ function buildHarness({ selectedInSingle = [], selectedInMulti = [] } = {}) {
     console
   }, { filename: helperPath });
 
+  [...singleOptions, ...multiOptions, standaloneChoice].forEach((option) => {
+    option.click = () => {
+      option.clickCount += 1;
+      window.toggleSelect(option);
+      document.dispatchClick(option);
+    };
+  });
+
   return {
     document,
     indicator,
     singleOptions,
     multiOptions,
+    standaloneChoice,
     websocketMessages,
     window
   };
@@ -311,6 +357,83 @@ function run() {
       harness.indicator.innerHTML,
       '<span class="selected-text">Selected:</span> Option A · Inline release banner — return to the terminal to continue'
     );
+  });
+
+  test('helper hydrates choice semantics and pressed state while preserving authored attributes', () => {
+    const harness = buildHarness({
+      selectedInSingle: [0],
+      singleAttributes: [
+        { role: 'switch', tabindex: '2', 'aria-pressed': 'false' },
+        {}
+      ]
+    });
+
+    assert.strictEqual(harness.singleOptions[0].getAttribute('role'), 'switch');
+    assert.strictEqual(harness.singleOptions[0].getAttribute('tabindex'), '2');
+    assert.strictEqual(harness.singleOptions[0].getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(harness.singleOptions[1].getAttribute('role'), 'button');
+    assert.strictEqual(harness.singleOptions[1].getAttribute('tabindex'), '0');
+    assert.strictEqual(harness.singleOptions[1].getAttribute('aria-pressed'), 'false');
+  });
+
+  test('Enter follows the existing click path exactly once and synchronizes single-select state', () => {
+    const harness = buildHarness({ selectedInSingle: [0] });
+
+    const event = harness.document.dispatchKeydown(harness.singleOptions[1], 'Enter');
+
+    assert.strictEqual(event.defaultPrevented, false, 'Enter should not need scroll prevention');
+    assert.strictEqual(harness.singleOptions[1].clickCount, 1);
+    assert.strictEqual(harness.websocketMessages.length, 1, 'keyboard activation should emit one click event');
+    assert.strictEqual(harness.websocketMessages[0].choice, 'activity-feed-card');
+    assert.strictEqual(harness.singleOptions[0].classList.contains('selected'), false);
+    assert.strictEqual(harness.singleOptions[0].getAttribute('aria-pressed'), 'false');
+    assert.strictEqual(harness.singleOptions[1].classList.contains('selected'), true);
+    assert.strictEqual(harness.singleOptions[1].getAttribute('aria-pressed'), 'true');
+  });
+
+  test('Space prevents scrolling and follows the existing scoped multiselect click path once', () => {
+    const harness = buildHarness({ selectedInSingle: [0], selectedInMulti: [0] });
+
+    const event = harness.document.dispatchKeydown(harness.multiOptions[1].children[1], ' ');
+
+    assert.strictEqual(event.defaultPrevented, true, 'Space should prevent page scrolling');
+    assert.strictEqual(harness.multiOptions[1].clickCount, 1);
+    assert.strictEqual(harness.websocketMessages.length, 1);
+    assert.strictEqual(harness.multiOptions[0].getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(harness.multiOptions[1].getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(harness.singleOptions[0].getAttribute('aria-pressed'), 'true');
+  });
+
+  test('unrelated keys and targets do not activate choices', () => {
+    const harness = buildHarness();
+    const outside = new FakeElement('div', { text: 'Outside' });
+
+    const unrelatedKey = harness.document.dispatchKeydown(harness.singleOptions[0], 'Escape');
+    const unrelatedTarget = harness.document.dispatchKeydown(outside, 'Enter');
+
+    assert.strictEqual(unrelatedKey.defaultPrevented, false);
+    assert.strictEqual(unrelatedTarget.defaultPrevented, false);
+    assert.strictEqual(harness.singleOptions[0].clickCount, 0);
+    assert.strictEqual(harness.websocketMessages.length, 0);
+  });
+
+  test('pressed state stays synchronized for a choice without a selection container', () => {
+    const harness = buildHarness();
+
+    harness.document.dispatchKeydown(harness.standaloneChoice, 'Enter');
+
+    assert.strictEqual(harness.standaloneChoice.classList.contains('selected'), true);
+    assert.strictEqual(harness.standaloneChoice.getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(harness.websocketMessages.length, 1);
+  });
+
+  test('helper tolerates a full document without the fragment frame indicator', () => {
+    const harness = buildHarness({ includeIndicator: false, selectedInSingle: [0] });
+
+    harness.document.dispatchKeydown(harness.singleOptions[1], 'Enter');
+
+    assert.strictEqual(harness.singleOptions[1].getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(harness.websocketMessages.length, 1);
   });
 
   test('single-select indicator stays container-scoped and renders the selected label', () => {

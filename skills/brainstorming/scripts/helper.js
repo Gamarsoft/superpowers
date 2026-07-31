@@ -148,6 +148,24 @@
       || 'Current selection';
   }
 
+  function syncChoiceState(choice) {
+    choice.setAttribute('aria-pressed', choice.classList.contains('selected') ? 'true' : 'false');
+  }
+
+  function syncChoiceStates(container) {
+    if (!container || typeof container.querySelectorAll !== 'function') return;
+    Array.from(container.querySelectorAll('[data-choice]')).forEach(syncChoiceState);
+  }
+
+  function hydrateChoices() {
+    if (typeof document.querySelectorAll !== 'function') return;
+    Array.from(document.querySelectorAll('[data-choice]')).forEach((choice) => {
+      if (!choice.hasAttribute('role')) choice.setAttribute('role', 'button');
+      if (!choice.hasAttribute('tabindex')) choice.setAttribute('tabindex', '0');
+      syncChoiceState(choice);
+    });
+  }
+
   function syncIndicator(container) {
     const indicator = document.getElementById('indicator-text');
     if (!indicator) return;
@@ -195,9 +213,22 @@
     });
 
     setTimeout(() => {
-      syncIndicator(getChoiceContainer(target));
+      const container = getChoiceContainer(target);
+      syncChoiceStates(container);
+      syncChoiceState(target);
+      syncIndicator(container);
     }, 0);
 
+  });
+
+  // Progressively activate authored choices without requiring extra metadata.
+  document.addEventListener('keydown', (e) => {
+    const target = e.target && typeof e.target.closest === 'function'
+      ? e.target.closest('[data-choice]')
+      : null;
+    if (!target || (e.key !== 'Enter' && e.key !== ' ')) return;
+    if (e.key === ' ') e.preventDefault();
+    target.click();
   });
 
   // Frame UI: selection tracking
@@ -215,6 +246,8 @@
       el.classList.add('selected');
     }
     window.selectedChoice = el.dataset.choice;
+    syncChoiceStates(container);
+    syncChoiceState(el);
   };
 
   // Expose API for explicit use
@@ -223,6 +256,7 @@
     choice: (value, metadata = {}) => sendEvent({ type: 'choice', choice: value, value, ...metadata })
   };
 
+  hydrateChoices();
   syncIndicatorFromDocument();
   connect();
 })();

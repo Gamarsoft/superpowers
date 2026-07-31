@@ -35,6 +35,12 @@ const CARRY_FORWARD_SELECTOR_PROOFS = [
   ['.options[data-multiselect] .option.selected {', 'carry-forward selected-item emphasis selector']
 ];
 
+const ACCESSIBLE_THEME_PROOFS = [
+  ['@media (prefers-color-scheme: dark)', 'active dark-mode token override'],
+  ['[data-choice]:focus-visible {', 'visible keyboard focus selector'],
+  ['outline: 3px solid var(--focus-ring);', 'shared focus-ring treatment']
+];
+
 function cleanup() {
   if (fs.existsSync(TEST_DIR)) {
     fs.rmSync(TEST_DIR, { recursive: true, force: true });
@@ -147,6 +153,7 @@ async function run() {
       'Wrapped ranked response should include representative ranked fragment content'
     );
     assertSelectorProofs(rankedRes.body, RANKING_SELECTOR_PROOFS, 'ranking defaults');
+    assertSelectorProofs(rankedRes.body, ACCESSIBLE_THEME_PROOFS, 'accessible theme defaults');
     assertNoOverDimmingRule(rankedRes.body);
 
     const recommendationRes = await renderFixtureAndFetch(RECOMMENDATION_FIXTURE_PATH);

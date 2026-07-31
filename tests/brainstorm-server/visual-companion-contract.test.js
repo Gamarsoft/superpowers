@@ -418,6 +418,23 @@ function assertExampleKitPresence() {
   );
 }
 
+function assertChoiceAccessibilityGuidanceAndThemeSafety() {
+  assertIncludes(
+    guide,
+    'The helper progressively adds keyboard focus, button semantics, Enter/Space activation, and synchronized `aria-pressed` state',
+    'visual-companion.md progressive choice accessibility guidance'
+  );
+
+  for (const fileName of expectedExampleFiles) {
+    const content = fs.readFileSync(path.join(examplesDir, fileName), 'utf-8');
+    if (!content.includes('data-choice')) continue;
+    assert(
+      !/color\s*:\s*#[0-9a-f]{3,8}/i.test(content),
+      `Expected ${fileName} selectable example foregrounds to use shared theme tokens`
+    );
+  }
+}
+
 function assertActiveExampleRefreshBoundary() {
   const refreshBoundarySection = getBetween(
     guide,
@@ -589,6 +606,7 @@ function run() {
   assertCurrentBrowserRouting();
   assertCompatibilityBoundary();
   assertExampleKitPresence();
+  assertChoiceAccessibilityGuidanceAndThemeSafety();
   assertArchitectureDataFlowExample();
   assertActiveExampleRefreshBoundary();
   assertCarryForwardGuidance();

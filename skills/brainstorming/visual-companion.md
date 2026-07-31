@@ -139,6 +139,7 @@ The current runtime contract is intentionally small:
 - `full-document` screens remain supported for compatibility, but they are not the v1 default surface.
 - `data-choice` is optional per artifact and remains the only supported interaction metadata when selection is useful.
 - Use `toggleSelect(this)` on selectable cards/options so helper state and indicator text stay consistent.
+- The helper progressively adds keyboard focus, button semantics, Enter/Space activation, and synchronized `aria-pressed` state; authored `role` and `tabindex` values remain authoritative.
 - `.options` and `.cards` are recognized selection containers.
 - `data-multiselect` is optional and only for true multi-select behavior.
 
