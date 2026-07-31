@@ -71,3 +71,32 @@ Exit code: 0. Output contained no warnings or incidental noise.
 ## Concerns
 
 None.
+
+## Fix Round 1
+
+Review found that `skills/webapp-testing/SKILL.md` and `skills/frontend-direction/references/use-cases-prompts-and-flows.md` named the current Codex App browser capability but skipped installed-capability discovery when that capability was unavailable.
+
+Changes:
+
+- Updated both documents to use `browser:control-in-app-browser`, discover installed browser capabilities if it is unavailable, and only then fall back to `playwright-cli`.
+- Updated the webapp-testing overview, browser-selection section, and skill description so the fallback rule is consistent at every active entry point.
+- Strengthened `tests/brainstorm-server/visual-companion-contract.test.js` to assert the discovery-before-Playwright order in both webapp-testing routing sections and the frontend-direction shared rules.
+
+RED command and output:
+
+```text
+$ node tests/brainstorm-server/visual-companion-contract.test.js
+FAIL: visual companion useful-artifact contract assertions failed
+Expected webapp-testing/SKILL.md discovery-before-playwright fallback to include "discover installed browser capabilities"
+```
+
+Exit code: 1. The failure was the expected missing-discovery contract.
+
+GREEN command and output:
+
+```text
+$ node tests/brainstorm-server/visual-companion-contract.test.js
+PASS: visual companion useful-artifact contract assertions passed
+```
+
+Exit code: 0. Output contained no warnings or incidental noise.

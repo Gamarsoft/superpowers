@@ -5,7 +5,7 @@ Use when a concrete frontend workflow shape is useful.
 ## Shared Rules
 
 - Brownfield default: preserve first, improve second.
-- For browser interaction, use `browser:control-in-app-browser` in Codex App and `playwright-cli` otherwise.
+- For browser interaction in Codex App, use `browser:control-in-app-browser`; if unavailable, discover installed browser capabilities, then fall back to `playwright-cli`. Outside Codex App, use `playwright-cli`.
 - If no durable visual evidence exists, capture a faithful runtime baseline before exploring variants.
 - HTML companion artifacts are comparison aids only.
 - Durable truth lives in concise packet prose, `screen-index.md`, `brownfield-ui-extraction.md`, retained screenshots/browser captures, and optional approved ChatGPT Images 2 files.

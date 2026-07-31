@@ -311,6 +311,48 @@ function assertCurrentBrowserRouting() {
 
   assertIncludes(guide, 'installed capability discovery', 'visual-companion.md capability discovery fallback');
   assertIncludes(guide, '`playwright-cli`', 'visual-companion.md playwright fallback');
+
+  const discoveryFallbackSections = [
+    [
+      'webapp-testing/SKILL.md overview',
+      getBetween(
+        webappTesting.toLowerCase(),
+        'browser surface selection:',
+        'core workflow:',
+        'webapp-testing/SKILL.md overview browser routing'
+      )
+    ],
+    [
+      'webapp-testing/SKILL.md browser selection',
+      getBetween(
+        webappTesting.toLowerCase(),
+        '## browser selection',
+        '## setup',
+        'webapp-testing/SKILL.md browser selection'
+      )
+    ],
+    [
+      'use-cases-prompts-and-flows.md shared rules',
+      getBetween(
+        useCases.toLowerCase(),
+        '## shared rules',
+        '## 1. brownfield',
+        'use-cases-prompts-and-flows.md shared rules'
+      )
+    ]
+  ];
+
+  for (const [name, section] of discoveryFallbackSections) {
+    assertOrdered(
+      section,
+      [
+        'browser:control-in-app-browser',
+        'discover installed browser capabilities',
+        'playwright-cli'
+      ],
+      `${name} discovery-before-playwright fallback`
+    );
+  }
 }
 
 function assertArchitectureDataFlowExample() {
