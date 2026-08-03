@@ -1,4 +1,4 @@
-model = "gpt-5.4"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 name = "sp_plan_simulator"
 description = "Read-only plan simulator for validating superpowers implementation plans."

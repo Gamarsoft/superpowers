@@ -1,4 +1,4 @@
-model = "gpt-5.3-codex"
+model = "gpt-5.6-sol"
 model_reasoning_effort = "medium"
 name = "sp_implementer_standard"
 description = "Implementation worker for normal superpowers tasks with moderate coordination."
