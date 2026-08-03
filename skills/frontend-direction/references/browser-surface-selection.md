@@ -4,8 +4,8 @@ Use this rule whenever browser interaction is needed for frontend capture, verif
 
 ## Selection Rule
 
-- If running in Codex App, use `browser-use:browser` and the in-app browser.
-- Otherwise, use `playwright-cli` and prefer `playwright-cli open --headed ...`.
+- If running in Codex App, use `browser:control-in-app-browser` and the in-app browser.
+- If that capability is unavailable, discover installed browser capabilities, then use `playwright-cli` and prefer `playwright-cli open --headed ...`.
 
 Do not default to `playwright-cli` when the Codex App in-app browser is available.
 

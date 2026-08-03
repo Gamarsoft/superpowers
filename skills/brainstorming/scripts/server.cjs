@@ -174,10 +174,16 @@ h1 { color: #333; } p { color: #666; }
 .brand a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; min-width: 0; max-width: 100%; line-height: 1; }
 .brand-copy { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1; transform: translateY(-1px); }
 .brand-logo { display: block; height: 1em; width: auto; max-width: 180px; filter: invert(1); }
+@media (prefers-color-scheme: dark) {
+  body { background: #151614; color: #F2F1EC; }
+  h1 { color: #F2F1EC; }
+  p, .brand { color: #B6B8B1; }
+  .brand-logo { filter: none; }
+}
 </style>
 </head>
 <body><!-- BRANDING --><h1>Brainstorm Companion</h1>
-<p>Waiting for the agent to push a screen...</p></body></html>`);
+<p>Waiting for the next visual artifact…</p></body></html>`);
 }
 
 const FORBIDDEN_PAGE = `<!DOCTYPE html>

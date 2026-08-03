@@ -27,9 +27,9 @@ Before using Impeccable in a brownfield workflow, make sure these exist:
 
 If those do not exist yet, build them first.
 
-## `/impeccable teach`
+## `/impeccable init`
 
-`/impeccable teach` is project initialization, not a per-feature ritual.
+`/impeccable init` is project initialization, not a per-feature ritual.
 
 Rules:
 
@@ -37,7 +37,7 @@ Rules:
 - treat `PRODUCT.md` as the durable product/brand/register memory source
 - treat `DESIGN.md` as reusable system documentation and `/impeccable document` as the refresh path when it is missing or stale
 - treat `DESIGN.json` as an auxiliary panel artifact, not as the primary durable contract
-- only re-run `/impeccable teach` when the product context is missing, stale, or intentionally changing
+- only re-run `/impeccable init` when the product context is missing, stale, or intentionally changing
 - for repo-specific brownfield work, treat the project’s existing `PRODUCT.md` as the design-context source unless the human says otherwise
 
 ## Recommended Sequence

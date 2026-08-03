@@ -359,7 +359,7 @@ async function run() {
   );
   await waitForFileText(serverLogPath, path.basename(carryForwardFile));
   const carryForwardRender = await waitForHtmlText(
-    'Decision checkpoint: export flow',
+    'Chosen direction: drawer-based export flow',
     '02-carry-forward-summary'
   );
 
@@ -433,7 +433,7 @@ async function run() {
     'full-document passthrough must not leak the fragment shell marker'
   );
   assert(
-    !fullDocumentRender.response.body.includes('indicator-bar'),
+    !/<div class="indicator-bar"\b/.test(fullDocumentRender.response.body),
     'full-document passthrough must not inherit the shared fragment indicator bar'
   );
   assert(

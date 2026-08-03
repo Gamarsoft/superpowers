@@ -151,14 +151,16 @@ async function run() {
     assert.strictEqual(withEvents.eventsExistsAfterRender, true, 'Presence test should keep the seeded events file in place during rendering');
   });
 
-  await test('carry-forward summary stays explicit about chosen, still-open, and degraded mode without events', async () => {
+  await test('carry-forward memo leads with the settled export decision and preserves authored categories without events', async () => {
     const rendered = await renderExample({ exampleFile: 'carry-forward-summary.html', eventsPresent: false });
 
     assert.strictEqual(rendered.status, 200);
-    assert(rendered.body.includes('terminal-only follow-up'), 'Expected terminal-only context copy');
-    assert(rendered.body.includes('Degraded mode'), 'Expected explicit degraded-mode wording');
+    assert(rendered.body.includes('Read-only decision memo'), 'Expected read-only editorial register');
+    assert(rendered.body.indexOf('Chosen direction: drawer-based export flow') < rendered.body.indexOf('Evidence'), 'Expected conclusion before evidence');
+    assert(rendered.body.includes('Design context was unavailable'), 'Expected explicit degraded-fidelity wording');
     assert(rendered.body.includes('Chosen direction: drawer-based export flow'), 'Expected explicit chosen direction');
-    assert(rendered.body.includes('Still open: permission fallback copy'), 'Expected explicit still-open wording');
+    assert(rendered.body.includes('Open ?'), 'Expected word and marker for open questions');
+    assert(rendered.body.includes('Deferred →'), 'Expected word and distinct marker for deferred assumptions');
     assert.strictEqual(rendered.eventsExistsAfterRender, false, 'events file should stay absent in the no-events case');
   });
 
@@ -167,8 +169,8 @@ async function run() {
     const withEvents = await renderExample({ exampleFile: 'carry-forward-summary.html', eventsPresent: true });
 
     assert.strictEqual(withEvents.status, 200);
-    assert(withEvents.body.includes('Still open'), 'Expected still-open wording to remain visible');
-    assert(withEvents.body.includes('Degraded mode'), 'Expected degraded-mode wording to remain visible');
+    assert(withEvents.body.includes('Open ?'), 'Expected open category wording to remain visible');
+    assert(withEvents.body.includes('Deferred →'), 'Expected deferred category wording to remain visible');
     assert.strictEqual(withEvents.body, withoutEvents.body, 'Rendered carry-forward summary should not depend on state/events presence');
     assert.strictEqual(withEvents.eventsExistsAfterRender, true, 'Presence test should keep the seeded events file in place during rendering');
   });

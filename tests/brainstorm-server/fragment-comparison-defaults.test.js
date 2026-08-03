@@ -9,6 +9,7 @@ const FIXTURE_DIR = path.join(__dirname, '../../skills/brainstorming/examples/vi
 const RANKED_FIXTURE_PATH = path.join(FIXTURE_DIR, 'ranked-alternatives.html');
 const RECOMMENDATION_FIXTURE_PATH = path.join(FIXTURE_DIR, 'annotated-recommendation.html');
 const CARRY_FORWARD_FIXTURE_PATH = path.join(FIXTURE_DIR, 'carry-forward-summary.html');
+const ARCHITECTURE_FIXTURE_PATH = path.join(FIXTURE_DIR, 'architecture-data-flow.html');
 
 const TEST_PORT = 35000 + Math.floor(Math.random() * 1000);
 const TOKEN = 'testtoken-fragment-defaults-0123456789abcdef';
@@ -30,9 +31,16 @@ const RECOMMENDATION_SELECTOR_PROOFS = [
   ['.subtitle {', 'recommendation subtitle scan selector']
 ];
 
-const CARRY_FORWARD_SELECTOR_PROOFS = [
-  ['.options[data-multiselect] {', 'carry-forward multiselect container selector'],
-  ['.options[data-multiselect] .option.selected {', 'carry-forward selected-item emphasis selector']
+const CARRY_FORWARD_EDITORIAL_PROOFS = [
+  ['.vc-carry-layout {', 'carry-forward editorial layout selector'],
+  ['grid-template-columns: minmax(0, 1fr) minmax(224px, 256px);', 'carry-forward desktop rail width'],
+  ['@media (max-width: 759px)', 'carry-forward narrow ordered-flow breakpoint']
+];
+
+const ACCESSIBLE_THEME_PROOFS = [
+  ['@media (prefers-color-scheme: dark)', 'active dark-mode token override'],
+  ['[data-choice]:focus-visible {', 'visible keyboard focus selector'],
+  ['outline: 3px solid var(--focus-ring);', 'shared focus-ring treatment']
 ];
 
 function cleanup() {
@@ -147,6 +155,7 @@ async function run() {
       'Wrapped ranked response should include representative ranked fragment content'
     );
     assertSelectorProofs(rankedRes.body, RANKING_SELECTOR_PROOFS, 'ranking defaults');
+    assertSelectorProofs(rankedRes.body, ACCESSIBLE_THEME_PROOFS, 'accessible theme defaults');
     assertNoOverDimmingRule(rankedRes.body);
 
     const recommendationRes = await renderFixtureAndFetch(RECOMMENDATION_FIXTURE_PATH);
@@ -176,10 +185,42 @@ async function run() {
       'Carry-forward fragment must keep the fragment comparison shell hook'
     );
     assert(
-      carryForwardRes.body.includes('Decision checkpoint: export flow'),
+      carryForwardRes.body.includes('Read-only decision memo') &&
+        carryForwardRes.body.includes('Chosen direction: drawer-based export flow'),
       'Wrapped carry-forward response should include representative carry-forward fragment content'
     );
-    assertSelectorProofs(carryForwardRes.body, CARRY_FORWARD_SELECTOR_PROOFS, 'carry-forward defaults');
+    assertSelectorProofs(carryForwardRes.body, CARRY_FORWARD_EDITORIAL_PROOFS, 'carry-forward editorial defaults');
+    assert(
+      !fs.readFileSync(CARRY_FORWARD_FIXTURE_PATH, 'utf-8').includes('data-choice'),
+      'Carry-forward source fragment must remain read-only even when its shared wrapper supports choices'
+    );
+
+    const architectureRes = await renderFixtureAndFetch(ARCHITECTURE_FIXTURE_PATH);
+    assert.strictEqual(architectureRes.status, 200, 'Architecture fixture request should return 200');
+    assert(
+      architectureRes.body.includes(SHELL_HOOK),
+      'Non-interactive architecture fragment must render inside the fragment shell'
+    );
+    assert(
+      architectureRes.body.includes('Payment processing: request to durable outcome'),
+      'Wrapped architecture response should include the non-interactive diagram content'
+    );
+    assert(
+      architectureRes.body.includes('background: var(--vc-surface);') &&
+        architectureRes.body.includes('border: 1px solid var(--vc-boundary);'),
+      'Architecture nodes must consume the approved diagram surface and boundary tokens'
+    );
+    assert(
+      architectureRes.body.includes('color: var(--vc-ink);') &&
+        architectureRes.body.includes('stroke: var(--vc-ink);'),
+      'Architecture labels and connectors must consume the approved diagram ink token'
+    );
+    assert(
+      architectureRes.body.includes('--vc-surface: #1D1F1C;') &&
+        architectureRes.body.includes('--vc-ink: #F2F1EC;') &&
+        architectureRes.body.includes('--vc-boundary: #44483F;'),
+      'Wrapped architecture response must supply the alternate-scheme values for every diagram token'
+    );
 
     const fullDocument = [
       '<!DOCTYPE html>',
@@ -207,7 +248,7 @@ async function run() {
       'Full-document passthrough must not leak fragment-only shell hook'
     );
 
-    console.log('PASS: fragment comparison defaults cover ranking, recommendation, carry-forward, and full-document boundary checks');
+    console.log('PASS: fragment defaults cover comparison, non-interactive architecture, and full-document boundary checks');
   } finally {
     server.kill();
     await sleep(120);

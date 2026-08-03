@@ -84,6 +84,8 @@ When frontend direction is required:
 
 Use the visual companion only when the decision is materially easier to judge by seeing than by reading. For conceptual, scope, and text-first turns, stay in terminal.
 
+Before authoring, name the viewing task: what the user should inspect, understand, compare, or decide after seeing the artifact. Choose the smallest useful artifact intent—compare, explain, map, experience, or synthesize. These intents are examples, not a whitelist: a direct subject-specific diagram is appropriate when it explains structure or sequence better than prose. Keep the established comparison patterns first-class, but do not invent alternatives merely to force a comparison. Reject irrelevant decoration; revise a weak artifact or stay in terminal.
+
 After the user accepts the companion, the first later genuinely visual question must start the companion path instead of remaining terminal-only. Each qualifying visual turn remains artifact-first: author or refresh the visual artifact, make it viewable, then ask the decision in terminal.
 
 The terminal decision prompt must stay present for qualifying visual turns even after the companion has already been opened earlier in the session. If the platform question tool is unavailable, the agent may fall back to plain terminal text, but that is degraded behavior and should be named as such.

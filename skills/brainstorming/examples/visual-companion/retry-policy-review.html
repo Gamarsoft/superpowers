@@ -1,0 +1,233 @@
+<section class="vc-canvas" data-vc-register="product-mockup" aria-labelledby="retry-policy-heading">
+  <style>
+    .vc-retry-review {
+      overflow: hidden;
+      padding: 0;
+    }
+    .vc-product-bar {
+      align-items: center;
+      border-bottom: 1px solid var(--vc-boundary);
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      min-height: 42px;
+      padding: 0 16px;
+    }
+    .vc-product-name,
+    .vc-product-status {
+      align-items: center;
+      display: inline-flex;
+      gap: 8px;
+    }
+    .vc-product-name { font-size: 0.8125rem; font-weight: 700; }
+    .vc-product-status { color: var(--vc-success); font-size: 0.8125rem; font-weight: 700; }
+    .vc-product-status::before { content: "●"; font-size: 0.6875rem; }
+    .vc-product-layout {
+      display: grid;
+      gap: 0 24px;
+      grid-template-columns: 208px minmax(0, 1fr) minmax(288px, 320px);
+      grid-template-areas:
+        "context title evidence"
+        "context proposed evidence"
+        "context guardrails evidence"
+        "context actions evidence";
+      padding: 16px;
+    }
+    .vc-product-body { display: contents; }
+    .vc-product-nav {
+      border-right: 1px solid var(--vc-boundary);
+      display: grid;
+      gap: 16px;
+      grid-area: context;
+      max-width: none;
+      min-width: 0;
+      padding-right: 16px;
+    }
+    .vc-product-context {
+      color: var(--vc-muted);
+      font-size: 0.8125rem;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .vc-product-title { grid-area: title; }
+    .vc-product-title .vc-heading { margin: 0; }
+    .vc-product-helper { margin: 8px 0 0; }
+    .vc-product-proposed { grid-area: proposed; }
+    .vc-product-guardrails { grid-area: guardrails; }
+    .vc-product-evidence { grid-area: evidence; }
+    .vc-product-actions { grid-area: actions; }
+    .vc-product-section {
+      display: grid;
+      gap: 8px;
+    }
+    .vc-product-section h3,
+    .vc-product-section p { margin: 0; }
+    .vc-product-table {
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+      width: 100%;
+    }
+    .vc-product-table th,
+    .vc-product-table td {
+      border-bottom: 1px solid var(--vc-boundary);
+      padding: 8px 0;
+      text-align: left;
+      vertical-align: top;
+    }
+    .vc-product-table th {
+      color: var(--vc-muted);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .vc-product-table td:last-child,
+    .vc-product-table th:last-child { text-align: right; }
+    .vc-product-guardrails ul {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding-left: 20px;
+    }
+    .vc-product-evidence {
+      border-left: 1px solid var(--vc-boundary);
+      border-top: 0;
+      margin-block: 0;
+      min-width: 0;
+      padding-block: 0;
+      padding-inline: 16px 0;
+    }
+    .vc-evidence-scroll { overflow-x: auto; }
+    .vc-evidence-note { color: var(--vc-muted); font-size: 0.8125rem; line-height: 1.45; }
+    .vc-product-actions {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+    .vc-product-actions .option { margin: 0; }
+    .vc-product-actions h3 { font-size: 0.875rem; margin: 0; }
+    .vc-choice--approve { border-color: var(--vc-success); }
+    .vc-choice--reject { border-color: var(--vc-danger); }
+    .vc-choice--reject .vc-reject-word { color: var(--vc-danger); font-weight: 700; }
+    @media (max-width: 819px) {
+      .vc-product-layout {
+        gap: 0;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+          "context"
+          "body";
+      }
+      .vc-product-nav {
+        align-items: center;
+        border-bottom: 1px solid var(--vc-boundary);
+        border-right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        padding: 0 0 12px;
+      }
+      .vc-product-nav .vc-product-context { flex: 1 1 12rem; }
+      .vc-product-nav .vc-product-section { border-top: 0; margin: 0; padding: 0; }
+      .vc-product-nav .vc-product-table { max-width: 22rem; }
+      .vc-product-nav .vc-product-table td:last-child { padding-left: 12px; }
+      .vc-product-body {
+        display: grid;
+        grid-area: body;
+        min-width: 0;
+        grid-template-areas:
+          "title"
+          "proposed"
+          "guardrails"
+          "evidence"
+          "actions";
+      }
+      .vc-product-body > * { min-width: 0; }
+      .vc-product-proposed { overflow-x: auto; }
+      .vc-product-evidence {
+        border-left: 0;
+        margin-top: 24px;
+        padding-left: 0;
+      }
+    }
+    @media (max-width: 420px) {
+      .vc-product-bar { align-items: flex-start; flex-direction: column; gap: 2px; padding-block: 8px; }
+      .vc-product-actions { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <p class="vc-label">Simulated product surface</p>
+  <div class="vc-stage vc-retry-review">
+    <div class="vc-product-bar">
+      <span class="vc-product-name">Policy controls</span>
+      <span class="vc-product-status" role="status" aria-live="polite">Ready for review</span>
+    </div>
+
+    <div class="vc-product-layout">
+      <aside class="vc-rail vc-cluster vc-product-nav" aria-label="Review context">
+        <p class="vc-product-context">Change set · Retry limits</p>
+        <section class="vc-section vc-product-section" aria-labelledby="current-policy-heading">
+          <p class="vc-label" id="current-policy-heading">Current policy</p>
+          <table class="vc-product-table vc-mono">
+            <tbody>
+              <tr><th scope="row">Attempts</th><td>3</td></tr>
+              <tr><th scope="row">Initial delay</th><td>30 s</td></tr>
+              <tr><th scope="row">Maximum backoff</th><td>5 min</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </aside>
+
+      <div class="vc-product-body">
+        <header class="vc-product-title">
+          <h2 class="vc-heading" id="retry-policy-heading">Review retry policy change</h2>
+          <p class="vc-body vc-product-helper">Compare the current safeguards with the proposed limits before deciding.</p>
+        </header>
+
+        <section class="vc-section vc-product-section vc-product-proposed" aria-labelledby="proposed-change-heading">
+          <p class="vc-label" id="proposed-change-heading">Proposed change</p>
+          <table class="vc-product-table vc-mono">
+            <thead><tr><th>Limit</th><th>Current</th><th>Proposed</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Attempts</th><td>3</td><td>5</td></tr>
+              <tr><th scope="row">Initial delay</th><td>30 s</td><td>15 s</td></tr>
+              <tr><th scope="row">Maximum backoff</th><td>5 min</td><td>15 min</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="vc-section vc-product-section vc-product-guardrails" aria-labelledby="guardrails-heading">
+          <p class="vc-label" id="guardrails-heading">Guardrails</p>
+          <ul class="vc-body">
+            <li>Stop after the fifth failed attempt.</li>
+            <li>Keep each retry idempotent before it is re-queued.</li>
+            <li>Route exhausted work to manual review.</li>
+          </ul>
+        </section>
+
+        <section class="vc-rail vc-section vc-product-evidence" aria-labelledby="evidence-heading">
+          <p class="vc-label" id="evidence-heading">Evidence</p>
+          <p class="vc-evidence-note">Simulated evidence data</p>
+          <div class="vc-evidence-scroll" role="region" aria-label="Evidence table" tabindex="0">
+            <table class="vc-product-table vc-mono">
+              <thead><tr><th>Window</th><th>Recovered</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">24 h</th><td>91%</td></tr>
+                <tr><th scope="row">7 d</th><td>89%</td></tr>
+                <tr><th scope="row">15 min cap</th><td>+4 pts</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="options vc-product-actions" aria-label="Retry policy decision">
+          <div class="option vc-choice vc-choice--approve" data-choice="approve-retry-policy" onclick="toggleSelect(this)">
+            <h3>Approve change</h3>
+          </div>
+          <div class="option vc-choice vc-choice--reject" data-choice="reject-retry-policy" onclick="toggleSelect(this)" aria-label="Reject change">
+            <h3><span class="vc-reject-word">Reject</span> change</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

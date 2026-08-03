@@ -9,23 +9,39 @@ const pressureScenarioPath = path.join(
   __dirname,
   '../../skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md'
 );
+const webappTestingPath = path.join(__dirname, '../../skills/webapp-testing/SKILL.md');
+const browserSurfaceSelectionPath = path.join(
+  __dirname,
+  '../../skills/frontend-direction/references/browser-surface-selection.md'
+);
+const useCasesPath = path.join(
+  __dirname,
+  '../../skills/frontend-direction/references/use-cases-prompts-and-flows.md'
+);
+const impeccableBrownfieldPath = path.join(
+  __dirname,
+  '../../skills/frontend-direction/references/impeccable-brownfield-quality-layer.md'
+);
 
 const guide = fs.readFileSync(guidePath, 'utf-8');
 const skillEntrypoint = fs.readFileSync(skillEntrypointPath, 'utf-8');
-
-const expectedArchetypes = [
-  'side-by-side comparison',
-  'ranked alternatives',
-  'annotated recommendation',
-  'carry-forward summary'
-];
+const webappTesting = fs.readFileSync(webappTestingPath, 'utf-8');
+const browserSurfaceSelection = fs.readFileSync(browserSurfaceSelectionPath, 'utf-8');
+const useCases = fs.readFileSync(useCasesPath, 'utf-8');
+const impeccableBrownfield = fs.readFileSync(impeccableBrownfieldPath, 'utf-8');
+const retryPolicyExamplePath = path.join(examplesDir, 'retry-policy-review.html');
+const carryForwardExamplePath = path.join(examplesDir, 'carry-forward-summary.html');
 
 const expectedExampleFiles = [
+  'retry-policy-review.html',
   'side-by-side-comparison.html',
   'ranked-alternatives.html',
   'annotated-recommendation.html',
-  'carry-forward-summary.html'
+  'carry-forward-summary.html',
+  'architecture-data-flow.html'
 ];
+
+const expectedArtifactIntents = ['compare', 'explain', 'map', 'experience', 'synthesize'];
 
 const expectedM002RefreshFiles = [
   'side-by-side-comparison.html',
@@ -34,6 +50,7 @@ const expectedM002RefreshFiles = [
 ];
 
 const expectedM003PressureScenarioHeadings = [
+  'direct relevant map instead of fake comparison',
   'first qualifying visual turn starts the companion path',
   'artifact-first sequencing before the terminal prompt',
   'question-tool continuity after earlier browser use',
@@ -91,23 +108,6 @@ function getMarkdownSection(content, heading, context) {
 
 function getH2Headings(content) {
   return [...content.matchAll(/^##\s+(.+)$/gm)].map((match) => match[1].trim().toLowerCase());
-}
-
-function assertArchetypeLabels() {
-  const v1Section = getBetween(
-    guide,
-    '## v1 authoring contract',
-    'Do not invent extra archetypes in v1.',
-    'visual-companion.md'
-  );
-
-  const listedArchetypes = getBoldNumberedLabels(v1Section);
-
-  assert.deepStrictEqual(
-    listedArchetypes,
-    expectedArchetypes,
-    `Expected exact v1 archetype list in order: ${expectedArchetypes.join(', ')}`
-  );
 }
 
 function assertRoutingRule() {
@@ -236,8 +236,9 @@ function assertPreDisplayQualityGate() {
     [
       'genuinely visual fit',
       'concrete subject-specific visual content',
-      'visible differences that support the decision',
-      'clear recommendation or comparison legibility'
+      'useful visual encoding',
+      'clear viewing task',
+      'honest fidelity'
     ],
     'Expected exact pre-display quality gate checklist labels in order'
   );
@@ -254,6 +255,357 @@ function assertPreDisplayQualityGate() {
   );
 }
 
+function assertUsefulArtifactContract() {
+  const contractSection = getBetween(
+    guide.toLowerCase(),
+    '## useful-artifact authoring contract',
+    '## frontend-design alignment',
+    'visual-companion.md useful-artifact contract'
+  );
+  const intentLabels = getBoldNumberedLabels(contractSection);
+
+  assert.deepStrictEqual(
+    intentLabels,
+    expectedArtifactIntents,
+    `Expected useful artifact intents in order: ${expectedArtifactIntents.join(', ')}`
+  );
+  assertIncludes(contractSection, 'not an exhaustive whitelist', 'open artifact intent rule');
+  assertIncludes(contractSection, 'comparison patterns remain first-class', 'comparison-first rule');
+  assertIncludes(contractSection, 'side-by-side comparison', 'side-by-side recommendation');
+  assertIncludes(contractSection, 'ranked alternatives', 'ranked recommendation');
+  assertIncludes(contractSection, 'annotated recommendation', 'annotated recommendation');
+  assertIncludes(contractSection, 'carry-forward summary', 'carry-forward recommendation');
+
+  const qualityGate = getBetween(
+    guide.toLowerCase(),
+    '## pre-display quality gate',
+    '## runtime compatibility boundary (do not exceed)',
+    'visual-companion.md generalized quality gate'
+  );
+  assertIncludes(qualityGate, 'name the viewing task', 'viewing task requirement');
+  assertIncludes(qualityGate, 'irrelevant decoration', 'decoration rejection rule');
+  assertIncludes(qualityGate, 'stay in terminal', 'decoration terminal fallback');
+  assertIncludes(qualityGate, 'revise the artifact or stay in terminal', 'weak artifact fallback');
+}
+
+function assertThreeRegisterAuthoringContract() {
+  const quickReference = getBetween(
+    guide,
+    '## Native kit quick reference',
+    '## Viewing task to register',
+    'visual-companion.md native kit quick reference'
+  );
+  for (const hook of [
+    '`vc-canvas`',
+    '`vc-section`',
+    '`vc-cluster`',
+    '`vc-split`',
+    '`vc-rail`',
+    '`vc-stage`',
+    '`vc-callout`',
+    '`vc-legend`',
+    '`vc-choice`'
+  ]) {
+    assertIncludes(quickReference, hook, `visual-companion.md native hook ${hook}`);
+  }
+
+  const registerSelection = getBetween(
+    guide,
+    '## Viewing task to register',
+    '## Three-register output contract',
+    'visual-companion.md viewing-task register selection'
+  );
+  assertIncludes(registerSelection, '**Diagram**', 'diagram viewing-task selection');
+  assertIncludes(registerSelection, '**Product mockup**', 'product-mockup viewing-task selection');
+  assertIncludes(registerSelection, '**Editorial / synthesis**', 'editorial viewing-task selection');
+
+  const outputContract = getBetween(
+    guide,
+    '## Three-register output contract',
+    '## Responsive and accessibility checks',
+    'visual-companion.md three-register output contract'
+  );
+  assertOrdered(
+    outputContract,
+    [
+      '### Diagram register recipe',
+      '### Product mockup register recipe',
+      '### Editorial / synthesis register recipe'
+    ],
+    'visual-companion.md register recipe order'
+  );
+  for (const register of ['diagram', 'product-mockup', 'editorial']) {
+    assertIncludes(
+      outputContract,
+      `data-vc-register="${register}"`,
+      `visual-companion.md ${register} register root`
+    );
+  }
+  assertIncludes(outputContract, '`data-choice`', 'register interaction boundary');
+  assertIncludes(outputContract, 'honest fidelity', 'register fidelity slot');
+
+  const checks = getBetween(
+    guide,
+    '## Responsive and accessibility checks',
+    '## Visual anti-patterns',
+    'visual-companion.md responsive and accessibility checks'
+  );
+  assertIncludes(checks, 'DOM and reading order', 'narrow reading-order guidance');
+  assertIncludes(checks, '390px', 'narrow viewport check');
+  assertIncludes(checks, '44', 'minimum target check');
+  assertIncludes(checks, 'focus-visible', 'focus visibility check');
+
+  const antiPatterns = getBetween(
+    guide,
+    '## Visual anti-patterns',
+    '## Optional Impeccable quality layer',
+    'visual-companion.md visual anti-patterns'
+  );
+  for (const antiPattern of [
+    'generic card',
+    'gradient',
+    'decorative grid',
+    'oversized whitespace'
+  ]) {
+    assertIncludes(antiPatterns.toLowerCase(), antiPattern, `visual anti-pattern ${antiPattern}`);
+  }
+
+  const impeccable = getBetween(
+    guide,
+    '## Optional Impeccable quality layer',
+    '## Frontend-design alignment',
+    'visual-companion.md optional Impeccable layer'
+  );
+  assertIncludes(impeccable, 'optional', 'optional Impeccable language');
+  assertIncludes(impeccable, 'not required', 'Impeccable not-required boundary');
+  assertIncludes(impeccable, 'native HTML/CSS', 'native artifact output boundary');
+}
+
+function assertProductMockupExperienceExemplarRegistration() {
+  const contractSection = getBetween(
+    guide,
+    '## Useful-artifact authoring contract',
+    '## Frontend-design alignment',
+    'visual-companion.md useful-artifact exemplar registration'
+  );
+  assertIncludes(contractSection, 'retry-policy-review.html', 'retry-policy exemplar link');
+  assertIncludes(contractSection, '`experience` exemplar', 'retry-policy experience registration');
+  assertIncludes(
+    contractSection,
+    'not a new workflow archetype',
+    'retry-policy existing-workflow boundary'
+  );
+}
+
+function assertImpeccableInitializationReference() {
+  assertIncludes(
+    impeccableBrownfield,
+    '## `/impeccable init`',
+    'Impeccable initialization heading'
+  );
+  assert(
+    !impeccableBrownfield.includes('/impeccable teach'),
+    'Expected stale /impeccable teach initialization command to be removed'
+  );
+}
+
+function assertOperationalParity() {
+  for (const phrase of [
+    'complete** URL',
+    '`--open`',
+    'same `--project-dir`',
+    'reconnects on its own',
+    '--host 0.0.0.0',
+    '`--url-host`',
+    'scripts/stop-server.sh $SESSION_DIR'
+  ]) {
+    assertIncludes(guide, phrase, `visual-companion.md operational guidance (${phrase})`);
+  }
+
+  for (const platform of ['**Claude Code:**', '**Codex:**', '**Gemini CLI:**', '**Copilot CLI:**']) {
+    assertIncludes(guide, platform, `visual-companion.md platform lifecycle (${platform})`);
+  }
+}
+
+function assertCurrentBrowserRouting() {
+  for (const [name, doc] of [
+    ['visual-companion.md', guide],
+    ['webapp-testing/SKILL.md', webappTesting],
+    ['browser-surface-selection.md', browserSurfaceSelection],
+    ['use-cases-prompts-and-flows.md', useCases]
+  ]) {
+    assertIncludes(doc, 'browser:control-in-app-browser', `${name} Codex App capability`);
+    assert(!doc.includes('browser-use:browser'), `Expected ${name} not to require browser-use:browser`);
+  }
+
+  assertIncludes(guide, 'installed capability discovery', 'visual-companion.md capability discovery fallback');
+  assertIncludes(guide, '`playwright-cli`', 'visual-companion.md playwright fallback');
+
+  const discoveryFallbackSections = [
+    [
+      'webapp-testing/SKILL.md overview',
+      getBetween(
+        webappTesting.toLowerCase(),
+        'browser surface selection:',
+        'core workflow:',
+        'webapp-testing/SKILL.md overview browser routing'
+      )
+    ],
+    [
+      'webapp-testing/SKILL.md browser selection',
+      getBetween(
+        webappTesting.toLowerCase(),
+        '## browser selection',
+        '## setup',
+        'webapp-testing/SKILL.md browser selection'
+      )
+    ],
+    [
+      'use-cases-prompts-and-flows.md shared rules',
+      getBetween(
+        useCases.toLowerCase(),
+        '## shared rules',
+        '## 1. brownfield',
+        'use-cases-prompts-and-flows.md shared rules'
+      )
+    ]
+  ];
+
+  for (const [name, section] of discoveryFallbackSections) {
+    assertOrdered(
+      section,
+      [
+        'browser:control-in-app-browser',
+        'discover installed browser capabilities',
+        'playwright-cli'
+      ],
+      `${name} discovery-before-playwright fallback`
+    );
+  }
+}
+
+function assertArchitectureDataFlowExample() {
+  const examplePath = path.join(examplesDir, 'architecture-data-flow.html');
+  assert(fs.existsSync(examplePath), `Expected architecture example to exist: ${examplePath}`);
+
+  const example = fs.readFileSync(examplePath, 'utf-8');
+  assertIncludes(example, '<svg', 'architecture-data-flow.html SVG diagram');
+  assertIncludes(example, 'Viewing task', 'architecture-data-flow.html viewing task');
+  assertIncludes(example, 'Browser', 'architecture-data-flow.html browser node');
+  assertIncludes(example, 'Database', 'architecture-data-flow.html database node');
+  assertIncludes(example, 'Dead-letter', 'architecture-data-flow.html dead-letter node');
+  assertIncludes(example, 'background: var(--vc-surface);', 'architecture-data-flow.html node background token');
+  assertIncludes(example, 'border: 1px solid var(--vc-boundary);', 'architecture-data-flow.html node border token');
+  assertIncludes(example, 'color: var(--vc-ink);', 'architecture-data-flow.html foreground token');
+  assert(!example.includes('var(--bg,'), 'Expected architecture example not to depend on an undefined --bg token');
+  assert(!example.includes('data-choice'), 'Expected architecture example to omit data-choice');
+  assert(!example.includes('toggleSelect(this)'), 'Expected architecture example to be non-interactive');
+  const metadata = [...example.matchAll(/\b(data-[\w-]+)/g)].map((match) => match[1]);
+  assert.deepStrictEqual(
+    metadata,
+    ['data-vc-register'],
+    'Expected architecture example to use only its approved presentation register metadata'
+  );
+}
+
+function assertResponsiveDiagramExemplarContract() {
+  const examplePath = path.join(examplesDir, 'architecture-data-flow.html');
+  const example = fs.readFileSync(examplePath, 'utf-8');
+
+  assertIncludes(example, 'class="vc-canvas" data-vc-register="diagram"', 'diagram register root');
+  assertIncludes(example, 'class="vc-stage"', 'diagram stage hook');
+  assertIncludes(example, 'vc-legend', 'diagram legend hook');
+  assertIncludes(example, '<figure', 'diagram figure');
+  assertIncludes(example, 'Payment request flow with retry, dead-letter, and trust boundary', 'diagram accessible title');
+  assertIncludes(example, 'payment request', 'diagram accessible payment request description');
+  assertIncludes(example, 'retry and dead-letter branch', 'diagram accessible branch description');
+  assertIncludes(example, 'trust boundary', 'diagram accessible trust-boundary description');
+
+  const nodeMarkup = example.slice(example.indexOf('<div class="vc-flow-grid">'));
+  assertOrdered(
+    nodeMarkup,
+    ['Browser', 'API', 'Queue', 'Worker', 'Retry', 'Dead-letter', 'Database'],
+    'diagram DOM and reading order'
+  );
+  assertIncludes(example, 'class="vc-flow-primary"', 'diagram primary connector encoding');
+  assertIncludes(example, 'class="vc-flow-branch"', 'diagram branch connector encoding');
+  assertIncludes(example, 'marker-end="url(#payment-flow-arrow)"', 'diagram arrowhead encoding');
+  assertIncludes(example, 'stroke-dasharray: 8 6;', 'diagram retry/error dash encoding');
+  assertIncludes(example, 'stroke-width: 3;', 'diagram 3px trust-boundary rule');
+  assertIncludes(example, 'Trust boundary', 'diagram visible trust-boundary label');
+  assertIncludes(example, 'var(--vc-info)', 'diagram information semantic');
+  assertIncludes(example, 'var(--vc-caution)', 'diagram caution semantic');
+  assertIncludes(example, 'var(--vc-danger)', 'diagram danger semantic');
+  assertIncludes(example, 'font-size: 14px;', 'diagram minimum node label size');
+  assertIncludes(example, 'font-size: 13px;', 'diagram minimum annotation size');
+  assertIncludes(example, '@media (max-width: 699px)', 'diagram narrow breakpoint');
+  assertIncludes(example, 'grid-template-columns: 1fr;', 'diagram narrow top-to-bottom recomposition');
+  assert(!example.includes('<footer'), 'Expected noninteractive diagram to omit a footer');
+  assert(!example.includes('data-choice'), 'Expected noninteractive diagram to omit data-choice');
+  assert(!/<(?:link|script)\b[^>]+(?:https?:)?\/\//i.test(example), 'Expected diagram to omit inline external resources');
+  assert(!/<(?:html|head|body)\b/i.test(example), 'Expected diagram to remain a fragment, not a full document');
+}
+
+function assertRetryPolicyProductMockupContract() {
+  assert(fs.existsSync(retryPolicyExamplePath), `Expected retry-policy exemplar to exist: ${retryPolicyExamplePath}`);
+  const example = fs.readFileSync(retryPolicyExamplePath, 'utf-8');
+
+  assertIncludes(example, 'Simulated product surface', 'retry-policy fidelity disclosure');
+  assertIncludes(example, 'Simulated evidence data', 'retry-policy simulated data disclosure');
+  assertIncludes(example, 'role="status" aria-live="polite"', 'retry-policy ready status');
+  assertIncludes(example, 'aria-label="Evidence table"', 'retry-policy scrollable evidence region label');
+  assertIncludes(example, 'overflow-x: auto;', 'retry-policy narrow evidence scrolling');
+  assertIncludes(example, 'font-variant-numeric: tabular-nums;', 'retry-policy tabular data treatment');
+  assertIncludes(example, 'grid-template-columns: 208px minmax(0, 1fr) minmax(288px, 320px);', 'retry-policy desktop rail composition');
+  assertIncludes(example, '@media (max-width: 819px)', 'retry-policy narrow breakpoint');
+  assertIncludes(example, 'grid-template-areas:\n          "title"\n          "proposed"\n          "guardrails"\n          "evidence"\n          "actions";', 'retry-policy narrow reading order');
+
+  const content = example.slice(example.indexOf('<div class="vc-product-body">'));
+  assertOrdered(
+    content,
+    ['Review retry policy change', 'Proposed change', 'Guardrails', 'Evidence', 'Approve change', 'Reject change'],
+    'retry-policy narrow DOM and reading order'
+  );
+
+  const choices = [...example.matchAll(/<div class="option vc-choice[^>]*data-choice="([^"]+)"[^>]*onclick="toggleSelect\(this\)"/g)];
+  assert.deepStrictEqual(
+    choices.map((match) => match[1]),
+    ['approve-retry-policy', 'reject-retry-policy'],
+    'Expected exactly the two real retry-policy choices'
+  );
+  assertIncludes(example, 'vc-choice--reject', 'retry-policy reject danger treatment class');
+  assertIncludes(example, '<span class="vc-reject-word">Reject</span>', 'retry-policy reject word marker');
+  assertIncludes(example, '<h3>Approve change</h3>', 'retry-policy approve selection label');
+  assertIncludes(example, '<h3><span class="vc-reject-word">Reject</span> change</h3>', 'retry-policy reject selection label');
+  assert(!example.includes('WebSocket'), 'Retry-policy product surface must not invent a local connection error');
+  assert(!/<(?:html|head|body|footer)\b/i.test(example), 'Retry-policy review must remain a fragment without a local footer');
+  assert(!/<(?:link|script)\b[^>]+(?:https?:)?\/\//i.test(example), 'Retry-policy review must omit inline external resources');
+}
+
+function assertEditorialCarryForwardExemplarContract() {
+  assert(fs.existsSync(carryForwardExamplePath), `Expected carry-forward exemplar to exist: ${carryForwardExamplePath}`);
+  const example = fs.readFileSync(carryForwardExamplePath, 'utf-8');
+
+  assertIncludes(example, 'Read-only decision memo', 'carry-forward editorial register');
+  assertIncludes(example, 'Chosen direction: drawer-based export flow', 'carry-forward settled decision');
+  assert(
+    example.indexOf('Chosen direction: drawer-based export flow') < example.indexOf('Evidence'),
+    'Expected carry-forward conclusion before its evidence sequence'
+  );
+  assertIncludes(example, '<ol class="vc-carry-evidence', 'carry-forward numbered evidence sequence');
+  assertIncludes(example, 'Open ?', 'carry-forward word and marker for open questions');
+  assertIncludes(example, 'Deferred →', 'carry-forward word and marker for deferred assumptions');
+  assertIncludes(example, 'Design context was unavailable', 'carry-forward degraded-fidelity disclosure');
+  assertIncludes(example, 'grid-template-columns: minmax(0, 1fr) minmax(224px, 256px);', 'carry-forward desktop rail width');
+  assertIncludes(example, 'max-width: 72ch;', 'carry-forward desktop reading measure');
+  assertIncludes(example, '@media (max-width: 759px)', 'carry-forward narrow breakpoint');
+  assertIncludes(example, 'grid-template-areas:\n          "conclusion"\n          "evidence"\n          "open"\n          "deferred";', 'carry-forward narrow reading order');
+  assert.strictEqual((example.match(/vc-callout/g) || []).length, 1, 'Expected one bounded callout class occurrence');
+  assert(!example.includes('data-choice'), 'Expected carry-forward memo to omit data-choice');
+  assert(!example.includes('toggleSelect(this)'), 'Expected carry-forward memo to omit selection behavior');
+  assert(!/<(?:html|head|body|footer)\b/i.test(example), 'Expected carry-forward memo to remain a footer-free fragment');
+}
+
 function assertCompatibilityBoundary() {
   assertIncludes(
     guide,
@@ -262,8 +614,13 @@ function assertCompatibilityBoundary() {
   );
   assertIncludes(
     guide,
-    'Do not introduce new required metadata keys beyond `data-choice` in v1.',
+    'Do not introduce new required interaction metadata keys beyond `data-choice` in v1.',
     'visual-companion.md metadata boundary'
+  );
+  assertIncludes(
+    guide,
+    '`data-vc-register` is an optional presentation hook for native-kit CSS, not runtime interaction metadata',
+    'visual-companion.md presentation metadata clarification'
   );
 
   assertIncludes(
@@ -278,6 +635,18 @@ function assertCompatibilityBoundary() {
   );
 }
 
+function assertFrontendDirectionDurabilityBoundary() {
+  assertIncludes(
+    useCases,
+    'HTML companion artifacts are temporary useful-artifact surfaces, not durable frontend-direction evidence.',
+    'use-cases-prompts-and-flows.md useful-artifact durability boundary'
+  );
+  assert(
+    !useCases.includes('HTML companion artifacts are comparison aids only.'),
+    'Expected frontend-direction guidance not to restrict companion artifacts to comparisons'
+  );
+}
+
 function assertExampleKitPresence() {
   for (const fileName of expectedExampleFiles) {
     const filePath = path.join(examplesDir, fileName);
@@ -285,8 +654,10 @@ function assertExampleKitPresence() {
 
     const content = fs.readFileSync(filePath, 'utf-8');
     assert(content.trim().length > 0, `Expected example file to be non-empty: ${filePath}`);
-    assertIncludes(content, 'data-choice', `${fileName} interaction metadata`);
-    assertIncludes(content, 'toggleSelect(this)', `${fileName} selection behavior`);
+    if (!['architecture-data-flow.html', 'carry-forward-summary.html'].includes(fileName)) {
+      assertIncludes(content, 'data-choice', `${fileName} interaction metadata`);
+      assertIncludes(content, 'toggleSelect(this)', `${fileName} selection behavior`);
+    }
   }
 
   const links = [...guide.matchAll(/\(examples\/visual-companion\/([a-z-]+\.html)\)/g)].map(
@@ -298,6 +669,23 @@ function assertExampleKitPresence() {
     expectedExampleFiles,
     `Expected guide example links in order: ${expectedExampleFiles.join(', ')}`
   );
+}
+
+function assertChoiceAccessibilityGuidanceAndThemeSafety() {
+  assertIncludes(
+    guide,
+    'The helper progressively adds keyboard focus, button semantics, Enter/Space activation, and synchronized `aria-pressed` state',
+    'visual-companion.md progressive choice accessibility guidance'
+  );
+
+  for (const fileName of expectedExampleFiles) {
+    const content = fs.readFileSync(path.join(examplesDir, fileName), 'utf-8');
+    if (!content.includes('data-choice')) continue;
+    assert(
+      !/color\s*:\s*#[0-9a-f]{3,8}/i.test(content),
+      `Expected ${fileName} selectable example foregrounds to use shared theme tokens`
+    );
+  }
 }
 
 function assertActiveExampleRefreshBoundary() {
@@ -462,13 +850,24 @@ function assertM003QuestionToolContinuityAndDegradedFallback() {
 }
 
 function run() {
-  assertArchetypeLabels();
+  assertUsefulArtifactContract();
+  assertThreeRegisterAuthoringContract();
+  assertProductMockupExperienceExemplarRegistration();
+  assertImpeccableInitializationReference();
   assertRoutingRule();
   assertGenuinelyVisualRoutingBoundary();
   assertWorkflowAndDegradedMode();
   assertPreDisplayQualityGate();
+  assertOperationalParity();
+  assertCurrentBrowserRouting();
+  assertArchitectureDataFlowExample();
+  assertResponsiveDiagramExemplarContract();
+  assertRetryPolicyProductMockupContract();
+  assertEditorialCarryForwardExemplarContract();
   assertCompatibilityBoundary();
+  assertFrontendDirectionDurabilityBoundary();
   assertExampleKitPresence();
+  assertChoiceAccessibilityGuidanceAndThemeSafety();
   assertActiveExampleRefreshBoundary();
   assertCarryForwardGuidance();
   assertM003PressureScenarioArtifact();
@@ -476,13 +875,13 @@ function run() {
   assertM003ArtifactFirstSequencing();
   assertM003QuestionToolContinuityAndDegradedFallback();
 
-  console.log('PASS: visual companion contract + archetype kit assertions passed');
+  console.log('PASS: visual companion useful-artifact contract assertions passed');
 }
 
 try {
   run();
 } catch (error) {
-  console.error('FAIL: visual companion contract + archetype kit assertions failed');
+  console.error('FAIL: visual companion useful-artifact contract assertions failed');
   console.error(error.message);
   process.exit(1);
 }

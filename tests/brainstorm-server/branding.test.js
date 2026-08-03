@@ -220,12 +220,12 @@ function assertFramedScreenUsesBrandHeader(html) {
     'header should contain branding and connection status'
   );
   assert(
-    /<div class="indicator-bar">[\s\S]*id="indicator-text"/.test(html),
-    'custom framed screens should retain the selection-clarity status surface'
+    /<div class="indicator-bar" hidden aria-hidden="true">[\s\S]*id="indicator-text"/.test(html),
+    'custom framed screens should start with a footer excluded from layout and accessibility trees'
   );
   assert(
-    html.includes('Click an option above'),
-    'selection-clarity status should retain its default instruction'
+    html.includes('Choose an option in this artifact, then return to the conversation.'),
+    'selection-clarity status should expose the approved empty-selection instruction'
   );
 }
 
@@ -268,7 +268,7 @@ async function main() {
     const dir = '/tmp/brainstorm-branding-waiting';
     await withServer({ port, dir }, async () => {
       const html = await fetchHtml(port);
-      assert(html.includes('Waiting for the agent'), 'waiting page should still render');
+      assert(html.includes('Waiting for the next visual artifact…'), 'waiting page should still render');
       assertBrandedWithLogo(html);
       assertTelemetryImage(html);
       assertLogoKeepsTransparentBackground(html);

@@ -1,51 +1,90 @@
-<h2>Decision checkpoint: export flow</h2>
-<p class="subtitle">Use this terminal-only follow-up when the next screen must stay explicit about what is settled, what remains unresolved, and whether richer design context was unavailable.</p>
+<section class="vc-canvas" data-vc-register="editorial" aria-labelledby="carry-forward-heading">
+  <style>
+    .vc-carry-layout {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: minmax(0, 1fr) minmax(224px, 256px);
+      grid-template-areas:
+        "conclusion deferred"
+        "evidence deferred"
+        "open deferred";
+    }
+    .vc-carry-copy { max-width: 72ch; }
+    .vc-carry-conclusion {
+      background: var(--vc-surface);
+      border-top: 3px solid var(--vc-ink);
+      grid-area: conclusion;
+      margin-top: 0;
+    }
+    .vc-carry-conclusion h2,
+    .vc-carry-conclusion p,
+    .vc-carry-evidence,
+    .vc-carry-open p,
+    .vc-carry-open li,
+    .vc-carry-rail p { margin: 0; }
+    .vc-carry-rationale { margin-top: 12px !important; }
+    .vc-carry-evidence { grid-area: evidence; padding-left: 1.5rem; }
+    .vc-carry-evidence li { border-top: 1px solid var(--vc-boundary); padding: 12px 0; }
+    .vc-carry-evidence li:last-child { border-bottom: 1px solid var(--vc-boundary); }
+    .vc-carry-open { grid-area: open; }
+    .vc-carry-open ul { margin: 12px 0 0; padding-left: 1.25rem; }
+    .vc-carry-open li + li { margin-top: 8px; }
+    .vc-carry-rail {
+      align-self: start;
+      grid-area: deferred;
+      min-width: 224px;
+      max-width: 256px;
+    }
+    .vc-carry-fidelity { margin-top: 24px; }
+    @media (max-width: 759px) {
+      .vc-carry-layout {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+          "conclusion"
+          "evidence"
+          "open"
+          "deferred";
+      }
+      .vc-carry-rail { max-width: none; min-width: 0; }
+    }
+  </style>
 
-<div class="section">
-  <div class="label">Degraded mode</div>
-  <p class="subtitle">Design context was unavailable for this checkpoint, so the carry-forward stays structural and low-assumption instead of pretending a product-specific visual system was known.</p>
-</div>
+  <p class="vc-label">Read-only decision memo</p>
+  <div class="vc-split vc-carry-layout">
+    <section class="vc-section vc-carry-conclusion" aria-labelledby="carry-forward-heading">
+      <p class="vc-label">Chosen direction</p>
+      <h2 class="vc-heading" id="carry-forward-heading">Chosen direction: drawer-based export flow</h2>
+      <p class="vc-body vc-carry-copy vc-carry-rationale">Keep users on the report page and open a right-side drawer for format, scope, and destination, because the export choices stay explicit without sending people away from their report.</p>
+    </section>
 
-<div class="section">
-  <div class="label">Chosen direction</div>
-  <p class="subtitle">This part is settled and safe to carry forward even if no browser click happened before this screen was authored.</p>
-  <div class="options">
-    <div class="option selected" data-choice="drawer-based-export" onclick="toggleSelect(this)">
-      <div class="letter">✓</div>
-      <div class="content">
-        <h3>Chosen direction: drawer-based export flow</h3>
-        <p>Keep users on the report page and open a right-side drawer for format, scope, and destination.</p>
+    <section class="vc-section" aria-labelledby="carry-evidence-heading">
+      <p class="vc-label" id="carry-evidence-heading">Evidence</p>
+      <ol class="vc-carry-evidence vc-body vc-carry-copy">
+        <li>Keeping the report visible preserves the user’s place while they set format, scope, and destination.</li>
+        <li>A right-side drawer makes the export choices explicit in one bounded flow instead of distributing them across a new screen.</li>
+        <li>The settled direction is authored here and remains valid even if no browser click happened before this memo was created.</li>
+      </ol>
+    </section>
+
+    <section class="vc-section vc-carry-open" aria-labelledby="carry-open-heading">
+      <p class="vc-label" id="carry-open-heading">Open ?</p>
+      <p class="vc-body vc-carry-copy">These items remain unresolved and should not be treated as finalized decisions.</p>
+      <ul class="vc-body vc-carry-copy">
+        <li><strong>Still open: permission fallback copy.</strong> Choose final wording for users without export permissions.</li>
+        <li><strong>Still open: default file format.</strong> Decide whether CSV or XLSX is preselected for first-time exports.</li>
+        <li><strong>Still open: post-export completion signal.</strong> Confirm toast-only feedback versus toast + activity log entry.</li>
+      </ul>
+    </section>
+
+    <aside class="vc-rail vc-carry-rail" aria-labelledby="carry-deferred-heading">
+      <section class="vc-section" aria-labelledby="carry-deferred-heading">
+        <p class="vc-label" id="carry-deferred-heading">Deferred →</p>
+        <p class="vc-annotation">Assumption: design-system details remain deferred until product-specific context is available.</p>
+      </section>
+      <div class="vc-callout vc-carry-fidelity" role="note">
+        <p class="vc-label">Degraded mode</p>
+        <p class="vc-annotation">Design context was unavailable for this terminal-only follow-up, so this memo stays structural and low-assumption rather than pretending a product-specific visual system was known.</p>
       </div>
-    </div>
+    </aside>
   </div>
-</div>
-
-<div class="section">
-  <div class="label">Still open</div>
-  <p class="subtitle">These items remain unresolved and should not be treated as finalized decisions.</p>
-  <div class="options" data-multiselect>
-    <div class="option" data-choice="permission-error-copy" onclick="toggleSelect(this)">
-      <div class="letter">1</div>
-      <div class="content">
-        <h3>Still open: permission fallback copy</h3>
-        <p>Choose final wording for users without export permissions.</p>
-      </div>
-    </div>
-
-    <div class="option" data-choice="default-format" onclick="toggleSelect(this)">
-      <div class="letter">2</div>
-      <div class="content">
-        <h3>Still open: default file format</h3>
-        <p>Decide whether CSV or XLSX is preselected for first-time exports.</p>
-      </div>
-    </div>
-
-    <div class="option" data-choice="post-export-notification" onclick="toggleSelect(this)">
-      <div class="letter">3</div>
-      <div class="content">
-        <h3>Still open: post-export completion signal</h3>
-        <p>Confirm toast-only feedback versus toast + activity log entry.</p>
-      </div>
-    </div>
-  </div>
-</div>
+</section>

@@ -2,7 +2,8 @@
   const MIN_RECONNECT_MS = 500;
   const MAX_RECONNECT_MS = 30000;
   const TOMBSTONE_AFTER_MS = 15000; // show the "paused" overlay after this long disconnected
-  const DEFAULT_INDICATOR_TEXT = 'Click an option above to confirm the current selection, then return to the terminal';
+  const DEFAULT_INDICATOR_TEXT = 'Choose an option in this artifact, then return to the conversation.';
+  const RECOVERY_INDICATOR_TEXT = 'Connection lost. Reconnect before choosing an option.';
 
   // Pure: next backoff delay (doubles, capped). Exported for unit tests.
   function nextReconnectDelay(current, max) {
@@ -22,6 +23,8 @@
   let disconnectedSince = null;
   let everConnected = false;
   let tombstoneShown = false;
+  let connectionState = 'connecting';
+  let choicesAvailable = false;
 
   function sessionKey() {
     try {
@@ -44,21 +47,40 @@
     }
   }
 
+  function choiceElements() {
+    return typeof document.querySelectorAll === 'function'
+      ? Array.from(document.querySelectorAll('[data-choice]'))
+      : [];
+  }
+
+  function setChoicesAvailable(available) {
+    choicesAvailable = available;
+    choiceElements().forEach((choice) => {
+      if (typeof choice.setAttribute === 'function') {
+        choice.setAttribute('aria-disabled', available ? 'false' : 'true');
+      }
+    });
+  }
+
   // Reflect connection state in the frame's status pill (absent on full-doc screens).
   function setStatus(state) {
-    const el = typeof document.querySelector === 'function'
-      ? document.querySelector('.status')
-      : null;
-    if (!el) return;
     const map = {
       connecting:   ['Connecting…',   'var(--text-tertiary)'],
       connected:    ['Connected',     'var(--success)'],
       reconnecting: ['Reconnecting…', 'var(--warning)'],
       disconnected: ['Disconnected',  'var(--error)']
     };
-    const [text, color] = map[state] || map.disconnected;
-    el.textContent = text;
-    el.style.setProperty('--status-color', color);
+    connectionState = map[state] ? state : 'disconnected';
+    const [text, color] = map[connectionState];
+    const el = typeof document.querySelector === 'function'
+      ? document.querySelector('.status')
+      : null;
+    if (el) {
+      el.textContent = text;
+      el.style.setProperty('--status-color', color);
+    }
+    setChoicesAvailable(connectionState === 'connected');
+    syncIndicatorFromDocument();
   }
 
   // Self-styled so it works on framed and full-document screens alike.
@@ -148,11 +170,53 @@
       || 'Current selection';
   }
 
-  function syncIndicator(container) {
-    const indicator = document.getElementById('indicator-text');
-    if (!indicator) return;
+  function syncChoiceState(choice) {
+    choice.setAttribute('aria-pressed', choice.classList.contains('selected') ? 'true' : 'false');
+  }
 
-    const selected = container ? Array.from(container.querySelectorAll('.selected')) : [];
+  function syncChoiceStates(container) {
+    if (!container || typeof container.querySelectorAll !== 'function') return;
+    Array.from(container.querySelectorAll('[data-choice]')).forEach(syncChoiceState);
+  }
+
+  function hydrateChoices() {
+    if (typeof document.querySelectorAll !== 'function') return;
+    choiceElements().forEach((choice) => {
+      if (!choice.hasAttribute('role')) choice.setAttribute('role', 'button');
+      if (!choice.hasAttribute('tabindex')) choice.setAttribute('tabindex', '0');
+      syncChoiceState(choice);
+      choice.setAttribute('aria-disabled', choicesAvailable ? 'false' : 'true');
+    });
+  }
+
+  function setFooterVisible(footer, visible) {
+    if (!footer) return;
+    footer.hidden = !visible;
+    if (typeof footer.setAttribute === 'function') {
+      footer.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    }
+  }
+
+  function syncIndicator(container, selectedChoices) {
+    const indicator = typeof document.getElementById === 'function'
+      ? document.getElementById('indicator-text')
+      : null;
+    if (!indicator) return;
+    const footer = typeof indicator.closest === 'function'
+      ? indicator.closest('.indicator-bar')
+      : null;
+    if (choiceElements().length === 0) {
+      setFooterVisible(footer, false);
+      return;
+    }
+    setFooterVisible(footer, true);
+
+    if (connectionState === 'disconnected' || connectionState === 'reconnecting') {
+      indicator.textContent = RECOVERY_INDICATOR_TEXT;
+      return;
+    }
+
+    const selected = selectedChoices || (container ? Array.from(container.querySelectorAll('.selected')) : []);
     const multi = container && container.dataset.multiselect !== undefined;
 
     if (selected.length === 0) {
@@ -161,12 +225,11 @@
     }
 
     if (multi || selected.length > 1) {
-      const noun = selected.length === 1 ? 'item' : 'items';
-      indicator.innerHTML = '<span class="selected-text">' + selected.length + ' ' + noun + ' selected</span> in this group — return to the terminal to continue';
+      indicator.innerHTML = '<span class="selected-text">' + selected.length + ' options selected.</span> Return to the conversation to continue.';
       return;
     }
 
-    indicator.innerHTML = '<span class="selected-text">Selected:</span> ' + escapeHtml(getSelectedLabel(selected[0])) + ' — return to the terminal to continue';
+    indicator.innerHTML = '<span class="selected-text">Selected:</span> ' + escapeHtml(getSelectedLabel(selected[0])) + '. Return to the conversation to continue.';
   }
 
   function syncIndicatorFromDocument() {
@@ -179,13 +242,18 @@
       if (container && !containers.includes(container)) containers.push(container);
     });
 
-    syncIndicator(containers.length === 1 ? containers[0] : null);
+    syncIndicator(
+      containers.length === 1 ? containers[0] : null,
+      containers.length > 1 ? selected : undefined
+    );
   }
 
   // Capture clicks on choice elements
   document.addEventListener('click', (e) => {
-    const target = e.target.closest('[data-choice]');
-    if (!target) return;
+    const target = e.target && typeof e.target.closest === 'function'
+      ? e.target.closest('[data-choice]')
+      : null;
+    if (!target || !choicesAvailable) return;
 
     sendEvent({
       type: 'click',
@@ -195,15 +263,31 @@
     });
 
     setTimeout(() => {
-      syncIndicator(getChoiceContainer(target));
+      const container = getChoiceContainer(target);
+      syncChoiceStates(container);
+      syncChoiceState(target);
+      syncIndicator(container);
     }, 0);
 
+  });
+
+  // Progressively activate authored choices without requiring extra metadata.
+  document.addEventListener('keydown', (e) => {
+    const target = e.target && typeof e.target.closest === 'function'
+      ? e.target.closest('[data-choice]')
+      : null;
+    if (!target || !choicesAvailable || (e.key !== 'Enter' && e.key !== ' ')) return;
+    if (e.repeat) return;
+    if (String(target.tagName).toLowerCase() === 'button') return;
+    if (e.key === ' ') e.preventDefault();
+    target.click();
   });
 
   // Frame UI: selection tracking
   window.selectedChoice = null;
 
   window.toggleSelect = function(el) {
+    if (!choicesAvailable) return;
     const container = getChoiceContainer(el);
     const multi = container && container.dataset.multiselect !== undefined;
     if (container && !multi) {
@@ -215,6 +299,8 @@
       el.classList.add('selected');
     }
     window.selectedChoice = el.dataset.choice;
+    syncChoiceStates(container);
+    syncChoiceState(el);
   };
 
   // Expose API for explicit use
@@ -223,6 +309,7 @@
     choice: (value, metadata = {}) => sendEvent({ type: 'choice', choice: value, value, ...metadata })
   };
 
+  hydrateChoices();
   syncIndicatorFromDocument();
   connect();
 })();
