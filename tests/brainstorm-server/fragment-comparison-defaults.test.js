@@ -31,9 +31,10 @@ const RECOMMENDATION_SELECTOR_PROOFS = [
   ['.subtitle {', 'recommendation subtitle scan selector']
 ];
 
-const CARRY_FORWARD_SELECTOR_PROOFS = [
-  ['.options[data-multiselect] {', 'carry-forward multiselect container selector'],
-  ['.options[data-multiselect] .option.selected {', 'carry-forward selected-item emphasis selector']
+const CARRY_FORWARD_EDITORIAL_PROOFS = [
+  ['.vc-carry-layout {', 'carry-forward editorial layout selector'],
+  ['grid-template-columns: minmax(0, 1fr) minmax(224px, 256px);', 'carry-forward desktop rail width'],
+  ['@media (max-width: 759px)', 'carry-forward narrow ordered-flow breakpoint']
 ];
 
 const ACCESSIBLE_THEME_PROOFS = [
@@ -184,10 +185,15 @@ async function run() {
       'Carry-forward fragment must keep the fragment comparison shell hook'
     );
     assert(
-      carryForwardRes.body.includes('Decision checkpoint: export flow'),
+      carryForwardRes.body.includes('Read-only decision memo') &&
+        carryForwardRes.body.includes('Chosen direction: drawer-based export flow'),
       'Wrapped carry-forward response should include representative carry-forward fragment content'
     );
-    assertSelectorProofs(carryForwardRes.body, CARRY_FORWARD_SELECTOR_PROOFS, 'carry-forward defaults');
+    assertSelectorProofs(carryForwardRes.body, CARRY_FORWARD_EDITORIAL_PROOFS, 'carry-forward editorial defaults');
+    assert(
+      !fs.readFileSync(CARRY_FORWARD_FIXTURE_PATH, 'utf-8').includes('data-choice'),
+      'Carry-forward source fragment must remain read-only even when its shared wrapper supports choices'
+    );
 
     const architectureRes = await renderFixtureAndFetch(ARCHITECTURE_FIXTURE_PATH);
     assert.strictEqual(architectureRes.status, 200, 'Architecture fixture request should return 200');
@@ -200,17 +206,19 @@ async function run() {
       'Wrapped architecture response should include the non-interactive diagram content'
     );
     assert(
-      architectureRes.body.includes('fill="var(--bg-secondary)" stroke="var(--border)"'),
-      'Architecture nodes must consume the wrapped frame background and border tokens'
+      architectureRes.body.includes('background: var(--vc-surface);') &&
+        architectureRes.body.includes('border: 1px solid var(--vc-boundary);'),
+      'Architecture nodes must consume the approved diagram surface and boundary tokens'
     );
     assert(
-      architectureRes.body.includes('fill="var(--text-primary)"'),
-      'Architecture labels and connectors must consume the wrapped frame foreground token'
+      architectureRes.body.includes('color: var(--vc-ink);') &&
+        architectureRes.body.includes('stroke: var(--vc-ink);'),
+      'Architecture labels and connectors must consume the approved diagram ink token'
     );
     assert(
-      architectureRes.body.includes('--bg-secondary: #2d2d2f;') &&
-        architectureRes.body.includes('--text-primary: #f5f5f7;') &&
-        architectureRes.body.includes('--border: #424245;'),
+      architectureRes.body.includes('--vc-surface: #1D1F1C;') &&
+        architectureRes.body.includes('--vc-ink: #F2F1EC;') &&
+        architectureRes.body.includes('--vc-boundary: #44483F;'),
       'Wrapped architecture response must supply the alternate-scheme values for every diagram token'
     );
 

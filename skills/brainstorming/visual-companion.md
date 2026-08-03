@@ -15,10 +15,85 @@ Choose the smallest useful artifact intent for the current viewing task. These i
    - Show architecture, data flow, state, sequence, dependency, journey, or relationship structure.
 4. **experience**
    - Show a mockup, wireframe, prototype fragment, layout, or interaction-state preview.
+   - [retry-policy product review](examples/visual-companion/retry-policy-review.html) is an `experience` exemplar: it demonstrates a simulated product surface inside the existing useful-artifact flow.
 5. **synthesize**
    - Show a chosen direction, still-open questions, or carry-forward summary.
 
 Comparison patterns remain first-class recommendations: **side-by-side comparison**, **ranked alternatives**, **annotated recommendation**, and **carry-forward summary**. Use them when comparison is the viewing task; do not invent fake alternatives when one direct diagram explains the subject better.
+
+## Native kit quick reference
+
+Use the shared frame's native classes and `--vc-*` tokens before adding subject-specific CSS.
+
+| Hook | Authoring role |
+|---|---|
+| `vc-canvas` | One artifact root; pair new kit artifacts with a presentation register. |
+| `vc-section` | Semantic region separated by rhythm or a rule, not automatically boxed. |
+| `vc-cluster` | Tightly related content or controls. |
+| `vc-split` | Asymmetric main/supporting composition. |
+| `vc-rail` | Context, evidence, status, or metadata beside flexible content. |
+| `vc-stage` | Dominant diagram or product surface. |
+| `vc-callout` | One short, labeled message with semantic emphasis. |
+| `vc-legend` | Compact key next to the encoding it explains. |
+| `vc-choice` | A real elevated choice using the existing selection contract. |
+
+`data-vc-register` is presentation metadata used by native kit CSS; it does not add runtime interaction behavior. `data-choice` remains the only supported interaction metadata.
+
+## Viewing task to register
+
+Select the register from what the user must judge by seeing, not from a universal page template:
+
+- **Diagram** — inspect sequence, topology, dependency, state transition, or trust boundary.
+- **Product mockup** — judge an application state, workflow, control, evidence set, or real product decision.
+- **Editorial / synthesis** — understand or verify a conclusion, evidence chain, open questions, and carry-forward context.
+
+Artifact intent still controls routing. Registers control visual composition inside the existing intent: a product mockup is an `experience` artifact, not a new workflow archetype.
+
+## Three-register output contract
+
+For each authored companion artifact, complete these six authoring slots in order. They are checks, not literal DOM order:
+
+1. Name the viewing task and honest fidelity.
+2. Choose one register root and native composition.
+3. Encode the subject with the register recipe below.
+4. Add interaction only where the task contains a real choice.
+5. Specify narrow recomposition while preserving DOM and reading order.
+6. Deliver the artifact first, explain what it supports, then ask the terminal confirmation with the platform question tool when available.
+
+### Diagram register recipe
+
+Root the fragment at `class="vc-canvas" data-vc-register="diagram"`. Compose one dominant `vc-stage` with a nearby `vc-legend`; use subject-specific nodes, connectors, lanes, branches, numbered steps, and labeled boundaries to expose relationships spatially. At narrow width, recompose the ordered path top-to-bottom instead of shrinking the desktop map. Omit `.options`, `data-choice`, and selection behavior when the map has no real choice.
+
+### Product mockup register recipe
+
+Root the fragment at `class="vc-canvas" data-vc-register="product-mockup"`. Compose a coherent application state with a `vc-stage`, contextual `vc-rail`, and `vc-section` / `vc-cluster` groupings; use `vc-split` or rails for the proposed change, guardrails, and evidence. Only real decisions become `.options` containing `.option.vc-choice` elements with `data-choice` and `toggleSelect(this)`. Label the artifact as a simulated product surface and simulated evidence where applicable. At narrow width, preserve context → title → proposed change → guardrails → evidence → actions; put wide data in a labeled scroll region rather than making the viewport scroll sideways.
+
+### Editorial / synthesis register recipe
+
+Root the fragment at `class="vc-canvas" data-vc-register="editorial"`. Lead with the conclusion, then numbered evidence, open questions, and deferred assumptions. Use a reading column with `vc-section`, `vc-split` / `vc-rail`, no more than one `vc-callout`, and rules and rhythm instead of a card grid. At narrow width, preserve conclusion → evidence → open questions → deferred assumptions in the DOM and reading order. Keep a decision memo read-only unless it presents a real unresolved choice; write settled decisions into visible authored copy.
+
+## Responsive and accessibility checks
+
+Before display, verify the authored fragment at desktop and 390px:
+
+- DOM and reading order preserve the viewing task when columns, rails, or connectors collapse.
+- The viewport does not scroll sideways; a necessary wide data region has an accessible label and local scrolling.
+- Text and diagram labels remain readable without hover or zoom, and meaning is not encoded by color alone.
+- Real controls keep at least a 44 × 44px target, visible `focus-visible` treatment, keyboard activation, and synchronized selected/unavailable state.
+- Non-interactive diagrams have an accessible title/description; legends supplement rather than replace direct labels.
+- Motion is nonessential and respects reduced-motion preferences.
+
+## Visual anti-patterns
+
+Reject a generic card dashboard or one universal composition across registers. Use spatial relationships for diagrams, application structure for product mockups, and reading rhythm for editorial artifacts.
+
+Gradients, decorative grids, glass effects, and oversized whitespace are not information hierarchy. Do not box every content group, tint every node, fabricate choices, or let product mockups resemble explanatory diagrams. Subject-specific information determines the layout.
+
+## Optional Impeccable quality layer
+
+Impeccable is optional advisory authoring support, not required setup or a runtime/test dependency. If it is installed and the artifact warrants review, use a bounded critique, audit, layout/typeset, polish, or detector pass after choosing the viewing task and register. Review findings against project truth, the native contract, and the artifact's viewing task; express accepted changes in native HTML/CSS.
+
+If Impeccable is unavailable, continue with the native kit and examples. Its absence cannot block authoring, serving, testing, or using the Companion.
 
 ## Frontend-design alignment
 
@@ -138,12 +213,13 @@ The current runtime contract is intentionally small:
 - Fragment-first authoring is default.
 - `full-document` screens remain supported for compatibility, but they are not the v1 default surface.
 - `data-choice` is optional per artifact and remains the only supported interaction metadata when selection is useful.
+- `data-vc-register` is an optional presentation hook for native-kit CSS, not runtime interaction metadata; legacy fragments do not require it.
 - Use `toggleSelect(this)` on selectable cards/options so helper state and indicator text stay consistent.
 - The helper progressively adds keyboard focus, button semantics, Enter/Space activation, and synchronized `aria-pressed` state; authored `role` and `tabindex` values remain authoritative.
 - `.options` and `.cards` are recognized selection containers.
 - `data-multiselect` is optional and only for true multi-select behavior.
 
-Do not introduce new required metadata keys beyond `data-choice` in v1.
+Do not introduce new required interaction metadata keys beyond `data-choice` in v1.
 
 ## Example kit
 

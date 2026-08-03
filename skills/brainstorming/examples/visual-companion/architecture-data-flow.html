@@ -1,53 +1,182 @@
-<section class="section">
-  <p class="label">Architecture map</p>
-  <h2>Payment processing: request to durable outcome</h2>
-  <p class="subtitle"><strong>Viewing task:</strong> trace one payment from the browser through retry and dead-letter handling, and inspect where the trust boundary changes.</p>
+<section class="vc-canvas" data-vc-register="diagram" aria-labelledby="payment-flow-heading">
+  <style>
+    .vc-payment-flow {
+      margin: 0;
+    }
+    .vc-payment-flow .vc-stage {
+      overflow: hidden;
+      position: relative;
+    }
+    .vc-flow-grid {
+      display: grid;
+      gap: 28px 16px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      position: relative;
+      z-index: 1;
+    }
+    .vc-flow-node {
+      background: var(--vc-surface);
+      border: 1px solid var(--vc-boundary);
+      border-radius: 8px;
+      min-width: 0;
+      padding: 12px;
+    }
+    .vc-flow-node--api { border-color: var(--vc-info); }
+    .vc-flow-node--retry { border-color: var(--vc-caution); }
+    .vc-flow-node--dead-letter { border-color: var(--vc-danger); }
+    .vc-flow-node strong {
+      color: var(--vc-ink);
+      display: block;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .vc-flow-node span,
+    .vc-flow-relationship,
+    .vc-flow-legend-item {
+      color: var(--vc-muted);
+      display: block;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .vc-flow-node--browser { grid-column: 1; }
+    .vc-flow-node--api { grid-column: 2; }
+    .vc-flow-node--queue { grid-column: 3; }
+    .vc-flow-node--worker { grid-column: 4; }
+    .vc-flow-node--database { grid-column: 5; }
+    .vc-flow-node--retry { grid-column: 3; grid-row: 2; }
+    .vc-flow-node--dead-letter { grid-column: 4 / span 2; grid-row: 2; }
+    .vc-flow-connectors {
+      height: 100%;
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+    }
+    .vc-flow-connectors .vc-flow-primary {
+      fill: none;
+      marker-end: url(#payment-flow-arrow);
+      stroke: var(--vc-ink);
+      stroke-width: 2;
+    }
+    .vc-flow-connectors .vc-flow-branch {
+      fill: none;
+      marker-end: url(#payment-flow-arrow);
+      stroke: var(--vc-caution);
+      stroke-dasharray: 8 6;
+      stroke-width: 1.5;
+    }
+    .vc-flow-connectors .vc-flow-dead-letter {
+      stroke: var(--vc-danger);
+    }
+    .vc-flow-connectors .vc-flow-trust-boundary {
+      stroke: var(--vc-info);
+      stroke-width: 3;
+    }
+    .vc-flow-trust-label {
+      color: var(--vc-info);
+      font-size: 13px;
+      font-weight: 700;
+      left: 20%;
+      line-height: 1.45;
+      position: absolute;
+      top: 12px;
+      transform: translateX(8px);
+      z-index: 2;
+    }
+    .vc-flow-relationship {
+      margin: 12px 0 0;
+    }
+    .vc-flow-trust-boundary--narrow {
+      display: none;
+    }
+    .vc-flow-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 12px;
+    }
+    .vc-flow-legend-item::before {
+      content: "→ ";
+      color: var(--vc-info);
+      font-weight: 700;
+    }
+    .vc-flow-legend-item--retry::before { color: var(--vc-caution); content: "- - "; }
+    .vc-flow-legend-item--dead-letter::before { color: var(--vc-danger); content: "! "; }
+    @media (max-width: 699px) {
+      .vc-flow-grid {
+        gap: 12px;
+        grid-template-columns: 1fr;
+      }
+      .vc-flow-node--browser,
+      .vc-flow-node--api,
+      .vc-flow-node--queue,
+      .vc-flow-node--worker,
+      .vc-flow-node--retry,
+      .vc-flow-node--dead-letter,
+      .vc-flow-node--database {
+        grid-column: 1;
+        grid-row: auto;
+      }
+      .vc-flow-node--retry,
+      .vc-flow-node--dead-letter {
+        margin-inline-start: 24px;
+      }
+      .vc-flow-trust-boundary--narrow {
+        display: block;
+        color: var(--vc-info);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.45;
+        padding-inline-start: 12px;
+      }
+      .vc-flow-connectors,
+      .vc-flow-trust-label {
+        display: none;
+      }
+    }
+  </style>
 
-  <svg viewBox="0 0 960 440" role="img" aria-labelledby="flow-title flow-description" style="width:100%;height:auto;display:block">
-    <title id="flow-title">Payment processing data flow</title>
-    <desc id="flow-description">Browser requests enter the API, move through a queue to a worker, and finish in the database. Failed work enters bounded retry handling before returning to the queue or reaching a dead-letter queue.</desc>
-    <defs>
-      <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="var(--text-primary)"></path>
-      </marker>
-    </defs>
-    <g fill="none" stroke="var(--text-primary)" stroke-width="3" marker-end="url(#arrow)">
-      <path d="M150 155 H210"></path>
-      <path d="M330 155 H390"></path>
-      <path d="M510 155 H570"></path>
-      <path d="M710 155 H790"></path>
-      <path d="M640 205 V285" stroke-dasharray="8 6"></path>
-      <path d="M470 325 H450 V205" stroke-dasharray="8 6"></path>
-      <path d="M610 325 H720" stroke-dasharray="8 6"></path>
-    </g>
-    <g fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="2">
-      <rect x="30" y="105" width="120" height="100" rx="12"></rect>
-      <rect x="210" y="105" width="120" height="100" rx="12"></rect>
-      <rect x="390" y="105" width="120" height="100" rx="12"></rect>
-      <rect x="570" y="105" width="140" height="100" rx="12"></rect>
-      <rect x="790" y="105" width="140" height="100" rx="12"></rect>
-      <rect x="470" y="285" width="140" height="80" rx="12"></rect>
-      <rect x="720" y="285" width="180" height="80" rx="12"></rect>
-    </g>
-    <g fill="var(--text-primary)" font-family="system-ui, sans-serif" text-anchor="middle">
-      <text x="90" y="145" font-size="19" font-weight="700">Browser</text>
-      <text x="90" y="173" font-size="14">untrusted request</text>
-      <text x="270" y="145" font-size="19" font-weight="700">API</text>
-      <text x="270" y="173" font-size="14">validate + authorize</text>
-      <text x="450" y="145" font-size="19" font-weight="700">Queue</text>
-      <text x="450" y="173" font-size="14">durable handoff</text>
-      <text x="640" y="145" font-size="19" font-weight="700">Worker</text>
-      <text x="640" y="173" font-size="14">idempotent charge</text>
-      <text x="860" y="145" font-size="19" font-weight="700">Database</text>
-      <text x="860" y="173" font-size="14">final payment state</text>
-      <text x="540" y="318" font-size="18" font-weight="700">Retry</text>
-      <text x="540" y="343" font-size="14">bounded backoff</text>
-      <text x="810" y="318" font-size="18" font-weight="700">Dead-letter</text>
-      <text x="810" y="343" font-size="14">manual investigation</text>
-      <text x="180" y="140" font-size="13">trust boundary</text>
-      <text x="750" y="140" font-size="13">commit result</text>
-    </g>
-  </svg>
+  <p class="vc-label">Architecture map</p>
+  <h2 class="vc-heading" id="payment-flow-heading">Payment processing: request to durable outcome</h2>
+  <p class="vc-body"><strong>Viewing task:</strong> trace one payment from the browser through retry and dead-letter handling, and inspect where the trust boundary changes.</p>
 
-  <p class="subtitle">Assumption: the worker owns retry policy and writes the final payment state after the provider confirms the charge.</p>
+  <figure class="vc-payment-flow" aria-labelledby="payment-flow-heading payment-flow-caption">
+    <div class="vc-stage">
+      <svg class="vc-flow-connectors" viewBox="0 0 1000 300" role="img" aria-labelledby="payment-flow-title payment-flow-description" preserveAspectRatio="none">
+        <title id="payment-flow-title">Payment request flow with retry, dead-letter, and trust boundary</title>
+        <desc id="payment-flow-description">A payment request moves through Browser, API, Queue, and Worker. The retry and dead-letter branch follows Worker before the final Database result. A labeled trust boundary separates the untrusted request from API processing.</desc>
+        <defs>
+          <marker id="payment-flow-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="var(--vc-ink)"></path>
+          </marker>
+        </defs>
+        <path class="vc-flow-primary" marker-end="url(#payment-flow-arrow)" d="M150 70 H220"></path>
+        <path class="vc-flow-primary" marker-end="url(#payment-flow-arrow)" d="M350 70 H420"></path>
+        <path class="vc-flow-primary" marker-end="url(#payment-flow-arrow)" d="M550 70 H620"></path>
+        <path class="vc-flow-primary" marker-end="url(#payment-flow-arrow)" d="M750 70 H820"></path>
+        <path class="vc-flow-branch" marker-end="url(#payment-flow-arrow)" d="M685 115 V205 H510"></path>
+        <path class="vc-flow-branch vc-flow-dead-letter" marker-end="url(#payment-flow-arrow)" d="M550 235 H710"></path>
+        <line class="vc-flow-trust-boundary" x1="200" y1="24" x2="200" y2="276"></line>
+      </svg>
+      <span class="vc-flow-trust-label">Trust boundary</span>
+      <div class="vc-flow-grid">
+        <div class="vc-flow-node vc-flow-node--browser"><strong>Browser</strong><span>untrusted request</span></div>
+        <p class="vc-flow-trust-boundary--narrow">Trust boundary: Browser request enters validated API processing.</p>
+        <div class="vc-flow-node vc-flow-node--api"><strong>API</strong><span>validate + authorize</span></div>
+        <div class="vc-flow-node vc-flow-node--queue"><strong>Queue</strong><span>durable handoff</span></div>
+        <div class="vc-flow-node vc-flow-node--worker"><strong>Worker</strong><span>idempotent charge</span></div>
+        <div class="vc-flow-node vc-flow-node--retry"><strong>Retry</strong><span>bounded backoff</span></div>
+        <div class="vc-flow-node vc-flow-node--dead-letter"><strong>Dead-letter</strong><span>manual investigation</span></div>
+        <div class="vc-flow-node vc-flow-node--database"><strong>Database</strong><span>final payment state</span></div>
+      </div>
+    </div>
+    <figcaption class="vc-flow-relationship" id="payment-flow-caption">Primary path: Browser → API → Queue → Worker → Database. Failed payment work uses the retry branch; exhausted work enters dead-letter for manual investigation.</figcaption>
+  </figure>
+
+  <div class="vc-legend vc-flow-legend" aria-label="Payment flow legend">
+    <span class="vc-flow-legend-item">Primary processing path</span>
+    <span class="vc-flow-legend-item vc-flow-legend-item--retry">Dashed retry branch</span>
+    <span class="vc-flow-legend-item vc-flow-legend-item--dead-letter">Dead-letter escalation</span>
+  </div>
+  <p class="vc-callout"><strong>Assumption:</strong> the worker owns retry policy and writes the final payment state after the provider confirms the charge.</p>
 </section>

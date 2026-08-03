@@ -309,7 +309,7 @@ fi
 echo ""
 echo "--- Helper-served HTML ---"
 if [[ -n "$server_url" && -n "$session_key" ]] && fetch_to_file "$server_url/" "$WAITING_HTML" "$session_cookie"; then
-  if grep -Fq 'Waiting for the agent to push a screen' "$WAITING_HTML" \
+  if grep -Fq 'Waiting for the next visual artifact…' "$WAITING_HTML" \
     && grep -Fq 'toggleSelect' "$WAITING_HTML" \
     && grep -Fq 'window.brainstorm' "$WAITING_HTML"; then
     pass "waiting page serves helper-injected HTML"

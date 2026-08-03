@@ -4,7 +4,7 @@
   "scripts": {
     "test": "npm run test:runtime && npm run test:custom",
     "test:runtime": "node ws-protocol.test.js && node helper.test.js && node browser-launcher.test.js && node auth.test.js && node branding.test.js && node server.test.js && node lifecycle.test.js && bash start-server.test.sh && bash stop-server.test.sh",
-    "test:custom": "node carry-forward-behavior.test.js && node fragment-comparison-defaults.test.js && node helper-selection-clarity.test.js && node live-companion-acceptance.test.js && node visual-companion-contract.test.js && bash windows-lifecycle.test.sh"
+    "test:custom": "node carry-forward-behavior.test.js && node fragment-comparison-defaults.test.js && node helper-selection-clarity.test.js && node live-companion-acceptance.test.js && node visual-companion-contract.test.js && node visual-companion-design-kit.test.js && bash windows-lifecycle.test.sh"
   },
   "dependencies": {
     "ws": "^8.21.0"

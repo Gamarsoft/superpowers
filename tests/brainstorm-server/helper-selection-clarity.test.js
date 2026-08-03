@@ -7,8 +7,12 @@ const helperPath = path.join(__dirname, '../../skills/brainstorming/scripts/help
 const frameTemplatePath = path.join(__dirname, '../../skills/brainstorming/scripts/frame-template.html');
 const helperSource = fs.readFileSync(helperPath, 'utf-8');
 const frameTemplate = fs.readFileSync(frameTemplatePath, 'utf-8');
+const retryPolicyPath = path.join(
+  __dirname,
+  '../../skills/brainstorming/examples/visual-companion/retry-policy-review.html'
+);
 
-const DEFAULT_INDICATOR_TEXT = 'Click an option above to confirm the current selection, then return to the terminal';
+const DEFAULT_INDICATOR_TEXT = 'Choose an option in this artifact, then return to the conversation.';
 const WORKFLOW_BANNED_STRINGS = ['Chosen direction', 'Still open', 'state/events'];
 
 class FakeClassList {
@@ -214,7 +218,8 @@ function buildHarness({
   selectedInSingle = [],
   selectedInMulti = [],
   singleAttributes = [],
-  includeIndicator = true
+  includeIndicator = true,
+  includeChoices = true
 } = {}) {
   const indicator = new FakeElement('span', { id: 'indicator-text', text: DEFAULT_INDICATOR_TEXT });
   const indicatorBar = new FakeElement('div', { classes: ['indicator-bar'] }).append(indicator);
@@ -256,27 +261,38 @@ function buildHarness({
     dataset: { multiselect: '' }
   }).append(nativeButton);
 
-  const root = new FakeElement('body').append(
-    singleContainer,
-    multiContainer,
-    standaloneChoice,
-    nativeContainer
-  );
+  const root = new FakeElement('body');
+  if (includeChoices) {
+    root.append(singleContainer, multiContainer, standaloneChoice, nativeContainer);
+  }
   if (includeIndicator) root.append(indicatorBar);
   const document = new FakeDocument(root);
   const websocketMessages = [];
 
+  const sockets = [];
   class FakeWebSocket {
     constructor(url) {
       this.url = url;
       this.sent = [];
-      this.readyState = FakeWebSocket.OPEN;
+      this.readyState = 0;
+      this.onopen = this.onclose = this.onmessage = this.onerror = null;
+      sockets.push(this);
     }
 
     send(payload) {
       const parsed = JSON.parse(payload);
       this.sent.push(parsed);
       websocketMessages.push(parsed);
+    }
+
+    open() {
+      this.readyState = FakeWebSocket.OPEN;
+      if (this.onopen) this.onopen();
+    }
+
+    close() {
+      this.readyState = 3;
+      if (this.onclose) this.onclose();
     }
   }
 
@@ -306,6 +322,8 @@ function buildHarness({
     console
   }, { filename: helperPath });
 
+  sockets[0].open();
+
   [...singleOptions, ...multiOptions, standaloneChoice, nativeButton].forEach((option) => {
     option.click = () => {
       option.clickCount += 1;
@@ -317,10 +335,12 @@ function buildHarness({
   return {
     document,
     indicator,
+    indicatorBar,
     singleOptions,
     multiOptions,
     standaloneChoice,
     nativeButton,
+    sockets,
     websocketMessages,
     window
   };
@@ -360,6 +380,106 @@ function run() {
     );
   });
 
+  test('footer is absent while a document has no data-choice elements', () => {
+    const harness = buildHarness({ includeChoices: false });
+
+    assert.strictEqual(harness.indicatorBar.hidden, true);
+    assert.strictEqual(harness.indicatorBar.getAttribute('aria-hidden'), 'true');
+    harness.sockets[0].close();
+    assert.strictEqual(harness.indicatorBar.hidden, true);
+    harness.sockets[harness.sockets.length - 1].open();
+    assert.strictEqual(harness.indicatorBar.getAttribute('aria-hidden'), 'true');
+  });
+
+  test('connected choices show the approved empty selection copy', () => {
+    const harness = buildHarness();
+
+    assert.strictEqual(harness.indicatorBar.hidden, false);
+    assert.strictEqual(
+      harness.indicator.textContent,
+      'Choose an option in this artifact, then return to the conversation.'
+    );
+  });
+
+  test('single selection escapes the label in the approved footer copy', () => {
+    const harness = buildHarness({ selectedInSingle: [0] });
+    harness.singleOptions[0].children[1].children[0].textContent = '<script>literal</script>';
+    harness.window.toggleSelect(harness.singleOptions[0]);
+    harness.document.dispatchClick(harness.singleOptions[0]);
+
+    assert.strictEqual(
+      harness.indicator.innerHTML,
+      '<span class="selected-text">Selected:</span> &lt;script&gt;literal&lt;/script&gt;. Return to the conversation to continue.'
+    );
+  });
+
+  test('grouped choices show the approved plural selection copy', () => {
+    const harness = buildHarness({ selectedInMulti: [0] });
+    runClickFlow(harness, harness.multiOptions[1]);
+
+    assert.strictEqual(
+      harness.indicator.innerHTML,
+      '<span class="selected-text">2 options selected.</span> Return to the conversation to continue.'
+    );
+  });
+
+  test('disconnection disables choices, preserves events, and restores selection copy after reconnecting', () => {
+    const harness = buildHarness({ selectedInSingle: [0] });
+    const before = harness.websocketMessages.length;
+
+    harness.sockets[0].close();
+
+    assert.strictEqual(harness.indicator.textContent, 'Connection lost. Reconnect before choosing an option.');
+    assert.strictEqual(harness.singleOptions[1].getAttribute('aria-disabled'), 'true');
+    harness.document.dispatchKeydown(harness.singleOptions[1], 'Enter');
+    assert.strictEqual(harness.websocketMessages.length, before);
+    assert.strictEqual(harness.singleOptions[1].classList.contains('selected'), false);
+
+    harness.sockets[harness.sockets.length - 1].open();
+    assert.strictEqual(harness.singleOptions[1].getAttribute('aria-disabled'), 'false');
+    assert.strictEqual(
+      harness.indicator.innerHTML,
+      '<span class="selected-text">Selected:</span> Option A · Inline release banner. Return to the conversation to continue.'
+    );
+  });
+
+  test('retry-policy actions retain their authored selection labels through recovery', () => {
+    assert(fs.existsSync(retryPolicyPath), 'Expected retry-policy review exemplar to exist');
+    const harness = buildHarness({ selectedInSingle: [0] });
+    const approve = harness.singleOptions[0];
+    const reject = harness.singleOptions[1];
+    approve.dataset.choice = 'approve-retry-policy';
+    reject.dataset.choice = 'reject-retry-policy';
+    approve.children[1].children[0].textContent = 'Approve change';
+    reject.children[1].children[0].textContent = 'Reject change';
+
+    harness.sockets[0].close();
+    assert.strictEqual(reject.getAttribute('aria-disabled'), 'true');
+    harness.sockets[harness.sockets.length - 1].open();
+    const event = harness.document.dispatchKeydown(reject, 'Enter');
+
+    assert.strictEqual(event.defaultPrevented, false);
+    assert.strictEqual(reject.classList.contains('selected'), true);
+    assert.strictEqual(reject.getAttribute('aria-pressed'), 'true');
+    assert.strictEqual(
+      harness.indicator.innerHTML,
+      '<span class="selected-text">Selected:</span> Reject change. Return to the conversation to continue.'
+    );
+    assert.strictEqual(harness.websocketMessages[harness.websocketMessages.length - 1].choice, 'reject-retry-policy');
+  });
+
+  test('reconnection restores the global plural copy for selections in multiple containers', () => {
+    const harness = buildHarness({ selectedInSingle: [0], selectedInMulti: [0] });
+
+    harness.sockets[0].close();
+    harness.sockets[harness.sockets.length - 1].open();
+
+    assert.strictEqual(
+      harness.indicator.innerHTML,
+      '<span class="selected-text">2 options selected.</span> Return to the conversation to continue.'
+    );
+  });
+
   test('helper keeps default guidance when no authored selection exists', () => {
     const harness = buildHarness();
     assert.strictEqual(harness.indicator.textContent, DEFAULT_INDICATOR_TEXT);
@@ -369,7 +489,7 @@ function run() {
     const harness = buildHarness({ selectedInSingle: [0] });
     assert.strictEqual(
       harness.indicator.innerHTML,
-      '<span class="selected-text">Selected:</span> Option A · Inline release banner — return to the terminal to continue'
+      '<span class="selected-text">Selected:</span> Option A · Inline release banner. Return to the conversation to continue.'
     );
   });
 
@@ -508,7 +628,7 @@ function run() {
 
     assert.strictEqual(
       harness.indicator.innerHTML,
-      '<span class="selected-text">Selected:</span> Option B · Activity feed card — return to the terminal to continue'
+      '<span class="selected-text">Selected:</span> Option B · Activity feed card. Return to the conversation to continue.'
     );
     assert.strictEqual(
       harness.singleOptions[0].classList.contains('selected'),
@@ -529,7 +649,7 @@ function run() {
 
     assert.strictEqual(
       harness.indicator.innerHTML,
-      '<span class="selected-text">2 items selected</span> in this group — return to the terminal to continue'
+      '<span class="selected-text">2 options selected.</span> Return to the conversation to continue.'
     );
     assert.strictEqual(
       harness.multiOptions[0].classList.contains('selected') && harness.multiOptions[1].classList.contains('selected'),
