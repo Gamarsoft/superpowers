@@ -8,13 +8,15 @@ Do not start from code alone and do not start from imagined mockups. Capture the
 
 ## Evidence Order
 
-1. approved spec and GSD handoff
+1. approved neutral spec and frontend-direction follow-on context
 2. current route/screen in the running app
 3. existing components, tokens, theme files, and neighboring screens
 4. `brownfield-ui-extraction.md`
 5. `screen-index.md`
 6. retained screenshots/browser captures
 7. optional approved ChatGPT Images 2 files
+
+A GSD handoff is supplemental evidence only for a confirmed GSD route. It is not required while shaping the frontend packet.
 
 If evidence is missing, record degraded current-UI mode and keep the change conservative.
 
@@ -26,9 +28,10 @@ If evidence is missing, record degraded current-UI mode and keep the change cons
 4. Decide whether generated image references are useful. If not, stay with screenshots/captures and packet prose.
 5. Classify every reference as `visual-truth`, `semantic-guidance`, or `reference-only`.
 6. Write or update the concise frontend packet.
-7. Implement with `gsd-frontend-design`.
-8. Verify with runtime evidence and the reference-intent checklist.
-9. For non-trivial UI, run fresh visual review before completion.
+7. After the packet is approved, confirm one delivery route using `skills/brainstorming/references/delivery-routing.md`.
+8. Implement through the selected lane, using its appropriate frontend implementation skill.
+9. Verify with runtime evidence and the reference-intent checklist.
+10. For non-trivial UI, run fresh visual review before completion.
 
 ## Brownfield Boundaries
 

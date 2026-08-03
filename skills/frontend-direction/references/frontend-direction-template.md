@@ -10,9 +10,9 @@ Keep this packet compact. It is an implementation contract, not a design diary.
 
 ## 1. Summary
 
-- Linked spec:
-- Linked GSD handoff:
-- Packet status: approved | pending | degraded
+- Linked approved neutral spec:
+- Linked frontend-direction follow-on context:
+- Packet status: not-required | required-pending | approved | approved-with-degraded-evidence
 - Brownfield call: preserve | focused refresh | redesign approved
 - Default visual source: current UI screenshots/browser captures | approved ChatGPT Images 2 | degraded current UI
 - UX copy source: spec | copy deck | existing i18n | pending
@@ -84,6 +84,7 @@ Reference intent meanings:
 ## Quality Bar
 
 - Concrete evidence beats long prose.
+- `approved-with-degraded-evidence` requires explicit approval of every recorded degraded constraint; degraded evidence alone never authorizes routing.
 - Every implementation-facing reference has an approved intent or a recorded blocker.
 - The packet names what to preserve, what may change, and what is forbidden.
 - The packet is short enough to scan before coding.

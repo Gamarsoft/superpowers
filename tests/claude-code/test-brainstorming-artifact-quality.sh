@@ -38,6 +38,25 @@ assert_file_not_contains() {
   fi
 }
 
+assert_file_contains_in_order() {
+  local rel="$1"
+  local label="$2"
+  shift 2
+
+  local previous_line=0
+  local pattern
+  local line
+  for pattern in "$@"; do
+    line="$(grep -niE "$pattern" "$ROOT_DIR/$rel" | awk -F: -v previous="$previous_line" '$1 > previous { print $1; exit }' || true)"
+    if [ -z "$line" ]; then
+      fail "Expected $rel to contain ordered pattern after line $previous_line: $pattern"
+    fi
+    previous_line="$line"
+  done
+
+  pass "$label"
+}
+
 echo "=== Test: brainstorming artifact quality gates ==="
 echo ""
 
@@ -93,6 +112,39 @@ assert_file_contains \
   "skills/brainstorming/references/spec-template.md" \
   "visual-truth, semantic-guidance, reference-only" \
   "Spec template preserves visual reference intent modes"
+assert_file_contains \
+  "skills/brainstorming/references/spec-template.md" \
+  "## Delivery Route" \
+  "Spec template provides the confirmed delivery route section"
+assert_file_contains \
+  "skills/brainstorming/references/spec-template.md" \
+  "Recommendation:.*fit" \
+  "Delivery Route records best-fit recommendation evidence"
+assert_file_contains \
+  "skills/brainstorming/references/spec-template.md" \
+  "Delivery review:.*pending.*approved" \
+  "Delivery Route records selected-adapter review evidence"
+assert_file_contains \
+  "skills/brainstorming/references/spec-template.md" \
+  "only after.*confirm" \
+  "Spec template keeps routing out until confirmation"
+
+assert_file_contains \
+  "skills/brainstorming/references/delivery-routing.md" \
+  "GSD.*multiple milestones|Superpowers.*bounded feature|Native Codex.*contained slice" \
+  "Delivery router recommends by delivery fit"
+assert_file_contains \
+  "skills/brainstorming/references/delivery-routing.md" \
+  "warn once" \
+  "Delivery router warns once on explicit mismatch"
+assert_file_contains \
+  "skills/brainstorming/references/delivery-routing.md" \
+  "unavailable.*remove|remove.*unavailable" \
+  "Delivery router removes unavailable routes"
+assert_file_contains \
+  "skills/brainstorming/references/delivery-routing.md" \
+  "reconciliation" \
+  "Delivery router stops late rerouting for reconciliation"
 
 assert_file_contains \
   "skills/brainstorming/references/gsd-handoff-template.md" \
@@ -187,6 +239,72 @@ assert_file_contains \
   "skills/brainstorming/SKILL.md" \
   "open questions" \
   "Brainstorming skill preserves open questions"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "approved.*neutral spec" \
+  "Brainstorming defaults to an approved neutral spec"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "references/delivery-routing\.md" \
+  "Brainstorming loads the central delivery router"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "GSD handoff.*only|only.*GSD.*handoff" \
+  "Brainstorming makes the GSD handoff route-specific"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "Native Codex.*inline proposed plan" \
+  "Brainstorming defines the Native Codex terminal output"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "plan mode.*read-only authoring" \
+  "Brainstorming keeps Codex plan mode authoring-only"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "not execute implementation.*plan mode|plan mode.*not execute implementation" \
+  "Brainstorming prohibits implementation in plan mode"
+assert_file_contains_in_order \
+  "skills/brainstorming/SKILL.md" \
+  "Brainstorming enforces neutral review through transition in canonical order" \
+  "neutral artifact review" \
+  "user approval gate" \
+  "frontend packet approval" \
+  "confirm the delivery route" \
+  "create the selected adapter" \
+  "review the selected adapter" \
+  "transition through the confirmed route"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "selected-adapter review.*Delivery Route|Delivery Route.*selected-adapter review" \
+  "Selected-adapter review validates Delivery Route metadata"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "selected-adapter review.*exactly one adapter|exactly one adapter.*selected-adapter review" \
+  "Selected-adapter review validates adapter cardinality"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "selected-adapter review.*unselected|unselected.*selected-adapter review" \
+  "Selected-adapter review rejects unselected adapters"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "selected-adapter review.*route-specific completeness|route-specific completeness.*selected-adapter review" \
+  "Selected-adapter review validates route-specific completeness"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "Do not self-review" \
+  "Selected-adapter review requires an independent reviewer dispatch"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "review.*reference.*Delivery Route|Delivery Route.*review.*reference" \
+  "Selected-adapter approval is recorded before transition"
+assert_file_not_contains \
+  "skills/brainstorming/SKILL.md" \
+  "packet status:[[:space:]]*required([\`.,;:]|[[:space:]]|$)" \
+  "Brainstorming removes the legacy pending packet status"
+assert_file_contains \
+  "skills/brainstorming/SKILL.md" \
+  "packet status:[[:space:]]*required-pending" \
+  "Brainstorming records pending frontend work with shared status vocabulary"
 
 assert_file_not_contains \
   "skills/brainstorming/references/spec-template.md" \
@@ -196,6 +314,68 @@ assert_file_not_contains \
   "skills/brainstorming/references/gsd-handoff-template.md" \
   "Pencil|\\.pen\\b|workset|adapter" \
   "GSD handoff template stays free of removed workflow terms"
+assert_file_contains \
+  "skills/brainstorming/references/gsd-handoff-template.md" \
+  "not-required.*required-pending.*approved.*approved-with-degraded-evidence" \
+  "GSD handoff template uses the shared packet-status vocabulary"
+assert_file_not_contains \
+  "skills/brainstorming/references/gsd-handoff-template.md" \
+  "none[[:space:]]*\\|[[:space:]]*required[[:space:]]*\\|[[:space:]]*attached|packet status is [\`]required[\`]|packet status is required([.,;:]|[[:space:]]|$)|run .*frontend-direction.*then return to GSD" \
+  "GSD handoff cannot send pending frontend work back from GSD"
+assert_file_contains \
+  "skills/brainstorming/references/gsd-handoff-template.md" \
+  "generated only after.*approved|approved.*before.*generated" \
+  "GSD handoff is generated only after frontend packet approval"
+assert_file_contains \
+  "skills/brainstorming/references/gsd-handoff-template.md" \
+  "approved-with-degraded-evidence" \
+  "GSD handoff permits explicitly approved degraded evidence"
+
+assert_file_not_contains \
+  "skills/brainstorming/references/track-selection.md" \
+  "explicit GSD milestone recommendation" \
+  "Architecture-led neutral artifacts do not mandate a GSD milestone"
+assert_file_contains \
+  "skills/brainstorming/references/track-selection.md" \
+  "delivery boundar(y|ies)|delivery slice" \
+  "Architecture-led work recommends workflow-neutral delivery boundaries"
+
+assert_file_contains \
+  "skills/brainstorming/references/frontend-direction-follow-on-prompt-template.md" \
+  "approved neutral spec" \
+  "Frontend follow-on prompt consumes the approved neutral spec"
+assert_file_contains \
+  "skills/brainstorming/references/frontend-direction-follow-on-prompt-template.md" \
+  "do not.*route.*until.*packet.*approved|packet.*approved.*before.*routing" \
+  "Frontend follow-on prompt blocks premature routing"
+assert_file_contains \
+  "skills/brainstorming/references/spec-review-checklist.md" \
+  "selected route.*adapter|adapter.*selected route" \
+  "Spec review validates only the selected route adapter"
+assert_file_contains \
+  "skills/brainstorming/references/spec-review-checklist.md" \
+  "unselected adapter|unselected route.*artifact" \
+  "Spec review rejects unselected route artifacts"
+assert_file_contains \
+  "skills/brainstorming/references/spec-review-checklist.md" \
+  "Before route confirmation.*Delivery Route.*absent|Delivery Route.*absent.*before route confirmation" \
+  "Neutral review rejects premature route metadata"
+assert_file_contains \
+  "skills/brainstorming/references/test-scenarios.md" \
+  "Delivery Route.*before.*confirm|before.*confirm.*Delivery Route" \
+  "Pressure scenarios cover premature route metadata"
+assert_file_contains \
+  "skills/brainstorming/references/test-scenarios.md" \
+  "self-review|independent reviewer.*reference|reviewer reference" \
+  "Pressure scenarios cover unverifiable delivery approval"
+assert_file_contains \
+  "skills/brainstorming/spec-document-reviewer-prompt.md" \
+  "premature routing|route.*before.*packet.*approved" \
+  "Spec reviewer rejects routing before frontend packet approval"
+assert_file_contains \
+  "skills/brainstorming/spec-document-reviewer-prompt.md" \
+  "selected route.*adapter|adapter.*selected route" \
+  "Spec reviewer conditionally validates the selected adapter"
 
 echo ""
 echo "=== Brainstorming artifact quality gates test passed ==="

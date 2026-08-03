@@ -25,7 +25,7 @@ Use the integrated browser to verify the real rendered experience.
 
 Browser tools are strongest when the app can run locally and the main agent can tell you which route, component, or scenario matters.
 
-If no frontend packet exists, compare the rendered UI against the approved spec and handoff when present, otherwise against the current brownfield product language and the derived working contract.
+If no frontend packet exists, compare the rendered UI against the approved spec and any available selected-route planning context, otherwise against the current brownfield product language and the derived working contract.
 
 If retained screenshots, browser captures, or approved generated-image references exist, prefer those sources over vague packet preview images or stale temporary HTML comparison artifacts.
 

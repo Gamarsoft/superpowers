@@ -30,4 +30,6 @@ The phase is done when the packet names:
 - copy source
 - runtime verification expectations
 
-If any of those are unknown, mark the packet pending or degraded instead of filling with prose.
+Use the shared packet statuses: `not-required` when frontend direction is out of scope, `required-pending` while required decisions remain open, `approved` when the contract is complete, and `approved-with-degraded-evidence` only after every degraded constraint is recorded and explicitly approved.
+
+Approve the complete packet before returning to delivery routing. This phase does not select a route, create an adapter, or start UI implementation.

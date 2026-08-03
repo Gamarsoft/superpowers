@@ -1,6 +1,6 @@
 # Spec Review Checklist
 
-Use this as the blocking quality bar for the design spec, GSD handoff, and optional frontend-direction follow-on prompt.
+Use this as the blocking quality bar for the approved neutral spec, optional frontend-direction follow-on prompt, frontend packet status, and any adapter created after route confirmation.
 
 ## Status language
 
@@ -49,9 +49,18 @@ Use this as the blocking quality bar for the design spec, GSD handoff, and optio
 ## 8. Consistency and completeness
 - Any TODO/TBD/placeholder content?
 - Any contradictions between sections?
-- Any mismatch between the design spec and the GSD handoff?
+- Any mismatch between the neutral spec and the artifacts valid for the current stage?
 
-## 9. GSD handoff completeness
+## 9. Delivery adapter validity (conditional, blocking when relevant)
+- Before route confirmation, are both the `## Delivery Route` metadata and all adapters absent?
+- For UI-heavy work, is routing deferred until the frontend packet is approved, including explicit approval of any degraded evidence?
+- After route confirmation, does exactly one adapter match the selected route?
+- Is every unselected adapter and unselected route artifact absent?
+- Does the Delivery Route section record the recommendation and concrete fit evidence, the neutral-review and user-approval references, and the confirmation reference?
+- During selected-adapter review, is `Delivery review` still `pending` so this review can independently decide it?
+- Before transition, is that status replaced by `approved` with the independent reviewer reference?
+
+## 9a. GSD handoff completeness (only when GSD is the selected route)
 - Are Active / Deferred / Out of Scope separated?
 - If existing `.gsd/REQUIREMENTS.md` or prior milestone requirements overlap, does the handoff reconcile them explicitly?
 - Does the handoff say which requirements are reused, reactivated, narrowed, superseded, or still deferred?
@@ -62,18 +71,18 @@ Use this as the blocking quality bar for the design spec, GSD handoff, and optio
 ## 10. Frontend-direction follow-on prompt quality (conditional, blocking when relevant)
 Apply this section when the work clearly depends on frontend direction.
 
-- Does the handoff mark frontend packet status as `required` when no packet exists yet?
-- Does the follow-on prompt link the approved spec and GSD handoff?
+- Does the follow-on context mark frontend packet status as `required-pending` when no packet exists yet?
+- Does the follow-on prompt link the approved neutral spec and remain route-neutral?
 - Does it carry screen families, primary flows, key states, first delivery boundary, and brownfield invariants?
 - Does it preserve visual-companion decisions as context rather than durable design truth?
 - Does it require reference-intent approval for every implementation-facing screenshot, generated image, or retained visual reference?
-- Does it block UI implementation until the separate frontend-direction packet is approved?
+- Does it block both delivery routing and UI implementation until the separate frontend-direction packet is approved?
 
 ## 10a. UX writing readiness (conditional, blocking when relevant)
 Apply this section when the work includes meaningful user-visible UI copy.
 
 - Did the author invoke `writing-ux-copy` or otherwise provide an equivalent copy deck?
-- Does the spec or handoff identify copy-bearing states: default, loading, empty, validation, warning, error, permission, destructive confirmation, pending, and success where relevant?
+- Does the spec or follow-on context identify copy-bearing states: default, loading, empty, validation, warning, error, permission, destructive confirmation, pending, and success where relevant?
 - Are final or explicitly pending visible strings captured for labels, CTAs, warnings, errors, empty states, confirmations, helper text, and onboarding?
 - Are technical terms, backend service names, and internal state names kept out of user-facing copy unless they are established product terminology?
 - Are terminology, i18n variables, plural/date/number formatting, translation expansion, and accessibility labels covered?
@@ -81,14 +90,14 @@ Apply this section when the work includes meaningful user-visible UI copy.
 - Are copy acceptance criteria included so implementation and review can verify the approved words, not invent new ones?
 
 ## 11. Cross-artifact UI alignment (conditional, blocking when relevant)
-- Do the spec, GSD handoff, and follow-on prompt agree on scope and behavior?
+- Do the spec, follow-on prompt, frontend packet, and selected adapter (when one exists) agree on scope and behavior?
 - Are deferred visual ideas kept out of Active requirements?
 - Can the next frontend-direction agent tell what product decisions are settled and what visual work remains?
 
-## 11a. Requirement lineage alignment (blocking when relevant)
+## 11a. Requirement lineage alignment (blocking only for the selected GSD route)
 Apply this subsection when the new work overlaps with an existing `.gsd/REQUIREMENTS.md`, earlier milestone requirements, or previously deferred work in the same area.
 
-- Does the handoff avoid silently duplicating or contradicting existing requirements?
+- Does the selected GSD handoff avoid silently duplicating or contradicting existing requirements?
 - If a formerly deferred requirement is now partly active, is the reactivated subset explicit and is the remainder still deferred explicitly?
 - If older active or validated wording is now too broad, does the handoff mark the new narrower rule as a clarification or supersession for this scope?
 
@@ -103,7 +112,7 @@ Fail the review if the artifacts are missing, weaken, or contradict any required
 - **terminal question-tool continuity** — even after earlier browser use, each qualifying visual turn must still deliver the terminal decision or confirmation prompt through the dedicated question tool when available
 - **explicit degraded fallback** — if the dedicated question tool is unavailable, plain terminal fallback must be named as degraded behavior explicitly rather than normalized as the standard path
 
-Treat spec↔packet↔handoff drift on any of these outcomes as a blocking issue even if one artifact is correct.
+Treat drift among the spec, packet, and the selected adapter (when one exists) on any of these outcomes as a blocking issue even if one artifact is correct.
 
 ## Advisory checks
 

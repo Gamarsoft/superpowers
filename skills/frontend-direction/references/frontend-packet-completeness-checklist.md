@@ -4,8 +4,10 @@ Use before handing a packet to implementation.
 
 ## Blocking Checks
 
-- Packet links the approved spec and handoff.
-- Brownfield work includes current UI evidence or explicitly states degraded mode.
+- Packet links the approved neutral spec and frontend-direction follow-on context.
+- Packet status is `approved` or `approved-with-degraded-evidence`; the latter records and explicitly approves every degraded constraint.
+- A GSD handoff is linked only for an already confirmed GSD route; it is absent for unselected routes and is not required before routing.
+- Brownfield work includes current UI evidence or records explicitly approved degraded evidence.
 - `screen-index.md` names only key screens and important states.
 - `brownfield-ui-extraction.md` separates must-preserve, safe improvements, and no-gos when brownfield.
 - Every implementation-facing screenshot, browser capture, generated image, or retained reference has intent: `visual-truth`, `semantic-guidance`, or `reference-only`.
@@ -14,6 +16,7 @@ Use before handing a packet to implementation.
 - `Must preserve`, `May adapt`, and `Explicit no-gos` are concrete.
 - Required runtime screenshots/captures and checks are named.
 - ChatGPT Images 2 files are listed only when generated references were actually approved.
+- The packet is approved before delivery routing or UI implementation begins.
 
 ## Concision Check
 

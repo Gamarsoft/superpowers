@@ -9,11 +9,13 @@ Create a compact UI implementation contract before frontend code is written.
 
 Default durable evidence is:
 
-1. approved spec and GSD handoff
+1. approved neutral spec and frontend-direction follow-on context
 2. current product UI and design system
 3. browser/runtime screenshots or simulator/device captures
 4. concise packet prose
 5. optional approved ChatGPT Images 2 references when image exploration is explicitly useful
+
+A GSD handoff is supplemental input only when one already exists for a confirmed GSD route, such as when refreshing a packet. Initial UI-heavy shaping normally finishes before delivery routing.
 
 Do not use this as a coding skill.
 
@@ -41,7 +43,7 @@ Write only what the implementation agent needs:
 
 ## Workflow
 
-1. Gather the approved spec, handoff, acceptance criteria, current screenshots if present, relevant `PRODUCT.md`/`DESIGN.md`, component patterns, and running-app evidence.
+1. Gather the approved neutral spec, frontend-direction follow-on context, acceptance criteria, current screenshots if present, relevant `PRODUCT.md`/`DESIGN.md`, component patterns, and running-app evidence. Include a GSD handoff only for an already confirmed GSD route.
 2. For brownfield work, capture current runtime truth before improving anything: desktop, narrow/mobile, and key states when they affect the change.
 3. Create `brownfield-ui-extraction.md` that separates must-preserve patterns, safe improvements, and no-gos.
 4. Build a small `screen-index.md` for only key screens and implementation-shaping states.
@@ -50,7 +52,8 @@ Write only what the implementation agent needs:
 7. Write the frontend direction packet using the compact template.
 8. Classify every implementation-facing screenshot, generated image, browser capture, or retained reference as `visual-truth`, `semantic-guidance`, or `reference-only`.
 9. Ask for human approval when a reference-intent classification will affect implementation.
-10. Review the packet against the checklist and remove redundant prose before handoff.
+10. Review the packet against the checklist, remove redundant prose, and obtain packet approval.
+11. Only after the packet is approved, return to `../brainstorming/references/delivery-routing.md` for route confirmation and the single selected adapter. Do not create routing metadata or start implementation from this phase.
 
 ## Operating Rules
 
@@ -60,7 +63,7 @@ Write only what the implementation agent needs:
 - Generated images are `reference-only` until approved and assigned an intent mode.
 - Keep `Must preserve`, `May adapt`, and `Explicit no-gos` short and concrete.
 - Do not duplicate product requirements from the spec; link them.
-- If direction cannot be stabilized, mark the packet degraded or incomplete instead of inventing certainty.
+- If direction cannot be stabilized, keep the packet `required-pending`. Use `approved-with-degraded-evidence` only after recording the degraded constraints and obtaining explicit approval instead of inventing certainty.
 
 ## Quality Bar
 

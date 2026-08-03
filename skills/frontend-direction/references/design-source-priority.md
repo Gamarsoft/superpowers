@@ -4,13 +4,15 @@ Use the strongest available evidence in this order.
 
 ## Brownfield
 
-1. Approved spec and GSD handoff for behavior.
+1. Approved neutral spec and frontend-direction follow-on context for behavior.
 2. Existing product UI, running app, and design-system conventions.
 3. Browser screenshots/captures and current state evidence.
 4. `brownfield-ui-extraction.md` and `screen-index.md`.
 5. Approved generated images when explicitly selected as references.
 6. `PRODUCT.md` and `DESIGN.md` as supporting context.
 7. Temporary HTML companion artifacts as decision context only.
+
+A GSD handoff may supplement these sources only when the GSD route is already confirmed; it is not a prerequisite for frontend direction.
 
 ## Greenfield Or Mobile-First
 

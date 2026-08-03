@@ -14,6 +14,7 @@ Default path:
 - For simple work, a short spec is fine.
 - For nuanced work, add appendices rather than bloating the main narrative.
 - If frontend direction is required, keep this spec structural and behavioral; link the follow-on prompt or later packet instead of duplicating detailed visual-system guidance.
+- Keep the spec workflow-neutral through approval. Add the compact `## Delivery Route` section only after the user confirms a route.
 - A durable wireframe appendix is optional. Add one only when a spatial or layout decision materially affects later implementation or review.
 - Store durable wireframes as separate markdown files in a dedicated sibling folder named after the spec slug, for example `{spec-slug}-wireframes/`.
 - Keep each wireframe low-fidelity and structure-first: ASCII sketches, block diagrams, or equivalent are preferred over polished mockups.
@@ -29,6 +30,15 @@ Default path:
 - Who it is for
 - Why now
 - What the first delivery boundary is
+
+## Delivery Route
+<!-- Add only after the user confirms exactly one route. Omit this section before confirmation. -->
+- Recommendation: [route and concrete delivery-fit evidence]
+- Confirmed route: GSD | Superpowers | Native Codex
+- Neutral artifact approval: [review result and user approval reference]
+- Confirmation: [user decision or approval reference]
+- Delivery output: [GSD handoff + steering note | writing-plans | inline proposed plan]
+- Delivery review: pending | approved ([independent reviewer reference])
 
 ## 2. Framing Brief
 - Primary user / operator
@@ -118,7 +128,7 @@ Example:
 [Only if architectural trade-offs matter]
 
 ## Appendix G. GSD Handoff Seed
-[Short seed or link to the handoff file.]
+[Only after the GSD route is confirmed: short seed or link to the handoff file.]
 ```
 
 ## Optional Track-Specific Sections
@@ -160,4 +170,4 @@ A strong spec:
 - includes enough behavior detail to build or hand off safely
 - captures important states, failure behavior, rollout concerns, and UX copy sources when applicable
 - links frontend direction, runtime evidence, screenshots, and approved generated image references when applicable
-- stays consistent with the handoff file
+- stays consistent with the handoff file when the GSD route is confirmed

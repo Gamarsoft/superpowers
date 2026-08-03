@@ -1,11 +1,11 @@
 # GSD Handoff Template
 
-Use this after the design spec is stable and example mapping is complete.
+Use this only after the neutral design spec and example mapping are approved, the user has confirmed GSD as the delivery route, and the frontend packet gate is satisfied. For UI-heavy work, this handoff is generated only after packet status is `approved` or `approved-with-degraded-evidence`; it consumes that packet and never sends work back to frontend direction. For work that does not require frontend direction, packet status is `not-required`.
 
 Default path:
 `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
 
-This file is the primary implementation-shaping vision input when starting or extending work in GSD, alongside the linked spec and, when UI is implementation-shaping, the separate frontend direction packet created after brainstorming.
+This file is the primary implementation-shaping vision input when starting or extending work in GSD, alongside the linked spec and, when UI is implementation-shaping, the approved frontend direction packet.
 
 ## Template
 
@@ -96,15 +96,12 @@ Do not leave overlap implicit. If a new Active item touches a previously active,
 ## 5. Frontend Build Inputs
 
 ### Packet status
-none | required | attached
+not-required | required-pending | approved | approved-with-degraded-evidence
 
-Use `required` when UI/UX materially shapes implementation but frontend-direction has not run yet.
+`required-pending` is part of the shared vocabulary but is invalid in a generated GSD handoff. Stop before generating this template until the packet becomes `approved` or the user explicitly approves every degraded constraint as `approved-with-degraded-evidence`.
 
 ### Frontend direction packet
 - [path or none]
-
-### Frontend-direction follow-on prompt
-- [paste/link prompt or none]
 
 ### Supporting frontend artifacts
 - `brownfield-ui-extraction.md`:
@@ -141,10 +138,12 @@ Use `required` when UI/UX materially shapes implementation but frontend-directio
   - copy acceptance criteria:
 
 ### Frontend implementation gate
-- If packet status is `required`, do not implement frontend UI yet.
-- Run the separate frontend-direction phase first and attach its approved packet.
+- `not-required` means no frontend packet is needed for this scope.
+- `approved` means the linked frontend packet is the durable UI implementation contract.
+- `approved-with-degraded-evidence` means the linked packet and every explicitly approved degraded constraint are the durable UI implementation contract.
+- `required-pending` must never reach this generated handoff; resolve that gate in brainstorming before GSD routing or generation.
 - Do not treat unapproved screenshots, temporary companion screens, or generated images as visual truth.
-- If visual reference intent is missing or pending, ask for confirmation or record degraded current-UI mode before visual changes.
+- If approved degraded evidence limits visual certainty, preserve those explicit limits rather than inventing missing evidence.
 
 ## 6. Roadmap Seed
 
@@ -231,12 +230,12 @@ Primary artifacts:
 - Spec: docs/superpowers/specs/YYYY-MM-DD--{slug}.md
 - GSD handoff: docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md
 - Frontend direction: docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md (if present)
-- Frontend-direction follow-on prompt: included below / linked separately (if packet status is required)
+- Frontend packet status: not-required / approved / approved-with-degraded-evidence
 
 Use the spec as the product and behavior contract.
 Use the handoff as the milestone and requirements seed.
 If the frontend direction packet exists, use it as the UI implementation contract.
-If packet status is `required`, do not implement frontend UI yet. First run the follow-on frontend-direction prompt in a fresh or compacted session, then return to GSD with the approved packet.
+This GSD handoff is generated only after the frontend packet gate is approved; if its status is `approved-with-degraded-evidence`, preserve every explicitly approved degraded constraint.
 
 Treat the Active requirements in the handoff as the starting candidate requirements.
 Treat Deferred and Out of Scope exactly as written unless you find a contradiction.
@@ -246,7 +245,6 @@ Keep the primary artifacts aligned:
 - the spec owns product scope, behavior, and rules
 - the handoff owns GSD seeding, milestone framing, and implementation intake guidance
 - the frontend direction packet, when present, owns layout, hierarchy, states, responsive behavior, and UI implementation constraints
-- the frontend-direction follow-on prompt owns the next-session bootstrap only until the packet exists
 
 After the frontend direction packet exists, also consume:
 - brownfield-ui-extraction.md

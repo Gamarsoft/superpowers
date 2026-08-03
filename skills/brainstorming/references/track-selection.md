@@ -37,7 +37,8 @@ Read `../frontend-direction/references/frontend-direction-phase.md` and treat th
 
 - the track controls discovery and delivery weight
 - brainstorming marks frontend direction as required when UI/UX materially shapes implementation
-- the frontend-direction phase runs separately after the spec and GSD handoff are approved, usually in a fresh or manually compacted session
+- the frontend-direction phase runs separately after the neutral spec is approved, usually in a fresh or manually compacted session
+- the frontend-direction packet must be approved before delivery routing
 
 ---
 
@@ -61,7 +62,7 @@ Shape a new capability from user/problem framing through first delivery boundary
 - explicit appetite / no-gos
 - spec
 - example mapping
-- GSD handoff
+- one adapter after delivery route confirmation
 - frontend-direction follow-on prompt **when UI is implementation-shaping**
 
 ### Typical question themes
@@ -125,7 +126,7 @@ Use the **lite path**:
 - mini boundaries
 - short spec
 - mini example map
-- GSD handoff
+- one adapter after delivery route confirmation
 - frontend-direction follow-on prompt only when the UI change introduces meaningful new hierarchy, state, or visual-contract ambiguity
 
 ### Typical question themes
@@ -194,7 +195,7 @@ Choose a technical direction, then bound the implementation implications.
 - strong option cards
 - decision rationale
 - ADR-style appendix in the spec
-- explicit GSD milestone recommendation
+- workflow-neutral delivery boundary and slice recommendation; convert it to GSD milestone framing only after the user confirms GSD
 - frontend-direction follow-on prompt only when architectural choices change how key screens, navigation, or interaction boundaries must work
 
 ### Typical question themes

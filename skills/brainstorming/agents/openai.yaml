@@ -1,4 +1,4 @@
 interface:
-  display_name: "Brainstorming & Handoff"
-  short_description: "Turn ideas into specs, GSD handoffs, and frontend-direction follow-on prompts"
-  default_prompt: "Use $brainstorming to turn this idea into a bounded design spec, a GSD/Codex-ready handoff, and a frontend-direction follow-on prompt when UI matters."
+  display_name: "Brainstorming & Routing"
+  short_description: "Turn ideas into neutral specs and confirmed delivery inputs"
+  default_prompt: "Use $brainstorming to turn this idea into an approved neutral spec, create a frontend-direction follow-on prompt when UI matters, and produce one adapter only after delivery route confirmation."

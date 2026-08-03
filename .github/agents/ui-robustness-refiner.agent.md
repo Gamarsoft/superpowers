@@ -21,7 +21,7 @@ If retained screenshots, browser captures, or approved generated-image reference
 
 If temporary HTML companion artifacts still exist, use them only to clarify unresolved comparison intent rather than as the durable responsive source.
 
-If no frontend packet exists, stay aligned to the approved spec and handoff when present, otherwise preserve the current brownfield product language and behavior.
+If no frontend packet exists, stay aligned to the approved spec and any available selected-route planning context, otherwise preserve the current brownfield product language and behavior.
 
 ## Focus
 

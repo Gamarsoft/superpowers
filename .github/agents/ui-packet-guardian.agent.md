@@ -1,5 +1,5 @@
 ---
-description: "Hidden subagent that reconstructs the strongest available UI fidelity contract from the frontend direction packet when present, otherwise approved spec and handoff, otherwise current code, design-system artifacts, and the rendered product."
+description: "Hidden subagent that reconstructs the strongest available UI fidelity contract from the frontend direction packet when present, otherwise the approved spec and any available selected-route planning context, otherwise current code, design-system artifacts, and the rendered product."
 name: "ui-packet-guardian"
 user-invocable: false
 tools:
@@ -18,7 +18,7 @@ Your job is to reconstruct the binding UI contract before and after refinement.
 ### Functional sources
 Use these for product behavior and scope:
 1. approved spec
-2. approved GSD handoff
+2. any available planning context from the confirmed delivery route
 3. current implementation and observable rendered behavior
 
 ### Visual source order
@@ -36,7 +36,7 @@ If the `gsd-frontend-design` skill is available, use it as the fidelity rulebook
 Return one of these modes:
 
 - **Packet-backed** — packet exists and is strong enough to anchor refinement
-- **Spec/handoff-backed** — no strong packet, but approved spec or handoff plus existing brownfield UI are enough for safe refinement
+- **Spec-backed** — no strong packet, but the approved spec, any available selected-route planning context, and existing brownfield UI are enough for safe refinement
 - **Source-code-backed** — no packet and no strong planning artifacts; derive a conservative refinement contract from the current product UI and codebase
 
 ## Output format

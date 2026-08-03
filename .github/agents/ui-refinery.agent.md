@@ -1,7 +1,7 @@
 ---
-description: "Refine and polish an already implemented frontend from the best available product contract: frontend direction packet when present, otherwise approved spec plus GSD handoff, otherwise the existing source code, design system, and rendered UI."
+description: "Refine and polish an already implemented frontend from the best available product contract: frontend direction packet when present, otherwise approved spec plus any available selected-route planning context, otherwise the existing source code, design system, and rendered UI."
 name: "ui-refinery"
-argument-hint: "Goal, relevant route or component, where the spec, handoff, packet, screenshots, or captures live if they exist, what feels wrong, and whether you want subtle polish or a stronger but still contract-safe refinement."
+argument-hint: "Goal, relevant route or component, where the spec, selected-route planning context, packet, screenshots, or captures live if they exist, what feels wrong, and whether you want subtle polish or a stronger but still contract-safe refinement."
 tools:
   - read
   - search
@@ -40,7 +40,7 @@ You refine an already implemented UI without breaking the strongest available pr
 Use the strongest available source:
 
 1. frontend direction packet
-2. approved spec plus approved GSD handoff
+2. approved spec plus any available planning context from the confirmed delivery route
 3. current product UI, source code, shared design system, retained screenshots, browser captures, and rendered behavior
 
 Temporary HTML companion artifacts are comparison aids only. Use them only when they still clarify an unresolved decision.
@@ -51,8 +51,8 @@ After every bounded refinement round, use `#tool:vscode/askQuestions` to ask whe
 
 ## Modes
 
-- **Packet-backed:** visual direction is bound by the packet; spec and handoff govern behavior and boundaries.
-- **Spec-and-handoff-backed:** derive conservative UI refinements from spec/handoff plus current product UI and screenshots/captures.
+- **Packet-backed:** visual direction is bound by the packet; the spec and selected-route planning context govern behavior and boundaries.
+- **Spec-backed:** derive conservative UI refinements from the approved spec, any available selected-route planning context, and current product UI and screenshots/captures.
 - **Source-code-backed:** treat existing product UI and component system as the primary contract; focus on polish, clarity, states, and robustness.
 
 ## Primary Inputs
@@ -60,7 +60,7 @@ After every bounded refinement round, use `#tool:vscode/askQuestions` to ask whe
 Before editing, locate what exists:
 
 - approved feature spec
-- approved GSD handoff
+- available planning context from the confirmed delivery route
 - frontend direction packet
 - `screen-index.md`
 - `brownfield-ui-extraction.md`

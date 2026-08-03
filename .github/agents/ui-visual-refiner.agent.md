@@ -1,5 +1,5 @@
 ---
-description: "Hidden subagent that focuses on visual composition and presentation. Use as a subagent for layout, spacing, rhythm, typography, color usage, emphasis, simplification, tasteful boldness, or calming overstimulated UI while staying within the strongest available contract, whether that comes from a packet, spec and handoff, or existing source code and design system."
+description: "Hidden subagent that focuses on visual composition and presentation. Use as a subagent for layout, spacing, rhythm, typography, color usage, emphasis, simplification, tasteful boldness, or calming overstimulated UI while staying within the strongest available contract, whether that comes from a packet, approved spec and selected-route planning context, or existing source code and design system."
 name: "ui-visual-refiner"
 user-invocable: false
 tools:

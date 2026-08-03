@@ -31,6 +31,7 @@ Superpowers and GSD are separate workflow families. Do not mix them unless the u
 
 - When working under a Superpowers skill or Superpowers workflow, do **not** invoke GSD skills, GSD commands, or GSD workflow helpers.
 - When working under a GSD skill or GSD workflow, do **not** invoke Superpowers skills or Superpowers workflow helpers.
+- When brainstorming records a confirmed delivery route, exactly one workflow family owns downstream orchestration. Native Codex plan mode is a route, not permission to start either workflow family.
 - If the user explicitly names both families, asks to compare them, asks to migrate between them, or asks to combine them, follow that explicit instruction.
 - If a non-GSD, non-Superpowers skill applies, use normal skill-selection rules.
 

@@ -4,22 +4,24 @@ Use this when choosing frontend skills after product direction is stable.
 
 ## Current Stack
 
-- `superpowers:brainstorming` stabilizes product direction, spec, GSD handoff, and the follow-on prompt.
+- `superpowers:brainstorming` stabilizes product direction, the approved neutral spec, and route-neutral follow-on context.
 - `superpowers:frontend-direction` creates the concise frontend packet once screens/states need implementation-grade direction.
 - `superpowers:creating-chatgpt-image-upload-packs` optionally prepares ChatGPT Images 2 prompts when image-native references would clarify a real design decision.
-- `superpowers:gsd-frontend-design` implements or verifies UI from approved packet evidence and runtime proof.
+- After the packet is approved, the confirmed delivery route owns planning and execution; use the appropriate frontend implementation or verification skill inside that one lane.
 - Mobile skills are composed only when native/mobile-first surfaces are actually in scope.
 
 ## Source Model
 
 The durable frontend contract is:
 
-1. approved spec and handoff
+1. approved neutral spec and frontend-direction follow-on context
 2. current product UI, design system, components, and tokens
 3. concise frontend packet
 4. `brownfield-ui-extraction.md`
 5. `screen-index.md`
 6. retained runtime screenshots, browser captures, simulator/device captures, and optional approved ChatGPT Images 2 files
+
+Delivery routing follows packet approval. A GSD handoff exists only when GSD is the selected route; unselected adapters are absent.
 
 Temporary HTML companion screens are comparison aids only. They become durable only when their chosen decision is captured in packet prose, screenshots/captures, or approved generated images.
 
@@ -66,7 +68,7 @@ Use `creating-chatgpt-image-upload-packs` when:
 - current screenshots and prose are not enough to choose a direction
 - the human can generate, save, approve, and classify the resulting files
 
-Use `gsd-frontend-design` when:
+Use `gsd-frontend-design` inside the selected delivery lane when:
 
 - approved artifacts exist and the task is implementation, verification, or refinement
 - the repo needs runtime evidence and reference-intent checks

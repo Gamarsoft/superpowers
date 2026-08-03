@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Direction"
-  short_description: "Turn approved specs and handoffs into concise frontend packets"
-  default_prompt: "Use $frontend-direction to turn this approved spec, GSD handoff, frontend-direction follow-on prompt, current UI context, screenshots, and optional approved ChatGPT Images 2 references into a concise frontend packet with source evidence, reference intent, preserve/adapt/no-go boundaries, UX copy source, and verification gates."
+  short_description: "Turn approved neutral inputs into concise frontend packets"
+  default_prompt: "Use $frontend-direction to turn this approved neutral spec, route-neutral frontend-direction follow-on context, current UI context, screenshots, and optional approved ChatGPT Images 2 references into a concise frontend packet with source evidence, reference intent, preserve/adapt/no-go boundaries, UX copy source, and verification gates. Obtain packet approval before returning to delivery routing."

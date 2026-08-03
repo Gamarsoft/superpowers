@@ -17,7 +17,7 @@ A brainstorming session succeeds when another agent can continue with minimal re
 - the chosen track and recommended direction are justified by real trade-offs
 - brownfield invariants, rollout constraints, compatibility constraints, and integration risks are recorded when relevant
 - each major capability has concrete examples or rules that make implementation testable
-- the design spec, GSD handoff, and optional frontend-direction follow-on prompt agree with each other
+- the approved neutral spec and optional frontend-direction follow-on prompt agree with each other
 - UI-heavy work is gated until the separate frontend-direction packet exists and is approved
 
 Use this contract as the destination. The workflow below is the default path for reaching it without skipping required gates.
@@ -26,9 +26,9 @@ Compact does not mean lossy. Keep outputs concise, but preserve implementation-s
 
 Default outputs:
 
-1. a reviewed design spec
-2. a reviewed GSD-ready handoff
-3. when UI/UX materially shapes implementation, a follow-on prompt to bootstrap a separate `frontend-direction` session
+1. an approved neutral spec
+2. when UI/UX materially shapes implementation, a follow-on prompt to bootstrap a separate `frontend-direction` session
+3. after explicit route confirmation, exactly one delivery adapter
 
 Do **not** write production code, scaffold projects, or invoke implementation skills until the required written artifacts are approved.
 
@@ -39,21 +39,19 @@ Do **not** run the full frontend-direction phase inside brainstorming by default
 ### Non-UI-heavy work
 
 - reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
-- reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
-- ready-to-paste GSD steering note delivered to the user, linking the spec and handoff
+- approved neutral spec routed through exactly one confirmed lane
 
 ### UI-heavy work
 
 - reviewed design spec written to `docs/superpowers/specs/YYYY-MM-DD--{slug}.md`
-- reviewed GSD handoff written to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`
-- frontend-direction follow-on prompt delivered to the user, linking the approved spec and handoff and carrying any visual-companion decisions
-- ready-to-paste GSD steering note delivered to the user, linking the spec and handoff and stating that frontend implementation must wait for the separate frontend-direction packet
+- frontend-direction follow-on prompt delivered to the user, linking the approved spec and carrying any visual-companion decisions
+- approved neutral spec routed through exactly one confirmed lane after the frontend-direction gate is satisfied
 
-Only invoke `writing-plans` if the user **explicitly** wants to continue inside Superpowers instead of handing off to GSD-2 or Codex implementation.
+Read `references/delivery-routing.md` before recommending a downstream lane. GSD produces the GSD handoff and steering note only after GSD is confirmed; Superpowers invokes `writing-plans`; Native Codex emits an inline proposed plan and, after plan mode exits, persists only the spec. Native Codex plan mode is a read-only authoring mode, not an execution workflow; do not execute implementation while in plan mode.
 
 ## Core principle
 
-**Extract → choose adapter → explore → converge.**
+**Extract → explore → converge → route.**
 
 Your job is to:
 
@@ -76,7 +74,7 @@ When frontend direction is required:
 - stay in brainstorming long enough to stabilize product behavior, flows, states, constraints, and first delivery boundary
 - allow the visual companion for decision support during brainstorming
 - do not create the frontend direction packet or screenshots in the same default brainstorming session
-- write the spec and GSD handoff with `packet status: required`
+- write the neutral spec with `packet status: required-pending`
 - produce a follow-on prompt for a separate `frontend-direction` session
 - include any visual-companion decisions as context for that follow-on prompt
 
@@ -205,32 +203,11 @@ Create a task for each of the following and complete them in order.
     - User preference overrides the default location.
     - If frontend direction is required, keep the spec structural and behavioral. Record that visual direction will be handled by a separate frontend-direction packet.
 
-14. **Write the GSD handoff**
-    - Use `references/gsd-handoff-template.md`.
-    - Save to `docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md`.
-    - If the repo already has `.gsd/REQUIREMENTS.md` or prior milestone requirements in the same domain, reconcile them explicitly in the handoff instead of introducing parallel truths.
-    - For each overlapping requirement, state whether this handoff:
-      - reuses it unchanged
-      - reactivates it from deferred
-      - narrows, splits, or clarifies it
-      - supersedes earlier wording for this scope
-      - leaves the remainder deferred
-    - Prepare the corresponding steering note with the real artifact paths filled in.
-    - If frontend direction is required but not yet created, set packet status to `required` and tell downstream agents not to implement UI until the frontend-direction packet exists and is approved.
-    - If UX copy is implementation-shaping, link or embed the approved copy deck, missing copy states, i18n notes, and copy acceptance criteria.
-    - Make sure the steering note links all primary artifacts:
-      - design spec
-      - GSD handoff
-      - frontend direction packet when present, or frontend-direction follow-on prompt when packet status is `required`
-    - If frontend direction is required, record target stack and evidence needs as guidance for the follow-on prompt, not as finalized implementation evidence.
-    - Make clear that temporary HTML companion screens are brainstorming decision aids until a later frontend-direction packet translates them into durable artifacts.
-
-15. **Write the frontend-direction follow-on prompt** _(conditional)_
+14. **Write the frontend-direction follow-on prompt** _(conditional)_
     - Required when step 5 marked frontend direction as required and no current approved packet exists.
     - Use `references/frontend-direction-follow-on-prompt-template.md`.
     - Include:
       - approved design spec path
-      - approved GSD handoff path
       - feature slug and target repo
       - track and first delivery boundary
       - screen families, flows, and key states discovered during brainstorming
@@ -239,24 +216,56 @@ Create a task for each of the following and complete them in order.
       - UX writing decisions, copy deck path or copy gaps, and prompt-visible-text requirements for ChatGPT Images 2 prompts
       - likely target stack and adapter candidates
       - reference-intent approval requirement for the later packet
-    - Deliver the prompt in the final answer so the user can start a fresh session after manual compaction.
+    - Prepare the prompt as part of the neutral artifact set. Deliver it as the next-session bootstrap only after the neutral artifact review and user approval gate pass.
 
-16. **Run the review loop**
+15. **Run the neutral artifact review**
     - Read `references/spec-review-checklist.md`.
     - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
-    - Review the design spec, GSD handoff, and frontend-direction follow-on prompt if one is required.
+    - Review only the neutral design spec and frontend-direction follow-on prompt if one is required. At this stage, Delivery Route metadata and every route adapter must still be absent.
     - Fix blocking issues and re-dispatch.
     - Maximum 5 iterations, then surface to the human.
 
-17. **User review gate**
+16. **User approval gate**
     - Ask the user to review the written artifacts before proceeding.
     - Use the current platform's dedicated question tool for that review prompt when available.
-    - If they request changes, make them and re-run the review loop.
+    - If they request changes, make them and re-run the neutral artifact review.
 
-18. **Transition**
-    - Default: stop with approved artifacts and give the user the ready-to-paste steering note.
-    - The final response must include the steering note and, when frontend direction is required, the follow-on frontend-direction prompt.
-    - If the user explicitly wants to continue inside Superpowers, invoke `writing-plans`.
+17. **Complete frontend packet approval** _(conditional)_
+    - When frontend direction is not required, record packet status as `not-required` and continue.
+    - When frontend direction is required and no current packet exists, keep packet status as `required-pending`, deliver the follow-on prompt, and stop this workflow until the separate frontend-direction session returns an approved packet.
+    - Resume only when the user explicitly approves the packet as `approved` or explicitly approves every degraded constraint and records `approved-with-degraded-evidence`.
+    - A degraded evidence note without explicit approval does not satisfy this gate.
+
+18. **Confirm the delivery route**
+    - Read `references/delivery-routing.md`.
+    - Route only after the neutral artifacts have passed review and user approval, and after step 17 has resolved packet status to `not-required`, `approved`, or `approved-with-degraded-evidence`.
+    - Recommend by delivery fit, using the approved spec and the user's stated working preference. Availability only removes routes; it never makes one preferable.
+    - Use GSD for milestone continuity or cross-workstream governance, Superpowers for bounded durable task-planned delivery, and Native Codex for an immediate contained slice.
+    - Resolve mixed signals with the deterministic rules in `references/delivery-routing.md`.
+    - Ask the user to confirm exactly one route before creating any adapter or adding the compact Delivery Route section to the spec.
+    - Warn once only when an explicit preference conflicts with a concrete need in the approved spec, then honor the confirmed preference.
+    - After confirmation, record the recommendation with its concrete fit evidence, the neutral-review and user-approval references, the confirmed route, its confirmation reference, the expected delivery output, and `Delivery review` status `pending`.
+
+19. **Create the selected adapter**
+    - Append the compact Delivery Route section to the approved spec.
+    - Produce exactly one adapter for the confirmed route: GSD handoff and steering note, a single Superpowers `writing-plans` invocation bound to the approved spec, or a Native Codex inline proposed plan.
+    - Do not create or retain any adapter for an unselected route.
+    - Generate the GSD handoff only when GSD is confirmed and packet status is `not-required`, `approved`, or `approved-with-degraded-evidence`; for UI-heavy work it consumes the approved packet and never sends work back to frontend direction.
+    - If a route change is requested after adapter or workflow state exists, stop for reconciliation; never reroute automatically.
+
+20. **Review the selected adapter**
+    - Dispatch an independent reviewer with review stage `selected-adapter`, the confirmed route, and the selected adapter populated. Do not self-review or treat an author checklist as reviewer approval.
+    - During the selected-adapter review, validate the compact Delivery Route metadata matches the user's confirmed route.
+    - During the selected-adapter review, validate exactly one adapter exists and matches that route.
+    - During the selected-adapter review, reject every unselected adapter or unselected route artifact.
+    - During the selected-adapter review, validate route-specific completeness and cross-artifact agreement before transition.
+    - Fix blocking issues and re-dispatch. Maximum 5 iterations, then surface to the human.
+    - After approval, replace the Delivery Route section's `Delivery review: pending` with `Delivery review: approved` and a concrete reviewer reference. A claim without a reviewer result is not approval evidence.
+
+21. **Transition through the confirmed route**
+    - Transition only after the selected-adapter review approves the route metadata, adapter cardinality, and route-specific completeness, and the Delivery Route section records that approval reference.
+    - Hand the approved GSD adapter to GSD, invoke the approved Superpowers `writing-plans` adapter, or present the approved Native Codex inline proposed plan according to the confirmed route.
+    - Preserve Native Codex as read-only planning and do not start either unselected workflow family.
 
 ## Guided discovery rules
 

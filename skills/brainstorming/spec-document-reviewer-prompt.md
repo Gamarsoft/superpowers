@@ -2,17 +2,20 @@
 
 Use this template when dispatching a spec reviewer subagent.
 
-**Purpose:** Verify that the design spec, GSD handoff, and optional frontend-direction follow-on prompt are complete, bounded, internally consistent, and ready for GSD intake or a separate frontend-direction session.
+**Purpose:** Verify that the approved neutral spec, optional frontend-direction follow-on prompt, frontend packet status, and any selected route adapter are complete, bounded, internally consistent, and ready for the current workflow stage.
 
-**Approval contract:** Approve only if another agent could start GSD intake or the separate frontend-direction session with minimal rediscovery, using the reviewed artifacts as the source of truth.
+**Approval contract:** Approve only if another agent could start the separate frontend-direction session or the confirmed delivery lane with minimal rediscovery, using only artifacts valid for that stage as the source of truth.
 
 **Dispatch after:** All written artifacts in scope exist.
 
 ## Inputs to provide
 
 - `[SPEC_FILE_PATH]`
-- `[GSD_HANDOFF_FILE_PATH]`
+- `[REVIEW_STAGE]` — one of: `neutral-artifacts`, `selected-adapter`
 - `[FRONTEND_DIRECTION_FOLLOW_ON_PROMPT_OR_NONE]`
+- `[FRONTEND_PACKET_STATUS]` — one of: `not-required`, `required-pending`, `approved`, `approved-with-degraded-evidence`
+- `[CONFIRMED_DELIVERY_ROUTE_OR_NONE]`
+- `[SELECTED_ROUTE_ADAPTER_OR_NONE]`
 - `[TRACK]` — one of:
   - greenfield
   - brownfield-major-feature
@@ -35,14 +38,17 @@ Do **not** pass your full session history. Pass only the minimum review context 
 ```text
 You are a spec document reviewer.
 
-Review the design artifacts for implementation readiness and GSD handoff quality.
+Review the design artifacts for shaping and delivery readiness at the current stage.
 
 Approve only if another agent could continue from these artifacts with minimal rediscovery.
 
 Artifacts:
-- Spec: [SPEC_FILE_PATH]
-- GSD handoff: [GSD_HANDOFF_FILE_PATH]
+- Review stage: [REVIEW_STAGE]
+- Approved neutral spec: [SPEC_FILE_PATH]
 - Frontend direction follow-on prompt: [FRONTEND_DIRECTION_FOLLOW_ON_PROMPT_OR_NONE]
+- Frontend packet status: [FRONTEND_PACKET_STATUS]
+- Confirmed delivery route: [CONFIRMED_DELIVERY_ROUTE_OR_NONE]
+- Selected route adapter: [SELECTED_ROUTE_ADAPTER_OR_NONE]
 - Track: [TRACK]
 
 Review using the checklist in `skills/brainstorming/references/spec-review-checklist.md`.
@@ -55,14 +61,16 @@ Look especially hard for:
 - weak framing
 - unclear first delivery boundary
 - options with no real trade-offs
-- contradictions between the spec, packet, and handoff
+- contradictions between the spec, packet, and the selected adapter when one exists
 - missing example mapping or vague acceptance language
 - brownfield safety gaps
 - UI-heavy work with no frontend-direction follow-on prompt
 - follow-on prompts that fail to carry screen families, key states, brownfield constraints, visual-companion decisions, or reference-intent approval requirements
-- GSD handoffs that allow frontend implementation before the separate frontend-direction packet exists
+- premature routing before a required frontend-direction packet is approved
+- an adapter that does not match the selected route, or any unselected adapter or route artifact
+- selected-adapter review input whose Delivery Route metadata lacks recommendation fit evidence, prior approval references, or `pending` review status
 - TODO / TBD / placeholder content
-- handoff sections too vague to seed GSD planning
+- a selected GSD handoff too vague to seed GSD planning
 - visual-companion regressions when that workflow is in scope
 
 Do not redesign the feature unless the current design is clearly unsafe, incoherent, or unbounded.
@@ -100,4 +108,5 @@ Approval means:
 - scope is bounded
 - acceptance examples exist
 - UI-heavy work has a strong follow-on prompt for the separate frontend-direction phase
-- the GSD handoff can seed requirements and milestone discussion with minimal extra questioning
+- routing has not started before the required frontend packet is approved
+- when a route is confirmed, exactly the selected route adapter can start its delivery lane with minimal extra questioning

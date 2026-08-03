@@ -8,12 +8,14 @@ Keep the prompt short enough to paste into a fresh session.
 Use $superpowers:frontend-direction.
 
 Goal:
-Create a concise frontend direction packet and supporting evidence for [feature / slug] from the approved brainstorming outputs.
+Create a concise frontend direction packet and supporting evidence for [feature / slug] from the approved neutral spec and route-neutral brainstorming outputs.
 
 Approved upstream artifacts:
-- Design spec: [path]
-- GSD handoff: [path]
+- Approved neutral spec: [path]
+- Follow-on context: [path or the settled context below]
 - Existing frontend packet: none / [path if refreshing]
+- Frontend packet status: required-pending | approved | approved-with-degraded-evidence
+- Routing boundary: finish and approve the packet before returning to the delivery router; no route or adapter exists yet
 
 Target repo / product:
 - Repo: [path]
@@ -48,9 +50,9 @@ Frontend-direction requirements:
   - `reference-only`
 - Use `writing-ux-copy` for visible UI text that affects the packet, screenshots, or image prompts.
 - If ChatGPT Images 2 prompts are created, audit prompt-visible copy before generation and wait for human approval before treating generated images as references.
-- Do not hand off to implementation until the packet and implementation-affecting reference intent are approved or explicitly marked degraded.
+- Do not route until the packet is approved. If evidence or implementation-affecting reference intent is degraded, record the constraint and obtain explicit approval inside the packet before routing or implementation.
 ```
 
 ## Quality Bar
 
-A strong follow-on prompt links the approved spec and handoff, carries only settled product decisions, names key screens/states, and states what evidence the frontend-direction packet must produce.
+A strong follow-on prompt links the approved neutral spec and route-neutral shaping context, carries only settled product decisions, names key screens/states, and states what evidence the frontend-direction packet must produce before routing.

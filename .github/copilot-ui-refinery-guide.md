@@ -7,7 +7,7 @@ Use this pack when:
 - you want a stronger design-oriented refinement pass in VS Code Copilot outside GSD
 - the best available contract may be:
   - a frontend direction packet,
-  - only an approved spec plus GSD handoff,
+  - an approved spec plus any available selected-route planning context,
   - or only the existing source code and rendered UI
 
 This pack gives you:
@@ -33,11 +33,11 @@ Use when a frontend direction packet exists.
 
 Best for the highest-fidelity refinement.
 
-### 2. Spec-and-handoff-backed mode
-Use when there is no packet, but you still have an approved spec and GSD handoff.
+### 2. Spec-backed mode
+Use when there is no packet, but you still have an approved spec and may have planning context from the confirmed delivery route.
 
 The main agent derives a conservative working UI contract from:
-- the spec and handoff
+- the approved spec and any available selected-route planning context
 - retained screenshots, browser captures, or approved generated-image references when present
 - the existing product UI and shared design system
 
@@ -118,13 +118,13 @@ The main agent must not stop by itself. It asks whether to:
 
 Example start prompt:
 
-> Use ui-refinery for the billing settings flow. Read the spec, GSD handoff, and frontend packet first. The current UI works but feels flat and slightly cluttered. Aim for a subtle, higher-quality polish. After one round, ask me whether to continue.
+> Use ui-refinery for the billing settings flow. Read the approved spec, selected-route planning context, and frontend packet first. The current UI works but feels flat and slightly cluttered. Aim for a subtle, higher-quality polish. After one round, ask me whether to continue.
 
-### Pattern B — spec and handoff only
+### Pattern B — spec-backed refinement
 
 Example start prompt:
 
-> Use ui-refinery for the analytics detail page. There is no frontend packet yet, but the approved spec and GSD handoff exist. Derive a conservative working direction from those plus the current product UI, then refine the implementation without inventing a new visual language. After one round, ask whether to continue.
+> Use ui-refinery for the analytics detail page. There is no frontend packet, but the approved spec and selected-route planning context exist. Derive a conservative working direction from those plus the current product UI, then refine the implementation without inventing a new visual language. After one round, ask whether to continue.
 
 ### Pattern C — source code only rescue pass
 
