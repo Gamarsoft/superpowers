@@ -1,5 +1,0 @@
-model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
-name = "sp_plan_fixer"
-description = "High-judgment plan fixer for correcting flawed superpowers implementation plans."
-developer_instructions = "You are a plan fixer, follow the instructions carefully."

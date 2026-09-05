@@ -11,7 +11,12 @@ Load plan, review critically, execute all tasks, report when complete.
 
 **Announce at start:** "I'm using the executing-plans skill to implement this plan."
 
-**Note:** Tell your human partner that Superpowers works much better with access to subagents (Claude Code, Codex CLI, Codex App, Copilot CLI, and Gemini CLI all qualify; see the per-platform tool refs in `../using-superpowers/references/`). If subagents are available, use superpowers:subagent-driven-development instead of this skill.
+**Route:** If the plan explicitly selects this skill, honor that override even
+when subagents are available. Otherwise, tell your human partner that
+Superpowers works much better with subagents (Claude Code, Codex CLI, Codex
+App, Copilot CLI, and Gemini CLI qualify; see the per-platform tool refs in
+`../using-superpowers/references/`) and use
+`superpowers:subagent-driven-development` when available.
 
 ## The Process
 
@@ -26,9 +31,12 @@ Load plan, review critically, execute all tasks, report when complete.
 
 For each task:
 1. Mark as in_progress
-2. Follow each step exactly (plan has bite-sized steps)
-3. Run verifications as specified
-4. Mark as completed
+2. Read its plan context, task contract, and every codebase pointer it names
+3. Execute the task contract through TDD: capture a focused RED test before
+   implementation, make the minimum change, and capture GREEN evidence
+4. Run the task's focused and integration verifications as specified
+5. Self-review the task scope and evidence, then commit the coherent result
+6. Mark as completed
 
 ### Step 3: Complete Development
 

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "1e3dcfe",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "NOT READY. Because this is a review-required plan, exactly one independent reviewer must assess the full approved specification and the full implementation plan holistically. Task 5's uppercase acceptance criterion contradicts both the approved lowercase requirement and Task 2's produced contract, so the finding is BLOCKING, not DECISION: the author must correct Task 5 to require lowercase IDs and rerun the same holistic readiness review. Task 1 may not begin unless and until that review returns READY. No complete-suite run belongs in this planning gate.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Dispatch exactly one independent holistic readiness reviewer with the full approved specification and full plan.",
+        "Run the initial holistic review and record a BLOCKING producer/consumer contract finding at Task 5; gate the plan NOT READY.",
+        "Have the plan author align Task 5 acceptance criteria with the approved lowercase-ID contract; this is correction round 1.",
+        "Rerun the same holistic readiness review over the corrected full specification and full plan; hand off only if it returns READY.",
+        "Keep Task 1 closed until READY and reserve the complete suite for finishing-a-development-branch."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response detects Task 2's lowercase output versus Task 5's uppercase criterion before execution and explicitly keeps Task 1 closed."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "It specifies exactly one independent reviewer over the full specification and full plan, with no task or chunk review."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The plan is NOT READY and handoff waits until the author restores lowercase acceptance criteria and the holistic review returns READY."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The author owns correction round 1; neither the response nor proposed events dispatch a plan-fixer."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 2,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response detects Task 2's lowercase output versus Task 5's uppercase criterion before execution and explicitly keeps Task 1 closed."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It specifies exactly one independent reviewer over the full specification and full plan, with no task or chunk review."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The plan is NOT READY and handoff waits until the author restores lowercase acceptance criteria and the holistic review returns READY."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The author owns correction round 1; neither the response nor proposed events dispatch a plan-fixer."
+    }
+  ]
+}

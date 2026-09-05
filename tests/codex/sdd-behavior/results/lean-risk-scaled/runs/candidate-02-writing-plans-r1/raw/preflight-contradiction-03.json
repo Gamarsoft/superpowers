@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "1e3dcfe",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "{\"planning_gate\":\"NOT READY\",\"review_scope_cadence\":\"Because the plan is high-risk, exactly one holistic readiness reviewer must review the full approved specification and full implementation plan. The author must correct the supported finding and re-run that same holistic review; no task may execute until it returns READY.\",\"finding_label\":\"BLOCKING\",\"task_1_may_begin\":false}",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Dispatch exactly one holistic readiness review with the full approved specification and full plan.",
+        "Record a BLOCKING finding for Task 5 requiring uppercase IDs while the specification and Task 2 require lowercase IDs.",
+        "Have the plan author correct Task 5 to preserve the lowercase cross-task contract.",
+        "Re-run the same holistic readiness review after the correction.",
+        "Begin Task 1 only after the reviewer returns READY."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The structured response blocks Task 1, and the proposed events identify Task 5's uppercase consumer requirement against Task 2's lowercase producer contract."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "The review scope is exactly one holistic reviewer over the full approved specification and full implementation plan, with no chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The gate is NOT READY, the finding is BLOCKING, and Task 1 waits until the author restores the lowercase contract and review returns READY."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The proposed events assign the correction to the plan author and contain no plan-fixer dispatch."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The structured response blocks Task 1, and the proposed events identify Task 5's uppercase consumer requirement against Task 2's lowercase producer contract."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "The review scope is exactly one holistic reviewer over the full approved specification and full implementation plan, with no chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The gate is NOT READY, the finding is BLOCKING, and Task 1 waits until the author restores the lowercase contract and review returns READY."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The proposed events assign the correction to the plan author and contain no plan-fixer dispatch."
+    }
+  ]
+}

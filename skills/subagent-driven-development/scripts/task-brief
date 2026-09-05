@@ -25,17 +25,33 @@ else
   out="$dir/task-${n}-brief.md"
 fi
 
+task_tmp=$(mktemp "${TMPDIR:-/tmp}/superpowers-task-brief.XXXXXX")
+trap 'rm -f "$task_tmp"' EXIT
+
 awk -v n="$n" '
   /^```/ { infence = !infence }
   !infence && /^#+[ \t]+Task[ \t]+[0-9]+/ {
     intask = ($0 ~ ("^#+[ \t]+Task[ \t]+" n "([^0-9]|$)"))
   }
   intask { print }
-' "$plan" > "$out"
+' "$plan" > "$task_tmp"
 
-if [ ! -s "$out" ]; then
+if [ ! -s "$task_tmp" ]; then
   echo "task ${n} not found in ${plan} (no heading matching 'Task ${n}')" >&2
   exit 3
 fi
+
+{
+  printf '%s\n' \
+    '# TDD execution mechanics' \
+    '' \
+    'For this task: read every codebase pointer; write the smallest focused' \
+    'test that proves the acceptance criterion; run it and preserve the expected' \
+    'RED evidence; implement the minimum contract-preserving change; rerun for' \
+    'GREEN evidence; run the task verification lane; self-review; then commit.' \
+    'Finishing alone owns the complete repository suite.' \
+    ''
+  cat "$task_tmp"
+} > "$out"
 
 echo "wrote ${out}: $(wc -l < "$out" | tr -d ' ') lines"

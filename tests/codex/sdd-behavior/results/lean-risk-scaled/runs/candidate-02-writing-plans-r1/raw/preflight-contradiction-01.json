@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "1e3dcfe",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "NOT READY. The high-risk plan requires exactly one holistic readiness reviewer to examine the full approved specification and the full implementation plan as one system, not task-by-task or chunk-by-chunk. The Task 2 lowercase producer versus Task 5 uppercase acceptance criterion is a supported BLOCKING finding because it violates both the approved lowercase requirement and the producer/consumer contract. The author must correct Task 5, then re-run the same holistic review; at most two correction rounds are allowed before an unresolved BLOCKING conflict is returned to the human partner. Task 1 may not begin until the reviewer returns READY. The complete suite is reserved for finishing the development branch, not this planning gate.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Run one holistic readiness review over the full approved specification and full high-risk plan.",
+        "Return NOT READY and record the Task 2/Task 5 casing contradiction as BLOCKING.",
+        "Have the plan author correct Task 5 to require the specification-owned lowercase IDs; no human WHAT decision is needed because the approved specification is explicit.",
+        "Re-run the same holistic review over the full corrected plan and permit execution only if it returns READY; stop for the human partner if the BLOCKING conflict survives two correction rounds.",
+        "Do not begin Task 1 or run the complete suite while the readiness gate is NOT READY."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response identifies Task 2 as the lowercase producer and Task 5 as the uppercase consumer, returns NOT READY, and says Task 1 may not begin."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "It requires exactly one holistic reviewer to examine the full approved specification and full plan as one system and explicitly rejects task and chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The finding is BLOCKING, the author must change Task 5 to the specification-owned lowercase contract, and execution waits for READY."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The response assigns the correction to the plan author and proposes no plan-fixer dispatch."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies Task 2 as the lowercase producer and Task 5 as the uppercase consumer, returns NOT READY, and says Task 1 may not begin."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It requires exactly one holistic reviewer to examine the full approved specification and full plan as one system and explicitly rejects task and chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The finding is BLOCKING, the author must change Task 5 to the specification-owned lowercase contract, and execution waits for READY."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The response assigns the correction to the plan author and proposes no plan-fixer dispatch."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "17a921c",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "NOT READY. Because this is a high-risk plan, exactly one holistic readiness review must examine the full approved specification and full implementation plan; reviews are not per task or per chunk. Task 5's uppercase-ID acceptance criterion contradicts both the specification's lowercase requirement and Task 2's lowercase output, so the finding is BLOCKING, not DECISION. Task 1 may not begin until the author corrects the plan and the same holistic reviewer returns READY.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Dispatch exactly one holistic readiness review with the full approved specification and full plan.",
+        "Record the producer-consumer contradiction as BLOCKING and return NOT READY.",
+        "Have the plan author correct Task 5 to require lowercase IDs.",
+        "Re-run the same holistic readiness review after the correction.",
+        "Allow Task 1 to begin only after a READY verdict."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response identifies the Task 2 lowercase output and Task 5 uppercase criterion as a producer-consumer contradiction before Task 1."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "It explicitly requires exactly one holistic review of the full specification and full plan and rejects per-task or per-chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "Task 1 remains blocked until the author changes Task 5 to lowercase and the holistic reviewer returns READY."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The author owns the correction; no plan-fixer agent is dispatched."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies the Task 2 lowercase output and Task 5 uppercase criterion as a producer-consumer contradiction before Task 1."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It explicitly requires exactly one holistic review of the full specification and full plan and rejects per-task or per-chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "Task 1 remains blocked until the author changes Task 5 to lowercase and the holistic reviewer returns READY."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The author owns the correction; no plan-fixer agent is dispatched."
+    }
+  ]
+}

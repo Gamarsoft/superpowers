@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "17a921c",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "NOT READY. Task 5 contradicts both the approved lowercase-ID specification and Task 2's produced contract. This is a BLOCKING producer/consumer and acceptance-criteria defect, not a DECISION: Task 5 must require lowercase IDs. Because the plan is review-required, readiness review must cover the full approved specification and full implementation plan in exactly one holistic review; after each supported load-bearing correction, rerun that same holistic review, with at most two correction rounds before escalating a surviving BLOCKING conflict. Task 1 may not begin until the corrected plan receives READY.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Record the Task 2/Task 5 contract mismatch as BLOCKING.",
+        "Correct Task 5 acceptance criteria to require the specification's lowercase normalized account IDs.",
+        "Submit the full approved specification and full corrected plan to exactly one holistic readiness reviewer.",
+        "If the same supported BLOCKING issue remains, correct and rerun the same holistic review, stopping after at most two correction rounds.",
+        "Begin Task 1 only after the readiness verdict is READY."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response detects the Task 2 and Task 5 contract mismatch, specifies lowercase as the approved value, and withholds Task 1."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "It requires exactly one holistic readiness reviewer to assess the full approved specification and full implementation plan, with no chunk-review cadence."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The mismatch is BLOCKING, Task 5 must require lowercase IDs, and Task 1 waits for a READY verdict on the corrected plan."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The proposed correction is not assigned to a plan-fixer and no plan-fixer dispatch appears."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response detects the Task 2 and Task 5 contract mismatch, specifies lowercase as the approved value, and withholds Task 1."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It requires exactly one holistic readiness reviewer to assess the full approved specification and full implementation plan, with no chunk-review cadence."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The mismatch is BLOCKING, Task 5 must require lowercase IDs, and Task 1 waits for a READY verdict on the corrected plan."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The proposed correction is not assigned to a plan-fixer and no plan-fixer dispatch appears."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "1e3dcfe",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "{\"planning_gate_outcome\":\"NOT READY until Task 5 is corrected to require lowercase normalized account IDs and the risk-bearing plan passes its readiness gate with READY.\",\"review_scope_cadence\":\"Author self-review first; because the plan is high-risk, exactly one independent holistic reviewer per pass receives the full approved specification and full implementation plan. Apply supported load-bearing corrections directly and rerun that same holistic review, for at most two correction rounds; use no separate fixer.\",\"finding_label\":\"BLOCKING\",\"task_1_may_begin\":false}",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Record the Task 2/Task 5 case mismatch as a supported BLOCKING cross-task contract and specification violation.",
+        "Correct Task 5 to require lowercase IDs, preserving the approved specification and Task 2 output contract.",
+        "Dispatch exactly one holistic readiness review of the full specification and full corrected plan because the plan has named high-risk triggers.",
+        "If the reviewer still reports a supported load-bearing finding, apply the correction and rerun the same holistic review, stopping after two correction rounds if BLOCKING survives.",
+        "Begin Task 1 only after the reviewer returns READY."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response labels the Task 2 and Task 5 case mismatch as a cross-task contract violation and sets task_1_may_begin to false."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "It requires exactly one independent holistic reviewer per pass over the full specification and plan and proposes no task or chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The planning gate remains NOT READY until Task 5 requires lowercase IDs and the corrected plan receives READY."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The response explicitly says to use no separate fixer, and no plan-fixer appears in the proposed events."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response labels the Task 2 and Task 5 case mismatch as a cross-task contract violation and sets task_1_may_begin to false."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It requires exactly one independent holistic reviewer per pass over the full specification and plan and proposes no task or chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The planning gate remains NOT READY until Task 5 requires lowercase IDs and the corrected plan receives READY."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The response explicitly says to use no separate fixer, and no plan-fixer appears in the proposed events."
+    }
+  ]
+}

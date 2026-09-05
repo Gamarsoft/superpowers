@@ -82,6 +82,7 @@ done
 tests=(
     "test-worktree-path-policy.sh"
     "test-timeout-portability.sh"
+    "test-lean-delivery-contracts.sh"
     "test-sdd-workspace.sh"
     "test-sdd-custom-contracts.sh"
     "test-custom-policy-contracts.sh"

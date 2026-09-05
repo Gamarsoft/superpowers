@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "17a921c",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "NOT READY. The Task 5 uppercase acceptance criterion contradicts the approved lowercase account-ID behavior and Task 2's lowercase producer contract, so the finding is BLOCKING, not DECISION. For this high-risk plan, review the full approved specification and full implementation plan as one system: author self-review first, then exactly one holistic readiness reviewer; the author applies supported findings and reruns that same holistic review after each correction, for at most two correction rounds. Task 1 may not begin until the contradiction is corrected and the gate returns READY; if the BLOCKING finding survives two correction rounds, stop and return the architectural conflict to the human partner.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "author_self_review_full_spec_and_full_plan",
+        "record_task2_task5_lowercase_uppercase_conflict_as_BLOCKING_and_hold_handoff",
+        "author_correct_task5_to_match_the_approved_lowercase_contract",
+        "dispatch_exactly_one_holistic_readiness_reviewer_with_full_spec_and_full_plan",
+        "rerun_the_same_holistic_review_after_each_supported_correction_for_at_most_two_rounds",
+        "begin_task1_only_after_READY_otherwise_stop_if_BLOCKING_survives_two_rounds"
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response detects the Task 2 lowercase producer versus Task 5 uppercase consumer conflict and blocks Task 1."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "It specifies one holistic readiness reviewer over the full specification and full plan and proposes no chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The finding is BLOCKING, the author must restore the approved lowercase contract, and Task 1 waits for READY."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The response assigns supported corrections to the author and proposes no plan-fixer dispatch."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response detects the Task 2 lowercase producer versus Task 5 uppercase consumer conflict and blocks Task 1."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It specifies one holistic readiness reviewer over the full specification and full plan and proposes no chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The finding is BLOCKING, the author must restore the approved lowercase contract, and Task 1 waits for READY."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The response assigns supported corrections to the author and proposes no plan-fixer dispatch."
+    }
+  ]
+}

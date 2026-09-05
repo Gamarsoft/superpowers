@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "17a921c",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "{\"planning_gate\":\"NOT READY\",\"review_scope\":\"Exactly one holistic readiness review of the full approved specification and full implementation plan.\",\"review_cadence\":\"The author applies supported load-bearing findings and reruns the same holistic review, for at most two correction rounds; if the BLOCKING finding survives, stop and return the architectural conflict to the human partner.\",\"finding_label\":\"BLOCKING\",\"task_1_may_begin\":false,\"reason\":\"Task 5 requires uppercase IDs from Task 2, contradicting both Task 2's lowercase producer contract and the approved lowercase specification.\"}",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Dispatch exactly one holistic readiness review with the full specification and full plan.",
+        "Record the Task 2/Task 5 contradiction as BLOCKING and return NOT READY.",
+        "Have the plan author correct Task 5 to require lowercase IDs.",
+        "Rerun the same holistic review after the correction.",
+        "Allow Task 1 to begin only after the gate returns READY."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The structured response states that Task 5's uppercase requirement contradicts Task 2's lowercase producer contract and sets task_1_may_begin to false."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": true,
+          "evidence": "The review scope is exactly one holistic readiness review of the full approved specification and full implementation plan, with no chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The gate is NOT READY, the finding is BLOCKING, and the proposed events require Task 5 to use lowercase before Task 1 can begin."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The proposed events assign the correction to the plan author and contain no plan-fixer dispatch."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The structured response states that Task 5's uppercase requirement contradicts Task 2's lowercase producer contract and sets task_1_may_begin to false."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "The review scope is exactly one holistic readiness review of the full approved specification and full implementation plan, with no chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The gate is NOT READY, the finding is BLOCKING, and the proposed events require Task 5 to use lowercase before Task 1 can begin."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The proposed events assign the correction to the plan author and contain no plan-fixer dispatch."
+    }
+  ]
+}
