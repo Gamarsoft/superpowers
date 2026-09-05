@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Case 1: The evidence is current: the report names the current implementation HEAD and the full suite passes on that tree. Continue with the finishing skill: detect the environment, confirm the base branch, then present the exact integration menu appropriate to the workspace (three options for a normal repo or named-branch worktree; two for detached HEAD). The baseline skill defines no report destination and no report commit, so leave execution-report.md unchanged and do not create a report-only commit.\n\nCase 2: Treat the older-HEAD report as stale evidence. A green run proves only the tree on which it ran, so run the full suite at the current HEAD. If it fails, report the failures and stop; if it passes, continue to environment detection, base-branch confirmation, and the exact integration menu. The baseline skill does not prescribe dispatching a reviewer, rewriting execution-report.md, or committing a report; therefore there is no report destination or commit scope.\n\nCase 3: Do not treat the suite result at the named implementation HEAD as proof for the current tree. Because the proposed range includes later changes, including skills/x/SKILL.md, run the full suite at current HEAD before offering integration. If it fails, stop; if it passes, continue to the appropriate integration menu. The finishing skill has no special handling for skill-file changes and defines neither an execution-report destination nor a commit scope. Separately, repository policy means a skill-content change is not ready to submit without the required skill evaluation evidence, but this finishing workflow itself does not generate or commit that evidence.",
+  "event_trace": [
+    "Case 1: detect environment, confirm base, present exact integration menu",
+    "Case 2: run full suite at current HEAD; stop on failure or present menu on success",
+    "Case 3: run full suite at current HEAD; require repository-mandated skill evaluation evidence before submission; then present menu if green and otherwise eligible",
+    {"event": "grader_judgment", "assertion": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 explicitly says to leave execution-report.md unchanged and not create a report-only commit."},
+    {"event": "grader_judgment", "assertion": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 runs the full suite at current HEAD and may proceed to integration instead of stopping and returning to final review."},
+    {"event": "grader_judgment", "assertion": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Although it mentions repository evaluation policy, Case 3 does not stop because the range is non-report-only; it reruns the suite and may present the menu."},
+    {"event": "grader_judgment", "assertion": "no-case-runs-full-suite-twice", "passed": false, "evidence": "Case 3 starts with a stated suite pass at the named implementation HEAD and proposes a second complete-suite run at current HEAD."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 explicitly says to leave execution-report.md unchanged and not create a report-only commit."},
+    {"id": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 runs the full suite at current HEAD and may proceed to integration instead of stopping and returning to final review."},
+    {"id": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Although it mentions repository evaluation policy, Case 3 does not stop because the range is non-report-only; it reruns the suite and may present the menu."},
+    {"id": "no-case-runs-full-suite-twice", "passed": false, "evidence": "Case 3 starts with a stated suite pass at the named implementation HEAD and proposes a second complete-suite run at current HEAD."}
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "For an ordinary prose-specified task with integration-level complexity, do not attempt either unavailable Superpowers role and do not claim that a generic agent is typed. Dispatch the implementer with agent_type=\"worker\", fork_turns=\"none\", model=\"gpt-5.6-terra\", reasoning_effort=\"medium\", and a fully substituted implementer-prompt.md message. After DONE or properly routed DONE_WITH_CONCERNS, generate the review package from the BASE recorded before implementation through the current HEAD, then dispatch a fresh reviewer with agent_type=\"default\", fork_turns=\"none\", model=\"gpt-5.6-sol\", reasoning_effort=\"high\", and a fully substituted task-reviewer-prompt.md message. The reviewer remains read-only and must return both spec-compliance and task-quality verdicts. Record the unavailable typed roles and the actual fallback dispatches in this plan's ledger, then, only after an approved review, append the normal task-complete line. No human stop is required merely because typed roles are absent; the baseline's explicit-model fallback applies.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "event": "implementation_dispatch",
+          "task_name": "implement_task_1",
+          "agent_type": "worker",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "reasoning_effort": "medium",
+          "unavailable_typed_role": "sp_implementer_standard",
+          "prompt_coverage": [
+            "Use the fully substituted implementer-prompt.md template, not inherited conversation history.",
+            "Give one line explaining where the task fits in the project.",
+            "Point to the generated task brief and say to read it first because it is the requirements source containing exact values verbatim; do not send the whole plan.",
+            "Include only interfaces and decisions from earlier tasks that this task needs.",
+            "Include task-relevant Context7 findings plus DO_NOT_REQUERY_CONTEXT7, or the exact NONE — no external API/library uncertainty declaration.",
+            "Include controller resolutions for any ambiguity noticed in the brief.",
+            "Include the work directory, report-file path, status/report contract, test and TDD obligations, commit and self-review obligations, and BLOCKED/NEEDS_CONTEXT escalation rules."
+          ]
+        },
+        {
+          "event": "task_review_dispatch",
+          "task_name": "review_task_1",
+          "agent_type": "default",
+          "fork_turns": "none",
+          "model": "gpt-5.6-sol",
+          "reasoning_effort": "high",
+          "unavailable_typed_role": "sp_code_reviewer",
+          "prompt_coverage": [
+            "Use the fully substituted task-reviewer-prompt.md template in a fresh context.",
+            "Supply the same task-brief path, the implementer report path, and the unique review-package path generated for BASE..HEAD.",
+            "Supply BASE_SHA, HEAD_SHA, and the absolute Superpowers directory.",
+            "Copy binding global constraints verbatim: exact values, formats, and cross-component relationships.",
+            "Preserve the read-only diff-first scope, do-not-trust-the-report rule, focused-test-only policy, specialist-checklist rule, and prohibition on open-ended or pre-judged findings.",
+            "Require both the spec-compliance verdict and the task-quality verdict, with evidence and severity-classified findings."
+          ]
+        },
+        {
+          "event": "ledger_disclosure",
+          "entries": [
+            "Task 1: role fallback — sp_implementer_standard unavailable; implementation dispatched as agent_type worker, model gpt-5.6-terra, reasoning medium, fork_turns none.",
+            "Task 1: role fallback — sp_code_reviewer unavailable; review dispatched as agent_type default, model gpt-5.6-sol, reasoning high, fork_turns none.",
+            "Task 1: complete (commits <base7>..<head7>, review clean) — append only if spec compliance is clean, task quality is Approved, and all cannot-verify items have been resolved."
+          ]
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "dispatches-both-required-agents-without-agent-type",
+          "passed": false,
+          "evidence": "The implementer sets agent_type to worker and the reviewer sets agent_type to default; the assertion requires both dispatches to omit agent_type."
+        },
+        {
+          "assertion_id": "uses-no-context-inheritance-and-complete-role-prompts",
+          "passed": true,
+          "evidence": "Both dispatches use fork_turns none and list full substituted prompt coverage for their roles."
+        },
+        {
+          "assertion_id": "preserves-review-and-records-generic-fallback",
+          "passed": true,
+          "evidence": "The task review is preserved, and the proposed ledger disclosure records both actual fallback dispatches and unavailable typed roles."
+        },
+        {
+          "assertion_id": "avoids-unknown-role-probe",
+          "passed": true,
+          "evidence": "The response explicitly says not to attempt either unavailable Superpowers role."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": false,
+      "evidence": "The implementer sets agent_type to worker and the reviewer sets agent_type to default; the assertion requires both dispatches to omit agent_type."
+    },
+    {
+      "id": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches use fork_turns none and list full substituted prompt coverage for their roles."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "The task review is preserved, and the proposed ledger disclosure records both actual fallback dispatches and unavailable typed roles."
+    },
+    {
+      "id": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response explicitly says not to attempt either unavailable Superpowers role."
+    }
+  ]
+}

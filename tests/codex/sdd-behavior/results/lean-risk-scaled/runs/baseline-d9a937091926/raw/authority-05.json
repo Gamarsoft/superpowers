@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "The controller accepts the private helper as a permitted HOW choice: the plan already allows either a private helper or inline logic, so this does not require human authority. It records that implementation choice (and, if reported as a concern, resolves it as no PLAN_DEVIATION) and continues. The proposed not_found-to-invalid_request change alters WHAT: a public, observable error contract that the approved specification does not decide. The controller classifies that proposal as a SCOPE_QUESTION (or an observable-behavior PLAN_DEVIATION if the implementer reported it under that label), records the unresolved contract choice, and asks the human partner which result should govern before implementation/review proceeds. After the answer, it re-dispatches the implementer if the decision changes the implementation.",
+  "event_trace": [
+    {
+      "kind": "DISPATCH_IMPLEMENTER",
+      "detail": "One implementer dispatch is already implied by the scenario."
+    },
+    {
+      "kind": "HOW_DECISION",
+      "detail": "Choose the private helper; both helper and inline logic are plan-permitted, so no human question is needed. Record the chosen implementation approach without treating it as a WHAT change."
+    },
+    {
+      "kind": "SCOPE_QUESTION",
+      "detail": "Record that changing not_found to invalid_request would alter the public observable error contract and is not authorized by the approved specification."
+    },
+    {
+      "kind": "ASK_HUMAN_PARTNER",
+      "detail": "Ask which public error result governs, then re-dispatch if the answer changes the implementation; do not send the task to review while the contract choice is unresolved."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "helper-autonomous-how-ruling-with-cost",
+      "passed": false,
+      "detail": "The actor chooses and records the HOW option without a user question, but never records reversibility or the cost if wrong."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "public-result-decision-bounded-question",
+      "passed": false,
+      "detail": "The actor asks one bounded public-result question but uses SCOPE_QUESTION or PLAN_DEVIATION instead of DECISION."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "no-helper-human-question",
+      "passed": true,
+      "detail": "The private-helper choice explicitly does not require human authority."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": false,
+      "evidence": "It accepts and records the helper autonomously, but omits an explicit reversibility and cost-if-wrong record."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": false,
+      "evidence": "It asks which public result governs, but classifies the issue as SCOPE_QUESTION or PLAN_DEVIATION rather than DECISION."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It says the helper choice does not require human authority."
+    }
+  ]
+}

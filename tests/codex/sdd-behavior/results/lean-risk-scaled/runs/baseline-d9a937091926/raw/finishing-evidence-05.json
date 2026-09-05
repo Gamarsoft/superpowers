@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Case 1 — disposition `proceed_to_finish_menu`: the report identifies the current implementation HEAD and the full suite is green on that exact tree, so continue with environment detection, confirm the base branch, and present the applicable integration-choice menu. The skill defines no report destination and requires no commit at this point. Case 2 — disposition `rerun_full_suite_current_head`: a report naming an older HEAD does not verify the tree about to be integrated. Run the full suite at current HEAD; stop and report failures if red, or continue to environment/base detection and the menu if green. No report destination or commit scope is defined. Case 3 — disposition `rerun_full_suite_current_head`: the earlier green run does not cover the implementation-HEAD-to-current-HEAD range, including the change to `skills/x/SKILL.md`. Run the full suite on current HEAD, then stop on failure or continue to the menu on success. The finishing skill does not prescribe a review report, review dispatch, or commit for this case, so report destination and commit scope are not applicable.",
+  "event_trace": [
+    "Case 1: detect environment, confirm base branch, present integration menu",
+    "Case 2: run full suite at current HEAD; stop on failure or present menu after success",
+    "Case 3: run full suite at current HEAD despite the prior named-HEAD pass; stop on failure or present menu after success",
+    {"event": "grader_judgment", "assertion": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 says no report destination or commit applies and omits both required actions."},
+    {"event": "grader_judgment", "assertion": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 reruns the full suite and may continue to the menu rather than stopping and returning to final review."},
+    {"event": "grader_judgment", "assertion": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Case 3 reruns the suite and may continue to the menu instead of stopping because the range is not report-only."},
+    {"event": "grader_judgment", "assertion": "no-case-runs-full-suite-twice", "passed": false, "evidence": "Despite the artifact's inconsistent full_suite_runs count, its response and proposed event explicitly add a current-HEAD suite run after Case 3's prior named-HEAD pass."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 says no report destination or commit applies and omits both required actions."},
+    {"id": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 reruns the full suite and may continue to the menu rather than stopping and returning to final review."},
+    {"id": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Case 3 reruns the suite and may continue to the menu instead of stopping because the range is not report-only."},
+    {"id": "no-case-runs-full-suite-twice", "passed": false, "evidence": "Despite the artifact's inconsistent full_suite_runs count, its response and proposed event explicitly add a current-HEAD suite run after Case 3's prior named-HEAD pass."}
+  ]
+}

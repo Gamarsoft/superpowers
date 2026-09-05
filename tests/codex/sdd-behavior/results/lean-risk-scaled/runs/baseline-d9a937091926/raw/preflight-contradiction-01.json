@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Planning gate: BLOCKED — the affected plan chunk is not ready for implementation. Review scope/cadence: dispatch the plan-document reviewer for that chunk after it is written, comparing the chunk with the approved spec; after a fix, re-dispatch the reviewer for the same chunk and repeat until Approved. Finding label: Issues Found, specifically [Task 5, Acceptance criteria]: requiring uppercase IDs contradicts both the lowercase-ID spec and Task 2's lowercase output, so an implementer could build the wrong behavior. Task 1 may not begin while this blocking contradiction remains; execution handoff waits for approval. Under the baseline writing-plans review loop, the same agent that wrote the plan fixes the chunk (the refining-plans plan-fixer is for the separate simulation/refinement workflow).",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        "Dispatch the plan-document reviewer on the affected chunk with the chunk content and approved spec, without session history.",
+        "Record status Issues Found for Task 5's contradictory uppercase-ID acceptance criterion.",
+        "Have the original plan author change Task 5 to require lowercase IDs consistent with the spec and Task 2.",
+        "Re-dispatch review for the corrected chunk and require Approved before execution handoff."
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response identifies Task 5's uppercase requirement as contradicting both the lowercase specification and Task 2 output, and explicitly says Task 1 may not begin."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": false,
+          "evidence": "The response prescribes review of the affected plan chunk after each chunk and re-review after fixes, not one holistic full-plan readiness review."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "Execution handoff is blocked until Task 5 is changed to lowercase and the corrected plan is approved."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The proposed fix owner is the original plan author; no plan-fixer dispatch is proposed."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 2,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies Task 5's uppercase requirement as contradicting both the lowercase specification and Task 2 output, and explicitly says Task 1 may not begin."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": false,
+      "evidence": "The response prescribes review of the affected plan chunk after each chunk and re-review after fixes, not one holistic full-plan readiness review."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "Execution handoff is blocked until Task 5 is changed to lowercase and the corrected plan is approved."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The proposed fix owner is the original plan author; no plan-fixer dispatch is proposed."
+    }
+  ]
+}

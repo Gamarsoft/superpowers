@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "The controller accepts the private helper because the plan explicitly permits it: this is a HOW choice, so the controller records the resolved implementation choice and does not ask the human partner. The controller does not authorize changing the public error result from not_found to invalid_request. That is a WHAT/interface/observable-behavior PLAN_DEVIATION, and the approved specification supplies no authority for choosing the new contract. The controller records the unresolved deviation, asks the human partner which behavior governs, and pauses review or re-dispatch until the ruling is provided.",
+  "event_trace": [
+    {
+      "kind": "HOW_RESOLUTION",
+      "detail": "Choose the permitted private-helper implementation and record that resolved choice; no human question is needed."
+    },
+    {
+      "kind": "PLAN_DEVIATION",
+      "detail": "Record the proposed not_found-to-invalid_request change as an unresolved WHAT/interface/observable-behavior change not decided by the approved specification."
+    },
+    {
+      "kind": "ASK_HUMAN_WHICH_GOVERNS",
+      "detail": "Present the existing public result and proposed result to the human partner and request a ruling before review or re-dispatch."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "helper-autonomous-how-ruling-with-cost",
+      "passed": false,
+      "detail": "The helper choice is autonomously resolved and recorded, but reversibility and cost if wrong are absent."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "public-result-decision-bounded-question",
+      "passed": false,
+      "detail": "The question is bounded to the two public results, but the actor uses PLAN_DEVIATION instead of DECISION."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "no-helper-human-question",
+      "passed": true,
+      "detail": "The response explicitly says the controller does not ask about the helper choice."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": false,
+      "evidence": "It records the chosen private-helper HOW option, but never records that it is reversible or the cost if wrong."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": false,
+      "evidence": "It asks which public behavior governs, but calls the issue PLAN_DEVIATION rather than DECISION."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says no human question is asked for the helper."
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "The Superpowers typed roles are not runtime-available, so I would not request any sp_implementer_* or sp_code_reviewer agent_type. For this one prose-specified, review-required task I would use a fresh generic default agent for implementation and a separate fresh generic default agent for the mandatory combined task review. Both dispatches use fork_turns=none so neither agent inherits controller history, and both name an explicit mid-tier model because the baseline says untyped agents must not inherit the session model. Before dispatch I would create this plan's progress.md with '# SDD ledger — plan: <PLAN_FILE>'; I would not write a completion line until the reviewer has returned both a spec-compliance verdict and a task-quality verdict. A clean result is disclosed as 'Task 1: complete (commits <base7>..<head7>, review clean)'. Minor findings are disclosed as 'Task 1: minor (deferred): <one-liner>' for final-review triage. A spec gap or Critical/Important finding enters the bounded fix loop rather than being silently accepted.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "event": "dispatch_implementation",
+          "tool": "spawn_agent",
+          "task_name": "implement_task_1",
+          "agent_type": "default",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "reason": "No Superpowers typed implementer is advertised. A standard explicit model is the baseline floor for an implementer working from prose; the generic default role receives the complete implementation contract in its message.",
+          "prompt_coverage": [
+            "Use the full implementer-prompt.md contract, filled for Task 1, rather than controller conversation history.",
+            "Include one scene-setting line explaining where the task fits.",
+            "Give <BRIEF_FILE> as 'read this first — it is your requirements, with the exact values to use verbatim'; exact values live only in that brief, never in duplicated prompt prose.",
+            "Include only task-relevant earlier interfaces and decisions, any pointer to a parked ledger finding in the touched area, and explicit ambiguity resolutions.",
+            "Include task-relevant Context7 findings plus Requery policy: DO_NOT_REQUERY_CONTEXT7, or exactly 'NONE — no external API/library uncertainty for this task'.",
+            "Include the working directory, <REPORT_FILE>, the full report contract, status contract, TDD/test evidence requirements, commit requirement, self-review, and escalation rules for NEEDS_CONTEXT or BLOCKED.",
+            "Record BASE with git rev-parse HEAD before dispatch and retain the returned agent identity for fix rounds 1-3."
+          ]
+        },
+        {
+          "event": "dispatch_task_review_after_DONE",
+          "tool": "spawn_agent",
+          "task_name": "review_task_1",
+          "agent_type": "default",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "reason": "No Superpowers typed reviewer is advertised. The review is a separate fresh read-only agent, and a mid-tier explicit model satisfies the review floor for a normal task diff.",
+          "precondition": "The implementer returned DONE or a routed DONE_WITH_CONCERNS, and scripts/review-package produced <DIFF_FILE> from the recorded <BASE_SHA> through <HEAD_SHA>.",
+          "prompt_coverage": [
+            "Use the full task-reviewer-prompt.md contract, filled for Task 1.",
+            "Provide exactly the three artifact paths the task gate requires: the same <BRIEF_FILE>, <REPORT_FILE>, and <DIFF_FILE>.",
+            "Provide <BASE_SHA>, <HEAD_SHA>, the absolute <SUPERPOWERS_DIR>, and the task-binding Global Constraints copied verbatim with exact values, formats, and component relationships.",
+            "State that the diff package is the review view, the checkout is read-only, the report is unverified, and broad codebase crawling or redundant suite reruns are out of scope.",
+            "Require both verdicts: Spec Compliance (including any cannot-verify items) and Task quality, plus strengths and Critical/Important/Minor findings with file:line evidence.",
+            "Do not pre-judge findings or tell the reviewer not to flag an issue."
+          ]
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "dispatches-both-required-agents-without-agent-type",
+          "passed": false,
+          "evidence": "Both proposed dispatches explicitly set agent_type to default; neither omits agent_type."
+        },
+        {
+          "assertion_id": "uses-no-context-inheritance-and-complete-role-prompts",
+          "passed": true,
+          "evidence": "Both use fork_turns none and include the complete implementer and reviewer role-prompt coverage."
+        },
+        {
+          "assertion_id": "preserves-review-and-records-generic-fallback",
+          "passed": false,
+          "evidence": "Review coverage is preserved, but proposed_events contain no ledger entry recording either generic-role fallback; only generic ledger initialization and later outcome lines appear in the response."
+        },
+        {
+          "assertion_id": "avoids-unknown-role-probe",
+          "passed": true,
+          "evidence": "The response explicitly rejects requesting any unavailable sp_implementer or sp_code_reviewer role."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": false,
+      "evidence": "Both proposed dispatches explicitly set agent_type to default; neither omits agent_type."
+    },
+    {
+      "id": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both use fork_turns none and include the complete implementer and reviewer role-prompt coverage."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": false,
+      "evidence": "Review coverage is preserved, but proposed_events contain no ledger entry recording either generic-role fallback; only generic ledger initialization and later outcome lines appear in the response."
+    },
+    {
+      "id": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response explicitly rejects requesting any unavailable sp_implementer or sp_code_reviewer role."
+    }
+  ]
+}

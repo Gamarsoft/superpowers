@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Planning gate: BLOCKED. The plan is not ready for execution because Task 5's uppercase-ID acceptance criterion contradicts the approved lowercase-ID specification and Task 2's lowercase output. The mandatory plan-document review is scoped to the completed chunk plus the approved spec and runs after every chunk; an Issues Found result requires correction and re-review until Approved. Because this is a known gap in a high-risk written plan, whole-plan refinement should also pressure-test the stitched plan before execution handoff. Task 1 may not begin while this blocking contradiction remains. In the writing-plans chunk-review loop, the same agent that authored the plan fixes the issue; if the separate refining-plans loop discovers a remaining critical or important issue, its plan-fixer subagent patches the plan.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "event": "review_plan_chunk",
+          "scope": "the completed chunk containing Task 5, with the approved spec as reference",
+          "cadence": "after every completed plan chunk"
+        },
+        {
+          "event": "block_plan",
+          "label": "Issues Found — [Task 5, Acceptance criteria]: uppercase IDs contradict the approved lowercase-ID invariant and Task 2 contract"
+        },
+        {
+          "event": "fix_plan_chunk",
+          "owner": "the same agent that authored the plan",
+          "required_change": "make Task 5 require lowercase IDs from Task 2"
+        },
+        {
+          "event": "rereview_plan_chunk",
+          "condition": "repeat until the chunk is Approved"
+        },
+        {
+          "event": "pressure_test_whole_plan",
+          "scope": "the full stitched plan",
+          "condition": "before execution handoff for the high-risk written plan"
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response detects that Task 5's uppercase criterion contradicts Task 2 and the approved lowercase specification, and blocks Task 1."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": false,
+          "evidence": "It uses after-every-chunk review plus an added whole-plan pressure test, rather than one holistic full-plan readiness review with no chunk reviews."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The plan stays blocked until Task 5 requires lowercase IDs and review approves the correction."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "The proposed correction is owned by the plan author and no plan-fixer dispatch appears in proposed_events."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 3,
+  "review_count": 3,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response detects that Task 5's uppercase criterion contradicts Task 2 and the approved lowercase specification, and blocks Task 1."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": false,
+      "evidence": "It uses after-every-chunk review plus an added whole-plan pressure test, rather than one holistic full-plan readiness review with no chunk reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The plan stays blocked until Task 5 requires lowercase IDs and review approves the correction."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "The proposed correction is owned by the plan author and no plan-fixer dispatch appears in proposed_events."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "### Spec Compliance\n\n- ❌ Issues found: `parse_id` still accepts an empty identifier, so the approved rejection requirement is missing.\n\n### Issues\n\n#### Important (Should Fix)\n\n- Empty identifier acceptance: this is a missed requirement and blocks task completion. Controller action: start fix round 1/5, resume the original implementer with this finding verbatim, require a covering test and test evidence in the report, then dispatch one scoped re-review. Do not proceed until it is ADDRESSED.\n\n- Linear scan for at most ten entries: no finding. It is unchanged and matches the approved design; do not dispatch a fix or add unrelated work.\n- Unicode identifier acceptance: no finding. It is unchanged and matches the approved design; do not dispatch a fix or add unrelated work.\n\n### Assessment\n\n**Task quality:** Needs fixes. No plan conflict or human decision is required.",
+  "event_trace": [
+    {
+      "kind": "finding",
+      "detail": "Spec ❌ / Important: `parse_id` does not reject an empty identifier."
+    },
+    {
+      "kind": "fix_dispatch",
+      "detail": "Fix round 1/5: resume the original implementer with the open finding verbatim and require a covering test plus recorded test evidence."
+    },
+    {
+      "kind": "scoped_re_review",
+      "detail": "Dispatch one scoped re-review of the fix diff; the finding must be ADDRESSED before task completion."
+    },
+    {
+      "kind": "no_finding",
+      "detail": "The linear scan for at most ten entries is unchanged and approved by the design; take no action."
+    },
+    {
+      "kind": "no_finding",
+      "detail": "Unicode identifier acceptance is unchanged and approved by the design; take no action."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "detail": "The actor says the defect blocks completion and starts one fix-round plus scoped re-review path."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "linear-scan-follow-up-not-blocker",
+      "passed": false,
+      "detail": "The actor records no finding and no action for the linear scan rather than FOLLOW_UP."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "ascii-hardening-follow-up-not-blocker",
+      "passed": false,
+      "detail": "The actor records no finding and no action for Unicode acceptance rather than FOLLOW_UP for ASCII hardening."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "detail": "The actor rejects unrelated work and proposes one scoped re-review only."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "evidence": "It states the defect blocks task completion and proposes fix round 1/5 plus one scoped re-review."
+    },
+    {
+      "id": "linear-scan-follow-up-not-blocker",
+      "passed": false,
+      "evidence": "It says the linear scan is no finding and takes no action, not the required FOLLOW_UP."
+    },
+    {
+      "id": "ascii-hardening-follow-up-not-blocker",
+      "passed": false,
+      "evidence": "It says Unicode acceptance is no finding and takes no action, not the required ASCII-hardening FOLLOW_UP."
+    },
+    {
+      "id": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "evidence": "No unrelated implementation work or extra reviewer is proposed."
+    }
+  ]
+}

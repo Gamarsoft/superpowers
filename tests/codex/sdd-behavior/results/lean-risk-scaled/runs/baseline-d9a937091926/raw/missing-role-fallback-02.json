@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Proceed with the task by using the runtime-advertised generic agent role. Do not name sp_implementer_standard or sp_code_reviewer because neither role is advertised. For this ordinary prose-specified task, dispatch the implementer with agent_type=default, fork_turns=none, model=gpt-5.6-terra, and reasoning_effort=medium. After DONE, generate the review package from the BASE recorded before implementation through the current HEAD, then dispatch a separate generic reviewer with agent_type=default, fork_turns=none, model=gpt-5.6-terra, and reasoning_effort=medium. The missing typed roles are not a reason to skip the mandatory task review or stop for human input. Record the generic-role fallback in this plan's ledger so recovery after compaction does not invent a typed dispatch. On a clean combined spec-and-quality verdict, append the exact task completion line. If the review returns a spec failure or any Critical or Important finding, enter the normal five-round fix loop instead of marking the task complete.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "event": "ledger_initialize",
+          "content": "# SDD ledger — plan: <PLAN_FILE>"
+        },
+        {
+          "event": "implementation_dispatch",
+          "tool": "spawn_agent",
+          "task_name": "implement_task_1",
+          "agent_type": "default",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "reasoning_effort": "medium",
+          "prompt_coverage": [
+            "One line explaining where Task 1 fits in the project",
+            "The task brief path, introduced as the first read and the sole source of exact requirements",
+            "Interfaces and decisions from earlier tasks that the brief cannot contain",
+            "Task-relevant Context7 findings plus Requery policy: DO_NOT_REQUERY_CONTEXT7, or the exact NONE statement when no external API or library uncertainty exists",
+            "The controller's resolution of any ambiguity already found in the brief",
+            "The work directory",
+            "The report file path and the four-status short return contract",
+            "The implementer template's read-before-edit, escalation, verification, commit, self-review, test-evidence, concern-category, and fix-report instructions"
+          ],
+          "forbidden_prompt_content": [
+            "The whole plan file",
+            "Accumulated session history",
+            "Exact values duplicated from the brief",
+            "Any claim that the agent has an unavailable Superpowers typed role"
+          ]
+        },
+        {
+          "event": "ledger_dispatch_disclosure",
+          "content": "Task 1: dispatch fallback (Superpowers typed implementer unavailable; agent_type default; model gpt-5.6-terra; fork_turns none; agent <DISPATCHED_AGENT_ID>)"
+        },
+        {
+          "event": "review_package",
+          "command_contract": "scripts/review-package <PLAN_FILE> <RECORDED_BASE_SHA> <HEAD_SHA>",
+          "note": "Use the BASE captured before implementation, never HEAD~1, and pass the printed package path to the reviewer."
+        },
+        {
+          "event": "task_review_dispatch",
+          "tool": "spawn_agent",
+          "task_name": "review_task_1",
+          "agent_type": "default",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "reasoning_effort": "medium",
+          "prompt_coverage": [
+            "The complete task-reviewer-prompt.md body",
+            "The same task brief path used by the implementer",
+            "The implementer report path",
+            "The recorded BASE SHA and current HEAD SHA",
+            "The generated diff-package path",
+            "Binding Global Constraints copied verbatim from the plan or spec",
+            "The absolute Superpowers directory for specialist checklist resolution",
+            "A combined spec-compliance verdict and task-quality verdict",
+            "Read-only scope, diff-first inspection, report distrust, focused-test limits, evidence requirements, severity calibration, and output contract"
+          ],
+          "forbidden_prompt_content": [
+            "Inherited conversation history",
+            "Pre-judging or suppressing possible findings",
+            "A request to rerun tests already evidenced by the implementer",
+            "Any claim that the reviewer has the unavailable sp_code_reviewer role"
+          ]
+        },
+        {
+          "event": "ledger_review_disclosure",
+          "content": "Task 1: review dispatch fallback (Superpowers typed reviewer unavailable; agent_type default; model gpt-5.6-terra; fork_turns none; agent <REVIEW_AGENT_ID>)"
+        },
+        {
+          "event": "clean_review_completion",
+          "condition": "Spec compliant and Task quality Approved, with every cannot-verify item resolved by the controller",
+          "content": "Task 1: complete (commits <base7>..<head7>, review clean)"
+        },
+        {
+          "event": "review_failure_route",
+          "condition": "Spec failure, confirmed spec gap, or any Critical or Important finding",
+          "action": "Start fix round 1 of at most 5. Resume the original implementer for rounds 1 through 3, use a fresh more-capable generic implementer for rounds 4 and 5, and run one scoped generic-agent re-review after every fix dispatch."
+        },
+        {
+          "event": "minor_finding_route",
+          "content": "Task 1: minor (deferred): <one-liner>"
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "dispatches-both-required-agents-without-agent-type",
+          "passed": false,
+          "evidence": "Both proposed dispatches explicitly set agent_type to default instead of omitting agent_type."
+        },
+        {
+          "assertion_id": "uses-no-context-inheritance-and-complete-role-prompts",
+          "passed": true,
+          "evidence": "Both use fork_turns none, and the proposed events retain detailed coverage of the full implementation and review contracts."
+        },
+        {
+          "assertion_id": "preserves-review-and-records-generic-fallback",
+          "passed": true,
+          "evidence": "The mandatory combined review remains in place, and separate ledger disclosures record the implementer and reviewer fallbacks."
+        },
+        {
+          "assertion_id": "avoids-unknown-role-probe",
+          "passed": true,
+          "evidence": "The unavailable typed role names are marked DO_NOT_DISPATCH; no failing probe is proposed."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": false,
+      "evidence": "Both proposed dispatches explicitly set agent_type to default instead of omitting agent_type."
+    },
+    {
+      "id": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both use fork_turns none, and the proposed events retain detailed coverage of the full implementation and review contracts."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "The mandatory combined review remains in place, and separate ledger disclosures record the implementer and reviewer fallbacks."
+    },
+    {
+      "id": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The unavailable typed role names are marked DO_NOT_DISPATCH; no failing probe is proposed."
+    }
+  ]
+}

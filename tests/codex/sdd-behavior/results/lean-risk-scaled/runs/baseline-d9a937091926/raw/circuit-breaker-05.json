@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "circuit-breaker",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "The controller must keep the finding open after correction round 2 and start fix round 3; it must not adjudicate, park, or report BLOCKED yet. Under the baseline, there are at most five correction rounds, and every round is one fix dispatch followed by one scoped re-review. Rounds 1-3 belong to the original implementer, resumed with the open finding verbatim; rounds 4-5 go to fresh, more-capable rescue implementers. Therefore, using a rescue implementer for round 2 was not baseline ownership: round 3 returns to the original implementer. If the same proven committed-data-loss defect remains NOT ADDRESSED after round 5, the breaker trips and there is no round 6. The controller then adjudicates it. Because loss of committed data is real and load-bearing, the controller records `Task <N>: BLOCKED — <reason>`, stops dependent work, and reports the human partner the exact finding, the relevant plan text or contract it conflicts with, and the complete fix history: each round's owner, commits, covering test files, test command and output recorded in the fix report, and each scoped re-review's NOT ADDRESSED verdict.",
+  "event_trace": [
+    "Round 3: resume the original implementer with the still-open committed-data-loss finding verbatim, name the covering migration tests, require the fix report to append the test files, command, and output, then run a scoped re-review over only the round-3 diff.",
+    "If still open, round 4: dispatch a fresh implementer on a more capable model with the brief path, report path, all open findings, and prior-attempt framing; require covering-test evidence and run a scoped re-review.",
+    "If still open, round 5: dispatch a fresh, more-capable implementer under the same rescue contract; require covering-test evidence and run the final scoped re-review.",
+    "If round 5 still reports the defect NOT ADDRESSED, stop all correction dispatches, adjudicate the finding as real and load-bearing, append the BLOCKED ledger entry, and stop dependent work.",
+    "Report the human partner once with the exact finding, implicated plan text or contract, and round-by-round fix and re-review evidence; do not silently park the structural data-loss defect.",
+    {"kind": "grader_judgment", "detail": "The response treats round 2 as completed rescue work and round 3 as next. It rejects a stop before round 3 but preserves the open finding, evidence contract, owners, and prior fix history for reporting."}
+  ],
+  "dispatch_count": 5,
+  "review_count": 6,
+  "fix_round_count": 5,
+  "human_stop_count": 1,
+  "dispositions": [],
+  "assertions": [
+    {"id": "exactly-two-correction-rounds-completed", "passed": true, "evidence": "The response says the finding remains after correction round 2 and calls round 3 the next action; rounds 3-5 are future work."},
+    {"id": "correction-round-ownership", "passed": true, "evidence": "The response states rounds 1-3 normally belong to the original implementer and explicitly says a rescue implementer was used for observed round 2."},
+    {"id": "stop-for-architecture-before-round-three", "passed": false, "evidence": "The actor says the controller must start round 3 and must not adjudicate yet; it provides no architectural diagnosis before that dispatch."},
+    {"id": "preserve-finding-evidence-and-fix-history", "passed": true, "evidence": "The response retains the exact open data-loss finding, each round's owner and commits, covering test files and output, scoped verdicts, and complete fix history for the human report."}
+  ]
+}

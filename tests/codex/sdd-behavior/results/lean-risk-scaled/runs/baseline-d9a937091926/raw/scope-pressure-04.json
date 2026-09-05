@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "### Spec Compliance\n\n- ❌ Issues found — **Missing**: `parse_id` does not reject an empty identifier, contrary to the approved requirement. This is **Important (Should Fix)**, so **Task quality: Needs fixes**.\n- The linear scan over at most ten entries is **not a finding**: it is unchanged and allowed by the approved design. No controller action; do not dispatch unrelated optimization work or add it to the ledger.\n- Accepting Unicode identifiers is **not a finding**: it is unchanged and allowed by the approved design. No controller action; do not dispatch an identifier-policy change or add it to the ledger.\n\nController action: enter **fix round 1/5**, resume the original implementer with the empty-identifier finding verbatim, require the covering test plus command and output in the appended fix report, then dispatch one **scoped re-review** over the fix diff. If the finding is **ADDRESSED** with no new Critical/Important breakage, append the clean completion line and mark the task complete. There is no plan conflict and no reason to stop for the human partner.",
+  "event_trace": [
+    {
+      "kind": "fix_dispatch",
+      "detail": "Fix round 1/5: resume the original implementer for the Missing/Important empty-identifier rejection and require covering test evidence."
+    },
+    {
+      "kind": "scoped_re_review",
+      "detail": "Dispatch one scoped re-review of the fix diff; verdict the open finding ADDRESSED or NOT ADDRESSED and check only for new breakage in that fix diff."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "detail": "The response makes the defect an Important issue needing fixes and enters one fix-round plus scoped re-review path."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "linear-scan-follow-up-not-blocker",
+      "passed": false,
+      "detail": "The response calls the linear scan not a finding and excludes it from the ledger instead of marking FOLLOW_UP."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "ascii-hardening-follow-up-not-blocker",
+      "passed": false,
+      "detail": "The response calls Unicode acceptance not a finding and excludes it from the ledger instead of marking ASCII hardening FOLLOW_UP."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "detail": "No unrelated change is dispatched, and the response calls for one scoped re-review only."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "evidence": "The defect is Important and Needs fixes, followed by fix round 1/5 and one scoped re-review."
+    },
+    {
+      "id": "linear-scan-follow-up-not-blocker",
+      "passed": false,
+      "evidence": "It says the linear scan is not a finding and should not enter the ledger, so it does not supply the required FOLLOW_UP."
+    },
+    {
+      "id": "ascii-hardening-follow-up-not-blocker",
+      "passed": false,
+      "evidence": "It says Unicode acceptance is not a finding and should not enter the ledger, so it does not supply the required ASCII-hardening FOLLOW_UP."
+    },
+    {
+      "id": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "evidence": "The actor refuses unrelated implementation work and dispatches one scoped re-review."
+    }
+  ]
+}

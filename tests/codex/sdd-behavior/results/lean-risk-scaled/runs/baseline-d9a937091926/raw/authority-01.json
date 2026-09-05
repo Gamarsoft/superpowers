@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "The controller accepts the private helper as an in-scope HOW choice because the plan explicitly permits either a helper or inline logic. It records that implementation choice as the ambiguity resolution for the task and does not ask the human partner about it. The proposed change from `not_found` to `invalid_request` changes WHAT callers observe and therefore is not a controller-owned implementation choice. The controller records it as a DONE_WITH_CONCERNS / SCOPE_QUESTION concerning a public contract, stops before review or any fix round, and asks the human partner which public result to require. After the answer, it re-dispatches the implementer if the decision changes the implementation.",
+  "event_trace": [
+    {
+      "kind": "DISPATCH_IMPLEMENTER",
+      "detail": "Dispatch the task implementer once; the plan permits either private-helper or inline implementation."
+    },
+    {
+      "kind": "AMBIGUITY_RESOLUTION",
+      "detail": "Accept and record the private helper as the implementer's permitted HOW choice; no human question is needed."
+    },
+    {
+      "kind": "DONE_WITH_CONCERNS:SCOPE_QUESTION",
+      "detail": "Record the proposed not_found-to-invalid_request change as an unresolved public-contract choice because it changes observable WHAT and the approved specification does not decide it."
+    },
+    {
+      "kind": "ASK_HUMAN_PARTNER",
+      "detail": "Ask which public error result is required; do not silently authorize the observable behavior change."
+    },
+    {
+      "kind": "REDISPATCH_IF_CHANGED",
+      "detail": "After the human answer, re-dispatch the implementer if that answer changes the implementation."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "helper-autonomous-how-ruling-with-cost",
+      "passed": false,
+      "detail": "The controller chooses and records the HOW option autonomously, but the response never records reversibility or the cost if the choice is wrong."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "public-result-decision-bounded-question",
+      "passed": false,
+      "detail": "It asks one bounded public-result question, but labels the issue DONE_WITH_CONCERNS / SCOPE_QUESTION rather than DECISION."
+    },
+    {
+      "kind": "grader_judgment",
+      "assertion_id": "no-helper-human-question",
+      "passed": true,
+      "detail": "The response explicitly says the helper choice needs no human question."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": false,
+      "evidence": "It autonomously accepts and records the private helper, but gives no explicit reversibility assessment or cost if wrong."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": false,
+      "evidence": "It asks which public result to require, but classifies the issue as DONE_WITH_CONCERNS / SCOPE_QUESTION rather than DECISION."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly does not ask the human partner about the private-helper choice."
+    }
+  ]
+}

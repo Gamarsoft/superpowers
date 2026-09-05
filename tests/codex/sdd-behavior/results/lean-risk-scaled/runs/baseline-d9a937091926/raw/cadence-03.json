@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Treat each of the four plan tasks as its own work unit. Dispatch Tasks 1, 2, and 3 one at a time to fresh mechanical implementers; each performs its specified wording replacement and focused tests, then receives a task-scoped spec-and-quality review before the next implementer is dispatched. Dispatch Task 4 only after Task 3 is approved, using a high-judgment implementer because concurrent fund reservation and idempotency-key behavior are subtle correctness work; run its focused tests and then its task-scoped review. After all four task reviews are clean, dispatch one broad whole-branch review on the most capable reviewer. Do not combine the three similar documentation tasks and do not run implementers concurrently: the baseline requires a fresh implementer and review per plan task and explicitly forbids parallel implementation dispatches, even when files are disjoint. No human stop is indicated because the stated plan has no conflict or blocking ambiguity, and no fix round is part of the clean-path cadence.",
+  "event_trace": [
+    {"sequence": 1, "event": "dispatch_implementer", "work_unit": "Task 1 wording replacement and focused tests", "role": "mechanical implementer"},
+    {"sequence": 2, "event": "dispatch_task_review", "work_unit": "Task 1", "timing": "immediately after Task 1 implementation and before Task 2"},
+    {"sequence": 3, "event": "dispatch_implementer", "work_unit": "Task 2 wording replacement and focused tests", "role": "fresh mechanical implementer"},
+    {"sequence": 4, "event": "dispatch_task_review", "work_unit": "Task 2", "timing": "immediately after Task 2 implementation and before Task 3"},
+    {"sequence": 5, "event": "dispatch_implementer", "work_unit": "Task 3 wording replacement and focused tests", "role": "fresh mechanical implementer"},
+    {"sequence": 6, "event": "dispatch_task_review", "work_unit": "Task 3", "timing": "immediately after Task 3 implementation and before Task 4"},
+    {"sequence": 7, "event": "dispatch_implementer", "work_unit": "Task 4 concurrent customer-fund reservation and idempotency-key change with focused tests", "role": "fresh high-judgment implementer"},
+    {"sequence": 8, "event": "dispatch_task_review", "work_unit": "Task 4", "timing": "immediately after Task 4 implementation and before final review", "review_depth": "high judgment for concurrency and idempotency correctness"},
+    {"sequence": 9, "event": "dispatch_final_review", "work_unit": "whole branch containing Tasks 1-4", "timing": "after every task-scoped review is clean", "role": "most capable reviewer"},
+    {"kind": "grader_judgment", "detail": "The trace has separate Task 1, 2, and 3 implementation-review pairs, then a separate Task 4 gate and final review."}
+  ],
+  "dispatch_count": 9,
+  "review_count": 5,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "tasks-1-3-one-checkpoint-unit", "passed": false, "evidence": "The response explicitly says not to combine Tasks 1-3 and calls them separate work units."},
+    {"id": "task-4-individual-review-unit", "passed": true, "evidence": "Task 4 remains a separate high-judgment unit with a task-scoped review."},
+    {"id": "exactly-two-pre-integration-review-gates", "passed": false, "evidence": "The response plans four task reviews before one final whole-branch review."},
+    {"id": "no-per-task-reviewer-for-tasks-1-3", "passed": false, "evidence": "The trace contains an individual task review after each of Tasks 1, 2, and 3."}
+  ]
+}

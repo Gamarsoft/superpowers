@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "For the initial per-task unit, dispatch exactly two fresh generic agents because no Superpowers typed role is advertised; do not request an unavailable sp_implementer_* or sp_code_reviewer role. Implementation: spawn_agent with task_name=implement_task_1, agent_type=worker, fork_turns=none, model=gpt-5.6-terra, and a filled implementer-prompt.md message. Review: only after DONE/DONE_WITH_CONCERNS has been routed and a review package for the recorded BASE..HEAD exists, spawn_agent with task_name=review_task_1, agent_type=explorer, fork_turns=none, model=gpt-5.6-terra, and a filled task-reviewer-prompt.md message. worker is the advertised generic execution role; explorer is the advertised read-only codebase-analysis role. Explicit model selection is required in this untyped fallback, and gpt-5.6-terra is the standard/mid-tier choice for an ordinary prose-specified task and its task-sized review; a mechanical, integration-heavy, or architectural task would require the baseline's corresponding cheaper or more capable explicit model. The implementation prompt must cover one-line project fit, the task brief path as the sole source of exact requirements, only necessary prior-task interfaces/decisions, task-relevant Context7 findings or the exact NONE declaration, ambiguity resolutions, work directory, report path and report contract, tests/TDD evidence where required, commit, self-review, escalation statuses, and the instruction not to guess. The review prompt must cover the same brief path, binding global constraints copied verbatim, report path, BASE SHA, HEAD SHA, review-package path, absolute Superpowers directory, read-only/no-crawl limits, no routine test rerun, and both required verdicts: spec compliance and task quality. The ledger must already begin '# SDD ledger — plan: <PLAN_FILE>'. No completion line is written merely for dispatch. On a clean review append 'Task 1: complete (commits <base7>..<head7>, review clean)'; ledger deferred Minors before that and point the final whole-branch reviewer to them. Critical/Important findings or confirmed spec gaps start the bounded fix/re-review loop instead. The missing typed roles are not a human-stop condition. Counts below cover this initial implement-plus-task-review unit only; the mandatory final whole-branch review occurs after all plan tasks and is outside this unit.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "event": "implementation_dispatch",
+          "tool": "spawn_agent",
+          "task_name": "implement_task_1",
+          "agent_type": "worker",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "prompt_template": "/tmp/superpowers-sdd-baseline.1sQRqn/skills/subagent-driven-development/implementer-prompt.md",
+          "prompt_coverage": [
+            "one-line project fit",
+            "task brief path introduced as the requirements and sole home of exact values",
+            "only necessary prior-task interfaces and decisions",
+            "task-relevant Context7 findings plus DO_NOT_REQUERY_CONTEXT7, or NONE — no external API/library uncertainty for this task",
+            "controller resolutions of brief ambiguities",
+            "working directory",
+            "report path and full report/short return contract",
+            "tests and TDD evidence when required",
+            "commit and self-review requirements",
+            "DONE, DONE_WITH_CONCERNS, BLOCKED, and NEEDS_CONTEXT routing"
+          ]
+        },
+        {
+          "event": "review_dispatch",
+          "precondition": "Implementer report routed and review package generated from the task's recorded BASE through HEAD",
+          "tool": "spawn_agent",
+          "task_name": "review_task_1",
+          "agent_type": "explorer",
+          "fork_turns": "none",
+          "model": "gpt-5.6-terra",
+          "prompt_template": "/tmp/superpowers-sdd-baseline.1sQRqn/skills/subagent-driven-development/task-reviewer-prompt.md",
+          "prompt_coverage": [
+            "same task brief path",
+            "binding global constraints copied verbatim",
+            "implementer report path",
+            "BASE SHA and HEAD SHA",
+            "review package path containing commits, stat, and full contextual diff",
+            "absolute Superpowers directory for specialist checklist resolution",
+            "read-only task-scoped review and focused-risk inspection limits",
+            "no routine re-run of implementer tests",
+            "spec-compliance verdict including cannot-verify items",
+            "Critical, Important, and Minor quality findings with evidence",
+            "task-quality Approved or Needs fixes verdict"
+          ]
+        },
+        {
+          "event": "ledger_disclosure",
+          "before_dispatch": "# SDD ledger — plan: <PLAN_FILE>",
+          "on_clean_review": "Task 1: complete (commits <base7>..<head7>, review clean)",
+          "on_minor": "Task 1: minor (deferred): <one-liner>",
+          "on_blocking_finding": "Do not mark complete; enter the bounded implementer-fix and scoped-re-review loop and append each round in the required Task 1: fix round R/5 form."
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "dispatches-both-required-agents-without-agent-type",
+          "passed": false,
+          "evidence": "The implementer sets agent_type to worker and the reviewer sets agent_type to explorer instead of omitting agent_type."
+        },
+        {
+          "assertion_id": "uses-no-context-inheritance-and-complete-role-prompts",
+          "passed": true,
+          "evidence": "Both dispatches use fork_turns none and retain detailed implementer and reviewer prompt contracts."
+        },
+        {
+          "assertion_id": "preserves-review-and-records-generic-fallback",
+          "passed": false,
+          "evidence": "Review coverage is preserved, but the proposed ledger event records only initialization and review outcomes, not the generic role fallback itself."
+        },
+        {
+          "assertion_id": "avoids-unknown-role-probe",
+          "passed": true,
+          "evidence": "The response says not to request unavailable sp_implementer or sp_code_reviewer roles, and proposes no unknown-role call."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": false,
+      "evidence": "The implementer sets agent_type to worker and the reviewer sets agent_type to explorer instead of omitting agent_type."
+    },
+    {
+      "id": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches use fork_turns none and retain detailed implementer and reviewer prompt contracts."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": false,
+      "evidence": "Review coverage is preserved, but the proposed ledger event records only initialization and review outcomes, not the generic role fallback itself."
+    },
+    {
+      "id": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response says not to request unavailable sp_implementer or sp_code_reviewer roles, and proposes no unknown-role call."
+    }
+  ]
+}

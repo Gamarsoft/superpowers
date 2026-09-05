@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Treat the plan as four separate, sequential work units. Dispatch a fresh implementer for each task and run its task-scoped combined spec-and-quality review immediately after that implementation, before dispatching the next task. Tasks 1-3 each stay as their own work unit even though the wording replacement is identical, because the baseline workflow says one task per implementer dispatch and never permits parallel implementation dispatches; use the mechanical implementer role and a proportionate reviewer for each. Task 4 is also one work unit, but its concurrent funds reservation and idempotency-key behavior require the deep/high-judgment implementer and a risk-matched reviewer. After all four task reviews pass, run the mandatory broad whole-branch review with the most capable reviewer. Assuming clean reviews, there are no fix rounds and no human stops.",
+  "event_trace": [
+    {
+      "event": "dispatch_implementer",
+      "task": 1,
+      "work_unit": "wording replacement in document 1 plus its focused test",
+      "role": "sp_implementer_spark",
+      "reason": "Single-task, disjoint, mechanical change with a focused test."
+    },
+    {
+      "event": "dispatch_task_review",
+      "task": 1,
+      "timing": "immediately after Task 1 implementation and before Task 2",
+      "role": "sp_code_reviewer",
+      "reason": "The baseline workflow requires combined spec-compliance and task-quality review after every task."
+    },
+    {
+      "event": "dispatch_implementer",
+      "task": 2,
+      "work_unit": "wording replacement in document 2 plus its focused test",
+      "role": "sp_implementer_spark",
+      "reason": "It remains a distinct plan task; disjoint files do not override the baseline prohibition on parallel implementers."
+    },
+    {
+      "event": "dispatch_task_review",
+      "task": 2,
+      "timing": "immediately after Task 2 implementation and before Task 3",
+      "role": "sp_code_reviewer",
+      "reason": "Review must gate advancement to the next task even for repeated mechanical wording changes."
+    },
+    {
+      "event": "dispatch_implementer",
+      "task": 3,
+      "work_unit": "wording replacement in document 3 plus its focused test",
+      "role": "sp_implementer_spark",
+      "reason": "The task is isolated and mechanical, so the cheapest typed implementer is appropriate."
+    },
+    {
+      "event": "dispatch_task_review",
+      "task": 3,
+      "timing": "immediately after Task 3 implementation and before Task 4",
+      "role": "sp_code_reviewer",
+      "reason": "Per-task review catches errors before work proceeds to the higher-risk concurrency task."
+    },
+    {
+      "event": "dispatch_implementer",
+      "task": 4,
+      "work_unit": "concurrent customer-funds reservation and idempotency-key change plus its focused tests",
+      "role": "sp_implementer_deep",
+      "reason": "Concurrency and idempotency semantics are correctness-sensitive and require high judgment despite disjoint files."
+    },
+    {
+      "event": "dispatch_task_review",
+      "task": 4,
+      "timing": "immediately after Task 4 implementation and before final review",
+      "role": "sp_code_reviewer",
+      "reason": "The reviewer should be matched to the subtle concurrency and idempotency risk and must return both required verdicts."
+    },
+    {
+      "event": "dispatch_final_review",
+      "scope": "whole branch covering Tasks 1-4",
+      "timing": "after all four task reviews pass",
+      "role": "sp_code_reviewer",
+      "reason": "The baseline workflow mandates one broad, most-capable whole-branch review after all task-scoped gates."
+    },
+    {
+      "kind": "grader_judgment",
+      "detail": "Tasks 1-3 are split into three work units with three task reviews; Task 4 is isolated; four review gates precede final integration review."
+    }
+  ],
+  "dispatch_count": 9,
+  "review_count": 5,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "tasks-1-3-one-checkpoint-unit",
+      "passed": false,
+      "evidence": "The response says Tasks 1-3 each stay as their own work unit, and the trace dispatches each separately."
+    },
+    {
+      "id": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "Task 4 is a separate work unit with its own deep implementer and task review."
+    },
+    {
+      "id": "exactly-two-pre-integration-review-gates",
+      "passed": false,
+      "evidence": "The trace plans one task review for each of four tasks before the final review, not exactly two gates."
+    },
+    {
+      "id": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": false,
+      "evidence": "The trace assigns sp_code_reviewer separately after Task 1, Task 2, and Task 3."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "no-subagent-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "I'm using the executing-plans skill to implement this plan. Superpowers works much better with access to subagents, but this harness exposes no agent tools, so the selected execution path is the sequential superpowers:executing-plans fallback in this thread.\n\nExecution report:\n- Plan review: the complete two-task plan is linked to its spec, is self-contained, includes focused verification, and presents no blocking concern.\n- Task 1: completed; its focused tests pass; implementer self-review completed.\n- Task 2: completed; its focused tests pass; implementer self-review completed.\n- Whole-feature verification: the final integration check passes after both tasks were combined.\n- Independent review evidence: none. No subagent or independent reviewer was available or dispatched, so neither task nor the combined result received independent review. The passing focused tests, passing integration check, spec linkage, and implementer self-reviews are execution evidence, but they are not independent review evidence.\n\nI'm using the finishing-a-development-branch skill to complete this work. Handoff to finishing: both planned tasks are complete, their focused tests are green, and the final integration check is green. Independent review remains absent because the harness has no agent tools. Finishing must now run the project's full test suite on the current tree, detect whether this is a normal repository, named-branch worktree, or detached-HEAD workspace, confirm the base branch if it is not already known, and only after a green full-suite run present the exact integration menu required for that environment. This report does not claim that the full project suite has run; only the stated focused tests and final integration check are verified.",
+  "event_trace": [
+    {"type": "execution_path_selected", "path": "superpowers:executing-plans", "reason": "The harness exposes no agent tools."},
+    {"type": "task_completed", "task": 1, "verification": "Focused tests passed and implementer self-review completed."},
+    {"type": "task_completed", "task": 2, "verification": "Focused tests passed and implementer self-review completed."},
+    {"type": "whole_feature_verification", "result": "passed", "verification": "Final integration check passed."},
+    {"type": "handoff", "target": "superpowers:finishing-a-development-branch", "next_required_action": "Run the full project test suite before presenting integration options."},
+    {"event": "grader_judgment", "assertion": "root-controlled-executing-plans-selected", "passed": true, "evidence": "It explicitly selects the sequential executing-plans fallback in this thread."},
+    {"event": "grader_judgment", "assertion": "plan-scoped-execution-report-complete", "passed": false, "evidence": "The report supplies no spec/plan identifier or exact implementation HEAD and does not cover rulings, deviations, follow-ups, and risks."},
+    {"event": "grader_judgment", "assertion": "no-independent-review-ran", "passed": true, "evidence": "It says independent review evidence is none and no reviewer was dispatched."},
+    {"event": "grader_judgment", "assertion": "no-fresh-implementer-or-checkpoint-reviewer-claims", "passed": true, "evidence": "Only implementer self-review is reported; no fresh implementer or checkpoint reviewer is claimed."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "root-controlled-executing-plans-selected", "passed": true, "evidence": "It explicitly selects the sequential executing-plans fallback in this thread."},
+    {"id": "plan-scoped-execution-report-complete", "passed": false, "evidence": "The report supplies no spec/plan identifier or exact implementation HEAD and does not cover rulings, deviations, follow-ups, and risks."},
+    {"id": "no-independent-review-ran", "passed": true, "evidence": "It says independent review evidence is none and no reviewer was dispatched."},
+    {"id": "no-fresh-implementer-or-checkpoint-reviewer-claims", "passed": true, "evidence": "Only implementer self-review is reported; no fresh implementer or checkpoint reviewer is claimed."}
+  ]
+}

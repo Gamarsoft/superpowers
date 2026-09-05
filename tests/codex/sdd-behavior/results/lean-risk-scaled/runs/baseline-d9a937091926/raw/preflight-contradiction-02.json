@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Planning gate: Issues Found; the plan is not ready for execution. Review scope is the affected plan chunk against the approved spec, with review after every chunk and re-review of that chunk after each correction until Approved; if the loop exceeds five iterations, seek human guidance. Finding: [Task 5, Acceptance criteria] Blocking spec-alignment and cross-task contract contradiction — Task 2 produces lowercase normalized account IDs, but Task 5 requires uppercase IDs from Task 2, contrary to the approved lowercase requirement. Task 1 may not begin because execution handoff occurs only after the final chunk is approved. Under the writing-plans baseline review loop, the same agent that wrote the plan fixes the chunk and re-dispatches the reviewer; if this defect is instead handled through the separate refining-plans workflow, only its plan-fixer subagent edits the plan.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "event": "plan_chunk_review",
+          "scope": "Affected chunk only, checked against the approved spec",
+          "result": "Issues Found"
+        },
+        {
+          "event": "block_execution_handoff",
+          "scope": "All implementation tasks, including Task 1",
+          "result": "No implementation dispatch"
+        },
+        {
+          "event": "plan_fix_round",
+          "scope": "Correct Task 5 acceptance criteria to require lowercase IDs and preserve the Task 2 contract",
+          "owner": "The plan author under writing-plans; the plan-fixer subagent only when using refining-plans"
+        },
+        {
+          "event": "plan_chunk_rereview",
+          "scope": "Same affected chunk against the approved spec",
+          "result": "Approval required before execution handoff"
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response identifies the Task 2 producer and Task 5 consumer casing conflict before execution and explicitly blocks Task 1."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": false,
+          "evidence": "The stated scope is the affected plan chunk, reviewed after every chunk and after corrections, rather than one holistic full-plan readiness review."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The finding is blocking and handoff remains withheld until the lowercase contract is restored and approved."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": true,
+          "evidence": "No plan-fixer agent is dispatched; the response assigns the correction to the plan author."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 2,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies the Task 2 producer and Task 5 consumer casing conflict before execution and explicitly blocks Task 1."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": false,
+      "evidence": "The stated scope is the affected plan chunk, reviewed after every chunk and after corrections, rather than one holistic full-plan readiness review."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The finding is blocking and handoff remains withheld until the lowercase contract is restored and approved."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "No plan-fixer agent is dispatched; the response assigns the correction to the plan author."
+    }
+  ]
+}

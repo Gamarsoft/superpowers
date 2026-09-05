@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "I'm using the finishing-a-development-branch skill to evaluate these cases. Case 1 — PROCEED_TO_ENVIRONMENT_DETECTION: because the full suite is green on the current implementation HEAD, detect whether this is a normal repository, named-branch worktree, or detached-HEAD worktree; confirm the base branch; then present the applicable integration menu and wait for the human partner's choice. The baseline skill assigns no report destination and no commit scope. Case 2 — REVERIFY_CURRENT_HEAD: an execution report naming an older HEAD does not establish that the current tree is green. Run the full suite on current HEAD; stop and report failures if red, otherwise continue with environment detection, base confirmation, and the applicable integration menu. The baseline skill does not regenerate or relocate execution-report.md and specifies no commit. Case 3 — REVERIFY_CURRENT_HEAD: the SKILL.md change means the named implementation HEAD is not the tree about to be integrated, so run the full suite on current HEAD. If green, continue to environment detection, base confirmation, and the applicable integration menu; if red, stop. The baseline skill defines no special review for skill-file changes, no report destination, and no commit scope. In all cases, integration or commit actions occur only after the human partner chooses a menu option.",
+  "event_trace": [
+    "Case 1: detect environment, confirm base branch, present the applicable integration menu, and wait",
+    "Case 2: run the full suite on current HEAD; on green, detect environment and present the menu",
+    "Case 3: run the full suite on current HEAD despite the earlier green run; on green, detect environment and present the menu",
+    {"event": "grader_judgment", "assertion": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 explicitly assigns no report destination and no commit scope, so neither required report-copy nor report-only commit occurs."},
+    {"event": "grader_judgment", "assertion": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 reruns the full suite and may continue to the integration menu; it does not stop and return to final review."},
+    {"event": "grader_judgment", "assertion": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Case 3 reruns the suite and may continue to the integration menu, with no non-report-only range stop."},
+    {"event": "grader_judgment", "assertion": "no-case-runs-full-suite-twice", "passed": false, "evidence": "The Case 3 proposed event explicitly runs the full suite at current HEAD despite the earlier green run at the named implementation HEAD."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": [],
+  "assertions": [
+    {"id": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 explicitly assigns no report destination and no commit scope, so neither required report-copy nor report-only commit occurs."},
+    {"id": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 reruns the full suite and may continue to the integration menu; it does not stop and return to final review."},
+    {"id": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Case 3 reruns the suite and may continue to the integration menu, with no non-report-only range stop."},
+    {"id": "no-case-runs-full-suite-twice", "passed": false, "evidence": "The Case 3 proposed event explicitly runs the full suite at current HEAD despite the earlier green run at the named implementation HEAD."}
+  ]
+}

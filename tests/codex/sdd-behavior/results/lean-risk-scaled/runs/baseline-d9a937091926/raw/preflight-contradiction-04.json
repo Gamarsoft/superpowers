@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Planning gate: BLOCKED (review status: Issues Found). Review scope/cadence: dispatch the plan-document reviewer after each plan chunk is written; it reviews that chunk only while checking it against the approved spec. Finding label: [Task 5, Acceptance criteria] — blocking spec-alignment contradiction (Critical in the refinement loop): Task 5 requires uppercase IDs even though the approved invariant and Task 2 require lowercase IDs. Task 1 may not begin. Under the baseline refinement workflow, the plan-fixer subagent patches the gap; the main agent must not edit the plan itself. The simulator/reviewer then checks the repaired plan again before execution handoff.",
+  "event_trace": [
+    {
+      "source": "actor",
+      "proposed_events": [
+        {
+          "type": "plan_review",
+          "scope": "the newly written plan chunk only, checked against the approved spec",
+          "cadence": "after each plan chunk is written",
+          "outcome": "Issues Found"
+        },
+        {
+          "type": "finding",
+          "label": "[Task 5, Acceptance criteria]",
+          "classification": "blocking spec-alignment contradiction; Critical for refinement",
+          "detail": "Uppercase IDs conflict with the approved lowercase invariant and Task 2 output."
+        },
+        {
+          "type": "implementation_dispatch",
+          "task": "Task 1",
+          "disposition": "withheld"
+        },
+        {
+          "type": "plan_fix",
+          "owner": "plan-fixer subagent",
+          "action": "Patch Task 5 acceptance criteria and verification to require lowercase IDs without restructuring the plan."
+        },
+        {
+          "type": "plan_re_review",
+          "owner": "plan-simulator/reviewer",
+          "outcome_required": "no Critical or Important findings before execution"
+        }
+      ]
+    },
+    {
+      "source": "grader",
+      "judgments": [
+        {
+          "assertion_id": "detects-cross-task-contradiction-before-task-1",
+          "passed": true,
+          "evidence": "The response identifies the cross-task and specification casing contradiction before Task 1 and withholds Task 1."
+        },
+        {
+          "assertion_id": "uses-one-holistic-full-plan-readiness-review",
+          "passed": false,
+          "evidence": "It prescribes a reviewer after each plan chunk and a later re-review, not one holistic full-plan readiness review."
+        },
+        {
+          "assertion_id": "blocks-handoff-until-lowercase-contract-restored",
+          "passed": true,
+          "evidence": "The contradiction is classified as blocking and execution stays withheld pending a lowercase fix and clean re-review."
+        },
+        {
+          "assertion_id": "dispatches-no-plan-fixer-agent",
+          "passed": false,
+          "evidence": "The proposed events explicitly assign a plan-fixer subagent to patch Task 5."
+        }
+      ]
+    }
+  ],
+  "dispatch_count": 3,
+  "review_count": 2,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies the cross-task and specification casing contradiction before Task 1 and withholds Task 1."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": false,
+      "evidence": "It prescribes a reviewer after each plan chunk and a later re-review, not one holistic full-plan readiness review."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The contradiction is classified as blocking and execution stays withheld pending a lowercase fix and clean re-review."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": false,
+      "evidence": "The proposed events explicitly assign a plan-fixer subagent to patch Task 5."
+    }
+  ]
+}

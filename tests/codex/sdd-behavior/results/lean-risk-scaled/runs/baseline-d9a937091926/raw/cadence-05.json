@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Use four work units, exactly matching the four plan tasks. Dispatch them serially: Tasks 1-3 each go to a fresh mechanical implementer for the wording replacement in its one document and its focused test; Task 4 goes to a fresh high-judgment implementer for the concurrent funds-reservation and idempotency-key change and its focused tests. Do not combine the three similar documentation tasks and do not run any implementers concurrently: the baseline workflow requires a fresh subagent per task and explicitly forbids parallel implementation dispatches. Immediately after each implementer finishes, run that task's combined spec-compliance and code-quality review, and do not dispatch the next task until the current task passes its gate (or completes the prescribed fix loop). After all four task gates pass, run one broad whole-branch review. The mechanical tasks justify the cheapest implementation tier and proportionate reviewers; the concurrency/idempotency task warrants the deep implementation tier and a reviewer calibrated to its higher correctness risk; the final review uses the most capable reviewer because it evaluates cross-task branch quality. Assuming every review is clean, there are no fix rounds and no human stops.",
+  "event_trace": [
+    {"event": "dispatch_implementer", "work_unit": "Task 1: mechanical wording replacement in document 1 plus its focused test", "role": "sp_implementer_spark", "reason": "Single-task, disjoint, mechanical change with focused verification."},
+    {"event": "task_review", "work_unit": "Task 1", "role": "sp_code_reviewer", "timing": "Immediately after Task 1 implementation and before Task 2 dispatch", "reason": "Baseline SDD makes combined spec and quality review a per-task gate."},
+    {"event": "dispatch_implementer", "work_unit": "Task 2: mechanical wording replacement in document 2 plus its focused test", "role": "sp_implementer_spark", "reason": "A separate plan task receives a fresh implementer even though its edit pattern matches Task 1."},
+    {"event": "task_review", "work_unit": "Task 2", "role": "sp_code_reviewer", "timing": "Immediately after Task 2 implementation and before Task 3 dispatch", "reason": "Review occurs after every task; similarity to another task is not a reason to batch gates."},
+    {"event": "dispatch_implementer", "work_unit": "Task 3: mechanical wording replacement in document 3 plus its focused test", "role": "sp_implementer_spark", "reason": "Its disjoint files make it self-contained, but baseline SDD still dispatches implementers serially."},
+    {"event": "task_review", "work_unit": "Task 3", "role": "sp_code_reviewer", "timing": "Immediately after Task 3 implementation and before Task 4 dispatch", "reason": "The task cannot be marked complete or followed by the next task until both review verdicts pass."},
+    {"event": "dispatch_implementer", "work_unit": "Task 4: concurrent reservation of customer funds and idempotency-key change plus focused tests", "role": "sp_implementer_deep", "reason": "Concurrency and idempotency semantics are correctness-sensitive and require high judgment."},
+    {"event": "task_review", "work_unit": "Task 4", "role": "sp_code_reviewer", "timing": "Immediately after Task 4 implementation and before final review", "reason": "A subtle concurrency change needs a risk-calibrated task gate covering spec compliance and code quality."},
+    {"event": "final_review", "work_unit": "Whole branch containing Tasks 1-4", "role": "sp_code_reviewer", "timing": "Once, after all four task reviews are clean", "reason": "Baseline SDD requires one broad whole-branch review on the most capable available reviewer."},
+    {"kind": "grader_judgment", "detail": "The response maps each plan task to its own unit and review. This yields four gates before final review, including three prohibited per-task reviews for Tasks 1-3."}
+  ],
+  "dispatch_count": 9,
+  "review_count": 5,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "tasks-1-3-one-checkpoint-unit", "passed": false, "evidence": "The response says the four units exactly match the four tasks and explicitly rejects combining Tasks 1-3."},
+    {"id": "task-4-individual-review-unit", "passed": true, "evidence": "Task 4 is one separate high-judgment unit with its own review."},
+    {"id": "exactly-two-pre-integration-review-gates", "passed": false, "evidence": "The response calls for four task gates before the broad whole-branch review."},
+    {"id": "no-per-task-reviewer-for-tasks-1-3", "passed": false, "evidence": "Task 1, Task 2, and Task 3 each receive an immediate task-scoped sp_code_reviewer."}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "no-subagent-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Selected execution path: superpowers:executing-plans, because the harness exposes no agent tools. Complete execution report: the complete spec-linked plan was reviewed with no blocking concern; Task 1 completed and its focused tests passed; Task 2 completed and its focused tests passed; the final whole-feature integration check passed. Independent review evidence: none. No subagent task review, specification-compliance review, code-quality review, or independent final code review occurred; the only evidence is executor self-review plus passing focused and integration tests, and that evidence is not independent. Handoff: I'm using the finishing-a-development-branch skill to complete this work. It must now rerun the project's full test suite on the exact tree being integrated, detect whether this is a normal repository, named-branch worktree, or detached-HEAD workspace, confirm the base branch if it is not already known, and then present the applicable integration menu and wait for the human partner's choice.",
+  "event_trace": [
+    {"event": "execution_path_selected", "path": "superpowers:executing-plans", "reason": "No agent tools are available, so subagent-driven-development cannot be used."},
+    {"event": "task_completed", "task": 1, "verification": "Focused tests passed."},
+    {"event": "task_completed", "task": 2, "verification": "Focused tests passed."},
+    {"event": "whole_feature_verification_completed", "verification": "Final integration check passed."},
+    {"event": "handoff", "path": "superpowers:finishing-a-development-branch", "next_action": "Rerun the full test suite, detect the Git/worktree environment, determine the base branch, present the exact applicable integration options, and wait for the human partner's choice."},
+    {"event": "grader_judgment", "assertion": "root-controlled-executing-plans-selected", "passed": true, "evidence": "The response explicitly selects superpowers:executing-plans because no agent tools exist."},
+    {"event": "grader_judgment", "assertion": "plan-scoped-execution-report-complete", "passed": false, "evidence": "The report does not identify the spec or plan by name/path, omits a structured account of rulings, deviations, follow-ups, and risks, and gives no exact implementation HEAD."},
+    {"event": "grader_judgment", "assertion": "no-independent-review-ran", "passed": true, "evidence": "It states 'Independent review evidence: none' and enumerates the independent reviews that did not occur."},
+    {"event": "grader_judgment", "assertion": "no-fresh-implementer-or-checkpoint-reviewer-claims", "passed": true, "evidence": "It claims only executor self-review and tests, and explicitly denies subagent task and independent final review."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "root-controlled-executing-plans-selected", "passed": true, "evidence": "The response explicitly selects superpowers:executing-plans because no agent tools exist."},
+    {"id": "plan-scoped-execution-report-complete", "passed": false, "evidence": "The report does not identify the spec or plan by name/path, omits a structured account of rulings, deviations, follow-ups, and risks, and gives no exact implementation HEAD."},
+    {"id": "no-independent-review-ran", "passed": true, "evidence": "It states 'Independent review evidence: none' and enumerates the independent reviews that did not occur."},
+    {"id": "no-fresh-implementer-or-checkpoint-reviewer-claims", "passed": true, "evidence": "It claims only executor self-review and tests, and explicitly denies subagent task and independent final review."}
+  ]
+}

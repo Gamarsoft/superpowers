@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Case 1 — RERUN_FULL_SUITE_THEN_MENU: The execution report is not a recognized substitute in the baseline skill, even when it names current HEAD. Run the full suite on the current tree; after it passes, detect the repository/worktree state, confirm the base branch, present the exact applicable finishing menu, and wait for the human partner's choice. No review report destination or commit scope is defined.\n\nCase 2 — STALE_EVIDENCE_RERUN_FULL_SUITE: A report naming an older HEAD does not prove the tree about to be integrated. Run the full suite at current HEAD. Stop on failure; on success, detect environment, confirm the base branch, present the applicable finishing menu, and wait. No review report destination or commit scope is defined.\n\nCase 3 — CHANGED_TREE_RERUN_FULL_SUITE: A passing suite at the named implementation HEAD does not cover the implementation-HEAD-to-current-HEAD range, including the skills/x/SKILL.md change. Run the full suite on current HEAD, then stop on failure or proceed to environment detection, base confirmation, and the finishing menu on success. The baseline skill defines no special skill-review dispatch, report destination, or review commit scope.",
+  "event_trace": [
+    "Case 1: run the full suite at current HEAD",
+    "Case 1: after green, detect environment, confirm base, present the exact finishing menu, and wait",
+    "Case 2: treat the older-HEAD result as stale and run the full suite at current HEAD",
+    "Case 2: stop if red; otherwise present the applicable finishing menu and wait",
+    "Case 3: treat the implementation-HEAD result as insufficient for the changed current tree and run the full suite at current HEAD",
+    "Case 3: stop if red; otherwise present the applicable finishing menu and wait; do not invent a review report or commit scope",
+    {"event": "grader_judgment", "assertion": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 reruns the suite, defines no report destination or commit scope, and omits both the suffixed copy and report-only commit."},
+    {"event": "grader_judgment", "assertion": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 proposes a full-suite run and possible finishing menu rather than an immediate stop and return to final review."},
+    {"event": "grader_judgment", "assertion": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Case 3 proposes rerunning the suite and possible finishing; it does not stop because the range contains skills/x/SKILL.md."},
+    {"event": "grader_judgment", "assertion": "no-case-runs-full-suite-twice", "passed": false, "evidence": "Case 1 reruns a suite the case says already passes, and Case 3 proposes another full-suite run after the stated pass at the named implementation HEAD."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 3,
+  "dispositions": [],
+  "assertions": [
+    {"id": "case-1-report-copy-and-report-only-commit", "passed": false, "evidence": "Case 1 reruns the suite, defines no report destination or commit scope, and omits both the suffixed copy and report-only commit."},
+    {"id": "case-2-stop-and-return-to-final-review", "passed": false, "evidence": "Case 2 proposes a full-suite run and possible finishing menu rather than an immediate stop and return to final review."},
+    {"id": "case-3-stop-on-non-report-only-range", "passed": false, "evidence": "Case 3 proposes rerunning the suite and possible finishing; it does not stop because the range contains skills/x/SKILL.md."},
+    {"id": "no-case-runs-full-suite-twice", "passed": false, "evidence": "Case 1 reruns a suite the case says already passes, and Case 3 proposes another full-suite run after the stated pass at the named implementation HEAD."}
+  ]
+}

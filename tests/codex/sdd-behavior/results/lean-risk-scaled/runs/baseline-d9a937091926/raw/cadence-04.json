@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "fail",
+  "response": "Use four separate, sequential work units. Tasks 1, 2, and 3 each go to a fresh sp_implementer_spark because each is a single-doc mechanical wording replacement with its own focused test; do not combine them and do not dispatch them concurrently, because the baseline workflow requires one fresh implementer per plan task and explicitly forbids parallel implementation dispatches. Immediately after each task commits and reports its focused test evidence, generate that task's review package and dispatch an sp_code_reviewer; the next implementation task waits for both the spec-compliance and task-quality verdicts to pass. Task 4 is also its own sequential work unit, but use sp_implementer_deep because concurrent customer-fund reservation and idempotency-key behavior are correctness-sensitive and require high judgment; review it immediately with sp_code_reviewer calibrated to that risk. After all four task gates pass, dispatch one most-capable whole-branch sp_code_reviewer over the merge-base-to-HEAD package. On the stated clean path there are no fix rounds and no human stops. Focused tests and disjoint files do not change this cadence under the baseline workflow.",
+  "event_trace": [
+    {"event": "dispatch_implementer", "task": 1, "role": "sp_implementer_spark", "work_unit": "Mechanical wording replacement in doc 1 plus its focused test"},
+    {"event": "dispatch_task_review", "task": 1, "role": "sp_code_reviewer", "timing": "Immediately after Task 1 implementation, test report, and commit; before Task 2"},
+    {"event": "dispatch_implementer", "task": 2, "role": "sp_implementer_spark", "work_unit": "Mechanical wording replacement in doc 2 plus its focused test"},
+    {"event": "dispatch_task_review", "task": 2, "role": "sp_code_reviewer", "timing": "Immediately after Task 2 implementation, test report, and commit; before Task 3"},
+    {"event": "dispatch_implementer", "task": 3, "role": "sp_implementer_spark", "work_unit": "Mechanical wording replacement in doc 3 plus its focused test"},
+    {"event": "dispatch_task_review", "task": 3, "role": "sp_code_reviewer", "timing": "Immediately after Task 3 implementation, test report, and commit; before Task 4"},
+    {"event": "dispatch_implementer", "task": 4, "role": "sp_implementer_deep", "work_unit": "Concurrent customer-fund reservation and idempotency-key change plus its focused tests"},
+    {"event": "dispatch_task_review", "task": 4, "role": "sp_code_reviewer", "timing": "Immediately after Task 4 implementation, test report, and commit; before final review"},
+    {"event": "dispatch_final_review", "role": "sp_code_reviewer", "timing": "Once all four per-task review gates are clean, over the complete branch diff"},
+    {"kind": "grader_judgment", "detail": "Tasks 1-3 are three separate units with three reviewers. Task 4 is separate, leaving four gates before the final review."}
+  ],
+  "dispatch_count": 9,
+  "review_count": 5,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "tasks-1-3-one-checkpoint-unit", "passed": false, "evidence": "The response says to use four separate work units and not combine Tasks 1-3."},
+    {"id": "task-4-individual-review-unit", "passed": true, "evidence": "Task 4 is its own high-judgment unit with an immediate review."},
+    {"id": "exactly-two-pre-integration-review-gates", "passed": false, "evidence": "All four tasks receive distinct gates before final review, so the count is four."},
+    {"id": "no-per-task-reviewer-for-tasks-1-3", "passed": false, "evidence": "The trace dispatches sp_code_reviewer separately for Tasks 1, 2, and 3."}
+  ]
+}
