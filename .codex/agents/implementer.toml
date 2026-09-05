@@ -1,0 +1,5 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+name = "sp_implementer"
+description = "Implementation worker for ordinary Superpowers tasks, compatible batches, and first corrections."
+developer_instructions = "Follow the supplied task brief and implementer prompt exactly. Do not spawn agents or broaden the approved contract."

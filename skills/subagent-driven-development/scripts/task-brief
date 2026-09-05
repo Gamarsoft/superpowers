@@ -1,54 +1,117 @@
 #!/usr/bin/env bash
-# Extract one task's full text from an implementation plan into a file the
-# implementer reads in one call, so the task text never has to be pasted
-# through the controller's context.
-#
-# Usage: task-brief PLAN_FILE TASK_NUMBER [OUTFILE]
-# Default OUTFILE: <repo-root>/.superpowers/sdd/<plan-basename>/task-<N>-brief.md
-# (per plan and per worktree; concurrent runs of the SAME plan in the same
-# working tree share it).
+# Extract an ordered work unit from a plan.
+# Usage: task-brief PLAN_FILE TASK_NUMBER [TASK_NUMBER ...] [--out OUTFILE]
+# Backward compatible: one task may use a final positional OUTFILE.
 set -euo pipefail
 
-if [ $# -lt 2 ] || [ $# -gt 3 ]; then
-  echo "usage: task-brief PLAN_FILE TASK_NUMBER [OUTFILE]" >&2
+if [[ $# -lt 2 ]]; then
+  echo "usage: task-brief PLAN_FILE TASK_NUMBER [TASK_NUMBER ...] [--out OUTFILE]" >&2
   exit 2
 fi
 
 plan=$1
-n=$2
-[ -f "$plan" ] || { echo "no such plan file: $plan" >&2; exit 2; }
+shift
+[[ -f "$plan" ]] || { echo "no such plan file: $plan" >&2; exit 2; }
 
-if [ $# -eq 3 ]; then
-  out=$3
-else
+tasks=()
+out=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --out)
+      [[ $# -ge 2 && -z "$out" ]] || { echo "--out requires one path" >&2; exit 2; }
+      out=$2
+      shift 2
+      ;;
+    *)
+      if [[ "$1" =~ ^[1-9][0-9]*$ ]]; then
+        tasks+=("$1")
+        shift
+      elif [[ ${#tasks[@]} -eq 1 && $# -eq 1 && -z "$out" ]]; then
+        out=$1
+        shift
+      else
+        echo "invalid task number or output path: $1" >&2
+        exit 2
+      fi
+      ;;
+  esac
+done
+
+[[ ${#tasks[@]} -gt 0 ]] || { echo "at least one task number is required" >&2; exit 2; }
+
+for ((i = 0; i < ${#tasks[@]}; i++)); do
+  for ((j = i + 1; j < ${#tasks[@]}; j++)); do
+    [[ "${tasks[$i]}" != "${tasks[$j]}" ]] || {
+      echo "duplicate task number: ${tasks[$i]}" >&2
+      exit 2
+    }
+  done
+done
+
+if [[ -z "$out" ]]; then
   dir=$("$(cd "$(dirname "$0")" && pwd)/sdd-workspace" "$plan")
-  out="$dir/task-${n}-brief.md"
+  if [[ ${#tasks[@]} -eq 1 ]]; then
+    out="$dir/task-${tasks[0]}-brief.md"
+  else
+    task_key=$(IFS=-; printf '%s' "${tasks[*]}")
+    out="$dir/unit-${task_key}-brief.md"
+  fi
 fi
+
+task_csv=$(IFS=,; printf '%s' "${tasks[*]}")
 
 task_tmp=$(mktemp "${TMPDIR:-/tmp}/superpowers-task-brief.XXXXXX")
 trap 'rm -f "$task_tmp"' EXIT
 
-awk -v n="$n" '
+awk -v task_csv="$task_csv" '
+  BEGIN {
+    task_count = split(task_csv, task_order, ",")
+  }
+  function position(line,    i, pattern) {
+    for (i = 1; i <= task_count; i++) {
+      pattern = "^#+[ \t]+Task[ \t]+" task_order[i] "([^0-9]|$)"
+      if (line ~ pattern) return i
+    }
+    return 0
+  }
   /^```/ { infence = !infence }
   !infence && /^#+[ \t]+Task[ \t]+[0-9]+/ {
-    intask = ($0 ~ ("^#+[ \t]+Task[ \t]+" n "([^0-9]|$)"))
+    seen_task = 1
+    active = position($0)
   }
-  intask { print }
+  {
+    if (!seen_task) {
+      preamble = preamble $0 ORS
+    } else if (active) {
+      task_text[active] = task_text[active] $0 ORS
+    }
+  }
+  END {
+    printf "%s", preamble
+    for (i = 1; i <= task_count; i++) {
+      printf "%s", task_text[i]
+    }
+  }
 ' "$plan" > "$task_tmp"
 
-if [ ! -s "$task_tmp" ]; then
-  echo "task ${n} not found in ${plan} (no heading matching 'Task ${n}')" >&2
-  exit 3
-fi
+for task in "${tasks[@]}"; do
+  if ! grep -Eq "^#+[[:space:]]+Task[[:space:]]+${task}([^0-9]|$)" "$task_tmp"; then
+    echo "task ${task} not found in ${plan}" >&2
+    exit 3
+  fi
+done
 
 {
+  printf '# SDD work unit: Task%s %s\n\n' \
+    "$([[ ${#tasks[@]} -eq 1 ]] && printf '' || printf 's')" \
+    "$(IFS=', '; printf '%s' "${tasks[*]}")"
   printf '%s\n' \
     '# TDD execution mechanics' \
     '' \
-    'For this task: read every codebase pointer; write the smallest focused' \
-    'test that proves the acceptance criterion; run it and preserve the expected' \
-    'RED evidence; implement the minimum contract-preserving change; rerun for' \
-    'GREEN evidence; run the task verification lane; self-review; then commit.' \
+    'For each changed behavior: read its codebase pointers; write the smallest' \
+    'focused test; capture expected RED evidence; implement the minimum' \
+    'contract-preserving change; capture GREEN evidence; run the assigned' \
+    'integration lane; self-review; and commit the coherent work unit.' \
     'Finishing alone owns the complete repository suite.' \
     ''
   cat "$task_tmp"

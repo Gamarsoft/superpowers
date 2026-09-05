@@ -1,72 +1,121 @@
 ---
 name: executing-plans
-description: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+description: Use to execute an approved plan in the controller when subagent tools are unavailable or the plan explicitly selects controller execution
 ---
 
 # Executing Plans
 
-## Overview
+## Boundary
 
-Load plan, review critically, execute all tasks, report when complete.
+Execute a complete, approved implementation plan in the current controller
+context. Normal route: use this skill only when the harness exposes no subagent tools.
+If subagents are available, route ordinary planned delivery to
+`superpowers:subagent-driven-development`. If the plan explicitly selects this skill, honor that override
+even when subagents are available.
 
-**Announce at start:** "I'm using the executing-plans skill to implement this plan."
+This is an honest fallback, not simulated SDD. Do not claim fresh implementers, checkpoint reviewers,
+typed roles, or independent evidence that did not exist.
+The controller performs implementation, TDD, focused verification, rulings,
+commits, and self-review sequentially.
 
-**Route:** If the plan explicitly selects this skill, honor that override even
-when subagents are available. Otherwise, tell your human partner that
-Superpowers works much better with subagents (Claude Code, Codex CLI, Codex
-App, Copilot CLI, and Gemini CLI qualify; see the per-platform tool refs in
-`../using-superpowers/references/`) and use
-`superpowers:subagent-driven-development` when available.
+**Announce at start:** “I'm using executing-plans to implement this plan in the
+controller context.” State whether this is the no-subagent route or an explicit
+plan override.
 
-## The Process
+## Preflight
 
-### Step 1: Load and Review Plan
-1. Ensure an isolated workspace: use superpowers:using-git-worktrees to create one or verify the existing one
-2. Read plan file
-3. Review critically - identify any questions or concerns about the plan
-4. If concerns: Raise them with your human partner before starting
-5. If no concerns: Create todos for the plan items and proceed
+1. Use `superpowers:using-git-worktrees` to create or verify an isolated
+   workspace. Never start on main/master without explicit human consent.
+2. Read the full plan and approved specification. Require reachable identities
+   plus Goal, First delivery boundary, Risk class, Risk triggers, and Verification lanes.
+   Require each task's ownership, contract, dependencies,
+   acceptance criteria, errors, risk, focused verification, and pointers.
+3. For review-required plans, require the Readiness Record to end in `READY`.
+4. Resolve the implementation base to a full commit ID. Refuse ambiguous
+   unrelated worktree changes.
+5. Run `../subagent-driven-development/scripts/sdd-workspace PLAN_FILE` and use
+   only its returned plan-scoped directory. Read
+   `../subagent-driven-development/references/execution-report.md` completely.
 
-### Step 2: Execute Tasks
+A missing specification, critical plan gap, contradictory readiness record, or
+unresolved observable WHAT/protected-authority decision stops before Task 1.
+Do not repair product requirements inside execution. Resolve reversible HOW
+locally when it preserves the contract; record the ruling, why it is reversible,
+and its cost if wrong.
 
-For each task:
-1. Mark as in_progress
-2. Read its plan context, task contract, and every codebase pointer it names
-3. Execute the task contract through TDD: capture a focused RED test before
-   implementation, make the minimum change, and capture GREEN evidence
-4. Run the task's focused and integration verifications as specified
-5. Self-review the task scope and evidence, then commit the coherent result
-6. Mark as completed
+## Controller Task Loop
 
-### Step 3: Complete Development
+For each task in dependency order:
 
-After all tasks complete and verified:
-- Announce: "I'm using the finishing-a-development-branch skill to complete this work."
-- **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch
-- Follow that skill to verify tests, present options, execute choice
+1. Execute the task contract, not commentary or illustrative pseudocode.
+2. Apply `superpowers:test-driven-development`: capture focused RED evidence,
+   implement the minimum coherent change, then capture GREEN evidence.
+3. Run the task's focused verification and its stated integration contribution.
+   Finishing alone runs the complete repository suite.
+4. Self-review the diff against its spec anchors, scope, errors, risk triggers,
+   and downstream consumers.
+5. Dispose findings with the shared labels below, update the plan-scoped ledger,
+   and commit the coherent task result. Record the exact commit and evidence.
 
-## When to Stop and Ask for Help
+Use only:
 
-**STOP executing immediately when:**
-- Hit a blocker (missing dependency, test fails, instruction unclear)
-- Plan has critical gaps preventing starting
-- You don't understand an instruction
-- Verification fails repeatedly
+- `BLOCKING`: proved, causally connected contract or downstream-safety defect;
+  fix locally with focused RED/GREEN evidence before continuing.
+- `DECISION`: unresolved observable WHAT or protected, destructive, or external
+  authority; ask one bounded question and update the contract before continuing.
+- `FOLLOW_UP`: real adjacent issue or out-of-bound improvement; record without
+  enlarging the task.
+- `INVALID`: unsupported, contradicted, already-covered, HOW-only, or preference
+  finding; record why it does not apply.
 
-**Ask for clarification rather than guessing.**
+Stop for a repeated verification failure instead of looping. Also stop when a
+blocker needs unavailable context or a proposed fix would change approved WHAT.
 
-## When to Revisit Earlier Steps
+## Integration and Optional Review
 
-**Return to Review (Step 1) when:**
-- Partner updates the plan based on your feedback
-- Fundamental approach needs rethinking
+After every task commit, run the plan's affected integration lanes once and
+self-review the cumulative implementation-base-to-HEAD range. Do not run the
+complete repository suite.
 
-**Don't force through blockers** - stop and ask.
+Dispatch one final independent review only when the harness actually exposes a
+fresh reviewer and this route was selected by explicit plan override. Use fresh
+context, the exact BASE/HEAD range, full spec and plan, report evidence, shared
+dispositions, and selected risk profiles. The controller owns fixes; use the
+same reviewer for a scoped re-review, and stop on a repeated verification
+failure. Do not add task or checkpoint review gates.
 
-## Remember
-- Review plan critically first
-- Follow plan steps exactly
-- Don't skip verifications
-- Reference skills when plan says to
-- Stop when blocked, don't guess
-- Never start implementation on main/master branch without explicit user consent
+For the normal no-subagent route, write exactly:
+
+```text
+Reviewer availability: unavailable
+Result: NOT RUN
+Evidence: The harness exposed no fresh reviewer; controller self-review is not independent review.
+```
+
+## Write the Handoff
+
+Require a clean worktree after the final implementation commit. Resolve current
+HEAD again and write the plan-scoped `execution-report.md` using the shared
+contract. It must name the plan/spec identity, completed tasks, focused and
+integration evidence, controller rulings, deviations, follow-ups, remaining
+risks, decisions, corrections, reviewer availability/result, implementation
+base, and exact implementation HEAD.
+
+Do not change implementation code after recording that HEAD. Announce
+`superpowers:finishing-a-development-branch` and pass both the plan and report
+paths. Keep the ignored workspace intact; finishing validates the report, runs
+the sole complete suite, persists the evidence, and owns integration/cleanup.
+
+## Stop Conditions
+
+Stop without a finishing handoff for:
+
+- missing specification or required plan contract;
+- critical plan gap or contradictory readiness evidence;
+- unresolved observable WHAT or protected authority;
+- ambiguous worktree ownership;
+- repeated verification failure; or
+- a dirty worktree or HEAD/report mismatch at handoff.
+
+Report the evidence and one bounded next decision. Do not improvise another
+workflow, fabricate review coverage, or force through the blocker.

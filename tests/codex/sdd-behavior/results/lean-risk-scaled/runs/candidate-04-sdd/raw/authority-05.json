@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "{\"workflow_status\":\"NEEDS_DECISION\",\"controller_decisions\":[{\"label\":\"RULING (reversible HOW)\",\"subject\":\"private helper versus inline implementation\",\"decision\":\"Use the implementer's preferred private helper.\",\"authority\":\"controller\",\"reason\":\"The approved plan explicitly permits either implementation, and a private helper preserves the public contract and acceptance criteria.\",\"reversible\":true,\"cost_if_wrong\":\"A local refactor can inline the helper and rerun the focused tests; no public API, stored data, or downstream contract needs migration.\"},{\"label\":\"DECISION\",\"subject\":\"public error code change from not_found to invalid_request\",\"decision\":\"Do not choose or implement the new public error code without human authority.\",\"authority\":\"human\",\"reason\":\"The plan does not decide this observable public contract, so the controller cannot treat it as an implementation preference.\"}],\"records\":[{\"label\":\"LEDGER_RULING\",\"entry\":\"Reversible HOW ruling: implement with a private helper; plan permits helper or inline; public behavior is unchanged; cost if wrong is a local inline refactor plus focused verification.\"},{\"label\":\"NEEDS_DECISION\",\"entry\":\"Implementation is paused on the proposed public error-code change. Preserve the current implementer and do not dispatch review or a correction round until the contract decision is recorded.\"},{\"label\":\"DECISION\",\"entry\":\"Proposed observable change: not_found -> invalid_request. After the human answers, record the chosen public contract, route any required contract/readiness update through its owner, then message the existing implementer with the decision.\"}],\"user_question\":{\"label\":\"DECISION\",\"question\":\"For the affected public error response, should the contract keep `not_found`, or should it change to `invalid_request`?\",\"options\":[{\"value\":\"not_found\",\"impact\":\"Preserves the existing public behavior and compatibility.\"},{\"value\":\"invalid_request\",\"impact\":\"Changes observable behavior; callers and acceptance criteria may need to be updated.\"}]}}",
+  "event_trace": [
+    {"sequence": 1, "label": "IMPLEMENTER_DISPATCHED", "detail": "One implementer was dispatched for the work unit."},
+    {"sequence": 2, "label": "NEEDS_DECISION", "detail": "The implementer surfaced one reversible HOW preference and one unresolved public-WHAT proposal."},
+    {"sequence": 3, "label": "RULING (reversible HOW)", "detail": "Controller selects the private helper and records reversibility and cost if wrong."},
+    {"sequence": 4, "label": "DECISION", "detail": "Controller records the public error-code issue and asks one bounded human question."},
+    {"sequence": 5, "label": "WAITING_FOR_HUMAN_DECISION", "detail": "No review, correction dispatch, or further implementation proceeds on the public error contract until the answer is recorded."},
+    {"kind": "grader_judgment", "assertion_id": "helper-autonomous-how-ruling-with-cost", "passed": true, "detail": "The structured response records the controller's helper choice, reversibility, and a local-inline-refactor plus focused-test cost if wrong."},
+    {"kind": "grader_judgment", "assertion_id": "public-result-decision-bounded-question", "passed": true, "detail": "The public error result is DECISION and has one bounded two-option user question."},
+    {"kind": "grader_judgment", "assertion_id": "no-helper-human-question", "passed": true, "detail": "The sole user_question concerns the public result, while the helper is assigned to controller authority."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": ["DECISION"],
+  "assertions": [
+    {"id": "helper-autonomous-how-ruling-with-cost", "passed": true, "evidence": "The controller selects the private helper and records reversible HOW plus the local-refactor and focused-test cost if wrong."},
+    {"id": "public-result-decision-bounded-question", "passed": true, "evidence": "The public error change is DECISION and triggers one user question with exactly the two contract options."},
+    {"id": "no-helper-human-question", "passed": true, "evidence": "The only user question is about the public error result; the helper choice stays with the controller."}
+  ]
+}

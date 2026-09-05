@@ -54,6 +54,12 @@ assert_contains "$USING_SKILL" 'default to `.worktrees/` at the project root' "u
 
 assert_not_contains "$FINISHING_SKILL" "~/.config/superpowers/worktrees" "finishing-a-development-branch does not treat old global path as owned"
 assert_contains "$FINISHING_SKILL" '`.worktrees/` or `worktrees/`' "finishing-a-development-branch keeps project-local cleanup ownership"
+assert_contains "$FINISHING_SKILL" 'contains modified or untracked files' "worktree refusal is handled explicitly"
+assert_contains "$FINISHING_SKILL" 'git -C "$WORKTREE_PATH" status --porcelain -uall' "refusal inventories files before cleanup"
+assert_contains "$FINISHING_SKILL" 'Never use `--force` autonomously' "cleanup never forces deletion autonomously"
+assert_contains "$FINISHING_SKILL" 'Commit them to <branch> before cleanup' "refusal recovery offers commit"
+assert_contains "$FINISHING_SKILL" 'Move them into <main repo root>' "refusal recovery offers move"
+assert_contains "$FINISHING_SKILL" 'Delete them (unrecoverable)' "refusal recovery names destructive deletion"
 
 assert_not_contains "$ROTOTILL_SPEC" "~/.config/superpowers/worktrees" "rototill spec does not preserve old global path policy"
 assert_not_contains "$ROTOTILL_PLAN" "~/.config/superpowers/worktrees" "rototill plan does not preserve old global path policy"

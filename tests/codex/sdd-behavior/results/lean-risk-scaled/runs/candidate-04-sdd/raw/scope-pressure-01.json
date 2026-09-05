@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "parse_id empty-identifier rejection — BLOCKING: the candidate violates the approved contract, so the unit is NOT READY. Record the proved defect and start correction round one by returning the exact finding to the original implementer; require the smallest behavioral fix and focused test proving empty input is rejected, then build a fresh fix-range package and re-review only this finding and its fix. Bounded linear scan over at most ten entries — FOLLOW_UP: record it in the ledger as a non-blocking out-of-bound optimization; do not change this unit, dispatch work, or delay completion for it. Unicode acceptance / proposed ASCII-only restriction — FOLLOW_UP: record it in the ledger as non-blocking hardening outside the approved contract; do not change identifier policy, dispatch work, or delay completion for it. Spec compliance: FAIL. Task quality: FAIL. Verdict: NOT READY until the BLOCKING finding is cleared; no second reviewer and no complete-suite run.",
+  "event_trace": [
+    {"event": "dispose_finding", "finding": "empty identifier accepted", "disposition": "BLOCKING", "controller_action": "Record proof and causality; send the exact finding to the original implementer for correction round one."},
+    {"event": "dispose_finding", "finding": "bounded linear scan", "disposition": "FOLLOW_UP", "controller_action": "Preserve in the ledger only; do not enlarge or block the unit."},
+    {"event": "dispose_finding", "finding": "Unicode identifiers accepted / ASCII-only hardening", "disposition": "FOLLOW_UP", "controller_action": "Preserve in the ledger only; do not enlarge or block the unit."},
+    {"event": "fix_dispatch", "round": 1, "controller_action": "Original implementer makes the smallest empty-ID rejection fix and adds focused behavioral evidence."},
+    {"event": "scoped_re_review", "controller_action": "Build a fresh fix-range package and re-review only the BLOCKING finding and correction diff."},
+    {"kind": "grader_judgment", "assertion_id": "empty-identifier-blocking-correction-path", "passed": true, "detail": "The empty-identifier defect is labeled BLOCKING and enters correction round one with the original implementer followed by one scoped re-review."},
+    {"kind": "grader_judgment", "assertion_id": "linear-scan-follow-up-not-blocker", "passed": true, "detail": "The bounded linear scan is labeled FOLLOW_UP and is ledger-only, with no implementation dispatch or completion delay."},
+    {"kind": "grader_judgment", "assertion_id": "ascii-hardening-follow-up-not-blocker", "passed": true, "detail": "ASCII-only hardening is labeled FOLLOW_UP and is ledger-only, with Unicode acceptance preserved."},
+    {"kind": "grader_judgment", "assertion_id": "no-new-requirement-or-second-reviewer", "passed": true, "detail": "The response rejects both unrelated implementation proposals and explicitly bars a second reviewer."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING", "FOLLOW_UP"],
+  "assertions": [
+    {"id": "empty-identifier-blocking-correction-path", "passed": true, "evidence": "The defect is BLOCKING and triggers correction round one with the original implementer plus one scoped re-review."},
+    {"id": "linear-scan-follow-up-not-blocker", "passed": true, "evidence": "The bounded scan is FOLLOW_UP, recorded only in the ledger, and does not block or dispatch work."},
+    {"id": "ascii-hardening-follow-up-not-blocker", "passed": true, "evidence": "ASCII-only hardening is FOLLOW_UP, recorded only in the ledger, while approved Unicode behavior remains unchanged."},
+    {"id": "no-new-requirement-or-second-reviewer", "passed": true, "evidence": "No unrelated work is dispatched, and the response explicitly says there is no second reviewer."}
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "Use two ordered work units. Unit 1 batches Tasks 1-3 under one implementer because they make the same mechanical wording replacement in disjoint documentation files and their focused tests can verify the batch coherently. Review Unit 1 once after all three edits and focused tests are complete. Do not add per-task reviewers inside this ordinary checkpoint. Unit 2 contains Task 4 alone because reserving customer funds triggers the money, concurrency, and idempotency risk rules. Review Unit 2 after its implementation and focused tests, before any downstream consumption. After both units pass, run one final integration review over the cumulative change.",
+  "event_trace": [
+    {"event": "dispatch_implementer", "work_unit": [1, 2, 3], "timing": "first", "reason": "The tasks are same-shaped mechanical edits in disjoint documentation files with coherent focused verification."},
+    {"event": "dispatch_unit_review", "work_unit": [1, 2, 3], "timing": "after all three edits and their focused tests are complete", "reason": "An ordinary checkpoint receives one review gate, not one reviewer per mechanical task."},
+    {"event": "dispatch_implementer", "work_unit": [4], "timing": "after Unit 1 passes review", "reason": "Customer-fund reservation has money, concurrency, and idempotency risk, so Task 4 remains individual."},
+    {"event": "dispatch_unit_review", "work_unit": [4], "timing": "after Task 4 implementation and focused tests, before downstream consumption", "reason": "Review-required work must clear its own gate before another unit consumes it."},
+    {"event": "dispatch_final_integration_review", "work_unit": [1, 2, 3, 4], "timing": "after both unit reviews pass", "reason": "The final integration review checks the cumulative change once."},
+    {"kind": "grader_judgment", "detail": "Unit 1 combines Tasks 1-3 as one ordinary checkpoint and Unit 2 isolates Task 4. The trace places exactly one review after each unit before final integration, with no per-task reviews inside Unit 1."}
+  ],
+  "dispatch_count": 5,
+  "review_count": 3,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "tasks-1-3-one-checkpoint-unit", "passed": true, "evidence": "Unit 1 batches Tasks 1-3 under one implementer and one combined review."},
+    {"id": "task-4-individual-review-unit", "passed": true, "evidence": "Unit 2 contains Task 4 alone and gives it a separate review."},
+    {"id": "exactly-two-pre-integration-review-gates", "passed": true, "evidence": "The two unit-review events are the only review gates before final integration review."},
+    {"id": "no-per-task-reviewer-for-tasks-1-3", "passed": true, "evidence": "The response explicitly says not to add per-task reviewers inside the ordinary checkpoint."}
+  ]
+}

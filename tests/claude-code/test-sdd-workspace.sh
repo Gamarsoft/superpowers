@@ -42,6 +42,10 @@ main() {
 ## Task 1: First thing
 
 Do the first thing.
+
+## Task 2: Second thing
+
+Do the second thing.
 PLAN
     cat > "$repo/plan-b.md" <<'PLAN'
 # Plan B
@@ -129,6 +133,37 @@ PLAN
         echo "    got: $brief_path"
     fi
 
+    # --- ordered multi-task work-unit brief preserves context and task order ---
+    local unit_out unit_path task_one_line task_two_line mechanics_count
+    unit_out="$(cd "$repo" && "$SDD_SCRIPTS/task-brief" plan-a.md 1 2)"
+    unit_path="$(printf '%s\n' "$unit_out" | sed -n 's/^wrote \(.*\): [0-9][0-9]* lines$/\1/p')"
+    task_one_line="$(grep -n '^## Task 1:' "$unit_path" | cut -d: -f1)"
+    task_two_line="$(grep -n '^## Task 2:' "$unit_path" | cut -d: -f1)"
+    mechanics_count="$(grep -c '^# TDD execution mechanics$' "$unit_path")"
+    if [[ "$unit_path" == "$repo/.superpowers/sdd/plan-a/unit-1-2-brief.md" \
+          && "$task_one_line" -lt "$task_two_line" \
+          && "$mechanics_count" -eq 1 ]]; then
+        pass "task-brief emits one ordered multi-task work-unit brief"
+    else
+        fail "task-brief emits one ordered multi-task work-unit brief"
+        echo "    path: $unit_path"
+        echo "    task lines: $task_one_line / $task_two_line"
+        echo "    mechanics: $mechanics_count"
+    fi
+
+    local reverse_out reverse_path reverse_one reverse_two
+    reverse_out="$(cd "$repo" && "$SDD_SCRIPTS/task-brief" plan-a.md 2 1)"
+    reverse_path="$(printf '%s\n' "$reverse_out" | sed -n 's/^wrote \(.*\): [0-9][0-9]* lines$/\1/p')"
+    reverse_one="$(grep -n '^## Task 1:' "$reverse_path" | cut -d: -f1)"
+    reverse_two="$(grep -n '^## Task 2:' "$reverse_path" | cut -d: -f1)"
+    if [[ "$reverse_path" == "$repo/.superpowers/sdd/plan-a/unit-2-1-brief.md" \
+          && "$reverse_two" -lt "$reverse_one" ]]; then
+        pass "task-brief preserves requested work-unit order"
+    else
+        fail "task-brief preserves requested work-unit order"
+        echo "    task lines: $reverse_two / $reverse_one"
+    fi
+
     # --- review-package takes the plan first and lands in its directory ---
     local git_id=(-c user.email=t@example.com -c user.name=t -c commit.gpgsign=false)
     ( cd "$repo" \
@@ -164,6 +199,24 @@ PLAN
         fail "review-package honors an explicit OUTFILE"
         echo "    got: $rp_explicit"
     fi
+
+    rc=0
+    (cd "$repo" && "$SDD_SCRIPTS/review-package" plan-a.md HEAD~1 HEAD~1 >/dev/null 2>&1) || rc=$?
+    if [[ "$rc" -eq 2 ]]; then
+        pass "review-package rejects a requested head older than current HEAD"
+    else
+        fail "review-package rejects a requested head older than current HEAD"
+    fi
+
+    printf 'dirty\n' >> "$repo/f"
+    rc=0
+    (cd "$repo" && "$SDD_SCRIPTS/review-package" plan-a.md HEAD~1 HEAD >/dev/null 2>&1) || rc=$?
+    if [[ "$rc" -eq 2 ]]; then
+        pass "review-package rejects a dirty worktree"
+    else
+        fail "review-package rejects a dirty worktree"
+    fi
+    (cd "$repo" && git restore f)
 
     # --- Worktree isolation: a linked worktree resolves its own workspace ---
     local wt="$TEST_ROOT/wt"

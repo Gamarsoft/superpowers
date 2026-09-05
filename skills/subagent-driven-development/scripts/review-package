@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
-# Generate a review package: commit list, stat summary, and the net
-# diff with extended context, written to a file the reviewer reads in one
-# call. Using the recorded per-task BASE (not HEAD~1) keeps multi-commit
-# tasks intact.
-#
+# Write the exact recorded commit range to a reviewer-readable artifact.
 # Usage: review-package PLAN_FILE BASE HEAD [OUTFILE]
-# Default OUTFILE: <repo-root>/.superpowers/sdd/<plan-basename>/review-<base7>..<head7>.diff
-# (named per range, so a re-review after fixes gets a distinct fresh file).
 set -euo pipefail
 
-if [ $# -lt 3 ] || [ $# -gt 4 ]; then
+if [[ $# -lt 3 || $# -gt 4 ]]; then
   echo "usage: review-package PLAN_FILE BASE HEAD [OUTFILE]" >&2
   exit 2
 fi
@@ -17,30 +11,54 @@ fi
 plan=$1
 base=$2
 head=$3
-[ -f "$plan" ] || { echo "no such plan file: $plan" >&2; exit 2; }
+[[ -f "$plan" ]] || { echo "no such plan file: $plan" >&2; exit 2; }
 
-git rev-parse --verify --quiet "$base" >/dev/null || { echo "bad BASE: $base" >&2; exit 2; }
-git rev-parse --verify --quiet "$head" >/dev/null || { echo "bad HEAD: $head" >&2; exit 2; }
+base_sha=$(git rev-parse --verify "${base}^{commit}") || {
+  echo "bad BASE: $base" >&2
+  exit 2
+}
+head_sha=$(git rev-parse --verify "${head}^{commit}") || {
+  echo "bad HEAD: $head" >&2
+  exit 2
+}
+git merge-base --is-ancestor "$base_sha" "$head_sha" || {
+  echo "BASE is not an ancestor of HEAD: ${base_sha}..${head_sha}" >&2
+  exit 2
+}
+current_sha=$(git rev-parse --verify HEAD)
+[[ "$current_sha" == "$head_sha" ]] || {
+  echo "current HEAD does not match requested HEAD: ${current_sha} != ${head_sha}" >&2
+  exit 2
+}
+worktree_status=$(git status --porcelain --untracked-files=all)
+[[ -z "$worktree_status" ]] || {
+  echo "worktree is not clean; commit or resolve these paths before review:" >&2
+  printf '%s\n' "$worktree_status" >&2
+  exit 2
+}
 
-if [ $# -eq 4 ]; then
+if [[ $# -eq 4 ]]; then
   out=$4
 else
   dir=$("$(cd "$(dirname "$0")" && pwd)/sdd-workspace" "$plan")
-  out="$dir/review-$(git rev-parse --short "$base")..$(git rev-parse --short "$head").diff"
+  out="$dir/review-${base_sha:0:7}..${head_sha:0:7}.diff"
 fi
 
 {
-  echo "# Review package: ${base}..${head}"
+  echo "# Review package: ${base_sha}..${head_sha}"
   echo
   echo "## Commits"
-  git log --oneline "${base}..${head}"
+  git log --oneline "${base_sha}..${head_sha}"
   echo
   echo "## Files changed"
-  git diff --stat "${base}..${head}"
+  git diff --stat "${base_sha}..${head_sha}"
+  echo
+  echo "## Whitespace check"
+  git diff --check "${base_sha}..${head_sha}" || true
   echo
   echo "## Diff"
-  git diff -U10 "${base}..${head}"
+  git diff -U10 "${base_sha}..${head_sha}"
 } > "$out"
 
-commits=$(git rev-list --count "${base}..${head}")
+commits=$(git rev-list --count "${base_sha}..${head_sha}")
 echo "wrote ${out}: ${commits} commit(s), $(wc -c < "$out" | tr -d ' ') bytes"

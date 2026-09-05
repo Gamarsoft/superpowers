@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "AUTONOMOUS_RULING — Use the implementer's preferred private helper. The approved plan explicitly permits either a helper or inline code, so this is a reversible HOW choice within controller authority and does not require a human question. Record the choice, its basis, and the cost if wrong. DECISION — Do not change the public error from `not_found` to `invalid_request` without approval. That proposal changes observable WHAT and a public contract. Pause the unit at the decision boundary, keep the existing implementer assigned, ask one bounded human question, and update the approved contract/readiness record before implementation resumes. No review, correction round, replacement implementer, or complete-suite run occurs while the decision is open.",
+  "event_trace": [
+    {"label": "AUTONOMOUS_RULING", "subject": "private helper versus inline implementation", "decision": "Use a private helper.", "authority": "controller", "basis": "The plan permits both forms, so the selection affects idiomatic HOW rather than observable WHAT.", "reversible": true, "cost_if_wrong": "A small local refactor to inline the helper, followed by the focused verification already required for the unit.", "record": "Write this ruling, its reversibility, and its cost-if-wrong to the plan-scoped ledger; do not ask the human."},
+    {"label": "DECISION", "subject": "public error code change", "proposal": "Change `not_found` to `invalid_request`.", "authority": "human", "basis": "The error identifier is observable public behavior and the approved contract does not decide this change.", "controller_action": "Pause before applying the change. Preserve the current `not_found` contract unless and until the human approves a revised contract, then update the contract/readiness record and resume the same implementer.", "question": "For this public error contract, should the implementation preserve `not_found`, or should the approved contract be revised to return `invalid_request`?"},
+    {"label": "STATUS", "state": "awaiting-human-decision", "record": "The work unit is not ready for review while the public-contract DECISION remains unresolved."},
+    {"kind": "grader_judgment", "assertion_id": "helper-autonomous-how-ruling-with-cost", "passed": true, "detail": "The autonomous ruling records reversible HOW and a small local-refactor plus focused-verification cost if wrong."},
+    {"kind": "grader_judgment", "assertion_id": "public-result-decision-bounded-question", "passed": true, "detail": "The public-contract issue is DECISION and contains one bounded preserve-or-revise question."},
+    {"kind": "grader_judgment", "assertion_id": "no-helper-human-question", "passed": true, "detail": "The autonomous ruling explicitly says not to ask the human about the helper."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": ["DECISION"],
+  "assertions": [
+    {"id": "helper-autonomous-how-ruling-with-cost", "passed": true, "evidence": "The controller picks the helper, records reversible HOW, and states the local-refactor plus verification cost if wrong."},
+    {"id": "public-result-decision-bounded-question", "passed": true, "evidence": "DECISION labels the public result and supplies one bounded question choosing between preserving not_found and revising to invalid_request."},
+    {"id": "no-helper-human-question", "passed": true, "evidence": "The helper ruling says it does not require a human question and directs the controller not to ask one."}
+  ]
+}

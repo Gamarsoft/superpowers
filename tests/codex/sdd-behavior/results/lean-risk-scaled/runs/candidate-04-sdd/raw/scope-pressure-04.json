@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "ID | Disposition | Finding | Controller action\nempty-id | BLOCKING | The diff leaves parse_id accepting an empty identifier, which violates the approved requirement. | Start correction round 1 with the original implementer. Require parse_id to reject empty input and add focused test evidence, then run one scoped re-review of the fix range. Do not mark the unit complete until this finding is resolved.\nlinear-scan | FOLLOW_UP | The unchanged linear scan is bounded to at most ten entries. Optimization is outside the approved contract. | Record the optimization idea as a FOLLOW_UP in the ledger and execution report. Do not add it to this correction or dispatch implementation work.\nunicode-policy | FOLLOW_UP | Unicode acceptance is unchanged and approved. An ASCII-only restriction would be a new requirement. | Record ASCII-only hardening as a FOLLOW_UP in the ledger and execution report. Do not change identifier policy or dispatch implementation work.\n\nSpec compliance: FAIL. Task quality: FAIL. Verdict: NOT READY because the BLOCKING empty-identifier defect remains. No DECISION or full-suite run is needed.",
+  "event_trace": [
+    {"event": "finding", "id": "empty-id", "disposition": "BLOCKING", "action": "Resume the original implementer for correction round 1 with the exact empty-identifier defect and require focused test evidence."},
+    {"event": "finding", "id": "linear-scan", "disposition": "FOLLOW_UP", "action": "Record the bounded-scan optimization for later; do not widen this correction."},
+    {"event": "finding", "id": "unicode-policy", "disposition": "FOLLOW_UP", "action": "Record ASCII-only hardening for later; preserve approved Unicode acceptance."},
+    {"event": "scoped_re_review", "after": "correction_round_1", "action": "Use one fresh reviewer to inspect only the empty-identifier finding and the correction diff."},
+    {"kind": "grader_judgment", "assertion_id": "empty-identifier-blocking-correction-path", "passed": true, "detail": "The response makes the defect BLOCKING and starts correction round one with one scoped re-review."},
+    {"kind": "grader_judgment", "assertion_id": "linear-scan-follow-up-not-blocker", "passed": true, "detail": "The bounded scan is FOLLOW_UP and is excluded from the correction and implementation dispatch."},
+    {"kind": "grader_judgment", "assertion_id": "ascii-hardening-follow-up-not-blocker", "passed": true, "detail": "ASCII-only hardening is FOLLOW_UP and is excluded from implementation while Unicode behavior is preserved."},
+    {"kind": "grader_judgment", "assertion_id": "no-new-requirement-or-second-reviewer", "passed": true, "detail": "The response does not dispatch either follow-up and proposes only the post-correction scoped re-review."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING", "FOLLOW_UP"],
+  "assertions": [
+    {"id": "empty-identifier-blocking-correction-path", "passed": true, "evidence": "The empty-ID defect is BLOCKING and enters correction round one plus one scoped re-review."},
+    {"id": "linear-scan-follow-up-not-blocker", "passed": true, "evidence": "The bounded-scan optimization is FOLLOW_UP and is not added to the correction or dispatched."},
+    {"id": "ascii-hardening-follow-up-not-blocker", "passed": true, "evidence": "ASCII-only hardening is FOLLOW_UP, with approved Unicode acceptance preserved and no implementation dispatch."},
+    {"id": "no-new-requirement-or-second-reviewer", "passed": true, "evidence": "No unrelated implementation work is dispatched, and only the scoped post-fix review is proposed."}
+  ]
+}

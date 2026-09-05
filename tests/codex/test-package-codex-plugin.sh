@@ -159,6 +159,8 @@ fi
 assert_contains "$output" "Archive:" "reports archive path"
 assert_contains "$output" "Format:  zip" "reports default zip format"
 assert_contains "$output" "SHA-256:" "reports archive checksum"
+assert_contains "$output" "Codex roles: repository/user-local; not bundled" "reports role packaging boundary"
+assert_contains "$output" "Generic fallback: packaged skills remain operable without typed roles" "reports generic fallback"
 
 extract_archive "$archive" "$extracted"
 
@@ -170,10 +172,18 @@ assert_contains "$archive_paths" "skills/brainstorming/SKILL.md" "archive includ
 assert_contains "$archive_paths" "skills/brainstorming/agents/openai.yaml" "archive includes OpenAI skill metadata"
 assert_contains "$archive_paths" "assets/app-icon.png" "archive includes app icon"
 assert_contains "$archive_paths" "assets/superpowers-small.svg" "archive includes composer icon"
+assert_not_matches "$archive_paths" '^\.codex/agents/' "archive does not claim to install project roles"
 
 manifest_summary="$(read_archive_file "$archive" .codex-plugin/plugin.json | python3 -c 'import json,sys; data=json.load(sys.stdin); print("\t".join([data["name"], data["version"], data["skills"], str(data.get("hooks"))]))')"
 expected_version="$(python3 -c 'import json; print(json.load(open("'"$REPO_ROOT"'/.codex-plugin/plugin.json"))["version"])')"
 assert_equals "$manifest_summary" "superpowers	$expected_version	./skills/	$source_hooks" "archive manifest preserves source hooks"
+manifest_agents="$(read_archive_file "$archive" .codex-plugin/plugin.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get("agents"))')"
+assert_equals "$manifest_agents" "None" "manifest does not advertise an unsupported role field"
+
+for fallback_skill in brainstorming gathering-topic-context requesting-code-review subagent-driven-development writing-plans; do
+  fallback_text="$(read_archive_file "$archive" "skills/$fallback_skill/SKILL.md")"
+  assert_contains "$fallback_text" 'omit `agent_type`' "$fallback_skill preserves generic role fallback in the archive"
+done
 
 skill_count="$(find "$extracted/skills" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
 metadata_count="$(find "$extracted/skills" -path '*/agents/openai.yaml' -type f | wc -l | tr -d ' ')"

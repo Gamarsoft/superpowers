@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "circuit-breaker",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "STOP before correction round three. Exactly two correction rounds are complete: round one was owned by the original implementer and ended with a scoped re-review that still proved the migration can lose committed data; round two was owned by one fresh deep rescue implementer and ended with a second scoped re-review that still proved the same defect. The finding remains a supported, load-bearing BLOCKING defect. The controller records the blocked state, prevents downstream work and final integration review from proceeding, and returns the architectural conflict to the human partner for diagnosis or a contract-level decision. The report preserves the exact open finding; the reviewer's proof, location, candidate causal connection, concrete committed-data-loss failure, and required resolution; the relevant plan and specification anchors; and both correction histories, including each owner, correction range or commits, changed files, focused and integration test commands and results, appended implementer evidence, and scoped NOT ADDRESSED verdict. No third implementer or reviewer is dispatched, and SDD does not run the complete repository suite.",
+  "event_trace": [
+    {"event": "initial_review_completed", "owner": "fresh task reviewer", "result": "The migration's committed-data-loss defect is proved with location, causal connection, concrete failure, and required resolution; disposition is BLOCKING."},
+    {"event": "correction_round_1_completed", "owner": "original implementer", "result": "The first correction and its focused/integration evidence are appended to the report; the scoped re-review returns NOT ADDRESSED for the same blocker."},
+    {"event": "correction_round_2_completed", "owner": "one fresh deep rescue implementer", "result": "The rescue correction, prior ranges and rulings, and its focused/integration evidence are appended to the report; the scoped re-review again returns NOT ADDRESSED for the same blocker."},
+    {"event": "circuit_breaker_stop", "owner": "root controller", "result": "Record the supported load-bearing BLOCKING finding and stop before round three; do not park, invalidate, silently discard, or start downstream or final-review work."},
+    {"event": "report_architectural_conflict", "owner": "root controller", "result": "Report the exact finding and proof, binding plan/spec anchors, both owners and attempted fixes, both correction ranges or commits, covering test commands/results, and both scoped NOT ADDRESSED verdicts; ask one bounded human question needed to resolve the architecture or contract."},
+    {"kind": "grader_judgment", "detail": "The actor records exactly two completed correction rounds with original then fresh deep-rescue ownership. It trips the breaker before round three, reports the architectural conflict for a bounded human decision, and preserves the exact open finding, proof, plan anchors, both fixes, tests, and NOT ADDRESSED verdicts."}
+  ],
+  "dispatch_count": 3,
+  "review_count": 3,
+  "fix_round_count": 2,
+  "human_stop_count": 1,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {"id": "exactly-two-correction-rounds-completed", "passed": true, "evidence": "The response explicitly says exactly two rounds are complete and the trace records both completed rounds before the breaker stop."},
+    {"id": "correction-round-ownership", "passed": true, "evidence": "Round one belongs to the original implementer and round two to one fresh deep rescue implementer."},
+    {"id": "stop-for-architecture-before-round-three", "passed": true, "evidence": "The controller stops before round three and returns the architectural conflict to the human for diagnosis or a contract-level decision."},
+    {"id": "preserve-finding-evidence-and-fix-history", "passed": true, "evidence": "The report preserves the exact finding and proof, plan and specification anchors, both correction histories and owners, fix ranges, tests, and both NOT ADDRESSED verdicts."}
+  ]
+}

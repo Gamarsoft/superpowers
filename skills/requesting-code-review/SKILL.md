@@ -1,154 +1,82 @@
 ---
 name: requesting-code-review
-description: Use when completing tasks, implementing major features, or before merging to verify work meets requirements, including Java 21/Spring Boot/JPA/GKE security and performance checks when applicable
+description: Use for an explicit ad hoc review, after a major feature, or before integration when no active workflow already owns review
 ---
 
 # Requesting Code Review
 
-Dispatch a dedicated reviewer subagent to catch issues before they cascade. The reviewer gets precisely crafted context for evaluation — never your session's history. This keeps the reviewer focused on the work product, not your thought process, and preserves your own context for continued work.
+## Boundary
 
-- Codex multi-agent role: `sp_code_reviewer`
-- Other platforms with named agents: `superpowers:code-reviewer`
+Request one independent, read-only review for an ad hoc, major-feature, or pre-integration
+change. This public skill does not own SDD task, checkpoint, correction, or
+final review. When another active workflow already owns review, return control
+to that workflow instead of adding a duplicate gate.
 
-**Core principle:** Review early, review often.
+**Core principle:** one explicit contract, one recorded range, one reviewer,
+one shared disposition language.
 
-## When to Request Review
+## Required Inputs
 
-**Mandatory:**
+Do not dispatch until all are available:
 
-- After each task in subagent-driven development
-- After completing major feature
-- Before merge to main
-- After changes touching Java/Spring Boot/JPA/GKE runtime, security, persistence, or performance behavior
+- the requirements or approved specification source, as a reachable path or
+  complete bounded text;
+- a short description of what changed;
+- the exact recorded BASE and HEAD commit IDs;
+- named risk triggers, or `none`; and
+- the changed-file list used for profile selection.
 
-**Optional but valuable:**
+Validate both revisions as commits and require BASE to be an ancestor of HEAD.
+Never infer the range from a relative parent or “latest task” guess. Missing
+requirements or an invalid range blocks review dispatch.
 
-- When stuck (fresh perspective)
-- Before refactoring (baseline check)
-- After fixing complex bug
+## Select Review Depth
 
-## How to Request
+Read `references/profile-selection.md`. Select only profiles justified by the
+changed files or named risk. Record each selected profile and its predicate in
+the prompt. The default review is stack-neutral; an unselected profile is not a
+silent mandatory checklist.
 
-**1. Get git SHAs:**
+Profiles deepen inspection but remain subordinate to approved scope and the
+four finding dispositions. They cannot create requirements or turn adjacent
+improvements into blockers.
 
-```bash
-BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
-HEAD_SHA=$(git rev-parse HEAD)
-```
+## Dispatch
 
-**2. Dispatch code-reviewer subagent:**
+Read `code-reviewer.md` completely and substitute every placeholder. Send the
+reviewer the requirements source, description, exact BASE/HEAD, risk triggers,
+selected profile paths, and absolute Superpowers directory. Do not send session
+history.
 
-**Step 1 — Read the reviewer instructions:**
+For Codex:
 
-Read `skills/requesting-code-review/code-reviewer.md` in full before constructing the prompt.
+- use `fork_turns: "none"`;
+- use `agent_type: "sp_reviewer"` only when that exact role is in the
+  runtime-advertised list; and
+- if it is absent, omit `agent_type` and send the same complete prompt to a
+  fresh generic agent. Do not probe an unknown role with a failing call.
 
-**Step 2 — Build the subagent prompt:**
+Other harnesses use one fresh read-only reviewer with the same prompt.
 
-Paste the FULL content of `skills/requesting-code-review/code-reviewer.md` verbatim, substituting the placeholders:
+## Consume the Result
 
-| Placeholder              | Replace with                               |
-| ------------------------ | ------------------------------------------ |
-| `{PLAN_OR_REQUIREMENTS}` | What it should do                          |
-| `{DESCRIPTION}`          | Brief summary                              |
-| `{BASE_SHA}`             | Starting commit SHA                        |
-| `{HEAD_SHA}`             | Ending commit SHA                          |
-| `{SUPERPOWERS_DIR}`      | Absolute path to the superpowers directory |
+Require one table using `BLOCKING`, `DECISION`, `FOLLOW_UP`, and `INVALID`, plus
+a `READY` or `NOT READY` verdict.
 
-**Step 3 — Dispatch:**
+- A supported `BLOCKING` defect must be fixed before integration.
+- A `DECISION` returns to the authority for observable WHAT, protected,
+  destructive, or external action.
+- A `FOLLOW_UP` is preserved outside the current delivery boundary.
+- An `INVALID` finding keeps the reason and evidence for rejection.
 
-Use the `Task tool (superpowers:code-reviewer)` block structure for the tool call, but only send the content of `code-reviewer.md` (with substitutions applied) as the subagent's actual prompt.
+The calling workflow owns fixes and may request a new review over a newly
+recorded range. Do not invoke `receiving-code-review` for this internal result,
+and do not start an open-ended reviewer/fixer loop.
 
-For Codex multi-agent roles, spawn the agent with `agent_type = "sp_code_reviewer"` and use the same substituted prompt body.
+## Use Cases
 
-```
-Task tool (superpowers:code-reviewer):
-  [Full content of skills/requesting-code-review/code-reviewer.md with substitutions applied]
-```
+Use this skill when the human explicitly asks for review, after completing a
+major feature outside another review-owning workflow, before integration, or
+when a bounded independent diagnosis would unblock work.
 
-Codex equivalent:
-
-```text
-spawn_agent(
-  task_name="review_changes",
-  agent_type="sp_code_reviewer",
-  fork_turns="none",
-  message=[substituted code-reviewer.md content]
-)
-```
-
-**3. Act on feedback:**
-
-- Fix Critical issues immediately
-- Fix Important issues before proceeding
-- Note Minor issues for later
-- Push back if reviewer is wrong (with reasoning)
-
-## Example
-
-```
-[Just completed Task 2: Add verification function]
-
-You: Let me request code review before proceeding.
-
-BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
-HEAD_SHA=$(git rev-parse HEAD)
-
-[Dispatch superpowers:code-reviewer subagent]
-  DESCRIPTION: Verification and repair functions for conversation index
-  PLAN_OR_REQUIREMENTS: Task 2 from docs/superpowers/plans/deployment-plan.md
-  BASE_SHA: a7981ec
-  HEAD_SHA: 3df7661
-  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
-
-[Subagent returns]:
-  Strengths: Clean architecture, real tests
-  Issues:
-    Important: Missing progress indicators
-    Minor: Magic number (100) for reporting interval
-  Assessment: Ready to proceed
-
-You: [Fix progress indicators]
-[Continue to Task 3]
-```
-
-## Integration with Workflows
-
-**Subagent-Driven Development:**
-
-- Review after EACH task
-- Catch issues before they compound
-- Fix before moving to next task
-
-**Executing Plans:**
-
-- Review after each batch (3 tasks)
-- Get feedback, apply, continue
-
-**Ad-Hoc Development:**
-
-- Review before merge
-- Review when stuck
-
-## Red Flags
-
-**Never:**
-
-- Skip review because "it's simple"
-- Ignore Critical issues
-- Proceed with unfixed Important issues
-- Argue with valid technical feedback
-
-**If reviewer wrong:**
-
-- Push back with technical reasoning
-- Show code/tests that prove it works
-- Request clarification
-
-## Common Rationalizations
-
-| Excuse | Reality |
-| --- | --- |
-| "I'll review the diff inline." | The coordinator needs its context for execution; a dedicated read-only reviewer keeps the evidence and evaluation isolated. |
-| "The reviewer needs the whole session." | Give it the requirements, exact range, and template—not your thought process or accumulated history. |
-
-See template at: requesting-code-review/code-reviewer.md
+Do not use it automatically after every task or checkpoint.

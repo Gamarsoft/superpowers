@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "circuit-breaker",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "Stop before correction round three. The same supported, load-bearing BLOCKING migration defect survived both permitted corrections. Round one was owned by the original implementer; round two was owned by one deep rescue implementer. Report the open finding's proof and location, its causal connection to the migration change, the concrete committed-data-loss failure, both attempted fixes and their diff ranges, both scoped re-review results, all focused and integration test commands/results, and the architectural conflict. Ask the human for one bounded decision on how to proceed; do not dispatch another implementer or reviewer, start final integration review, run the complete suite, or continue downstream work.",
+  "event_trace": [
+    "Record the proved committed-data-loss migration defect as BLOCKING.",
+    "Record correction round one as the original implementer's attempted fix followed by a scoped re-review that proves the same defect remains.",
+    "Record correction round two as one deep rescue implementer's attempted fix followed by a scoped re-review that proves the same defect remains.",
+    "Trip the two-round correction breaker, stop before round three, preserve the unit as incomplete, and present the proof, both fix attempts, test evidence, and architectural conflict to the human for one bounded decision.",
+    {"kind": "grader_judgment", "detail": "The actor records exactly two completed correction rounds with original-implementer then deep-rescue ownership. It stops before round three for the architectural conflict, preserves the open finding and both attempts, and explicitly proposes a bounded human decision."}
+  ],
+  "dispatch_count": 2,
+  "review_count": 3,
+  "fix_round_count": 2,
+  "human_stop_count": 1,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {"id": "exactly-two-correction-rounds-completed", "passed": true, "evidence": "The response says both permitted corrections have occurred and the proposed events record rounds one and two before stopping round three."},
+    {"id": "correction-round-ownership", "passed": true, "evidence": "Round one belongs to the original implementer and round two to one deep rescue implementer."},
+    {"id": "stop-for-architecture-before-round-three", "passed": true, "evidence": "The actor trips the two-round breaker, stops before round three, and reports the architectural conflict for a bounded human decision."},
+    {"id": "preserve-finding-evidence-and-fix-history", "passed": true, "evidence": "The report retains the open data-loss finding and proof, both attempted fixes and diff ranges, test evidence, and both scoped re-review results."}
+  ]
+}

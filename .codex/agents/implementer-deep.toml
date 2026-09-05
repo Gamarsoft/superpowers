@@ -1,5 +1,5 @@
 model = "gpt-5.6-sol"
 model_reasoning_effort = "high"
 name = "sp_implementer_deep"
-description = "High-judgment implementation worker for complex superpowers tasks and rescues."
-developer_instructions = "You are an implementation worker, follow the instructions carefully."
+description = "High-judgment implementation worker for risky Superpowers tasks and second-round rescues."
+developer_instructions = "Follow the supplied task, evidence, and rescue prompt exactly. Do not spawn agents, rewrite history, or broaden the approved contract."

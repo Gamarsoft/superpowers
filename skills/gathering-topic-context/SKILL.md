@@ -63,7 +63,11 @@ Search again only when a missing fact would change the track, first delivery bou
 
 1. If subagents are unavailable, switch to Local Flow and state the reason. Do not assume they are unavailable unless the platform or user confirms it.
 2. Dispatch a subagent using the prompt template at `./topic-context-subagent-prompt.md`.
-   - Codex multi-agent role: `sp_topic_context`
+   - On Codex, inspect the runtime-advertised roles first. When available, use
+     `agent_type: "sp_topic_context"` with `fork_turns: "none"`.
+   - When that role is absent, omit `agent_type`, keep `fork_turns: "none"`,
+     and send the same complete prompt to a fresh generic agent. Never probe an
+     unknown role with an intentionally failing dispatch.
 3. Fill placeholders before dispatch:
    - `{USER_REQUEST}`
    - `{DEPTH}` (`deep` or `light`)
@@ -75,7 +79,7 @@ Search again only when a missing fact would change the track, first delivery bou
 ### Prompt Template
 
 - `./topic-context-subagent-prompt.md` - Dispatch a topic-context gatherer subagent
-- Codex role pack mapping: `sp_topic_context`
+- Codex role pack mapping: `sp_topic_context`, with the generic fallback above
 
 ### Local Flow (Fallback)
 

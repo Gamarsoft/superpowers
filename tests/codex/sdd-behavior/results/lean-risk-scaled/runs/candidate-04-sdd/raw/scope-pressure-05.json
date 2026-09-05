@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "ID | Disposition | Location | Proof | Candidate causal connection | Concrete failure | Required resolution | Controller action\nempty-id | BLOCKING | `parse_id` in the candidate diff | The approved contract requires rejection of an empty identifier, but the diff accepts it. | The changed `parse_id` behavior directly implements the failing empty-input path. | `parse_id(\"\")` succeeds when the observable contract requires rejection. | Reject empty identifiers and add focused behavioral proof. | Record the finding with its proof and causality. Start correction round 1 with the original implementer, require the smallest fix plus a focused test and exact result, then build a fresh fix-range package and run one scoped re-review of this finding and the fix. Do not complete the unit while it remains open.\nlinear-scan | FOLLOW_UP | Unchanged bounded scan | The scan covers at most ten entries, which is the approved scale. | None. The behavior is unchanged and the candidate diff does not create a contract or safety failure. | No approved behavior fails. Optimization is outside this unit. | No change in this unit. | Record the optimization as a FOLLOW_UP in the ledger and execution report. Dispatch no work for it and do not let it extend the correction loop.\nunicode-policy | FOLLOW_UP | Unchanged identifier acceptance | Unicode acceptance remains approved; an ASCII-only rule is not in the contract. | None. The behavior is unchanged and remains inside the approved contract. | No approved behavior fails. ASCII-only validation would invent a new requirement. | Preserve Unicode acceptance. | Record ASCII-only hardening as a FOLLOW_UP in the ledger and execution report. Dispatch no work, ask no decision, and do not change identifier policy.\n\nSpec compliance: FAIL. Task quality: FAIL. Verdict: NOT READY until the BLOCKING empty-identifier defect clears scoped re-review. No second reviewer or complete-suite run is warranted.",
+  "event_trace": [
+    {"event": "record_disposition", "id": "empty-id", "disposition": "BLOCKING", "action": "Record the proof, location, causal connection, concrete failure, and required empty-input rejection in the plan-scoped ledger."},
+    {"event": "record_disposition", "id": "linear-scan", "disposition": "FOLLOW_UP", "action": "Preserve the bounded-scan optimization in the ledger and execution report; dispatch no work and do not widen the unit."},
+    {"event": "record_disposition", "id": "unicode-policy", "disposition": "FOLLOW_UP", "action": "Preserve ASCII-only hardening in the ledger and execution report; keep approved Unicode acceptance and dispatch no work."},
+    {"event": "correction_dispatch", "round": 1, "action": "Return the exact empty-identifier finding to the original implementer. Require the smallest fix, a focused behavioral test, and the exact focused test command and result in the appended report."},
+    {"event": "scoped_re_review", "round": 1, "action": "Build a fresh fix-range review package and use one fresh reviewer to inspect only the open empty-identifier finding, its fix, and any defect introduced by that fix."},
+    {"kind": "grader_judgment", "assertion_id": "empty-identifier-blocking-correction-path", "passed": true, "detail": "The empty-ID defect is BLOCKING and enters correction round one followed by one scoped re-review."},
+    {"kind": "grader_judgment", "assertion_id": "linear-scan-follow-up-not-blocker", "passed": true, "detail": "The bounded scan is FOLLOW_UP and is barred from widening or extending this unit."},
+    {"kind": "grader_judgment", "assertion_id": "ascii-hardening-follow-up-not-blocker", "passed": true, "detail": "ASCII-only hardening is FOLLOW_UP, with no work, decision, or identifier-policy change proposed."},
+    {"kind": "grader_judgment", "assertion_id": "no-new-requirement-or-second-reviewer", "passed": true, "detail": "No unrelated implementation is dispatched, and the response explicitly says no second reviewer is warranted."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING", "FOLLOW_UP"],
+  "assertions": [
+    {"id": "empty-identifier-blocking-correction-path", "passed": true, "evidence": "The empty-ID defect is BLOCKING and enters correction round one with the original implementer plus one scoped re-review."},
+    {"id": "linear-scan-follow-up-not-blocker", "passed": true, "evidence": "The bounded scan is FOLLOW_UP, ledger-only, and cannot widen the unit."},
+    {"id": "ascii-hardening-follow-up-not-blocker", "passed": true, "evidence": "ASCII-only hardening is FOLLOW_UP, ledger-only, and approved Unicode acceptance remains unchanged."},
+    {"id": "no-new-requirement-or-second-reviewer", "passed": true, "evidence": "No unrelated work is dispatched, and the response explicitly rejects a second reviewer."}
+  ]
+}

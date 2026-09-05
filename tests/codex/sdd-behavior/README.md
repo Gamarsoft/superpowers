@@ -22,8 +22,12 @@ iteration gets a new run ID.
 ## Actor procedure
 
 1. Prepare a clean checkout at the manifest's `variant_revision`.
-2. Copy only the scenario's `Actor prompt` into a new Codex agent with
-   `fork_turns: "none"`. Substitute the clean checkout and fixture paths.
+2. Build a read-only instruction packet from the complete skill files named by
+   `Skills under test`, then append the scenario's `Actor prompt`. Send that
+   self-contained packet to a new Codex agent with `fork_turns: "none"` and
+   substitute the clean checkout and fixture paths. The actor's no-tools rule
+   applies after the controller has supplied this packet; do not ask the actor
+   to discover its own instructions.
 3. Hold harness, model, reasoning effort, plugins, and advertised-role
    conditions constant across paired baseline and candidate runs.
 4. Preserve the actor's complete response. Count controller dispatch, review,

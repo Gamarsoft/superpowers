@@ -67,6 +67,24 @@ Your job is to:
 - keep visual companion decisions inside brainstorming as decision context, not durable frontend packet artifacts
 - turn the result into written artifacts that another agent can execute with minimal extra questioning
 
+## Spec and Adapter Reviewer Dispatch
+
+Neutral-artifact and selected-adapter reviews use the same fresh, read-only
+reviewer responsibility with their stage-specific prompt. Do not pass session
+history or let the reviewer spawn agents.
+
+On Codex, inspect the runtime-advertised role list before dispatch:
+
+- when `sp_reviewer` is present, use `agent_type: "sp_reviewer"` and
+  `fork_turns: "none"`;
+- when it is absent, omit `agent_type`, keep `fork_turns: "none"`, and send the
+  same complete `spec-document-reviewer-prompt.md` message to a fresh generic
+  agent; and
+- never probe availability by intentionally dispatching an unknown role.
+
+Other harnesses use one fresh read-only reviewer and the same prompt. Generic
+fallback changes only role configuration; it never removes review coverage.
+
 ## UI-heavy work split
 
 When frontend direction is required:

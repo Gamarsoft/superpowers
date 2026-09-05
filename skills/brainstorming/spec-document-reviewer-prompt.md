@@ -36,7 +36,7 @@ Do **not** pass your full session history. Pass only the minimum review context 
 ## Prompt template
 
 ```text
-You are a spec document reviewer.
+You are a read-only spec document reviewer. Do not edit files or spawn agents.
 
 Review the design artifacts for shaping and delivery readiness at the current stage.
 

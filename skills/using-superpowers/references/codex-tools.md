@@ -18,11 +18,17 @@ Codex multi-agent and task APIs instead of copying a stale tool name.
 | `Skill` | Skills load natively; read and follow the selected skill instructions |
 | `Read`, `Write`, `Edit`, `Bash` | Use Codex's native file and shell tools |
 
-Named roles contributed by this repository live in `.codex/agents/*.toml`.
-For example, when a skill selects `sp_code_reviewer`, call `spawn_agent`
-with `agent_type: "sp_code_reviewer"`, `fork_turns: "none"`, and the filled
-review prompt as `message`. Typed roles own their configured model and
-instructions; do not override them with inherited conversation history.
+The minimal optional role set is `sp_reviewer`, `sp_implementer`,
+`sp_implementer_deep`, and `sp_topic_context`. Codex discovers definitions from
+project or user `.codex/agents` configuration. This repository's project roles
+live in `.codex/agents/*.toml`; the plugin archive does not install these roles.
+
+Before every typed dispatch, inspect the runtime-advertised role list. When the
+exact desired role exists, pass it as `agent_type` with `fork_turns: "none"`.
+When it is absent, omit `agent_type` and send the same complete role prompt to a
+fresh generic agent with `fork_turns: "none"`. Never submit an intentionally
+failing unknown-role call to test availability. Typed and generic dispatches
+must preserve the same implementation or review coverage.
 
 ## Subagent dispatch requires multi-agent support
 
@@ -42,6 +48,12 @@ multi_agent = true
    provides a compact state snapshot.
 4. **Redirect:** `interrupt_agent` stops the current turn but keeps the agent
    available for a corrected follow-up.
+
+When local work is exhausted and agents are still running, use one
+`wait_agent` call with the longest available bounded wait that still permits a
+timely user update. Do not poll with short timeouts. An unchanged timeout does
+not justify a new dispatch, replacement agent, speculative work, or progress
+narration; reconcile the existing agent state and wait with backoff.
 
 Final agent messages are delivered back to the parent automatically. There
 is no separate close/free-slot call in the current API, so do not invent one.

@@ -1,224 +1,74 @@
 ---
 name: receiving-code-review
-description: Use when receiving review feedback from humans, GitHub comments, or subagent/spec-review passes before implementing suggestions; verify first, acknowledge concretely, and avoid performative agreement or blind implementation
+description: Use when receiving human, forge, or out-of-band review feedback before changing code
 ---
 
-# Code Review Reception
+# Receiving Code Review
 
-## Overview
+## Boundary
 
-Code review requires technical evaluation, not emotional performance.
+Handle human, forge, or out-of-band findings. This skill verifies external
+feedback before mutation; it does not own SDD review or consume the internal
+results of an active controller.
 
-**Core principle:** Verify before implementing. Ask before assuming. Technical correctness over social comfort.
+**Core principle:** understand, verify, dispose, then act.
 
-## The Response Pattern
+## Process
 
-```
-WHEN receiving code review feedback:
+1. Read the complete feedback and identify the requirements/range it claims to
+   review.
+2. Restate unclear items as precise technical questions before implementing any
+   dependent item.
+3. Verify each finding before action against the current code, tests, approved
+   requirements, compatibility constraints, and exact diff when available.
+4. Assign one disposition and record proof.
+5. Resolve authority, then implement accepted in-scope fixes one at a time with
+   focused tests.
 
-1. READ: Complete feedback without reacting
-2. UNDERSTAND: Restate requirement in own words (or ask)
-3. VERIFY: Check against codebase reality
-4. EVALUATE: Technically sound for THIS codebase?
-5. RESPOND: Technical acknowledgment or reasoned pushback
-6. IMPLEMENT: One item at a time, test each
-```
+Use only:
 
-## Forbidden Responses
+- `BLOCKING`: verified defect in the reviewed change that violates the approved
+  contract or safety boundary.
+- `DECISION`: feedback conflicts with or leaves open observable WHAT, protected,
+  destructive, or external authority.
+- `FOLLOW_UP`: verified adjacent issue outside the current delivery boundary.
+- `INVALID`: technically unsupported, contradicted by evidence, already fixed,
+  or preference-only feedback.
 
-**NEVER:**
-- "You're absolutely right!" (explicit instruction-file violation)
-- "Great point!" / "Excellent feedback!" (performative)
-- "Let me implement that now" (before verification)
+For `BLOCKING`, record the code/test evidence and fix before integration. For
+`DECISION`, ask the owning human authority one bounded question; do not silently
+reinterpret the requirement. Preserve `FOLLOW_UP` without expanding the patch.
+Respond to `INVALID` with the evidence that disproves it.
 
-**INSTEAD:**
-- Restate the technical requirement
-- Ask clarifying questions
-- Push back with technical reasoning if wrong
-- Just start working (actions > words)
+## Source Handling
 
-## Handling Unclear Feedback
+- An explicit human product decision governs desired WHAT, but technical claims
+  about the current implementation still need verification.
+- Forge comments and external reviewers may lack local context; check current
+  behavior, compatibility, platform/version support, and prior decisions.
+- If evidence is inaccessible, say what cannot be verified and ask whether to
+  investigate. Do not implement on guesswork.
 
-```
-IF any item is unclear:
-  STOP - do not implement anything yet
-  ASK for clarification on unclear items
+Feedback does not authorize pushing, publishing, merging, deleting data, or
+other external/destructive action unless the human explicitly grants that
+authority.
 
-WHY: Items may be related. Partial understanding = wrong implementation.
-```
+## Applying Accepted Fixes
 
-**Example:**
-```
-your human partner: "Fix 1-6"
-You understand 1,2,3,6. Unclear on 4,5.
+Clarify interdependent items first. Then fix verified blockers in causal order:
 
-❌ WRONG: Implement 1,2,3,6 now, ask about 4,5 later
-✅ RIGHT: "I understand items 1,2,3,6. Need clarification on 4 and 5 before proceeding."
-```
+1. add or identify a focused failing test;
+2. confirm the failure represents the finding;
+3. make the minimum in-scope correction;
+4. run focused and affected integration tests; and
+5. report the disposition, changed location, and evidence.
 
-## Source-Specific Handling
+Do not mix unrelated follow-ups into the same patch. If a fix exposes an
+architectural choice, return it as `DECISION` instead of improvising.
 
-### From your human partner
-- **Trusted** - implement after understanding
-- **Still ask** if scope unclear
-- **No performative agreement**
-- **Skip to action** or technical acknowledgment
+## Communication
 
-### From External Reviewers
-```
-BEFORE implementing:
-  1. Check: Technically correct for THIS codebase?
-  2. Check: Breaks existing functionality?
-  3. Check: Reason for current implementation?
-  4. Check: Works on all platforms/versions?
-  5. Check: Does reviewer understand full context?
-
-IF suggestion seems wrong:
-  Push back with technical reasoning
-
-IF can't easily verify:
-  Say so: "I can't verify this without [X]. Should I [investigate/ask/proceed]?"
-
-IF conflicts with your human partner's prior decisions:
-  Stop and discuss with your human partner first
-```
-
-**your human partner's rule:** "External feedback - be skeptical, but check carefully"
-
-### From Subagent Reviews (especially subagent-driven-development)
-Treat subagent feedback as first-class technical input, not casual chatter.
-
-```
-FOR each subagent finding:
-  1. Quote the exact finding in your own words
-  2. Classify it: spec mismatch / code-quality / test gap / false positive
-  3. Verify against plan + code before changing anything
-  4. Respond with concrete disposition:
-     - FIXED: what changed + where
-     - DISAGREE: technical reason + evidence
-     - NEEDS CLARIFICATION: exact question
-
-NEVER dismiss findings with vague language like:
-  "not a big problem" / "looks fine" / "excellent discovery" (without action)
-```
-
-When feedback came from a specialized review pass, keep the response in the same frame (spec-compliance or code-quality) and explicitly tie your action to that frame.
-
-## YAGNI Check for "Professional" Features
-
-```
-IF reviewer suggests "implementing properly":
-  grep codebase for actual usage
-
-  IF unused: "This endpoint isn't called. Remove it (YAGNI)?"
-  IF used: Then implement properly
-```
-
-**your human partner's rule:** "You and reviewer both report to me. If we don't need this feature, don't add it."
-
-## Implementation Order
-
-```
-FOR multi-item feedback:
-  1. Clarify anything unclear FIRST
-  2. Then implement in this order:
-     - Blocking issues (breaks, security)
-     - Simple fixes (typos, imports)
-     - Complex fixes (refactoring, logic)
-  3. Test each fix individually
-  4. Verify no regressions
-```
-
-## When To Push Back
-
-Push back when:
-- Suggestion breaks existing functionality
-- Reviewer lacks full context
-- Violates YAGNI (unused feature)
-- Technically incorrect for this stack
-- Legacy/compatibility reasons exist
-- Conflicts with your human partner's architectural decisions
-
-**How to push back:**
-- Use technical reasoning, not defensiveness
-- Ask specific questions
-- Reference working tests/code
-- Involve your human partner if architectural
-
-**If you're uncomfortable pushing back out loud:** Name that tension, then tell your partner about the issue you've seen. They'll appreciate your honesty.
-
-## Acknowledging Correct Feedback
-
-When feedback IS correct:
-```
-✅ "Fixed. [Brief description of what changed]"
-✅ "Good catch - [specific issue]. Fixed in [location]."
-✅ [Just fix it and show in the code]
-
-❌ "You're absolutely right!"
-❌ "Great point!"
-❌ "Thanks for catching that!"
-❌ "Thanks for [anything]"
-❌ ANY gratitude expression
-```
-
-**Why no thanks:** Actions speak. Just fix it. The code itself shows you heard the feedback.
-
-**If you catch yourself about to write "Thanks":** DELETE IT. State the fix instead.
-
-## Gracefully Correcting Your Pushback
-
-If you pushed back and were wrong:
-```
-✅ "You were right - I checked [X] and it does [Y]. Implementing now."
-✅ "Verified this and you're correct. My initial understanding was wrong because [reason]. Fixing."
-
-❌ Long apology
-❌ Defending why you pushed back
-❌ Over-explaining
-```
-
-State the correction factually and move on.
-
-## Common Mistakes
-
-| Mistake                      | Fix                                 |
-| ---------------------------- | ----------------------------------- |
-| Performative agreement       | State requirement or just act       |
-| Blind implementation         | Verify against codebase first       |
-| Batch without testing        | One at a time, test each            |
-| Assuming reviewer is right   | Check if breaks things              |
-| Avoiding pushback            | Technical correctness > comfort     |
-| Partial implementation       | Clarify all items first             |
-| Can't verify, proceed anyway | State limitation, ask for direction |
-
-## Real Examples
-
-**Performative Agreement (Bad):**
-```
-Reviewer: "Remove legacy code"
-❌ "You're absolutely right! Let me remove that..."
-```
-
-**Technical Verification (Good):**
-```
-Reviewer: "Remove legacy code"
-✅ "Checking... build target is 10.15+, this API needs 13+. Need legacy for backward compat. Current impl has wrong bundle ID - fix it or drop pre-13 support?"
-```
-
-**YAGNI (Good):**
-```
-Reviewer: "Implement proper metrics tracking with database, date filters, CSV export"
-✅ "Grepped codebase - nothing calls this endpoint. Remove it (YAGNI)? Or is there usage I'm missing?"
-```
-
-**Unclear Item (Good):**
-```
-your human partner: "Fix items 1-6"
-You understand 1,2,3,6. Unclear on 4,5.
-✅ "Understand 1,2,3,6. Need clarification on 4 and 5 before implementing."
-```
-
-## GitHub Thread Replies
-
-When replying to inline review comments on GitHub, reply in the comment thread (`gh api repos/{owner}/{repo}/pulls/{pr}/comments/{id}/replies`), not as a top-level PR comment.
+Use technical acknowledgments, not performative agreement. Good responses are
+“Verified at `file:line`; fixed by …” or “`INVALID`: the compatibility test at
+… proves …”. When replying to an inline forge comment, reply in that thread
+rather than creating an unrelated top-level comment.

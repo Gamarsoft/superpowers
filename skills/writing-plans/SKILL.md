@@ -201,8 +201,9 @@ dispatch an independent plan reviewer.
 If any risk trigger is named, dispatch exactly one holistic readiness review
 using `plan-readiness-reviewer-prompt.md`. Give the reviewer the full approved
 specification and full implementation plan—never one output chunk or session
-history. Use the advertised `sp_reviewer` role when it exists; otherwise omit
-`agent_type` and send the same prompt to a fresh generic agent.
+history. Use the advertised `sp_reviewer` role when it exists; otherwise omit `agent_type`
+and send the same prompt to a fresh generic agent. On Codex both
+paths use `fork_turns: "none"`; never probe an unknown role with a failing call.
 
 The plan author applies supported findings directly. Do not dispatch a separate
 plan fixer. A correction round is one author edit followed by a re-run of the

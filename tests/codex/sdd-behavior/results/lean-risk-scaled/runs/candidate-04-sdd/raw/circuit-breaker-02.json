@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "circuit-breaker",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "Stop before correction round three and pause dependent work for architectural diagnosis and a bounded human decision. Exactly two correction rounds are complete: round one belonged to the original implementer, and round two belonged to one deep rescue implementer. Keep the migration data-loss finding open as BLOCKING. Report the proof that the migration can lose committed data, both attempted fix ranges and reports, their test evidence, both scoped re-review verdicts showing the same defect remains, and the architectural conflict that prevents a safe third attempt.",
+  "event_trace": [
+    {"event": "record_disposition", "disposition": "BLOCKING", "status": "open", "evidence": "The initial review proved the migration can lose committed data; scoped re-review after each of two corrections proved the same defect remains."},
+    {"event": "record_correction_round", "round": 1, "owner": "original implementer", "result": "same BLOCKING defect survives scoped re-review"},
+    {"event": "record_correction_round", "round": 2, "owner": "one deep rescue implementer", "result": "same BLOCKING defect survives scoped re-review"},
+    {"event": "circuit_breaker", "action": "stop before round three; dispatch no implementation or review lane"},
+    {"event": "human_stop", "action": "present the open finding, proof, both fixes, tests, re-review verdicts, and architectural conflict for a bounded decision"},
+    {"kind": "grader_judgment", "detail": "The trace records two completed rounds with the required owners, then stops before round three for architectural diagnosis. The open finding, proof, both fixes, test evidence, and re-review verdicts remain visible, and the explicit human_stop event counts as one human stop."}
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 2,
+  "human_stop_count": 1,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {"id": "exactly-two-correction-rounds-completed", "passed": true, "evidence": "The response explicitly says exactly two rounds are complete, and the trace records only rounds one and two."},
+    {"id": "correction-round-ownership", "passed": true, "evidence": "The two round records assign round one to the original implementer and round two to one deep rescue implementer."},
+    {"id": "stop-for-architecture-before-round-three", "passed": true, "evidence": "The response pauses for architectural diagnosis before round three, and the breaker event dispatches no further lane."},
+    {"id": "preserve-finding-evidence-and-fix-history", "passed": true, "evidence": "The BLOCKING finding stays open, and the actor reports its proof, both fix ranges and reports, tests, re-review verdicts, and architectural conflict."}
+  ]
+}

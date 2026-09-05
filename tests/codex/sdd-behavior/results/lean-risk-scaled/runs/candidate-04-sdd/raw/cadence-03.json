@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "Use two ordered work units. Unit 1 batches Tasks 1-3 under one fresh implementer because they are the same-shaped mechanical wording change, touch disjoint documentation files, and can be verified coherently by their focused tests. Review that checkpoint once after the implementer report and diff are ready; do not create a reviewer per task. Unit 2 keeps Task 4 individual because customer-fund reservation is money-sensitive and its concurrency and idempotency behavior are explicit review-required risk triggers. Review it immediately after implementation and before any downstream consumption. After both units are accepted, perform the one required final integration review over the cumulative diff and existing focused/integration evidence. With no findings supplied, no correction round is proposed. SDD runs no complete repository suite; finishing owns that later.",
+  "event_trace": [
+    {"order": 1, "event": "implementer_dispatch", "work_unit": "U1", "tasks": [1, 2, 3], "reason": "Same-shaped independent mechanical edits in disjoint files belong in one ordinary checkpoint unit, and three tasks stays within the normal coherent-unit bound."},
+    {"order": 2, "event": "unit_review", "work_unit": "U1", "tasks": [1, 2, 3], "timing": "After U1 implementation and focused-test evidence are complete, before marking U1 complete and continuing.", "reason": "An ordinary batched unit receives one review gate, not one reviewer per mechanical task."},
+    {"order": 3, "event": "implementer_dispatch", "work_unit": "U2", "tasks": [4], "reason": "Money, concurrency, and idempotency are review-required triggers, so Task 4 remains an individual unit despite file independence."},
+    {"order": 4, "event": "unit_review", "work_unit": "U2", "tasks": [4], "timing": "Immediately after U2 implementation evidence is complete and before any downstream consumption.", "reason": "The fund-reservation invariant and idempotency behavior require an isolated review gate."},
+    {"order": 5, "event": "final_integration_review", "work_units": ["U1", "U2"], "timing": "After both unit reviews accept their units.", "reason": "SDD requires one fresh cumulative review for whole-feature acceptance and cross-task integration without repeating every task review or running the complete suite."},
+    {"kind": "grader_judgment", "detail": "U1 is the single ordinary checkpoint unit for Tasks 1-3, and U2 keeps Task 4 individual. The only reviews before final integration are the U1 and U2 gates; U1 has no per-task reviewer."}
+  ],
+  "dispatch_count": 5,
+  "review_count": 3,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "tasks-1-3-one-checkpoint-unit", "passed": true, "evidence": "The response and first event put Tasks 1-3 together in ordinary checkpoint unit U1."},
+    {"id": "task-4-individual-review-unit", "passed": true, "evidence": "Task 4 is the sole task in U2 and receives its own unit review."},
+    {"id": "exactly-two-pre-integration-review-gates", "passed": true, "evidence": "U1 and U2 each receive one unit review before the final integration review, for exactly two gates."},
+    {"id": "no-per-task-reviewer-for-tasks-1-3", "passed": true, "evidence": "The response says not to create a reviewer per task, and U1 has one combined review event."}
+  ]
+}

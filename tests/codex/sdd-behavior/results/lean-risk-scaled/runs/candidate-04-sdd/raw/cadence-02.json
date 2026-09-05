@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "193267d",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "Form two ordered work units. Unit 1 batches Tasks 1-3 because they are the same mechanical wording replacement, touch disjoint documentation files, and can be verified coherently by their focused tests; review the combined unit once after implementation. Unit 2 contains Task 4 alone because customer funds, concurrency, and idempotency are review-required risk triggers; review it immediately after implementation and before any downstream consumption. After both units pass, perform the single final integration review. Assuming no supported findings, no correction round is needed, and SDD runs no complete repository suite.",
+  "event_trace": [
+    {"event": "dispatch", "unit": "unit-1", "tasks": [1, 2, 3], "reason": "same-shaped independent mechanical edits in disjoint files"},
+    {"event": "review", "unit": "unit-1", "timing": "after the batched implementation and focused tests"},
+    {"event": "dispatch", "unit": "unit-2", "tasks": [4], "reason": "funds, concurrency, and idempotency require an isolated risk cadence"},
+    {"event": "review", "unit": "unit-2", "timing": "immediately after implementation and before downstream consumption"},
+    {"event": "review", "unit": "final-integration", "timing": "after both work units are complete"},
+    {"kind": "grader_judgment", "detail": "The actor forms one ordinary Tasks 1-3 unit and one individual Task 4 unit. Each unit has one pre-integration review gate, and the trace adds no per-task reviews inside the first unit."}
+  ],
+  "dispatch_count": 2,
+  "review_count": 3,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {"id": "tasks-1-3-one-checkpoint-unit", "passed": true, "evidence": "Unit 1 explicitly batches Tasks 1-3 into one combined work unit."},
+    {"id": "task-4-individual-review-unit", "passed": true, "evidence": "Unit 2 contains Task 4 alone and gives it an immediate review."},
+    {"id": "exactly-two-pre-integration-review-gates", "passed": true, "evidence": "The trace has one unit-1 review and one unit-2 review before the final-integration review."},
+    {"id": "no-per-task-reviewer-for-tasks-1-3", "passed": true, "evidence": "The combined Unit 1 receives one review; no separate review event exists for Task 1, 2, or 3."}
+  ]
+}
