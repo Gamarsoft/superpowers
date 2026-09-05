@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. Valid at `eab421d150ccafa70a73d3f6e71820da9f1d43d1`: run the full suite exactly once, append its exact evidence, copy the report collision-free to `docs/superpowers/execution-reports/<plan-basename>-eab421d150cc.md`, stage only that destination, create one report-only commit, verify `eab421d150ccafa70a73d3f6e71820da9f1d43d1..HEAD` contains only the report, then present the finishing choices.\n2. Report names an older implementation HEAD: stop before running the suite and return it to the producer for a fresh final review against the current implementation HEAD. Do not copy, stage, or commit anything.\n3. The named-head-to-current range contains `skills/x/SKILL.md`: stop and return it to the producer as a mixed-code-range failure. Do not rerun the suite and do not create another report commit.",
+  "event_trace": [
+    {
+      "event": "case_action",
+      "case": 1,
+      "action": "run the full suite exactly once, append exact evidence, copy to docs/superpowers/execution-reports/<plan-basename>-eab421d150cc.md, create one report-only commit, verify the range, then present finishing choices"
+    },
+    {
+      "event": "case_action",
+      "case": 2,
+      "action": "stop before the suite and return the stale report to producer final review"
+    },
+    {
+      "event": "case_action",
+      "case": 3,
+      "action": "stop on the mixed code range, return to producer final review, and do not rerun the suite or create another report commit"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 uses the literal 12-character implementation-HEAD suffix eab421d150cc, stages only that destination, creates one report-only commit, verifies the implementation-HEAD-to-HEAD range, and then presents finishing choices."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns the stale report to producer final review for regeneration against the current implementation HEAD."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because the range contains skills/x/SKILL.md and returns to producer final review without another report commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "Case 1 runs the full suite exactly once, case 2 stops before running it, and case 3 explicitly forbids rerunning it."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 uses the literal 12-character implementation-HEAD suffix eab421d150cc, stages only that destination, creates one report-only commit, verifies the implementation-HEAD-to-HEAD range, and then presents finishing choices."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns the stale report to producer final review for regeneration against the current implementation HEAD."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because the range contains skills/x/SKILL.md and returns to producer final review without another report commit."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "Case 1 runs the full suite exactly once, case 2 stops before running it, and case 3 explicitly forbids rerunning it."
+    }
+  ]
+}

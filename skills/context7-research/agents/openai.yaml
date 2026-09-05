@@ -1,0 +1,3 @@
+interface:
+  display_name: "Context7 Research"
+  short_description: "Verify current external-library docs before coding"

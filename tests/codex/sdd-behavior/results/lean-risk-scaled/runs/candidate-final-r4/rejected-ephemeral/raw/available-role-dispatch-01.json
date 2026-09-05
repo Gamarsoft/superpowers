@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "available-role-dispatch",
+  "scenario_revision": "lean-risk-scaled-v1-role-runtime",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "PASS. Implementation dispatch selects `sp_implementer`; review dispatch selects `sp_reviewer`. Both use `fork_turns: \"none\"` and receive the complete stage-specific prompt. Because both exact roles are runtime-advertised, neither a generic fallback nor an obsolete role is appropriate. Harmless marker probes successfully returned `SP_IMPLEMENTER_ROLE_OK` and `SP_REVIEWER_ROLE_OK`.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/available-role-dispatch-01.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "sp_implementer: SP_IMPLEMENTER_ROLE_OK",
+        "sp_reviewer: SP_REVIEWER_ROLE_OK"
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "selects-advertised-typed-roles",
+      "passed": true,
+      "evidence": "Implementation used agent_type `sp_implementer`; review used agent_type `sp_reviewer`."
+    },
+    {
+      "id": "fresh-context-complete-prompts",
+      "passed": true,
+      "evidence": "Both dispatches used fork_turns `none` and retained complete, stage-specific read-only marker instructions."
+    },
+    {
+      "id": "no-fallback-or-obsolete-role",
+      "passed": true,
+      "evidence": "Both requested roles were advertised and dispatched directly; no generic fallback or obsolete role was selected."
+    },
+    {
+      "id": "runtime-probes-succeed",
+      "passed": true,
+      "evidence": "The typed-role probes completed successfully with `SP_IMPLEMENTER_ROLE_OK` and `SP_REVIEWER_ROLE_OK`."
+    }
+  ]
+}

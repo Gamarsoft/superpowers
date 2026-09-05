@@ -1,0 +1,3 @@
+interface:
+  display_name: "Web App Testing"
+  short_description: "Validate local web UI behavior with browser evidence"

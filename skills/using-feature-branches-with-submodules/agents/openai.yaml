@@ -1,0 +1,3 @@
+interface:
+  display_name: "Feature Branches with Submodules"
+  short_description: "Isolate submodule work safely without worktrees"

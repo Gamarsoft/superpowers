@@ -1,5 +1,40 @@
 # Superpowers Release Notes
 
+## Gamarsoft fork (unreleased)
+
+### Lean planning and delivery
+
+- **Planning has one bounded quality gate.** `writing-plans` now owns a
+  specification-linked WHAT-not-HOW plan, author self-review, shared risk
+  classification, and one holistic readiness review only when named risk
+  requires it. The author applies supported findings for at most two correction
+  rounds. `refining-plans` is removed instead of preserving a second planning
+  and mutation lane.
+- **SDD cadence follows risk.** The controller performs one auditable preflight,
+  batches at most three compatible ordinary tasks, isolates review-required
+  work, and uses one proof-bearing finding taxonomy. Corrections return first to
+  the original implementer, then to one deep rescue; a remaining blocker stops
+  before a third correction. One final integration review produces a resumable,
+  exact-HEAD execution report.
+- **Review ownership is explicit.** SDD owns unit, correction, and integration
+  reviews. `requesting-code-review` remains available for ad hoc, major-feature,
+  and pre-integration review; `receiving-code-review` handles human, forge, and
+  other out-of-band feedback. Both use the same `BLOCKING`, `DECISION`,
+  `FOLLOW_UP`, and `INVALID` dispositions.
+- **Finishing owns complete verification and cleanup.** It validates the
+  producer's implementation HEAD, runs the complete repository suite once,
+  writes one report-only commit, and cleans only workflow-owned temporary state.
+  The inline `executing-plans` fallback writes the same truthful report schema
+  without claiming agent review that did not occur.
+- **Codex roles are consolidated.** Seven overlapping implementation and review
+  aliases become four optional local Codex roles: reviewer, ordinary
+  implementer, deep implementer, and topic-context gatherer. Plugin archives do
+  not claim to install repository role configuration; every caller preserves
+  full coverage through a fresh generic-agent fallback.
+- **Behavior evidence is checked in.** Immutable five-sample Codex runs cover
+  preflight contradictions, cadence, authority, scope pressure, correction
+  breaker, no-subagent execution, finishing evidence, and missing typed roles.
+
 ## v6.2.0 (2026-07-23)
 
 ### Subagent-Driven Development

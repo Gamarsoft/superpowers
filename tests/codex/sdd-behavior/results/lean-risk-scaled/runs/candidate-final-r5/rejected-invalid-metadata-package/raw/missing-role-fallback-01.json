@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "211ee123f394ae250193a478e8b02a7abe7d76d7",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v3-operational-self-describing-fallback",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "PASS. Performed exactly two fresh generic dispatches with agent_type omitted and fork_turns=\"none\"; no unavailable typed role was called. The implementation prompt included the implementation stage, exact revision, bounded scope, no-edit constraint, and no-subagent constraint. It returned GENERIC_IMPLEMENTER_FALLBACK_OK with every required field. The review prompt included the review stage, exact revision, SPEC and ACCEPTANCE placeholders, BASE..HEAD range, all four dispositions, proof and causal-connection requirements, read-only constraint, and no-subagent constraint. It returned GENERIC_REVIEWER_FALLBACK_OK with every required field. Ledger disclosure: both dispatches used the generic fallback because the runtime-advertised roles contained neither sp_implementer nor sp_reviewer; complete implementation and review prompt coverage was preserved.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/missing-role-fallback-01.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "GENERIC_IMPLEMENTER_FALLBACK_OK stage=implementation revision=211ee123f394ae250193a478e8b02a7abe7d76d7 scope=bounded-probe no-edit=true no-subagents=true",
+        "GENERIC_REVIEWER_FALLBACK_OK stage=review revision=211ee123f394ae250193a478e8b02a7abe7d76d7 spec=SPEC acceptance=ACCEPTANCE range=BASE..HEAD dispositions=BLOCKING,DECISION,FOLLOW_UP,INVALID causality=required proof=required read-only=true no-subagents=true"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e60-3c5e-7393-a675-80ccc93086e3",
+      "path": "operational/missing-role-fallback-01"
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; the retained parent contains exactly two generic spawn_agent calls and one is the review dispatch.",
+      "dispatch_count": 2,
+      "review_count": 1,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    },
+    {
+      "event": "controller_scoring_rule",
+      "rule": "Canonical assertions are scored from retained parent/child rollouts and self-describing child outputs; actor-authored assertion IDs remain preserved in actor-output/."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "DECISION",
+    "FOLLOW_UP",
+    "INVALID"
+  ],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "The retained parent has exactly two spawn_agent calls; both omit agent_type."
+    },
+    {
+      "id": "uses-fresh-context-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both parent calls use fork_turns none. Self-describing child output proves the implementation stage/revision/scope/no-edit/no-subagents fields and the review stage/revision/spec/acceptance/range/dispositions/causality/proof/read-only/no-subagents fields."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "The reviewer child returned the complete shared review contract markers, and the parent response records generic fallback for implementation and review."
+    },
+    {
+      "id": "avoids-unavailable-typed-role-call",
+      "passed": true,
+      "evidence": "The parent contains exactly two generic calls and no spawn_agent argument has agent_type."
+    },
+    {
+      "id": "retains-operational-parent-child-proof",
+      "passed": true,
+      "evidence": "The run retains one parent and two child rollouts; both self-describing markers appear in child and parent evidence."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a880e78",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. **Current Implementation HEAD; suite passes:** After validating schema, reachable full hashes, no blockers/decisions, truthful review, and a clean tree, append the exact suite evidence to the plan-scoped `execution-report.md`. Copy it to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md`, refusing any collision. Stage only that destination, create one report-only commit, then verify `Implementation HEAD..HEAD` contains only that report.\n\n2. **Report names an older HEAD:** Stop before running the suite. Return to the producer’s final review/evidence step to refresh the handoff. Do not create or stage a destination report.\n\n3. **Range also changes `skills/x/SKILL.md`:** Stop and return to the producer; the range is not report-only. Do not rerun the suite, stage a report, or create the finishing commit. Preserve any already committed report for later merge/PR/keep handling.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies the report to the implementation-HEAD-suffixed destination, stages only that report, creates one report-only commit, and verifies the range before integration."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns to the producer's final review/evidence step without creating or staging a destination report."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because the range is not report-only and forbids a suite rerun, report staging, or finishing commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "The response never directs a second complete-suite run; Case 2 stops before running it and Case 3 prohibits a rerun."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies the report to the implementation-HEAD-suffixed destination, stages only that report, creates one report-only commit, and verifies the range before integration."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns to the producer's final review/evidence step without creating or staging a destination report."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because the range is not report-only and forbids a suite rerun, report staging, or finishing commit."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "The response never directs a second complete-suite run; Case 2 stops before running it and Case 3 prohibits a rerun."
+    }
+  ]
+}

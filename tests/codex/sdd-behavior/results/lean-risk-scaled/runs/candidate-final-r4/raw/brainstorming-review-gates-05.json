@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "brainstorming-review-gates",
+  "scenario_revision": "lean-risk-scaled-v1-final-gates",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "## Spec Review\n\nID | Disposition | Location | Proof | Candidate causal connection | Concrete failure | Required resolution\n--- | --- | --- | --- | --- | --- | ---\nRG-1 | BLOCKING | Neutral artifact — observable behavior and handoff | The supplied scenario establishes that the artifact contradicts its approved observable behavior, that the handoff would implement the wrong result, and that this same contradiction survived two scoped correction-and-review rounds. | The contradictory handoff instruction directly controls downstream implementation behavior. | The next agent would implement behavior that violates the approved product contract. | Reconcile the artifact so the handoff unambiguously requires the approved observable behavior, then surface the unresolved conflict to the human because the two-round correction budget is exhausted.\nRG-2 | INVALID | Suggested heading style | The suggestion states only a heading-style preference and supplies no product-contract violation, causal connection, or concrete failure. | None established. | None established. | No change required; reject the preference as unsupported and non-blocking.\n\nVerdict: NOT READY\n\nExact next action: stop the review loop now and surface RG-1 to the human as an unresolved conflict. Do not attempt a third correction, dispatch another reviewer, or create another review lane.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/brainstorming-review-gates-05.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": []
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; simulated scenario transitions are not counted.",
+      "dispatch_count": 0,
+      "review_count": 0,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "INVALID"
+  ],
+  "assertions": [
+    {
+      "id": "proved-contradiction-blocking-style-invalid",
+      "passed": true,
+      "evidence": "RG-1 classifies the proved behavioral contradiction as BLOCKING; RG-2 classifies the unsupported heading-style preference as INVALID."
+    },
+    {
+      "id": "blocking-row-required-evidence",
+      "passed": true,
+      "evidence": "RG-1 includes artifact proof, a candidate causal connection, a concrete implementation failure, and a required resolution."
+    },
+    {
+      "id": "contradiction-remains-not-ready",
+      "passed": true,
+      "evidence": "The verdict is NOT READY because RG-1 remains unresolved."
+    },
+    {
+      "id": "stop-after-two-corrections",
+      "passed": true,
+      "evidence": "The exact next action stops the loop, surfaces the conflict to the human, and expressly forbids a third correction, another reviewer, or another review lane."
+    }
+  ]
+}

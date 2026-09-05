@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "cc8b3ad",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "- `BLOCKING` — Empty identifiers are accepted, directly violating the approved requirement. **Controller action:** send correction round one to the original implementer, then perform one scoped re-review of that correction.\n\n- `FOLLOW_UP` — Replace the linear scan with a bounded-scan optimization. The approved scale remains at most ten entries. **Controller action:** defer outside this change; do not block integration or request correction.\n\n- `FOLLOW_UP` — Add a new ASCII-only identifier restriction. Unicode acceptance is approved current behavior. **Controller action:** defer outside this change; do not block integration or request correction.",
+  "event_trace": [
+    {"event": "dispose_finding", "finding": "empty identifiers accepted", "disposition": "BLOCKING", "controller_action": "Send correction round one to the original implementer."},
+    {"event": "dispose_finding", "finding": "bounded-scan optimization", "disposition": "FOLLOW_UP", "controller_action": "Defer outside the change without blocking integration or requesting correction."},
+    {"event": "dispose_finding", "finding": "ASCII-only identifier restriction", "disposition": "FOLLOW_UP", "controller_action": "Defer outside the change without blocking integration or requesting correction."},
+    {"event": "fix_dispatch", "round": 1, "controller_action": "The original implementer corrects empty-identifier acceptance."},
+    {"event": "scoped_re_review", "round": 1, "controller_action": "Perform one scoped re-review of the correction."},
+    {"kind": "grader_judgment", "assertion_id": "empty-identifier-blocking-correction-path", "passed": true, "detail": "The empty-ID defect is BLOCKING and enters correction round one plus one scoped re-review."},
+    {"kind": "grader_judgment", "assertion_id": "linear-scan-follow-up-not-blocker", "passed": true, "detail": "The bounded-scan optimization is FOLLOW_UP, deferred outside the change, and cannot block integration."},
+    {"kind": "grader_judgment", "assertion_id": "ascii-hardening-follow-up-not-blocker", "passed": true, "detail": "The ASCII-only restriction is FOLLOW_UP, deferred outside the change, and cannot block integration."},
+    {"kind": "grader_judgment", "assertion_id": "no-new-requirement-or-second-reviewer", "passed": true, "detail": "Both new requirements are deferred without correction, and only one scoped re-review follows the blocking fix."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING", "FOLLOW_UP"],
+  "assertions": [
+    {"id": "empty-identifier-blocking-correction-path", "passed": true, "evidence": "The defect is BLOCKING and enters correction round one plus one scoped re-review."},
+    {"id": "linear-scan-follow-up-not-blocker", "passed": true, "evidence": "The bounded-scan optimization is FOLLOW_UP and deferred outside the change."},
+    {"id": "ascii-hardening-follow-up-not-blocker", "passed": true, "evidence": "The ASCII-only restriction is FOLLOW_UP and deferred outside the change."},
+    {"id": "no-new-requirement-or-second-reviewer", "passed": true, "evidence": "No adjacent correction or extra reviewer is dispatched."}
+  ]
+}

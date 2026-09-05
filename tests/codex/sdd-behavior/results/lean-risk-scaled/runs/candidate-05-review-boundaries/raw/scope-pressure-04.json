@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "ffdf5c4",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "- `BLOCKING` — `parse_id` accepts an empty identifier, directly violating the approved requirement. Controller action: send correction round one to the original implementer, then perform one scoped re-review of that correction before integration.\n- `FOLLOW_UP` — The linear scan is bounded to at most ten entries and preserves the approved scale. Controller action: record as non-blocking follow-up; do not include it in the correction round.\n- `FOLLOW_UP` — Unicode identifiers preserve the approved behavior. Controller action: record as non-blocking follow-up; do not include it in the correction round.",
+  "event_trace": [
+    {"event": "dispose_finding", "finding": "empty identifier accepted", "disposition": "BLOCKING", "controller_action": "Send correction round one to the original implementer."},
+    {"event": "dispose_finding", "finding": "bounded linear scan", "disposition": "FOLLOW_UP", "controller_action": "Record as non-blocking follow-up and exclude it from correction."},
+    {"event": "dispose_finding", "finding": "Unicode identifiers accepted", "disposition": "FOLLOW_UP", "controller_action": "Record as non-blocking follow-up and exclude it from correction."},
+    {"event": "fix_dispatch", "round": 1, "controller_action": "The original implementer corrects empty-identifier acceptance."},
+    {"event": "scoped_re_review", "round": 1, "controller_action": "Perform one scoped re-review before integration."},
+    {"kind": "grader_judgment", "assertion_id": "empty-identifier-blocking-correction-path", "passed": true, "detail": "The response labels the defect BLOCKING and starts one correction round followed by one scoped re-review."},
+    {"kind": "grader_judgment", "assertion_id": "linear-scan-follow-up-not-blocker", "passed": true, "detail": "The bounded scan is a non-blocking FOLLOW_UP and is excluded from correction."},
+    {"kind": "grader_judgment", "assertion_id": "ascii-hardening-follow-up-not-blocker", "passed": true, "detail": "The Unicode-policy item is a non-blocking FOLLOW_UP and is excluded from correction."},
+    {"kind": "grader_judgment", "assertion_id": "no-new-requirement-or-second-reviewer", "passed": true, "detail": "No follow-up work is dispatched, and only the correction's scoped re-review is requested."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING", "FOLLOW_UP"],
+  "assertions": [
+    {"id": "empty-identifier-blocking-correction-path", "passed": true, "evidence": "The BLOCKING defect enters correction round one and one scoped re-review."},
+    {"id": "linear-scan-follow-up-not-blocker", "passed": true, "evidence": "The scan is FOLLOW_UP and excluded from correction."},
+    {"id": "ascii-hardening-follow-up-not-blocker", "passed": true, "evidence": "The Unicode-policy item is FOLLOW_UP and excluded from correction."},
+    {"id": "no-new-requirement-or-second-reviewer", "passed": true, "evidence": "No unrelated work or second review is dispatched."}
+  ]
+}

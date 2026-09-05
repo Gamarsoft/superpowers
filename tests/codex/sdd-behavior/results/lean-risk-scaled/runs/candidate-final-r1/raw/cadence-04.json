@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. **Checkpoint unit:** Tasks 1–3 together. They are same-shaped, file-disjoint, independently tested, coherently verifiable, and within the three-task batch limit. Run one proof-bearing task review after the checkpoint.\n\n2. **Individual unit:** Task 4 alone. It affects money, concurrency, and idempotency, so it is review-required and cannot be batched. Run one proof-bearing task review immediately afterward.\n\n**Review schedule:** checkpoint review → Task 4 review → separate final integration review.\n\n**Review gates before final integration:** 2.",
+  "event_trace": [
+    {
+      "event": "work_unit_dispatch",
+      "work_unit": "unit-1",
+      "tasks": [
+        1,
+        2,
+        3
+      ],
+      "mode": "ordinary checkpoint"
+    },
+    {
+      "event": "review",
+      "work_unit": "unit-1",
+      "timing": "after the batched implementation and focused tests"
+    },
+    {
+      "event": "work_unit_dispatch",
+      "work_unit": "unit-2",
+      "tasks": [
+        4
+      ],
+      "mode": "individual review-required unit"
+    },
+    {
+      "event": "review",
+      "work_unit": "unit-2",
+      "timing": "immediately after implementation"
+    },
+    {
+      "event": "review",
+      "work_unit": "final-integration",
+      "timing": "after both work units and their unit reviews"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "tasks-1-3-one-checkpoint-unit",
+      "passed": true,
+      "evidence": "The response places Tasks 1–3 together in one checkpoint unit and schedules one proof-bearing review after that checkpoint."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "It keeps Task 4 alone as an individual review-required unit and schedules its review immediately afterward."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "exactly-two-pre-integration-review-gates",
+      "passed": true,
+      "evidence": "The review schedule contains the checkpoint review and Task 4 review before the separate final integration review, and explicitly totals them as two gates."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": true,
+      "evidence": "The combined Tasks 1–3 checkpoint gets one review after the checkpoint; there are no reviews for its individual tasks."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 3,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "tasks-1-3-one-checkpoint-unit",
+      "passed": true,
+      "evidence": "The response places Tasks 1–3 together in one checkpoint unit and schedules one proof-bearing review after that checkpoint."
+    },
+    {
+      "id": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "It keeps Task 4 alone as an individual review-required unit and schedules its review immediately afterward."
+    },
+    {
+      "id": "exactly-two-pre-integration-review-gates",
+      "passed": true,
+      "evidence": "The review schedule contains the checkpoint review and Task 4 review before the separate final integration review, and explicitly totals them as two gates."
+    },
+    {
+      "id": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": true,
+      "evidence": "The combined Tasks 1–3 checkpoint gets one review after the checkpoint; there are no reviews for its individual tasks."
+    }
+  ]
+}

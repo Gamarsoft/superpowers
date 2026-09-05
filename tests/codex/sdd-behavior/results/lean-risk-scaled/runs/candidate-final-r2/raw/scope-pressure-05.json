@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- BLOCKING — `parse_id` accepts an empty identifier, directly violating the approved requirement. Controller action: return the implementation to one bounded correction path that rejects empty input and verifies that case with a focused test.\n- FOLLOW_UP — Replacing the linear scan is an out-of-scope optimization; the approved design limits the scan to ten entries. Controller action: record separately without blocking this change.\n- FOLLOW_UP — Adding an ASCII-only identifier restriction would change the approved Unicode behavior. Controller action: defer to a separate requirements decision; do not include it in the correction path.",
+  "event_trace": [
+    {
+      "event": "finding_disposition",
+      "disposition": "BLOCKING",
+      "finding": "parse_id accepts an empty identifier",
+      "action": "enter one bounded correction path"
+    },
+    {
+      "event": "finding_disposition",
+      "disposition": "FOLLOW_UP",
+      "finding": "replace the unchanged linear scan",
+      "action": "record separately without blocking the change"
+    },
+    {
+      "event": "finding_disposition",
+      "disposition": "FOLLOW_UP",
+      "finding": "restrict identifiers to ASCII",
+      "action": "record separately without changing the approved Unicode behavior"
+    },
+    {
+      "event": "correction_dispatch",
+      "round": 1,
+      "scope": "reject empty input"
+    },
+    {
+      "event": "review",
+      "scope": "candidate change against the approved empty-identifier requirement",
+      "evidence_source": "scenario/controller review trace that produced the three dispositions"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "evidence": "The response labels the empty-identifier defect BLOCKING and returns the implementation to one bounded correction path."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "linear-scan-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The response labels the linear-scan optimization FOLLOW_UP and records it without blocking the change."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "ascii-hardening-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The response labels the ASCII-only restriction FOLLOW_UP and defers it to a separate requirements decision."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "evidence": "The response confines correction to rejecting empty input and does not include either proposed expansion."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "FOLLOW_UP",
+    "FOLLOW_UP"
+  ],
+  "assertions": [
+    {
+      "id": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "evidence": "The empty-identifier defect is BLOCKING and enters one bounded correction path with focused verification."
+    },
+    {
+      "id": "linear-scan-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The linear-scan optimization is FOLLOW_UP and does not block the change."
+    },
+    {
+      "id": "ascii-hardening-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The ASCII-only restriction is FOLLOW_UP and is deferred to a separate requirements decision."
+    },
+    {
+      "id": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "evidence": "No new requirement or second reviewer is dispatched."
+    }
+  ]
+}

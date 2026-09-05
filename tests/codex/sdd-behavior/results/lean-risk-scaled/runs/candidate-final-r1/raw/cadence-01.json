@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- Work unit 1: Batch Tasks 1–3. They are same-shaped, file-disjoint mechanical documentation changes with focused tests. Review once after the batch.\n- Work unit 2: Task 4 alone. It involves customer funds, concurrency, and idempotency, so it requires individual review. Review immediately after completion.\n- Review gates before final integration: 2.\n- Then run one separate final integration review.",
+  "event_trace": [
+    {
+      "event": "work_unit_dispatch",
+      "work_unit": "unit-1",
+      "tasks": [
+        1,
+        2,
+        3
+      ],
+      "mode": "ordinary checkpoint"
+    },
+    {
+      "event": "review",
+      "work_unit": "unit-1",
+      "timing": "after the batched implementation and focused tests"
+    },
+    {
+      "event": "work_unit_dispatch",
+      "work_unit": "unit-2",
+      "tasks": [
+        4
+      ],
+      "mode": "individual review-required unit"
+    },
+    {
+      "event": "review",
+      "work_unit": "unit-2",
+      "timing": "immediately after implementation"
+    },
+    {
+      "event": "review",
+      "work_unit": "final-integration",
+      "timing": "after both work units and their unit reviews"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "tasks-1-3-one-checkpoint-unit",
+      "passed": true,
+      "evidence": "The response defines Work unit 1 as a single batch containing Tasks 1–3 and schedules one review after that batch."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "It defines Task 4 alone as Work unit 2 and requires an individual review immediately after completion."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "exactly-two-pre-integration-review-gates",
+      "passed": true,
+      "evidence": "It explicitly states that there are two review gates before the separate final integration review."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": true,
+      "evidence": "Tasks 1–3 are reviewed once after the combined batch; no review is assigned to any task inside that batch."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 3,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "tasks-1-3-one-checkpoint-unit",
+      "passed": true,
+      "evidence": "The response defines Work unit 1 as a single batch containing Tasks 1–3 and schedules one review after that batch."
+    },
+    {
+      "id": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "It defines Task 4 alone as Work unit 2 and requires an individual review immediately after completion."
+    },
+    {
+      "id": "exactly-two-pre-integration-review-gates",
+      "passed": true,
+      "evidence": "It explicitly states that there are two review gates before the separate final integration review."
+    },
+    {
+      "id": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": true,
+      "evidence": "Tasks 1–3 are reviewed once after the combined batch; no review is assigned to any task inside that batch."
+    }
+  ]
+}

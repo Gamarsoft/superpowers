@@ -240,8 +240,7 @@ Create a task for each of the following and complete them in order.
     - Read `references/spec-review-checklist.md`.
     - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
     - Review only the neutral design spec and frontend-direction follow-on prompt if one is required. At this stage, Delivery Route metadata and every route adapter must still be absent.
-    - Fix blocking issues and re-dispatch.
-    - Maximum 5 iterations, then surface to the human.
+    - Fix supported `BLOCKING` issues and re-dispatch. When a supported `DECISION` remains, ask one bounded human question, update the artifact with the answer, and re-dispatch within the same correction budget. Permit at most two correction plus re-review rounds; if a supported `BLOCKING` or `DECISION` remains, stop and surface the unresolved conflict to the human.
 
 16. **User approval gate**
     - Ask the user to review the written artifacts before proceeding.
@@ -277,7 +276,7 @@ Create a task for each of the following and complete them in order.
     - During the selected-adapter review, validate exactly one adapter exists and matches that route.
     - During the selected-adapter review, reject every unselected adapter or unselected route artifact.
     - During the selected-adapter review, validate route-specific completeness and cross-artifact agreement before transition.
-    - Fix blocking issues and re-dispatch. Maximum 5 iterations, then surface to the human.
+    - Fix supported `BLOCKING` issues and re-dispatch. When a supported `DECISION` remains, ask one bounded human question, update the artifact with the answer, and re-dispatch within the same correction budget. Permit at most two correction plus re-review rounds; if a supported `BLOCKING` or `DECISION` remains, stop and surface the unresolved conflict to the human.
     - After approval, replace the Delivery Route section's `Delivery review: pending` with `Delivery review: approved` and a concrete reviewer reference. A claim without a reviewer result is not approval evidence.
 
 21. **Transition through the confirmed route**

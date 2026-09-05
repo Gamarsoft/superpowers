@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "available-role-dispatch",
+  "scenario_revision": "lean-risk-scaled-v1-role-runtime",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Implementation dispatch: use the advertised `sp_implementer` role with `agent_type: \"sp_implementer\"`, `fork_turns: \"none\"`, and a fresh, complete implementation-stage prompt containing the full bounded task brief, relevant specification anchors and interface decisions, first-delivery-boundary role, Context7 findings or `NONE`, report path, and workspace path. Review dispatch: after recording BASE/HEAD and building the review package, use the advertised `sp_reviewer` role with `agent_type: \"sp_reviewer\"`, `fork_turns: \"none\"`, and a fresh, complete review-stage prompt containing the brief, implementer report, recorded BASE/HEAD, review package, relevant specification anchors, rulings, and applicable specialist instructions. Because both exact roles are runtime-advertised, neither dispatch uses a generic fallback or obsolete role. Generic fallback is used only if the requested exact role is absent: omit `agent_type`, retain `fork_turns: \"none\"`, and send the same complete stage prompt to a fresh generic agent. Harmless probes successfully returned `SP_IMPLEMENTER_PROBE_OK` and `SP_REVIEWER_PROBE_OK`.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/available-role-dispatch-03.jsonl",
+      "stderr_path": "transcripts/available-role-dispatch-03.stderr.log"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "sp_implementer dispatched successfully and returned SP_IMPLEMENTER_PROBE_OK",
+        "sp_reviewer dispatched successfully and returned SP_REVIEWER_PROBE_OK"
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "implementation-and-review-select-advertised-roles",
+      "passed": true,
+      "evidence": "Implementation selected `sp_implementer`; review selected `sp_reviewer`."
+    },
+    {
+      "id": "fresh-context-and-complete-stage-prompts",
+      "passed": true,
+      "evidence": "Both dispatches use `fork_turns: \"none\"`; the prescribed implementation and review choices retain their complete stage-specific prompt coverage."
+    },
+    {
+      "id": "no-fallback-or-obsolete-role-when-advertised",
+      "passed": true,
+      "evidence": "Both exact roles were advertised and selected; no generic fallback or obsolete role was used."
+    },
+    {
+      "id": "harmless-runtime-probes-succeed",
+      "passed": true,
+      "evidence": "Both typed-role probe dispatches succeeded and returned their exact expected markers."
+    }
+  ]
+}

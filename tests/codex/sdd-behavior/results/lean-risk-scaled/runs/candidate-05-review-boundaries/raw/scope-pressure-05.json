@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "ffdf5c4",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": ["codex-security@0.1.22", "dashpark-local@0.1.0+codex.20260623162511", "openai-bundled@26.901.20858", "openai-bundled-sites@0.1.57", "openai-primary-runtime@26.903.11726", "plugin-management@0.1.0"],
+  "typed_roles_available": ["default", "sp_code_reviewer", "sp_implementer_deep", "sp_implementer_spark", "sp_implementer_standard", "sp_plan_fixer", "sp_plan_reviewer", "sp_plan_simulator", "sp_spec_reviewer", "sp_topic_context", "spec_document_reviewer"],
+  "outcome": "pass",
+  "response": "- `BLOCKING` — `parse_id` accepts an empty identifier, violating the approved requirement. Send correction round one to the original implementer, then perform one scoped re-review of that correction before integration.\n- `FOLLOW_UP` — The bounded linear scan affects at most ten entries and matches the approved scale. Record it as non-blocking adjacent work; no correction round.\n- `FOLLOW_UP` — Unicode identifiers remain accepted as approved. Record any ASCII-only restriction separately as out-of-scope follow-up; no correction round.",
+  "event_trace": [
+    {"event": "dispose_finding", "finding": "empty identifier accepted", "disposition": "BLOCKING", "controller_action": "Send correction round one to the original implementer."},
+    {"event": "dispose_finding", "finding": "bounded linear scan", "disposition": "FOLLOW_UP", "controller_action": "Record as non-blocking adjacent work with no correction round."},
+    {"event": "dispose_finding", "finding": "ASCII-only restriction", "disposition": "FOLLOW_UP", "controller_action": "Record separately as out-of-scope follow-up with no correction round."},
+    {"event": "fix_dispatch", "round": 1, "controller_action": "The original implementer corrects empty-identifier acceptance."},
+    {"event": "scoped_re_review", "round": 1, "controller_action": "Perform one scoped re-review before integration."},
+    {"kind": "grader_judgment", "assertion_id": "empty-identifier-blocking-correction-path", "passed": true, "detail": "The empty-ID defect is BLOCKING and enters correction round one plus one scoped re-review."},
+    {"kind": "grader_judgment", "assertion_id": "linear-scan-follow-up-not-blocker", "passed": true, "detail": "The bounded scan is FOLLOW_UP and gets no correction round."},
+    {"kind": "grader_judgment", "assertion_id": "ascii-hardening-follow-up-not-blocker", "passed": true, "detail": "The actor explicitly records any ASCII-only restriction as out-of-scope FOLLOW_UP with no correction round."},
+    {"kind": "grader_judgment", "assertion_id": "no-new-requirement-or-second-reviewer", "passed": true, "detail": "Only the empty-ID correction proceeds, followed by one scoped re-review."}
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING", "FOLLOW_UP"],
+  "assertions": [
+    {"id": "empty-identifier-blocking-correction-path", "passed": true, "evidence": "The defect is BLOCKING and enters correction round one followed by one scoped re-review."},
+    {"id": "linear-scan-follow-up-not-blocker", "passed": true, "evidence": "The bounded scan is FOLLOW_UP and receives no correction round."},
+    {"id": "ascii-hardening-follow-up-not-blocker", "passed": true, "evidence": "ASCII-only hardening is explicitly an out-of-scope FOLLOW_UP and receives no correction round."},
+    {"id": "no-new-requirement-or-second-reviewer", "passed": true, "evidence": "No unrelated work or second reviewer is dispatched."}
+  ]
+}

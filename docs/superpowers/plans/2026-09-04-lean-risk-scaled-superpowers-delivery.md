@@ -4,11 +4,19 @@
 
 **Goal:** Replace the overlapping Gamarsoft planning and SDD review graph with one lean, risk-scaled Superpowers delivery path whose scope, authority, correction loops, evidence, and cleanup are bounded.
 
+**First delivery boundary:** The revised Superpowers route can take an approved specification through contract-shaped planning, risk-scaled implementation and review, exact-HEAD handoff, one finishing suite per handed-off HEAD, and report-only evidence without duplicate orchestration. It stops before any upstream pull request, push, publish, or merge.
+
 **Architecture:** Keep one owner per stage: `brainstorming` defines approved behavior, `writing-plans` creates a spec-linked risk-classified plan, SDD performs risk-scaled delivery, and `finishing-a-development-branch` runs the sole complete suite and preserves the execution report. Thin public review and no-subagent entry points reuse those contracts without becoming parallel orchestration lanes.
 
 **Tech Stack:** Markdown skills and prompts, Bash test fixtures, Python 3 standard library scoring, Git, Codex multi-agent V2, Codex plugin archives.
 
-**Spec:** `docs/superpowers/specs/2026-09-04--lean-risk-scaled-superpowers-delivery.md` at its user-approved 2026-09-04 revision.
+**Spec:** `docs/superpowers/specs/2026-09-04--lean-risk-scaled-superpowers-delivery.md`
+
+**Spec revision:** `5e6931022f6134f6eba7f25c3ad0eaa7d3e83628`
+
+**Current worktree:** `/Users/gamarsoft/.codex/worktrees/5eb5/superpowers` (detached checkout)
+
+**Implementation base:** `d9a937091926ace90db0da318fb34b78adbbb8e8`
 
 **Upstream comparison baseline:** `origin/main` at `b36e0829c6d0140e93cfef2ca599b1b07d4a7797`; fork baseline `d9a937091926ace90db0da318fb34b78adbbb8e8`; common ancestor `44c9b2d6e889982ac18c27d05a19fefe335194e1`.
 
@@ -70,7 +78,9 @@
 
 **Reference data**
 
-- Eight behavior scenarios: scope pressure, authority, cadence, circuit breaker, preflight contradiction, missing-role fallback, no-subagent fallback, and finishing evidence.
+- Eight original paired behavior scenarios: scope pressure, authority, cadence, circuit breaker, preflight contradiction, missing-role fallback, no-subagent fallback, and finishing evidence.
+- One paired final-evidence transition revision extends finishing evidence with suite-failure return, archival, refreshed new-HEAD review, preserved count, and failed-HEAD non-retry.
+- Three candidate-only exact-revision edge scenarios: available-role dispatch, brainstorming review gates, and Java profile taxonomy.
 - Five baseline samples per scenario; if exactly one fails, expand that scenario to ten samples.
 - Candidate sample count equals its baseline count; every candidate sample must pass and improve by at least two samples for each behavior used to justify wording changes.
 
@@ -274,6 +284,7 @@
 - Modify: `skills/subagent-driven-development/implementer-prompt.md`
 - Modify: `skills/subagent-driven-development/task-reviewer-prompt.md`
 - Modify: `skills/subagent-driven-development/re-review-prompt.md`
+- Create: `skills/subagent-driven-development/references/execution-report.md`
 - Modify: `skills/subagent-driven-development/scripts/task-brief`
 - Modify: `skills/subagent-driven-development/scripts/review-package`
 - Modify: `tests/claude-code/test-sdd-workspace.sh`
@@ -284,7 +295,8 @@
 
 - `task-brief PLAN_FILE TASK_NUMBER...` preserves the single-task output and can emit one ordered multi-task work-unit brief.
 - The plan-scoped ledger stores identity, spec revision, implementation base, pairwise preflight rows, risk class, units, rulings, dispositions, correction rounds, evidence, and final implementation HEAD.
-- `execution-report.md` in the ignored workspace contains completed units, verification lanes, rulings, deviations, follow-ups, risks, decisions, final-review result, and exact implementation HEAD.
+- `execution-report.md` in the ignored workspace contains completed units, verification lanes, rulings, deviations, follow-ups, risks, decisions, final-review result, exact implementation HEAD, and a separate final-evidence correction count that task/unit fixes do not consume.
+- Before trusting a `ready-for-finishing` handoff, SDD checks for a matching `producer-return.md`. It archives the rejected report and marker under `attempts/<failed-head>/`, preserves the final-evidence count, refreshes affected evidence and final review at a new HEAD, and never reissues a handoff for a HEAD whose complete suite failed.
 - Review packages use recorded BASE and HEAD values and never infer `HEAD~1`.
 
 **Dependencies:** Tasks 1–3 provide the behavior harness, spec-linked plan contract, and single planning gate.
@@ -303,17 +315,18 @@
 - Implementer and reviewer prompts explicitly prohibit nested agents.
 - Waiting is event-driven with the longest host-compatible bounded wait and no narrative or work creation on unchanged timeouts.
 - SDD final review reuses focused/integration evidence, writes the report, and never runs the complete suite or deletes its workspace.
+- A validated finishing return resumes the final-evidence gate with its existing count; suite failure consumes the next round, while a stale mismatch consumes a round only when code correction is required.
 
 **Error handling:**
 
 - Stop before dispatch on missing spec/plan identity, incomplete acceptance criteria, unresolved WHAT conflict, or unusable worktree.
 - On missing typed roles, dispatch a generic fresh agent with the same prompt; do not skip the unit or review.
-- A stale/malformed report blocks finishing; residual supported load-bearing findings after round two return the architectural conflict to the user.
+- A malformed report blocks finishing without fabricated resume state. A valid stale/dirty/suite-failed/mixed-range return is archived and resumed as final evidence; residual supported load-bearing findings after round two return the architectural conflict to the user.
 
 **Verification:**
 
 - Run: `bash tests/claude-code/test-sdd-workspace.sh && bash tests/claude-code/test-sdd-custom-contracts.sh && bash tests/claude-code/test-lean-delivery-contracts.sh`
-- Expected: workspace, multi-task brief, ledger/report, cadence, authority, review taxonomy, two-round breaker, wait, and no-nested-agent assertions pass.
+- Expected: workspace, multi-task brief, ledger/report, producer-return archive/resume, separate final-evidence count, failed-HEAD non-retry, cadence, authority, review taxonomy, two-round breaker, wait, and no-nested-agent assertions pass.
 - Score the four SDD-controller candidate scenario sets and run one controller-only fixture probe.
 - Expected: all candidate samples pass, improve where baseline failed, dispatch no duplicate/nested reviewer, and preserve every ruling/follow-up in the report.
 
@@ -338,6 +351,7 @@
 - Modify: `skills/requesting-code-review/SKILL.md`
 - Modify: `skills/requesting-code-review/code-reviewer.md`
 - Create: `skills/requesting-code-review/references/profile-selection.md`
+- Modify: `skills/requesting-code-review/references/java-21-spring-gke-checklist.md`
 - Modify: `skills/receiving-code-review/SKILL.md`
 - Modify: `tests/claude-code/test-custom-policy-contracts.sh`
 - Modify: `tests/claude-code/test-lean-delivery-contracts.sh`
@@ -347,6 +361,7 @@
 
 - `requesting-code-review` accepts an explicit requirements/spec source and exact BASE/HEAD range for ad hoc, major-feature, or pre-integration review.
 - The reviewer selects only profiles justified by changed files or named risk; every profile remains subordinate to scope and the finding taxonomy.
+- Specialist checklists may add domain probes but never add a second Critical/Important/Minor severity ladder.
 - `receiving-code-review` handles human, forge, and out-of-band findings only and verifies each before action.
 
 **Dependencies:** Task 4 owns SDD review internally before these public entry points relinquish SDD ownership.
@@ -371,7 +386,7 @@
 **Verification:**
 
 - Run: `bash tests/claude-code/test-custom-policy-contracts.sh && bash tests/claude-code/test-lean-delivery-contracts.sh`
-- Expected: standalone boundaries, conditional profile selection, safe range, generic fallback, and absence of SDD ownership all pass.
+- Expected: standalone boundaries, conditional profile selection, one shared disposition taxonomy, safe range, generic fallback, and absence of SDD ownership all pass.
 - Score `candidate-05-review-boundaries` against the baseline-matched scope-pressure sample count.
 - Expected: every candidate sample passes and meets the required improvement threshold when the baseline justified the wording change.
 
@@ -400,6 +415,7 @@
 - It runs author verification per task and one final independent review only when a reviewer is actually available.
 - It resolves the ignored plan workspace through `skills/subagent-driven-development/scripts/sdd-workspace PLAN_FILE` and writes `execution-report.md`.
 - The fallback report contains the plan/spec identity, completed tasks, focused/integration verification lanes, controller rulings, deviations, follow-ups, remaining risks/decisions, reviewer availability/result, and exact implementation HEAD.
+- The fallback report carries the separate final-evidence correction count. On a matching finishing return, executing-plans archives the rejected handoff, preserves that count, refreshes evidence and optional review at a new HEAD, and never retries a failed HEAD.
 
 **Dependencies:** Tasks 2, 4, and 5 define the plan, workspace/report schema, and independent-review boundary consumed by the fallback.
 
@@ -413,6 +429,7 @@
 - The skill does not claim fresh implementers, checkpoint reviews, typed roles, or other guarantees it does not provide.
 - The explicit self-hosting override remains valid for this one implementation plan.
 - A completed inline run produces the full report at current implementation HEAD even when no independent reviewer exists.
+- A valid producer return resumes the bounded final-evidence gate; the same supported failure stops before correction round three.
 
 **Error handling:**
 
@@ -422,7 +439,7 @@
 **Verification:**
 
 - Run: `bash tests/claude-code/test-lean-delivery-contracts.sh`
-- Expected: fallback routing, honest claims, stop conditions, and self-hosting exception assertions pass.
+- Expected: fallback routing, honest claims, producer-return archive/resume, separate final-evidence count, failed-HEAD non-retry, stop conditions, and self-hosting exception assertions pass.
 - Score `candidate-06-executing-plans` against the baseline-matched no-subagent-fallback sample count.
 - Expected: every candidate produces the complete report without fabricating reviewer evidence.
 
@@ -447,11 +464,14 @@
 - Modify: `tests/claude-code/test-worktree-path-policy.sh`
 - Modify: `tests/claude-code/test-custom-policy-contracts.sh`
 - Modify: `tests/claude-code/test-lean-delivery-contracts.sh`
+- Modify: `tests/codex/sdd-behavior/scenarios/finishing-evidence.md`
 - Add candidate evidence: `tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-07-finishing/{manifest.json,summary.md,raw/finishing-evidence-*.json}`
+- Add final-evidence transition baseline/candidate evidence: `tests/codex/sdd-behavior/results/lean-risk-scaled/runs/{baseline-finishing-return-v2,candidate-final-r4-paired}/{manifest.json,summary.md,raw/finishing-evidence-*.json}`
 
 **Interfaces and contracts:**
 
 - Finishing accepts a plan-scoped `execution-report.md` whose recorded implementation HEAD must equal current HEAD.
+- A valid stale/dirty/suite-failed/mixed-range handoff writes a plan-scoped `producer-return.md` containing producer identity, failed and observed HEADs, reason, command/result, and the copied final-evidence correction count. Malformed or unidentifiable handoffs stop without inventing a marker.
 - After the sole complete-suite run, finishing appends exact command/result evidence, copies the report to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md`, commits only that report, and verifies the implementation-HEAD-to-HEAD range.
 
 **Dependencies:** Tasks 4 and 6 are the two valid producers of the report finishing consumes.
@@ -463,11 +483,12 @@
 **Acceptance criteria:**
 
 - A stale report returns to SDD final review before any suite or integration menu.
+- A suite-failed HEAD is recorded and never retried; the producer must refresh evidence and review at a new HEAD while preserving the two-round final-evidence budget.
 - The full suite runs once against implementation HEAD; implementation changes after that invalidate the evidence.
 - The report-only commit contains no implementation file.
 - Merge, PR, and keep paths preserve the report; confirmed discard removes it with the branch.
 - Worktree removal refusal shows uncommitted files and asks whether to commit, move, or delete; no autonomous force removal occurs.
-- Fresh-context finishing samples run the suite and report-only path for a current HEAD, while stopping before mutation for stale and non-report-change cases.
+- Start with five paired fresh-context finishing samples covering the suite/report-only path, valid stale return, suite-failure return, marker/archive/count preservation, refreshed new-HEAD review, failed-HEAD non-retry, and mixed report ranges. If exactly one baseline sample fails, expand both baseline and candidate to ten.
 
 **Error handling:**
 
@@ -477,8 +498,8 @@
 **Verification:**
 
 - Run: `bash tests/claude-code/test-worktree-path-policy.sh && bash tests/claude-code/test-custom-policy-contracts.sh && bash tests/claude-code/test-lean-delivery-contracts.sh`
-- Expected: exact-HEAD, single-suite, report-only range, preservation, refusal guard, detached-worktree, and discard assertions pass.
-- Score `candidate-07-finishing` against the baseline-matched finishing-evidence sample count.
+- Expected: exact-HEAD, single-suite, producer-return identity/count, failed-HEAD non-retry, report-only range, preservation, refusal guard, detached-worktree, and discard assertions pass.
+- Score `candidate-07-finishing` against its original baseline, then score `candidate-final-r4-paired` against `baseline-finishing-return-v2`, starting with five revised-prompt samples and expanding both runs to ten only when the baseline is 4/5.
 - Expected: every candidate selects the correct proceed/stop behavior without a second full-suite run.
 
 **Codebase pointers:**
@@ -503,6 +524,9 @@
 - Delete: `.codex/agents/{code-reviewer,implementer-spark,implementer-standard,plan-reviewer,spec-document-reviewer,spec-reviewer}.toml`
 - Modify: `skills/brainstorming/SKILL.md`
 - Modify: `skills/brainstorming/spec-document-reviewer-prompt.md`
+- Modify: `skills/brainstorming/references/spec-review-checklist.md`
+- Modify: `skills/brainstorming/references/delivery-routing.md`
+- Modify: `skills/gathering-topic-context/SKILL.md`
 - Modify: `skills/using-superpowers/references/codex-tools.md`
 - Modify: `scripts/package-codex-plugin.sh`
 - Modify: `tests/codex/test-package-codex-plugin.sh`
@@ -530,6 +554,8 @@
 - Wait guidance uses one long event wait only when idle and never short-timeout polling.
 - Archive tests assert no project role registry is claimed or shipped through unsupported manifest fields.
 - Brainstorming's topic and spec reviews use the surviving roles or their generic fallbacks.
+- Brainstorming's checklist uses the shared four dispositions and its delivery route advertises risk-scaled work units rather than unconditional per-task review.
+- Gathering topic context checks advertised roles and uses the unchanged prompt through an untyped fresh agent when `sp_topic_context` is unavailable.
 
 **Error handling:**
 
@@ -539,7 +565,7 @@
 **Verification:**
 
 - Run: `bash tests/codex/test-package-codex-plugin.sh && bash tests/claude-code/test-sdd-custom-contracts.sh && bash tests/claude-code/test-custom-policy-contracts.sh`
-- Expected: role inventory, read-only reviewers, generic fallback, event waits, archive truthfulness, and manifest checks pass.
+- Expected: role inventory, every caller's untyped fresh fallback, shared brainstorming taxonomy, risk-scaled route wording, read-only reviewers, event waits, archive truthfulness, and manifest checks pass.
 - Score missing-role candidate samples.
 - Expected: every sample completes through untyped dispatch with review coverage preserved.
 
@@ -559,7 +585,10 @@
 
 **Files:**
 
-- Complete: `tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final/{manifest.json,summary.md,raw/*.json}`
+- Create: `tests/codex/sdd-behavior/scenarios/{available-role-dispatch,brainstorming-review-gates,java-profile-taxonomy}.md`
+- Complete: `tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final-r3/{manifest.json,summary.md,AUDIT.md,raw/*.json}`
+- Complete: `tests/codex/sdd-behavior/results/lean-risk-scaled/runs/{baseline-finishing-return-v2,candidate-final-r4-paired}/{manifest.json,summary.md,raw/*.json}`
+- Create: `tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final-r4/` with the exact-revision edge samples, retained smoke bundle/artifacts/trace, checked summary, and independent audit.
 - Modify: `docs/testing.md`
 - Modify: `README.md`
 - Modify: `RELEASE-NOTES.md`
@@ -568,21 +597,22 @@
 
 **Interfaces and contracts:**
 
-- The candidate summary pairs each scenario and repetition with its baseline, revision, assertions, counters, and raw evidence.
+- `candidate-final-r3` is the authoritative result for the eight original paired scenarios. `candidate-final-r4-paired` is the authoritative five- or conditionally ten-sample RED/GREEN result for the revised finishing-return scenario. `candidate-final-r4` holds five passing samples for each of the three candidate-only edge scenarios plus the retained successful smoke; its summary does not claim a synthetic baseline.
 - Documentation describes the normal pipeline, removed `refining-plans`, risk-scaled cadence, two-round breaker, generic role fallback, and sole full-suite owner.
 
 **Dependencies:** Tasks 1–8 must be committed and their run manifests must record their exact revisions.
 
 **Risk class and triggers:** `review-required`; public documentation, cross-task integration, and destructive finishing behavior.
 
-**Focused verification lane:** all eight final paired scenario sets, one successful end-to-end smoke run, static/workspace/package tests, and stale-reference search.
+**Focused verification lane:** all eight original paired scenario sets, the five- or conditionally ten-sample paired finishing-return revision, five candidate-only samples for each of the three final exact-revision edge scenarios, one successful end-to-end smoke run, static/workspace/package tests, and stale-reference search.
 
 **Acceptance criteria:**
 
-- Candidate count matches each final five- or ten-sample baseline set and every candidate sample passes.
-- Each behavior used to justify wording changes improves by at least two samples; baseline 5/5 behaviors do not retain unnecessary extra wording.
+- For the eight original scenarios and revised finishing-return scenario only, candidate count matches each five- or ten-sample baseline set and every candidate sample passes.
+- Each behavior used to justify wording changes improves by at least two samples; baseline 5/5 behaviors do not retain unnecessary extra wording. The three candidate-only edge probes each run exactly five times and must pass 5/5; they are invariant checks, not improvement claims.
 - One clean smoke execution catches and rules on the seeded preflight issue, batches ordinary work, isolates the risky task, fixes its seeded implementation defect after one correction, completes final review and durable report handoff, runs finishing's sole complete suite, creates the report-only commit, and cleans only owned temporary state.
 - The separate circuit-breaker samples, not the successful smoke run, stop after two failed corrections.
+- Producer-return scenarios cover stale and suite-failed handoffs, archival of rejected evidence, refreshed final review at a new HEAD, preservation of the separate final-evidence count, and refusal to retry the failed HEAD.
 - Static, workspace, packaging, explicit-trigger, and relevant runtime tests pass from a clean checkout.
 - Repository search finds no stale live role, five-round, per-task-unconditional-review, duplicate-review-owner, or refining-plans route.
 
@@ -593,7 +623,10 @@
 
 **Verification:**
 
-- Run: `bash tests/codex/sdd-behavior/test-score-results.sh && python3 tests/codex/sdd-behavior/score-results.py tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final`
+- Run: `bash tests/codex/sdd-behavior/test-score-results.sh`
+- Run: `python3 tests/codex/sdd-behavior/score-results.py tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final-r3 --baseline tests/codex/sdd-behavior/results/lean-risk-scaled/runs/baseline-d9a937091926 --baseline tests/codex/sdd-behavior/results/lean-risk-scaled/runs/baseline-fallback-v2`
+- Run: `python3 tests/codex/sdd-behavior/score-results.py tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final-r4-paired --baseline tests/codex/sdd-behavior/results/lean-risk-scaled/runs/baseline-finishing-return-v2`
+- Run: `python3 tests/codex/sdd-behavior/score-results.py tests/codex/sdd-behavior/results/lean-risk-scaled/runs/candidate-final-r4`
 - Run: `bash tests/claude-code/test-sdd-workspace.sh && bash tests/claude-code/test-sdd-custom-contracts.sh && bash tests/claude-code/test-custom-policy-contracts.sh && bash tests/claude-code/test-worktree-path-policy.sh && bash tests/claude-code/test-lean-delivery-contracts.sh`
 - Run: `bash tests/codex/test-package-codex-plugin.sh`
 - Expected: every command exits zero and the scored candidate meets all thresholds.
@@ -645,9 +678,10 @@ The gate must answer:
 - The third attempted correction never starts.
 - Missing project roles preserve behavior through generic fresh agents.
 - A stale report, modified implementation after verification, or refused cleanup stops safely.
+- A valid stale or suite-failed handoff returns durably to its producer, refreshes final evidence at a new HEAD within the preserved two-round budget, and never reruns finishing against the failed HEAD.
 - No surviving skill claims ownership of another stage's gate.
 
-## Plan Self-Review
+## Author Self-Review
 
 - Spec coverage: all scope items in sections 4 through 9 map to Tasks 1 through 9.
 - Scope: no GSD, frontend-direction, visual-companion, application-production, or upstream-PR work is included.
@@ -656,6 +690,25 @@ The gate must answer:
 - TDD order: every task reads pointers, writes failing assertions, verifies RED, makes the minimum change, then verifies/self-reviews/commits.
 - Placeholders: dynamic raw-result filenames are bounded by fixed scenario/repetition naming; no requirement or implementation decision is deferred.
 - Bootstrap: this plan names only root-controlled `executing-plans`; current SDD is a test subject, never the controller.
+
+## Readiness Record
+
+**Author self-review:** Complete after correcting the plan header and review record; assigning the final-evidence return protocol and all live role, taxonomy, specialist-profile, and routing references to explicit task owners; adding the missing paired producer-return behavior probe; and making the r3 paired, r4 paired, and r4 candidate-only scoring commands unambiguous.
+
+**Independent readiness gate:** READY after correction round 2 and one user-authorized, FX-1-only breaker exception; the same reviewer found no fix-introduced inconsistency.
+
+**Result:** READY
+
+| ID | Disposition | Ruling or resolution | Evidence carried forward |
+| --- | --- | --- | --- |
+| DC-1 | BLOCKING | Corrected the self-hosting plan so it satisfies the same handoff schema imposed on generated plans. | Header, Author Self-Review, and this Readiness Record; regression assertions in `tests/claude-code/test-lean-delivery-contracts.sh`. |
+| PR-1 | BLOCKING | Extended Tasks 4, 6, 7, and 9 with the separate final-evidence count, producer-return identity, rejected-attempt archival, refreshed new-HEAD evidence/review, preserved two-round budget, and failed-HEAD non-retry. | Report contract and producer/consumer acceptance and verification clauses. |
+| PR-2 | BLOCKING | Added `skills/gathering-topic-context/SKILL.md` to Task 8 ownership and required advertised-role checking plus the same-prompt untyped fresh fallback. | Task 8 files, acceptance criteria, and focused verification. |
+| PR-3 | BLOCKING | Added the Java checklist to Task 5 and the brainstorming checklist/routing references to Task 8; required the shared taxonomy and risk-scaled route. | Task 5 and Task 8 files, contracts, acceptance criteria, and verification. |
+| PR-1-R1 | BLOCKING | Expanded and assigned `finishing-evidence.md` plus baseline-matched paired RED/GREEN result paths to cover suite failure, identity/count marker, archival, refreshed new-HEAD review, preserved breaker state, and failed-HEAD non-retry. | Task 7 files, acceptance criteria, verification, and `baseline-finishing-return-v2` / `candidate-final-r4-paired`. |
+| PR-4 | BLOCKING | Split the authoritative final evidence into r3 original paired, r4 paired final-evidence transition, and r4 candidate-only edge probes; fixed exact commands, counts, and pass/improvement rules. | Task 9 files, interface, focused lane, acceptance criteria, and commands. |
+| FX-1 | BLOCKING | The human partner explicitly authorized one narrow breaker exception. Reconciled every revised finishing-return count: start at five, and only a 4/5 baseline expands both baseline and candidate to ten. | Task 7 acceptance/verification and Task 9 evidence identity/focused lane; no skill behavior or scenario content changed. |
+| FX-1-R1 | INVALID | The same reviewer confirmed the plan now applies one count rule throughout and the wording-only correction introduced no inconsistency. | Final scoped readiness verdict at `be9db7a`: READY. |
 
 ## Continuation Prompt
 

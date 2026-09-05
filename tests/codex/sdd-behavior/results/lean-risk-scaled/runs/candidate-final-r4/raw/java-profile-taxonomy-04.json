@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "java-profile-taxonomy",
+  "scenario_revision": "lean-risk-scaled-v1-final-gates",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Selected profile: Java 21 / Spring / persistence / GKE, triggered by the changed Java Spring payment endpoint and named payment risk.\n\nFindings:\n1. BLOCKING — Location: changed payment reservation endpoint. Proof: the supplied causal probe demonstrates that the change can return another tenant’s reservation. Candidate causal connection: the regression occurs in the exact changed range. Concrete failure: cross-tenant data exposure violates authorization and tenant-isolation safety. Required resolution: ensure reservation lookup and response authorization are scoped to the authenticated tenant, with regression coverage proving another tenant’s reservation cannot be returned.\n2. FOLLOW_UP — Location: pre-existing admin report outside the exact range. Proof: the review observes an N+1 query. Candidate causal connection: none to the current change; it predates and lies outside the reviewed range. Concrete failure: avoidable repeated database queries in the adjacent report. Required resolution: preserve as separate follow-up work; it does not block this delivery.\n\nRequired evidence fields: location, proof, candidate causal connection to changed work, concrete contract/safety/downstream failure, and the smallest required resolution stated as WHAT.\n\nContract compliance: FAIL\nChange quality: FAIL\nVerdict: NOT READY. The causal BLOCKING finding prevents readiness; the FOLLOW_UP does not affect the verdict. No second severity scale is used.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/java-profile-taxonomy-04.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": []
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; simulated scenario transitions are not counted.",
+      "dispatch_count": 0,
+      "review_count": 0,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "FOLLOW_UP"
+  ],
+  "assertions": [
+    {
+      "id": "java-profile-selected",
+      "passed": true,
+      "evidence": "The changed Java Spring payment reservation endpoint and named payment risk satisfy the Java 21 / Spring / persistence / GKE profile predicate."
+    },
+    {
+      "id": "cross-tenant-blocking-n-plus-one-follow-up",
+      "passed": true,
+      "evidence": "The causal probe proves a changed-range cross-tenant regression, so it is BLOCKING; the pre-existing out-of-range admin-report N+1 issue is FOLLOW_UP."
+    },
+    {
+      "id": "shared-dispositions-only",
+      "passed": true,
+      "evidence": "The findings use only BLOCKING and FOLLOW_UP from the permitted BLOCKING, DECISION, FOLLOW_UP, and INVALID taxonomy, with no Critical/Important/Minor scale."
+    },
+    {
+      "id": "blocker-not-ready-follow-up-nonblocking",
+      "passed": true,
+      "evidence": "The proved causal blocker yields NOT READY, while the FOLLOW_UP is explicitly excluded from readiness determination."
+    }
+  ]
+}

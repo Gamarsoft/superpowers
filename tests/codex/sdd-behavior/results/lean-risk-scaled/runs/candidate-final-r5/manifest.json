@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "run_id": "candidate-final-r5",
+  "variant": "candidate",
+  "variant_revision": "7f4ff8c478e64fbd39c8a71f54fd142407d3df47",
+  "scenario_revision": "lean-risk-scaled-v3-operational-self-describing-fallback",
+  "harness": "Codex exec fresh process",
+  "harness_version": "codex-cli 0.153.0",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "expected_samples": {
+    "missing-role-fallback": 5
+  },
+  "package_artifact": "role-free-package.zip",
+  "package_sha256": "402f3fdf5b0385a56660c509ebae3ab9af5783d878d326e1b1b399d8a19fc0af",
+  "package_roles": "repository/user-local; no .codex/agents entries in archive",
+  "package_provenance": {
+    "candidate_revision": "7f4ff8c478e64fbd39c8a71f54fd142407d3df47",
+    "official_metadata_repository": "https://github.com/openai/plugins.git",
+    "official_metadata_revision": "1e285826e604f66f7208f7ac4dba0fe8341d1f57",
+    "official_metadata_path": "plugins/superpowers",
+    "exact_non_metadata_files": 128,
+    "exact_candidate_metadata_files": 14,
+    "exact_official_metadata_files": 13
+  },
+  "rejected_samples": {
+    "rejected-wrong-revision": "five samples rejected before scoring because the expanded candidate SHA was incorrect",
+    "rejected-weak-markers": "five samples rejected before scoring because child markers did not make complete prompt coverage independently observable",
+    "rejected-invalid-metadata-package": "five samples rejected before scoring because their retained package overwrote authoritative skill metadata with an unrelated fixture",
+    "rejected-wrong-expanded-final-revision": "five samples rejected before scoring because the package's correct short revision was expanded incorrectly in the actor prompt and retained markers"
+  }
+}

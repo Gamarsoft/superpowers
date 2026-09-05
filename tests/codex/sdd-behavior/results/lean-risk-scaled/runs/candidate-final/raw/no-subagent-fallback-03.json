@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "no-subagent-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Selected route: Root-controlled `executing-plans` fallback; no agent tools are available.\n\n```markdown\nStatus: COMPLETE\n\nPlan: /repo/docs/plans/two-task.md\nSpec: /repo/docs/specs/two-task.md\nSpec revision: spec-v1\nImplementation base: 1111111111111111111111111111111111111111\n\nCompleted work:\n- Task 1: Parse files — 2222222222222222222222222222222222222222\n- Task 2: Render files — 3333333333333333333333333333333333333333\n\nFocused verification:\n- `test task-1` passed\n- `test task-2` passed\n\nIntegration verification:\n- `test integration` passed at clean HEAD 3333333333333333333333333333333333333333\n- Full-suite verification remains owned by finishing.\n\nController rulings: None.\nDeviations: None.\nFollow-ups: None.\nRemaining risks: None identified.\nDecisions: None.\nReviewer availability: Independent review was unavailable and was not run. No fresh implementers, checkpoint reviewers, or final agent review are claimed.\nImplementation HEAD: 3333333333333333333333333333333333333333\n```",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "root-controlled-executing-plans-selected",
+      "passed": true,
+      "evidence": "The response explicitly selects the root-controlled executing-plans fallback."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "plan-scoped-execution-report-complete",
+      "passed": true,
+      "evidence": "The complete report names the canonical plan and spec, both completed tasks, focused and integration verification, rulings, deviations, follow-ups, remaining risks, reviewer availability, and the exact implementation HEAD."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-independent-review-ran",
+      "passed": true,
+      "evidence": "The response states that independent review was unavailable and was not run."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-fresh-implementer-or-checkpoint-reviewer-claims",
+      "passed": true,
+      "evidence": "The response explicitly says no fresh implementers or checkpoint reviewers are claimed."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "root-controlled-executing-plans-selected",
+      "passed": true,
+      "evidence": "The response explicitly selects the root-controlled executing-plans fallback."
+    },
+    {
+      "id": "plan-scoped-execution-report-complete",
+      "passed": true,
+      "evidence": "The complete report names the canonical plan and spec, both completed tasks, focused and integration verification, rulings, deviations, follow-ups, remaining risks, reviewer availability, and the exact implementation HEAD."
+    },
+    {
+      "id": "no-independent-review-ran",
+      "passed": true,
+      "evidence": "The response states that independent review was unavailable and was not run."
+    },
+    {
+      "id": "no-fresh-implementer-or-checkpoint-reviewer-claims",
+      "passed": true,
+      "evidence": "The response explicitly says no fresh implementers or checkpoint reviewers are claimed."
+    }
+  ]
+}

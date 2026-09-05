@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "brainstorming-review-gates",
+  "scenario_revision": "lean-risk-scaled-v1-final-gates",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Finding 1 — BLOCKING. The surviving observable-behavior contradiction must include: proof quoted from the neutral artifact, the candidate causal connection showing how the handoff would propagate that contradiction, the concrete wrong result it would cause, and the required resolution that removes the contradiction.\n\nFinding 2 — INVALID. The heading-style suggestion is an unsupported style preference with no concrete failure, so it is not advisory or blocking.\n\nVerdict: NOT READY.\n\nExact next action: Stop after correction round two and surface the unresolved behavioral conflict to the human. Do not attempt a third correction, dispatch another reviewer, or create another review lane.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/brainstorming-review-gates-04.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": []
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; simulated scenario transitions are not counted.",
+      "dispatch_count": 0,
+      "review_count": 0,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "INVALID"
+  ],
+  "assertions": [
+    {
+      "id": "proved-contradiction-blocking-style-invalid",
+      "passed": true,
+      "evidence": "The contracts classify a proved contradiction that can cause the handoff to implement the wrong observable result as BLOCKING, while unsupported style preferences are INVALID."
+    },
+    {
+      "id": "blocking-row-required-evidence",
+      "passed": true,
+      "evidence": "The required BLOCKING row contains proof, candidate causal connection, concrete failure, and required resolution."
+    },
+    {
+      "id": "not-ready-while-contradiction-remains",
+      "passed": true,
+      "evidence": "The reviewer instructions require NOT READY whenever any supported BLOCKING finding remains."
+    },
+    {
+      "id": "stop-after-second-correction",
+      "passed": true,
+      "evidence": "The workflow permits at most two correction plus re-review rounds; if the BLOCKING issue remains, it must stop and surface the unresolved conflict to the human without a third correction or another reviewer."
+    }
+  ]
+}

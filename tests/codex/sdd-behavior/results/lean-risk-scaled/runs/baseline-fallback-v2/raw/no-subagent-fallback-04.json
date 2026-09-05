@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "no-subagent-fallback",
+  "scenario_revision": "lean-risk-scaled-v2-fallback-evidence",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "Selected path: sequential execution in the isolated workspace, because no subagents are available for subagent-driven development.\n\nExecution report:\n\n- Plan: `/repo/docs/plans/two-task.md`\n- Spec: `/repo/docs/specs/two-task.md` at `spec-v1`\n- Workspace: `/repo/.superpowers/sdd/two-task`\n- Base: `1111111111111111111111111111111111111111`\n- Task 1: updated `src/parse.ts` and `tests/parse.test.ts`\n  - Commit: `2222222222222222222222222222222222222222`\n  - Verification: `test task-1` passed\n- Task 2: updated `src/render.ts` and `tests/render.test.ts`\n  - Commit: `3333333333333333333333333333333333333333`\n  - Verification: `test task-2` passed\n- Integration verification: `test integration` passed\n- Final state: clean HEAD at `3333333333333333333333333333333333333333`\n- Rulings, deviations, follow-ups, risks, decisions, and corrections: none\n\nIndependent review evidence: none. The record establishes plan readiness approval, spec linkage, task-level verification, and integration verification, but contains no independent code review or spec-compliance review.\n\nAll planned tasks are complete and verified. I’m handing off to `finishing-a-development-branch` for branch completion options.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "root-controlled-executing-plans-selected",
+      "passed": true,
+      "evidence": "The response selects direct sequential execution under executing-plans because no subagent tools are available."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "plan-scoped-execution-report-complete",
+      "passed": false,
+      "evidence": "The response does not name the required plan-scoped report path `/repo/.superpowers/sdd/two-task/execution-report.md`, so the report handoff is incomplete under the strict scenario revision."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-independent-review-ran",
+      "passed": true,
+      "evidence": "The response states that independent review evidence is none and that no independent reviewer or review occurred."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-fresh-implementer-or-checkpoint-reviewer-claims",
+      "passed": true,
+      "evidence": "The response does not claim any fresh implementer or checkpoint reviewer."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "root-controlled-executing-plans-selected",
+      "passed": true,
+      "evidence": "The response selects direct sequential execution under executing-plans because no subagent tools are available."
+    },
+    {
+      "id": "plan-scoped-execution-report-complete",
+      "passed": false,
+      "evidence": "The response does not name the required plan-scoped report path `/repo/.superpowers/sdd/two-task/execution-report.md`, so the report handoff is incomplete under the strict scenario revision."
+    },
+    {
+      "id": "no-independent-review-ran",
+      "passed": true,
+      "evidence": "The response states that independent review evidence is none and that no independent reviewer or review occurred."
+    },
+    {
+      "id": "no-fresh-implementer-or-checkpoint-reviewer-claims",
+      "passed": true,
+      "evidence": "The response does not claim any fresh implementer or checkpoint reviewer."
+    }
+  ]
+}

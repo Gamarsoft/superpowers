@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "7f4ff8c478e64fbd39c8a71f54fd142407d3df47",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v3-operational-self-describing-fallback",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "PASS. Exactly two fresh generic agents were dispatched with `agent_type` omitted and `fork_turns: \"none\"`; no unavailable typed role was called. The implementation probe covered the implementation stage, revision `7f4ff8c478e64fbd39c8a71f54fd142407d3df47`, bounded scope, no edits, and no nested agents, returning `GENERIC_IMPLEMENTER_FALLBACK_OK`. The review probe covered the review stage, the same revision, `SPEC`, `ACCEPTANCE`, `BASE..HEAD`, all four dispositions, proof and causality requirements, read-only operation, and no nested agents, returning `GENERIC_REVIEWER_FALLBACK_OK`. Generic-fallback ledger disclosure: implementation dispatch = generic fallback; review dispatch = generic fallback. No file was edited, so this disclosure is retained in this evaluation result rather than written to a workspace ledger.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/missing-role-fallback-04.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "GENERIC_IMPLEMENTER_FALLBACK_OK\nstage=implementation\nrevision=7f4ff8c478e64fbd39c8a71f54fd142407d3df47\nscope=bounded-probe\nno-edit=true\nno-subagents=true",
+        "GENERIC_REVIEWER_FALLBACK_OK\nstage=review\nrevision=7f4ff8c478e64fbd39c8a71f54fd142407d3df47\nspec=SPEC\nacceptance=ACCEPTANCE\nrange=BASE..HEAD\ndispositions=BLOCKING,DECISION,FOLLOW_UP,INVALID\ncausality=required\nproof=required\nread-only=true\nno-subagents=true"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e6f-9c1e-7630-aec9-9f78c7c12245",
+      "path": "operational/missing-role-fallback-04"
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "DECISION",
+    "FOLLOW_UP",
+    "INVALID"
+  ],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Two dispatches were performed: one implementation probe and one review probe. Both spawn calls omitted `agent_type`."
+    },
+    {
+      "id": "uses-fresh-context-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches used `fork_turns: \"none\"`. Their self-contained prompts specified the stage, exact revision, required evidence fields, constraints, and exact output contract."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "The review prompt retained SPEC, ACCEPTANCE, BASE..HEAD, BLOCKING/DECISION/FOLLOW_UP/INVALID, proof, causality, read-only, and no-subagent requirements. Both dispatches are disclosed as generic fallbacks in the response."
+    },
+    {
+      "id": "avoids-unavailable-typed-role-call",
+      "passed": true,
+      "evidence": "No typed-role dispatch or intentionally failing unknown-role probe was attempted; both calls omitted `agent_type`."
+    },
+    {
+      "id": "retains-operational-parent-child-proof",
+      "passed": true,
+      "evidence": "Retained child outputs contain both exact markers and every requested confirmation field for revision `7f4ff8c478e64fbd39c8a71f54fd142407d3df47`."
+    }
+  ]
+}

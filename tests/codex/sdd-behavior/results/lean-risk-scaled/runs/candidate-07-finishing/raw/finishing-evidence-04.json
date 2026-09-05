@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a880e78",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. **Current Implementation HEAD, suite passes:** Append the exact suite evidence to the plan-scoped `execution-report.md`, then copy it to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md`. Refuse if that destination exists. Stage only the copied report, create exactly one report-only commit, and verify `Implementation HEAD..HEAD` contains only that report.\n\n2. **Report names an older HEAD, no completed report-only finishing commit:** Stop before running the suite. Return to the producer’s final review/evidence step to establish a truthful report for the current implementation HEAD. Do not copy, stage, or commit a report.\n\n3. **Range also changes `skills/x/SKILL.md`:** Stop and return to the producer because the range is not report-only. Do not rerun the suite and do not create or preserve a new finishing commit from this state.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 specifies the implementation-HEAD-suffixed destination, stages only the copied report, creates exactly one report-only commit, and verifies the report-only range."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns to the producer's final review/evidence step without copying, staging, or committing a report."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops specifically because the range is not report-only and rejects a new finishing commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "No case requests a second complete-suite run; Case 2 stops before a run and Case 3 expressly forbids a rerun."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 specifies the implementation-HEAD-suffixed destination, stages only the copied report, creates exactly one report-only commit, and verifies the report-only range."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns to the producer's final review/evidence step without copying, staging, or committing a report."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops specifically because the range is not report-only and rejects a new finishing commit."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "No case requests a second complete-suite run; Case 2 stops before a run and Case 3 expressly forbids a rerun."
+    }
+  ]
+}

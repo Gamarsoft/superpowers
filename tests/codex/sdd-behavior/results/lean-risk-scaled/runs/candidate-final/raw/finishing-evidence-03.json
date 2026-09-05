@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. Append exact suite evidence; copy to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md` without collision; stage only that file; make one report-only commit; verify `Implementation HEAD..HEAD` contains only the report; then present integration choices.\n\n2. Stop before running the suite. Return to the producer for final review against the current implementation HEAD. No destination file or commit.\n\n3. Stop and return to the producer because `Implementation HEAD..HEAD` contains implementation code (`skills/x/SKILL.md`). Do not rerun the suite, copy a report, or create another report commit.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies without collision to the implementation-HEAD-suffixed path, stages only that file, makes one report-only commit, verifies the range contains only the report, and then presents integration choices."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite, returns to the producer for final review against the current implementation HEAD, and creates neither a destination file nor a commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because Implementation HEAD..HEAD contains skills/x/SKILL.md and forbids rerunning the suite, copying a report, or creating another report commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "No case prescribes a second full-suite run: case 2 stops before running it, and case 3 explicitly forbids rerunning it."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies without collision to the implementation-HEAD-suffixed path, stages only that file, makes one report-only commit, verifies the range contains only the report, and then presents integration choices."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite, returns to the producer for final review against the current implementation HEAD, and creates neither a destination file nor a commit."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because Implementation HEAD..HEAD contains skills/x/SKILL.md and forbids rerunning the suite, copying a report, or creating another report commit."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "No case prescribes a second full-suite run: case 2 stops before running it, and case 3 explicitly forbids rerunning it."
+    }
+  ]
+}

@@ -77,7 +77,34 @@ def validate_manifest(path: Path) -> dict[str, object]:
     for scenario, count in expected.items():
         if not isinstance(scenario, str) or not isinstance(count, int) or count < 1:
             raise ContractError(f"{path}: invalid expected sample entry")
+    revisions = data["scenario_revision"]
+    if isinstance(revisions, str):
+        if not revisions:
+            raise ContractError(f"{path}: scenario_revision must not be empty")
+    elif isinstance(revisions, dict):
+        if set(revisions) != set(expected):
+            raise ContractError(
+                f"{path}: per-scenario revisions must match expected_samples"
+            )
+        if any(
+            not isinstance(revision, str) or not revision
+            for revision in revisions.values()
+        ):
+            raise ContractError(f"{path}: invalid per-scenario revision")
+    else:
+        raise ContractError(
+            f"{path}: scenario_revision must be text or a per-scenario object"
+        )
     return data
+
+
+def expected_scenario_revision(
+    manifest: dict[str, object], scenario: str
+) -> object:
+    revisions = manifest["scenario_revision"]
+    if isinstance(revisions, dict):
+        return revisions[scenario]
+    return revisions
 
 
 def validate_result(
@@ -92,7 +119,6 @@ def validate_result(
     for field in (
         "variant",
         "variant_revision",
-        "scenario_revision",
         "model",
         "reasoning_effort",
         "plugins",
@@ -104,6 +130,11 @@ def validate_result(
     scenario = data["scenario"]
     if scenario not in manifest["expected_samples"]:
         raise ContractError(f"{path}: unexpected scenario {scenario!r}")
+    expected_revision = expected_scenario_revision(manifest, str(scenario))
+    if data["scenario_revision"] != expected_revision:
+        raise ContractError(
+            f"{path}: scenario_revision does not match manifest for {scenario}"
+        )
     repetition = data["repetition"]
     if not isinstance(repetition, int) or repetition < 1:
         raise ContractError(f"{path}: repetition must be a positive integer")
@@ -220,11 +251,27 @@ def compare_candidate(
     candidate: list[dict[str, object]], baseline: list[dict[str, object]]
 ) -> None:
     candidate_totals = totals(candidate)
-    baseline_totals = totals(baseline)
     for scenario, (candidate_passed, candidate_count) in candidate_totals.items():
-        if scenario not in baseline_totals:
-            raise ContractError(f"baseline has no scenario {scenario}")
-        baseline_passed, baseline_count = baseline_totals[scenario]
+        candidate_revision = next(
+            result["scenario_revision"]
+            for result in candidate
+            if result["scenario"] == scenario
+        )
+        matching_baseline = [
+            result
+            for result in baseline
+            if result["scenario"] == scenario
+            and result["scenario_revision"] == candidate_revision
+        ]
+        if not matching_baseline:
+            raise ContractError(
+                f"baseline has no {scenario} samples at revision "
+                f"{candidate_revision!r}"
+            )
+        baseline_count = len(matching_baseline)
+        baseline_passed = sum(
+            result["outcome"] == "pass" for result in matching_baseline
+        )
         if candidate_count != baseline_count:
             raise ContractError(
                 f"{scenario}: candidate count {candidate_count} != baseline {baseline_count}"
@@ -238,12 +285,20 @@ def compare_candidate(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("run_dir", type=Path)
-    parser.add_argument("--baseline", type=Path)
+    parser.add_argument(
+        "--baseline",
+        type=Path,
+        action="append",
+        help="repeat to provide scenario baselines at different revisions",
+    )
     args = parser.parse_args()
     try:
         manifest, results = load_run(args.run_dir)
         if args.baseline:
-            _, baseline = load_run(args.baseline)
+            baseline: list[dict[str, object]] = []
+            for baseline_path in args.baseline:
+                _, baseline_results = load_run(baseline_path)
+                baseline.extend(baseline_results)
             compare_candidate(results, baseline)
         print_summary(manifest, results)
     except ContractError as error:

@@ -66,8 +66,16 @@ Apply when the diff touches Java/JVM code, Spring Boot configuration, persistenc
 - Secrets are mounted or injected through approved runtime mechanisms, not committed or baked into images.
 - Build/image changes preserve reproducibility, small attack surface, and non-root runtime where applicable.
 
-## Review severity hints
+## Disposition hints
 
-Treat as Critical when the diff can cause unauthorized access, cross-tenant data exposure, token/secret leakage, data loss, payment/booking corruption, or broken authentication.
+This profile supplies proof targets, not a second severity system. Classify every
+finding with the caller's shared dispositions.
 
-Treat as Important when the diff introduces N+1 queries, unbounded memory/concurrency, missing idempotency for retryable writes, unsafe transactions, missing tests for changed behavior, or runtime settings likely to break in Kubernetes.
+Unauthorized access, cross-tenant exposure, secret leakage, data loss,
+payment/booking corruption, or broken authentication can be `BLOCKING` when the
+diff is causally connected and the review proves the failure. N+1 queries,
+unbounded memory or concurrency, missing retry idempotency, unsafe transactions,
+missing tests for changed behavior, or Kubernetes-breaking runtime settings can
+also be `BLOCKING` when they violate the approved contract or downstream safety
+with the same proof and causality. Otherwise preserve a real adjacent issue as
+`FOLLOW_UP`; unsupported or preference-only claims are `INVALID`.

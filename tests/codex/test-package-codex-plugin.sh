@@ -180,7 +180,15 @@ assert_equals "$manifest_summary" "superpowers	$expected_version	./skills/	$sour
 manifest_agents="$(read_archive_file "$archive" .codex-plugin/plugin.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get("agents"))')"
 assert_equals "$manifest_agents" "None" "manifest does not advertise an unsupported role field"
 
-for fallback_skill in brainstorming gathering-topic-context requesting-code-review subagent-driven-development writing-plans; do
+source_brainstorming_metadata="$(cat "$REPO_ROOT/skills/brainstorming/agents/openai.yaml")"
+packaged_brainstorming_metadata="$(read_archive_file "$archive" skills/brainstorming/agents/openai.yaml)"
+assert_equals "$packaged_brainstorming_metadata" "$source_brainstorming_metadata" "source-owned OpenAI metadata remains authoritative"
+
+fixture_executing_metadata="$(cat "$metadata_source/skills/executing-plans/agents/openai.yaml")"
+packaged_executing_metadata="$(read_archive_file "$archive" skills/executing-plans/agents/openai.yaml)"
+assert_equals "$packaged_executing_metadata" "$fixture_executing_metadata" "prior official package fills missing OpenAI metadata"
+
+for fallback_skill in brainstorming executing-plans gathering-topic-context requesting-code-review subagent-driven-development writing-plans; do
   fallback_text="$(read_archive_file "$archive" "skills/$fallback_skill/SKILL.md")"
   assert_contains "$fallback_text" 'omit `agent_type`' "$fallback_skill preserves generic role fallback in the archive"
 done

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "7f4ff8cfe2c33982ef7623ed78d8afdcfb5f2807",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v3-operational-self-describing-fallback",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "PASS. Exactly two harmless generic probes were dispatched. Both omitted `agent_type` and used `fork_turns: \"none\"`; no unavailable typed role was called.\n\nImplementation probe coverage: stage=implementation, revision=7f4ff8cfe2c33982ef7623ed78d8afdcfb5f2807, scope=bounded-probe, no-edit=true, no-subagents=true. Observed marker: GENERIC_IMPLEMENTER_FALLBACK_OK.\n\nReview probe coverage: stage=review, revision=7f4ff8cfe2c33982ef7623ed78d8afdcfb5f2807, spec=SPEC, acceptance=ACCEPTANCE, range=BASE..HEAD, dispositions=BLOCKING,DECISION,FOLLOW_UP,INVALID, causality=required, proof=required, read-only=true, no-subagents=true. Observed marker: GENERIC_REVIEWER_FALLBACK_OK.\n\nGeneric-fallback ledger disclosure: the implementation and review probes used fresh generic agents because the runtime-advertised roles contained neither `sp_implementer` nor `sp_reviewer`; required implementation and review coverage was retained unchanged.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/missing-role-fallback-04.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "GENERIC_IMPLEMENTER_FALLBACK_OK\nstage=implementation\nrevision=7f4ff8cfe2c33982ef7623ed78d8afdcfb5f2807\nscope=bounded-probe\nno-edit=true\nno-subagents=true",
+        "GENERIC_REVIEWER_FALLBACK_OK\nstage=review\nrevision=7f4ff8cfe2c33982ef7623ed78d8afdcfb5f2807\nspec=SPEC\nacceptance=ACCEPTANCE\nrange=BASE..HEAD\ndispositions=BLOCKING,DECISION,FOLLOW_UP,INVALID\ncausality=required\nproof=required\nread-only=true\nno-subagents=true"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e6c-48ac-7ee0-8af0-e82bf5b1dc38",
+      "path": "operational/missing-role-fallback-04"
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Two dispatches were performed: one implementation probe and one review probe. Both spawn calls omitted `agent_type`."
+    },
+    {
+      "id": "uses-fresh-context-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches used `fork_turns: \"none\"`. The retained outputs reproduce the required stage, exact revision, scope or review placeholders, constraints, and coverage fields from their self-contained prompts."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "The review probe retained SPEC, ACCEPTANCE, BASE..HEAD, all four dispositions, proof and causality requirements, read-only behavior, and no-subagent behavior. The fallback disclosure records generic dispatch for both absent typed roles."
+    },
+    {
+      "id": "avoids-unavailable-typed-role-call",
+      "passed": true,
+      "evidence": "No dispatch supplied `sp_implementer`, `sp_reviewer`, or any other `agent_type`; therefore no intentionally failing unavailable-role probe was attempted."
+    },
+    {
+      "id": "retains-operational-parent-child-proof",
+      "passed": true,
+      "evidence": "The two child results were retained and contain the exact markers `GENERIC_IMPLEMENTER_FALLBACK_OK` and `GENERIC_REVIEWER_FALLBACK_OK` followed by every required proof field."
+    }
+  ]
+}

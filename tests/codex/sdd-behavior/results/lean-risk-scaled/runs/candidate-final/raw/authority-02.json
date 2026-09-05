@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- Private helper — **AUTONOMOUS HOW**. Approve it. Record: “Use a private helper because it preserves the approved observable contract and keeps the logic isolated. If wrong, the concrete cost is a small internal refactor back to inline logic.”\n- Public error result — **DECISION / PAUSE AFFECTED WORK**. The controller does not choose between `not_found` and `invalid_request`; it asks: “For this case, should the public error remain `not_found`, or change to `invalid_request`?”\n- Unaffected work continues.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The response approves the helper as AUTONOMOUS HOW and records a small internal refactor back to inline logic as the concrete cost if wrong."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "It classifies the public error result as DECISION, pauses affected work, and asks one bounded question choosing between not_found and invalid_request."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-helper-human-question",
+      "passed": true,
+      "evidence": "The only user question concerns the public error result, not the helper."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": ["DECISION"],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The response approves the helper as AUTONOMOUS HOW and records a small internal refactor back to inline logic as the concrete cost if wrong."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "It classifies the public error result as DECISION, pauses affected work, and asks one bounded question choosing between not_found and invalid_request."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "The only user question concerns the public error result, not the helper."
+    }
+  ]
+}

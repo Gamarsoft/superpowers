@@ -177,9 +177,10 @@ SDD writes its report in the ignored SDD workspace and records the exact `implem
 - autonomous rulings;
 - accepted implementation deviations;
 - parked follow-ups;
-- remaining risks and user decisions.
+- remaining risks and user decisions; and
+- the explicit final-evidence correction count, separate from task/unit fixes.
 
-`finishing-a-development-branch` accepts the report only when `implementation HEAD` equals the current HEAD. It runs the complete repository suite once at that commit and appends the command and result. A stale report returns to SDD final review before finishing continues.
+`finishing-a-development-branch` accepts the report only when `implementation HEAD` equals the current HEAD. It runs the complete repository suite once for that handed-off commit and appends the command and result. A stale report or failed suite writes a plan-scoped producer-return record and returns to SDD final review. SDD archives the stale handoff, preserves the final-review correction count, and can issue a new report only after refreshed evidence and review at a new `implementation HEAD`; finishing never retries the failed revision.
 
 Finishing then copies the completed report to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md` and creates one report-only commit. It verifies that `implementation HEAD..HEAD` changes only that report. The commit suffix prevents repeated runs or identical plan basenames from overwriting evidence. The report binds code review and test evidence to `implementation HEAD`; the later documentation commit does not pretend to be the code revision under test. Merge, PR, and keep-as-is paths preserve the committed report. An explicitly confirmed discard removes it with the discarded branch.
 
@@ -287,8 +288,9 @@ The controller never starts round three under a new name.
 - Shared schema, build, or cross-module changes run the affected integration lane.
 - Checkpoint review uses the evidence already produced by its tasks.
 - SDD does not run the complete repository suite.
-- `finishing-a-development-branch` runs the complete suite once against the exact `implementation HEAD` recorded by SDD's workspace report.
+- `finishing-a-development-branch` runs the complete suite once against each exact `implementation HEAD` handed off by SDD; a failed HEAD is recorded and never retried.
 - If a final fix changes HEAD, SDD refreshes the affected evidence and final review before finishing runs the suite against the new recorded HEAD.
+- A finishing return preserves the existing final-review two-round correction budget. A new handoff cannot reset that breaker.
 - A reviewer requesting more verification must name the changed risk that the command validates.
 
 ### 6.7 Agent roles
@@ -313,7 +315,7 @@ The core reviewer is stack-neutral. A plan or changed-file predicate selects a p
 - `requesting-code-review` offers ad hoc diff or branch review through `sp_reviewer` or its generic fallback.
 - `receiving-code-review` handles human, forge, and other out-of-band findings. It verifies each claim before action.
 - SDD contains its own task and final review protocol and calls neither skill.
-- `executing-plans` implements the same plan directly when subagents are unavailable. It uses author verification and a final review only when a reviewer is available.
+- `executing-plans` implements the same plan directly when subagents are unavailable. It uses author verification and a final review only when a reviewer is available, with the same two-round correction breaker and producer-return resume contract.
 - `finishing-a-development-branch` owns the only complete-suite run, commits the completed execution report without changing implementation files, presents the integration choice, and performs safe cleanup.
 
 ### 6.10 Waiting and progress

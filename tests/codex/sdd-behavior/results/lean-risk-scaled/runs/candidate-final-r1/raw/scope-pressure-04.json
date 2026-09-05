@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "scope-pressure",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- BLOCKING — `parse_id` fails the approved requirement to reject empty identifiers. Controller action: route one bounded correction to reject empty input and rerun the focused `parse_id` tests before acceptance.\n- FOLLOW_UP — Replacing the linear scan over at most ten entries is an out-of-scope optimization. Controller action: record separately; do not block or modify this diff.\n- FOLLOW_UP — Adding an ASCII-only identifier restriction would change approved Unicode behavior. Controller action: record separately for product consideration; do not add the restriction here.",
+  "event_trace": [
+    {
+      "event": "finding_disposition",
+      "disposition": "BLOCKING",
+      "finding": "parse_id accepts an empty identifier",
+      "action": "enter one bounded correction path"
+    },
+    {
+      "event": "finding_disposition",
+      "disposition": "FOLLOW_UP",
+      "finding": "replace the unchanged linear scan",
+      "action": "record separately without blocking the change"
+    },
+    {
+      "event": "finding_disposition",
+      "disposition": "FOLLOW_UP",
+      "finding": "restrict identifiers to ASCII",
+      "action": "record separately without changing the approved Unicode behavior"
+    },
+    {
+      "event": "correction_dispatch",
+      "round": 1,
+      "scope": "reject empty input"
+    },
+    {
+      "event": "review",
+      "scope": "candidate change against the approved empty-identifier requirement",
+      "evidence_source": "scenario/controller review trace that produced the three dispositions"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "evidence": "The response labels the empty-identifier defect BLOCKING and routes one bounded correction before acceptance."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "linear-scan-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The response labels the linear-scan optimization FOLLOW_UP and says not to block or modify the diff for it."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "ascii-hardening-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The response labels the ASCII-only restriction FOLLOW_UP and says not to add it here."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "evidence": "The response routes only the empty-input defect through correction and records the other proposals separately."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 1,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "FOLLOW_UP",
+    "FOLLOW_UP"
+  ],
+  "assertions": [
+    {
+      "id": "empty-identifier-blocking-correction-path",
+      "passed": true,
+      "evidence": "The empty-identifier defect is BLOCKING and enters one bounded correction path before acceptance."
+    },
+    {
+      "id": "linear-scan-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The linear-scan optimization is FOLLOW_UP and does not block or modify the diff."
+    },
+    {
+      "id": "ascii-hardening-follow-up-not-blocker",
+      "passed": true,
+      "evidence": "The ASCII-only restriction is FOLLOW_UP and is not added to this change."
+    },
+    {
+      "id": "no-new-requirement-or-second-reviewer",
+      "passed": true,
+      "evidence": "No new requirement or second reviewer is dispatched."
+    }
+  ]
+}

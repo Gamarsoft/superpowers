@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a65499b92b25d7401be43c00b4bd8e3e5faf53a5",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v2-operational-fallback",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Dispatch choices: generic_implementation_probe and generic_review_probe were dispatched as fresh generic agents with agent_type omitted and fork_turns set to \"none\". No unavailable typed role was called. Observed markers: GENERIC_IMPLEMENTER_FALLBACK_OK and GENERIC_REVIEWER_FALLBACK_OK. Implementation prompt coverage included the implementation stage, exact candidate revision a65499b92b25d7401be43c00b4bd8e3e5faf53a5, bounded task scope, no nested agents, no edits, and the exact marker. Review prompt coverage included the review stage, exact candidate revision, specification/acceptance and exact-range evidence placeholders, all four dispositions, the causality/proof rule, read-only and no-nested-agent constraints, and the exact marker. Generic-fallback ledger disclosure: both unavailable typed roles were replaced by fresh generic agents using the same complete role coverage; no ledger file was modified because this was a no-edit probe.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/missing-role-fallback-04.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "GENERIC_IMPLEMENTER_FALLBACK_OK",
+        "GENERIC_REVIEWER_FALLBACK_OK"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e5d-ab9c-7e13-81cd-b97d5d2ffc14",
+      "path": "operational/missing-role-fallback-04"
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; every retained parent contains exactly two generic spawn_agent calls and one is the review dispatch.",
+      "dispatch_count": 2,
+      "review_count": 1,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "generic-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Two retained dispatch traces show generic_implementation_probe and generic_review_probe created with agent_type omitted."
+    },
+    {
+      "id": "fresh-context-complete-prompts",
+      "passed": true,
+      "evidence": "Both dispatches used fork_turns=\"none\"; the implementation prompt contained every required implementation field, and the review prompt contained specification/acceptance and exact-range placeholders, four dispositions, causality requirements, and constraints."
+    },
+    {
+      "id": "coverage-preserved-and-fallback-recorded",
+      "passed": true,
+      "evidence": "The generic review prompt retained the full required review contract, and the response records the generic-fallback ledger disclosure for both stages."
+    },
+    {
+      "id": "no-unknown-role-probe",
+      "passed": true,
+      "evidence": "Exactly two dispatches occurred, both with agent_type omitted; no intentionally failing typed-role call was attempted. Parent/child results returned both required exact markers."
+    }
+  ]
+}

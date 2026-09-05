@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "cadence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- Work unit 1: Tasks 1–3 as one ordinary checkpoint batch. Run their focused tests, then one proof-bearing task review.\n- Work unit 2: Task 4 individually. Run its focused test, then one proof-bearing task review.\n- After both units: one separate final integration review.\n\nReview gates before final integration: **2**.\n\nReasons: Tasks 1–3 are same-shaped, file-disjoint, coherently verifiable, compatible, and meet the three-task batch limit. Task 4 involves concurrency, customer funds, and idempotency, so it is review-required and cannot be batched.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "tasks-1-3-one-checkpoint-unit",
+      "passed": true,
+      "evidence": "The response explicitly places Tasks 1–3 in one ordinary checkpoint batch and assigns one review after their focused tests."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "It makes Task 4 an individual work unit with its own proof-bearing review because the task is review-required."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "exactly-two-pre-integration-review-gates",
+      "passed": true,
+      "evidence": "It explicitly reports two review gates before one separate final integration review."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": true,
+      "evidence": "The Tasks 1–3 checkpoint receives one review after the batch, with no per-task reviews."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 2,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "tasks-1-3-one-checkpoint-unit",
+      "passed": true,
+      "evidence": "The response explicitly places Tasks 1–3 in one ordinary checkpoint batch and assigns one review after their focused tests."
+    },
+    {
+      "id": "task-4-individual-review-unit",
+      "passed": true,
+      "evidence": "It makes Task 4 an individual work unit with its own proof-bearing review because the task is review-required."
+    },
+    {
+      "id": "exactly-two-pre-integration-review-gates",
+      "passed": true,
+      "evidence": "It explicitly reports two review gates before one separate final integration review."
+    },
+    {
+      "id": "no-per-task-reviewer-for-tasks-1-3",
+      "passed": true,
+      "evidence": "The Tasks 1–3 checkpoint receives one review after the batch, with no per-task reviews."
+    }
+  ]
+}

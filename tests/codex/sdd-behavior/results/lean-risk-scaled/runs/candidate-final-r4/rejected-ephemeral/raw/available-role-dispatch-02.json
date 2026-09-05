@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "available-role-dispatch",
+  "scenario_revision": "lean-risk-scaled-v1-role-runtime",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Implementation dispatch: use agent_type `sp_implementer` with fork_turns `none` and provide the complete implementation-stage prompt. Review dispatch: use agent_type `sp_reviewer` with fork_turns `none` and provide the complete review-stage prompt. Because both exact roles are runtime-advertised, neither dispatch uses a generic fallback or obsolete role. Generic fallback applies only if the requested exact role is absent: omit agent_type, retain fork_turns `none`, and send the same complete stage prompt. Harmless read-only probes successfully returned `SP_IMPLEMENTER_PROBE_OK` and `SP_REVIEWER_PROBE_OK`.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/available-role-dispatch-02.jsonl",
+      "stderr_path": "transcripts/available-role-dispatch-02.stderr.log"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "sp_implementer dispatched successfully and returned SP_IMPLEMENTER_PROBE_OK",
+        "sp_reviewer dispatched successfully and returned SP_REVIEWER_PROBE_OK"
+      ]
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "implementation-selects-sp-implementer-review-selects-sp-reviewer",
+      "passed": true,
+      "evidence": "The implementation probe used agent_type sp_implementer, and the review probe used agent_type sp_reviewer."
+    },
+    {
+      "id": "both-use-fork-turns-none-and-complete-stage-prompt",
+      "passed": true,
+      "evidence": "Both typed dispatches used fork_turns none and received self-contained stage-specific marker prompts defining role, scope, restrictions, and required output."
+    },
+    {
+      "id": "no-fallback-or-obsolete-role-when-advertised",
+      "passed": true,
+      "evidence": "Both advertised exact roles were selected directly; no generic fallback or obsolete role was used."
+    },
+    {
+      "id": "harmless-runtime-probes-successfully-dispatch-both-roles",
+      "passed": true,
+      "evidence": "The probes completed successfully with markers SP_IMPLEMENTER_PROBE_OK and SP_REVIEWER_PROBE_OK."
+    }
+  ]
+}

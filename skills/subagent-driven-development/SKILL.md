@@ -123,10 +123,20 @@ rather than guessing.
 | unit `correction-1` | First reconcile the report and commits; if the correction is complete, continue its pending re-review, otherwise resume only the original implementer |
 | unit `correction-2` | First reconcile the report and commits; if the rescue is complete, continue its pending re-review, otherwise resume only the recorded deep rescue |
 | `final-review` | Recreate the cumulative package and continue the final review or its recorded correction round |
-| `ready-for-finishing` | Require a clean worktree, revalidate current HEAD against the report, and invoke finishing; do not reopen implementation |
+| `ready-for-finishing` | If no matching `producer-return.md` exists, require a clean worktree, revalidate current HEAD against the report, and invoke finishing. If a matching return exists, archive the old handoff, invalidate the old handoff, preserve the final-review correction count, and resume the recorded final correction instead of invoking finishing again |
 
 Record the current unit, agent identity, BASE, HEAD, report path, open findings,
 and correction round before every wait so each resume action is deterministic.
+
+Finishing writes `<workspace>/producer-return.md` when a stale handoff or the
+complete suite returns ownership. Match it by failed Implementation HEAD. Before
+changing code, copy the old execution report and return marker under
+`<workspace>/attempts/<failed-head>/`, change ledger status to `final-review`,
+and preserve the final-review correction count. A failed suite consumes the next
+correction round; a stale-head mismatch is diagnosed first and consumes a round
+only when implementation correction is required. Never reset the budget by
+issuing a new handoff. If two final-evidence corrections are already recorded,
+stop before a third correction and surface the evidence to the human.
 
 ### 4. Write the preflight table
 
@@ -307,6 +317,13 @@ implementation HEAD in the ledger. Read
 `<workspace>/execution-report.md` to that shared schema. Include completed
 individual tasks and checkpoint batches, every correction range, and the final
 review's exact evidence. The report binds the exact implementation HEAD.
+Set `Final-evidence correction count` to the ledger's explicit final-review
+counter; task- or unit-level corrections do not contribute to this field.
+
+When replacing a handoff after a producer return, archive the prior report and
+marker as described above before writing the new report. The new handoff must
+name a new reviewed Implementation HEAD; finishing never retries a failed suite
+against the same implementation revision.
 
 Set ledger status to `ready-for-finishing`. Do not change implementation code
 after recording the implementation HEAD. Invoke

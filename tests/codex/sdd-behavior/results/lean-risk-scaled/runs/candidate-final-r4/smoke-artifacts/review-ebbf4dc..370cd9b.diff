@@ -1,0 +1,95 @@
+# Review package: ebbf4dc1e78a5437f4ff3f78ce23afec4ca57e5c..370cd9b93a7d6617e62e92b4200de970d7e96dde
+
+## Commits
+370cd9b feat: add label normalizers
+
+## Files changed
+ src/owner_label.py        |  2 ++
+ src/queue_label.py        |  2 ++
+ src/tag_label.py          |  2 ++
+ tests/test_owner_label.py | 12 ++++++++++++
+ tests/test_queue_label.py | 12 ++++++++++++
+ tests/test_tag_label.py   | 12 ++++++++++++
+ 6 files changed, 42 insertions(+)
+
+## Whitespace check
+
+## Diff
+diff --git a/src/owner_label.py b/src/owner_label.py
+new file mode 100644
+index 0000000..ee16ae2
+--- /dev/null
++++ b/src/owner_label.py
+@@ -0,0 +1,2 @@
++def normalize_owner_label(value: str) -> str:
++    return value.strip().lower()
+diff --git a/src/queue_label.py b/src/queue_label.py
+new file mode 100644
+index 0000000..87cf16b
+--- /dev/null
++++ b/src/queue_label.py
+@@ -0,0 +1,2 @@
++def normalize_queue_label(value: str) -> str:
++    return value.strip().lower()
+diff --git a/src/tag_label.py b/src/tag_label.py
+new file mode 100644
+index 0000000..e33af19
+--- /dev/null
++++ b/src/tag_label.py
+@@ -0,0 +1,2 @@
++def normalize_tag_label(value: str) -> str:
++    return value.strip().lower()
+diff --git a/tests/test_owner_label.py b/tests/test_owner_label.py
+new file mode 100644
+index 0000000..0b2480d
+--- /dev/null
++++ b/tests/test_owner_label.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from src.owner_label import normalize_owner_label
++
++
++class OwnerLabelTest(unittest.TestCase):
++    def test_normalizes_owner_label(self):
++        self.assertEqual(normalize_owner_label("  Owner A  "), "owner a")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_queue_label.py b/tests/test_queue_label.py
+new file mode 100644
+index 0000000..77e9422
+--- /dev/null
++++ b/tests/test_queue_label.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from src.queue_label import normalize_queue_label
++
++
++class QueueLabelTest(unittest.TestCase):
++    def test_normalizes_queue_label(self):
++        self.assertEqual(normalize_queue_label("  Queue A  "), "queue a")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_tag_label.py b/tests/test_tag_label.py
+new file mode 100644
+index 0000000..95c590b
+--- /dev/null
++++ b/tests/test_tag_label.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from src.tag_label import normalize_tag_label
++
++
++class TagLabelTest(unittest.TestCase):
++    def test_normalizes_tag_label(self):
++        self.assertEqual(normalize_tag_label("  Tag A  "), "tag a")
++
++
++if __name__ == "__main__":
++    unittest.main()

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a880e78",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. Current Implementation HEAD, suite passes: after schema/tree/blocker checks pass, append the exact suite evidence to the plan-scoped report and copy it to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md`. Refuse an existing destination. Stage only that report, create one report-only commit, then verify `Implementation HEAD..HEAD` contains only that path.\n\n2. Older Implementation HEAD, no completed report-only finishing commit: stale handoff. Stop before running the suite and return to the producer’s final review/evidence step. Create no report or commit.\n\n3. Range also changes `skills/x/SKILL.md`: invalid finishing range. Stop and return to the producer’s final review/evidence step; do not rerun the suite or create a report-only commit. Preserve any already committed report for later merge/PR/keep handling.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies the completed report to the implementation-HEAD-suffixed path, stages only it, creates one report-only commit, and verifies the range before integration."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 treats the handoff as stale, stops before the suite run, and returns to the producer's final review/evidence step without a report or commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 calls the mixed range invalid, stops, and returns to final review without creating a new report-only commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "The response never instructs a second complete-suite run; Case 2 stops before running it and Case 3 forbids a rerun."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies the completed report to the implementation-HEAD-suffixed path, stages only it, creates one report-only commit, and verifies the range before integration."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 treats the handoff as stale, stops before the suite run, and returns to the producer's final review/evidence step without a report or commit."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 calls the mixed range invalid, stops, and returns to final review without creating a new report-only commit."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "The response never instructs a second complete-suite run; Case 2 stops before running it and Case 3 forbids a rerun."
+    }
+  ]
+}

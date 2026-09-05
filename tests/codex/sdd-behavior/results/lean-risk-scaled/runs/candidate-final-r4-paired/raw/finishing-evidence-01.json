@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v2-final-evidence",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Case 1: Validate the exact Implementation HEAD and clean worktree, run the complete suite once, append finishing evidence, and copy the report to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md`, using a stable hash of at least 12 characters. Stage and commit only that report destination, verify the Implementation-HEAD-to-HEAD range contains only the report, then present the integration choice. Suite runs: 1. No producer-return marker.\n\nCase 2: Stop before running the suite because current HEAD does not equal the report’s Implementation HEAD and this is not a valid report-only resume. Write `producer-return.md` with the named producer, failed Implementation HEAD, observed HEAD, reason `stale-handoff`, `Finishing command: not-run`, concise mismatch evidence, and copied correction count 1. Return ownership to that producer without blessing the observed tree. Suite runs: 0.\n\nCase 3: Run the complete suite once for the handed-off HEAD. On failure, do not append to or commit the report. Write `producer-return.md` naming the producer and failed Implementation HEAD, observed HEAD, reason `suite-failure`, exact suite command/result, and copied correction count 1. A second finishing invocation for that same failed HEAD must detect the marker, refuse another suite run, and return to the producer. Total suite runs for that failed HEAD: 1.\n\nCase 4: The producer archives the rejected execution report and return marker under `<workspace>/attempts/<failed-head>/`, invalidates the old handoff, and preserves correction count 1. The failed final-evidence gate consumes round 2. The producer corrects at a new HEAD, refreshes affected evidence and final review, and issues a valid report for only that new reviewed HEAD with correction count 2. Finishing may then run the complete suite once for the new HEAD and, if it passes, create the new HEAD-suffixed report-only commit. If the supported failure survives round 2, the producer stops before round 3 and does not issue another handoff.\n\nCase 5: Stop when the Implementation-HEAD-to-current-HEAD range contains `skills/x/SKILL.md` in addition to the report. Write an identity-bearing `mixed-report-range` producer-return marker with correction count 1 and return ownership to the producer. Do not rerun the suite; the report-only boundary must be restored first. Suite runs for the named Implementation HEAD remain 1.\n\nMalformed-handoff rule: if producer identity, correction count, or required revision identity is malformed or unreachable, stop without a producer-return marker and do not invent the missing identity.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/finishing-evidence-01.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": []
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-only-commit",
+      "passed": true,
+      "evidence": "The contract requires one complete-suite run, an implementation-HEAD-suffixed destination, and a commit whose staged and final range contain only that report before offering integration."
+    },
+    {
+      "id": "case-2-stale-handoff-return",
+      "passed": true,
+      "evidence": "A non-resume HEAD mismatch stops before the suite and produces a stale-handoff marker carrying the validated producer identity and correction count 1."
+    },
+    {
+      "id": "case-3-no-retry-failed-head",
+      "passed": true,
+      "evidence": "Suite failure creates a suite-failure marker; a later invocation must refuse to rerun a HEAD already recorded as failed."
+    },
+    {
+      "id": "case-4-budget-preserved-and-advanced",
+      "passed": true,
+      "evidence": "The producer archives the old report and marker under the failed HEAD, preserves count 1, consumes round 2, refreshes evidence and review at a new HEAD, and stops before round 3 if failure survives."
+    },
+    {
+      "id": "case-5-mixed-range-stops",
+      "passed": true,
+      "evidence": "Any implementation path in the post-suite range violates the report-only boundary, requires a mixed-report-range return, and cannot trigger another suite run."
+    },
+    {
+      "id": "failed-head-suite-at-most-once",
+      "passed": true,
+      "evidence": "Both finishing and producer-resume contracts prohibit retrying the complete suite against an Implementation HEAD already named by a failure marker."
+    }
+  ]
+}

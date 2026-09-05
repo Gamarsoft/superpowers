@@ -22,6 +22,7 @@ Spec: <canonical path>
 Spec revision: <approved revision or immutable identifier>
 Implementation base: <full commit ID>
 Implementation HEAD: <full commit ID>
+Final-evidence correction count: <0, 1, or 2>
 
 ## Completed work
 
@@ -73,3 +74,29 @@ self-review as independent review.
 Finishing appends the sole complete-suite evidence and durable report-copy
 metadata. Producers do not run the complete repository suite, copy this report
 into tracked documentation, or remove the ignored workspace.
+
+## Producer-return contract
+
+Only a validated, identity-bearing handoff can produce this marker. Malformed
+reports, unreachable revisions, or missing producer/count identity stop without
+a marker rather than inventing resume state. When finishing rejects a validated
+handoff because its tree is stale or dirty, its suite fails, or its report range
+is mixed, it writes `<workspace>/producer-return.md` without changing tracked
+files:
+
+```markdown
+# Producer return
+
+Producer: subagent-driven-development | executing-plans
+Failed Implementation HEAD: <full commit ID>
+Observed HEAD: <full commit ID>
+Reason: stale-handoff | dirty-worktree | suite-failure | mixed-report-range
+Finishing command: <exact command, or not-run>
+Result: <exit status and concise evidence>
+Final-evidence correction count: <0, 1, or 2>
+```
+
+The producer archives the old report and marker under
+`<workspace>/attempts/<failed-head>/`, preserves the correction count, and
+refreshes final evidence at a new HEAD. Finishing runs the complete suite once
+for a handed-off HEAD and never retries a HEAD already named by this marker.

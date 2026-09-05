@@ -1,0 +1,280 @@
+# Review package: 232c6391d64a6e59c820c402113b149c891bfb7e..c4a4126bc61f889f3561647a9f4d385a8e8b38ce
+
+## Commits
+c4a4126 fix: replay first reservation balance
+fc5a331 feat: add reservation operation
+370cd9b feat: add label normalizers
+ebbf4dc docs: resolve smoke plan readiness
+
+## Files changed
+ docs/implementation-plan.md | 20 ++++++-------
+ src/owner_label.py          |  2 ++
+ src/queue_label.py          |  2 ++
+ src/reservations.py         | 25 ++++++++++++++++
+ src/tag_label.py            |  2 ++
+ tests/test_owner_label.py   | 12 ++++++++
+ tests/test_queue_label.py   | 12 ++++++++
+ tests/test_reservations.py  | 72 +++++++++++++++++++++++++++++++++++++++++++++
+ tests/test_tag_label.py     | 12 ++++++++
+ 9 files changed, 148 insertions(+), 11 deletions(-)
+
+## Whitespace check
+
+## Diff
+diff --git a/docs/implementation-plan.md b/docs/implementation-plan.md
+index 368e41e..9d1b0bf 100644
+--- a/docs/implementation-plan.md
++++ b/docs/implementation-plan.md
+@@ -12,28 +12,28 @@ HEAD.
+ **Spec revision:** `fixture-v1`
+ **Current worktree:** the fixture repository root containing this plan
+ **Implementation base:** `sdd-smoke-base`
+ **Risk class:** `review-required`
+ **Risk triggers:** money, concurrency, idempotency
+ **Verification lanes:** focused label tests; focused reservation tests;
+ combined feature tests; final fixture suite
+ 
+ ## Readiness Record
+ 
+-**Result:** NOT READY
++**Result:** READY
+ 
+-- **BLOCKING:** Task 2 says uppercase while the approved specification requires
+-  all three labels to be lowercase. Planning must correct Task 2 and obtain one
+-  holistic readiness re-review before any implementation dispatch.
+-- **Proof:** `approved-spec.md` requires trimming and lowercasing all three
+-  labels; Task 2's acceptance criterion below requires uppercase.
+-- **Other findings:** none.
++- **Resolved BLOCKING:** Task 2's contract and acceptance criterion now require
++  lowercase, matching `docs/approved-spec.md`. No implementation was dispatched
++  before this planning correction.
++- **Proof:** The specification and Tasks 1-3 now all require trimming plus
++  lowercasing; the cross-task internal convention is consistent.
++- **DECISION / FOLLOW_UP / INVALID:** none.
+ 
+ ## Task 1: Normalize queue labels
+ 
+ **Files / ownership:** Sole mutation owner for `src/queue_label.py` and
+ `tests/test_queue_label.py`.
+ 
+ **Contracts:** Provide `normalize_queue_label(value: str) -> str`; return the
+ input with surrounding whitespace removed and remaining text lowercased.
+ 
+ **Dependencies:** none
+@@ -50,27 +50,25 @@ not add Unicode restrictions.
+ **Codebase pointers:** `src/queue_label.py`,
+ `tests/test_queue_label.py`, and the label paragraph in
+ `docs/approved-spec.md`.
+ 
+ ## Task 2: Normalize owner labels
+ 
+ **Files / ownership:** Sole mutation owner for `src/owner_label.py` and
+ `tests/test_owner_label.py`.
+ 
+ **Contracts:** Provide `normalize_owner_label(value: str) -> str`; return the
+-input with surrounding whitespace removed and remaining text uppercased.
++input with surrounding whitespace removed and remaining text lowercased.
+ 
+ **Dependencies:** none; same internal label convention as Tasks 1 and 3
+ 
+-**Acceptance criteria:** `"  Owner A  "` returns `"OWNER A"`. This
+-intentionally contradicts the approved lowercase contract and must be
+-corrected through planning readiness before implementation.
++**Acceptance criteria:** `"  Owner A  "` returns `"owner a"`.
+ 
+ **Error boundaries:** No validation beyond the approved string contract; do
+ not add Unicode restrictions.
+ 
+ **Risk:** checkpoint-review; no named risk trigger
+ 
+ **Focused verification:** `python3 -m unittest tests.test_owner_label -v`
+ 
+ **Codebase pointers:** `src/owner_label.py`,
+ `tests/test_owner_label.py`, and the label paragraph in
+diff --git a/src/owner_label.py b/src/owner_label.py
+new file mode 100644
+index 0000000..ee16ae2
+--- /dev/null
++++ b/src/owner_label.py
+@@ -0,0 +1,2 @@
++def normalize_owner_label(value: str) -> str:
++    return value.strip().lower()
+diff --git a/src/queue_label.py b/src/queue_label.py
+new file mode 100644
+index 0000000..87cf16b
+--- /dev/null
++++ b/src/queue_label.py
+@@ -0,0 +1,2 @@
++def normalize_queue_label(value: str) -> str:
++    return value.strip().lower()
+diff --git a/src/reservations.py b/src/reservations.py
+new file mode 100644
+index 0000000..945341e
+--- /dev/null
++++ b/src/reservations.py
+@@ -0,0 +1,25 @@
++import threading
++
++
++_resulting_balances: dict[str, int] = {}
++_registry_lock = threading.Lock()
++
++
++def reserve_once(
++    balance_cents: int,
++    amount_cents: int,
++    key: str,
++) -> tuple[str, int]:
++    with _registry_lock:
++        if key in _resulting_balances:
++            return "already_reserved", _resulting_balances[key]
++
++        if balance_cents < amount_cents:
++            status = "insufficient_funds"
++            resulting_balance = balance_cents
++        else:
++            status = "reserved"
++            resulting_balance = balance_cents - amount_cents
++
++        _resulting_balances[key] = resulting_balance
++        return status, resulting_balance
+diff --git a/src/tag_label.py b/src/tag_label.py
+new file mode 100644
+index 0000000..e33af19
+--- /dev/null
++++ b/src/tag_label.py
+@@ -0,0 +1,2 @@
++def normalize_tag_label(value: str) -> str:
++    return value.strip().lower()
+diff --git a/tests/test_owner_label.py b/tests/test_owner_label.py
+new file mode 100644
+index 0000000..0b2480d
+--- /dev/null
++++ b/tests/test_owner_label.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from src.owner_label import normalize_owner_label
++
++
++class OwnerLabelTest(unittest.TestCase):
++    def test_normalizes_owner_label(self):
++        self.assertEqual(normalize_owner_label("  Owner A  "), "owner a")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_queue_label.py b/tests/test_queue_label.py
+new file mode 100644
+index 0000000..77e9422
+--- /dev/null
++++ b/tests/test_queue_label.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from src.queue_label import normalize_queue_label
++
++
++class QueueLabelTest(unittest.TestCase):
++    def test_normalizes_queue_label(self):
++        self.assertEqual(normalize_queue_label("  Queue A  "), "queue a")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_reservations.py b/tests/test_reservations.py
+new file mode 100644
+index 0000000..afc8e09
+--- /dev/null
++++ b/tests/test_reservations.py
+@@ -0,0 +1,72 @@
++import threading
++import unittest
++from concurrent.futures import ThreadPoolExecutor
++
++from src.reservations import reserve_once
++
++
++class ReserveOnceTests(unittest.TestCase):
++    def test_first_reservation_debits_balance(self):
++        self.assertEqual(
++            reserve_once(1_000, 250, "reserved-key"),
++            ("reserved", 750),
++        )
++
++    def test_insufficient_funds_leave_balance_unchanged(self):
++        self.assertEqual(
++            reserve_once(100, 101, "insufficient-key"),
++            ("insufficient_funds", 100),
++        )
++
++    def test_sequential_duplicate_does_not_debit_again(self):
++        self.assertEqual(
++            reserve_once(500, 200, "sequential-key"),
++            ("reserved", 300),
++        )
++        self.assertEqual(
++            reserve_once(500, 200, "sequential-key"),
++            ("already_reserved", 300),
++        )
++
++    def test_reserved_duplicate_replays_first_balance_when_arguments_change(self):
++        self.assertEqual(
++            reserve_once(1_000, 250, "changed-reserved-key"),
++            ("reserved", 750),
++        )
++        self.assertEqual(
++            reserve_once(9_999, 1_000, "changed-reserved-key"),
++            ("already_reserved", 750),
++        )
++
++    def test_insufficient_duplicate_replays_first_balance_when_arguments_change(self):
++        self.assertEqual(
++            reserve_once(100, 101, "changed-insufficient-key"),
++            ("insufficient_funds", 100),
++        )
++        self.assertEqual(
++            reserve_once(1_000, 100, "changed-insufficient-key"),
++            ("already_reserved", 100),
++        )
++
++    def test_concurrent_duplicate_replays_winning_balance(self):
++        start = threading.Barrier(2)
++        calls = [(1_000, 300), (900, 100)]
++
++        def reserve(call):
++            start.wait()
++            return reserve_once(*call, "concurrent-key")
++
++        with ThreadPoolExecutor(max_workers=2) as executor:
++            results = list(executor.map(reserve, calls))
++
++        self.assertIn(
++            results,
++            [
++                [("reserved", 700), ("already_reserved", 700)],
++                [("already_reserved", 800), ("reserved", 800)],
++            ],
++        )
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_tag_label.py b/tests/test_tag_label.py
+new file mode 100644
+index 0000000..95c590b
+--- /dev/null
++++ b/tests/test_tag_label.py
+@@ -0,0 +1,12 @@
++import unittest
++
++from src.tag_label import normalize_tag_label
++
++
++class TagLabelTest(unittest.TestCase):
++    def test_normalizes_tag_label(self):
++        self.assertEqual(normalize_tag_label("  Tag A  "), "tag a")
++
++
++if __name__ == "__main__":
++    unittest.main()

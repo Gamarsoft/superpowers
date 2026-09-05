@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "variant": "baseline",
+  "variant_revision": "d9a937091926ace90db0da318fb34b78adbbb8e8",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v2-final-evidence",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "fail",
+  "response": "The supplied baseline does not implement the execution-report/final-evidence protocol assumed by the scenario.\n\nCase 1: Run the full suite once, then detect the environment, confirm the base branch, and present the integration menu. Suite runs prescribed: 1. Producer returns: none (0). Archive/resume: none. Correction budget: none. Report destination: none. Commit scope: no report-only commit is created.\n\nCase 2: Run the full suite against the currently observed tree; the older reported HEAD is not checked. Suite runs prescribed: 1. Producer returns: none (0); no producer identity is used. Archive/resume: none. Correction budget: none. Report destination: none. Commit scope: unrestricted by any report-only-range check.\n\nCase 3: On each invocation, run the full suite and stop if it fails. Two invocations for the same failed HEAD therefore prescribe 2 runs. No failure marker is written and nothing is returned to a producer. Producer returns: none (0). Archive/resume: none. Correction budget: none. Report destination: none.\n\nCase 4: Treat the corrected HEAD as an ordinary finishing attempt: run the full suite once and, if green, proceed to the integration menu. Suite runs prescribed: 1. Producer returns: none (0). The rejected report and marker are not archived, no evidence/review refresh is required, and no correction-round budget exists. Report destination: none. Commit scope: no handoff-range validation.\n\nCase 5: Run the full suite on the current tree and proceed if green. Suite runs prescribed: 1. Producer returns: none (0). The change to skills/x/SKILL.md is not detected because the supplied finishing contract never checks whether the implementation-HEAD-to-current-HEAD range is report-only.\n\nNo handoff identity can be reported: the packet provides no concrete identities and does not identify which handoff is malformed. Actual actor-session counts remain zero because tools and mutations were prohibited.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/finishing-evidence-01.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "No runtime probes were performed because the actor prompt explicitly prohibited invoking tools."
+      ]
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "INVALID"
+  ],
+  "assertions": [
+    {
+      "id": "case-1-copy-report-and-report-only-commit",
+      "passed": false,
+      "evidence": "The finishing skill proceeds from a green suite directly to environment/base detection and the integration menu; it contains no report-copy destination or report-only commit step."
+    },
+    {
+      "id": "case-2-stale-handoff-return",
+      "passed": false,
+      "evidence": "The supplied skill does not compare a report HEAD with the current HEAD, write stale-handoff markers, or return control to a named producer."
+    },
+    {
+      "id": "case-3-single-run-failure-marker-return",
+      "passed": false,
+      "evidence": "Although a failing suite stops one invocation, no marker or copied count is recorded, and a later invocation runs the suite again because failed HEADs are not remembered."
+    },
+    {
+      "id": "case-4-archive-and-budget-round-two",
+      "passed": false,
+      "evidence": "No rejected-report archive, marker archive, final-evidence correction budget, evidence refresh, final-review refresh, or producer handoff protocol appears in the supplied contracts."
+    },
+    {
+      "id": "case-5-reject-non-report-only-range",
+      "passed": false,
+      "evidence": "The finishing skill does not inspect an implementation-HEAD-to-current-HEAD range, so a skills/x/SKILL.md change does not trigger the asserted stop and the suite would be run."
+    },
+    {
+      "id": "failed-head-never-rerun",
+      "passed": false,
+      "evidence": "Step 1 unconditionally runs the full suite whenever finishing is invoked; there is no failed-HEAD guard, so reinvocation for the same HEAD prescribes another complete-suite run."
+    }
+  ]
+}

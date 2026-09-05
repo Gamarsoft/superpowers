@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Planning gate: BLOCKED / NOT READY. Review: exactly one fresh holistic readiness review of the full specification and full plan, once per revision. Finding: BLOCKING producer–consumer inconsistency. Task 1 may not begin. No plan-fixer is dispatched; the author corrects the plan.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response detects the producer-consumer inconsistency at the blocked planning gate and says Task 1 may not begin."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It calls for exactly one fresh holistic readiness review of the full specification and full plan per revision."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "It labels the producer-consumer inconsistency BLOCKING, keeps Task 1 closed, and assigns the plan correction to the author."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "It explicitly says no plan-fixer is dispatched."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": ["BLOCKING"],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response detects the producer-consumer inconsistency at the blocked planning gate and says Task 1 may not begin."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It calls for exactly one fresh holistic readiness review of the full specification and full plan per revision."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "It labels the producer-consumer inconsistency BLOCKING, keeps Task 1 closed, and assigns the plan correction to the author."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "It explicitly says no plan-fixer is dispatched."
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- **Private helper — HOW / AUTONOMOUS:** Approve the private helper and continue. Record: “Use a private helper because it preserves the approved behavior and improves local clarity. If wrong, the concrete cost is a small reversible refactor back to inline logic.” Do not ask the user.\n\n- **Public error result — DECISION / HUMAN AUTHORITY:** Pause only work depending on that error behavior. Ask: “For this case, should the public error remain `not_found`, or change to `invalid_request`?” Resume unaffected work.",
+  "event_trace": [
+    {
+      "event": "controller_ruling",
+      "classification": "HOW",
+      "decision": "Use the private helper.",
+      "rationale": "The plan permits either implementation and the choice preserves observable behavior.",
+      "cost_if_wrong": "A small reversible refactor back to inline logic.",
+      "ask_user": false
+    },
+    {
+      "event": "human_question",
+      "classification": "DECISION",
+      "scope": "public error result",
+      "question": "Should this case use not_found or invalid_request?",
+      "bounded": true
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The response autonomously approves the private helper, records it as HOW, and identifies a small reversible refactor back to inline logic as the cost if wrong."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "It labels the unresolved public error behavior DECISION, pauses only dependent work, and asks one bounded not_found-or-invalid_request question."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says not to ask the user about the private helper."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": [
+    "DECISION"
+  ],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The response autonomously approves the private helper, records it as HOW, and identifies a small reversible refactor back to inline logic as the cost if wrong."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "It labels the unresolved public error behavior DECISION, pauses only dependent work, and asks one bounded not_found-or-invalid_request question."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says not to ask the user about the private helper."
+    }
+  ]
+}

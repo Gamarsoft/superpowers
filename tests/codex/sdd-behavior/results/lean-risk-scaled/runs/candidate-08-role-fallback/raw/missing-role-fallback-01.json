@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "ddc771d9af273fbcd180c1eb16b97de33f99fd8e",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Implementation dispatch:\n- `agent_type` key omitted.\n- `fork_turns: \"none\"`.\n- Fresh generic agent receives the fully populated `implementer-prompt.md`: project fit, generated task brief as sole exact requirements, necessary prior interfaces/decisions, applicable research or `NONE`, controller ambiguity rulings, working directory, report path, full written-report contract, and short return contract.\n- Ledger records the agent identity and `generic fallback` dispatch mode.\n\nReview dispatch:\n- `agent_type` key omitted.\n- `fork_turns: \"none\"`.\n- A separate fresh generic agent receives the fully populated `task-reviewer-prompt.md`: task brief, binding global constraints, implementer report, exact `BASE` and `HEAD`, generated `BASE..HEAD` review package, absolute Superpowers directory, selected specialist profiles, read-only/no-spawn constraints, proof and causal-scope requirement, allowed dispositions, and exact verdict/report contract.\n- Ledger records the reviewer identity and `generic fallback` dispatch mode.\n\nNo role-availability probe occurs. Implementation and required review coverage are both preserved.",
+  "event_trace": [
+    {
+      "event": "dispatch",
+      "phase": "implementation",
+      "agent_type": "omitted",
+      "fork_turns": "none",
+      "prompt_template": "subagent-driven-development/implementer-prompt.md",
+      "prompt_coverage": "complete",
+      "ledger_mode": "generic fallback"
+    },
+    {
+      "event": "dispatch",
+      "phase": "task_review",
+      "agent_type": "omitted",
+      "fork_turns": "none",
+      "prompt_template": "subagent-driven-development/task-reviewer-prompt.md",
+      "prompt_coverage": "complete",
+      "ledger_mode": "generic fallback"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Both implementation and review explicitly omit the agent_type key."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches use fork_turns none and retain fully populated role prompts with all required inputs and contracts."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "A separate required review is dispatched, and both ledger entries record generic fallback mode and agent identity."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response explicitly states that no role-availability probe occurs."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Both implementation and review explicitly omit the agent_type key."
+    },
+    {
+      "id": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches use fork_turns none and retain fully populated role prompts with all required inputs and contracts."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "A separate required review is dispatched, and both ledger entries record generic fallback mode and agent identity."
+    },
+    {
+      "id": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response explicitly states that no role-availability probe occurs."
+    }
+  ]
+}

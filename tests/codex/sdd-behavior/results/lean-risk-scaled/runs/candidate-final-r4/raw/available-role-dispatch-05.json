@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "available-role-dispatch",
+  "scenario_revision": "lean-risk-scaled-v1-role-runtime",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Implementation dispatch: agent_type `sp_implementer`, with `fork_turns: \"none\"`, receiving the complete implementation-stage prompt and all required artifact paths. Review dispatch: agent_type `sp_reviewer`, with `fork_turns: \"none\"`, receiving the complete review-stage prompt and required evidence, ranges, rulings, and artifact paths. Because both exact roles are runtime-advertised, neither a generic fallback nor an obsolete role is selected. Generic fallback is permitted only when the requested exact role is absent; it must omit `agent_type`, remain fresh with `fork_turns: \"none\"`, and preserve identical prompt coverage. Harmless marker probes successfully dispatched both advertised roles and returned their expected markers.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/available-role-dispatch-05.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "sp_implementer dispatched successfully and returned SP_IMPLEMENTER_PROBE_OK",
+        "sp_reviewer dispatched successfully and returned SP_REVIEWER_PROBE_OK"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e3a-bbd8-7f20-a720-6f3b8205708e",
+      "path": "operational/available-role-dispatch-05"
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; simulated scenario transitions are not counted.",
+      "dispatch_count": 2,
+      "review_count": 1,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "implementation-and-review-select-advertised-roles",
+      "passed": true,
+      "evidence": "Implementation selected sp_implementer and review selected sp_reviewer."
+    },
+    {
+      "id": "fresh-context-and-complete-stage-prompts",
+      "passed": true,
+      "evidence": "Both choices use fork_turns: \"none\" and preserve the complete applicable stage prompt and required artifact coverage."
+    },
+    {
+      "id": "no-fallback-or-obsolete-role-when-advertised",
+      "passed": true,
+      "evidence": "Both exact requested roles were advertised and used; no generic fallback or obsolete role was selected."
+    },
+    {
+      "id": "harmless-runtime-probes-succeed",
+      "passed": true,
+      "evidence": "Both typed dispatches succeeded and returned the expected SP_IMPLEMENTER_PROBE_OK and SP_REVIEWER_PROBE_OK markers."
+    }
+  ]
+}

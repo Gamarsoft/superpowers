@@ -1,0 +1,95 @@
+# Review package: 370cd9b93a7d6617e62e92b4200de970d7e96dde..fc5a33187e00b288e9e4625fbb36dbbcc6347abc
+
+## Commits
+fc5a331 feat: add reservation operation
+
+## Files changed
+ src/reservations.py        | 22 +++++++++++++++++++++
+ tests/test_reservations.py | 48 ++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 70 insertions(+)
+
+## Whitespace check
+
+## Diff
+diff --git a/src/reservations.py b/src/reservations.py
+new file mode 100644
+index 0000000..95992c8
+--- /dev/null
++++ b/src/reservations.py
+@@ -0,0 +1,22 @@
++import threading
++
++
++_applied_keys: set[str] = set()
++_registry_lock = threading.Lock()
++
++
++def reserve_once(
++    balance_cents: int,
++    amount_cents: int,
++    key: str,
++) -> tuple[str, int]:
++    with _registry_lock:
++        if key in _applied_keys:
++            if balance_cents >= amount_cents:
++                return "already_reserved", balance_cents - amount_cents
++            return "already_reserved", balance_cents
++
++        _applied_keys.add(key)
++        if balance_cents < amount_cents:
++            return "insufficient_funds", balance_cents
++        return "reserved", balance_cents - amount_cents
+diff --git a/tests/test_reservations.py b/tests/test_reservations.py
+new file mode 100644
+index 0000000..a4967c9
+--- /dev/null
++++ b/tests/test_reservations.py
+@@ -0,0 +1,48 @@
++import threading
++import unittest
++from concurrent.futures import ThreadPoolExecutor
++
++from src.reservations import reserve_once
++
++
++class ReserveOnceTests(unittest.TestCase):
++    def test_first_reservation_debits_balance(self):
++        self.assertEqual(
++            reserve_once(1_000, 250, "reserved-key"),
++            ("reserved", 750),
++        )
++
++    def test_insufficient_funds_leave_balance_unchanged(self):
++        self.assertEqual(
++            reserve_once(100, 101, "insufficient-key"),
++            ("insufficient_funds", 100),
++        )
++
++    def test_sequential_duplicate_does_not_debit_again(self):
++        self.assertEqual(
++            reserve_once(500, 200, "sequential-key"),
++            ("reserved", 300),
++        )
++        self.assertEqual(
++            reserve_once(500, 200, "sequential-key"),
++            ("already_reserved", 300),
++        )
++
++    def test_concurrent_duplicate_is_applied_once(self):
++        start = threading.Barrier(2)
++
++        def reserve():
++            start.wait()
++            return reserve_once(1_000, 300, "concurrent-key")
++
++        with ThreadPoolExecutor(max_workers=2) as executor:
++            results = list(executor.map(lambda _: reserve(), range(2)))
++
++        self.assertCountEqual(
++            results,
++            [("reserved", 700), ("already_reserved", 700)],
++        )
++
++
++if __name__ == "__main__":
++    unittest.main()

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "circuit-breaker",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Next action: Stop execution before any third correction and report the unresolved BLOCKING migration defect.\n\nCompleted corrections: 2 — round 1 by the original implementer; round 2 by exactly one fresh deep rescue implementer.\n\nUser evidence: the open finding and proof of committed-data loss; both correction ranges and reports; both scoped re-reviews proving the defect persists; current HEAD; and the architectural diagnosis required to resolve it.",
+  "event_trace": [
+    {
+      "event": "review",
+      "round": 0,
+      "result": "BLOCKING migration data-loss defect proved"
+    },
+    {
+      "event": "correction_dispatch",
+      "round": 1,
+      "owner": "original implementer",
+      "finding": "migration can lose committed data"
+    },
+    {
+      "event": "review",
+      "round": 1,
+      "scope": "correction range",
+      "result": "same BLOCKING defect remains"
+    },
+    {
+      "event": "correction_dispatch",
+      "round": 2,
+      "owner": "one deep rescue implementer",
+      "finding": "migration can lose committed data"
+    },
+    {
+      "event": "review",
+      "round": 2,
+      "scope": "correction range",
+      "result": "same BLOCKING defect remains"
+    },
+    {
+      "event": "circuit_breaker",
+      "action": "stop before correction round 3 for architectural diagnosis",
+      "open_disposition": "BLOCKING"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "exactly-two-correction-rounds-completed",
+      "passed": true,
+      "evidence": "The response states that two corrections have been completed and stops before any third correction."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "correction-round-ownership",
+      "passed": true,
+      "evidence": "It assigns round one to the original implementer and round two to exactly one fresh deep rescue implementer."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "stop-for-architecture-before-round-three",
+      "passed": true,
+      "evidence": "It stops execution before round three and reports the architectural diagnosis needed to resolve the defect."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "preserve-finding-evidence-and-fix-history",
+      "passed": true,
+      "evidence": "It preserves the open finding and data-loss proof, both correction ranges and reports, and both scoped re-reviews."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 3,
+  "fix_round_count": 2,
+  "human_stop_count": 1,
+  "dispositions": [
+    "BLOCKING"
+  ],
+  "assertions": [
+    {
+      "id": "exactly-two-correction-rounds-completed",
+      "passed": true,
+      "evidence": "The response states that two corrections have been completed and stops before any third correction."
+    },
+    {
+      "id": "correction-round-ownership",
+      "passed": true,
+      "evidence": "It assigns round one to the original implementer and round two to exactly one fresh deep rescue implementer."
+    },
+    {
+      "id": "stop-for-architecture-before-round-three",
+      "passed": true,
+      "evidence": "It stops execution before round three and reports the architectural diagnosis needed to resolve the defect."
+    },
+    {
+      "id": "preserve-finding-evidence-and-fix-history",
+      "passed": true,
+      "evidence": "It preserves the open finding and data-loss proof, both correction ranges and reports, and both scoped re-reviews."
+    }
+  ]
+}

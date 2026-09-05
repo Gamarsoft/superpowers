@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a880e78",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. Proceed. Run the complete repository suite exactly once at the named/current Implementation HEAD. If it passes, append the exact evidence to the plan-scoped `execution-report.md`, copy it without collision to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md` (for example, ending in `-a880e78.md`), stage only that destination, and create one report-only commit. Verify `Implementation HEAD..HEAD` contains only that report.\n\n2. Stop before running the suite. The handoff is stale and is not a valid report-only finishing resume. Return it to the producer’s final review/evidence step; create no canonical report and no commit.\n\n3. Stop and return it to the producer. A change to `skills/x/SKILL.md` makes the proposed range non-report-only, even though the suite passed at the named Implementation HEAD. Do not rerun the suite, copy the report, or create a finishing commit.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 names the implementation-HEAD-suffixed destination, stages only the copied report, creates one report-only commit, and verifies the report-only range."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before the suite run and returns the stale handoff to the producer's final review/evidence step with no report or commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 identifies the SKILL.md change as making the range non-report-only and stops finishing."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "Case 1 limits the suite to exactly one run, while Cases 2 and 3 explicitly prohibit a run or rerun."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 names the implementation-HEAD-suffixed destination, stages only the copied report, creates one report-only commit, and verifies the report-only range."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before the suite run and returns the stale handoff to the producer's final review/evidence step with no report or commit."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 identifies the SKILL.md change as making the range non-report-only and stops finishing."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "Case 1 limits the suite to exactly one run, while Cases 2 and 3 explicitly prohibit a run or rerun."
+    }
+  ]
+}

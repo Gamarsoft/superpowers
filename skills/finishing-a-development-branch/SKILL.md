@@ -33,6 +33,7 @@ validate every required section. Require:
 - `Status: ready-for-finishing`;
 - canonical plan and reachable specification paths plus spec revision;
 - a valid full Implementation base and Implementation HEAD;
+- `Final-evidence correction count: 0`, `1`, or `2`;
 - no supported `BLOCKING` or unresolved `DECISION`;
 - truthful independent-review availability/result; and
 - a clean worktree; and
@@ -55,22 +56,35 @@ tracked report, the committed report records the same Implementation HEAD and a
 passing `Finishing verification` section, and the worktree is clean. Record
 current HEAD as `REPORT_COMMIT` and continue at Step 3. This resume does not rerun the suite or create another report commit.
 
-For every other mismatch—or if the report is malformed, a commit is
-unreachable, or the worktree is dirty—stop before running the complete repository suite.
-Do not update the report to bless a different tree. Show the
-mismatch and return ownership to the producing workflow: SDD resumes final
-review; `executing-plans` resumes its final evidence step.
+Malformed or unreachable handoffs stop without a producer-return marker. Show
+the missing or invalid identity evidence and do not guess producer, revisions,
+or correction count.
+
+For every other current-HEAD mismatch—or when a valid handoff has a dirty
+worktree—stop before running the complete repository suite. Do not update the
+report to bless a different tree. Write the producer-return record defined in
+the execution-report contract without changing tracked files, using reason
+`stale-handoff` or `dirty-worktree` and copying the validated
+`Final-evidence correction count`. Show the mismatch and return ownership to
+the producing workflow: SDD resumes final review; `executing-plans` resumes its
+final evidence step.
 
 ## Step 2: Run the Sole Complete Suite and Preserve Its Evidence
 
 Read the exact complete-suite command from the plan. A missing command blocks
 finishing rather than inviting a guess.
 
-Run the complete repository suite exactly once at Implementation HEAD. Capture
-the exact command, exit status, concise result, and implementation commit.
+Run the complete repository suite exactly once for each handed-off Implementation HEAD.
+Before running it, stop if a `producer-return.md` already records this failed
+Implementation HEAD; the producer must issue a new reviewed handoff rather than
+retrying the same revision. Capture the exact command, exit status, concise
+result, and implementation commit.
 
-If it fails, append nothing, create no report commit, show the failures, and
-return to the producer for a correction and refreshed final review. If it
+If it fails, append nothing to the execution report and create no report commit.
+Write `<workspace>/producer-return.md` with the producer, failed Implementation HEAD,
+observed HEAD, reason, exact suite command/result, and correction count copied
+from the execution report. Show the failures and return to the producer for a
+correction and refreshed final review. If it
 passes, recheck current HEAD and worktree cleanliness. Generated tracked or
 untracked files are a changed test subject, so stop and inventory them.
 
@@ -103,7 +117,7 @@ worktree must be clean after the commit. Record the
 new report commit separately; it is not the implementation revision under test.
 
 If the range contains an implementation file or any path besides the report,
-stop and return ownership to the producing workflow. Do not run the complete suite again
+write the same `producer-return.md`, stop, and return ownership to the producing workflow. Do not run the complete suite again
 to bless the mixed range. The report-only boundary must be restored
 first.
 

@@ -1,0 +1,114 @@
+# Review package: fc5a33187e00b288e9e4625fbb36dbbcc6347abc..c4a4126bc61f889f3561647a9f4d385a8e8b38ce
+
+## Commits
+c4a4126 fix: replay first reservation balance
+
+## Files changed
+ src/reservations.py        | 19 +++++++++++--------
+ tests/test_reservations.py | 36 ++++++++++++++++++++++++++++++------
+ 2 files changed, 41 insertions(+), 14 deletions(-)
+
+## Whitespace check
+
+## Diff
+diff --git a/src/reservations.py b/src/reservations.py
+index 95992c8..945341e 100644
+--- a/src/reservations.py
++++ b/src/reservations.py
+@@ -1,22 +1,25 @@
+ import threading
+ 
+ 
+-_applied_keys: set[str] = set()
++_resulting_balances: dict[str, int] = {}
+ _registry_lock = threading.Lock()
+ 
+ 
+ def reserve_once(
+     balance_cents: int,
+     amount_cents: int,
+     key: str,
+ ) -> tuple[str, int]:
+     with _registry_lock:
+-        if key in _applied_keys:
+-            if balance_cents >= amount_cents:
+-                return "already_reserved", balance_cents - amount_cents
+-            return "already_reserved", balance_cents
++        if key in _resulting_balances:
++            return "already_reserved", _resulting_balances[key]
+ 
+-        _applied_keys.add(key)
+         if balance_cents < amount_cents:
+-            return "insufficient_funds", balance_cents
+-        return "reserved", balance_cents - amount_cents
++            status = "insufficient_funds"
++            resulting_balance = balance_cents
++        else:
++            status = "reserved"
++            resulting_balance = balance_cents - amount_cents
++
++        _resulting_balances[key] = resulting_balance
++        return status, resulting_balance
+diff --git a/tests/test_reservations.py b/tests/test_reservations.py
+index a4967c9..afc8e09 100644
+--- a/tests/test_reservations.py
++++ b/tests/test_reservations.py
+@@ -21,28 +21,52 @@ class ReserveOnceTests(unittest.TestCase):
+     def test_sequential_duplicate_does_not_debit_again(self):
+         self.assertEqual(
+             reserve_once(500, 200, "sequential-key"),
+             ("reserved", 300),
+         )
+         self.assertEqual(
+             reserve_once(500, 200, "sequential-key"),
+             ("already_reserved", 300),
+         )
+ 
+-    def test_concurrent_duplicate_is_applied_once(self):
++    def test_reserved_duplicate_replays_first_balance_when_arguments_change(self):
++        self.assertEqual(
++            reserve_once(1_000, 250, "changed-reserved-key"),
++            ("reserved", 750),
++        )
++        self.assertEqual(
++            reserve_once(9_999, 1_000, "changed-reserved-key"),
++            ("already_reserved", 750),
++        )
++
++    def test_insufficient_duplicate_replays_first_balance_when_arguments_change(self):
++        self.assertEqual(
++            reserve_once(100, 101, "changed-insufficient-key"),
++            ("insufficient_funds", 100),
++        )
++        self.assertEqual(
++            reserve_once(1_000, 100, "changed-insufficient-key"),
++            ("already_reserved", 100),
++        )
++
++    def test_concurrent_duplicate_replays_winning_balance(self):
+         start = threading.Barrier(2)
++        calls = [(1_000, 300), (900, 100)]
+ 
+-        def reserve():
++        def reserve(call):
+             start.wait()
+-            return reserve_once(1_000, 300, "concurrent-key")
++            return reserve_once(*call, "concurrent-key")
+ 
+         with ThreadPoolExecutor(max_workers=2) as executor:
+-            results = list(executor.map(lambda _: reserve(), range(2)))
++            results = list(executor.map(reserve, calls))
+ 
+-        self.assertCountEqual(
++        self.assertIn(
+             results,
+-            [("reserved", 700), ("already_reserved", 700)],
++            [
++                [("reserved", 700), ("already_reserved", 700)],
++                [("already_reserved", 800), ("reserved", 800)],
++            ],
+         )
+ 
+ 
+ if __name__ == "__main__":
+     unittest.main()

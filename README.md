@@ -13,9 +13,9 @@ It starts from the moment you fire up your coding agent. As soon as it sees that
 
 Once it's teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest.
 
-After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY.
+After you've signed off on the design, your agent writes a specification-linked implementation plan. The plan defines observable behavior, interfaces, boundaries, risks, and verification without pre-writing the implementation. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY.
 
-Next up, once you say "go", it launches a *subagent-driven-development* process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for your agent to work autonomously for a couple hours at a time without deviating from the plan you put together.
+Once you say "go", *subagent-driven-development* preflights the plan, groups ordinary work into bounded units, isolates risky work, and records decisions and evidence in a resumable ledger. Review depth follows named risk instead of running the same review loop after every small task.
 
 There's a bunch more to it, but that's the core of the system. And because the skills trigger automatically, you don't need to do anything special. Your coding agent just has Superpowers.
 
@@ -199,15 +199,17 @@ The Pi package loads the Superpowers skills and a small extension that injects t
 
 2. **using-git-worktrees** - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.
 
-3. **writing-plans** - Activates with approved design. Breaks work into review-sized tasks with exact file paths, interfaces/contracts, acceptance criteria, boundary cases, and verification steps. Implementers derive the code through TDD from those contracts.
+3. **writing-plans** - Activates with approved design. Produces a spec-linked WHAT-not-HOW plan with exact file paths, interfaces/contracts, acceptance criteria, boundary cases, risk triggers, and verification lanes. The author self-reviews the whole plan; named risk gets one holistic readiness review with at most two correction rounds.
 
-4. **subagent-driven-development** or **executing-plans** - Activates with a plan. The subagent workflow uses plan-scoped artifacts, a fresh implementer per task, a combined task review returning both spec and quality verdicts, scoped fix loops, and a broad final review; the inline workflow executes the plan with verification checkpoints.
+4. **subagent-driven-development** or **executing-plans** - Activates with an approved plan. SDD preflights the plan, runs ordinary work in compatible batches of at most three tasks, runs review-required work individually, and performs one final integration review. A failed unit gets one correction by the original implementer and one deep rescue; unresolved blockers stop before a third correction. `executing-plans` is the honest inline fallback when subagents are unavailable or the approved plan explicitly selects it.
 
 5. **test-driven-development** - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.
 
-6. **requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
+6. **requesting-code-review** - Provides ad hoc, major-feature, and pre-integration reviews over an explicit contract and exact revision range. SDD owns its internal unit, correction, and final-integration reviews.
 
-7. **finishing-a-development-branch** - Activates when tasks complete. Verifies tests, detects the checkout type, and presents merge/PR/keep options. Discard is available only after an explicit request plus typed confirmation.
+7. **finishing-a-development-branch** - Validates the producer's exact implementation HEAD, runs the complete repository suite exactly once per handed-off implementation HEAD, commits only the durable execution report, then presents merge/PR/keep options. A failed HEAD is recorded and never retried; the producer preserves its correction budget when issuing a new reviewed handoff. It cleans only workflow-owned temporary state. Discard is available only after an explicit request plus typed confirmation.
+
+Codex repositories may define four optional local roles for review, ordinary implementation, deep rescue, and topic context. Packaged installs fall back to generic fresh agents without losing implementation or review coverage.
 
 **The agent checks for relevant skills before any task.** Mandatory workflows, not suggestions.
 
@@ -224,14 +226,14 @@ The Pi package loads the Superpowers skills and a small extension that injects t
 
 **Collaboration**
 - **brainstorming** - Socratic design refinement
-- **writing-plans** - Detailed implementation plans
-- **executing-plans** - Batch execution with checkpoints
+- **writing-plans** - Spec-linked, risk-classified implementation plans
+- **executing-plans** - Inline execution fallback with truthful evidence handoff
 - **dispatching-parallel-agents** - Concurrent subagent workflows
-- **requesting-code-review** - Pre-review checklist
+- **requesting-code-review** - Ad hoc and integration-boundary review
 - **receiving-code-review** - Responding to feedback
 - **using-git-worktrees** - Parallel development branches
-- **finishing-a-development-branch** - Merge/PR decision workflow
-- **subagent-driven-development** - Plan-scoped implementation with combined per-task spec/quality review and a broad final review
+- **finishing-a-development-branch** - Exact-HEAD verification, report preservation, and merge/PR decision workflow
+- **subagent-driven-development** - Plan-scoped, risk-scaled implementation with bounded corrections and final integration review
 
 **Meta**
 - **writing-skills** - Create new skills following best practices (includes testing methodology)

@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- **Private helper — HOW:** Controller approves it autonomously. Record: “Use a private helper; it preserves the approved behavior and is reversible. If wrong, the cost is a small refactor to inline the logic.” No user question.\n- **Error result — DECISION:** Controller does not choose between `not_found` and `invalid_request`. Pause only work dependent on that public behavior and ask: “For this case, should the public error result be `not_found` or `invalid_request`?”",
+  "event_trace": [
+    {
+      "event": "controller_ruling",
+      "classification": "HOW",
+      "decision": "Use the private helper.",
+      "rationale": "The plan permits either implementation and the choice preserves observable behavior.",
+      "cost_if_wrong": "A small reversible refactor back to inline logic.",
+      "ask_user": false
+    },
+    {
+      "event": "human_question",
+      "classification": "DECISION",
+      "scope": "public error result",
+      "question": "Should this case use not_found or invalid_request?",
+      "bounded": true
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The controller autonomously approves the private helper as HOW, records that it is reversible, and states the cost of refactoring it back inline."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "The response labels the public result DECISION, pauses only dependent work, and asks one bounded question between the two named results."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says there is no user question for the helper choice."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": [
+    "DECISION"
+  ],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The controller autonomously approves the private helper as HOW, records that it is reversible, and states the cost of refactoring it back inline."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "The response labels the public result DECISION, pauses only dependent work, and asks one bounded question between the two named results."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says there is no user question for the helper choice."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "ddc771d9af273fbcd180c1eb16b97de33f99fd8e",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 4,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Implementation dispatch:\n- Intended role: `sp_implementer`.\n- `agent_type` key omitted.\n- `fork_turns: \"none\"`.\n- Dispatch a fresh generic agent with the complete, fully populated `implementer-prompt.md`, covering project fit, exact generated task brief, necessary prior interfaces/decisions, applicable research or `NONE`, ambiguity rulings, working directory, report path, full report contract, and short return contract.\n- Record the assigned agent identity, implementation stage, and `generic fallback (sp_implementer unavailable)` in the plan-scoped ledger.\n\nReview dispatch:\n- Intended role: `sp_reviewer`.\n- `agent_type` key omitted.\n- `fork_turns: \"none\"`.\n- Dispatch a separate fresh generic agent with the complete, fully populated `task-reviewer-prompt.md`, covering the task brief, binding constraints, implementer report, exact `BASE` and `HEAD`, generated `BASE..HEAD` review package, absolute Superpowers directory, specialist profiles, read-only/no-spawn constraints, proof and causal-scope requirements, allowed dispositions, and exact verdict/report contract.\n- Record the assigned reviewer identity, review stage, and `generic fallback (sp_reviewer unavailable)` in the plan-scoped ledger.\n- Review remains mandatory.\n\nRole-availability probe: none. No unknown typed role is passed or intentionally probed.",
+  "event_trace": [
+    {
+      "event": "dispatch",
+      "phase": "implementation",
+      "intended_typed_role": "sp_implementer",
+      "agent_type": "omitted",
+      "fork_turns": "none",
+      "prompt_template": "subagent-driven-development/implementer-prompt.md",
+      "prompt_coverage": "complete",
+      "ledger_mode": "generic fallback (sp_implementer unavailable)"
+    },
+    {
+      "event": "dispatch",
+      "phase": "task_review",
+      "intended_typed_role": "sp_reviewer",
+      "agent_type": "omitted",
+      "fork_turns": "none",
+      "prompt_template": "subagent-driven-development/task-reviewer-prompt.md",
+      "prompt_coverage": "complete",
+      "ledger_mode": "generic fallback (sp_reviewer unavailable)"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Both implementation and review omit agent_type while naming intended roles only as ledger context."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Each fresh generic dispatch uses fork_turns none and receives the complete populated prompt contract."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "Review remains mandatory, and the plan-scoped ledger records identities, stages, and unavailable-role fallback modes."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response states that no unknown role is passed or intentionally probed."
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Both implementation and review omit agent_type while naming intended roles only as ledger context."
+    },
+    {
+      "id": "uses-no-context-inheritance-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Each fresh generic dispatch uses fork_turns none and receives the complete populated prompt contract."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "Review remains mandatory, and the plan-scoped ledger records identities, stages, and unavailable-role fallback modes."
+    },
+    {
+      "id": "avoids-unknown-role-probe",
+      "passed": true,
+      "evidence": "The response states that no unknown role is passed or intentionally probed."
+    }
+  ]
+}

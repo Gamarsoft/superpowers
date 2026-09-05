@@ -76,6 +76,40 @@ else
   printf '%s\n' "$output"
 fi
 
+mixed_revision="$TEST_ROOT/mixed-revision"
+cp -R "$valid" "$mixed_revision"
+python3 - "$mixed_revision/manifest.json" <<'PY'
+import json
+import sys
+path = sys.argv[1]
+data = json.load(open(path))
+data["scenario_revision"] = {"scope-pressure": "fixture-v1"}
+with open(path, "w") as handle:
+    json.dump(data, handle)
+PY
+if python3 "$SCORER" "$mixed_revision" >/dev/null 2>&1; then
+  pass "manifest accepts an exact revision per scenario"
+else
+  fail "manifest accepts an exact revision per scenario"
+fi
+
+missing_revision="$TEST_ROOT/missing-scenario-revision"
+cp -R "$mixed_revision" "$missing_revision"
+python3 - "$missing_revision/manifest.json" <<'PY'
+import json
+import sys
+path = sys.argv[1]
+data = json.load(open(path))
+data["scenario_revision"] = {}
+with open(path, "w") as handle:
+    json.dump(data, handle)
+PY
+if python3 "$SCORER" "$missing_revision" >/dev/null 2>&1; then
+  fail "manifest rejects a missing per-scenario revision"
+else
+  pass "manifest rejects a missing per-scenario revision"
+fi
+
 missing="$TEST_ROOT/missing-field"
 cp -R "$valid" "$missing"
 python3 - "$missing/raw/scope-pressure-01.json" <<'PY'
@@ -118,6 +152,54 @@ if python3 "$SCORER" "$mismatch" >/dev/null 2>&1; then
   fail "manifest sample-count mismatch is rejected"
 else
   pass "manifest sample-count mismatch is rejected"
+fi
+
+revision_baseline="$TEST_ROOT/revision-baseline"
+revision_candidate="$TEST_ROOT/revision-candidate"
+cp -R "$valid" "$revision_baseline"
+cp -R "$valid" "$revision_candidate"
+python3 - "$revision_candidate/manifest.json" "$revision_candidate/raw/scope-pressure-01.json" <<'PY'
+import json
+import sys
+manifest_path, result_path = sys.argv[1:]
+manifest = json.load(open(manifest_path))
+manifest["variant"] = "candidate"
+manifest["variant_revision"] = "cccccccccccccccccccccccccccccccccccccccc"
+manifest["scenario_revision"] = "fixture-v2"
+with open(manifest_path, "w") as handle:
+    json.dump(manifest, handle)
+result = json.load(open(result_path))
+result["variant"] = "candidate"
+result["variant_revision"] = "cccccccccccccccccccccccccccccccccccccccc"
+result["scenario_revision"] = "fixture-v2"
+with open(result_path, "w") as handle:
+    json.dump(result, handle)
+PY
+if python3 "$SCORER" "$revision_candidate" --baseline "$revision_baseline" >/dev/null 2>&1; then
+  fail "candidate comparison rejects scenario revision mismatch"
+else
+  pass "candidate comparison rejects scenario revision mismatch"
+fi
+
+revision_baseline_v2="$TEST_ROOT/revision-baseline-v2"
+cp -R "$revision_baseline" "$revision_baseline_v2"
+python3 - "$revision_baseline_v2/manifest.json" "$revision_baseline_v2/raw/scope-pressure-01.json" <<'PY'
+import json
+import sys
+manifest_path, result_path = sys.argv[1:]
+manifest = json.load(open(manifest_path))
+manifest["scenario_revision"] = "fixture-v2"
+with open(manifest_path, "w") as handle:
+    json.dump(manifest, handle)
+result = json.load(open(result_path))
+result["scenario_revision"] = "fixture-v2"
+with open(result_path, "w") as handle:
+    json.dump(result, handle)
+PY
+if python3 "$SCORER" "$revision_candidate" --baseline "$revision_baseline_v2" --baseline "$revision_baseline" >/dev/null 2>&1; then
+  pass "multiple baselines select the matching scenario revision"
+else
+  fail "multiple baselines select the matching scenario revision"
 fi
 
 if [[ "$FAILURES" -ne 0 ]]; then

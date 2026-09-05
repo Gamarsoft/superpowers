@@ -24,6 +24,21 @@ Live in `tests/`. Currently:
 
 Run plugin tests via the relevant directory's `run-*.sh` or `npm test`.
 
+The repository also keeps focused Codex behavior probes under
+`tests/codex/sdd-behavior/`. These use fresh Codex agents to exercise the lean
+planning and delivery controller under scope, authority, cadence, correction,
+fallback, and finishing pressure. Every campaign uses immutable run directories
+containing a manifest, complete raw responses, controller-visible event counts,
+assertion evidence, and a checked summary. Run the deterministic scorer contract
+with:
+
+```bash
+bash tests/codex/sdd-behavior/test-score-results.sh
+```
+
+These local probes test a narrow fork-specific workflow contract. The suite supplements
+the shell tests and does not replace the external Drill suite.
+
 ## Skill behavior evals
 
 Live in `evals/`. Drill is the harness; scenarios live at `evals/scenarios/*.yaml`. See `evals/README.md` for setup. Quick start:

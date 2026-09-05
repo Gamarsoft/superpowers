@@ -10,7 +10,9 @@ Each immutable run lives under `results/lean-risk-scaled/runs/<run-id>/`:
 
 - `manifest.json` records the exact skill revision, scenario revision,
   harness/version, model/effort, plugins, advertised typed roles, and expected
-  sample count.
+  sample count. `scenario_revision` may be one string for a uniform run or an
+  object keyed by scenario when only one prompt evolves; every candidate is
+  compared only with a baseline carrying the same revision for that scenario.
 - `raw/<scenario>-<two-digit-repetition>.json` preserves the complete actor
   response, controller event trace, counts, dispositions, assertions, and
   evidence.
@@ -36,7 +38,9 @@ iteration gets a new run ID.
    independent scorers only when prose makes an assertion ambiguous, and keep
    both original judgments in `event_trace`.
 6. Run `python3 score-results.py RUN_DIR`. For candidates, also pass
-   `--baseline BASELINE_RUN_DIR`.
+   `--baseline BASELINE_RUN_DIR`. Repeat `--baseline` when the aggregate
+   candidate contains scenario revisions stored in separate baseline runs;
+   the scorer selects only exact scenario/revision matches.
 
 Start with five samples. If exactly one baseline sample fails, run five more
 for that scenario. A candidate uses the final matched count, passes every

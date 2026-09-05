@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "authority",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 5,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "- **RULING / HOW:** Use the private helper autonomously. Record: it preserves the approved behavior and the plan permits it; if wrong, the concrete cost is a localized refactor back to inline logic. No user question.\n- **DECISION / WHAT:** Pause only the public error-result change. Ask: “Should this case return `not_found` or `invalid_request`?” Continue unaffected work.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The response autonomously selects the plan-permitted helper as a HOW ruling and records a localized refactor back to inline logic as the concrete cost if wrong."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "It classifies the public error-result choice as DECISION, pauses only that change, and asks one bounded question between not_found and invalid_request."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says there is no user question for the helper ruling."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 1,
+  "dispositions": ["DECISION"],
+  "assertions": [
+    {
+      "id": "helper-autonomous-how-ruling-with-cost",
+      "passed": true,
+      "evidence": "The response autonomously selects the plan-permitted helper as a HOW ruling and records a localized refactor back to inline logic as the concrete cost if wrong."
+    },
+    {
+      "id": "public-result-decision-bounded-question",
+      "passed": true,
+      "evidence": "It classifies the public error-result choice as DECISION, pauses only that change, and asks one bounded question between not_found and invalid_request."
+    },
+    {
+      "id": "no-helper-human-question",
+      "passed": true,
+      "evidence": "It explicitly says there is no user question for the helper ruling."
+    }
+  ]
+}

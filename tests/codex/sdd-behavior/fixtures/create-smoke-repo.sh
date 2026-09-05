@@ -23,12 +23,11 @@ from pathlib import Path
 
 
 class FixtureShapeTest(unittest.TestCase):
-    def test_fixture_starts_with_four_unimplemented_tasks(self):
+    def test_fixture_has_four_tasks_and_a_source_package(self):
         root = Path(__file__).parents[1]
         plan = (root / "docs" / "implementation-plan.md").read_text()
         self.assertEqual(plan.count("## Task "), 4)
-        self.assertFalse((root / "src" / "queue_label.py").exists())
-        self.assertFalse((root / "src" / "reservations.py").exists())
+        self.assertTrue((root / "src" / "__init__.py").exists())
 
 
 if __name__ == "__main__":
@@ -41,11 +40,13 @@ __pycache__/
 EOF
 
 git -C "$destination" init -q -b main
+git -C "$destination" config core.fsmonitor false
 git -C "$destination" add .
 git -C "$destination" \
   -c user.name=fixture \
   -c user.email=fixture@example.invalid \
   -c commit.gpgsign=false \
   commit -qm "test: seed SDD smoke fixture"
+git -C "$destination" tag sdd-smoke-base
 
 printf '%s\n' "$destination"

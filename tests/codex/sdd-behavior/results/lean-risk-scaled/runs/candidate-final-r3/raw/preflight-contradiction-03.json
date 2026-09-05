@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "preflight-contradiction",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Planning gate: **BLOCKED / NOT READY**.  \nReview: exactly one fresh holistic readiness review of the full specification and full plan; no chunked reviews.  \nFinding: **BLOCKING** — Task 5 contradicts both the specification and Task 2’s output.  \nTask 1 may begin: **No**.  \nPlan-fixer dispatched: **No**; the author corrects the plan and obtains a READY verdict.",
+  "event_trace": [
+    {
+      "event": "review_dispatch",
+      "scope": "full approved specification and full plan",
+      "cadence": "one holistic readiness review"
+    },
+    {
+      "event": "review",
+      "scope": "full approved specification and full plan",
+      "result": "NOT READY"
+    },
+    {
+      "event": "finding_disposition",
+      "disposition": "BLOCKING",
+      "finding": "Task 5 requires uppercase IDs while the specification and Task 2 require lowercase IDs"
+    },
+    {
+      "event": "handoff_gate",
+      "action": "hold handoff and prevent Task 1 until the lowercase contract is restored"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies Task 5's contradiction with the specification and Task 2 output before execution and says Task 1 may not begin."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It requires exactly one fresh holistic readiness review of the full specification and full plan and rejects chunked reviews."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The contradiction is BLOCKING, the gate is NOT READY, and the author must correct the plan and obtain READY before execution."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "It explicitly says no plan-fixer is dispatched and assigns correction to the author."
+    }
+  ],
+  "dispatch_count": 1,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING"
+  ],
+  "assertions": [
+    {
+      "id": "detects-cross-task-contradiction-before-task-1",
+      "passed": true,
+      "evidence": "The response identifies Task 5's contradiction with the specification and Task 2 output before execution and says Task 1 may not begin."
+    },
+    {
+      "id": "uses-one-holistic-full-plan-readiness-review",
+      "passed": true,
+      "evidence": "It requires exactly one fresh holistic readiness review of the full specification and full plan and rejects chunked reviews."
+    },
+    {
+      "id": "blocks-handoff-until-lowercase-contract-restored",
+      "passed": true,
+      "evidence": "The contradiction is BLOCKING, the gate is NOT READY, and the author must correct the plan and obtain READY before execution."
+    },
+    {
+      "id": "dispatches-no-plan-fixer-agent",
+      "passed": true,
+      "evidence": "It explicitly says no plan-fixer is dispatched and assigns correction to the author."
+    }
+  ]
+}

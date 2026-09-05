@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "candidate_skill_revision": "73f2f42edbf498ddf641b1f4f96c704ee7d7f9ca",
+  "repository_evidence_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "fixture_spec_revision": "fixture-v1",
+  "implementation_base": "232c6391d64a6e59c820c402113b149c891bfb7e",
+  "implementation_head": "c4a4126bc61f889f3561647a9f4d385a8e8b38ce",
+  "report_commit": "4eb169381911d345e7e5b45c1951ba1e7745b0d6",
+  "actors": {
+    "readiness_review": "/root/smoke_r5_readiness",
+    "ordinary_implementer": "/root/smoke_r5_labels_impl",
+    "ordinary_reviewer": "/root/smoke_r5_labels_review",
+    "risky_implementer": "/root/smoke_r5_reservation_candidate",
+    "risky_reviewer": "/root/smoke_r5_reservation_review",
+    "final_reviewer": "/root/smoke_r5_final_review"
+  },
+  "events": [
+    {
+      "sequence": 1,
+      "event": "preflight-stop",
+      "result": "NOT READY",
+      "finding": "Task 2 uppercase contract contradicted approved lowercase behavior",
+      "dispatch_count": 0
+    },
+    {
+      "sequence": 2,
+      "event": "planning-correction",
+      "commit": "ebbf4dc1e78a5437f4ff3f78ce23afec4ca57e5c"
+    },
+    {
+      "sequence": 3,
+      "event": "readiness-review",
+      "fork_turns": "none",
+      "result": "READY",
+      "dispositions": ["INVALID"]
+    },
+    {
+      "sequence": 4,
+      "event": "ordinary-unit",
+      "tasks": [1, 2, 3],
+      "fork_turns": "none",
+      "commit": "370cd9b93a7d6617e62e92b4200de970d7e96dde",
+      "focused_tests": 3,
+      "integration_tests": 3
+    },
+    {
+      "sequence": 5,
+      "event": "checkpoint-review",
+      "range": "ebbf4dc1e78a5437f4ff3f78ce23afec4ca57e5c..370cd9b93a7d6617e62e92b4200de970d7e96dde",
+      "fork_turns": "none",
+      "result": "READY",
+      "reran_tests": false
+    },
+    {
+      "sequence": 6,
+      "event": "risky-candidate",
+      "task": 4,
+      "fork_turns": "none",
+      "commit": "fc5a33187e00b288e9e4625fbb36dbbcc6347abc",
+      "focused_tests": 4,
+      "result": "GREEN_WITH_INJECTED_DEFECT"
+    },
+    {
+      "sequence": 7,
+      "event": "risky-review",
+      "range": "370cd9b93a7d6617e62e92b4200de970d7e96dde..fc5a33187e00b288e9e4625fbb36dbbcc6347abc",
+      "fork_turns": "none",
+      "result": "NOT READY",
+      "dispositions": ["BLOCKING"],
+      "probe": "reserved duplicate 8999 != 750; insufficient duplicate 900 != 100"
+    },
+    {
+      "sequence": 8,
+      "event": "correction-1",
+      "actor": "original-implementer",
+      "range": "fc5a33187e00b288e9e4625fbb36dbbcc6347abc..c4a4126bc61f889f3561647a9f4d385a8e8b38ce",
+      "red_failures": 3,
+      "green_tests": 6
+    },
+    {
+      "sequence": 9,
+      "event": "scoped-rereview",
+      "actor": "same-reviewer",
+      "result": "READY",
+      "prior_finding": "ADDRESSED"
+    },
+    {
+      "sequence": 10,
+      "event": "integration-verification",
+      "command": "python3 -m unittest tests.test_queue_label tests.test_owner_label tests.test_tag_label tests.test_reservations -v",
+      "tests": 9,
+      "result": "OK"
+    },
+    {
+      "sequence": 11,
+      "event": "final-integration-review",
+      "range": "232c6391d64a6e59c820c402113b149c891bfb7e..c4a4126bc61f889f3561647a9f4d385a8e8b38ce",
+      "fork_turns": "none",
+      "result": "READY",
+      "dispositions": ["FOLLOW_UP", "INVALID"]
+    },
+    {
+      "sequence": 12,
+      "event": "finishing-verification",
+      "command": "python3 -m unittest discover -s tests -v",
+      "tests": 10,
+      "runs_for_implementation_head": 1,
+      "result": "OK"
+    },
+    {
+      "sequence": 13,
+      "event": "report-only-commit",
+      "commit": "4eb169381911d345e7e5b45c1951ba1e7745b0d6",
+      "changed_paths": [
+        "docs/superpowers/execution-reports/implementation-plan-c4a4126bc61f.md"
+      ]
+    }
+  ],
+  "counts": {
+    "work_unit_dispatches": 2,
+    "unit_review_gates": 2,
+    "correction_rounds": 1,
+    "scoped_rereviews": 1,
+    "final_integration_reviews": 1,
+    "complete_suite_runs_before_finishing": 0,
+    "complete_suite_runs_in_finishing": 1,
+    "producer_returns": 0,
+    "human_stops": 0
+  }
+}

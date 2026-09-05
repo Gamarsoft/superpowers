@@ -10,7 +10,7 @@ For UI-heavy work, routing also waits until the required frontend-direction pack
 2. Classify the delivery shape from the approved spec and the user's stated working preference. Route availability is a constraint, not a recommendation signal.
 3. Recommend the available route with the strongest fit:
    - **GSD:** the work spans multiple milestones or independently shippable slices, needs a durable roadmap or resumable project state, coordinates cross-workstream delivery, or explicitly needs GSD governance and lineage.
-   - **Superpowers:** the work is a bounded feature or fix that benefits from a durable implementation plan, test-driven task execution, per-task review, subagent execution, or atomic commits without broader milestone governance.
+   - **Superpowers:** the work is a bounded feature or fix that benefits from a durable implementation plan, test-driven task execution, risk-scaled review, subagent execution, or atomic commits without broader milestone governance.
    - **Native Codex:** the work is one contained slice intended for the same task or immediate follow-through, has a single clear owner, and needs a lightweight inline plan rather than durable workflow state.
 4. Treat an explicit available route preference as strong fit evidence. Warn once only when that preference conflicts with a concrete delivery need in the approved spec; name that need and the trade-off. Honor the user's preference if they confirm it.
 5. Resolve genuinely mixed signals deterministically: prefer an explicit viable user preference; otherwise prefer GSD for milestone continuity or cross-workstream coordination, Superpowers for durable task-planned delivery, then Native Codex for immediate contained work. Never break a tie merely because a route is available.

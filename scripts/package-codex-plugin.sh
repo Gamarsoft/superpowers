@@ -263,6 +263,13 @@ while IFS= read -r skill_dir; do
   skill_name="${skill_dir##*/}"
   metadata_file="$METADATA_ROOT/skills/$skill_name/agents/openai.yaml"
 
+  # Metadata tracked with the packaged ref is authoritative. The prior
+  # official package only fills gaps for skills whose OpenAI-owned metadata
+  # is intentionally not stored in this repository.
+  if [[ -f "$skill_dir/agents/openai.yaml" ]]; then
+    continue
+  fi
+
   if [[ ! -f "$metadata_file" ]]; then
     echo "Missing OpenAI agent metadata for skill: $skill_name" >&2
     missing_metadata=1

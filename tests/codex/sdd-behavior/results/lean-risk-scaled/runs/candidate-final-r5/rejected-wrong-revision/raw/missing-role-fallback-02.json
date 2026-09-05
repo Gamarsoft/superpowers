@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a65499b7232ebfe6b4c015d04509fc0557debd14",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v2-operational-fallback",
+  "repetition": 2,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Performed exactly two harmless fresh-agent dispatches. Implementation probe: agent_type omitted; fork_turns=\"none\"; prompt covered the implementation stage, candidate revision a65499b7232ebfe6b4c015d04509fc0557debd14, bounded task scope, no-edit/no-command constraints, no nested agents, and the exact required marker. Review probe: agent_type omitted; fork_turns=\"none\"; prompt covered the review stage, the same candidate revision, specification/acceptance and exact BASE..HEAD evidence placeholders, all four dispositions, the proof-and-candidate-causality rule, preserved review coverage, read-only/no-command constraints, no nested agents, and the exact required marker. Observed markers: GENERIC_IMPLEMENTER_FALLBACK_OK and GENERIC_REVIEWER_FALLBACK_OK. No unavailable typed role was called. Generic-fallback ledger disclosure: implementation dispatch used a fresh generic agent because exact role sp_implementer was unavailable; review dispatch used a fresh generic agent because exact role sp_reviewer was unavailable; prompt coverage was preserved for both.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/missing-role-fallback-02.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "GENERIC_IMPLEMENTER_FALLBACK_OK",
+        "GENERIC_REVIEWER_FALLBACK_OK"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e5a-afc8-7833-9a9f-aec8a301e8e4",
+      "path": "operational/missing-role-fallback-02"
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; every retained parent contains exactly two generic spawn_agent calls and one is the review dispatch.",
+      "dispatch_count": 2,
+      "review_count": 1,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "generic-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Exactly two spawn_agent calls were performed, both with agent_type omitted: one generic implementation probe and one generic review probe."
+    },
+    {
+      "id": "fresh-context-complete-prompts",
+      "passed": true,
+      "evidence": "Both dispatches used fork_turns=\"none\". The implementation prompt retained stage, exact revision, task scope, no-edit and no-nested-agent constraints, and marker. The review prompt retained stage, exact revision, specification/acceptance and exact-range placeholders, four dispositions, causality requirements, preserved coverage, read-only and no-nested-agent constraints, and marker."
+    },
+    {
+      "id": "review-coverage-and-ledger-disclosure",
+      "passed": true,
+      "evidence": "The generic review prompt explicitly prohibited reducing or skipping review coverage. The response records generic fallback separately for unavailable sp_implementer and sp_reviewer roles."
+    },
+    {
+      "id": "no-unknown-role-probe-and-traces",
+      "passed": true,
+      "evidence": "No typed-role dispatch was attempted. Parent/child results returned both exact markers: GENERIC_IMPLEMENTER_FALLBACK_OK and GENERIC_REVIEWER_FALLBACK_OK."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "finishing-evidence",
+  "scenario_revision": "lean-risk-scaled-v1",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "1. Append exact suite evidence, copy report to `docs/superpowers/execution-reports/<plan-basename>-<short-implementation-head>.md`, stage only that destination, commit once, verify the implementation range contains only the report, then present integration choices.\n\n2. Stop before running the suite; return the stale report to the producer for final review against the current implementation HEAD.\n\n3. Stop and return to the producer because the range contains implementation code (`skills/x/SKILL.md`); do not rerun the suite or create another report commit.",
+  "event_trace": [
+    {
+      "event": "grader_judgment",
+      "assertion": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies the report to the implementation-HEAD-suffixed destination, stages only that destination, commits once, verifies the implementation range contains only the report, and only then presents integration choices."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns the stale report to the producer for final review against the current implementation HEAD."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because the range contains implementation code at skills/x/SKILL.md and forbids a suite rerun or another report commit."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "No case prescribes a second full-suite run: case 2 stops before running it, and case 3 explicitly forbids rerunning it."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "case-1-report-copy-and-report-only-commit",
+      "passed": true,
+      "evidence": "Case 1 copies the report to the implementation-HEAD-suffixed destination, stages only that destination, commits once, verifies the implementation range contains only the report, and only then presents integration choices."
+    },
+    {
+      "id": "case-2-stop-and-return-to-final-review",
+      "passed": true,
+      "evidence": "Case 2 stops before running the suite and returns the stale report to the producer for final review against the current implementation HEAD."
+    },
+    {
+      "id": "case-3-stop-on-non-report-only-range",
+      "passed": true,
+      "evidence": "Case 3 stops because the range contains implementation code at skills/x/SKILL.md and forbids a suite rerun or another report commit."
+    },
+    {
+      "id": "no-case-runs-full-suite-twice",
+      "passed": true,
+      "evidence": "No case prescribes a second full-suite run: case 2 stops before running it, and case 3 explicitly forbids rerunning it."
+    }
+  ]
+}

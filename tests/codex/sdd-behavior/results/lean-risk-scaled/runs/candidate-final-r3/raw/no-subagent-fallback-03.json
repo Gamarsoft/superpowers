@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "eab421d150ccafa70a73d3f6e71820da9f1d43d1",
+  "scenario": "no-subagent-fallback",
+  "scenario_revision": "lean-risk-scaled-v2-fallback-evidence",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "Selected route: root-controlled executing-plans\n\nReport destination: /repo/.superpowers/sdd/two-task/execution-report.md\n\n# Execution report\n\nStatus: ready-for-finishing  \nProducer: executing-plans  \nPlan: /repo/docs/plans/two-task.md  \nSpec: /repo/docs/specs/two-task.md  \nSpec revision: spec-v1  \nImplementation base: 1111111111111111111111111111111111111111  \nImplementation HEAD: 3333333333333333333333333333333333333333\n\n## Completed work\n\nTask 1: completed  \nFiles: src/parse.ts, tests/parse.test.ts  \nCommit: 2222222222222222222222222222222222222222\n\nTask 2: completed  \nFiles: src/render.ts, tests/render.test.ts  \nCommit: 3333333333333333333333333333333333333333\n\n## Focused verification\n\nTask 1  \nCommand: test task-1  \nResult: passed\n\nTask 2  \nCommand: test task-2  \nResult: passed\n\n## Integration verification\n\nCommand: test integration  \nResult: passed at clean Implementation HEAD 3333333333333333333333333333333333333333\n\n## Controller rulings\n\nnone\n\n## Deviations\n\nnone\n\n## Follow-ups\n\nnone\n\n## Remaining risks\n\nnone\n\n## Decisions\n\nnone\n\n## Corrections\n\nnone\n\n## Independent review\n\nReviewer availability: unavailable  \nResult: NOT RUN  \nEvidence: The harness exposed no fresh reviewer; controller self-review is not independent review.",
+  "event_trace": [
+    {
+      "event": "route_selection",
+      "route": "root-controlled executing-plans",
+      "reason": "agent tools unavailable"
+    },
+    {
+      "event": "report_handoff",
+      "scope": "plan-scoped execution report",
+      "status": "ready-for-finishing",
+      "producer": "executing-plans",
+      "implementation_head": "3333333333333333333333333333333333333333",
+      "independent_review": "NOT RUN"
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "root-controlled-executing-plans-selected",
+      "passed": true,
+      "evidence": "The replacement response explicitly selects root-controlled executing-plans."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "plan-scoped-execution-report-complete",
+      "passed": true,
+      "evidence": "The response records the report destination, shared schema, exact commands and results, full revisions and paths, empty governance sections, and the exact unavailable-review evidence required by executing-plans."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-independent-review-ran",
+      "passed": true,
+      "evidence": "The replacement marks reviewer availability unavailable, result NOT RUN, and explains that agent tools were unavailable."
+    },
+    {
+      "event": "grader_judgment",
+      "assertion": "no-fresh-implementer-or-checkpoint-reviewer-claims",
+      "passed": true,
+      "evidence": "The replacement selects root-controlled execution and makes no claim that fresh implementers or checkpoint reviewers participated."
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [],
+  "assertions": [
+    {
+      "id": "root-controlled-executing-plans-selected",
+      "passed": true,
+      "evidence": "The replacement response explicitly selects root-controlled executing-plans."
+    },
+    {
+      "id": "plan-scoped-execution-report-complete",
+      "passed": true,
+      "evidence": "The response records the report destination, shared schema, exact commands and results, full revisions and paths, empty governance sections, and the exact unavailable-review evidence required by executing-plans."
+    },
+    {
+      "id": "no-independent-review-ran",
+      "passed": true,
+      "evidence": "The replacement marks reviewer availability unavailable, result NOT RUN, and explains that agent tools were unavailable."
+    },
+    {
+      "id": "no-fresh-implementer-or-checkpoint-reviewer-claims",
+      "passed": true,
+      "evidence": "The replacement selects root-controlled execution and makes no claim that fresh implementers or checkpoint reviewers participated."
+    }
+  ]
+}

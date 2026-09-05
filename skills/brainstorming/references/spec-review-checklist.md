@@ -2,11 +2,23 @@
 
 Use this as the blocking quality bar for the approved neutral spec, optional frontend-direction follow-on prompt, frontend packet status, and any adapter created after route confirmation.
 
-## Status language
+## Finding dispositions
 
-- **Approved** — no blocking issues
-- **Issues Found** — at least one blocking issue
-- **Advisory** — useful improvement, but not blocking
+- `BLOCKING` — a proved, causally connected defect that can make the current
+  artifact stage violate its approved product contract, safety boundary, or
+  required handoff contract.
+- `DECISION` — unresolved observable WHAT, route authority, or protected,
+  destructive, or external authority the author cannot choose.
+- `FOLLOW_UP` — a real adjacent issue or improvement outside the first delivery
+  boundary that does not block this artifact stage.
+- `INVALID` — unsupported, contradicted, already covered, HOW-only, or a style
+  preference with no concrete failure.
+
+Every `BLOCKING` or `DECISION` item must include proof from the reviewed
+artifacts, a candidate causal connection to the artifact or handoff being
+changed, and a concrete failure. Use `READY` only when no supported `BLOCKING`
+or `DECISION` remains; otherwise use `NOT READY`. Do not add another severity
+scale.
 
 ## Blocking review categories
 
@@ -114,7 +126,7 @@ Fail the review if the artifacts are missing, weaken, or contradict any required
 
 Treat drift among the spec, packet, and the selected adapter (when one exists) on any of these outcomes as a blocking issue even if one artifact is correct.
 
-## Advisory checks
+## Follow-up checks
 
 - Could any section be shorter and clearer?
 - Are there optional diagrams or screenshots that would materially improve understanding?
@@ -126,15 +138,9 @@ Treat drift among the spec, packet, and the selected adapter (when one exists) o
 ```markdown
 ## Spec Review
 
-**Status:** ✅ Approved | ❌ Issues Found
+ID | Disposition | Location | Proof | Candidate causal connection | Concrete failure | Required resolution
 
-### Blocking Issues
-- [Section / file]: [specific issue]
-- Why it matters:
-- What needs to change:
-
-### Advisory Suggestions
-- [optional improvement]
+Verdict: READY | NOT READY
 ```
 
 ## Escalation rule

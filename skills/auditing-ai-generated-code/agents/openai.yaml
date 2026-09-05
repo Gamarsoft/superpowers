@@ -1,0 +1,3 @@
+interface:
+  display_name: "Auditing AI-Generated Code"
+  short_description: "Audit AI-generated code for production-readiness risks"

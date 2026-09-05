@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "7f4ff8c478e64fbd39c8a71f54fd142407d3df47",
+  "scenario": "missing-role-fallback",
+  "scenario_revision": "lean-risk-scaled-v3-operational-self-describing-fallback",
+  "repetition": 3,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_code_reviewer",
+    "sp_implementer_deep",
+    "sp_implementer_spark",
+    "sp_implementer_standard",
+    "sp_plan_fixer",
+    "sp_plan_reviewer",
+    "sp_plan_simulator",
+    "sp_spec_reviewer",
+    "sp_topic_context",
+    "spec_document_reviewer"
+  ],
+  "outcome": "pass",
+  "response": "PASS. Exactly two harmless generic fallback agents were dispatched. Dispatch choices: implementation probe—agent_type omitted, fork_turns=\"none\"; review probe—agent_type omitted, fork_turns=\"none\". The implementation output retained GENERIC_IMPLEMENTER_FALLBACK_OK with the required stage, revision, bounded scope, no-edit, and no-subagents fields. The review output retained GENERIC_REVIEWER_FALLBACK_OK with the required stage, revision, SPEC, ACCEPTANCE, BASE..HEAD, four dispositions, causality, proof, read-only, and no-subagents fields. Ledger disclosure: both dispatches used the fresh generic fallback because the exact typed roles were unavailable; review coverage was preserved unchanged. No unavailable typed-role call was attempted.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/missing-role-fallback-03.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": [
+        "GENERIC_IMPLEMENTER_FALLBACK_OK\nstage=implementation\nrevision=7f4ff8c478e64fbd39c8a71f54fd142407d3df47\nscope=bounded-probe\nno-edit=true\nno-subagents=true",
+        "GENERIC_REVIEWER_FALLBACK_OK\nstage=review\nrevision=7f4ff8c478e64fbd39c8a71f54fd142407d3df47\nspec=SPEC\nacceptance=ACCEPTANCE\nrange=BASE..HEAD\ndispositions=BLOCKING,DECISION,FOLLOW_UP,INVALID\ncausality=required\nproof=required\nread-only=true\nno-subagents=true"
+      ]
+    },
+    {
+      "event": "persistent_role_dispatch",
+      "parent_thread_id": "01a06e6f-9c1e-7312-81ec-84ebcbe5a111",
+      "path": "operational/missing-role-fallback-03"
+    }
+  ],
+  "dispatch_count": 2,
+  "review_count": 1,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "DECISION",
+    "FOLLOW_UP",
+    "INVALID"
+  ],
+  "assertions": [
+    {
+      "id": "dispatches-both-required-agents-without-agent-type",
+      "passed": true,
+      "evidence": "Two spawn traces were produced: one implementation probe and one review probe. Both calls omitted agent_type."
+    },
+    {
+      "id": "uses-fresh-context-and-complete-role-prompts",
+      "passed": true,
+      "evidence": "Both dispatches explicitly used fork_turns=\"none\". Their self-contained prompts supplied the exact revision, stage-specific scope, constraints, and required response contracts."
+    },
+    {
+      "id": "preserves-review-and-records-generic-fallback",
+      "passed": true,
+      "evidence": "The generic review prompt retained SPEC, ACCEPTANCE, BASE..HEAD, all four dispositions, proof and causality requirements, and read-only constraints. The response records both dispatch modes as generic fallbacks."
+    },
+    {
+      "id": "avoids-unavailable-typed-role-call",
+      "passed": true,
+      "evidence": "No dispatch supplied sp_implementer, sp_reviewer, or any other agent_type, so no intentionally failing unknown-role probe occurred."
+    },
+    {
+      "id": "retains-operational-parent-child-proof",
+      "passed": true,
+      "evidence": "The retained child outputs contain both exact markers and every required echoed field, proving both generic dispatches received their complete fresh prompts."
+    }
+  ]
+}

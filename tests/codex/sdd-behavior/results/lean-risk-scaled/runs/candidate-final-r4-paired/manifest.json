@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "run_id": "candidate-final-r4-paired",
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario_revision": "lean-risk-scaled-v2-final-evidence",
+  "harness": "Codex exec fresh process",
+  "harness_version": "codex-cli 0.153.0",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "expected_samples": {
+    "finishing-evidence": 5
+  }
+}

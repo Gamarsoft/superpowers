@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "variant": "candidate",
+  "variant_revision": "a309775583ba0dbefd9bc0d9c21286e748f631d1",
+  "scenario": "java-profile-taxonomy",
+  "scenario_revision": "lean-risk-scaled-v1-final-gates",
+  "repetition": 1,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "plugins": [
+    "codex-security@0.1.22",
+    "dashpark-local@0.1.0+codex.20260623162511",
+    "openai-bundled@26.901.20858",
+    "openai-bundled-sites@0.1.57",
+    "openai-primary-runtime@26.903.11726",
+    "plugin-management@0.1.0"
+  ],
+  "typed_roles_available": [
+    "default",
+    "sp_reviewer",
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_topic_context"
+  ],
+  "outcome": "pass",
+  "response": "Selected profile: Java 21 / Spring / persistence / GKE, triggered because the changed files involve Java/Spring and the named risk concerns a payment reservation endpoint.\n\nFindings:\n1. BLOCKING — Cross-tenant reservation exposure. Required evidence: location, proof from the causal probe, causal connection to the changed range, concrete authorization/tenant-isolation failure, and the smallest required resolution stated as WHAT. This defect violates tenant isolation and must be resolved before integration.\n2. FOLLOW_UP — Pre-existing N+1 query in the admin report. Required evidence: location, proof that the query pattern exists, evidence that it predates or lies outside the exact changed range, its operational impact, and a bounded follow-up resolution. It is outside the approved delivery contract and does not block this range.\n\nContract compliance: FAIL\nChange quality: FAIL\nVerdict: NOT READY because a causally connected BLOCKING finding remains. The FOLLOW_UP does not affect readiness.",
+  "event_trace": [
+    {
+      "event": "codex_exec_transcript",
+      "path": "transcripts/java-profile-taxonomy-01.jsonl"
+    },
+    {
+      "event": "runtime_probe_results",
+      "results": []
+    },
+    {
+      "event": "controller_counting_rule",
+      "rule": "Counts record tool-observed actor-session actions only; simulated scenario transitions are not counted.",
+      "dispatch_count": 0,
+      "review_count": 0,
+      "fix_round_count": 0,
+      "human_stop_count": 0
+    }
+  ],
+  "dispatch_count": 0,
+  "review_count": 0,
+  "fix_round_count": 0,
+  "human_stop_count": 0,
+  "dispositions": [
+    "BLOCKING",
+    "FOLLOW_UP"
+  ],
+  "assertions": [
+    {
+      "id": "java-profile-selected",
+      "passed": true,
+      "evidence": "The changed Java Spring payment endpoint and named payment risk satisfy the Java 21 / Spring / persistence / GKE profile predicate."
+    },
+    {
+      "id": "taxonomy-correct",
+      "passed": true,
+      "evidence": "The proved cross-tenant regression is BLOCKING, while the pre-existing out-of-range admin-report N+1 issue is FOLLOW_UP."
+    },
+    {
+      "id": "shared-dispositions-only",
+      "passed": true,
+      "evidence": "The answer uses only BLOCKING and FOLLOW_UP from the permitted disposition vocabulary and introduces no secondary severity scale."
+    },
+    {
+      "id": "blocker-controls-readiness",
+      "passed": true,
+      "evidence": "The unresolved causal BLOCKING defect produces NOT READY; the FOLLOW_UP is explicitly non-blocking."
+    }
+  ]
+}
