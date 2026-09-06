@@ -234,16 +234,29 @@ Record HEAD and run:
 scripts/review-package PLAN_FILE BASE HEAD
 ```
 
-Pass the brief, implementer report, recorded BASE/HEAD, package, relevant spec
-anchors, selected specialist profiles, and existing rulings to one fresh
-reviewer using `task-reviewer-prompt.md`. If the plan selects specialist
-profiles, pass their exact instruction paths and require the reviewer to read
-them before judging the applicable surface. For Java, Spring, persistence,
-container, Kubernetes, Helm, GKE, or runtime changes, also pass
-`../requesting-code-review/references/java-21-spring-gke-checklist.md` unless a
-selected profile supersedes it. Reviewers inspect evidence; they do not repeat
-tests whose exact commands/results are already in the report. One unit gets
-one review gate before correction. Implementer self-review does not replace it.
+Read `../requesting-code-review/references/review-method.md` and
+`../requesting-code-review/references/profile-selection.md`. Select profiles
+from the actual changed files and named risks, using plan selections as inputs.
+Record paths, selection predicates, and applicable files in the ledger. A plan
+with no profiles does not waive selection. The shared baseline applies to every
+unit, including ordinary checkpoint work.
+
+Pass the brief, implementer report, recorded BASE/HEAD, package, changed-file
+list, named risks, relevant spec anchors, selected specialist profiles and
+predicates, existing rulings, and absolute Superpowers directory to one fresh reviewer using
+`task-reviewer-prompt.md`. Read that template completely and fill every slot.
+Reviewers inspect evidence; they do not repeat tests whose exact commands/results
+are already in the report unless a concrete doubt requires focused verification.
+One unit gets one review gate before correction. Implementer self-review does
+not replace it.
+
+Require evidence-bearing coverage for the baseline and selected profile sections.
+Any applicable `NOT CHECKED` area makes the review `NOT READY`. Return missing
+inspection or unsupported PASS claims to the same reviewer for completion. This
+is completion of the existing review, not another gate or a code correction
+round. If required evidence cannot be obtained, report the blocked review and
+missing evidence; do not invent a defect or start repeated review attempts.
+Persist coverage and the reviewed range with the findings in the ledger.
 
 ### 5. Dispose every finding
 
@@ -267,8 +280,9 @@ Do not dispatch a second reviewer to seek a different answer.
 
 ### 6. Correct at most twice
 
-If no supported `BLOCKING` or unresolved `DECISION` remains, mark the unit
-complete and continue.
+Only when the review is `READY`, applicable coverage is complete, and no
+supported `BLOCKING` or unresolved `DECISION` remains, mark the unit complete
+and continue.
 
 - Round one returns to the original implementer with the exact findings. Record
   the fix base first. The implementer appends correction evidence to the
@@ -286,13 +300,13 @@ complete and continue.
 Use `re-review-prompt.md` for both scoped re-reviews. A new defect introduced by
 the fix may be `BLOCKING` when it meets the same proof/causality rule; unrelated
 observations become `FOLLOW_UP` and cannot extend the correction loop. Pass the
-same selected specialist profiles and applicable Java/Spring/GKE checklist used
-for the unit's initial review.
+applicable profiles from the initial review and re-evaluate selection for
+fix-introduced behavior. Require coverage scoped to the findings and fix.
 
 ## Final Integration Review
 
-After all units are complete, dispatch one fresh `sp_reviewer` (or the generic
-fallback) over:
+After all units are complete, read `final-reviewer-prompt.md` completely, fill
+every slot, and dispatch one fresh `sp_reviewer` (or the generic fallback) over:
 
 - the full specification and plan;
 - implementation base and current HEAD;
@@ -300,15 +314,18 @@ fallback) over:
 - the ledger, unit reports, rulings, dispositions, and accepted deviations; and
 - focused and integration evidence already produced.
 
-Pass the plan's selected specialist profiles and the applicable
-`../requesting-code-review/references/java-21-spring-gke-checklist.md` to this
-reviewer under the same rule as unit review.
+Recompute profiles from the cumulative changed-file list and named risks using
+`../requesting-code-review/references/profile-selection.md`; include relevant
+plan selections. Pass exact paths, predicates, and the absolute Superpowers
+directory. Require the shared coverage table and resolve incomplete inspection
+under the same rule as unit review.
 
 The reviewer checks whole-feature acceptance, cross-task producer/consumer
 contracts, scope drift, unresolved decisions, migration/destructive safety, and
-whether evidence supports the claims. It does not redo every task review or run
-the complete repository suite. Final-review corrections use the same two-round
-breaker and shared dispositions.
+whether evidence supports the claims. It traces combined behavior and verifies
+that later changes have not invalidated cited unit evidence. It does not redo
+every task review or run the complete repository suite. Final-review corrections
+use `re-review-prompt.md`, the same two-round breaker, and shared dispositions.
 
 When the final review is `READY`, require a clean worktree, revalidate current HEAD
 equals the reviewer's recorded HEAD, and only then record the exact

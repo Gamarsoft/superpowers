@@ -36,6 +36,12 @@ with:
 bash tests/codex/sdd-behavior/test-score-results.sh
 ```
 
+Review-depth micro-tests and manually inspected responses live in
+`tests/codex/sdd-behavior/review-depth/`. These are bounded prompt probes, not
+scorer-certified controller campaigns. Run their dispatch wiring checks with
+`bash tests/claude-code/test-review-depth-contracts.sh`. See that directory's
+`RESULTS.md` for before/after results and limitations.
+
 These local probes test a narrow fork-specific workflow contract. The suite supplements
 the shell tests and does not replace the external Drill suite.
 

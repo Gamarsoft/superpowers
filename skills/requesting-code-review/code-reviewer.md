@@ -21,10 +21,11 @@ BASE..HEAD diff and the requirements source before judging.
 
 ## Profile rule
 
-The base review is stack-neutral. Read only the paths listed in
-{SELECTED_PROFILES}; `none` means load no specialist checklist. Apply a profile
-only to the files and named risks that selected it. A profile cannot enlarge
-the approved scope or override the disposition rules below.
+Read `{SUPERPOWERS_DIR}/skills/requesting-code-review/references/review-method.md`
+and `profile-selection.md` beside it. Apply their baseline and selection rules
+to the actual diff. {SELECTED_PROFILES} records the controller's selections and
+predicates; add any omitted applicable profile in this review. A profile cannot
+enlarge approved scope or override the dispositions below.
 
 ## Review method
 
@@ -59,7 +60,7 @@ severity scale.
 
 ## Output
 
-Return one compact table:
+Return the shared method's evidence-bearing coverage table, then one findings table:
 
 ID | Disposition | Location | Proof | Candidate causal connection | Concrete failure | Required resolution
 
@@ -67,8 +68,9 @@ Then return:
 
 - Contract compliance: PASS or FAIL
 - Change quality: PASS or FAIL
-- Evidence checked: exact commands and artifacts
-- Verdict: READY only when no BLOCKING or DECISION remains; otherwise NOT READY
+- Evidence checked: exact commands and artifacts, distinguishing reported from observed
+- Uncompleted inspection: missing evidence or none
+- Verdict: READY only with complete applicable coverage and no BLOCKING or DECISION; otherwise NOT READY
 
-Return FOLLOW_UP and INVALID rows even when the verdict is READY.
+Preserve supported FOLLOW_UP and INVALID rows even when READY; write none when empty.
 ```

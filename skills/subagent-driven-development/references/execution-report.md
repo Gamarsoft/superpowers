@@ -67,6 +67,8 @@ Result: READY | NOT RUN
 Evidence: <reviewed range and verdict, or why no independent reviewer existed>
 ```
 
+For SDD, independent review evidence also includes the coverage report path and
+reviewed range; SDD requires complete applicable coverage before recording READY.
 `READY` requires no supported `BLOCKING` or unresolved `DECISION`. `NOT RUN` is
 valid only for the honest no-subagent fallback; never describe controller
 self-review as independent review.

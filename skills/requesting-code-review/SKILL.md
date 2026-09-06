@@ -32,8 +32,8 @@ requirements or an invalid range blocks review dispatch.
 
 ## Select Review Depth
 
-Read `references/profile-selection.md`. Select only profiles justified by the
-changed files or named risk. Record each selected profile and its predicate in
+Read `references/review-method.md` and `references/profile-selection.md`.
+Select only profiles justified by the changed files or named risk. Record each selected profile and its predicate in
 the prompt. The default review is stack-neutral; an unselected profile is not a
 silent mandatory checklist.
 
@@ -60,9 +60,13 @@ Other harnesses use one fresh read-only reviewer with the same prompt.
 
 ## Consume the Result
 
-Require one table using `BLOCKING`, `DECISION`, `FOLLOW_UP`, and `INVALID`, plus
+Require the shared method's coverage table with evidence, followed by one findings
+table using `BLOCKING`, `DECISION`, `FOLLOW_UP`, and `INVALID`, plus
 a `READY` or `NOT READY` verdict.
 
+- Any applicable `NOT CHECKED` coverage requires `NOT READY`. Complete the
+  missing inspection with the same reviewer before accepting the review. This
+  is review completion, not a code correction round or a new gate.
 - A supported `BLOCKING` defect must be fixed before integration.
 - A `DECISION` returns to the authority for observable WHAT, protected,
   destructive, or external action.

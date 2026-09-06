@@ -1,0 +1,17 @@
+{
+  "baseline_commit": "41176b9c583f9e2f7ac9e55dc6d68193454ef3a4",
+  "baseline": {
+    "subagent-driven-development/SKILL.md": "2c842b3bb76fb84f46364be3a7ab0507a930b4a1ff307964bfa8356edaea5e89",
+    "subagent-driven-development/task-reviewer-prompt.md": "1b5786deead0ecbc765c8eef88e42c3047413956d1a6dae6dab77e3ba49dc36e",
+    "requesting-code-review/references/profile-selection.md": "26908579cb9c5a079069625d7e52045284831b3ede65028fdb9d4c80487d8288"
+  },
+  "candidate_r1": {
+    "requesting-code-review/references/profile-selection.md": "420d76095c2df54d9eebd4cd552438159ce64e8f90bffc841f38401b2a9b52a0",
+    "requesting-code-review/references/review-method.md": "451f713dde74af973f8d2d719943d391e25419b49a9d1c83e903c9ada7e4dea2"
+  },
+  "note": "Content fingerprints for manual prompt probes, not scorer-certified immutable runs. Candidate r1 hashes retain only shared selection/method files stable during those probes.",
+  "candidate_r2": {
+    "requesting-code-review/references/review-method.md": "f595e659457f67fd176ebbec8e5471618af6480ed64606926036b64c935f3891",
+    "requesting-code-review/references/profile-selection.md": "420d76095c2df54d9eebd4cd552438159ce64e8f90bffc841f38401b2a9b52a0"
+  }
+}

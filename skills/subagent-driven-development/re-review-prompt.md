@@ -13,18 +13,21 @@ This is read-only: do not edit files, commits, or artifacts.
 - Open findings exactly as previously reported: [OPEN_FINDINGS]
 - Implementer report with appended correction evidence: [REPORT_FILE]
 - Fix range [FIX_BASE_SHA]..[HEAD_SHA]: [DIFF_FILE]
+- Prior review coverage and reviewed range: [PRIOR_COVERAGE]
 - Existing controller rulings: [RULINGS]
-- Selected specialist profiles and instruction paths: [SPECIALIST_PROFILES]
+- Named risk triggers: [RISK_TRIGGERS]
+- Selected specialist profiles, predicates, and instruction paths: [SPECIALIST_PROFILES]
+- Absolute Superpowers directory: [SUPERPOWERS_DIR]
 
 Read the fix diff and verdict every open finding. Confirm the report names the
 focused tests and shows results, but do not repeat those tests unless a specific
 new doubt has no evidence. Never run a broad or complete suite.
 
-Read and apply the relevant files in [SPECIALIST_PROFILES]. For a Java/JVM,
-Spring Boot, JPA/persistence, REST/GraphQL, container, Kubernetes, Helm, GKE, or
-deployment/runtime fix, also apply
-`[SUPERPOWERS_DIR]/skills/requesting-code-review/references/java-21-spring-gke-checklist.md`
-unless a selected specialist profile explicitly supersedes it.
+Read `[SUPERPOWERS_DIR]/skills/requesting-code-review/references/review-method.md`
+and apply its correction scope and coverage output. Re-evaluate
+`profile-selection.md` beside it against the fix diff and named risks; retain
+applicable prior profiles and read any newly applicable checklist. Trace affected
+dependencies only as needed to verify the correction and fix-introduced defects.
 
 Inspect only the open findings and code changed in the fix diff. A new issue can
 block only when the fix introduced it and you can provide proof, a candidate
@@ -36,7 +39,8 @@ Use only `BLOCKING`, `DECISION`, `FOLLOW_UP`, and `INVALID`.
 
 ## Output
 
-For each prior finding:
+Return scoped coverage with evidence and references to unaffected prior coverage.
+Then for each prior finding:
 
 ID | ADDRESSED or OPEN | Disposition | File:line proof | Test evidence
 
@@ -44,6 +48,7 @@ Then list any fix-introduced finding with:
 
 ID | Disposition | Location | Proof | Candidate causal connection | Concrete failure | Required resolution
 
-End with `READY` when no supported `BLOCKING` or `DECISION` remains, otherwise
+End with `READY` when applicable fix coverage is complete and no supported
+`BLOCKING` or `DECISION` remains, otherwise
 `NOT READY`. Do not broaden the review or recommend another reviewer.
 ```

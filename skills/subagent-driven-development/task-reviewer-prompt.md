@@ -17,19 +17,19 @@ workspace.
 - Approved specification anchors: [SPEC_ANCHORS]
 - Binding global constraints: [GLOBAL_CONSTRAINTS]
 - Existing rulings: [RULINGS]
-- Selected specialist profiles and instruction paths: [SPECIALIST_PROFILES]
+- Named risk triggers: [RISK_TRIGGERS]
+- Changed-file list: [CHANGED_FILES]
+- Selected specialist profiles, predicates, and instruction paths: [SPECIALIST_PROFILES]
+- Absolute Superpowers directory: [SUPERPOWERS_DIR]
 
-Read each file once. Treat the implementer report as claims and verify those
-claims against the diff and named evidence. Do not re-run tests already shown
-with exact command and result. Run one focused test only if a concrete doubt
-cannot be resolved by inspection; never run a broad or complete suite.
-
-Read and apply every relevant file in [SPECIALIST_PROFILES]. When the diff
-touches Java/JVM, Spring Boot, JPA/persistence, REST/GraphQL, build files,
-containers, Kubernetes, Helm, GKE, or deployment/runtime behavior, also read
-`[SUPERPOWERS_DIR]/skills/requesting-code-review/references/java-21-spring-gke-checklist.md`
-unless a selected specialist profile explicitly supersedes it. Record
-non-applicable profiles without inventing findings.
+Read `[SUPERPOWERS_DIR]/skills/requesting-code-review/references/review-method.md`
+and `profile-selection.md` beside it. Apply the shared baseline, verify profile
+selection against the actual diff, and read all applicable selected checklists.
+Treat the implementer report as claims and verify them against code and named
+evidence, including test assertions. Inspect relevant unchanged dependencies.
+Do not re-run tests already shown with exact command and result. Run a focused
+test only if a concrete doubt cannot be resolved by inspection; never run a
+broad or complete suite. Record any inspection that could not be completed.
 
 ## Review boundary
 
@@ -68,7 +68,7 @@ another reviewer.
 
 ## Output
 
-Return one compact table:
+Return the shared method's coverage table with evidence, then one findings table:
 
 ID | Disposition | Location | Proof | Candidate causal connection | Concrete failure | Required resolution
 
@@ -77,9 +77,9 @@ Then report:
 - Spec compliance: `PASS` or `FAIL`
 - Task quality: `PASS` or `FAIL`
 - Evidence checked: [commands/reports inspected or focused command run]
-- Verdict: `READY` only when no `BLOCKING` or `DECISION` remains; otherwise
+- Verdict: `READY` only with complete applicable coverage and no `BLOCKING` or `DECISION`; otherwise
   `NOT READY`
 
-Return explicit `FOLLOW_UP` and `INVALID` rows even when the verdict is READY.
+Preserve supported `FOLLOW_UP` and `INVALID` rows even when READY; write none when empty.
 No second severity scale is allowed.
 ```
