@@ -29,7 +29,7 @@ Use these for product behavior and scope:
 5. current rendered UI when browser findings are available
 6. temporary HTML companion artifacts only when they still clarify an unresolved comparison
 
-If the `gsd-frontend-design` skill is available, use it as the fidelity rulebook.
+If the `implementing-frontend-design` skill is available, use it as the fidelity rulebook.
 
 ## Contract modes
 
@@ -55,3 +55,5 @@ Return only:
 Do not edit files.
 Do not invent a better direction.
 Guard the contract.
+
+Approved frontend targets: consume the exact approved prototype source/version, launch/state setup, final captures and supersession from the packet. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.

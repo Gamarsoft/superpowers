@@ -73,7 +73,7 @@ If the contract is unclear, ask immediately.
 
 ## Skill Usage
 
-- Load `gsd-frontend-design` first when available.
+- Load `implementing-frontend-design` first when available.
 - Use Impeccable or design steering skills as overlays, never as permission to ignore the contract.
 - Use `frontend-direction` when the packet is stale/weak or the request needs new visual direction.
 - Use `brainstorming` only when product intent is unsettled.
@@ -107,3 +107,5 @@ Include:
 - what contract rules or brownfield invariants stayed preserved
 - assumptions and remaining concerns
 - the explicit `askQuestions` checkpoint
+
+Approved frontend targets: consume the exact approved prototype source/version, launch/state setup, final captures and supersession from the packet. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.

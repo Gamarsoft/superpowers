@@ -15,7 +15,7 @@ skill_rules:
       - gsd-context7-research
   - when: "researching, planning, re-planning, implementing, verifying, or refining frontend and UI/UX related work"
     use:
-      - gsd-frontend-design
+      - implementing-frontend-design
     avoid:
       - frontend-design
   - when: "turning native or mobile-first app requirements into screen inventory, mobile jobs, app flows, primary actions, state coverage, permission moments, or native-vs-web direction"
@@ -129,7 +129,7 @@ pre_dispatch_hooks:
       - replan-slice
       - execute-task
     action: modify
-    prepend: "Frontend evidence policy. If this unit touches user-visible frontend, UI, UX, copy layout, interaction design, responsive behavior, browser state, or native mobile UI state, first locate the approved spec, handoff, acceptance criteria, frontend direction packet, selected visual-truth source, brownfield-ui-extraction.md, screen-index.md, retained screenshots, browser captures, simulator/device captures, and any packet paths listed in milestone or slice CONTEXT files. Use gsd-frontend-design, preserve the existing product design system unless the packet explicitly authorizes change, and do not invent visual direction when an approved packet or visual-truth source exists. ChatGPT Images 2 files are optional approved references; when selected, read exact generated image paths and approved reference intent. When source evidence is missing, stop ad-hoc UI invention and request a packet refresh. Before visual changes, classify every reference as visual-truth, semantic-guidance, or reference-only; if intent is missing, ask for confirmation or record degraded mode. UI copy changes require writing-ux-copy or an approved copy deck. Completion for reference-backed UI requires platform runtime evidence plus the reference-intent checklist; screenshots alone, DOM checks, build, lint, or test output are insufficient. Keep CONTEXT Frontend References current with exact packet, selected visual source, image, screenshot, capture, brownfield, screen-index, PRODUCT.md, and DESIGN.md paths. Raw runtime evidence is local by default unless explicitly requested as a commit artifact."
+    prepend: "Frontend evidence policy. If this unit touches user-visible frontend, UI, UX, copy layout, interaction design, responsive behavior, browser state, or native mobile UI state, first locate the approved spec, handoff, acceptance criteria, frontend direction packet, selected visual-truth source, brownfield-ui-extraction.md, screen-index.md, retained screenshots, browser captures, simulator/device captures, and any packet paths listed in milestone or slice CONTEXT files. Use implementing-frontend-design, preserve retained brand/shell and implement the packet's approved feature delta, and do not invent visual direction when an approved packet or visual-truth source exists. ChatGPT Images 2 files are optional approved references; when selected, read exact generated image paths and approved reference intent. When source evidence is missing, stop ad-hoc UI invention and request a packet refresh. Before visual changes, classify every reference as visual-truth, semantic-guidance, or reference-only; if intent is missing, ask for confirmation or record degraded mode. UI copy changes require writing-ux-copy or an approved copy deck. Completion for reference-backed UI requires platform runtime evidence plus the reference-intent checklist; screenshots alone, DOM checks, build, lint, or test output are insufficient. Keep CONTEXT Frontend References current with exact packet, selected visual source, image, screenshot, capture, brownfield, screen-index, PRODUCT.md, and DESIGN.md paths. Raw runtime evidence is local by default unless explicitly requested as a commit artifact."
   - name: spec-and-handoff-projection
     before:
       - plan-milestone
@@ -206,3 +206,5 @@ experimental:
 # GSD Skill Preferences
 
 See `~/.gsd/agent/extensions/gsd/docs/preferences-reference.md` for full field documentation and examples.
+
+Approved frontend targets: consume the exact approved prototype source/version, launch/state setup, final captures and supersession from the packet. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.

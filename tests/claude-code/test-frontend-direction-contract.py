@@ -10,9 +10,14 @@ class FrontendResources(unittest.TestCase):
     def test_upload_authoring_is_not_discoverable(self):
         self.assertFalse((ROOT / 'skills/creating-chatgpt-image-upload-packs/SKILL.md').exists())
 
+    def test_implementation_replacement_is_discoverable(self):
+        self.assertTrue((ROOT / 'skills/implementing-frontend-design/SKILL.md').is_file())
+        self.assertTrue((ROOT / 'skills/implementing-frontend-design/agents/openai.yaml').is_file())
+        self.assertFalse((ROOT / 'skills/gsd-frontend-design/SKILL.md').exists())
+
     def test_frontend_local_markdown_links_resolve(self):
         base = ROOT / 'skills/frontend-direction'
-        for path in base.rglob('*.md'):
+        for path in list(base.rglob('*.md')) + list((ROOT / 'skills/implementing-frontend-design').rglob('*.md')):
             for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
                 if '://' in target or target.startswith('#'):
                     continue

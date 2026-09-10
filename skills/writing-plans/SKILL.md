@@ -124,7 +124,7 @@ Each task contains:
 - [Name the sole mutation owner for shared files]
 
 **Interfaces and contracts:**
-- Consumes: [earlier output, signature, state, or `none`]
+- Consumes: [earlier output, signature, state, or `none`; for frontend work, approved packet and exact binding prototype/capture versions, launch/state setup, and supersession]
 - Produces: [exact downstream interface, state, or artifact]
 - [Public names, types, compatibility rules, and specification anchors]
 
@@ -143,7 +143,7 @@ checkpoint-review with `none`]
 **Verification:**
 - Run: `exact focused command`
 - Expected: [specific evidence]
-- [Integration or final-suite contribution]
+- [Integration or final-suite contribution; frontend runtime comparison and interaction checks against those exact targets]
 
 **Codebase pointers:**
 - [existing files and patterns to inspect before implementation]
