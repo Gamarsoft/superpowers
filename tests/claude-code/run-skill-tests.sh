@@ -66,7 +66,7 @@ while [[ $# -gt 0 ]]; do
             echo "  test-gsd-review-policy-detail.sh  Test GSD code/visual review policy detail"
             echo "  test-no-pencil-frontend-policy.sh  Test Pencil removal and compact frontend policy"
             echo "  test-brainstorming-artifact-quality.sh  Test brainstorming artifact quality gates"
-            echo "  test-chatgpt-image-pack-detail.sh  Test ChatGPT Images prompt-pack detail"
+            echo "  test-frontend-direction-resources.sh  Test frontend resource and retirement contracts"
             echo ""
             echo "Integration Tests (use --integration):"
             echo "  test-subagent-driven-development-integration.sh  Full workflow execution"
@@ -95,7 +95,7 @@ tests=(
     "test-gsd-review-policy-detail.sh"
     "test-no-pencil-frontend-policy.sh"
     "test-brainstorming-artifact-quality.sh"
-    "test-chatgpt-image-pack-detail.sh"
+    "test-frontend-direction-resources.sh"
 )
 
 # Integration tests (slow, full execution)

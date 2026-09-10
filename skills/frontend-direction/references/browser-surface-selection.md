@@ -1,28 +1,5 @@
 # Browser Surface Selection
 
-Use this rule whenever browser interaction is needed for frontend capture, verification, comparison, or local UI inspection.
+Honor the browser explicitly requested by the human. For `@Browser` in Codex Desktop, use the in-app browser when available. Otherwise use the project/session's supported browser capability; discover it and read its current tool documentation before interacting. Do not hard-code a plugin name or obsolete API.
 
-## Selection Rule
-
-- If running in Codex App, use `browser:control-in-app-browser` and the in-app browser.
-- If that capability is unavailable, discover installed browser capabilities, then use `playwright-cli` and prefer `playwright-cli open --headed ...`.
-
-Do not default to `playwright-cli` when the Codex App in-app browser is available.
-
-## Why
-
-The in-app browser is the preferred browser surface in Codex App.
-
-Use it for:
-
-- local UI inspection
-- screenshot capture
-- comparison surfaces
-- browser-grounded baseline capture
-- visual verification
-
-Use `playwright-cli` as the non-Codex-App fallback.
-
-## Practical Rule
-
-When a workflow says "capture the running app", "use browser-grounded evidence", "open the visual companion", or "verify in a browser", apply this selection rule first.
+Use the browser to inspect the existing target, exercise the prototype and recapture final states. If the requested surface is unavailable, report the limitation and obtain authorization for a materially different fallback. A browser launch failure cannot produce verified visual evidence.

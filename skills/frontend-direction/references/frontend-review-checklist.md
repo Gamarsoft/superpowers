@@ -1,20 +1,15 @@
-# Frontend Review Checklist
+# Frontend Direction Review
 
-Use when reviewing a frontend direction packet.
+Review the actual design and packet together.
 
-## Blocking Checks
+- Does the primary task improve through hierarchy, grouping, density or interaction, with brand/shell and business constraints retained?
+- For substantial unresolved work, were three genuinely different concepts shown, a precise choice/refinement recorded, and a real interactive prototype exercised? Record an explicitly chosen different scope or authorized fallback.
+- Do final captures match the retained prototype version and representative content? Can another agent launch the same states?
+- Are main, long, empty/loading/error, narrow and keyboard/focus paths covered where relevant, with fixture versus integration limits identified?
+- Are exact reference versions, intent, binding scope and supersession clear under the shared authority contract?
+- Are copy, i18n and accessibility constraints authoritative even when raster text differs?
+- Does optional critique/audit evidence identify actual source/browser/detector work and missing steps without claiming a score proves quality?
+- Are feasibility issues resolved or explicitly limited, rather than silently falling back to legacy composition?
+- Has the human approved this concrete final version? A concept choice alone is insufficient.
 
-- Does the packet have enough current UI, screenshot, or approved image evidence to guide implementation?
-- Does it preserve the existing product language unless redesign is explicitly approved?
-- Are key screens and states covered without exhaustive paperwork?
-- Are visual references classified as `visual-truth`, `semantic-guidance`, or `reference-only`?
-- Is implementation-affecting reference intent approved?
-- Are approved copy source, terminology, i18n, and accessibility constraints named?
-- Are `Must preserve`, `May adapt`, and `Explicit no-gos` separated?
-- Can an implementation agent verify the work with runtime screenshots/captures and an intent checklist?
-
-## Advisory Checks
-
-- Could the packet be shorter without losing decisions?
-- Is there one screenshot or annotation that would remove ambiguity?
-- Are generated images optional evidence rather than accidental authority?
+Keep findings specific: observed evidence, task impact and correction. Rejected concepts remain provenance, not competing implementation targets.

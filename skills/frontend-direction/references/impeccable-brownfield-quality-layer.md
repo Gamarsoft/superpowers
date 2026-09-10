@@ -1,152 +1,26 @@
-# Impeccable in Brownfield Frontend Work
+# Optional Impeccable Quality Work
 
-Use this file when brownfield frontend work needs a quality pass without losing fidelity to the existing product.
+Shared conditional reference for frontend direction and implementation. Core inspection, critique and runtime verification remain the owner's responsibility whether Impeccable is present or absent.
 
-## Core Rule
+## Discover and scope
 
-Impeccable is a quality layer, not a replacement source of truth.
+Check the target project's skill locations as well as session/global discovery; absence from the session catalog alone is not absence. Read the installed SKILL.md and only the command references needed now. Resolve the installed version's execution interface and evidence requirements; command names below are capabilities, not a universal CLI. Follow actual context-loading/fallback instructions when invoking it. Workflow advice alone is not a command run.
 
-In brownfield work:
+Supply target, primary task, stage, retained brand/shell, approved design delta, copy source, implementation constraints, and available runtime or fixture evidence. Before a direction exists, assessment helps establish objectives; a completed extraction document is not a prerequisite to that assessment.
 
-- current product truth comes first
-- faithful baseline capture comes second
-- Impeccable refinement comes third
+| Observable need | Suitable focused capability | Use of findings |
+| --- | --- | --- |
+| Existing screen has weak hierarchy, grouping or task clarity | critique; audit for technical concerns | Supported findings become design objectives. |
+| Prototype needs evaluation before approval | targeted critique or audit | Correct issues in the current iteration. |
+| Implemented target has focus, responsive, error-state or copy defects | audit, then relevant polish/adapt/harden/clarify | Fix supported in-scope issues and compare against the approved target again. |
+| Reusable approved decisions need recording and that work is authorized | extract or document | Record scope and provenance; do not normalize the legacy screen into a new design system first. |
 
-Do not use Impeccable to skip the baseline.
+During implementation, approved prototype/captures govern the feature's visual delta. A polish suggestion to restore the old grid because neighboring screens or DESIGN.md use it conflicts with that target. Keep supported corrections such as focus visibility; return a true direction change for a design decision rather than applying it silently. Use operational-product guidance for operator screens; novelty alone is not task improvement.
 
-## Preconditions
+Frontend direction owns selection; implementation owns integration and verification. Focused commands do not restart Impeccable's general shape/redesign workflow, replace the app shell, or rewrite global design documents as a side effect. No auto-install, hooks, repair, or initialization ritual. Reuse current findings and equivalent evidence within an active review while preserving required reviewer independence.
 
-Before using Impeccable in a brownfield workflow, make sure these exist:
+## Evidence and limits
 
-- retained browser evidence from the running app
-- `brownfield-ui-extraction.md`
-- a clear separation between:
-  - observed current truth
-  - conservative normalization target
-  - approved change
+Honor the installed command's actual execution and reporting requirements, including independent agents or detectors when required and available. An audit reports defects; it is not itself a fix. Record command/version/target, source versus browser versus detector evidence, fixture status, and incomplete/degraded steps. A manual review is not an Impeccable run; a score or clean detector is not visual/keyboard/accessibility proof.
 
-If those do not exist yet, build them first.
-
-## `/impeccable init`
-
-`/impeccable init` is project initialization, not a per-feature ritual.
-
-Rules:
-
-- if a project-level `PRODUCT.md` already exists and is still accurate, do not run it again
-- treat `PRODUCT.md` as the durable product/brand/register memory source
-- treat `DESIGN.md` as reusable system documentation and `/impeccable document` as the refresh path when it is missing or stale
-- treat `DESIGN.json` as an auxiliary panel artifact, not as the primary durable contract
-- only re-run `/impeccable init` when the product context is missing, stale, or intentionally changing
-- for repo-specific brownfield work, treat the project’s existing `PRODUCT.md` as the design-context source unless the human says otherwise
-
-## Recommended Sequence
-
-For brownfield frontend direction:
-
-1. capture the current runtime baseline
-2. write `brownfield-ui-extraction.md`
-3. create the baseline in the selected visual-truth source, or keep the runtime baseline if ChatGPT Images 2 image-only visual truth will be selected later
-4. read `PRODUCT.md` and `DESIGN.md` when they exist
-5. if design-quality work is needed:
-   - use `/impeccable extract`
-   - use `/impeccable critique`
-   - use `/impeccable audit`
-   - use `/impeccable live` only on supported stacks and only for bounded refinement
-6. turn findings into bounded approved deltas
-7. update packet prose, screenshots, and the selected visual-truth references
-
-## What Each Impeccable Command Is Good For
-
-### `/impeccable extract`
-
-Use to identify reusable tokens, spacing patterns, components, and recurring UI language in the existing product.
-
-Best fit:
-- after baseline capture
-- before proposing normalization
-
-### `/impeccable critique`
-
-Use to evaluate UX quality and visual clarity once the baseline exists.
-
-Best fit:
-- hierarchy issues
-- cognitive-load issues
-- weak grouping or information architecture
-- unclear emphasis or poor scan paths
-
-### `/impeccable audit`
-
-Use to evaluate measurable implementation quality.
-
-Best fit:
-- accessibility issues
-- responsive issues
-- theming drift
-- anti-pattern detection
-- implementation-level quality gaps
-
-### `/impeccable live`
-
-Use when the project stack supports Impeccable Live Mode and a very specific visual refinement is easier to judge in the browser than in prose.
-
-Best fit:
-- bounded exploration after the baseline and packet direction already exist
-- supported dev stacks with HMR
-- quick comparison of 2-3 implementation-grounded variants
-
-Guardrail:
-- accepted live variants still need to be reflected in packet prose, screenshots, and the selected visual-truth source if they become durable direction
-
-### Targeted refinement commands
-
-Use only after the allowed scope of visual change is clear:
-
-- `/impeccable layout`
-- `/impeccable typeset`
-- `/impeccable clarify`
-- `/impeccable harden`
-- `/impeccable adapt`
-- `/impeccable polish`
-
-## Safe Default in Brownfield Work
-
-Default to these kinds of improvements:
-
-- spacing consistency
-- clearer typography hierarchy
-- stronger labels and helper text
-- better error and validation treatment
-- focus-state and accessibility cleanup
-- responsive adaptation that preserves workflow throughput
-
-These are usually safe because they refine the existing product rather than redefining it.
-
-## Escalation Boundary
-
-Treat these as directional changes that require explicit approval:
-
-- new visual thesis
-- broad palette change
-- major typography-family shift
-- shell or navigation redesign
-- strong density reduction on operator screens
-- large component restyling across the product family
-
-Impeccable findings alone do not authorize these changes.
-
-## Anti-Patterns
-
-Do not:
-
-- run Impeccable first and baseline capture later
-- let `/impeccable critique` or `/impeccable audit` replace brownfield extraction
-- treat AI-slop cleanup as permission to redesign the app
-- apply style-amplifying commands before scope approval
-- let `PRODUCT.md` or `DESIGN.md` override current runtime truth when the current brownfield screen disagrees
-- use a quality pass to override the packet or current product system
-
-## Working Sentence
-
-In brownfield work, use Impeccable to refine a faithful baseline, not to invent a new product.
+Keep automatic assess/fix/confirm work bounded by the installed capability's limits. A later human iteration is distinct from automatic polishing and still requires actual approval. If the skill, launcher or sub-capability is unavailable, report the specific limitation once, honor its documented fallback, and continue the core path with permitted tools. Missing optional tooling never becomes a prerequisite for design or a reason to fabricate results.
