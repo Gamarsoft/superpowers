@@ -84,3 +84,46 @@ No new API integration is coded. Image/browser skills and live tool documentatio
 ## Whole-feature verification and handoff
 
 Controller verifies exact target identity survives standalone/follow-on → packet → task input → implementation → independent runtime comparison. Cover old approved packet, stale concept superseded by browser, pending evidence, missing tools, and optional normalization conflict. Persist raw actor responses, manual scoring, checks, and real pilot evidence separately. One final independent review checks the exact cumulative change after all tasks; controller resolves supported findings with at most two corrections. Finishing owns full suite. Keep branch local and report the renamed invocation and remaining limitations accurately.
+
+## Execution clarifications — 2026-09-11
+
+The user selected B, requested a dedicated parking tab with stationary pagination and the Type column heading, then explicitly approved prototype-v2 revision v2.1. The subsequent request to keep and promote the artifacts authorizes a documentation-only copy into DashPark at `docs/superpowers/specs/2026-09-11--credipark-detail--frontend/`. This extends Task 3 artifact ownership to that exact folder; production application edits remain outside this delivery. The copied manifest verifies all 39 payload files.
+
+Finishing's exact available deterministic suite, from the repository root:
+
+```bash
+bash <<'SH'
+set -uo pipefail
+failed=0
+for test in \
+  test-worktree-path-policy.sh \
+  test-timeout-portability.sh \
+  test-lean-delivery-contracts.sh \
+  test-review-depth-contracts.sh \
+  test-sdd-workspace.sh \
+  test-sdd-custom-contracts.sh \
+  test-custom-policy-contracts.sh \
+  ../codex/sdd-behavior/test-score-results.sh \
+  test-frontend-visual-review-policy.sh \
+  test-gsd-review-policy-detail.sh \
+  test-no-pencil-frontend-policy.sh \
+  test-brainstorming-artifact-quality.sh \
+  test-frontend-direction-resources.sh
+do
+  if bash "tests/claude-code/$test"; then
+    printf 'PASS %s\n' "$test"
+  else
+    printf 'FAIL %s\n' "$test"
+    failed=1
+  fi
+done
+if node --test tests/brainstorm-server/*.test.js; then
+  printf 'PASS brainstorm-server suite\n'
+else
+  failed=1
+fi
+exit "$failed"
+SH
+```
+
+These are all 13 deterministic entries from `run-skill-tests.sh`, followed by the complete browser-companion Node suite. The top-level runner unconditionally requires the unavailable `claude` executable; its live `test-subagent-driven-development.sh` and opt-in integration session are NOT RUN. Direct deterministic execution does not claim those live checks. Plugin packaging is NOT RUN because no prior official metadata package was found and 13 unchanged skills intentionally lack tracked `agents/openai.yaml`; do not manufacture external metadata to claim packaging success. Changed skill metadata and resource discoverability retain their focused validation evidence.

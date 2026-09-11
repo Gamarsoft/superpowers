@@ -1,6 +1,6 @@
 # Frontend direction with visual exploration
 
-Status: approved by the user on 2026-09-11 ("I approve this design spec"). Review: `visual_spec_review`, 2026-09-10, verdict READY including standalone entry, upload-pack retirement, implementation-skill replacement, migration alternatives, and optional Impeccable integration. Five no-guidance response probes have been collected but not assessed; current-skill and candidate evaluations have not run. Workflow track: brownfield-major-feature. A separate frontend-direction packet is not required for this skill change; this specification changes the workflow that creates those packets.
+Status: approved by the user on 2026-09-11 ("I approve this design spec"). Review: `visual_spec_review`, 2026-09-10, verdict READY including standalone entry, upload-pack retirement, implementation-skill replacement, migration alternatives, and optional Impeccable integration. Matched no-guidance/current/candidate decision probes have been assessed (five per variant, for each of the two skills). The live DashPark pilot reached explicit user approval of prototype-v2 revision v2.1. See the [evaluation record](../evaluations/2026-09-11-frontend-direction.md) for evidence and limits; final review and complete-suite results belong to the execution report. Workflow track: brownfield-major-feature. A separate frontend-direction packet is not required for this skill change; this specification changes the workflow that creates those packets.
 
 ## Delivery Route
 
