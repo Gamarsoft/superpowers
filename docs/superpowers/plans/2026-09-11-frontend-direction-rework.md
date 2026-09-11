@@ -89,7 +89,7 @@ Controller verifies exact target identity survives standalone/follow-on → pack
 
 The user selected B, requested a dedicated parking tab with stationary pagination and the Type column heading, then explicitly approved prototype-v2 revision v2.1. The subsequent request to keep and promote the artifacts authorizes a documentation-only copy into DashPark at `docs/superpowers/specs/2026-09-11--credipark-detail--frontend/`. This extends Task 3 artifact ownership to that exact folder; production application edits remain outside this delivery. The copied manifest verifies all 39 payload files.
 
-Finishing's exact available deterministic suite, from the repository root:
+Finishing's exact available deterministic suite, from the repository root, in an execution context that permits local process inspection (`ps`) and owned localhost test-server lifecycle. In Codex Desktop use `exec_command` with `sandbox_permissions: require_escalated` for this command. The default sandbox denies `ps` on macOS, which makes the existing safe shutdown check return `stale_pid`; do not weaken that ownership check:
 
 ```bash
 bash <<'SH'
