@@ -4,6 +4,8 @@ Use before declaring UI work done.
 
 ## 1. Input Fidelity
 
+- Did canonical signals select [packet validation](../../frontend-direction/references/packet-finalization.md), including supplied expected revision/descriptor SHA-256? Did missing or invalid canonical metadata block dependent work instead of falling back to legacy? Inputs with no canonical signal retain legacy approval/intent handling.
+- Are exact packet identity and state acceptance sources carried into implementation tasks, with current source/references distinguished from history? Were approval evidence and visual quality assessed separately from hashes?
 - Did you read the approved brief/spec, available workflow context, frontend direction packet, exact approved prototype/version and state setup when provided, `screen-index.md`, `brownfield-ui-extraction.md`, selected visual-truth source, and available screenshots/captures first?
 - If a handoff or `CONTEXT.md` said frontend packet status was `required` or `required-pending`, did you stop instead of implementing from degraded assumptions?
 - If ChatGPT Images 2 is selected, did you read the exact approved generated image files and their approved reference intent?

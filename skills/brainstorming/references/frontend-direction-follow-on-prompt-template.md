@@ -40,17 +40,18 @@ Visual companion carry-forward:
 Frontend-direction requirements:
 - Capture brownfield runtime baseline first when current screen truth exists only in the app.
 - Produce:
-  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend-direction.md`
+  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/packet.md`
+  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/packet.json`
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screen-index.md`
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/brownfield-ui-extraction.md` when brownfield
-  - retained screenshots under `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screenshots/` when useful
+  - current scoped captures under `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/references/`, with superseded evidence under `history/`
 - For every implementation-facing screenshot, browser capture, generated image, or retained reference, record approved intent:
   - `visual-truth`
   - `semantic-guidance`
   - `reference-only`
 - Use `writing-ux-copy` for visible UI text that affects the packet, screenshots, or image prompts.
 - For substantial unresolved visual direction, generate three distinct UI image concepts with built-in imagegen, refine the human's selection, then build and iterate an isolated interactive browser prototype. Audit prompt-visible copy before generation.
-- Retain exact selected versions, prototype source/launch/state setup, final captures, supersession and concrete final approval. Existing layout/density/components are not requirements merely because they exist.
+- Finalize new packets using frontend-direction’s canonical packet.md + packet.json contract, current prototype/references and preserved history. Run the bundled validation and return entry path, revision and descriptor SHA-256. Retain exact selected versions, prototype source/launch/state setup, final captures, supersession and concrete final approval. Existing layout/density/components are not requirements merely because they exist.
 - Do not route until the packet is approved. If evidence or implementation-affecting reference intent is degraded, record the constraint and obtain explicit approval inside the packet before routing or implementation.
 ```
 
