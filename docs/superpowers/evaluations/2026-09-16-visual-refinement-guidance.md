@@ -1,6 +1,6 @@
 # Visual refinement guidance evaluation
 
-Status: Task1 evaluated; candidate omitted under the approved negative-result rule. Consumer check pending. Baseline ae40437e194e9a072026126e93618c533180cfe0. Approved plan: `2026-09-16-visual-refinement-guidance.md`.
+Status: evaluation complete. Candidate omitted under the approved negative-result rule; existing implementation consumer retained. Baseline ae40437e194e9a072026126e93618c533180cfe0. Approved plan: `2026-09-16-visual-refinement-guidance.md`.
 
 ## Why this change
 
@@ -64,4 +64,18 @@ All work is synthetic. No canonical DashPark packet or production UI is changed.
 
 ## Focused checks
 
-Task1: `python3 tests/claude-code/test-frontend-direction-contract.py` passes four tests; skill-creator `quick_validate.py skills/frontend-direction` passes with the prepared PyYAML dependency path. Baseline consumer checks pass: `python3 tests/claude-code/test-frontend-packet.py` passes18tests, and `bash tests/claude-code/test-frontend-visual-review-policy.sh` passes. A fresh exact-target consumption check remains before completion.
+Task1: `python3 tests/claude-code/test-frontend-direction-contract.py` passes four tests; skill-creator `quick_validate.py skills/frontend-direction` passes with the prepared PyYAML dependency path. Baseline consumer checks pass: `python3 tests/claude-code/test-frontend-packet.py` passes18tests, and `bash tests/claude-code/test-frontend-visual-review-policy.sh` passes. The fresh exact-target consumption check below completes Task2 without a skill change.
+
+## Existing implementation consumer
+
+A fresh Sol/medium implementer read the existing implementation skill, frozen legacy target and produced rationale. The test explicitly treats the experimental Relay candidate as approved within the simulation; it grants no actual product approval. The implementer reused the exact target HTML/CSS/JS in a separate consumer directory. Controller checks confirm those three files match their frozen hashes and the target remains unchanged. Seven records and filtering, paging, selection/focus and synthetic copy handlers remain intact; syntax passes.
+
+The independent reviewer reopened target and consumer at1536x1024 and390x844. Grouped summary, recipient/action relationship, selected detail, teal/Arial styling and narrow reflow matched. Search, status filter, page2, alternate-record inspection, keyboard focus and copy feedback matched. Verdict PASS for the exercised fidelity contract. No implementation-skill omission was demonstrated, so that skill remains unchanged.
+
+For this final pass, the in-app browser became unavailable. The reviewer recorded use of a fresh background Chrome tab through CUA in a shared profile. Full browser-context isolation is not claimed. Console error/warning observations were empty; direct network tracing was unavailable. Sticky positioning was not stressed because the desktop state fitted the viewport. Source reuse and same-stack fixtures make this a limited fidelity exercise, not proof of Angular translation or backend integration.
+
+## Retained evidence and next use
+
+Project-source identities are in `dashpark-context/identities.json`. Initial and browser-checked grounded outputs are under `anchored/`, with unchanged-source verification in `anchored/browser-pass-identities.json`. `review-identities.json` and `review-mapping.json` freeze the blind comparison. The raw independent reports are `independent-visual-review.md` and `consumer-visual-review.md`; the consumer target is identified by `consumer-target-identities.json`.
+
+These files are retained in the ignored local evaluation root, not bundled into this commit. The committed report preserves the results and limitations. Future DashPark comparisons should reuse the relevant app-level product/design records equally across alternatives, as this added comparison does. A different source bundle or refinement method would need its own test; the present result does not warrant extra generic advice or a larger workflow.
