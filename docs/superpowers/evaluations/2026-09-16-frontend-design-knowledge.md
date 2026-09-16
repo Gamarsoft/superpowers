@@ -1,6 +1,6 @@
 # Frontend design knowledge evaluation
 
-Status: direction and implementation wording evaluations complete; rendered comparison and final review in progress.
+Status: behavioral and rendered evaluations complete; final cumulative review and finishing verification pending.
 
 ## Method and identities
 
@@ -32,7 +32,7 @@ Focused checks: `python3 tests/claude-code/test-frontend-direction-contract.py` 
 
 ## Remaining evaluation
 
-Matched rendered artifact comparison, final independent review and finishing verification remain pending. Do not infer a visual-quality improvement from the micro-tests alone.
+Final cumulative review and finishing verification remain pending. Rendered comparison is recorded below; it does not establish a visual-quality improvement.
 
 ## Frozen direction sample identities
 
@@ -151,3 +151,60 @@ An approved target specifies pale regular 18px text with measured 3.2:1 contrast
 ### Implementation held-out transfer
 
 A fresh actor retained legacy image-only handling for a one-heading change, rejected installation/framework migration for footer spacing, and applied focus/context reasoning to an upload-completion control that disappears. It explicitly avoided unrelated transition checks for static spacing. Raw response: `implementation-forward.md`. No production actions were executed.
+
+## Rendered pilot: controller observations
+
+
+CUA in-app browser, tab1, local server8937. Synthetic files only. Exact desktop1120x800 and narrow390x844 DOM viewport confirmed. Screenshots emitted and inspected inline; no persisted PNG paths claimed. Viewport changes sometimes emitted a scaled transitional capture, so those captures were not assessed as settled layout evidence.
+
+## Ledger
+eta desktop: co-visible account/parking totals and movements, account-scope caption, fewer boxes. Pager bottom765 within800; no document horizontal overflow. Two Next activations reach page3 with4rows and disabled Next. Focus reads BODY. Narrow with long parking name: wraps without document overflow; pager bottom832 within844, account area occupies much of initial height, cards below. Escape returns to opener and reopen focuses close control.
+kappa desktop: same simultaneous comparison, extra metric cards and prototype fixture explanation; pager bottom745. Keyboard Enter twice reaches page3 and BODY focus (same defect). Narrow long name wraps without document overflow; pager visible at bottom; controls outside row scroll. Escape returns to opener, reopen focuses close control.
+
+Neither artifact invents account-vs-page arithmetic. Different synthetic additional row values/dates are permitted fixture detail, not a controlled pixel comparison. No measured user efficiency claim. Both shared last-page focus defects are evidence of a check worth applying, not candidate causation.
+
+## Forms
+kappa desktop DOM and capture inspected, narrow settled capture inspected. Address/issue grouped beside each other at desktop, choices and note below; save/demo controls in adjacent column. Synthetic note “Gate C; ask for the missing unit.” remained through retryable failure. Pending disabled saving state observed, then failure status. Success retry observed “Resolution saved”. Narrow no document overflow.
+eta desktop inspected: address/issue grouped, but recipient/phone repeated in separate details column. Pending disabled state observed; failure retains identical note, error status and changes action label to Try save again. Error prose still says Save resolution, a minor copy inconsistency. Success retry observed “Resolution saved in the demo”. Narrow DOM viewport/no-overflow confirmed; final settled narrow visual comparison delegated to independent reviewer. Relevant captured console errors/warnings empty at final form check; no network trace or screen-reader proof claimed.
+
+Overall visual preference not established. Existing workflow already supplies substantial structure; candidate supports information meaning but does not prove general visual superiority. Independent blinded comparison pending.
+
+### Frozen pilot identities
+
+- `pilot/eta/form.html`: `2582cc545803cff3edb1d482591f558712808092465dd0db210c4c5fa4fb9804`
+- `pilot/eta/ledger.html`: `70610283716d3f959dd667abe036b807c3c52cbf6fce8f6e8417cfe141f1c3f5`
+- `pilot/kappa/form.html`: `b3307cb6b35dc5f09c74cf35d9bd9b7165db4205af5e85f5a2a06959e946a937`
+- `pilot/kappa/ledger.html`: `cb39156711afbd7d05583615b3d4cd870011619cc95c3185266e6bac56d95820`
+
+### Pilot task
+
+# Isolated interactive design prototype request
+
+Build two self-contained HTML/CSS/JS files in your assigned output directory. No packages, network assets, backend or production edits. This request explicitly selects prototype-only exploration: no images, full packet or approval ceremony. Use only synthetic local data. Do not claim browser checks; the controller will inspect the rendered outputs. Include a short notes.md recording your decisions and remaining uncertainty. You are not alone; touch only your assigned output directory and do not spawn agents.
+
+## ledger.html
+Design an efficient reconciliation modal prototype. Brand anchors: restrained blue #0866ad, neutral surfaces, system sans; preserve an app header labelled Park Operations. Show client Camille Martin, account CP-8204, available 128.50 credits, pending 32.00, owed 0.00. Parking breakdown has Lab Solution Parking 90.00 and Gare Centrale 38.50. Movements have type, signed amount, status, parking, date/time and reference. There are 24 rows, 10 per page: use these first five in order and repeat realistic local variations for the remaining rows: pending earn +32; redemption -20; earn +40; welcome +15; earn +8.50. Account totals are authoritative fixture values, not computed from loaded rows. Business semantics and page size are settled. Operators routinely compare parking balances and movement records together. The legacy screen was a stack of equally loud cards, with pagination at its bottom. Improve layout and visual hierarchy while retaining data and brand. Implement local previous/next pages, keyboard-accessible close/reopen, and usable narrow reflow. Primary view sizes are 1120x800 and 390x844. The modal should initially be open. Allow testing long parking names.
+
+## form.html
+Prototype a delivery exception resolution form for an operational app with the same brand. User task: inspect the existing address and choose a supported resolution. Fields: delivery reference DL-204; recipient Amira Martin; address 27 rue de la République, Bâtiment C, 69002 Lyon; contact phone 06 12 34 56 78; issue type Address incomplete; operator note; resolution choices Request address clarification or Return to dispatch queue. These are the only supported actions, no delivery date prediction, price or refund. Preserve existing field labels and values. Present address and issue together where the operator decides. Build local save feedback with pending/success/retryable-error states controlled by a clearly labelled demo-state control. Keep entered data on failure; explain what can happen next. Support long address/label text, narrow layout and keyboard use. No actual messaging or persistence; visibly label the synthetic prototype. Design decisions are still being explored, not approved.
+
+## Independent rendered comparison and adoption ruling
+
+
+Reviewer: artifact_comparison, fresh Sol/medium context; no variant mapping or source inspected. Opened own in-app browser tab. Separate-tab fallback in shared browser, synthetic fixtures without storage/backend; no claim of fully isolated browser profile. Exact viewports1120x800 and390x844. Independently captured and inspected rendered output, exercised paging, Escape/reopen, long names, both form failure/retry paths. No screen reader run.
+
+Preference: kappa, moderately. Revealed mapping after verdict: kappa=current, eta=candidate.
+
+Ledger: both split totals and movements with fixed pagination. Kappa made128.50 dominant and kept parking label/value rows clearer. Eta wrapped128.50credits and used two parking columns at narrow width, producing a tall long-name block. Both converted rows to mobile cards, kept pagination reachable and returned focus to opener on Escape. Both lost focus to web area when Next disabled at page3; Previous retained focus on return.
+
+Form: kappa kept save controls visible at desktop and grouped address/issue. Eta duplicated recipient/phone in two regions and put save below initial desktop viewport. At narrow width eta's compact prototype label and fixed action bar helped access, but success feedback partly covered visible content. Both preserved selected Return to dispatch queue and note through retryable failure and success retry. Eta's Try save again was more actionable; kappa's generic Save resolution still had explanatory feedback. Both forms lost focus when Save became disabled. Actual AX/visible status verified, screen-reader announcement unverified.
+
+These are prototype-specific findings. Shared defects do not establish skill regression. No measured user performance claim.
+
+The artifact preference opposes a claim of general visual improvement. Retain only the changes supported by their targeted evidence: information meaning during design and control-specific source/runtime checks. Neither reference prescribes the candidate's duplicated contact fields, two-column mobile parking list or hidden desktop save action. The current artifact already retained supplied semantics, so that pilot does not independently establish the semantic improvement found in the less-constrained concept case. These are limitations, not results to average away. No instruction correction is justified merely to make this one candidate win.
+
+Disposition: FOLLOW_UP for broader visual-quality transfer and prototype issues. The artifacts remain frozen evaluation outputs, not approved production targets. Candidate4's missed panel finding remains a documented reliability limit. No DashPark files or approved packets changed, and no new aesthetic policy is adopted.
+
+### Implementation check applied to an actual artifact
+
+Fresh actor `implementation_forward` then reviewed frozen `pilot/eta/ledger.html` source with the installed checks. It identified both terminal pager controls disabling themselves without a replacement focus target (lines165–173), distinguished implemented dialog paths from unproved runtime behavior, and proposed browser boundary checks. The controller and blinded browser reviewer independently observed the forward boundary defect. This demonstrates a useful finding on a built artifact; the artifact was not repaired or approved. Raw line-specific review: `implementation-artifact-review.md`.
