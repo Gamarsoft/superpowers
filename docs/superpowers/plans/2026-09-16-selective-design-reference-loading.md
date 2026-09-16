@@ -82,3 +82,5 @@ node --test tests/brainstorm-server/*.test.js || failed=1
 exit "$failed"
 SH
 ```
+
+Finishing environment requirement established by execution: on macOS the live companion cleanup test calls `ps` to verify its own server identity. Run the complete-suite command with process-inspection permission (`require_escalated` in this desktop sandbox); a sandboxed `ps` returns operation-not-permitted and makes cleanup conservatively report stale_pid. No suite test or product code is changed.
