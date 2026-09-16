@@ -231,7 +231,7 @@ Create a task for each of the following and complete them in order.
       - screen families, flows, and key states discovered during brainstorming
       - brownfield invariants and no-gos
       - visual companion decisions or artifacts, explicitly marked as non-durable decision context
-      - UX writing decisions, copy deck path or copy gaps, and prompt-visible-text requirements for ChatGPT Images 2 prompts
+      - UX writing decisions, copy deck path or copy gaps, and prompt-visible-text requirements for UI concept generation
       - likely target stack and adapter candidates
       - reference-intent approval requirement for the later packet
     - Prepare the prompt as part of the neutral artifact set. Deliver it as the next-session bootstrap only after the neutral artifact review and user approval gate pass.
@@ -337,9 +337,9 @@ In existing codebases:
 - do not smuggle in unrelated refactors
 - explicitly call out invariants and rollout constraints
 - if inspection has not happened yet, the next guided question must focus on current behavior, existing workflow boundaries, and what must stay unchanged rather than jumping to architecture
-- when frontend direction is required, preserve the existing design system and surface language unless the user explicitly wants redesign
+- when frontend direction is required, retain established brand and app shell while leaving unresolved feature layout and interactions to frontend direction
 - do not let generated concepts outrank observed product truth
-- preserve shell, navigation, density, and shared component language before exploring cosmetic novelty
+- separate business/technical constraints and retained brand/shell from feature hierarchy, density, layout and interactions that may be reconsidered
 
 ## Track-specific guardrails
 

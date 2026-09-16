@@ -1,25 +1,23 @@
-# Design Source Priority
+# Scoped Design Authority
 
-Use the strongest available evidence in this order.
+Canonical authority and reference-intent contract for direction and implementation.
 
-## Brownfield
+| Source | Governs |
+| --- | --- |
+| Approved requirements or standalone brief; verified business behavior | Data, permissions, validation, task, scope and behavior. Resolve genuine conflicts with source behavior. |
+| Explicit retained brand/shell and technical/accessibility constraints | Their stated scope, not every neighboring screen's composition. |
+| Current approved design delta and exact final prototype/captures | Feature hierarchy, layout, density and interactions within the approved scope. These supersede older concepts only where recorded. |
+| Existing UI, PRODUCT.md, DESIGN.md, tokens and components | Evidence of anchors, feasibility and unspecified conventions. An old layout does not veto an approved redesign. |
+| Critique, audit, generated concepts and early companion sketches | Decision inputs until selected and approved; findings do not grant new scope. |
 
-1. Approved neutral spec and frontend-direction follow-on context for behavior.
-2. Existing product UI, running app, and design-system conventions.
-3. Browser screenshots/captures and current state evidence.
-4. `brownfield-ui-extraction.md` and `screen-index.md`.
-5. Approved generated images when explicitly selected as references.
-6. `PRODUCT.md` and `DESIGN.md` as supporting context.
-7. Temporary HTML companion artifacts as decision context only.
+Reference intent belongs to a specific artifact version and scope:
 
-A GSD handoff may supplement these sources only when the GSD route is already confirmed; it is not a prerequisite for frontend direction.
+- `visual-truth`: listed visual treatment binds; compare actual runtime with the exact reference.
+- `semantic-guidance`: listed workflow, hierarchy, content priority or state behavior binds; visual treatment may adapt within retained anchors.
+- `reference-only`: context or exploration, not acceptance criteria.
 
-## Greenfield Or Mobile-First
+Legacy screenshots usually show baseline problems and retained anchors. State which regions are binding. New concepts begin `reference-only`. The final approved browser target may supersede them; preserve that mapping so an implementer cannot choose a stale attractive image. Intent missing or approval pending is a real uncertainty, not permission to declare visual truth.
 
-1. Approved product direction and mobile/job flow decisions.
-2. Existing brand or design-system references.
-3. Screen inventory and state coverage.
-4. Approved generated images when useful.
-5. Packet prose for implementation constraints.
+Historical packets keep their recorded authority. An approved old preservation decision stays valid until changed by the human; retirement of its authoring tool does not reinterpret it. Accept existing paths, including `chatgpt-image-2/`, without regeneration. A prototype is durable when explicitly retained in the approved packet; temporary brainstorming companion sketches are decision context only.
 
-When sources disagree, preserve current product truth unless the packet explicitly approves the change.
+Raster details never override approved copy, behavior or accessibility. Record a supported mismatch and proposed resolution when both sources cannot be honored. Degraded evidence requires explicit approval of its limits; it cannot bypass a required unresolved packet.

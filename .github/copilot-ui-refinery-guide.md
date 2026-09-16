@@ -22,7 +22,7 @@ Copy these files into your repo:
 - `.github/agents/*.agent.md`
 - optional: `.github/prompts/refine-ui-pass.prompt.md`
 
-Keep your existing skills like `gsd-frontend-design`, `frontend-direction`, and any Impeccable-derived skills in project skill folders such as `.github/skills` or `.agents/skills` so Copilot can discover them.
+Keep your existing skills like `implementing-frontend-design`, `frontend-direction`, and any Impeccable-derived skills in project skill folders such as `.github/skills` or `.agents/skills` so Copilot can discover them.
 
 ## Contract modes
 
@@ -61,7 +61,7 @@ This mode is intentionally conservative.
 ### 1. Keep these skills installed and discoverable
 
 At minimum:
-- `gsd-frontend-design`
+- `implementing-frontend-design`
 - `frontend-direction`
 - `brainstorming`
 
@@ -150,3 +150,5 @@ Example start prompt:
 - The main agent should honor the strongest available contract.
 - When no packet exists, the main agent should stay conservative and preserve the existing brownfield design language.
 - If a better result requires new visual direction rather than refinement, the main agent should say so explicitly and ask whether to switch to `frontend-direction`.
+
+Approved frontend targets: consume the exact approved prototype source/version, launch/state setup, final captures and supersession from the packet. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.

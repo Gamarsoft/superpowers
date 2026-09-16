@@ -98,7 +98,7 @@ Apply this section when the work includes meaningful user-visible UI copy.
 - Are final or explicitly pending visible strings captured for labels, CTAs, warnings, errors, empty states, confirmations, helper text, and onboarding?
 - Are technical terms, backend service names, and internal state names kept out of user-facing copy unless they are established product terminology?
 - Are terminology, i18n variables, plural/date/number formatting, translation expansion, and accessibility labels covered?
-- If ChatGPT Images 2 prompts are expected, does the follow-on prompt require production-quality visible text in the prompts before image generation?
+- If generated UI concepts are expected, does the follow-on prompt require production-quality visible text in the prompts before image generation?
 - Are copy acceptance criteria included so implementation and review can verify the approved words, not invent new ones?
 
 ## 11. Cross-artifact UI alignment (conditional, blocking when relevant)

@@ -118,7 +118,7 @@ not-required | required-pending | approved | approved-with-degraded-evidence
 
 ### Downstream frontend guidance
 - Skills / docs to load:
-  - `gsd-frontend-design`
+  - `implementing-frontend-design`
   - [repo-local framework or design-system guidance]
 - Evidence to preserve:
   - approved packet path
@@ -255,13 +255,13 @@ After the frontend direction packet exists, also consume:
 - visual reference intent approvals
 
 For frontend implementation after the packet exists, load:
-- gsd-frontend-design
+- implementing-frontend-design
 - any repo-local framework, design-system, or implementation guidance named in the packet
 
 Use the frontend packet, runtime captures, retained screenshots, and approved generated image references as durable UI inputs after they exist.
 Respect approved visual reference intent modes in the packet. `visual-truth` references require visual parity; `semantic-guidance` references require behavior, content-priority, and state-fit; `reference-only` references are not acceptance targets.
 If visual reference intent is missing or pending after frontend-direction, ask for confirmation or record degraded current-UI mode before treating the reference as a redesign or visual parity target.
-Do not treat temporary HTML companion screens from brainstorming as binding unless the separate frontend-direction packet captures the decision in durable prose, screenshots, browser captures, or approved generated images.
+Carry exact approved prototype/capture versions, source/launch/state setup and supersession into implementation tasks. Do not treat temporary HTML companion screens from brainstorming as binding unless the separate frontend-direction packet captures the decision in durable prose, screenshots, browser captures, or approved generated images.
 Do not invent a new visual direction unless the handoff explicitly says redesign.
 Only ask follow-up questions about unresolved items, contradictions, or missing implementation-shaping decisions.
 ```

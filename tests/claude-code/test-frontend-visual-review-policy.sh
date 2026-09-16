@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Test: GSD frontend visual review policy hardening
+# Test: Frontend visual review policy hardening
 # Verifies that visual reviewer instructions require independent, complete browser review.
 set -euo pipefail
 
@@ -50,29 +50,29 @@ assert_visual_review_contract() {
   assert_file_contains "$file" "console/network" "$label gates console/network checks"
 }
 
-echo "=== Test: GSD frontend visual review policy ==="
+echo "=== Test: Frontend visual review policy ==="
 echo ""
 
-assert_visual_review_contract "skills/gsd-frontend-design/SKILL.md" "Skill policy"
+assert_visual_review_contract "skills/implementing-frontend-design/SKILL.md" "Skill policy"
 assert_visual_review_contract "docs/gsd/AGENTS.md" "GSD AGENTS policy"
 assert_visual_review_contract "docs/gsd/preferences.md" "GSD hook policy"
 
 assert_file_contains \
-  "skills/gsd-frontend-design/references/implementation-review-checklist.md" \
+  "skills/implementing-frontend-design/references/implementation-review-checklist.md" \
   "project instructions.*AGENTS.md.*PRODUCT.md.*DESIGN.md" \
   "Implementation checklist covers instruction sources"
 assert_file_contains \
-  "skills/gsd-frontend-design/references/implementation-review-checklist.md" \
+  "skills/implementing-frontend-design/references/implementation-review-checklist.md" \
   "fresh browser context.*avoid reusing" \
   "Implementation checklist covers fresh browser isolation"
 assert_file_contains \
-  "skills/gsd-frontend-design/references/implementation-review-checklist.md" \
+  "skills/implementing-frontend-design/references/implementation-review-checklist.md" \
   "independently open.*recapture" \
   "Implementation checklist covers independent recapture"
 assert_file_contains \
-  "skills/gsd-frontend-design/references/implementation-review-checklist.md" \
+  "skills/implementing-frontend-design/references/implementation-review-checklist.md" \
   "ERR_CONNECTION_REFUSED.*REQUEST_CHANGES.*ESCALATE" \
   "Implementation checklist blocks approval on runtime blockage"
 
 echo ""
-echo "=== GSD frontend visual review policy test passed ==="
+echo "=== Frontend visual review policy test passed ==="

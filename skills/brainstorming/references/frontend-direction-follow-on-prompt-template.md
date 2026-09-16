@@ -8,7 +8,7 @@ Keep the prompt short enough to paste into a fresh session.
 Use $superpowers:frontend-direction.
 
 Goal:
-Create a concise frontend direction packet and supporting evidence for [feature / slug] from the approved neutral spec and route-neutral brainstorming outputs.
+Explore visual alternatives and an interactive prototype, then create a concise frontend direction packet and supporting evidence for [feature / slug] from the approved neutral spec and route-neutral brainstorming outputs.
 
 Approved upstream artifacts:
 - Approved neutral spec: [path]
@@ -27,9 +27,9 @@ Product and delivery context:
 - Primary flows: [summary]
 - Key screens or screen families: [summary]
 - Key states: [loading, empty, error, validation, permission, destructive, mobile, etc.]
-- Must preserve: [shell, workflow, density, components, behavior]
-- May adapt: [safe improvements]
-- Explicit no-gos: [do not redesign / do not change navigation / etc.]
+- Must preserve: [business/technical constraints and retained brand/shell, each with source and scope]
+- May adapt: [feature hierarchy, layout, density, disclosure and interactions to reconsider]
+- Explicit no-gos: [explicit limits such as unchanged app shell or business behavior]
 - UX writing: [copy deck path / inline decisions / missing states / terminology and i18n notes]
 
 Visual companion carry-forward:
@@ -40,16 +40,18 @@ Visual companion carry-forward:
 Frontend-direction requirements:
 - Capture brownfield runtime baseline first when current screen truth exists only in the app.
 - Produce:
-  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend-direction.md`
+  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/packet.md`
+  - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/packet.json`
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screen-index.md`
   - `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/brownfield-ui-extraction.md` when brownfield
-  - retained screenshots under `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/screenshots/` when useful
+  - current scoped captures under `docs/superpowers/specs/YYYY-MM-DD--[slug]--frontend/references/`, with superseded evidence under `history/`
 - For every implementation-facing screenshot, browser capture, generated image, or retained reference, record approved intent:
   - `visual-truth`
   - `semantic-guidance`
   - `reference-only`
 - Use `writing-ux-copy` for visible UI text that affects the packet, screenshots, or image prompts.
-- If ChatGPT Images 2 prompts are created, audit prompt-visible copy before generation and wait for human approval before treating generated images as references.
+- For substantial unresolved visual direction, generate three distinct UI image concepts with built-in imagegen, refine the human's selection, then build and iterate an isolated interactive browser prototype. Audit prompt-visible copy before generation.
+- Finalize new packets using frontend-direction’s canonical packet.md + packet.json contract, current prototype/references and preserved history. Run the bundled validation and return entry path, revision and descriptor SHA-256. Retain exact selected versions, prototype source/launch/state setup, final captures, supersession and concrete final approval. Existing layout/density/components are not requirements merely because they exist.
 - Do not route until the packet is approved. If evidence or implementation-affecting reference intent is degraded, record the constraint and obtain explicit approval inside the packet before routing or implementation.
 ```
 

@@ -1,26 +1,20 @@
-# Frontend Packet Folder Template
+# Frontend Packet Files
 
-Use a small, predictable folder.
+New final packets use this self-contained form. A project may choose a different parent directory; keep the internal contract.
 
 ```text
-docs/superpowers/specs/
-├── YYYY-MM-DD--<slug>.md
-├── YYYY-MM-DD--<slug>--frontend-direction.md
-└── YYYY-MM-DD--<slug>--frontend/
-    ├── brownfield-ui-extraction.md
-    ├── screen-index.md
-    ├── screenshots/
-    └── chatgpt-image-2/          # only when generated image references are used
+docs/superpowers/specs/YYYY-MM-DD--<slug>--frontend/
+  packet.md                    # sole human implementation entry; format marker
+  packet.json                  # schema, approval/revision, references, file hashes
+  screen-index.md              # important states, setup, acceptance, actual checks
+  brownfield-ui-extraction.md  # required for brownfield; absent for greenfield
+  prototype/                  # current approved source only, when in scope
+  references/                 # current scoped images/captures
+  history/                    # earlier concepts, prompts, prototypes, original packets
 ```
 
-## What Belongs Where
+Keep reusable assets needed to launch inside `prototype/`; write setup and commands in `packet.md`. Explicit references-only scope may omit the prototype as described in the [schema](packet-schema.md). Additional supporting current files are allowed and included in the inventory. README or former entry files may point to `packet.md`; do not create competing implementation briefs.
 
-- `--frontend-direction.md`: concise implementation contract.
-- `brownfield-ui-extraction.md`: current truth, safe improvements, no-gos.
-- `screen-index.md`: key screens, states, references, and intent.
-- `screenshots/`: retained browser/runtime evidence when useful.
-- `chatgpt-image-2/`: prompt pack and approved generated references, only when requested or useful.
+Standalone brief lives in `packet.md`. Link a supplied approved spec/follow-on; GSD artifacts are supplemental only for an already confirmed route. Preserve superseded artifacts and their internal relationships in `history/`, identifying relocation and supersession. Current references live outside history even when copied from an earlier concept for a surviving scoped purpose.
 
-A `--gsd-handoff.md` may exist only after the GSD route is confirmed. It is a route adapter, not a required frontend packet input.
-
-Raw runtime evidence is local by default. Commit only durable, intentionally retained screenshots or prompt packs.
+Retain final binding sources/captures according to project policy. Temporary logs and traces remain local by default. Existing approved outer `--frontend-direction.md` documents, `chatgpt-image-2/` images and other legacy layouts remain readable without forced conversion. Only newly finalized or explicitly normalized packets use this canonical form. No external upload-pack authoring returns.

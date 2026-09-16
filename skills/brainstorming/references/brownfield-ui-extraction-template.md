@@ -13,14 +13,15 @@ Use this to ground frontend direction in the current product before changing UI.
 
 ## 2. Must Preserve
 - Shell / navigation:
-- Density / scan path:
-- Component patterns:
-- Interaction behavior:
+- Business/technical invariants:
+- Retained brand/shell anchors and source:
+- Required interaction behavior:
 - Copy conventions:
 
-## 3. Safe Improvements
-- Hierarchy:
-- Spacing / grouping:
+## 3. Design Problems and Freedom
+- Task impact and objectives:
+- Hierarchy / density / scan path:
+- Layout / disclosure / grouping:
 - State clarity:
 - Accessibility / responsive behavior:
 

@@ -1,90 +1,57 @@
 # Frontend Direction Packet Template
 
-Default file:
-`docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md`
-
-Keep this packet compact. It is an implementation contract, not a design diary.
+Default: `docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend/packet.md`.
+Use existing approved packet paths when consuming historical evidence. Keep this an implementation contract; link requirements and evidence rather than duplicating them.
 
 ```markdown
-# [Feature / Project Name] — Frontend Direction
+<!-- frontend-packet: 1 -->
+# [Target] — Frontend Direction
 
-## 1. Summary
-
-- Linked approved neutral spec:
-- Linked frontend-direction follow-on context:
+## Brief and scope
+- Entry: follow-on | standalone
+- Approved spec and follow-on: [links when supplied; otherwise not applicable]
+- Standalone brief: [target, task, problem, scope, behavior, constraints, anchors, objectives, states]
+- Request scope: design only | implementation also authorized
 - Packet status: not-required | required-pending | approved | approved-with-degraded-evidence
-- Brownfield call: preserve | focused refresh | redesign approved
-- Default visual source: current UI screenshots/browser captures | approved ChatGPT Images 2 | degraded current UI
-- UX copy source: spec | copy deck | existing i18n | pending
+- Revision and descriptor: [exact approved revision; packet.json]
+- UX copy source and locale:
 
-## 2. Source Evidence
+## Evidence and decisions
+- Current UI/source/docs; historical or missing evidence:
+- Brownfield inspection: [link when applicable]
+- Screen index: [link]
+- Business/technical invariants:
+- Retained brand/shell:
+- Approved feature design delta:
+- Explicit no-gos:
 
-- Current UI evidence:
-- Design-system or component evidence:
-- Approved generated images, if any:
-- Temporary comparison artifacts retained only as context:
-- Missing evidence / degraded constraints:
+## Exact visual targets
+| ID/version | File/artifact | State/viewport | Intent | Binding scope | Approval evidence | Supersedes |
+| --- | --- | --- | --- | --- | --- | --- |
+| [final desktop-v3] | [path] | [state/size] | visual-truth | [feature layout] | [human decision] | [concept B-v2] |
 
-## 3. Screens And States
+- Selected concept and refinement: [exact files/versions and selection evidence]
+- Prototype source/version: [durable path or snapshot]
+- Launch command and URL:
+- Synthetic data and state setup:
+- Final desktop/narrow captures:
+- Interaction, keyboard/focus and state checks actually exercised:
+- Prototype feasibility and remaining production translation/integration:
 
-Link: `./{slug}--frontend/screen-index.md`
-
-- In scope:
-- Key states:
-- Deferred:
-
-## 4. Visual References
-
-Use one row per implementation-facing reference.
-
-| Screen/state | Reference | Intent | Approval | Binding notes |
-| --- | --- | --- | --- | --- |
-| [screen] | [screenshot/image/path] | visual-truth / semantic-guidance / reference-only | approved / pending | [what binds] |
-
-Reference intent meanings:
-
-- `visual-truth`: visual treatment is binding and needs runtime comparison.
-- `semantic-guidance`: workflow, hierarchy, content priority, or state behavior is binding; visual treatment may adapt to the product system.
-- `reference-only`: useful context, not an acceptance target.
-
-## 5. Implementation Contract
-
-### Must preserve
-- ...
-
-### May adapt
-- ...
-
-### Explicit no-gos
-- ...
-
-### Copy and accessibility
-- Approved labels, CTAs, helper text, warnings, errors, empty states, confirmations:
-- Terminology / i18n variables:
+## Implementation and verification
+- Affected routes/components and supported primitive mapping:
+- Must preserve / may adapt:
+- Approved labels, CTAs, empty/error/helper copy; terminology/i18n variables:
+- Responsive reflow and key interactions:
 - Accessibility constraints:
-
-### Responsive and interaction notes
-- Viewports/device families:
-- Reflow rules:
-- Interaction/state feedback:
-
-## 6. Verification
-
-- Runtime screenshots/captures required:
-- Reference-intent checklist:
-- Interaction checks:
-- Accessibility/copy checks:
-- Known visual risks or waived mismatches:
-
-## 7. Open Questions
-
-- [question] — blocks [decision]
+- Observable acceptance by important state: [screen-index.md]
+- Required runtime comparisons and interaction checks:
+- Known mismatches, evidence limitations and approved waivers:
+- Final packet approval: [human, decision/date and exact target version; pending until given]
+- Continuation: [invoking workflow or standalone scope]
+- History/provenance: [relocation and supersession; never competing current targets]
 ```
 
-## Quality Bar
+Use [scoped authority](design-source-priority.md) for `visual-truth`, `semantic-guidance`, and `reference-only`. Approval covers the listed intent/scope; prior selection does not approve later versions. A legacy packet lacking prototype fields can remain valid under its existing approval; do not invent evidence or require regeneration merely to fit this template.
 
-- Concrete evidence beats long prose.
-- `approved-with-degraded-evidence` requires explicit approval of every recorded degraded constraint; degraded evidence alone never authorizes routing.
-- Every implementation-facing reference has an approved intent or a recorded blocker.
-- The packet names what to preserve, what may change, and what is forbidden.
-- The packet is short enough to scan before coding.
+Finalize with the [schema and helper](packet-schema.md) using the [finalization recipe](packet-finalization.md). Keep the descriptor SHA-256 outside this payload in the handoff so the inventory has no circular hash dependency.

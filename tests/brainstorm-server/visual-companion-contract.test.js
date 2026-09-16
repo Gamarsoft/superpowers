@@ -10,25 +10,9 @@ const pressureScenarioPath = path.join(
   '../../skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md'
 );
 const webappTestingPath = path.join(__dirname, '../../skills/webapp-testing/SKILL.md');
-const browserSurfaceSelectionPath = path.join(
-  __dirname,
-  '../../skills/frontend-direction/references/browser-surface-selection.md'
-);
-const useCasesPath = path.join(
-  __dirname,
-  '../../skills/frontend-direction/references/use-cases-prompts-and-flows.md'
-);
-const impeccableBrownfieldPath = path.join(
-  __dirname,
-  '../../skills/frontend-direction/references/impeccable-brownfield-quality-layer.md'
-);
-
 const guide = fs.readFileSync(guidePath, 'utf-8');
 const skillEntrypoint = fs.readFileSync(skillEntrypointPath, 'utf-8');
 const webappTesting = fs.readFileSync(webappTestingPath, 'utf-8');
-const browserSurfaceSelection = fs.readFileSync(browserSurfaceSelectionPath, 'utf-8');
-const useCases = fs.readFileSync(useCasesPath, 'utf-8');
-const impeccableBrownfield = fs.readFileSync(impeccableBrownfieldPath, 'utf-8');
 const retryPolicyExamplePath = path.join(examplesDir, 'retry-policy-review.html');
 const carryForwardExamplePath = path.join(examplesDir, 'carry-forward-summary.html');
 
@@ -397,18 +381,6 @@ function assertProductMockupExperienceExemplarRegistration() {
   );
 }
 
-function assertImpeccableInitializationReference() {
-  assertIncludes(
-    impeccableBrownfield,
-    '## `/impeccable init`',
-    'Impeccable initialization heading'
-  );
-  assert(
-    !impeccableBrownfield.includes('/impeccable teach'),
-    'Expected stale /impeccable teach initialization command to be removed'
-  );
-}
-
 function assertOperationalParity() {
   for (const phrase of [
     'complete** URL',
@@ -430,9 +402,7 @@ function assertOperationalParity() {
 function assertCurrentBrowserRouting() {
   for (const [name, doc] of [
     ['visual-companion.md', guide],
-    ['webapp-testing/SKILL.md', webappTesting],
-    ['browser-surface-selection.md', browserSurfaceSelection],
-    ['use-cases-prompts-and-flows.md', useCases]
+    ['webapp-testing/SKILL.md', webappTesting]
   ]) {
     assertIncludes(doc, 'browser:control-in-app-browser', `${name} Codex App capability`);
     assert(!doc.includes('browser-use:browser'), `Expected ${name} not to require browser-use:browser`);
@@ -458,15 +428,6 @@ function assertCurrentBrowserRouting() {
         '## browser selection',
         '## setup',
         'webapp-testing/SKILL.md browser selection'
-      )
-    ],
-    [
-      'use-cases-prompts-and-flows.md shared rules',
-      getBetween(
-        useCases.toLowerCase(),
-        '## shared rules',
-        '## 1. brownfield',
-        'use-cases-prompts-and-flows.md shared rules'
       )
     ]
   ];
@@ -636,15 +597,10 @@ function assertCompatibilityBoundary() {
 }
 
 function assertFrontendDirectionDurabilityBoundary() {
-  assertIncludes(
-    useCases,
-    'HTML companion artifacts are temporary useful-artifact surfaces, not durable frontend-direction evidence.',
-    'use-cases-prompts-and-flows.md useful-artifact durability boundary'
-  );
-  assert(
-    !useCases.includes('HTML companion artifacts are comparison aids only.'),
-    'Expected frontend-direction guidance not to restrict companion artifacts to comparisons'
-  );
+  const authority = fs.readFileSync(path.join(__dirname,
+    '../../skills/frontend-direction/references/design-source-priority.md'), 'utf-8');
+  assertIncludes(authority, 'temporary brainstorming companion sketches are decision context only',
+    'Temporary companion boundary survives durable prototype support');
 }
 
 function assertExampleKitPresence() {
@@ -853,7 +809,6 @@ function run() {
   assertUsefulArtifactContract();
   assertThreeRegisterAuthoringContract();
   assertProductMockupExperienceExemplarRegistration();
-  assertImpeccableInitializationReference();
   assertRoutingRule();
   assertGenuinelyVisualRoutingBoundary();
   assertWorkflowAndDegradedMode();
