@@ -43,3 +43,5 @@ Open `index.html` directly in a browser. The prototype uses only local HTML, CSS
 - Vanilla controls approximate feasible Angular 7/Nebular primitives. Production integration would need the verified installed component APIs, translation keys, real focus restoration through `NbDialogRef`, service subscriptions, and Gateway verification gates.
 
 Controller final source check qualified close/Escape copy: closing sends no new request and does not establish the outcome of an earlier attempt.
+
+Final integration review: prototype fixture and response selectors are disabled during simulated requests so response completion cannot consume a different fixture. Optional-source exact identities are preserved in the companion optional-source-identities.json.

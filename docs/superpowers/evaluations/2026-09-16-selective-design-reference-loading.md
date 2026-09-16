@@ -68,3 +68,10 @@ JavaScript syntax checks pass for both preserved scripts. Source inspection find
 Keep the tested selective source-access capability. Five fresh applications and the held-out cases show it is discoverable, scoped and usable without optional installation. Earlier human-reviewed source-assisted alternatives remain positive evidence; this real-dialog pair adds a counterexample to any claim that fuller references always produce the preferred visual composition. Do not turn one artifact preference into a universal prohibition or another generic recipe.
 
 For the actual manual adjustment improvement, review A and B, select/iterate the concrete target, then finalize its canonical packet before production implementation. The skill integration is complete independently of that still-pending design choice. DashPark production source is unchanged.
+
+
+## Final review corrections
+
+B1 (BLOCKING, resolved): the original audit identified Impeccable entry/operate/critique, but the delivered prototype also consulted craft-floor and the holdout consulted harden/clarify. [Exact optional-source identities](2026-09-16-selective-design-reference-loading/optional-source-identities.json) now record every consulted file and its consumer, plus reviewed-but-unused critique. No optional upstream prose is copied; source license assessment would be required before vendoring.
+
+F1 (FOLLOW_UP, fixed within the comparison harness): candidate fixture/response selectors remained enabled while a simulated request was busy. Browser RED observed submit disabled with both selectors enabled. Both selectors now disable with the form; focused browser retest verifies they remain stable during the request and re-enable after completion. This affects simulation controls only.

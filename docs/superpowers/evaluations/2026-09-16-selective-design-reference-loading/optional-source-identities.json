@@ -1,0 +1,53 @@
+{
+  "source": "project-installed Impeccable",
+  "version": "4.3.1",
+  "observed": "2026-09-16",
+  "root": "/Volumes/Workspace/Development/SolutionPark/DashPark/.agents/skills/impeccable",
+  "license_boundary": "No upstream Impeccable prose is vendored. These are local source identities and usage records, not a redistribution license assessment. Review applicable license before copying material. No helper command or detector execution claimed.",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "38c2e839e130008b6da814ab9c16f3fcbbedfdf721a9638eebd31a9e65341a7a",
+      "used_by": [
+        "candidate prototype",
+        "optional-source holdout"
+      ]
+    },
+    {
+      "path": "reference/operate.md",
+      "sha256": "a9d2203acd45ca33a13d5c68b02b23ed512425ac15f0e8438318ed124b43729d",
+      "used_by": [
+        "candidate prototype",
+        "optional-source holdout"
+      ]
+    },
+    {
+      "path": "reference/craft-floor.md",
+      "sha256": "e802e4f7bdc89050a9c0f2ca506e1d493a2316e6e810c0336c57aa073717ef3e",
+      "used_by": [
+        "candidate prototype"
+      ]
+    },
+    {
+      "path": "reference/harden.md",
+      "sha256": "b31ff29c7a1ea979c6d039f7e8d17007410697ab49536690dca109f0af3f20f8",
+      "used_by": [
+        "optional-source holdout"
+      ]
+    },
+    {
+      "path": "reference/clarify.md",
+      "sha256": "173dd66abe65633910dcb04a51f40d6ff2a793f87088f022a02fc4cad24dd133",
+      "used_by": [
+        "optional-source holdout"
+      ]
+    },
+    {
+      "path": "reference/critique.md",
+      "sha256": "cb8caddbb3919e5bf7f252143b519fb16db28a244642d937b186cb89962d9201",
+      "used_by": [
+        "earlier source audit only; not claimed as consulted by this delivered prototype or holdout"
+      ]
+    }
+  ]
+}

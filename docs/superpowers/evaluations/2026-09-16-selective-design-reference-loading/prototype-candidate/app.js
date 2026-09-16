@@ -157,6 +157,8 @@
     closeButton.disabled = busy;
     cancelButton.disabled = busy;
     reloadButton.disabled = busy;
+    fixtureSelect.disabled = busy;
+    responseSelect.disabled = busy;
   }
 
   function amountErrorMessage(reason) {
