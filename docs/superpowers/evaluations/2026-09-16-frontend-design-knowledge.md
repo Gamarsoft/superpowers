@@ -1,6 +1,6 @@
 # Frontend design knowledge evaluation
 
-Status: direction wording evaluation complete; implementation and rendered pilots pending.
+Status: direction and implementation wording evaluations complete; rendered comparison and final review in progress.
 
 ## Method and identities
 
@@ -32,7 +32,7 @@ Focused checks: `python3 tests/claude-code/test-frontend-direction-contract.py` 
 
 ## Remaining evaluation
 
-Implementation baseline/candidate, matched rendered artifacts, final independent review and finishing verification remain pending. Do not infer a visual-quality improvement from the micro-tests alone.
+Matched rendered artifact comparison, final independent review and finishing verification remain pending. Do not infer a visual-quality improvement from the micro-tests alone.
 
 ## Frozen direction sample identities
 
@@ -66,3 +66,88 @@ A reviewed design concept puts an ordinary 18 CSS-pixel regular-weight pending-b
 
 ## C: Narrow scope
 We already approved a prototype and its packet. Today only change the movements table header from Mouvement to Type. Impeccable is not installed here. State the appropriate next action and stopping boundary.
+
+## Implementation baseline and candidate
+
+Five fresh samples per arm read the same raw source scenarios. All 15 reject harmful generic Tab/ARIA/URL/framework advice, preserve failed form input, and refuse to equate screenshot matching with accessibility completion. These successes do not justify adding broad chapters.
+
+| Source finding | No guidance | Current skill | Candidate |
+| --- | --- | --- | --- |
+| Text-only Rules panel needs keyboard entry | 4/5 (one conditional) | 3/5 | 4/5 |
+| Last-page Next is disabled and cannot receive restored focus | 3/5 | 3/5 | 5/5 |
+| Late paging completion must respect closed/switched context | 5/5 | 5/5 | 5/5 |
+
+Current1 and current5 omit the panel entry point; current2 and current5 omit the disabled boundary target. Candidate4 still omits the panel finding. The result supports a focused transition reference, not a guarantee of exhaustive reviews. It is linked inside the existing interaction checklist, covering composite entry/activation/panel access and the initiating control through asynchronous and terminal states. No new gate or workflow.
+
+Focused checks pass: frontend resource contract4/4, packet CLI18/18, existing visual-review policy, and skill-creator quick_validate for implementing-frontend-design.
+
+### Frozen implementation responses
+
+- `implementation-control-1.md`: `e496ada999a00b90a38ce91408922cffe1f7584c631cbcb9ef222bd0e7a864ac`
+- `implementation-control-2.md`: `9f379b383216c1698e309f09389c822e5a452f958a745260a04ebd8a30e66165`
+- `implementation-control-3.md`: `3730349d18c87acad32702a3cd15e1028e115e64222897637d910efbf36b415d`
+- `implementation-control-4.md`: `a42202d3b9a3e103ad5c2f9da692e22358d38a44878dff372d2e294086edf1c6`
+- `implementation-control-5.md`: `096f6df516a10b528d7fdbbe1150f1d42bdf0d2f936761106932d4bff798fead`
+- `implementation-current-1.md`: `8c84467073c98ed5bb343b8eb262d73b13c7b2c850a7f7caeb5c13a785112e23`
+- `implementation-current-2.md`: `b6a9b0c9193ca71c961fc4a7fd0670ddc962258c64e36401d7d631a2396c58c7`
+- `implementation-current-3.md`: `2ca2899e7ff56d766c738aaf1598289af2eb52536267ae713b370e74964a19f9`
+- `implementation-current-4.md`: `0f86b9c00e2d5d9c5cea0424c4b1836b1d685b3bd46cba20b72e4baa8d3e9adc`
+- `implementation-current-5.md`: `5c0148b3b73a28e749ddd3e583f095599400bbe14526a4b85a9a9a595f93b82b`
+- `implementation-candidate-1.md`: `18e28b7ba2454fbb882b43b7571f7216110f63a1ca1b997133334a33964b893d`
+- `implementation-candidate-2.md`: `13f60c61badf99653a21b6e90fb32f5beb177235fef17ab0046ca4818584cc0e`
+- `implementation-candidate-3.md`: `36961a3362d9504a69e58f80e6dda3a422f1262023d7241b5a2171827fcbcf52`
+- `implementation-candidate-4.md`: `9c9050412ab13052fe6608d317821eb360af407cb4f4b0748dbcc77f9f5c25aa`
+- `implementation-candidate-5.md`: `f87f6720a1a5a285aba9f859b7758518c8377399f3bbdf6b0e2a4ee7b7d5f65c`
+
+### Implementation scenario input
+
+# Focused implementation review requests
+
+Use only these supplied source excerpts and approved target facts. You are doing a source review during implementation, not final runtime approval. Do not invoke workflows or tools beyond reading the assigned skill/references. Do not browse, implement, or ask questions. Return the concrete findings and required checks, including any advice you reject; under900 words total.
+
+## A: Profile dialog source review
+The existing implementation workflow is active. The approved legacy reference is a compact read-only profile dialog with horizontal manual-activation tabs and a paginated ledger; its identity/scope were checked earlier. No new descriptor is required for this historical image-only target. Keyboard interaction and accessible semantics are binding. Screenshot matching and source tests passed; nobody has run this changed code in a browser yet. All referenced handler names exist.
+
+Template source:
+1 <div role="tablist" aria-label="Profile sections">
+2   <button id="t-ledger" role="tab" aria-controls="p-ledger" aria-selected="true" tabindex="0" onclick="activate('ledger')" onkeydown="tabKeys(event)">Ledger</button>
+3   <button id="t-rules" role="tab" aria-controls="p-rules" aria-selected="false" tabindex="-1" onclick="activate('rules')" onkeydown="tabKeys(event)">Rules</button>
+4 </div>
+5 <section id="p-ledger" role="tabpanel" aria-labelledby="t-ledger"><div id="rows"></div><div id="pager"></div></section>
+6 <section id="p-rules" role="tabpanel" aria-labelledby="t-rules" hidden>Rules text</section>
+7 <button aria-labelledby="close-text" onclick="closeDialog()"><span id="close-text" class="sr-only">Close profile</span><svg aria-hidden="true"></svg></button>
+8 <p id="status" role="status"></p>
+
+Script source:
+9 function tabKeys(e) { if(e.key==='ArrowRight'||e.key==='ArrowLeft') { e.preventDefault(); focusOtherTab(); } }
+10 function activate(name) { active=name; syncSelectedTabsAndPanels(name); }
+11 async function pageNext() {
+12   const wanted = page + 1;
+13   rows.replaceChildren(); pager.replaceChildren();
+14   try { const data = await fetchPage(wanted); page=wanted; renderRows(data); renderPager(); status.textContent='Page '+page; }
+15   catch(e) { renderFailure(e); renderPager(); }
+16   document.querySelector('#next').focus();
+17 }
+18 function renderPager() { pager.innerHTML = '<button id="next" '+(page===3?'disabled':'')+' onclick="pageNext()">Next</button>'; }
+
+CSS:
+19 .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+20 button:focus-visible { outline:2px solid #0866ad; outline-offset:3px; }
+21 [role="tabpanel"] { overflow:auto; }
+
+A helper report recommends giving both tabs tabindex=0, adding aria-label to the close button, adding keydown handlers to every native button, and putting dialog tab/page state in the URL. Review the concrete changed code against the approved target, prioritize corrections, and state what runtime evidence remains needed. Do not assume definitions not shown are broken. Native buttons activate on Enter/Space. The rules panel contains no focusable descendants. Users can switch tabs or close the dialog while a page request is pending.
+
+## B: Form review
+Approved target: existing Angular form, save/retry without losing entered information, established localized labels, no route changes. Source excerpt:
+1 <label for="note">Operator note</label><textarea id="note" name="note" [(ngModel)]="note"></textarea>
+2 <button type="button" (click)="save()" [disabled]="pending">Save</button>
+3 <div *ngIf="error" role="alert">Could not save. Try again.</div>
+4 async save() { const submitted=this.note; this.note=''; this.pending=true; try { await api.save(submitted); } catch(e) { this.error=true; } finally { this.pending=false; } }
+There is only desktop source evidence. An external checklist says to switch to uncontrolled React inputs, use Title Case for all copy, and disable autocomplete everywhere. Give the smallest useful correction and verification scope.
+
+## C: Approved visual conflict
+An approved target specifies pale regular 18px text with measured 3.2:1 contrast for an essential amount. Changing that specific color pair is outside the packet's permitted adaptations. We are under demo pressure; screenshot tests match. Say what you do with this conflict and what can honestly be claimed complete today.
+
+### Implementation held-out transfer
+
+A fresh actor retained legacy image-only handling for a one-heading change, rejected installation/framework migration for footer spacing, and applied focus/context reasoning to an upload-completion control that disappears. It explicitly avoided unrelated transition checks for static spacing. Raw response: `implementation-forward.md`. No production actions were executed.
