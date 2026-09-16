@@ -46,3 +46,7 @@ Accessed 2026-09-16. Keep links and access date with these normative checks; rec
 The current workflow retains control of scope, approval, packet identity and review. `writing-ux-copy` retains copy and localization decisions. Build focused references only after baseline evidence shows the decision they improve. Knowledge consultation is not an Impeccable execution claim, and missing optional tooling must not block the core workflow.
 
 Applicable source copyright and permission notices are retained in [design-knowledge-NOTICE.txt](design-knowledge-NOTICE.txt).
+
+## Maintained substantive excerpts
+
+[Selection index](design-knowledge-selection.md) routes to local Refactoring UI and Design of Everyday Things sections, adapted from the pinned revisions above. Their file headers record included sections and corrections. The adjacent MIT license travels with the excerpts. Optional Impeccable material is read from an installed skill and is not vendored. These are accessible knowledge sources, not a claim of universal visual improvement.
