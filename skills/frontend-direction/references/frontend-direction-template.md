@@ -22,6 +22,7 @@ Use existing approved packet paths when consuming historical evidence. Keep this
 - Screen index: [link]
 - Business/technical invariants:
 - Retained brand/shell:
+- Consequential design rationale: [observed problem or hypothesis, task, supported data meaning/scope, chosen change and tradeoff, evidence/result; link existing decisions instead of duplicating]
 - Approved feature design delta:
 - Explicit no-gos:
 
