@@ -84,3 +84,14 @@ SH
 ```
 
 Finishing environment requirement established by execution: on macOS the live companion cleanup test calls `ps` to verify its own server identity. Run the complete-suite command with process-inspection permission (`require_escalated` in this desktop sandbox); a sandboxed `ps` returns operation-not-permitted and makes cleanup conservatively report stale_pid. No suite test or product code is changed.
+
+
+## Authorized continuation after B2 approval, 2026-09-22
+
+User approved simplified B2 and explicitly instructed proceeding with the recommendation to apply demonstrated lessons to skills, test behavior, resolve the port collision, and complete verification. This authorizes continuation beyond the earlier final-evidence correction stop; preserve both historical attempts and count2, record this exception rather than silently resetting a budget. No merge, push or production DashPark implementation is requested.
+
+Controller owns the approved B2 packet/evaluation, existing direction/copy/implementation guidance only where fresh evidence supports changes, and the narrow browser-server port isolation fix. Use skill-creator and writing-skills: five fresh no-guidance samples, five current-guidance samples, then five candidate samples for edited behavior; manually inspect all outputs, preserve optional references and approved-layout boundaries. Existing task-to-layout and copy contracts may already cover some lessons; passing controls do not justify extra prose. Maintain one source for shared guidance and no new mandatory report or blanket UI prohibition.
+
+Port acceptance: the carry-forward fixture works despite an occupied inherited port; OS-assigned ports publish the actual port in metadata and authentication cookie naming. Preserve explicit-token collision refusal. Focused regression and existing auth/lifecycle/server checks precede one reviewed complete suite. Exact complete-suite command above remains the finishing lane; the glob includes the new isolation regression.
+
+Final independent review covers the continuation and prior reviewed implementation range, packet identity/evidence, behavior claims and port/authentication scope. Preserve approved source bytes, captures and history; packet finalization does not authorize production work. Commit locally and preserve a report-only verification record after the complete suite passes.

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "status": "approved",
+  "revision": "b2-operator-copy-approved-2026-09-22",
+  "entrypoint": "packet.md",
+  "context": "brownfield",
+  "approval": {
+    "revision": "b2-operator-copy-approved-2026-09-22",
+    "decision": "User: “B2 is great now, lets proceed.” Approval of the simplified operator-facing B2.",
+    "date": "2026-09-22"
+  },
+  "documents": {
+    "screen_index": "screen-index.md",
+    "inspection": "brownfield-ui-extraction.md"
+  },
+  "prototype": {
+    "path": "prototype",
+    "entrypoint": "prototype/index.html",
+    "revision": "b2-operator-copy-approved-2026-09-22",
+    "launch_command": "python3 -m http.server 8942 --bind 127.0.0.1 --directory prototype",
+    "url": "http://127.0.0.1:8942/"
+  },
+  "targets": [
+    {
+      "id": "desktop-ready",
+      "path": "references/desktop-ready.png",
+      "intent": "visual-truth",
+      "scope": "Dialog layout, hierarchy and operator copy; excludes fixture toolbar, placeholder shell, demo notice and simulated parent page.",
+      "source_version": "b2-operator-copy-approved-2026-09-22",
+      "state": "ready",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "narrow-ready",
+      "path": "references/narrow-ready.png",
+      "intent": "visual-truth",
+      "scope": "Dialog layout, hierarchy and operator copy; excludes fixture toolbar, placeholder shell, demo notice and simulated parent page.",
+      "source_version": "b2-operator-copy-approved-2026-09-22",
+      "state": "ready",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "id": "narrow-preview",
+      "path": "references/narrow-preview.png",
+      "intent": "visual-truth",
+      "scope": "Dialog layout, hierarchy and operator copy; excludes fixture toolbar, placeholder shell, demo notice and simulated parent page.",
+      "source_version": "b2-operator-copy-approved-2026-09-22",
+      "state": "preview",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "states": [
+    {
+      "id": "ready",
+      "setup": "Reload or select Prêt à enregistrer; success response",
+      "references": [
+        "desktop-ready",
+        "narrow-ready"
+      ],
+      "verification": "exercised"
+    },
+    {
+      "id": "preview",
+      "setup": "Ready → Prévisualiser",
+      "references": [
+        "narrow-preview"
+      ],
+      "verification": "exercised"
+    },
+    {
+      "id": "pending",
+      "setup": "Ready → preview or save",
+      "references": [],
+      "verification": "exercised"
+    },
+    {
+      "id": "save",
+      "setup": "Ready → Enregistrer, success response",
+      "references": [],
+      "verification": "exercised"
+    },
+    {
+      "id": "uncertain",
+      "setup": "Select Interruption → Enregistrer",
+      "references": [],
+      "verification": "exercised"
+    },
+    {
+      "id": "empty",
+      "setup": "Select Vide → Prévisualiser",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "overdraw",
+      "setup": "Ready → Débit,200 → Prévisualiser",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "forbidden",
+      "setup": "Ready → Accès interdit → save",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "preview-error",
+      "setup": "Interruption → Prévisualiser",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "long",
+      "setup": "Select Libellés longs",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "no-account",
+      "setup": "Select Sans compte",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "edit-retry",
+      "setup": "Preview then edit amount; uncertain save then retry unchanged",
+      "references": [],
+      "verification": "source-inspected"
+    },
+    {
+      "id": "keyboard",
+      "setup": "Tab/radio arrows/Escape; reopen",
+      "references": [],
+      "verification": "source-inspected"
+    }
+  ],
+  "limitations": [
+    "Synthetic HTML/CSS/JS; production Angular/service integration unverified.",
+    "Open Sans may fall back to installed sans-serif.",
+    "No full accessibility or screen-reader certification.",
+    "Some interaction checks are inherited from earlier B2; screen-index.md distinguishes evidence."
+  ],
+  "files": {
+    "brownfield-ui-extraction.md": "f11c3476da310f815966d659bed3953b558fe85f1f472186f3a328ff365244a3",
+    "packet.md": "8609da5cbb6649bedd060aacc5c23c6bb7de994356ae4bc676f446b8615ad57b",
+    "prototype/app.js": "7c8de040cf8b7794929f294b33c4d03fb999026998868ff8988bd00bcd540984",
+    "prototype/index.html": "d6d34dfc68691befa65ea54481636976e41c7cc0a79f002feebe085ca8f5e399",
+    "prototype/styles.css": "4363ac3a74587f3ed65775825bc4396780cab3275f359fd3c8fa384d29b3d871",
+    "references/desktop-ready.png": "d5d06f99422cf21b26280a36f315f6810eca7ce8f5f3df9f51fc8de98623a70e",
+    "references/narrow-preview.png": "41076d64d6bca8f8e0b85119322e07ba0b7094017ca466b16038a80c2d5538ed",
+    "references/narrow-ready.png": "1b5a7a582b3310a3222357430d2d9e42e77277fc4b3be470879862b4eec82001",
+    "screen-index.md": "53aa663444a171e38f4712ff5ed754f16982086765a542e26d7d346a4676c922"
+  }
+}
