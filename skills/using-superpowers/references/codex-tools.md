@@ -23,12 +23,45 @@ The minimal optional role set is `sp_reviewer`, `sp_implementer`,
 project or user `.codex/agents` configuration. This repository's project roles
 live in `.codex/agents/*.toml`; the plugin archive does not install these roles.
 
-Before every typed dispatch, inspect the runtime-advertised role list. When the
-exact desired role exists, pass it as `agent_type` with `fork_turns: "none"`.
-When it is absent, omit `agent_type` and send the same complete role prompt to a
-fresh generic agent with `fork_turns: "none"`. Never submit an intentionally
+Select the route using Model and effort selection below, then inspect the
+runtime-advertised roles and pins. For a typed route with current pins, pass the
+exact role as `agent_type` with `fork_turns: "none"`. For an intentional generic
+route or an absent or stale role, omit `agent_type` and send the same complete
+role prompt to a fresh generic agent with `fork_turns: "none"`. Never submit an intentionally
 failing unknown-role call to test availability. Typed and generic dispatches
 must preserve the same implementation or review coverage.
+
+## Model and effort selection
+
+The source role pack and installed user roles use these defaults:
+
+| Role | Model | Reasoning effort |
+| --- | --- | --- |
+| `sp_implementer` | `gpt-6-sol` | `medium` |
+| `sp_implementer_deep` | `gpt-6-sol` | `xhigh` |
+| `sp_reviewer` | `gpt-6-astra` | `medium` |
+| `sp_topic_context` | `gpt-6-luna` | `high` |
+
+For typed dispatch, use the advertised role's fixed settings; do not pass model
+or effort overrides. After changing role files, use a fresh session and check
+the advertised pins. A session still advertising old pins needs a fresh generic
+dispatch with the selected model and effort until the roles reload.
+
+For generic fallback, explicitly pass `model` and `reasoning_effort` from this
+table when the active tool supports them, plus `fork_turns: "none"` and the
+complete role prompt. Preserve the role's read-only and no-subagent instructions.
+When a field or model is unavailable, report the limitation and use the
+supported fallback without claiming the selected settings were applied.
+
+Topic context has an intentional generic `gpt-6-sol` / `medium` route for
+cross-service tracing, conflicting evidence, architectural inference, or one
+material evidence-gap escalation. Apply the selection and escalation rules in
+`gathering-topic-context` before checking typed-role availability. This route
+does not mean the Luna role is missing and does not create another role.
+
+Luna's `high` and the deep implementer's Sol `xhigh` are normal role baselines. Retain the complete prompts, review gates,
+and correction limits when changing models. Do not add review passes or raise
+effort solely because of a role name, a retry, or the cheaper implementation model.
 
 ## Subagent dispatch requires multi-agent support
 

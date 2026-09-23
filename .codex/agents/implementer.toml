@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 name = "sp_implementer"
 description = "Implementation worker for ordinary Superpowers tasks, compatible batches, and first corrections."

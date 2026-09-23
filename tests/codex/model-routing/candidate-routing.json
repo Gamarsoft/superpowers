@@ -1,0 +1,44 @@
+{
+  "repetitions": 5,
+  "model": "gpt-6-sol",
+  "effort": "medium",
+  "samples": {
+    "routing_candidate_1": [
+      "Luna/high",
+      "Sol/medium",
+      "Sol/medium",
+      "stop",
+      "Luna/high"
+    ],
+    "routing_candidate_2": [
+      "Luna/high",
+      "Sol/medium",
+      "Sol/medium",
+      "stop",
+      "Luna/high"
+    ],
+    "routing_candidate_3": [
+      "Luna/high",
+      "Sol/medium",
+      "Sol/medium",
+      "stop",
+      "Luna/high"
+    ],
+    "routing_candidate_4": [
+      "Luna/high",
+      "Sol/medium",
+      "Sol/medium",
+      "stop",
+      "Luna/high"
+    ],
+    "routing_candidate_5": [
+      "Luna/high",
+      "Sol/medium",
+      "Sol/medium",
+      "stop",
+      "Luna/high"
+    ]
+  },
+  "all_preserved_deep_and_full_prompt": true,
+  "typed_override_attempts": 0
+}

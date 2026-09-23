@@ -1,0 +1,36 @@
+{
+  "roles": {
+    "sp_implementer_deep": [
+      "gpt-6-astra",
+      "medium"
+    ],
+    "sp_implementer": [
+      "gpt-6-sol",
+      "medium"
+    ],
+    "sp_reviewer": [
+      "gpt-6-astra",
+      "medium"
+    ],
+    "sp_topic_context": [
+      "gpt-6-luna",
+      "high"
+    ]
+  },
+  "hashes_match": true,
+  "alias_removed": true,
+  "checks": [
+    {
+      "test": "test-sdd-custom-contracts.sh",
+      "exit": 0
+    },
+    {
+      "test": "test-custom-policy-contracts.sh",
+      "exit": 0
+    },
+    {
+      "test": "test-review-depth-contracts.sh",
+      "exit": 0
+    }
+  ]
+}
