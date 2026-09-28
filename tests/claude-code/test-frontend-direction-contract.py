@@ -25,6 +25,26 @@ class FrontendResources(unittest.TestCase):
                 with self.subTest(source=str(path.relative_to(ROOT)), target=target):
                     self.assertTrue((path.parent / target).exists(), target)
 
+    def test_design_knowledge_is_available_offline(self):
+        # Packaging capability: follow reachable local links, not ignored eval paths.
+        base = ROOT / 'skills/frontend-direction'
+        pending = [base / 'SKILL.md']
+        seen = set()
+        while pending:
+            path = pending.pop().resolve()
+            if path in seen or not path.is_file():
+                continue
+            seen.add(path)
+            for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
+                if '://' not in target and not target.startswith('#'):
+                    resolved = (path.parent / target.split('#')[0]).resolve()
+                    if resolved.suffix == '.md' and resolved.is_relative_to(ROOT.resolve()):
+                        pending.append(resolved)
+        for name in ('refactoring-ui.md', 'design-everyday-things.md'):
+            resource = base / 'references/design-knowledge' / name
+            self.assertIn(resource.resolve(), seen, f'Offline source unreachable: {name}')
+        self.assertTrue((base / 'references/design-knowledge/LICENSE.txt').is_file())
+
     def test_exploration_resource_is_reachable_from_entry(self):
         skill = (ROOT / 'skills/frontend-direction/SKILL.md').read_text()
         # Ensures the supporting procedure ships and can be loaded, not how an agent behaves.

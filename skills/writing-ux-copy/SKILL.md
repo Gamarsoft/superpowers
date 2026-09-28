@@ -32,6 +32,14 @@ If a technical term or backend service name is not already product-visible, avoi
 4. Review every line: purposeful, concise, conversational, and clear.
 5. Add acceptance criteria: approved strings or copy deck path, stable terminology, i18n keys/variables, formatting rules, and states to verify.
 
+## Keep copy useful to its audience
+
+For each proposed label, helper, status detail or diagnostic value, name the user's decision, action, outcome or recovery step it supports. Keep that purpose in the existing copy deck. Remove a repeated explanation or an indicator with no supported purpose, such as a character count when no limit or task depends on it. A returned API field is not by itself a reason to display it.
+
+For nontechnical task interfaces, express the outcome and next action in product language. Keep audit flags, transport codes and retry identities in diagnostics. If a verified support procedure requires the user to copy an incident reference, show the actual available reference at that recovery step. An engineer's search console alone does not establish that operator handoff; record it as unresolved instead of inventing a reference or a copy action. In an engineering diagnostic interface, the same codes can be necessary task content.
+
+Simplification preserves required information, confirmations, uncertainty and recovery. Retain the approved interaction structure: a copy pass does not add a confirmation screen or remove an approved review panel. Evaluate repeated information by its checking/comparison purpose, not by a blanket ban on repetition. Keep source consultation, observed usability and measured performance as separate evidence.
+
 ## Pattern Rules
 
 | Pattern | Required shape |

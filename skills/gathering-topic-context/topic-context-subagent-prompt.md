@@ -10,6 +10,7 @@ Task tool (general-purpose):
     Depth: {DEPTH}
     Constraints: {CONSTRAINTS}
 
+    Stay read-only. Do not edit files or spawn subagents.
     Use advanced `rg` options when needed (hidden files, type filters, multiline).
 
     Your Task:

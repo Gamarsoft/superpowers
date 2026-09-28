@@ -44,13 +44,23 @@ prompt template and artifact paths.
 
 Use these roles when the runtime advertises their exact names:
 
-- normal implementation: `sp_implementer`
-- second-round rescue: `sp_implementer_deep`
-- task, re-, and final integration review: `sp_reviewer`
+- normal implementation: `sp_implementer` (`gpt-6-sol` / `medium`)
+- second-round rescue: `sp_implementer_deep` (`gpt-6-sol` / `xhigh`)
+- task, re-, and final integration review: `sp_reviewer` (`gpt-6-astra` / `medium`)
+
+When the approved brief identifies sensitive implementation affecting money,
+authorization, security, privacy, destructive state, or architectural boundaries,
+start with `sp_implementer_deep` and record the reason. Other review-risk triggers
+alone do not require a model escalation. Use the same full implementer prompt.
+Round one still returns to the original implementer; round two uses a fresh deep
+rescue even if the first implementer already used the deep role. Keep the two-round breaker.
 
 Inspect the runtime-advertised role list before dispatch. If the requested role
 is absent, omit `agent_type` and dispatch a fresh generic agent with the same
-complete prompt. Record the generic fallback in the ledger. Never probe an
+complete prompt. Apply the model and effort selection in
+`../using-superpowers/references/codex-tools.md` to generic and stale-pin dispatches;
+record the actual model, effort, and dispatch reason in the ledger. Record the
+generic fallback in the ledger. Never probe an
 unknown role by intentionally making a failing call, and never skip required
 implementation or review coverage because a typed role is unavailable.
 

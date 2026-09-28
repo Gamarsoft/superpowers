@@ -755,6 +755,9 @@ function startServer() {
   let triedFallback = false;
 
   function onListen() {
+    // Port 0 asks the OS to allocate a port. Publish and authenticate with
+    // the actual bound port, just as for an explicit or fallback port.
+    PORT = server.address().port;
     // Cookie name keys on the ACTUAL bound port (may differ from the preferred
     // one after an EADDRINUSE fallback) so it can't collide with another server's
     // cookie in the shared localhost jar.

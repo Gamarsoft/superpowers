@@ -1,0 +1,13 @@
+{
+  "AGENTS.md": "837e9f442fe1b15cb075d0be7431d70b4254f80840a020eb595af8f172c97513",
+  "PRODUCT.md": "97541974ed5efbd1b5fed20c235369d325dbbc22b6e6634417c8d8b6ce42df8f",
+  "gateway/AGENTS.md": "c59b63559be1622823338204c0c3d2687eba4c9fb3bbdea2f4803aec117f2a8d",
+  "gateway/PRODUCT.md": "629d690ff04be0916e71373d3466a9bd45cc51e658e3fc1c80c917a151829a23",
+  "gateway/DESIGN.md": "9fedb402e8dda63ca735a13cf51e25a66fe68e8fd671c1b50465a2d0d29ecb64",
+  "gateway/FRONTEND-ANCHORING.md": "9acef3749c6f9164a9055ce09bf74228a38f58926a655e8db6dc95d26fa3d1b6",
+  "gateway/DESIGN-EVIDENCE.md": "836a944b400c08109a9e4bf1f59440b97cdd705eef787fa7c01615e435c08e96",
+  "/Volumes/Workspace/Development/SolutionPark/DashPark/gateway/src/main/webapp/app/pages/customers/customer-loyalty-adjustment-dialog.component.html": "7c0ad307e5f5fef969d96d02bc5c1495dd0218844834bc610981bfb52109280f",
+  "/Volumes/Workspace/Development/SolutionPark/DashPark/gateway/src/main/webapp/app/pages/customers/customer-loyalty-adjustment-dialog.component.scss": "b407d3cd73b1d9a8e452b6489a7e22d5105e83a10aa7564dd976012ee69ced64",
+  "/Volumes/Workspace/Development/SolutionPark/DashPark/gateway/src/main/webapp/app/pages/customers/customer-loyalty-adjustment-dialog.component.ts": "9f8349702a12994f65bce4ea432b8a2323c45f2a6b238d47aaec5ee409d6ce79",
+  "/Volumes/Workspace/Development/SolutionPark/DashPark/gateway/src/main/webapp/app/pages/customers/customer-loyalty-adjustment-dialog.component.spec.ts": "75729fde1b010dbe381d391f145e06cbb2cfa83045fecfc1936997a75a3c7ba5"
+}

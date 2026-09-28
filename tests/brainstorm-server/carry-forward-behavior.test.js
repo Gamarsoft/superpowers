@@ -88,6 +88,12 @@ async function renderExample({ exampleFile, eventsPresent }) {
     env: {
       ...process.env,
       BRAINSTORM_DIR: sessionDir,
+      // Let the OS allocate a free port; concurrent fixtures must not race.
+      BRAINSTORM_PORT: '0',
+      BRAINSTORM_HOST: '127.0.0.1',
+      BRAINSTORM_URL_HOST: '127.0.0.1',
+      BRAINSTORM_PORT_FILE: '',
+      BRAINSTORM_TOKEN_FILE: '',
       BRAINSTORM_TOKEN: TOKEN
     }
   });

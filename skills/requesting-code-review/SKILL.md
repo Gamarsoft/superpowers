@@ -52,9 +52,13 @@ For Codex:
 
 - use `fork_turns: "none"`;
 - use `agent_type: "sp_reviewer"` only when that exact role is in the
-  runtime-advertised list; and
-- if it is absent, omit `agent_type` and send the same complete prompt to a
+  runtime-advertised list with the selected pins; and
+- if it is absent or its pins are stale, omit `agent_type` and send the same complete prompt to a
   fresh generic agent. Do not probe an unknown role with a failing call.
+
+For Codex generic and stale-pin dispatches, apply the reviewer model and
+effort from `../using-superpowers/references/codex-tools.md`; preserve the full
+read-only review prompt and existing review gate.
 
 Other harnesses use one fresh read-only reviewer with the same prompt.
 

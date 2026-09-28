@@ -75,12 +75,16 @@ history or let the reviewer spawn agents.
 
 On Codex, inspect the runtime-advertised role list before dispatch:
 
-- when `sp_reviewer` is present, use `agent_type: "sp_reviewer"` and
+- when `sp_reviewer` is present with the selected pins, use `agent_type: "sp_reviewer"` and
   `fork_turns: "none"`;
-- when it is absent, omit `agent_type`, keep `fork_turns: "none"`, and send the
+- when it is absent or its pins are stale, omit `agent_type`, keep `fork_turns: "none"`, and send the
   same complete `spec-document-reviewer-prompt.md` message to a fresh generic
   agent; and
 - never probe availability by intentionally dispatching an unknown role.
+
+For Codex generic and stale-pin dispatches, apply the reviewer model and
+effort from `../using-superpowers/references/codex-tools.md`; preserve the full
+read-only review prompt and existing review gate.
 
 Other harnesses use one fresh read-only reviewer and the same prompt. Generic
 fallback changes only role configuration; it never removes review coverage.

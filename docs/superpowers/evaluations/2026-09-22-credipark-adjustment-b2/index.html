@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B2 · Ajustement Credipark</title>
+    <link rel="stylesheet" href="styles.css?v=4363ac3a7458" />
+  </head>
+  <body>
+    <div class="app-shell" aria-hidden="true">
+      <header class="shell-header">
+        <div class="brand-mark">SP</div>
+        <strong>Solution Parking</strong>
+        <span class="shell-context">Lab Solution Parking</span>
+      </header>
+      <aside class="shell-sidebar">
+        <div class="nav-line nav-line--active"></div>
+        <div class="nav-line"></div>
+        <div class="nav-line"></div>
+        <div class="nav-line nav-line--short"></div>
+      </aside>
+      <main class="shell-content">
+        <div class="shell-title"></div>
+        <div class="shell-card"></div>
+      </main>
+    </div>
+
+    <section class="prototype-controls" aria-label="Réglages du prototype">
+      <div class="prototype-controls__title">
+        <span class="prototype-dot" aria-hidden="true"></span>
+        B2 · Prototype local
+      </div>
+      <label>
+        État du formulaire
+        <select id="fixture-select">
+          <option value="empty">Vide</option>
+          <option value="ready" selected>Prêt à enregistrer</option>
+          <option value="long">Libellés longs</option>
+          <option value="no-account">Sans compte</option>
+        </select>
+      </label>
+      <label>
+        Résultat du test
+        <select id="response-select">
+          <option value="success" selected>Succès</option>
+          <option value="conflict">Conflit</option>
+          <option value="forbidden">Accès interdit</option>
+          <option value="service">Interruption</option>
+        </select>
+      </label>
+    </section>
+
+    <div id="parent-status" class="parent-status" role="status" aria-live="polite" hidden>
+      <div>
+        <strong id="parent-status-title"></strong>
+        <p id="parent-status-detail"></p>
+      </div>
+      <button id="reopen-button" class="button button--primary" type="button">Rouvrir l’ajustement</button>
+    </div>
+
+    <div id="modal-layer" class="modal-layer">
+      <section
+        id="adjustment-dialog"
+        class="dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
+      >
+        <header class="dialog__header">
+          <div>
+            <h1 id="dialog-title">Ajustement Credipark</h1>
+          </div>
+          <button id="close-button" class="icon-button" type="button" aria-label="Fermer l’ajustement Credipark">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+        </header>
+
+        <div class="dialog__body">
+          <section class="identity-strip" aria-label="Client et solde Credipark">
+            <div class="identity-strip__customer">
+              <span class="data-label">Client</span>
+              <strong id="customer-name">Camille Martin</strong>
+              <span id="account-number" class="account-number">Compte CP-8204</span>
+            </div>
+            <div class="identity-strip__balance">
+              <span class="data-label">Solde disponible</span>
+              <strong id="current-balance" class="balance-value">128,50 cp</strong>
+              <span id="account-status" class="status-pill status-pill--active">Actif</span>
+            </div>
+          </section>
+
+          <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+
+          <form id="adjustment-form" novalidate>
+            <div class="workspace-grid">
+              <div class="form-column">
+                <section class="form-section" aria-labelledby="amount-heading">
+                  <div class="section-heading">
+                    <h2 id="amount-heading">Montant de l’ajustement</h2>
+                    <span class="required-note">Champs obligatoires</span>
+                  </div>
+
+                  <div class="amount-row">
+                  <fieldset class="direction-fieldset">
+                    <legend>Sens</legend>
+                    <div class="segmented-control">
+                      <label>
+                        <input type="radio" name="direction" value="credit" checked />
+                        <span>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+                          Crédit
+                        </span>
+                      </label>
+                      <label>
+                        <input type="radio" name="direction" value="debit" />
+                        <span>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /></svg>
+                          Débit
+                        </span>
+                      </label>
+                    </div>
+                  </fieldset>
+
+                  <div class="field" id="amount-field">
+                    <label for="amount">Montant Credipark</label>
+                    <div class="amount-input-wrap">
+                      <input id="amount" name="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 2,50" aria-describedby="amount-help amount-error" />
+                      <span aria-hidden="true">cp</span>
+                    </div>
+                    <p id="amount-help" class="field-help">Montant positif, avec au maximum deux décimales.</p>
+                    <p id="amount-error" class="field-error" hidden></p>
+                  </div>
+                  </div>
+                </section>
+
+                <section class="form-section form-section--evidence" aria-labelledby="evidence-heading">
+                  <div class="section-heading">
+                    <div>
+                      <h2 id="evidence-heading">Justificatif de l’ajustement</h2>
+                    </div>
+                  </div>
+
+                  <div class="evidence-row">
+                  <div class="field">
+                    <label for="tenant">Parking d’attribution</label>
+                    <select id="tenant" name="tenant" aria-describedby="tenant-error">
+                      <option value="lab">Lab Solution Parking</option>
+                      <option value="centre">Parking Centre-ville</option>
+                    </select>
+                    <p id="tenant-error" class="field-error" hidden>Sélectionnez un parking d’attribution.</p>
+                  </div>
+
+                  <div class="field">
+                    <label for="reason">Motif</label>
+                    <select id="reason" name="reason" aria-describedby="reason-error">
+                      <option value="">Choisir un motif</option>
+                      <option value="GOODWILL">Geste commercial</option>
+                      <option value="SERVICE_RECOVERY">Rattrapage service</option>
+                      <option value="CORRECTION">Correction support</option>
+                      <option value="MIGRATION_CORRECTION">Correction migration</option>
+                      <option value="REVERSAL_CORRECTION">Correction d’annulation</option>
+                      <option value="OTHER">Autre motif</option>
+                    </select>
+                    <p id="reason-error" class="field-error" hidden>Sélectionnez un motif.</p>
+                  </div>
+
+                  </div>
+                  <div class="field">
+                    <div class="label-row"><label for="note">Note opérateur</label></div>
+                    <textarea id="note" name="note" rows="2" placeholder="Décrivez la correction ou le geste accordé." aria-describedby="note-error"></textarea>
+                    <p id="note-error" class="field-error" hidden>Ajoutez une note opérateur.</p>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="review-column" aria-labelledby="review-heading">
+                <h2 id="review-heading">Avant d’enregistrer</h2>
+                  <div id="effect-preview" class="effect-preview" aria-live="polite">
+                    <div>
+                      <span class="data-label">Ajustement saisi</span>
+                      <strong id="signed-amount">—</strong>
+                    </div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" /></svg>
+                    <div>
+                      <span class="data-label">Solde après ajustement</span>
+                      <strong id="projected-balance">Non prévisualisé</strong>
+                    </div>
+                  </div>
+                <div class="preview-action">
+                  <button id="preview-button" class="button button--secondary" type="button" aria-describedby="preview-help">Prévisualiser</button>
+                  <p id="preview-help">Facultatif · Vérifier le solde après ajustement.</p>
+                </div>
+                <div class="review-list">
+                  <div><span>Parking</span><strong id="review-tenant">Lab Solution Parking</strong></div>
+                  <div><span>Motif</span><strong id="review-reason">À renseigner</strong></div>
+                </div>
+
+                <div class="safety-note">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 17H3L12 3zM12 9v5M12 17h.01" /></svg>
+                  <div>
+                    <strong>Contrôle sur les débits</strong>
+                    <p>Un débit ne peut pas dépasser le solde disponible. Aucun solde dû n’est créé.</p>
+                  </div>
+                </div>
+
+                <label class="confirmation">
+                  <input id="confirmed" name="confirmed" type="checkbox" aria-describedby="confirmation-error" />
+                  <span>
+                    <strong>Je confirme cet ajustement.</strong>
+                  </span>
+                </label>
+                <p id="confirmation-error" class="field-error" hidden>Confirmez l’ajustement pour continuer.</p>
+
+              </aside>
+            </div>
+          </form>
+        </div>
+
+        <footer class="dialog__footer">
+          <button id="reload-button" class="button button--text" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 10-2.3 5.7M20 4v7h-7" /></svg>
+            Recharger le solde
+          </button>
+          <div class="footer-actions">
+            <button id="cancel-button" class="button button--secondary" type="button">Fermer</button>
+            <button id="submit-button" class="button button--primary" type="submit" form="adjustment-form" disabled aria-disabled="true">
+              <span class="button-label">Enregistrer l’ajustement</span>
+              <span class="spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="simulation-note">Démonstration · Aucun compte réel n’est modifié.</p>
+        </footer>
+      </section>
+    </div>
+
+    <script src="app.js?v=7c8de040cf8b"></script>
+  </body>
+</html>

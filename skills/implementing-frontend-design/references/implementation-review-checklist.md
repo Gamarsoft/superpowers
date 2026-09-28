@@ -59,6 +59,7 @@ A waiver requires human approval and names the source, approved intent, mismatch
 
 ## 5. Interaction And Accessibility
 
+- For changed web composites or asynchronous controls, use the [control transition checks](control-transitions.md) to follow keyboard access and focus through the relevant states.
 - Are keyboard and screen-reader paths preserved?
 - Are overlays, dialogs, forms, and responsive layouts usable and predictable?
 - For native/mobile-first work, did mobile interaction guidance cover navigation, forms, gestures, permissions, text scaling, tap targets, semantics, safe areas, and compact constraints?

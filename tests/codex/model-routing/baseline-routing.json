@@ -1,0 +1,55 @@
+{
+  "baseline_revision": "c2c862d",
+  "controller_model": "gpt-6-sol",
+  "effort": "medium",
+  "repetitions": 5,
+  "cases": [
+    "bounded",
+    "cross-service-conflict",
+    "material-gap",
+    "repeated-gap",
+    "missing-role"
+  ],
+  "samples": {
+    "routing_baseline_1": [
+      "Luna/high",
+      "Astra/medium",
+      "Sol/medium",
+      "stop",
+      "Sol/low"
+    ],
+    "routing_baseline_2": [
+      "Luna/high",
+      "Luna/high",
+      "Luna/high",
+      "Luna/high",
+      "Sol/low"
+    ],
+    "routing_baseline_3": [
+      "Luna/high",
+      "Luna/high",
+      "Luna/high",
+      "Luna/high",
+      "Sol/low"
+    ],
+    "routing_baseline_4": [
+      "Luna/high",
+      "Luna/high",
+      "Luna/high",
+      "stop",
+      "Sol/low"
+    ],
+    "routing_baseline_5": [
+      "Luna/high",
+      "Astra/medium",
+      "Sol/medium",
+      "stop",
+      "Sol/low"
+    ]
+  },
+  "verbatim_failures": [
+    "The scope is clear. The baseline skill requires the advertised typed role and gives no complexity-based routing exception.",
+    "The gap remains material; the baseline skill permits another search and specifies the advertised typed role, but gives no escalation limit or alternative routing.",
+    "The typed role is absent, so the skill requires a fresh generic agent; workspace policy assigns Sol/low to focused generic lookup."
+  ]
+}

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prototype · Ajustement Credipark</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="prototype-bar" aria-label="Réglages du prototype">
+      <div class="prototype-bar__title">
+        <span class="prototype-badge">Prototype local</span>
+        <strong>Ajustement Credipark</strong>
+      </div>
+      <label>
+        <span>Fixture</span>
+        <select id="fixture-select">
+          <option value="empty">Vide</option>
+          <option value="ready" selected>Prête</option>
+          <option value="long">Libellés longs</option>
+          <option value="no-account">Sans compte</option>
+        </select>
+      </label>
+      <label>
+        <span>Réponse simulée</span>
+        <select id="response-select">
+          <option value="success" selected>Succès</option>
+          <option value="conflict">Conflit</option>
+          <option value="forbidden">Interdit</option>
+          <option value="service">Échec du service</option>
+        </select>
+      </label>
+      <details class="request-debug">
+        <summary>Identité requête</summary>
+        <code id="request-debug-value"></code>
+      </details>
+    </div>
+
+    <main class="app-shell" aria-hidden="true">
+      <header class="app-header"><span class="brand-mark">DP</span><span>DashPark</span></header>
+      <aside class="app-nav">
+        <span>Tableau de bord</span><span>Réservations</span><span class="active">Clients</span><span>Credipark</span>
+      </aside>
+      <section class="app-content">
+        <p class="eyebrow">Clients / Profil</p>
+        <h1>Camille Martin</h1>
+        <div class="ghost-cards"><span></span><span></span><span></span></div>
+      </section>
+    </main>
+
+    <section id="parent-report" class="parent-report" role="status" aria-live="polite" hidden>
+      <div>
+        <strong id="parent-report-title"></strong>
+        <span id="parent-report-detail"></span>
+      </div>
+      <button id="reopen-button" class="button button--primary" type="button">Rouvrir l’ajustement</button>
+    </section>
+
+    <div id="modal-layer" class="modal-layer">
+      <section
+        id="adjustment-dialog"
+        class="dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
+        aria-describedby="dialog-subtitle"
+      >
+        <header class="dialog__header">
+          <div>
+            <p class="eyebrow">Écriture client</p>
+            <h2 id="dialog-title">Ajustement Credipark</h2>
+            <p id="dialog-subtitle">Écriture auditée sans modification locale du solde.</p>
+          </div>
+          <button id="header-close" class="icon-button" type="button" aria-label="Fermer l’ajustement Credipark">×</button>
+        </header>
+
+        <div class="dialog__body">
+          <section class="account-strip" aria-label="Contexte Credipark">
+            <div class="account-strip__identity">
+              <span>Client</span>
+              <strong id="customer-label">Camille Martin</strong>
+            </div>
+            <div>
+              <span>Compte</span>
+              <strong id="account-label">CP-8204</strong>
+            </div>
+            <div class="account-strip__balance">
+              <span>Solde disponible</span>
+              <strong id="balance-label">128,50 cp</strong>
+              <small id="account-status">Compte disponible</small>
+            </div>
+          </section>
+
+          <div id="server-message" class="server-message" role="status" aria-live="polite" tabindex="-1" hidden></div>
+
+          <form id="adjustment-form" novalidate>
+            <div class="workspace">
+              <section class="amount-panel" aria-labelledby="amount-heading">
+                <div class="section-heading">
+                  <div>
+                    <span class="step">1</span>
+                    <div>
+                      <h3 id="amount-heading">Définir le mouvement</h3>
+                      <p>Choisissez le sens puis saisissez un montant positif.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <fieldset class="direction-control">
+                  <legend>Sens</legend>
+                  <label><input type="radio" name="direction" value="credit" checked /><span>Crédit</span></label>
+                  <label><input type="radio" name="direction" value="debit" /><span>Débit</span></label>
+                </fieldset>
+
+                <div class="field amount-field">
+                  <label for="amount">Montant Credipark</label>
+                  <div class="input-with-unit">
+                    <input id="amount" name="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="Ex. 2,50" aria-describedby="amount-help amount-error" />
+                    <span>cp</span>
+                  </div>
+                  <p id="amount-help" class="field-help">Montant positif, deux décimales maximum.</p>
+                  <p id="amount-error" class="field-error" hidden></p>
+                </div>
+
+                <div id="signed-summary" class="signed-summary" aria-live="polite" hidden>
+                  <span>Montant envoyé</span>
+                  <strong id="signed-amount">+2,50 cp</strong>
+                  <small id="signed-description">Le solde sera crédité après validation du serveur.</small>
+                </div>
+
+                <div class="guardrail">
+                  <span aria-hidden="true">i</span>
+                  <p id="guardrail-copy">Aucun solde dû n’est créé. Le serveur confirme le nouveau solde.</p>
+                </div>
+              </section>
+
+              <section class="evidence-panel" aria-labelledby="evidence-heading">
+                <div class="section-heading">
+                  <div>
+                    <span class="step">2</span>
+                    <div>
+                      <h3 id="evidence-heading">Documenter l’ajustement</h3>
+                      <p>Ces informations seront conservées dans le journal.</p>
+                    </div>
+                  </div>
+                  <span class="required-key">Tous les champs sont requis</span>
+                </div>
+
+                <div class="field">
+                  <label for="parking">Parking d’attribution</label>
+                  <select id="parking" name="parking">
+                    <option value="lab-solution">Lab Solution Parking</option>
+                    <option value="aeroport">Parking Aéroport Terminal 2</option>
+                  </select>
+                  <p class="field-error" data-error-for="parking" hidden>Sélectionnez un parking d’attribution.</p>
+                </div>
+
+                <div class="field">
+                  <label for="reason">Motif</label>
+                  <select id="reason" name="reason">
+                    <option value="">Choisir un motif</option>
+                    <option value="GOODWILL">Geste commercial</option>
+                    <option value="SERVICE_RECOVERY">Rattrapage service</option>
+                    <option value="CORRECTION">Correction support</option>
+                    <option value="MIGRATION_CORRECTION">Correction migration</option>
+                    <option value="REVERSAL_CORRECTION">Correction d’annulation</option>
+                    <option value="OTHER">Autre motif</option>
+                  </select>
+                  <p class="field-error" data-error-for="reason" hidden>Sélectionnez un motif.</p>
+                </div>
+
+                <div class="field">
+                  <label for="note">Note opérateur</label>
+                  <textarea id="note" name="note" rows="3" placeholder="Décrivez la correction ou le geste accordé."></textarea>
+                  <p class="field-error" data-error-for="note" hidden>Ajoutez une note opérateur.</p>
+                </div>
+
+                <label id="confirmation-row" class="confirmation-row">
+                  <input id="confirmed" name="confirmed" type="checkbox" />
+                  <span>
+                    <strong>Je confirme cet ajustement audité.</strong>
+                    <small>Cette action est enregistrée dans le journal.</small>
+                  </span>
+                </label>
+                <p class="field-error confirmation-error" data-error-for="confirmed" hidden>Confirmez l’ajustement audité pour continuer.</p>
+              </section>
+            </div>
+          </form>
+        </div>
+
+        <footer class="dialog__footer">
+          <button id="reload-button" class="button button--quiet" type="button" aria-label="Recharger le solde">
+            <span class="reload-label-long">Recharger le solde</span>
+            <span class="reload-label-short" aria-hidden="true">Recharger</span>
+          </button>
+          <div class="dialog__footer-actions">
+            <button id="close-button" class="button button--secondary" type="button">Fermer</button>
+            <button id="preview-button" class="button button--secondary" type="button">Prévisualiser</button>
+            <button id="submit-button" class="button button--primary" type="button" disabled>
+              <span class="button-label">Enregistrer l’ajustement</span>
+              <span class="spinner" aria-hidden="true" hidden></span>
+            </button>
+          </div>
+        </footer>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
