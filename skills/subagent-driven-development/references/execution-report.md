@@ -2,7 +2,7 @@
 
 SDD and `executing-plans` produce the same plan-scoped handoff. Keep the live
 report at `<workspace>/execution-report.md`, where `<workspace>` is returned by
-`scripts/sdd-workspace PLAN_FILE`.
+`bash scripts/sdd-workspace PLAN_FILE`.
 
 Write the report only after all implementation commits and required focused and
 integration verification are complete. Require a clean worktree, resolve

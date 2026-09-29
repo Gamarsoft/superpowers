@@ -42,3 +42,9 @@ tmp/
 # Eval harness is maintained in its own repository and cloned here only for
 # local development.
 evals/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

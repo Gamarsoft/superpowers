@@ -74,7 +74,7 @@ Use `superpowers:using-git-worktrees` to create or verify an isolated workspace.
 Never implement on main/master without explicit human consent. Refuse to begin
 when unrelated tracked or untracked changes make ownership ambiguous.
 
-Run `scripts/sdd-workspace PLAN_FILE`. It returns this plan's ignored directory:
+Run `bash scripts/sdd-workspace PLAN_FILE`. It returns this plan's ignored directory:
 
 ```text
 <repo-root>/.superpowers/sdd/<plan-basename>/
@@ -201,7 +201,7 @@ Record the final ordered units and reasons in the ledger before dispatch.
 Record the unit BASE with `git rev-parse HEAD`. Run:
 
 ```text
-scripts/task-brief PLAN_FILE TASK_NUMBER [TASK_NUMBER ...]
+bash scripts/task-brief PLAN_FILE TASK_NUMBER [TASK_NUMBER ...]
 ```
 
 The generated brief contains plan context, TDD mechanics, and only the ordered
@@ -241,7 +241,7 @@ silently.
 Record HEAD and run:
 
 ```text
-scripts/review-package PLAN_FILE BASE HEAD
+bash scripts/review-package PLAN_FILE BASE HEAD
 ```
 
 Read `../requesting-code-review/references/review-method.md` and

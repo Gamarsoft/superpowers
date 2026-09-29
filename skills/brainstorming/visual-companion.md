@@ -256,7 +256,7 @@ All examples stay fragment-first and use only the existing `data-choice` interac
 ```bash
 # Start after consent. --open opens the first pushed screen and --project-dir
 # persists the session for a same-port restart.
-scripts/start-server.sh --project-dir /path/to/project --open
+bash scripts/start-server.sh --project-dir /path/to/project --open
 ```
 
 Capture:
@@ -282,7 +282,7 @@ Pass the project root as `--project-dir` so sessions persist in `.superpowers/br
 In other environments, keep the server running across turns with the platform's background mechanism. If a returned URL is unreachable from a remote or containerized browser, bind a non-loopback host and set the host printed in the URL:
 
 ```bash
-scripts/start-server.sh \
+bash scripts/start-server.sh \
   --project-dir /path/to/project \
   --host 0.0.0.0 \
   --url-host localhost
@@ -337,7 +337,7 @@ Minimal selectable fragment:
 ## Cleanup
 
 ```bash
-scripts/stop-server.sh $SESSION_DIR
+bash scripts/stop-server.sh $SESSION_DIR
 ```
 
 Project sessions persist under `.superpowers/brainstorm/` after cleanup; only `/tmp` sessions are removed on stop.

@@ -1,0 +1,135 @@
+{
+  "workflow": {
+    "A_complete_suite_only_finishing": {
+      "baseline": [
+        true,
+        false,
+        false,
+        false,
+        true
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "B_proved_boundary_blocker_no_unrelated_requirement": {
+      "baseline": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "C_keep_inline_route_and_independent_final_review": {
+      "baseline": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "D_disclose_prior_failure_no_all_green_claim": {
+      "baseline": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "E_written_spec_and_frontend_gate": {
+      "baseline": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  "diagnostic": {
+    "all_seven_with_two_slots": {
+      "baseline": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "generic_complete_prompt_with_no_subagents": {
+      "baseline": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "Sol_medium_scrubber_Astra_medium_independent_audit": {
+      "baseline": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "candidate": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  "method": "Controller manual artifact inspection; narrow criteria, not an overall agent capability score."
+}

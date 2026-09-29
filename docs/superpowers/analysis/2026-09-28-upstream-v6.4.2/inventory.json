@@ -1,0 +1,938 @@
+{
+  "fork": "410d0fc3516e6c67931fd9de5642f7f6363fc7a4",
+  "upstream": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+  "v6.2.0": "3dcbd5c4b48e02263fbf4a3c01e3fe4f81d584d9",
+  "merge_base": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
+  "upstream_changes": 100,
+  "fork_changes": 1096,
+  "both_changed": 25,
+  "upstream_only": 75,
+  "fork_only": 1071,
+  "merge_exit_code": 1,
+  "conflict_paths": [
+    "README.md",
+    "RELEASE-NOTES.md",
+    "skills/brainstorming/SKILL.md",
+    "skills/brainstorming/visual-companion.md",
+    "skills/executing-plans/SKILL.md",
+    "skills/finishing-a-development-branch/SKILL.md",
+    "skills/requesting-code-review/SKILL.md",
+    "skills/requesting-code-review/code-reviewer.md",
+    "skills/subagent-driven-development/SKILL.md",
+    "skills/subagent-driven-development/implementer-prompt.md",
+    "skills/subagent-driven-development/re-review-prompt.md",
+    "skills/subagent-driven-development/scripts/review-package",
+    "skills/subagent-driven-development/scripts/task-brief",
+    "skills/subagent-driven-development/task-reviewer-prompt.md",
+    "skills/using-superpowers/SKILL.md",
+    "skills/using-superpowers/references/codex-tools.md",
+    "skills/writing-plans/SKILL.md",
+    "tests/claude-code/run-skill-tests.sh",
+    "tests/claude-code/test-sdd-workspace.sh"
+  ],
+  "merge_tree": "72f987e95b78cc1ee8041b2ea724b8cd74a987ac",
+  "upstream_files": [
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".codex-plugin/plugin.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".cursor-plugin/plugin.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".devin-plugin/plugin.json",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/diagnosis_report.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/platform_support.md",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".gitignore",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Union Python ignores with fork runtime/GSD/worktree ignores"
+    },
+    {
+      "path": ".hermes-plugin/__init__.py",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".hermes-plugin/plugin.yaml",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".kimi-plugin/plugin.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".muse-plugin/marketplace.json",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".muse-plugin/plugin.json",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".opencode/INSTALL.md",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".opencode/plugins/superpowers.js",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": ".version-bump.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "AGENTS.md",
+      "upstream_status": "T",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt regular-file contributor guidelines; preserve applicable external Gamarsoft policy"
+    },
+    {
+      "path": "CLAUDE.md",
+      "upstream_status": "D",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Accept deletion; AGENTS.md becomes canonical"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "README.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 6,
+      "decision": "Combine upstream releases/platforms with fork workflow and evaluation documentation"
+    },
+    {
+      "path": "RELEASE-NOTES.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 6,
+      "decision": "Combine upstream releases/platforms with fork workflow and evaluation documentation"
+    },
+    {
+      "path": "docs/README.opencode.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "docs/porting-to-a-new-harness.md",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Import dated upstream design/plan history unchanged; not current execution authority"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Import dated upstream design/plan history unchanged; not current execution authority"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Import dated upstream design/plan history unchanged; not current execution authority"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-07-30-codex-efficiency-fixes-design.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Import dated upstream design/plan history unchanged; not current execution authority"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-08-05-hermes-version-bump-wiring-design.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Import dated upstream design/plan history unchanged; not current execution authority"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-08-27-diagnosing-superpowers-design.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Import dated upstream design/plan history unchanged; not current execution authority"
+    },
+    {
+      "path": "docs/testing.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": false,
+      "proposed_step": 6,
+      "decision": "Combine upstream releases/platforms with fork workflow and evaluation documentation"
+    },
+    {
+      "path": "gemini-extension.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "hooks/session-start",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "index.js",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "package.json",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "scripts/bump-version.sh",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "scripts/sync-to-codex-plugin.sh",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt exclusions/test changes; audit all new platform directories and avoid publishing"
+    },
+    {
+      "path": "skills/brainstorming/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/brainstorming/visual-companion.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 5,
+      "decision": "Keep fork visual behavior; apply upstream interpreter/backgrounding guidance"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/SKILL.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/analyst-common.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/cost-and-time.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/plan-adherence.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/quality-evidence.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/repeated-work.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/request-conflicts.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/scrub-audit.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/scrub.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/similar-session.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/skill-timeline.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/prompts/stumbles.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/references/context-safety.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/references/github-issues.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/references/redaction-policy.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/references/session-discovery.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/templates/bundle-README.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/templates/case.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/templates/issue.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/diagnosing-superpowers/templates/report.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "skills/executing-plans/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/executing-plans/scripts/task-done",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "skills/executing-plans/scripts/task-start",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "skills/finishing-a-development-branch/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/requesting-code-review/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/requesting-code-review/code-reviewer.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/subagent-driven-development/implementer-prompt.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/subagent-driven-development/re-review-prompt.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/subagent-driven-development/scripts/review-package",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "skills/subagent-driven-development/scripts/sdd-workspace",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "skills/subagent-driven-development/scripts/task-brief",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "skills/subagent-driven-development/task-reviewer-prompt.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/systematic-debugging/root-cause-tracing.md",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt interpreter/Windows portability improvements; preserve fork guidance"
+    },
+    {
+      "path": "skills/test-driven-development/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": false,
+      "proposed_step": 4,
+      "decision": "Reconcile full-suite wording with fork finishing ownership; disclose all observed failures"
+    },
+    {
+      "path": "skills/using-superpowers/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/using-superpowers/references/claude-code-tools.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 4,
+      "decision": "Adopt harness mapping; keep nested Claude controller opt-in and preserve fork orchestration"
+    },
+    {
+      "path": "skills/using-superpowers/references/codex-tools.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Retain fork workflow authority; integrate compatible upstream behavior per comparison matrix"
+    },
+    {
+      "path": "skills/using-superpowers/references/hermes-tools.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 4,
+      "decision": "Adopt harness mapping; keep nested Claude controller opt-in and preserve fork orchestration"
+    },
+    {
+      "path": "skills/using-superpowers/references/muse-tools.md",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 4,
+      "decision": "Adopt harness mapping; keep nested Claude controller opt-in and preserve fork orchestration"
+    },
+    {
+      "path": "skills/writing-plans/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 4,
+      "decision": "Keep fork contracts/readiness; add Review Focus and proportion self-review"
+    },
+    {
+      "path": "skills/writing-plans/plan-document-reviewer-prompt.md",
+      "upstream_status": "D",
+      "fork_status": "D",
+      "both_changed": true,
+      "text_conflict": false,
+      "proposed_step": 4,
+      "decision": "Keep deleted; preserve distinct fork readiness reviewer"
+    },
+    {
+      "path": "skills/writing-skills/SKILL.md",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt interpreter/Windows portability improvements; preserve fork guidance"
+    },
+    {
+      "path": "skills/writing-skills/render-graphs.js",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt interpreter/Windows portability improvements; preserve fork guidance"
+    },
+    {
+      "path": "tests/claude-code/run-skill-tests.sh",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 6,
+      "decision": "Union maintained tests, including fork contracts and new native helper tests"
+    },
+    {
+      "path": "tests/claude-code/test-executing-plans-scripts.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "tests/claude-code/test-sdd-workspace.sh",
+      "upstream_status": "M",
+      "fork_status": "M",
+      "both_changed": true,
+      "text_conflict": true,
+      "proposed_step": 3,
+      "decision": "Combine upstream identity/range/portability fixes with fork helper API and evidence checks"
+    },
+    {
+      "path": "tests/codex-plugin-sync/test-sync-to-codex-plugin.sh",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt exclusions/test changes; audit all new platform directories and avoid publishing"
+    },
+    {
+      "path": "tests/devin/test-devin-plugin.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/diagnosing-superpowers/test-skill-structure.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt diagnostic; integrate model routing, slot limits and real Codex metadata"
+    },
+    {
+      "path": "tests/hermes/__init__.py",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/hermes/conftest.py",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/hermes/test_bootstrap.py",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/hermes/test_plugin.py",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/opencode/run-tests.sh",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/opencode/test-bootstrap-caching.mjs",
+      "upstream_status": "M",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/opencode/test-session-bootstrap.mjs",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/opencode/test-session-bootstrap.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/opencode/test-skill-registration.mjs",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/opencode/test-skill-registration.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/version-bump/test-bump-version.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 2,
+      "decision": "Adopt upstream platform/manifest/documentation changes and their regression checks"
+    },
+    {
+      "path": "tests/writing-skills/test-render-graphs.sh",
+      "upstream_status": "A",
+      "fork_status": "unchanged",
+      "both_changed": false,
+      "text_conflict": false,
+      "proposed_step": 5,
+      "decision": "Adopt interpreter/Windows portability improvements; preserve fork guidance"
+    }
+  ],
+  "merge_preview_note": "Synthetic merge tree objects lived only in a temporary alternate object directory. The raw output and conflict inventory are durable; no repository refs or index were changed.",
+  "confirmed_user_decision": "Keep the written-spec path in this merge; evaluate the in-chat bounded shortcut separately. Confirmed 2026-09-28."
+}

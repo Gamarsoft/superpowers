@@ -1,0 +1,64 @@
+72f987e95b78cc1ee8041b2ea724b8cd74a987ac
+README.md
+RELEASE-NOTES.md
+skills/brainstorming/SKILL.md
+skills/brainstorming/visual-companion.md
+skills/executing-plans/SKILL.md
+skills/finishing-a-development-branch/SKILL.md
+skills/requesting-code-review/SKILL.md
+skills/requesting-code-review/code-reviewer.md
+skills/subagent-driven-development/SKILL.md
+skills/subagent-driven-development/implementer-prompt.md
+skills/subagent-driven-development/re-review-prompt.md
+skills/subagent-driven-development/scripts/review-package
+skills/subagent-driven-development/scripts/task-brief
+skills/subagent-driven-development/task-reviewer-prompt.md
+skills/using-superpowers/SKILL.md
+skills/using-superpowers/references/codex-tools.md
+skills/writing-plans/SKILL.md
+tests/claude-code/run-skill-tests.sh
+tests/claude-code/test-sdd-workspace.sh
+
+Auto-merging .gitignore
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Auto-merging RELEASE-NOTES.md
+CONFLICT (content): Merge conflict in RELEASE-NOTES.md
+Auto-merging docs/README.opencode.md
+Auto-merging docs/testing.md
+Auto-merging skills/brainstorming/SKILL.md
+CONFLICT (content): Merge conflict in skills/brainstorming/SKILL.md
+Auto-merging skills/brainstorming/visual-companion.md
+CONFLICT (content): Merge conflict in skills/brainstorming/visual-companion.md
+Auto-merging skills/executing-plans/SKILL.md
+CONFLICT (content): Merge conflict in skills/executing-plans/SKILL.md
+Auto-merging skills/finishing-a-development-branch/SKILL.md
+CONFLICT (content): Merge conflict in skills/finishing-a-development-branch/SKILL.md
+Auto-merging skills/requesting-code-review/SKILL.md
+CONFLICT (content): Merge conflict in skills/requesting-code-review/SKILL.md
+Auto-merging skills/requesting-code-review/code-reviewer.md
+CONFLICT (content): Merge conflict in skills/requesting-code-review/code-reviewer.md
+Auto-merging skills/subagent-driven-development/SKILL.md
+CONFLICT (content): Merge conflict in skills/subagent-driven-development/SKILL.md
+Auto-merging skills/subagent-driven-development/implementer-prompt.md
+CONFLICT (content): Merge conflict in skills/subagent-driven-development/implementer-prompt.md
+Auto-merging skills/subagent-driven-development/re-review-prompt.md
+CONFLICT (content): Merge conflict in skills/subagent-driven-development/re-review-prompt.md
+Auto-merging skills/subagent-driven-development/scripts/review-package
+CONFLICT (content): Merge conflict in skills/subagent-driven-development/scripts/review-package
+Auto-merging skills/subagent-driven-development/scripts/task-brief
+CONFLICT (content): Merge conflict in skills/subagent-driven-development/scripts/task-brief
+Auto-merging skills/subagent-driven-development/task-reviewer-prompt.md
+CONFLICT (content): Merge conflict in skills/subagent-driven-development/task-reviewer-prompt.md
+Auto-merging skills/test-driven-development/SKILL.md
+Auto-merging skills/using-superpowers/SKILL.md
+CONFLICT (content): Merge conflict in skills/using-superpowers/SKILL.md
+Auto-merging skills/using-superpowers/references/codex-tools.md
+CONFLICT (content): Merge conflict in skills/using-superpowers/references/codex-tools.md
+Auto-merging skills/writing-plans/SKILL.md
+CONFLICT (content): Merge conflict in skills/writing-plans/SKILL.md
+Auto-merging skills/writing-skills/SKILL.md
+Auto-merging tests/claude-code/run-skill-tests.sh
+CONFLICT (content): Merge conflict in tests/claude-code/run-skill-tests.sh
+Auto-merging tests/claude-code/test-sdd-workspace.sh
+CONFLICT (content): Merge conflict in tests/claude-code/test-sdd-workspace.sh

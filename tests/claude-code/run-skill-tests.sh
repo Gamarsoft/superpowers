@@ -88,6 +88,7 @@ tests=(
     "test-lean-delivery-contracts.sh"
     "test-review-depth-contracts.sh"
     "test-sdd-workspace.sh"
+    "test-executing-plans-scripts.sh"
     "test-sdd-custom-contracts.sh"
     "test-custom-policy-contracts.sh"
     "../codex/sdd-behavior/test-score-results.sh"

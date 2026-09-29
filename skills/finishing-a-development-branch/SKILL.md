@@ -23,7 +23,7 @@ Require both the plan path and its plan-scoped `execution-report.md` path from
 SDD or `executing-plans`. Resolve the expected workspace with:
 
 ```bash
-../subagent-driven-development/scripts/sdd-workspace PLAN_FILE
+bash ../subagent-driven-development/scripts/sdd-workspace PLAN_FILE
 ```
 
 The supplied report must be `<returned-workspace>/execution-report.md`. Read

@@ -145,6 +145,9 @@ checkpoint-review with `none`]
 - Expected: [specific evidence]
 - [Integration or final-suite contribution; frontend runtime comparison and interaction checks against those exact targets]
 
+**Review focus:** [highest-risk boundary and the evidence that would prove it;
+`none` when the task has no distinct review concern]
+
 **Codebase pointers:**
 - [existing files and patterns to inspect before implementation]
 ```
@@ -231,6 +234,11 @@ plan's Readiness Record.
 
 ## Whole-Feature Verification
 
+Name the complete-suite command only in the finishing lane. Do not assign it
+to an implementer or relabel it as integration, even when a small project has
+only the affected tests. Use targeted test selection for task evidence; keep
+the repository-wide run with finishing.
+
 A multi-task plan ends with a whole-feature verification section or dedicated
 final task. It names:
 
@@ -247,7 +255,11 @@ saved. Add any uncaptured decision to the plan now.
 
 A plan may explicitly override the execution route, as self-hosting or recovery
 plans sometimes must. Preserve that route verbatim in the continuation prompt.
-Otherwise:
+For an unselected route, offer Superpowers inline execution as an option when
+the human partner prefers controller execution. Record that selection as an
+explicit `executing-plans` override. It still uses the saved specification,
+plan, evidence, and finishing contract; Native Codex plan mode is a separate
+delivery route. Do not reopen a route already selected. Otherwise:
 
 - if subagents are available, route to `superpowers:subagent-driven-development`;
 - if subagents are unavailable, route to `superpowers:executing-plans` and say

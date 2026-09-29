@@ -22,13 +22,17 @@ head_sha=$(git rev-parse --verify "${head}^{commit}") || {
   exit 2
 }
 git merge-base --is-ancestor "$base_sha" "$head_sha" || {
-  echo "BASE is not an ancestor of HEAD: ${base_sha}..${head_sha}" >&2
-  exit 2
+  echo "HEAD is not a descendant of BASE: ${base_sha}..${head_sha}" >&2
+  exit 3
 }
 current_sha=$(git rev-parse --verify HEAD)
 [[ "$current_sha" == "$head_sha" ]] || {
   echo "current HEAD does not match requested HEAD: ${current_sha} != ${head_sha}" >&2
   exit 2
+}
+[[ "$base_sha" != "$head_sha" ]] || {
+  echo "empty commit range: ${base_sha}..${head_sha}" >&2
+  exit 3
 }
 worktree_status=$(git status --porcelain --untracked-files=all)
 [[ -z "$worktree_status" ]] || {
@@ -40,7 +44,7 @@ worktree_status=$(git status --porcelain --untracked-files=all)
 if [[ $# -eq 4 ]]; then
   out=$4
 else
-  dir=$("$(cd "$(dirname "$0")" && pwd)/sdd-workspace" "$plan")
+  dir=$("${BASH:-bash}" "$(cd "$(dirname "$0")" && pwd)/sdd-workspace" "$plan")
   out="$dir/review-${base_sha:0:7}..${head_sha:0:7}.diff"
 fi
 

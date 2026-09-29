@@ -51,7 +51,11 @@ This rule prevents accidental double-orchestration. One workflow family owns the
 
 Skills use Claude Code tool names. You MUST read the tool mapping file that corresponds to your current platform:
 
-- **Codex/OpenCode:** `references/codex-tools.md`
+- **Codex:** `references/codex-tools.md`
+- **Claude Code:** `references/claude-code-tools.md`
+- **Hermes Agent:** `references/hermes-tools.md`
+- **Muse:** `references/muse-tools.md`
+- **OpenCode:** use the tool mapping injected by the installed V1/V2 plugin
 - **Copilot (VS Code):** `references/copilot-tools.md`
 - **Pi:** `references/pi-tools.md`
 - **Antigravity:** `references/antigravity-tools.md`

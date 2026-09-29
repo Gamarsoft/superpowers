@@ -33,7 +33,7 @@ plan override.
 3. For review-required plans, require the Readiness Record to end in `READY`.
 4. Resolve the implementation base to a full commit ID. Refuse ambiguous
    unrelated worktree changes.
-5. Run `../subagent-driven-development/scripts/sdd-workspace PLAN_FILE` and use
+5. Run `bash ../subagent-driven-development/scripts/sdd-workspace PLAN_FILE` and use
    only its returned plan-scoped directory. Read
    `../subagent-driven-development/references/execution-report.md` completely.
 
@@ -42,6 +42,12 @@ unresolved observable WHAT/protected-authority decision stops before Task 1.
 Do not repair product requirements inside execution. Resolve reversible HOW
 locally when it preserves the contract; record the ruling, why it is reversible,
 and its cost if wrong.
+
+The optional `bash scripts/task-start PLAN_FILE TASK_NUM` and
+`bash scripts/task-done PLAN_FILE TASK_NUM BASE -- TEST_COMMAND [ARGS...]` helpers record task
+start and verification evidence in that workspace. Read their usage first.
+A verification record is not task acceptance: self-review, finding dispositions,
+and the finishing handoff remain the controller's responsibility.
 
 ## Controller Task Loop
 

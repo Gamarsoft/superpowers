@@ -1,0 +1,65 @@
+{
+  "method": "Unmodified scripts copied from pinned Git revisions into disposable fixtures. All script modes 0755 initially, 0644 for stripped-exec probes. Local fsmonitor disabled to isolate global Git IPC behavior. No fork files or refs changed.",
+  "results": [
+    {
+      "revision": "fork",
+      "probe": "same_basename_workspace",
+      "distinct": false,
+      "workspace_names": [
+        "plan",
+        "plan"
+      ]
+    },
+    {
+      "revision": "fork",
+      "probe": "empty_review_range",
+      "exit": 0,
+      "stderr": "",
+      "accepted": true
+    },
+    {
+      "revision": "fork",
+      "probe": "stripped_exec_task_brief",
+      "exit": 126,
+      "success": false,
+      "permission_denied": true
+    },
+    {
+      "revision": "upstream",
+      "probe": "same_basename_workspace",
+      "distinct": true,
+      "workspace_names": [
+        "plan",
+        "plan-beta"
+      ]
+    },
+    {
+      "revision": "upstream",
+      "probe": "empty_review_range",
+      "exit": 3,
+      "stderr": "empty commit range: HEAD..HEAD",
+      "accepted": false
+    },
+    {
+      "revision": "upstream",
+      "probe": "stripped_exec_task_brief",
+      "exit": 0,
+      "success": true,
+      "permission_denied": false
+    },
+    {
+      "revision": "upstream",
+      "probe": "stripped_exec_task-start",
+      "exit": 126,
+      "success": false,
+      "permission_denied": true
+    },
+    {
+      "revision": "upstream",
+      "probe": "stripped_exec_task-done",
+      "exit": 126,
+      "success": false,
+      "permission_denied": true
+    }
+  ]
+}

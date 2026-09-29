@@ -49,7 +49,7 @@ for ((i = 0; i < ${#tasks[@]}; i++)); do
 done
 
 if [[ -z "$out" ]]; then
-  dir=$("$(cd "$(dirname "$0")" && pwd)/sdd-workspace" "$plan")
+  dir=$("${BASH:-bash}" "$(cd "$(dirname "$0")" && pwd)/sdd-workspace" "$plan")
   if [[ ${#tasks[@]} -eq 1 ]]; then
     out="$dir/task-${tasks[0]}-brief.md"
   else

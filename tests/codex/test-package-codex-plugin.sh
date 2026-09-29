@@ -122,6 +122,9 @@ write_metadata_fixture() {
   local skill
 
   while IFS= read -r skill; do
+    # The prior package predates this upstream addition. Its metadata must
+    # come from source, not a fixture that hides a missing metadata file.
+    [[ "$skill" == "diagnosing-superpowers" ]] && continue
     mkdir -p "$destination/skills/$skill/agents"
     cat >"$destination/skills/$skill/agents/openai.yaml" <<EOF
 interface:
@@ -165,7 +168,7 @@ assert_contains "$output" "Generic fallback: packaged skills remain operable wit
 extract_archive "$archive" "$extracted"
 
 archive_paths="$(list_archive "$archive" | normalize_archive_paths)"
-unexpected_pattern='(^superpowers/|^\.agents/|^hooks/|package\.json$|^\.git|^\.pytest_cache|^\.ruff_cache|^scripts/|^tests/|^docs/|^evals/|^lib/|^\.claude|^\.cursor|^\.kimi|^\.opencode|^\.pi|^AGENTS\.md$|^CLAUDE\.md$|^GEMINI\.md$|^RELEASE-NOTES\.md$|^CHANGELOG\.md$)'
+unexpected_pattern='(^superpowers/|^\.agents/|^hooks/|package\.json$|^\.git|^\.pytest_cache|^\.ruff_cache|^scripts/|^tests/|^docs/|^evals/|^lib/|^\.claude|^\.cursor|^\.kimi|^\.opencode|^\.pi|^\.devin|^\.hermes|^\.muse|^index\.js$|^AGENTS\.md$|^CLAUDE\.md$|^GEMINI\.md$|^RELEASE-NOTES\.md$|^CHANGELOG\.md$)'
 assert_not_matches "$archive_paths" "$unexpected_pattern" "archive excludes source-only paths"
 assert_contains "$archive_paths" ".codex-plugin/plugin.json" "archive includes Codex manifest"
 assert_contains "$archive_paths" "skills/brainstorming/SKILL.md" "archive includes skills"
@@ -183,6 +186,10 @@ assert_equals "$manifest_agents" "None" "manifest does not advertise an unsuppor
 source_brainstorming_metadata="$(cat "$REPO_ROOT/skills/brainstorming/agents/openai.yaml")"
 packaged_brainstorming_metadata="$(read_archive_file "$archive" skills/brainstorming/agents/openai.yaml)"
 assert_equals "$packaged_brainstorming_metadata" "$source_brainstorming_metadata" "source-owned OpenAI metadata remains authoritative"
+source_diagnosing_metadata="$(cat "$REPO_ROOT/skills/diagnosing-superpowers/agents/openai.yaml")"
+packaged_diagnosing_metadata="$(read_archive_file "$archive" skills/diagnosing-superpowers/agents/openai.yaml)"
+assert_equals "$packaged_diagnosing_metadata" "$source_diagnosing_metadata" "new diagnosis skill supplies metadata absent from the prior package"
+
 
 fixture_executing_metadata="$(cat "$metadata_source/skills/executing-plans/agents/openai.yaml")"
 packaged_executing_metadata="$(read_archive_file "$archive" skills/executing-plans/agents/openai.yaml)"

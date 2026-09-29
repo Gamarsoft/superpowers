@@ -1,0 +1,23 @@
+{
+  "fork_revision": "410d0fc3516e6c67931fd9de5642f7f6363fc7a4",
+  "upstream_revision": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+  "model": "gpt-6-sol",
+  "reasoning_effort": "medium",
+  "samples_per_variant": 5,
+  "method": "Fresh actor per repetition of a composed workflow scenario suite; original fork is the control without new guidance. No claim of full live-controller benchmarking. Each output is read manually. Candidate uses identical cases.",
+  "guidance_sha256": {
+    "skills/brainstorming/SKILL.md": "cddd6cde427478f2d5dc5de0dc247a7caf5c12c19632ac5965fc86891af0224d",
+    "skills/brainstorming/references/delivery-routing.md": "e4eaa29723cf8f1807bd82c9a304d2a99dd22a01e33469e2949f60006a13aa71",
+    "skills/writing-plans/SKILL.md": "0106d25f77a9b4c109ef59220c422bc07f749b9e19ea81a880bd7a32ce9cfb55",
+    "skills/executing-plans/SKILL.md": "2ae5a14dfa94b82cd82691b84d32c310a50745a93e9f9dfc14bab0eab0150d88",
+    "skills/test-driven-development/SKILL.md": "1321c8af3dfc3fb5651d56a0a556e34fe7c57c0d1d4d6dfb9186f3c57c3d6037",
+    "skills/requesting-code-review/code-reviewer.md": "8afabb52b3e69a6a61c59fac6616f8f91e9f4c47ed10cfd8763793f68d55e7c1",
+    "skills/finishing-a-development-branch/SKILL.md": "9b160a69a1f8515eb2899a6068926d69f8a4a4053ced466b8e222a5b926e28ed",
+    "skills/using-superpowers/references/codex-tools.md": "4244767ef08defebfb6b5933d6fb0804c68fae188c9b57c5ef277f78f6d49532",
+    "skills/requesting-code-review/references/review-method.md": "f595e659457f67fd176ebbec8e5471618af6480ed64606926036b64c935f3891",
+    "skills/requesting-code-review/references/code-quality-checklist.md": "b6b4ab89023ce47f1310e08e226ae439a3f7a9700d885a0b8b7b46c0e64b9a28",
+    "skills/requesting-code-review/references/security-checklist.md": "1e0bcaf886f01663ead456a331ffe0ae84d712bdd03e8ccb951e86d0e140d11b"
+  },
+  "scenario_sha256": "9c8a86f2e371ca74b33fb77c8bae7a561f330646968b5b00402bd91e97889616",
+  "sample_note": "A controls: baseline-planning-1..4 plus baseline-workflow-5 section A. Initial baseline-workflow-1..4 A excluded: incomplete fixture. B\u2013E controls: baseline-workflow-1..5. All candidate-workflow-1..5 use final v2 case."
+}
