@@ -1,4 +1,4 @@
-model = "gpt-6-sol"
+model = "gpt-6.1-sol"
 model_reasoning_effort = "xhigh"
 name = "sp_implementer_deep"
 description = "High-judgment implementation worker for risky Superpowers tasks and second-round rescues."

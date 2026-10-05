@@ -5,19 +5,26 @@ source revision `c2c862d`; candidate changes are the role pins and routing polic
 in this change. Installed reviewer pins already used Astra/medium; the source
 pack previously used GPT-5.6 Sol/high for review and context.
 
-## Intended assignments
+## Current configuration authority
 
-| Role or route | Model | Effort |
-| --- | --- | --- |
-| Ordinary implementation | gpt-6-sol | medium |
-| Sensitive implementation and second correction | gpt-6-sol | xhigh |
-| Unified review | gpt-6-astra | medium |
-| Bounded topic context | gpt-6-luna | high |
-| Cross-service/conflicting/architectural context and one material-gap escalation | gpt-6-sol | medium |
+Custom agent TOML files define model and reasoning effort. Skills select roles,
+provide complete prompts, and preserve review gates and correction limits.
+Typed dispatch does not override configuration. Generic fallback reads settings
+from the effective role TOML instead of copying defaults from skill text.
 
-Role prompts, names and sandbox fields remain unchanged. The generic context
-prompt now states its existing read-only/no-subagent obligations explicitly.
-No review gate or correction round was added.
+| Role or route | Configuration file in the effective `.codex/agents` directory |
+| --- | --- |
+| Ordinary implementation | `implementer.toml` |
+| Sensitive implementation and second correction | `implementer-deep.toml` |
+| Unified review | `reviewer.toml` |
+| Bounded topic context | `topic-context.toml` |
+| Cross-service/conflicting/architectural context and one material-gap escalation | `implementer.toml`, with the complete read-only topic-context prompt |
+
+On 2026-10-05 the user selected GPT-6.1 Sol wherever current configuration used
+GPT-6 Sol, then requested that skills defer to custom agent TOML settings.
+The earlier evaluation results below retain the models actually used and the
+policy evaluated at that time. They do not validate the current policy.
+Current scenarios resolve settings from configuration rather than skill tables.
 
 ## User preference update
 
@@ -32,13 +39,15 @@ evidence and do not establish Sol/xhigh rescue quality or total task savings.
 
 ## Routing samples
 
-Run `context-scenario.md` in five separate fresh-context GPT-6 Sol/medium agents,
-substituting SKILL_PATH with the variant's absolute gathering-topic-context
-SKILL.md path. Each agent reads the full skill and its prompt. Preserve the
-scenario's prospective Luna pin in both variants, so this measures controller
-routing after the proposed pin change, not the old installed context model.
+For a new evaluation, run `context-scenario.md` in separate fresh-context agents
+using the configured controller settings. Substitute SKILL_PATH with the
+variant's absolute gathering-topic-context SKILL.md path and ROLE_CONFIG_DIR
+with the effective custom agent TOML directory. Each agent reads the full skill
+and its prompt. Preserve the same role configuration in both variants. Include
+configuration that differs from former skill defaults to check configuration authority.
 Do not tell the samples the expected answers. Do not execute their hypothetical
-dispatch envelopes. Inspect all outputs manually against the cases below.
+dispatch envelopes. Inspect all outputs manually against effective configuration
+and scenario constraints. The table below records the earlier evaluated policy.
 
 | Case | Expected action | Baseline correct / 5 | Candidate correct / 5 |
 | --- | --- | --- | --- |

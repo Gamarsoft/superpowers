@@ -4,15 +4,18 @@ Use fresh generic agents: omit `agent_type`, set `fork_turns: "none"`, and
 supply the complete diagnostic prompt. SDD implementation, review, and topic
 roles carry different responsibilities; do not substitute their role prompts.
 
-| Work | Model | Reasoning effort |
-| --- | --- | --- |
-| Transcript analyst or similar-session comparison | `gpt-6-sol` | `medium` |
-| Authorized bundle scrub | `gpt-6-sol` | `medium` |
-| Independent scrub audit | `gpt-6-astra` | `medium` |
+| Work | Configuration to read for generic dispatch |
+| --- | --- |
+| Transcript analyst or similar-session comparison | Effective `sp_implementer` custom agent TOML |
+| Authorized bundle scrub | Effective `sp_implementer` custom agent TOML |
+| Independent scrub audit | Effective `sp_reviewer` custom agent TOML |
 
-Pass explicit model and effort only when the runtime supports them. Report an
-unavailable setting; do not claim it was applied. Never raise effort solely
-because a pass retried.
+Resolve model and effort from those TOML files using
+`../../using-superpowers/references/codex-tools.md`. These are configuration
+references only; keep generic dispatch and the dedicated diagnostic prompts.
+Pass resolved settings only when supported. Report unavailable configuration or
+settings; do not claim they were applied. Never raise effort solely because a
+pass retried.
 
 For each analyst, supply absolute CASE/session paths, the full common and
 selected dimension prompts, and any assigned RANGE. For scrubbing and audit,

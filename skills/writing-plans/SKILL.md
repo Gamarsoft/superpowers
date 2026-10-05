@@ -204,14 +204,16 @@ dispatch an independent plan reviewer.
 If any risk trigger is named, dispatch exactly one holistic readiness review
 using `plan-readiness-reviewer-prompt.md`. Give the reviewer the full approved
 specification and full implementation plan—never one output chunk or session
-history. Use the advertised `sp_reviewer` role when its pins match the selected
-model and effort; otherwise omit `agent_type`
+history. Use the advertised `sp_reviewer` role when its settings match its
+effective custom agent TOML; otherwise omit `agent_type`
 and send the same prompt to a fresh generic agent. On Codex both
 paths use `fork_turns: "none"`; never probe an unknown role with a failing call.
 
-For Codex generic and stale-pin dispatches, apply the reviewer model and
-effort from `../using-superpowers/references/codex-tools.md`; preserve the full
-read-only review prompt and existing review gate.
+For Codex generic and stale-pin dispatches, read settings from the effective
+`sp_reviewer` custom agent TOML using the configuration resolution rules in
+`../using-superpowers/references/codex-tools.md`. Preserve the full read-only
+review prompt and existing review gate. Typed dispatch inherits those settings
+without overrides.
 
 The plan author applies supported findings directly. Do not dispatch a separate
 plan fixer. A correction round is one author edit followed by a re-run of the

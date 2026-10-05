@@ -95,14 +95,16 @@ Dispatch one final independent review only when this route was selected by
 explicit plan override and the harness exposes agent tools.
 Inspect the runtime-advertised role list before dispatch. On Codex:
 
-- when `sp_reviewer` is available with the selected pins, dispatch a fresh reviewer with
+- when `sp_reviewer` is available with settings matching its effective custom agent TOML, dispatch a fresh reviewer with
   `agent_type: "sp_reviewer"` and `fork_turns: "none"`;
 - otherwise, omit `agent_type` and dispatch a fresh generic reviewer. Use the
   identical complete review prompt and `fork_turns: "none"`.
 
-For Codex generic and stale-pin dispatches, apply the reviewer model and
-effort from `../using-superpowers/references/codex-tools.md`; preserve the full
-read-only review prompt and existing review gate.
+For Codex generic and stale-pin dispatches, read settings from the effective
+`sp_reviewer` custom agent TOML using the configuration resolution rules in
+`../using-superpowers/references/codex-tools.md`. Preserve the full read-only
+review prompt and existing review gate. Typed dispatch inherits those settings
+without overrides.
 
 Do not skip this review because `sp_reviewer` is absent. Do not probe an
 unknown role with a failing call. The complete prompt must state: "Do not spawn subagents."

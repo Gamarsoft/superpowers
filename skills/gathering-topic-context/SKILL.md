@@ -57,34 +57,38 @@ Enough evidence means the bundle can name:
 
 Search again only when a missing fact would change the track, first delivery boundary, integration risk, brownfield invariant, or next guided question. Do not keep searching to make the bundle feel exhaustive, improve prose, or collect unrelated project background.
 
-## Codex model selection
+## Codex role selection
 
 Select the route before dispatch; both routes keep the requested scan depth and
-the complete Topic Context Bundle. Deep remains the default. Model selection
+the complete Topic Context Bundle. Deep remains the default. Role selection
 does not authorize light depth.
 
 | Observable task | Route |
 | --- | --- |
-| A specific topic with a bounded search area and identifiable evidence sources | `sp_topic_context`, fixed `gpt-6-luna` / `high` |
-| Trace behavior across services, reconcile conflicting sources, or infer architectural constraints | Fresh generic `gpt-6-sol` / `medium`, even when `sp_topic_context` is available |
+| A specific topic with a bounded search area and identifiable evidence sources | `sp_topic_context`, using its custom agent TOML settings |
+| Trace behavior across services, reconcile conflicting sources, or infer architectural constraints | Fresh generic agent using the effective `sp_implementer` TOML settings, even when `sp_topic_context` is available |
 
-The Sol route gathers evidence for planning; architectural implementation still
-follows the implementer policy. Omit `agent_type` on this intentional generic
-route. Pass `model: "gpt-6-sol"`, `reasoning_effort: "medium"`, and
-`fork_turns: "none"`. Do not override the typed Luna role's fixed settings.
+The generic route gathers evidence for planning; architectural implementation
+still follows the implementer policy. Omit `agent_type`, use
+`fork_turns: "none"`, and resolve model and effort from the effective TOML as
+described in `../using-superpowers/references/codex-tools.md`. Send the complete
+read-only topic-context prompt, rather than the implementation role prompt.
+Typed topic-context dispatch inherits its settings without overrides.
 
-If Luna returns a material gap that could change the track, first delivery
-boundary, integration risk, invariant, or next question, dispatch one fresh Sol
-agent with the same complete template. Put the exact missing fact and available
-evidence in `{CONSTRAINTS}`; keep the full bundle and read-only requirements.
+If the bounded context route returns a material gap that could change the track,
+first delivery boundary, integration risk, invariant, or next question, dispatch
+one fresh agent on the generic route with the same complete template. Put the
+exact missing fact and available evidence in `{CONSTRAINTS}`; keep the full
+bundle and read-only requirements.
 Record the selected route, reason, and whether this one escalation has been used.
-If Sol cannot establish the fact, return the unresolved evidence gap to the
-controller. Do not launch another context agent for that same gap, seek consensus,
+If the generic route cannot establish the fact, return the unresolved evidence
+gap to the controller. Do not launch another context agent for that same gap, seek consensus,
 or restart the budget after compaction. The controller carries the uncertainty
 into planning and asks only when missing information materially changes the outcome.
 
-For a missing typed role on the bounded route, explicitly use a fresh generic
-`gpt-6-luna` / `high` agent. Apply the model-availability and stale-pin handling in
+For a missing typed role on the bounded route, use a fresh generic agent with
+settings read from the effective `sp_topic_context` TOML. Apply the configuration
+availability and stale-pin handling in
 `../using-superpowers/references/codex-tools.md`. Generic agents receive the same
 complete template with read-only and no-subagent instructions.
 
@@ -94,11 +98,12 @@ complete template with read-only and no-subagent instructions.
 
 1. If subagents are unavailable, switch to Local Flow and state the reason. Do not assume they are unavailable unless the platform or user confirms it.
 2. Dispatch a subagent using the prompt template at `./topic-context-subagent-prompt.md`.
-   - On Codex, apply Codex model selection above, then inspect the advertised
-     roles and fixed pins. On the bounded route with current pins, use
+   - On Codex, apply Codex role selection above, then inspect the advertised
+     roles and compare settings with the effective TOML. On the bounded route
+     with current pins, use
      `agent_type: "sp_topic_context"` with `fork_turns: "none"`.
-   - On the Sol route or when that role is absent or stale, omit `agent_type`,
-     explicitly pass the selected model and effort, keep `fork_turns: "none"`,
+   - On the generic route or when that role is absent or stale, omit `agent_type`,
+     pass settings resolved from the relevant TOML, keep `fork_turns: "none"`,
      and send the same complete prompt to a fresh generic agent. Never probe an
      unknown role with an intentionally failing dispatch.
 3. Fill placeholders before dispatch:
