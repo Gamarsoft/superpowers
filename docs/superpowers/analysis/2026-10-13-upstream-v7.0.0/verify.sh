@@ -8,6 +8,14 @@ for tool in bash git node npm jq yq dot python3; do
   command -v "$tool" >/dev/null || { printf 'Missing prerequisite: %s\n' "$tool" >&2; exit 2; }
 done
 python3 -c 'import yaml, pytest' || { echo 'Python requires PyYAML and pytest' >&2; exit 2; }
+# stop-server verifies a per-start identity through /proc or ps before signalling
+# a process. A sandbox that blocks both cannot exercise that safety contract.
+if [[ ! -r "/proc/$$/cmdline" ]] && ! {
+  ps -ww -p "$$" -o command= >/dev/null 2>&1 || ps -f -p "$$" >/dev/null 2>&1
+}; then
+  echo 'Missing prerequisite: process inspection (/proc or ps); run in a host context that permits it.' >&2
+  exit 2
+fi
 plan=docs/superpowers/plans/2026-10-13-upstream-v7.0.0.md
 workspace="$(bash skills/subagent-driven-development/scripts/sdd-workspace "$plan")"
 logs="$workspace/finishing-$(git rev-parse --short=12 HEAD)"

@@ -59,7 +59,12 @@ PATH="/private/tmp/superpowers-v7-test-env/bin:/private/tmp/superpowers-v7-tools
 
 Equivalent installed prerequisites can replace these temporary paths. The runner
 disables filesystem-monitor configuration in temporary Git fixtures and reports
-skip lines. Finishing alone owns this complete run on the reviewed commit.
+skip lines. The companion lifecycle tests also require process inspection through
+`/proc` or `ps`; the Codex macOS sandbox denies `ps`. Run the complete suite in a
+host context with that permission. The runner checks this prerequisite before
+starting groups. Finishing alone owns this complete run on the reviewed commit.
+The initial sandbox failure and focused host verification are retained in
+`verification-environment.md`.
 
 ## Rulings and limitations
 
@@ -77,6 +82,7 @@ skip lines. Finishing alone owns this complete run on the reviewed commit.
   unavailable here. Their imported fixtures and structural tests are not live
   platform acceptance. Antigravity's optional logo render-freshness check needs
   rsvg-convert; PNG dimensions, format and manifest wiring were checked.
+  `agy plugin validate` also skips when the Antigravity CLI is unavailable.
 - No external publication, PR, merge into `gamarsoft`, separate role install,
   opt-out workflow or disposable implementation lane is part of this work.
 
