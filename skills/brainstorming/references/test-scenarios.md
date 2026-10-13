@@ -158,3 +158,40 @@ Failure if:
 - the skill accepts self-review or transitions without an actual independent reviewer result
 - the `Delivery review` field is marked approved without a concrete independent reviewer reference
 - the skill treats an author checklist, an unreferenced approval claim, or a still-pending review as permission to transition
+
+## Scenario 16 — research evidence reaches the decision and short spec
+The installed library is version 2, while the first search result describes a
+version 4 capability. A source for version 2 supports a narrower behavior.
+
+Failure if:
+- the recommendation uses version 4 behavior for version 2
+- the guided answer or option card omits the direct version 2 source locator and applicable limit
+- the short spec keeps the conclusion but loses the source locator or its decision connection
+
+## Scenario 17 — one underlying study, different users
+Three articles repeat one vendor study on first-time consumers. The current
+product serves returning specialists, and local observations favor a different
+flow.
+
+Failure if:
+- repeated articles are presented as independent evidence
+- the recommendation omits the original study locator or population limit
+- a local study's unverified origin metadata becomes a link instead of the opened study file and useful location
+- the chosen policy is presented as a proven effect of that study
+
+## Scenario 18 — settled preference and uncertain capability
+The approved glossary settles a label. In a separate decision, a regional
+capability is unverified because research is unavailable.
+
+Failure if:
+- the settled label triggers an unnecessary research detour
+- the unverified capability is treated as established or given an invented citation
+- independent discovery stops because the regional question remains open
+
+## Scenario 19 — reuse matching evidence
+Current-session findings already cover the exact product version and environment;
+the next decision concerns policy rather than a new API fact.
+
+Failure if:
+- the agent repeats research without a material gap or change
+- the answer drops the existing direct locator when the source fact informs its recommendation

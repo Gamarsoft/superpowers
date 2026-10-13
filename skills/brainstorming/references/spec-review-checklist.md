@@ -37,6 +37,11 @@ scale.
 - Is the recommendation explicit?
 - Are alternatives summarized?
 - Are trade-offs honest rather than one-sided?
+- If external evidence materially shaped the choice, does the spec retain each
+  consequential claim with its direct source locator, applicability, material
+  limits or unresolved status, and decision impact, even when the spec is short?
+- Are source facts distinguished from the team's policy or inference? If no
+  external evidence shaped the choice, is an evidence section omitted?
 
 ## 4. Behavior and edge cases
 - Are the main flows clear?

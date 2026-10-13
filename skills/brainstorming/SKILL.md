@@ -183,6 +183,8 @@ Create a task for each of the following and complete them in order.
 
 7. **Run guided discovery**
    - Read `references/guided-choice-protocol.md`.
+   - When a material external fact could change the next viable options, recommendation, boundary, invariant, or risk, read `references/decision-research.md` and investigate that decision before presenting it. Explicitly requested external research also uses that reference. Skip the detour for settled preferences and questions answered by current local evidence.
+   - Research-informed question or option response, including reused evidence: `Finding: [supported claim]; Source: [direct URL or opened reachable local file and useful location]; Applies/limits: [material conditions and caveat]`. Then give the recommendation, trade-off, and one question. Reuse needs no new search. Cite the local file actually opened, not an unverified origin path in its metadata.
    - Ask **one question per message**.
    - Prefer **2–3 framed options** over open-ended questions.
    - Always include a recommendation when the choice is design-shaping.

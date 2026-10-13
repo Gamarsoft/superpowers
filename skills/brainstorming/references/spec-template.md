@@ -12,6 +12,7 @@ Default path:
 - Keep sections as short as the complexity allows.
 - Compact does not mean lossy: preserve implementation-shaping details, constraints, states, copy sources, and open questions.
 - For simple work, a short spec is fine.
+- If external evidence materially shaped a choice, keep the compact Evidence Behind the Decision section below even in a short spec. Omit it when none did.
 - For nuanced work, add appendices rather than bloating the main narrative.
 - If frontend direction is required, keep this spec structural and behavioral; link the follow-on prompt or later packet instead of duplicating detailed visual-system guidance.
 - Keep the spec workflow-neutral through approval. Add the compact `## Delivery Route` section only after the user confirms a route.
@@ -53,6 +54,13 @@ Default path:
 - Recommended option
 - Why it wins now
 - What is consciously deferred
+
+## Evidence Behind the Decision
+<!-- Include only when external evidence materially shaped a choice; keep in a short spec or link a precise appendix. -->
+- Finding: [supported claim and direct source link or precise local path and location]
+- Applies to: [relevant version, environment, population or scope; source date/version and access date when freshness matters]
+- Limits / unresolved: [material caveat or contradiction, or why a claim remains unverified]
+- Decision impact: [choice it informed; separate source fact from chosen policy or inference]
 
 ## 4. Scope and Boundaries
 - In scope
@@ -167,6 +175,7 @@ A strong spec:
 - says what is not in scope
 - preserves relevant constraints, no-gos, and unchanged behavior
 - names risks and assumptions honestly
+- retains direct source locators and applicability for consequential research findings, including in short specs
 - includes enough behavior detail to build or hand off safely
 - captures important states, failure behavior, rollout concerns, and UX copy sources when applicable
 - links frontend direction, runtime evidence, screenshots, and approved generated image references when applicable

@@ -11,6 +11,11 @@ Maximum: show 3 options.
 ## Decision
 [What decision are these options trying to settle?]
 
+## Evidence behind this choice (only if external evidence materially shaped it)
+- Finding: [supported claim and direct source link or precise local locator]
+- Applies to / limits: [relevant version, environment, population, and material caveat]
+- Decision impact: [what this finding changes; identify inference where relevant]
+
 ## Recommended option
 [Option B]
 
@@ -43,6 +48,8 @@ Maximum: show 3 options.
 - Tie each option to real trade-offs, not vibes.
 - Never present options as equally good.
 - "Recommended" must be justified using `decision-lens.md`.
+- For research-informed choices, carry the source locator and applicability
+  through the recommendation summary, including the compressed form below.
 
 ## Compression rule for smaller work
 

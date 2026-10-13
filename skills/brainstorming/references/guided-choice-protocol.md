@@ -65,9 +65,16 @@ Did I get that right?
 
 Use this for most discovery turns.
 
+When external evidence changes the choice, place a brief finding before the
+recommendation: supported claim with a direct source link or precise local
+locator, relevant version/population/environment, and any material limit.
+Distinguish your recommendation from what the source establishes. Omit the
+finding for a settled preference or a choice supported only by local context.
+
 ```text
 I think the next decision is [decision].
 
+[If research-informed: Finding: [claim] ([direct source locator]; [applicability and material limit]).]
 I recommend [Option B] because [reason tied to user value / safety / speed].
 The alternatives are:
 - [Option A]: [trade-off]
