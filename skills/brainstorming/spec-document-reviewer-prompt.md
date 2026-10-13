@@ -28,6 +28,7 @@ Also provide a short human-written context note describing:
 - the chosen direction
 - whether frontend direction is required in a separate session
 - any known unresolved questions that are intentionally left open
+- already supplied answers and delegated choice ownership relevant to a potential builder question
 
 Do **not** pass your full session history. Pass only the minimum review context needed.
 
@@ -53,6 +54,16 @@ Artifacts:
 
 Review using the checklist in `skills/brainstorming/references/spec-review-checklist.md`.
 
+Within this same review, take the builder's perspective: what would you still
+need to ask before planning the next valid stage? Cross-check each question
+against the artifacts and supplied context. An answered question is not a new
+product decision; if its omission would mislead the next agent, request that
+the answer be carried into the artifact. Delegated helper names and internal
+structure are minor HOW, not blockers. Consequential agent defaults must be
+attributed and their assumptions visible. Unresolved observable behavior or
+protected authority remains DECISION with concrete downstream consequences.
+Do not add a separate builder reviewer, new gate, or fresh correction budget.
+
 If the reviewed artifacts change, describe, or depend on the visual-companion workflow, apply the checklist's visual-companion protocol regression subsection before approving. Use that checklist gate to compare the relevant artifacts against `skills/brainstorming/references/visual-companion-protocol-pressure-scenarios.md`.
 
 Use only the shared finding dispositions:
@@ -74,7 +85,8 @@ being changed, and the concrete failure. Do not add a second severity scale.
 Look especially hard for:
 - weak framing
 - unclear first delivery boundary
-- options with no real trade-offs
+- options with no real trade-offs, or invented alternatives to a settled direction
+- missing choice ownership or agent assumptions presented as user decisions
 - contradictions between the spec, packet, and the selected adapter when one exists
 - missing example mapping or vague acceptance language
 - brownfield safety gaps

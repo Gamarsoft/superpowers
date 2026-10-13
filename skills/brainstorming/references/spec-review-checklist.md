@@ -27,6 +27,7 @@ scale.
 - Is the problem statement concrete?
 - Is success defined in observable terms?
 - Are non-goals explicit?
+- Are relevant prior attempts and anti-goals carried forward?
 
 ## 2. Scope and boundaries
 - Is the first delivery boundary clear?
@@ -35,8 +36,9 @@ scale.
 
 ## 3. Chosen direction
 - Is the recommendation explicit?
-- Are alternatives summarized?
+- Are genuine alternatives summarized, or the constraints behind a settled direction recorded without invented options?
 - Are trade-offs honest rather than one-sided?
+- Are consequential platform, delivery-surface, and stack choices attributed to user decisions, observed constraints, or delegated agent calls, with assumptions explicit?
 - If external evidence materially shaped the choice, does the spec retain each
   consequential claim with its direct source locator, applicability, material
   limits or unresolved status, and decision impact, even when the spec is short?
@@ -130,6 +132,17 @@ Fail the review if the artifacts are missing, weaken, or contradict any required
 - **explicit degraded fallback** — if the dedicated question tool is unavailable, plain terminal fallback must be named as degraded behavior explicitly rather than normalized as the standard path
 
 Treat drift among the spec, packet, and the selected adapter (when one exists) on any of these outcomes as a blocking issue even if one artifact is correct.
+
+## Builder-readiness lens (within the current review)
+
+Ask what a builder would still need to know before planning the next valid stage.
+Check the supplied context before raising it: carry already answered facts into
+the artifact when needed, leave delegated minor HOW to the builder, and identify
+only materially unresolved behavior or authority as `DECISION`. An omission is
+`BLOCKING` only with a concrete handoff failure under the existing proof rule.
+Use the same dispositions and correction budget; this is not another reviewer
+or approval gate. Required frontend work remains a separate next stage, not a
+reason to invent visual decisions inside the neutral spec.
 
 ## Follow-up checks
 

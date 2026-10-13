@@ -1,0 +1,32 @@
+a176fd1cd9d1b3f969fdd18c47a7a0740f040702
+README.md
+RELEASE-NOTES.md
+skills/brainstorming/SKILL.md
+skills/brainstorming/spec-document-reviewer-prompt.md
+skills/executing-plans/scripts/task-done
+skills/requesting-code-review/SKILL.md
+tests/claude-code/test-executing-plans-scripts.sh
+tests/claude-code/test-sdd-workspace.sh
+
+Auto-merging .muse-plugin/plugin.json
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Auto-merging RELEASE-NOTES.md
+CONFLICT (content): Merge conflict in RELEASE-NOTES.md
+Auto-merging docs/README.opencode.md
+Auto-merging scripts/sync-to-codex-plugin.sh
+Auto-merging skills/brainstorming/SKILL.md
+CONFLICT (content): Merge conflict in skills/brainstorming/SKILL.md
+Auto-merging skills/brainstorming/scripts/server.cjs
+CONFLICT (modify/delete): skills/brainstorming/spec-document-reviewer-prompt.md deleted in bb92a77741419a4ab5f06e711a283343f1ada0c3 and modified in 7d5c52b7e42936c6f186deac892e1c781c1341b6.  Version 7d5c52b7e42936c6f186deac892e1c781c1341b6 of skills/brainstorming/spec-document-reviewer-prompt.md left in tree.
+Auto-merging skills/executing-plans/scripts/task-done
+CONFLICT (content): Merge conflict in skills/executing-plans/scripts/task-done
+Auto-merging skills/requesting-code-review/SKILL.md
+CONFLICT (content): Merge conflict in skills/requesting-code-review/SKILL.md
+Auto-merging skills/subagent-driven-development/scripts/sdd-workspace
+Auto-merging skills/systematic-debugging/SKILL.md
+Auto-merging tests/brainstorm-server/server.test.js
+Auto-merging tests/claude-code/test-executing-plans-scripts.sh
+CONFLICT (content): Merge conflict in tests/claude-code/test-executing-plans-scripts.sh
+Auto-merging tests/claude-code/test-sdd-workspace.sh
+CONFLICT (content): Merge conflict in tests/claude-code/test-sdd-workspace.sh

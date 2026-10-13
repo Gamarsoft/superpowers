@@ -19,6 +19,9 @@ Keep it short. The goal is clarity, not polish.
 ## Current workaround / current behavior
 [How is this handled today?]
 
+## Prior attempts and anti-goals
+[What has been tried, what failed or worked, and what must not be repeated? Reuse supplied context.]
+
 ## Desired outcome
 [What should be possible after this work ships?]
 
@@ -41,6 +44,9 @@ Keep it short. The goal is clarity, not polish.
 ## Unknowns to close
 - [question or risk]
 - [question or risk]
+
+## Consequential choices and ownership
+[Existing constraints; user decisions; delegated agent calls with rationale; assumptions still to verify. Include platform/delivery surface/stack when they shape the work.]
 ```
 
 ## Quality bar

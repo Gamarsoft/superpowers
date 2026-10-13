@@ -1,0 +1,58 @@
+[
+  {
+    "probe": "literal fragment insertion",
+    "subject": "fork",
+    "exit": 0,
+    "result": {
+      "literal": false,
+      "frameCount": 2,
+      "placeholder": true
+    }
+  },
+  {
+    "probe": "hook wrapper with broken PATH",
+    "subject": "fork",
+    "exit": 127,
+    "valid_bootstrap": false,
+    "stderr": "/private/tmp/superpowers-v7-analysis-wgm6c7nb/fork/hooks/run-hook.cmd: line 43: dirname: command not found\n/private/tmp/superpowers-v7-analysis-wgm6c7nb/fork/hooks/run-hook.cmd: line 46: exec: bash: not found"
+  },
+  {
+    "probe": "preserve existing SDD gitignore",
+    "subject": "fork",
+    "exit": 0,
+    "preserved": false,
+    "result": "*\n"
+  },
+  {
+    "probe": "literal fragment insertion",
+    "subject": "upstream",
+    "exit": 0,
+    "result": {
+      "literal": true,
+      "frameCount": 1,
+      "placeholder": false
+    }
+  },
+  {
+    "probe": "hook wrapper with broken PATH",
+    "subject": "upstream",
+    "exit": 0,
+    "valid_bootstrap": true,
+    "stderr": ""
+  },
+  {
+    "probe": "preserve existing SDD gitignore",
+    "subject": "upstream",
+    "exit": 0,
+    "preserved": true,
+    "result": "*\n!.gitignore\n!*/\n!*/progress.md\n"
+  },
+  {
+    "probe": "existing fork executing-plans regression suite",
+    "subject": "fork",
+    "exit": 0,
+    "pass_assertions": 13,
+    "silent_case_passed": true,
+    "log": "fork-executing-plans-tests.txt"
+  }
+]

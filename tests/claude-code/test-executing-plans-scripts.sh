@@ -35,6 +35,8 @@ main() {
     git init -q -b main "$TEST_ROOT/repo"
     local repo
     repo="$(cd "$TEST_ROOT/repo" && git rev-parse --show-toplevel)"
+    # Match the helper spelling on Git Bash as well as Unix.
+    repo="$(cd "$repo" && pwd)"
     local git_id=(-c user.email=t@example.com -c user.name=t -c commit.gpgsign=false)
 
     cat > "$repo/plan.md" <<'PLAN'

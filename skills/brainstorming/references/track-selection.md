@@ -2,6 +2,8 @@
 
 Use this file **before** deep questioning. Pick one track early so the questions, artifacts, and review bar fit the job.
 
+The track is a provisional internal aid, not a process choice for the user to approve. Revise it when evidence changes. Reuse supplied intent and settled directions; option cards are conditional on real alternatives, including in the summaries below.
+
 ## Decision order
 
 Choose the first track that clearly fits.

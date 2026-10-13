@@ -35,10 +35,16 @@ Superpowers is a complete software development methodology for your coding agent
 
 ## Gamarsoft fork
 
-This branch integrates upstream v6.4.2 and keeps Gamarsoft's written-spec
+This branch selectively integrates upstream v7.0.0 and keeps Gamarsoft's written-spec
 workflow, risk-scaled delivery, frontend/mobile design skills, approved visual
 packets, and pinned Codex roles. Upstream installation commands below install
 the official distribution, not these fork customizations.
+
+Brainstorming uses open discovery while intent is unclear and grounded options
+when a real choice is understood. Consequential agent defaults are explicit,
+and the existing spec reviewer also checks what a builder would still need to
+know. Written specs, research evidence, frontend packet approval, and confirmed
+delivery routing remain required.
 
 Superpowers inline execution is available when the approved plan selects it.
 It consumes the saved Superpowers plan and keeps its ledger and final review.
@@ -102,8 +108,9 @@ Install Superpowers as a plugin from this repository:
 agy plugin install https://github.com/obra/superpowers
 ```
 
-Antigravity runs the plugin's session-start hook, so Superpowers is active from
-the first message. Reinstall with the same command to update.
+Antigravity discovers the installed skills and their descriptions. The
+`using-superpowers` description prompts the model to load the bootstrap at
+conversation start; Antigravity does not provide a session-start hook event.
 
 ### Codex App
 
@@ -319,7 +326,7 @@ Restart any active Muse sessions after installing so the `SessionStart` hook tak
 
 ## The Basic Workflow
 
-1. **brainstorming** - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation. Saves design document.
+1. **brainstorming** - Activates before writing code. Draws out unclear intent, compares grounded alternatives, records agent-owned choices, and saves a reviewed written spec. Required frontend direction and one confirmed delivery route follow approval.
 
 2. **using-git-worktrees** - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.
 

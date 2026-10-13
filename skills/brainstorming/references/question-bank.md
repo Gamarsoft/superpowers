@@ -2,7 +2,22 @@
 
 Use these as starting shapes. Do **not** dump several at once.
 
-Each question should be asked as its own message and should usually include a recommendation.
+Each question should be asked as its own message. Use a recommendation when the evidence supports a real choice; reuse already supplied answers.
+
+## Open discovery when intent is unclear
+
+Choose one concrete gap, even if the previous question was also open:
+
+- What happened the last time this became a problem?
+- What did the previous approach make difficult?
+- What should someone be able to do afterward that they cannot do today?
+- What would make this feel like the wrong solution, even if it worked technically?
+
+Do not attach an invented menu or preferred goal to these questions. Once intent is clear, use the decision shapes below.
+
+## Ownership of making choices
+
+Reuse known platform and stack constraints. If consequential choices remain and the user has not delegated them, ask whether they have a constraint or want you to choose. When delegated, make a reasoned agent call and record assumptions; do not request a framework comparison just to fill the process.
 
 ## Universal framing questions
 
@@ -156,7 +171,7 @@ Is there any adjacent behavior that also must remain untouched?
 What is the smallest observable change that would make this feature feel done?
 ```
 
-Use this sparingly; usually follow with a reframed option turn.
+Use this only for a missing acceptance boundary. Follow with an option turn only if the answer supports real alternatives.
 
 ---
 

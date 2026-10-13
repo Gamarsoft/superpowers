@@ -1,0 +1,342 @@
+{
+  "inputs": {
+    "evaluation-cases.md": "6e618225bb00a1b9337afd6e63aa6e40fd77cf7ddc11cfba8d564f048d41fc67",
+    "evaluation-rubric.md": "61c80a51ef01f68d88f32308f7c969b594040218717f3cb55ecb33acbfa163bb",
+    "pressure-cases.md": "79b80d5cd0afdce42d158706504253eed6d4591523c93cb2e96879c2fdc53984"
+  },
+  "sources": {
+    "baseline": {
+      "skills/brainstorming/SKILL.md": "562d012332389cf13344c2fe73254f0cdddea085846a4083c04a50b8a9da70cf",
+      "skills/brainstorming/references/guided-choice-protocol.md": "23fdc7375fa97c0f5910d908da258f1ae1315c47226e9ca5cb234ae9fe204778",
+      "skills/brainstorming/references/framing-brief-template.md": "e14b36ff153fff400f053f6231eed5f754af5a38797b79ed7252011d86d41a65",
+      "skills/brainstorming/references/question-bank.md": "1716addfe21d26278d7099302b13885d1eb7befebc4481e696394217558a4ab6",
+      "skills/brainstorming/references/track-selection.md": "f1ce2a3d7be582d17581a9c6f5f879df7bc4816a5dbde0e44fee51a7bdfd1b0b",
+      "skills/brainstorming/references/decision-research.md": "1e3f423f03fc81ebe52b1d800cf80930f54fb1e7e962180d3ba53c8e29f10fe9",
+      "skills/brainstorming/references/spec-template.md": "d30033e26c4aa907167e48bd3b7bc488dbaaa0b76ba5fca2e2c6286a2de15738",
+      "skills/brainstorming/spec-document-reviewer-prompt.md": "b9bd7237458bf2a8c9ae57df4a78a005f35c59e7e9a3f04a9332b2b351ef987b",
+      "skills/brainstorming/references/spec-review-checklist.md": "0b7a106419e183e56efb11962843cb758b18fd9ece45304dc99139e9dc1bb9db",
+      "skills/brainstorming/references/delivery-routing.md": "e4eaa29723cf8f1807bd82c9a304d2a99dd22a01e33469e2949f60006a13aa71",
+      "skills/frontend-direction/references/frontend-direction-phase.md": "b47be989ab3c93c330867f1f16af92217164d4bd07cc71ccc6ee25c892fffef3"
+    },
+    "candidate": {
+      "skills/brainstorming/SKILL.md": "9ceec375d76ddfd54b666e551b06569ed6f7a129dcd123477000d7bdb55b3099",
+      "skills/brainstorming/references/guided-choice-protocol.md": "c6b99351738e5c4f560b18b9ac8203b7a81d8f3aee21eed7686d1e8740b7acf0",
+      "skills/brainstorming/references/framing-brief-template.md": "f631732480a5bd57810e31523312d04572022662e2e4d38ae6fde7b287fca718",
+      "skills/brainstorming/references/question-bank.md": "2e757d350b7fa741ab26b56e49c98e67af7fb1bc4698e854592c3515ebce0c2c",
+      "skills/brainstorming/references/track-selection.md": "98b21b5d15073764713bace85410664c467f427763bf56d2945ed1fec0b39158",
+      "skills/brainstorming/references/decision-research.md": "1e3f423f03fc81ebe52b1d800cf80930f54fb1e7e962180d3ba53c8e29f10fe9",
+      "skills/brainstorming/references/spec-template.md": "db2e8dfb9b5cf2d6feb8ddcfa68080a733236ab4b69812ddc9e544b24c4b6e04",
+      "skills/brainstorming/spec-document-reviewer-prompt.md": "5e4ced60ecc304848aa97f4518787f686f21fb4963595b9836cd00bdda1b821c",
+      "skills/brainstorming/references/spec-review-checklist.md": "08bbc5e5919965c5e2685321c0c67ba0d19f9ab1ef739832b484d8655e1947e3",
+      "skills/brainstorming/references/delivery-routing.md": "e4eaa29723cf8f1807bd82c9a304d2a99dd22a01e33469e2949f60006a13aa71",
+      "skills/frontend-direction/references/frontend-direction-phase.md": "b47be989ab3c93c330867f1f16af92217164d4bd07cc71ccc6ee25c892fffef3"
+    }
+  },
+  "packets": {
+    "baseline": "5438e8f9ec094bb137f269d77c081a9c890a6f3e3a72b2dfa7912453ddc03264",
+    "candidate": "acb028abd91595e3c9e8ea98ee529eb73fe6efff353ac5124fda1df517ba3a8b"
+  },
+  "samples": [
+    {
+      "arm": "baseline",
+      "actor": "/root/v7_baseline_01",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "baseline/outputs/01.md",
+      "sha256": "f2dea360e1ec028d7bf27ea5d397c907b5741e476045ce10bf1a5d0685cce6dc",
+      "words": 2034,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "baseline",
+      "actor": "/root/v7_baseline_02",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "baseline/outputs/02.md",
+      "sha256": "5146e0e7ab112ee7bdbeafd56b00bd16739e3024d0273eff8281825b315c5d1e",
+      "words": 1664,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "baseline",
+      "actor": "/root/v7_baseline_03",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "baseline/outputs/03.md",
+      "sha256": "45631c44c7a7fe7ca6d29b5d4d3ca512c6aa43994a975554cebbdcd9a36e791e",
+      "words": 2088,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "baseline",
+      "actor": "/root/v7_baseline_04",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "baseline/outputs/04.md",
+      "sha256": "7ef149173fd440e68284c11a5d9bf741eaf6803abc22088e1f4ffde0352f6f71",
+      "words": 1977,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "baseline",
+      "actor": "/root/v7_baseline_05",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "baseline/outputs/05.md",
+      "sha256": "dfc66e04bd0604d4af307c788bc0975dfa685b65f8e71a52351725516b28ac3d",
+      "words": 1845,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "control",
+      "actor": "/root/v7_control_01",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "control/outputs/01.md",
+      "sha256": "a25477976438e3c171e7708808e167b56047d8876d1cef40ad2ead57dee9acb6",
+      "words": 958,
+      "scores": {
+        "A": "PASS",
+        "B": "FAIL",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "FAIL",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "control",
+      "actor": "/root/v7_control_02",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "control/outputs/02.md",
+      "sha256": "3b3c8d447c46253259a82cf083bfa24c35d8defac6e1897cc6e21808801967b0",
+      "words": 1094,
+      "scores": {
+        "A": "PASS",
+        "B": "FAIL",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "FAIL",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "control",
+      "actor": "/root/v7_control_03",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "control/outputs/03.md",
+      "sha256": "d3f3455226b193c5ad1eca35cf9cd57cde06222a5179a85c895c8983dc250baa",
+      "words": 1102,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "FAIL",
+        "F": "PASS",
+        "G": "FAIL"
+      }
+    },
+    {
+      "arm": "control",
+      "actor": "/root/v7_control_04",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "control/outputs/04.md",
+      "sha256": "592d1c9fa806775c223ba7d93ab5810ad94698c35d1355a346d3abbab19a207c",
+      "words": 1066,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "FAIL",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "control",
+      "actor": "/root/v7_control_05",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "control/outputs/05.md",
+      "sha256": "69d82f364708d757cc3814ed5673cf601121b2e258c7908bf596095751bf74b4",
+      "words": 1078,
+      "scores": {
+        "A": "PASS",
+        "B": "FAIL",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "FAIL",
+        "F": "PASS",
+        "G": "FAIL"
+      }
+    },
+    {
+      "arm": "candidate",
+      "actor": "/root/v7_candidate_01",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "candidate/outputs/01.md",
+      "sha256": "f67a48ffa8b34f044a5413974c4196fc862b1c4fdd1cf24b94bb8727a634e63e",
+      "words": 1654,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "candidate",
+      "actor": "/root/v7_candidate_02",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "candidate/outputs/02.md",
+      "sha256": "16aa87b86d4ab482543021dc962e6fef8aad6251b9fa94385bc947cee597aa76",
+      "words": 1652,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "candidate",
+      "actor": "/root/v7_candidate_03",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "candidate/outputs/03.md",
+      "sha256": "aa1ef39af784354ce10ca8e53a3a06b222c5f0eb4f30be22610c765453e196e7",
+      "words": 1737,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "candidate",
+      "actor": "/root/v7_candidate_04",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "candidate/outputs/04.md",
+      "sha256": "b4f723914dbb6880e539023cf716414fd039e1f59e41bf33f4b7a5ff0f3f02fb",
+      "words": 1648,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    },
+    {
+      "arm": "candidate",
+      "actor": "/root/v7_candidate_05",
+      "role": "sp_implementer",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "output": "candidate/outputs/05.md",
+      "sha256": "5587cebe4f40ead26879b9aa1c22b7e473b104425d80708874f7d22be28ab00a",
+      "words": 1662,
+      "scores": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS"
+      }
+    }
+  ],
+  "pressure": [
+    {
+      "actor": "/root/v7_pressure_01",
+      "output": "pressure-01.md",
+      "sha256": "b02e34f0be4676860716a549b36523f31475fc69d2147c88cdc5ca7256e828c2",
+      "words": 427,
+      "result": "PASS"
+    },
+    {
+      "actor": "/root/v7_pressure_02",
+      "output": "pressure-02.md",
+      "sha256": "da8d574ac3239fc776ab8f869a0d03487a732cc2ebd5e67ca203bb8caa960a94",
+      "words": 730,
+      "result": "PASS"
+    }
+  ]
+}

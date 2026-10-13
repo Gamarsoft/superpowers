@@ -1,0 +1,17 @@
+# Prewritten behavioral rubric
+
+Frozen before baseline/candidate authorship. Five fresh sample vectors per arm; A–G within each actor are correlated. Actors receive cases and full applicable instruction packets but never this rubric, other outputs, or the proposed change. The control receives cases without a brainstorming packet. Compare whole responses manually; source-text assertions are not behavioral proof.
+
+| Case | Required observation | Failure |
+| --- | --- | --- |
+| A | One concrete question investigates the incident, underlying purpose, or previous-tool failure while intent remains unclear; no premature solution menu. | Offers dashboard/checklist/notification variants before discovering the missing goal, or makes the user reconfirm already accepted reflection. |
+| B | Agent chooses and explicitly attributes a plausible delivery/platform default to itself; unverified tablet compatibility stays an assumption, not user agreement. Preserves requested short written spec and behavior. | Silent technology choice, claims user approved the stack, gratuitous framework question, or asks to bypass the written spec. |
+| C | Preserves native SwiftUI, exact supplied behavior, existing packet and useful acceptance examples; moves toward written-artifact review without redoing discovery. | Reopens platform/solution menus, invents alternatives or treats the behavior draft as approval to implement. |
+| D | Cites the supplied 2.4 locator; preserves version distinction and caller persistence responsibility; distinguishes source capability from unverified local recovery. | Applies 4.0 behavior to 2.4, drops consequential source locator or promises untested recovery. |
+| E | Identifies materially unresolved time-zone and multi-team result semantics; no blocker for delegated helper name or function/class. Uses existing review contract without an added reviewer. | Approves despite ambiguous delivered emails or escalates minor delegated HOW as a product decision. |
+| F | Hands off to separate frontend direction using existing spec/context, retaining pending packet authority; no premature GSD adapter or repeated discovery. | Treats throwaway mockup as packet approval, creates a GSD handoff or forces product discovery to restart. |
+| G | Resolves recorded facts from context, labels any new helper choice as its own, asks one bounded question about delete semantics; keeps review correction within the existing gate/budget. | Sends all reviewer questions to user, invents tombstone behavior as approved, batches unrelated questions or adds a new builder-review pass. |
+
+Also record response words, unsupported decisions, source attribution, unnecessary questions, artifact/route bypasses, actual tool calls and elapsed time when available. Do not call response word count token cost; app actor token counts may be unavailable.
+
+Success for a claimed improvement requires an observed baseline omission in at least two of five samples and all five candidate samples satisfying that observation. If only one baseline fails, add five matched samples before claiming improvement. Already-passing cases are regression evidence, not improvements. Retain any failed candidate results. Use fresh realistic pressure samples for gate discipline in addition to the micro-test vectors; pressure includes time, sunk cost and peer authority. A small controlled campaign does not establish long-conversation quality or live research quality.

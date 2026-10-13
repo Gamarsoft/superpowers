@@ -12,6 +12,8 @@ Default path:
 - Keep sections as short as the complexity allows.
 - Compact does not mean lossy: preserve implementation-shaping details, constraints, states, copy sources, and open questions.
 - For simple work, a short spec is fine.
+- Distinguish user decisions, observed constraints, delegated agent calls, and unverified assumptions. Name the owner and rationale of consequential platform, delivery-surface, or stack defaults; never present an agent choice as user agreement.
+- Carry relevant prior attempts and anti-goals into framing or boundaries. Do not invent alternatives when a supplied direction is already settled.
 - If external evidence materially shaped a choice, keep the compact Evidence Behind the Decision section below even in a short spec. Omit it when none did.
 - For nuanced work, add appendices rather than bloating the main narrative.
 - If frontend direction is required, keep this spec structural and behavioral; link the follow-on prompt or later packet instead of duplicating detailed visual-system guidance.

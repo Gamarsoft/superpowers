@@ -2,12 +2,13 @@
 
 This protocol prevents decision fatigue.
 
-The user should be reacting to shaped decisions, not inventing the whole design from a blank page.
+Help the user explain unclear intent, then react to grounded decisions. A recommendation is useful only when there is enough evidence to frame a real choice.
 
 ## Non-negotiable rules
 
 1. **Reflect before questioning**
    - Restate the goal and moving pieces first.
+   - Reuse an accepted reflection rather than requesting the same confirmation again.
 
 2. **Retrieve before asking**
    - If the answer is likely in code, docs, or recent changes, inspect that before asking.
@@ -15,28 +16,29 @@ The user should be reacting to shaped decisions, not inventing the whole design 
 3. **One question per message**
    - Never stack several design-shaping questions in one turn.
 
-4. **Prefer framed options**
-   - Offer 2–3 viable options when the decision matters.
+4. **Discover intent before framing options**
+   - While the goal is unclear, ask one concrete question about an incident, desired outcome, prior attempt, or anti-goal.
+   - Once evidence supports a real choice, offer 2–3 viable options. Do not invent alternatives to a settled direction.
 
 5. **Recommend one default**
-   - Say what you recommend and why now.
+   - For an understood choice, say what you recommend and why now. Do not recommend a goal before understanding the user's situation.
 
-6. **Use open-ended questions sparingly**
-   - Only to surface intent that cannot yet be framed.
-   - Never ask more than one open-ended question in a row.
+6. **Keep open discovery purposeful**
+   - Use it to surface intent that cannot yet be framed.
+   - Consecutive open questions are appropriate while that uncertainty remains; each must investigate a concrete gap.
 
-7. **Reframe immediately**
-   - After an open-ended answer, the next turn must convert that answer into options, boundaries, or a synthesis.
+7. **Choose the next turn from the evidence**
+   - After an answer, ask about a remaining gap, synthesize what is known, or frame a supported choice. A turn count does not make speculative options valid.
 
 8. **Synthesize every 2–3 turns**
-   - Confirm progress and reduce drift.
+   - Play back intent, boundaries, choices, and assumptions to reduce drift. Distinguish user decisions, observed facts, and agent calls. No word quota or extra approval loop is needed.
 
 9. **Do not ask implementation-detail questions before the experience and boundary are understood**
    - Start with user value, scope, and constraints.
    - Only then drill into deeper technical choices.
 
 10. **Never leave the user holding an unframed decision**
-    - If the user says "I'm not sure," that is a cue to sharpen your recommendation, not ask another vague question.
+    - If the user says "I'm not sure," investigate a concrete incident or desired outcome before recommending. Avoid both vague questionnaires and forced menus.
 
 11. **Do not under-question to look efficient**
     - GPT-5.5-style concise prompting is about removing noise, not skipping discovery.
@@ -63,7 +65,7 @@ Did I get that right?
 
 ## B. Guided question
 
-Use this for most discovery turns.
+Use this once the decision and viable alternatives are understood.
 
 When external evidence changes the choice, place a brief finding before the
 recommendation: supported claim with a direct source link or precise local
@@ -142,7 +144,7 @@ Too many options create reading load and hide your judgment.
 
 ## Recommendation rules
 
-Your recommendation must say:
+For an actual choice, your recommendation must say:
 
 - which option you recommend
 - what it optimizes for
@@ -175,7 +177,8 @@ Keep asking when:
 Avoid these:
 
 - multiple open-ended questions in one message
-- asking for preferences before presenting a default
+- asking for technical preferences before intent is understood
+- recommending invented problem categories because an open-question allowance ran out
 - presenting options with no trade-offs
 - asking technical detail questions before the problem is framed
 - repeatedly asking "anything else?" instead of shaping the next decision
@@ -214,6 +217,12 @@ What kind of dashboard do you want?
 ```
 
 ## Better
+
+```text
+What happened the last time someone needed this information and could not find it?
+```
+
+Once the problem is understood and both approaches are viable:
 
 ```text
 I see two viable dashboard directions.

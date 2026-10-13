@@ -57,8 +57,8 @@ Your job is to:
 
 - understand the real goal
 - retrieve context before guessing
-- frame decisions as 2–3 viable options
-- recommend a default with reasoning
+- discover unclear intent with one concrete open question at a time
+- frame understood decisions as 2–3 viable options and recommend a grounded default
 - bound the work before the spec hardens
 - when UI matters, capture enough product and experience intent to seed a later frontend-direction session
 - when UI includes meaningful visible text, use `writing-ux-copy` to make copy a first-class state contract instead of leaving it to implementation
@@ -161,10 +161,11 @@ Create a task for each of the following and complete them in order.
    - Name the major capabilities or moving pieces you heard.
    - Give a rough scope read.
    - Deliver the confirmation prompt with the current platform's dedicated question tool when available.
-   - Ask if you got it right **before** diving into detailed questions.
+   - Ask if you got it right **before** diving into detailed questions. Reuse an already accepted reflection; do not ask for the same confirmation again.
 
 4. **Choose a track**
    - Read `references/track-selection.md`.
+   - Treat the track as a provisional internal aid. Update it as intent becomes clearer; do not make the user approve a process label.
    - Pick the best-fit track:
      - greenfield
      - brownfield-major-feature
@@ -180,7 +181,7 @@ Create a task for each of the following and complete them in order.
 
 6. **Build the framing brief**
    - Use `references/framing-brief-template.md`.
-   - Capture user, problem, desired outcome, success signal, constraints, and non-goals.
+   - Capture user, problem, desired outcome, success signal, constraints, and non-goals. Include relevant prior attempts and what should not be repeated.
    - Keep it concise and decision-oriented.
 
 7. **Run guided discovery**
@@ -188,17 +189,18 @@ Create a task for each of the following and complete them in order.
    - When a material external fact could change the next viable options, recommendation, boundary, invariant, or risk, read `references/decision-research.md` and investigate that decision before presenting it. Explicitly requested external research also uses that reference. Skip the detour for settled preferences and questions answered by current local evidence.
    - Research-informed question or option response, including reused evidence: `Finding: [supported claim]; Source: [direct URL or opened reachable local file and useful location]; Applies/limits: [material conditions and caveat]`. Then give the recommendation, trade-off, and one question. Reuse needs no new search. Cite the local file actually opened, not an unverified origin path in its metadata.
    - Ask **one question per message**.
-   - Prefer **2–3 framed options** over open-ended questions.
-   - Always include a recommendation when the choice is design-shaping.
-   - If you ask an open-ended question, the **next turn** must reframe the answer into options.
+   - While intent is unclear, ask a concrete open question about the situation, desired outcome, prior attempts, or anti-goals. Continue open discovery when the answer still does not support real alternatives; do not invent a menu to satisfy a turn limit.
+   - Once a decision is understood, offer **2–3 viable options** with trade-offs and a grounded recommendation. Reuse supplied decisions instead of reopening them.
+   - Before drafting, identify consequential making choices such as platform, delivery surface, and stack. Reuse existing constraints; ask whether the user cares only when ownership is unclear. If delegated, make the choice and label it as an agent call with its rationale and assumptions, not user agreement. Research material external facts before choosing.
    - Do not optimize for the fewest questions. Ask enough guided questions to prevent a poorly framed feature, especially around user value, boundaries, invariants, rollout, state coverage, and failure behavior.
    - Stop discovery only when the remaining unknowns are either non-blocking or explicitly carried as open questions with the decision they block.
 
-8. **Present option cards**
+8. **Present option cards** _(when real alternatives remain)_
    - Use `references/option-cards-template.md`.
    - Show 2–3 viable approaches with trade-offs.
    - Evaluate them using `references/decision-lens.md`.
    - Lead with your recommended option and why it wins **now**.
+   - Skip invented alternatives to a supplied or settled direction; record its rationale and constraints instead.
 
 9. **Set boundaries and appetite**
    - Define first delivery boundary, rabbit holes, no-gos, and what must stay unchanged.
@@ -215,6 +217,7 @@ Create a task for each of the following and complete them in order.
     - Present the design incrementally.
     - After each major section, ask whether it looks right so far.
     - Revise before moving on.
+    - Use the existing synthesis to play back intent, boundaries, consequential choices and remaining assumptions. Label user decisions, observed facts, and agent calls distinctly. Scale it to the work; no fixed word quota or separate playback approval loop is required. Carry already approved sections forward.
 
 12. **Add example mapping**
     - Use `references/example-mapping-template.md`.
@@ -248,6 +251,7 @@ Create a task for each of the following and complete them in order.
     - Read `references/spec-review-checklist.md`.
     - Dispatch the reviewer using `spec-document-reviewer-prompt.md`.
     - Review only the neutral design spec and frontend-direction follow-on prompt if one is required. At this stage, Delivery Route metadata and every route adapter must still be absent.
+    - Include the builder-readiness lens in this same review. Resolve questions already answered in context; label delegated minor HOW choices as agent calls. Bring only unresolved observable WHAT or protected authority to the user, one bounded question at a time, within the existing correction budget. Do not add a builder reviewer or a new gate.
     - Fix supported `BLOCKING` issues and re-dispatch. When a supported `DECISION` remains, ask one bounded human question, update the artifact with the answer, and re-dispatch within the same correction budget. Permit at most two correction plus re-review rounds; if a supported `BLOCKING` or `DECISION` remains, stop and surface the unresolved conflict to the human.
 
 16. **User approval gate**
@@ -300,11 +304,11 @@ These rules are non-negotiable:
 
 - **One question per message**
 - **Use the current platform's dedicated question tool whenever a guided question or review gate is needed and the tool is available**
-- **2–3 options max**
-- **Recommendation included**
-- **No more than one open-ended question in a row**
+- **Concrete open discovery while intent is unclear**
+- **2–3 options max when real alternatives are understood**
+- **Grounded recommendation for an actual choice**
 - **Synthesize every 2–3 turns**
-- **Never leave the user holding an unframed decision**
+- **Never substitute invented choices for missing intent**
 
 If you need concrete question shapes, use `references/question-bank.md`.
 

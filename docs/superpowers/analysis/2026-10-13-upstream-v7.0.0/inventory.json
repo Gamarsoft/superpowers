@@ -1,0 +1,637 @@
+{
+  "head": "7d5c52b7e42936c6f186deac892e1c781c1341b6",
+  "upstream": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "base": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+  "upstream_changed_count": 51,
+  "fork_changed_count": 1170,
+  "overlap": [
+    ".muse-plugin/plugin.json",
+    "README.md",
+    "RELEASE-NOTES.md",
+    "docs/README.opencode.md",
+    "scripts/sync-to-codex-plugin.sh",
+    "skills/brainstorming/SKILL.md",
+    "skills/brainstorming/scripts/server.cjs",
+    "skills/brainstorming/spec-document-reviewer-prompt.md",
+    "skills/executing-plans/scripts/task-done",
+    "skills/requesting-code-review/SKILL.md",
+    "skills/subagent-driven-development/scripts/sdd-workspace",
+    "skills/systematic-debugging/SKILL.md",
+    "tests/brainstorm-server/server.test.js",
+    "tests/claude-code/test-executing-plans-scripts.sh",
+    "tests/claude-code/test-sdd-workspace.sh"
+  ],
+  "upstream_only": [
+    ".antigravity-plugin/plugin.json",
+    ".claude-plugin/marketplace.json",
+    ".claude-plugin/plugin.json",
+    ".codex-plugin/plugin.json",
+    ".cursor-plugin/plugin.json",
+    ".devin-plugin/plugin.json",
+    ".hermes-plugin/__init__.py",
+    ".hermes-plugin/plugin.yaml",
+    ".kimi-plugin/plugin.json",
+    ".muse-plugin/marketplace.json",
+    ".opencode/INSTALL.md",
+    ".version-bump.json",
+    "assets/antigravity-logo.png",
+    "docs/porting-to-a-new-harness.md",
+    "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md",
+    "docs/superpowers/specs/2026-10-05-brainstorming-rebuild-design.md",
+    "docs/superpowers/specs/2026-10-06-antigravity-marketplace-design.md",
+    "docs/windows/polyglot-hooks.md",
+    "gemini-extension.json",
+    "hooks/run-hook.cmd",
+    "hooks/session-start",
+    "package.json",
+    "scripts/bump-version.sh",
+    "scripts/render-antigravity-logo.sh",
+    "skills/brainstorming/builder-check-prompt.md",
+    "tests/antigravity/test-antigravity-tools.sh",
+    "tests/antigravity/test-logo.sh",
+    "tests/antigravity/test-plugin-manifest.sh",
+    "tests/brainstorm-server/lifecycle.test.js",
+    "tests/codex-plugin-sync/test-sync-to-codex-plugin.sh",
+    "tests/hermes/conftest.py",
+    "tests/hermes/test_plugin.py",
+    "tests/hooks/test-run-hook-cmd-windows.sh",
+    "tests/hooks/test-session-start.sh",
+    "tests/version-bump/test-bump-version.sh",
+    "tests/writing-skills/test-render-graphs.sh"
+  ],
+  "merge_exit": 1,
+  "conflicts": [
+    "README.md",
+    "RELEASE-NOTES.md",
+    "skills/brainstorming/SKILL.md",
+    "skills/brainstorming/spec-document-reviewer-prompt.md",
+    "skills/executing-plans/scripts/task-done",
+    "skills/requesting-code-review/SKILL.md",
+    "tests/claude-code/test-executing-plans-scripts.sh",
+    "tests/claude-code/test-sdd-workspace.sh"
+  ],
+  "diff_stat": "51 files changed, 2219 insertions(+), 399 deletions(-)",
+  "files": [
+    {
+      "status": "A",
+      "path": ".antigravity-plugin/plugin.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".claude-plugin/marketplace.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".claude-plugin/plugin.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".codex-plugin/plugin.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".cursor-plugin/plugin.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".devin-plugin/plugin.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".hermes-plugin/__init__.py",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Pass frontmatter descriptions at registration and test every fork skill, preserving existing layout handling."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".hermes-plugin/plugin.yaml",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".kimi-plugin/plugin.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".muse-plugin/marketplace.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".muse-plugin/plugin.json",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Update version without replacing the fork-expanded skill inventory."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".opencode/INSTALL.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile docs",
+        "reason": "Update upstream release examples; retain fork workflow instructions and verify URLs describe the intended distribution."
+      }
+    },
+    {
+      "status": "M",
+      "path": ".version-bump.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "M",
+      "path": "README.md",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile docs",
+        "reason": "Take corrected Antigravity bootstrap explanation; describe the chosen hybrid, retain written specs and custom workflow inventory."
+      }
+    },
+    {
+      "status": "M",
+      "path": "RELEASE-NOTES.md",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile docs",
+        "reason": "Preserve upstream history and fork history; explain which v7 brainstorming policies differ in this fork."
+      }
+    },
+    {
+      "status": "A",
+      "path": "assets/antigravity-logo.png",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "M",
+      "path": "docs/README.opencode.md",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile docs",
+        "reason": "Update upstream release examples; retain fork workflow instructions and verify URLs describe the intended distribution."
+      }
+    },
+    {
+      "status": "M",
+      "path": "docs/porting-to-a-new-harness.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Correct platform/bootstrap documentation to match the imported manifest and hooks."
+      }
+    },
+    {
+      "status": "A",
+      "path": "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Retain historical docs",
+        "reason": "Preserve upstream design provenance in an ancestry-preserving integration; these documents do not authorize fork policy changes."
+      }
+    },
+    {
+      "status": "A",
+      "path": "docs/superpowers/specs/2026-10-05-brainstorming-rebuild-design.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Retain historical docs",
+        "reason": "Preserve upstream design provenance in an ancestry-preserving integration; these documents do not authorize fork policy changes."
+      }
+    },
+    {
+      "status": "A",
+      "path": "docs/superpowers/specs/2026-10-06-antigravity-marketplace-design.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Retain historical docs",
+        "reason": "Preserve upstream design provenance in an ancestry-preserving integration; these documents do not authorize fork policy changes."
+      }
+    },
+    {
+      "status": "M",
+      "path": "docs/windows/polyglot-hooks.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Correct platform/bootstrap documentation to match the imported manifest and hooks."
+      }
+    },
+    {
+      "status": "M",
+      "path": "gemini-extension.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": "hooks/run-hook.cmd",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Broken-PATH bootstrap and Windows discovery/exit handling, with regressions. Unix PATH case reproduced; Windows runtime untested here."
+      }
+    },
+    {
+      "status": "M",
+      "path": "hooks/session-start",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Broken-PATH bootstrap and Windows discovery/exit handling, with regressions. Unix PATH case reproduced; Windows runtime untested here."
+      }
+    },
+    {
+      "status": "M",
+      "path": "package.json",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt metadata",
+        "reason": "Align release versions when the hybrid is integrated; record fork-specific behavior in its release notes."
+      }
+    },
+    {
+      "status": "M",
+      "path": "scripts/bump-version.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Avoid version-audit matches inside longer numbers; import matching coverage."
+      }
+    },
+    {
+      "status": "A",
+      "path": "scripts/render-antigravity-logo.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "M",
+      "path": "scripts/sync-to-codex-plugin.sh",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Add Antigravity manifest/logo exclusions while retaining existing fork exclusion and packaging logic."
+      }
+    },
+    {
+      "status": "M",
+      "path": "skills/brainstorming/SKILL.md",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adapt behavior",
+        "reason": "Use intent discovery, attributed defaults and useful playback inside existing research/spec/frontend/routing contracts. Evaluate the hybrid."
+      }
+    },
+    {
+      "status": "A",
+      "path": "skills/brainstorming/builder-check-prompt.md",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adapt and consolidate",
+        "reason": "Fold the consequential-unanswered-question lens into the existing spec reviewer. Do not activate an additional review pass or leave competing dispatch instructions."
+      }
+    },
+    {
+      "status": "M",
+      "path": "skills/brainstorming/scripts/server.cjs",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Apply literal replacement callback to the fork server without replacing custom visual-companion behavior."
+      }
+    },
+    {
+      "status": "D",
+      "path": "skills/brainstorming/spec-document-reviewer-prompt.md",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Keep fork and extend",
+        "reason": "Reject upstream deletion. Preserve stage-specific readiness, research, frontend and adapter checks; add builder lens in the same review."
+      }
+    },
+    {
+      "status": "M",
+      "path": "skills/executing-plans/scripts/task-done",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Keep fork",
+        "reason": "Silent output already handled. Preserve interpreter-safe invocation and verification-passed wording; do not restore automatic completion claims."
+      }
+    },
+    {
+      "status": "M",
+      "path": "skills/requesting-code-review/SKILL.md",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Keep fork",
+        "reason": "Upstream changes an example absent from the fork. Preserve exact supplied review ranges, workflow ownership and configured roles."
+      }
+    },
+    {
+      "status": "M",
+      "path": "skills/subagent-driven-development/scripts/sdd-workspace",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Import create-only gitignore and physical-root spelling. Keep fork refusal to adopt foreign/unidentifiable markerless ledgers."
+      }
+    },
+    {
+      "status": "M",
+      "path": "skills/systematic-debugging/SKILL.md",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Import presence-only environment diagnostics and preserve unrelated fork guidance."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/antigravity/test-antigravity-tools.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "A",
+      "path": "tests/antigravity/test-logo.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "A",
+      "path": "tests/antigravity/test-plugin-manifest.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt platform group",
+        "reason": "Native Antigravity support and its complete packaging/test dependencies. Validate fork discovery separately from upstream results."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/brainstorm-server/lifecycle.test.js",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Avoid login-shell rewriting of the test environment."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/brainstorm-server/server.test.js",
+      "fork_changed": true,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Add literal-token regression and exitCode cleanup fix; retain fork-specific companion tests and port handling."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/claude-code/test-executing-plans-scripts.sh",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Take path portability correction; retain existing silent-output and stripped-permission tests and verification-passed assertions."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/claude-code/test-sdd-workspace.sh",
+      "fork_changed": true,
+      "text_conflict": true,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Combine upstream gitignore/path tests with fork multi-task, review-range, dirty-worktree and foreign-ledger tests."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/codex-plugin-sync/test-sync-to-codex-plugin.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Reconcile",
+        "reason": "Add Antigravity manifest/logo exclusions while retaining existing fork exclusion and packaging logic."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/hermes/conftest.py",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Pass frontmatter descriptions at registration and test every fork skill, preserving existing layout handling."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/hermes/test_plugin.py",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Pass frontmatter descriptions at registration and test every fork skill, preserving existing layout handling."
+      }
+    },
+    {
+      "status": "A",
+      "path": "tests/hooks/test-run-hook-cmd-windows.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Broken-PATH bootstrap and Windows discovery/exit handling, with regressions. Unix PATH case reproduced; Windows runtime untested here."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/hooks/test-session-start.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Broken-PATH bootstrap and Windows discovery/exit handling, with regressions. Unix PATH case reproduced; Windows runtime untested here."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/version-bump/test-bump-version.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Avoid version-audit matches inside longer numbers; import matching coverage."
+      }
+    },
+    {
+      "status": "M",
+      "path": "tests/writing-skills/test-render-graphs.sh",
+      "fork_changed": false,
+      "text_conflict": false,
+      "matches_upstream": false,
+      "recommendation": {
+        "action": "Adopt",
+        "reason": "Use actual Node executable so the empty-PATH test also works with version-manager shims."
+      }
+    }
+  ]
+}

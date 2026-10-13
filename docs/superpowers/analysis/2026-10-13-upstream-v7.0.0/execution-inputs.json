@@ -1,0 +1,32 @@
+{
+  "base": "7d5c52b7e42936c6f186deac892e1c781c1341b6",
+  "upstream": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "branch": "codex/integrate-upstream-v7.0.0",
+  "spec_sha256": {
+    "comparison.md": "178d02d6747e628264c6ae6c8b0ee1b627744872478ecc5da6e145ba6e902329",
+    "file-decisions.md": "271c31cabb08720b6a64ee00ff59b1f18d9b37e41ab9e602737467ac4f0f43c2"
+  },
+  "evaluation": {
+    "harness": "Codex app fresh subagents",
+    "role": "sp_implementer",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "repetitions": 5,
+    "cases_per_sample": 7,
+    "case_independence": "Cases within a sample are correlated. Five sessions per arm are five independent sample vectors.",
+    "cli_attempt": "codex-cli 0.154.0 rejected gpt-6.1-sol; not a sample."
+  },
+  "snapshot_files": [
+    "skills/brainstorming/SKILL.md",
+    "skills/brainstorming/references/guided-choice-protocol.md",
+    "skills/brainstorming/references/framing-brief-template.md",
+    "skills/brainstorming/references/question-bank.md",
+    "skills/brainstorming/references/track-selection.md",
+    "skills/brainstorming/references/decision-research.md",
+    "skills/brainstorming/references/spec-template.md",
+    "skills/brainstorming/spec-document-reviewer-prompt.md",
+    "skills/brainstorming/references/spec-review-checklist.md",
+    "skills/brainstorming/references/delivery-routing.md",
+    "skills/frontend-direction/references/frontend-direction-phase.md"
+  ]
+}

@@ -1,0 +1,359 @@
+[
+  {
+    "path": ".antigravity-plugin/plugin.json",
+    "upstream": "5541e8d6a744ad570e1a6b5e68d5e5d84242268c8e8ede3ca7b79619bffafd0f",
+    "base": null,
+    "candidate": "5541e8d6a744ad570e1a6b5e68d5e5d84242268c8e8ede3ca7b79619bffafd0f",
+    "result": "upstream content"
+  },
+  {
+    "path": ".claude-plugin/marketplace.json",
+    "upstream": "c730744e1f3b159652a7d2ee43b3f5e9e177d692d619212638a01f24eb3267a5",
+    "base": "cde91d4617b0efbc16591867f964d89d4edb725342129b76d840953cdb39dfca",
+    "candidate": "c730744e1f3b159652a7d2ee43b3f5e9e177d692d619212638a01f24eb3267a5",
+    "result": "upstream content"
+  },
+  {
+    "path": ".claude-plugin/plugin.json",
+    "upstream": "f1e28bae51b4a6af9ea340868b140362b4a00ba72bd722e7037cec37c23aa0bb",
+    "base": "ef99fce86f655e7b65f9505bdf468c9bcaf9bf49915c72e128ed62bac40a6586",
+    "candidate": "f1e28bae51b4a6af9ea340868b140362b4a00ba72bd722e7037cec37c23aa0bb",
+    "result": "upstream content"
+  },
+  {
+    "path": ".codex-plugin/plugin.json",
+    "upstream": "58c36fd4185719c9bee12fab1a03ce6cce48051c36ee9bdd9492235dd7ab2cfd",
+    "base": "3f12f376a61ee7362d8ba4cbf6341a290e3d7450cd7d3485ca5784849ff1e5e6",
+    "candidate": "58c36fd4185719c9bee12fab1a03ce6cce48051c36ee9bdd9492235dd7ab2cfd",
+    "result": "upstream content"
+  },
+  {
+    "path": ".cursor-plugin/plugin.json",
+    "upstream": "a623f01abe3ce86c053ece5f94f9efe1928c8602664201173f187e7ff0c0a04c",
+    "base": "c6016ab8c7d7ccb0512ceceae536cfb9927ba7b869fec9d71c5e392009c3bbc6",
+    "candidate": "a623f01abe3ce86c053ece5f94f9efe1928c8602664201173f187e7ff0c0a04c",
+    "result": "upstream content"
+  },
+  {
+    "path": ".devin-plugin/plugin.json",
+    "upstream": "ac7daa69cf87d44d2a7a67f9a929d62638cef0af4519a99b4c9557d90155c985",
+    "base": "0beeb9abbe58ffa71dd41fa82212a9e3b37a5fed98add77d2ee1be503a73e7e8",
+    "candidate": "ac7daa69cf87d44d2a7a67f9a929d62638cef0af4519a99b4c9557d90155c985",
+    "result": "upstream content"
+  },
+  {
+    "path": ".hermes-plugin/__init__.py",
+    "upstream": "bcd2edb43fda557ca88b44df80781cf760adc21888b49d2cf9e3a6add7733b29",
+    "base": "7fd93899e39371d56ba1e32660548673afa78f3a4a8bd306f93fbb418afa6f3c",
+    "candidate": "bcd2edb43fda557ca88b44df80781cf760adc21888b49d2cf9e3a6add7733b29",
+    "result": "upstream content"
+  },
+  {
+    "path": ".hermes-plugin/plugin.yaml",
+    "upstream": "3c9a8f57352a5ebc608bc05de8e2be42a86cf887a0a3fbd1f03287aa8df58187",
+    "base": "df90a82b6219300b697c2986452de7d8be4ef1e29bad47c64c68ec20d673ae57",
+    "candidate": "3c9a8f57352a5ebc608bc05de8e2be42a86cf887a0a3fbd1f03287aa8df58187",
+    "result": "upstream content"
+  },
+  {
+    "path": ".kimi-plugin/plugin.json",
+    "upstream": "defa5c228f2ecd51ca4a51af928aa482dd8cda4687006e272d40cf85c466b479",
+    "base": "d4ed61dcb7bbb6adbd8b4abc0387c7cd591b6ac9b53c89e5f3856aba2d3ce742",
+    "candidate": "defa5c228f2ecd51ca4a51af928aa482dd8cda4687006e272d40cf85c466b479",
+    "result": "upstream content"
+  },
+  {
+    "path": ".muse-plugin/marketplace.json",
+    "upstream": "9001163777872ee0f934602a64b3217f66b3bcff688e135b241756796f6460c4",
+    "base": "9d3804a3a4e70fa90f10ec6bc9a3f0272846675155400d4366bdb5528403ca24",
+    "candidate": "9001163777872ee0f934602a64b3217f66b3bcff688e135b241756796f6460c4",
+    "result": "upstream content"
+  },
+  {
+    "path": ".muse-plugin/plugin.json",
+    "upstream": "1e1b379d71d7fb7b5a9f5a30f7aecd7be100e01ea037d44e2b732ff7442b61d9",
+    "base": "37533eddb9c93dc1dd31f54e4745897dbe9c6b9fea0709a7a6a86fb040c131f3",
+    "candidate": "e6e9f45c7c769cb4c32e97549b094bfc8c61ec435c210f6684d0bf3109c780c0",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": ".opencode/INSTALL.md",
+    "upstream": "5233998c438ef1cef1b1af953e46f965ae7b122876ee16971b0a76d231e2d3a8",
+    "base": "621e0ee46e709935697640bdcf6156ac51341efd466f507b3d1aac5916f3c765",
+    "candidate": "5233998c438ef1cef1b1af953e46f965ae7b122876ee16971b0a76d231e2d3a8",
+    "result": "upstream content"
+  },
+  {
+    "path": ".version-bump.json",
+    "upstream": "cb4a788a2c54b06b798731aa40d929611bd6290e9c09463dad97f4f84adc6761",
+    "base": "e89981610cdb3ad966c72cc49a3574d91edb625ec7ebf9287d5b5f924d17b4df",
+    "candidate": "cb4a788a2c54b06b798731aa40d929611bd6290e9c09463dad97f4f84adc6761",
+    "result": "upstream content"
+  },
+  {
+    "path": "README.md",
+    "upstream": "9b7be460027bf53c29f628eee72dceeebb83e52dd5e94a1b6f9828a64c579198",
+    "base": "0cd3270d972df1dfcd4e1d303916d57e0e5cf696f392fae5092cfca187347deb",
+    "candidate": "e37f92b8f1dd44250c455fb1ba712c2b73827785964bc148d4ca7cba040f887b",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "RELEASE-NOTES.md",
+    "upstream": "fbe2d94c8b823a448c2b878fa4767a4164c3943de2b8e7be2a46463d94eea6ab",
+    "base": "4cf8606d7f597a7023e011ee32c48dac3c6dd9030b3681d83005b2879aa4362b",
+    "candidate": "86e9c39d75248ead14b3e14fa8847ae40b31366a5e3d1cd8d9d61b3cc5631aa1",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "assets/antigravity-logo.png",
+    "upstream": "d9eb1f1893e686de4afc7a8305d1e7a125fdf9df3741a28b2aa0999005e60a3a",
+    "base": null,
+    "candidate": "d9eb1f1893e686de4afc7a8305d1e7a125fdf9df3741a28b2aa0999005e60a3a",
+    "result": "upstream content"
+  },
+  {
+    "path": "docs/README.opencode.md",
+    "upstream": "7eebb57660c2e6f6c205643a752e4e26b1f4aae2a8d8f92d16b38ab637980e8f",
+    "base": "a855c4dce7736770e059f32123f550fd1a82af9b0d7a5d2ee19afdb51e92e772",
+    "candidate": "aa33ea419d20feec8e091c66244fa57afd8844c4bec27831481937bd36ac1bb6",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "docs/porting-to-a-new-harness.md",
+    "upstream": "f30e91289a3f4a11ce529b67ecc081e03be1d1d906628d645618e8129e83f519",
+    "base": "0718c66a4f57c3d7179335d385296ab3ca03b936546fec408324b39ca381952b",
+    "candidate": "f30e91289a3f4a11ce529b67ecc081e03be1d1d906628d645618e8129e83f519",
+    "result": "upstream content"
+  },
+  {
+    "path": "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md",
+    "upstream": "5948b389d7c0b263d2b3175a52fbc32790f6c5d5056e430bb7ae9cc11a76a10b",
+    "base": null,
+    "candidate": "5948b389d7c0b263d2b3175a52fbc32790f6c5d5056e430bb7ae9cc11a76a10b",
+    "result": "upstream content"
+  },
+  {
+    "path": "docs/superpowers/specs/2026-10-05-brainstorming-rebuild-design.md",
+    "upstream": "a15a0ceb2df039469ea15b8f66d001782e1b2c1d0690c0891070ac11389870a3",
+    "base": null,
+    "candidate": "a15a0ceb2df039469ea15b8f66d001782e1b2c1d0690c0891070ac11389870a3",
+    "result": "upstream content"
+  },
+  {
+    "path": "docs/superpowers/specs/2026-10-06-antigravity-marketplace-design.md",
+    "upstream": "db4b3e15709b9ce2b0c40a59c590a5f63ae551b28f6a1104df3306d1d542ab1d",
+    "base": null,
+    "candidate": "db4b3e15709b9ce2b0c40a59c590a5f63ae551b28f6a1104df3306d1d542ab1d",
+    "result": "upstream content"
+  },
+  {
+    "path": "docs/windows/polyglot-hooks.md",
+    "upstream": "2ddf6e3dba3de202fe5bca3d6ea26f308a0a27be8e785d10842f26cfed2f644b",
+    "base": "476cb301b99f0419ca7af197d1be8a8f777ef0e62fb9fc64a896a0e007e9d080",
+    "candidate": "2ddf6e3dba3de202fe5bca3d6ea26f308a0a27be8e785d10842f26cfed2f644b",
+    "result": "upstream content"
+  },
+  {
+    "path": "gemini-extension.json",
+    "upstream": "c8b2431e50b1fb626931d9e36a2fb0e00e4c757c430a936db5f1b80820f11d14",
+    "base": "b4eb373a865fc576308f0951482a9104b9cffbf9fd6776ec81e5b1a779f80a22",
+    "candidate": "c8b2431e50b1fb626931d9e36a2fb0e00e4c757c430a936db5f1b80820f11d14",
+    "result": "upstream content"
+  },
+  {
+    "path": "hooks/run-hook.cmd",
+    "upstream": "d1fcecfe19df2d083994803f73417710f745bd96c0938f594f87096005b1e403",
+    "base": "d3d9c6199678dab2858e60509dde5e7414f13c2a2b5e48a38b1d368b6e1d6abb",
+    "candidate": "d1fcecfe19df2d083994803f73417710f745bd96c0938f594f87096005b1e403",
+    "result": "upstream content"
+  },
+  {
+    "path": "hooks/session-start",
+    "upstream": "5c15e62a90ed13ad8e4b3561148c54c26c6ee28b41ec3a55a241f68b400d886d",
+    "base": "5e92229e49d7cff5e0355ab84b0bceb0d27d53c565b33210132ce6e413ee9665",
+    "candidate": "5c15e62a90ed13ad8e4b3561148c54c26c6ee28b41ec3a55a241f68b400d886d",
+    "result": "upstream content"
+  },
+  {
+    "path": "package.json",
+    "upstream": "cac93fa9fd478b35465e56b9df4fbf91909f78c8810070f23c202c7cb5474656",
+    "base": "66ebcaa11eaa4489338b9f775a85fa495bf4027cde3bc76ea38aa8c690635087",
+    "candidate": "cac93fa9fd478b35465e56b9df4fbf91909f78c8810070f23c202c7cb5474656",
+    "result": "upstream content"
+  },
+  {
+    "path": "scripts/bump-version.sh",
+    "upstream": "76dc971d2bb5d8b322eeb89b1d181f983b37f169a92bdf9883517fc746f657e8",
+    "base": "fc96339dad5f54ffcef3393b28542dbe93ec168573c012d9c599603009e80006",
+    "candidate": "76dc971d2bb5d8b322eeb89b1d181f983b37f169a92bdf9883517fc746f657e8",
+    "result": "upstream content"
+  },
+  {
+    "path": "scripts/render-antigravity-logo.sh",
+    "upstream": "48a8d329a7e048f5dba229bdb688f71bea7c9feaa1f139176d693ced4eccb9da",
+    "base": null,
+    "candidate": "48a8d329a7e048f5dba229bdb688f71bea7c9feaa1f139176d693ced4eccb9da",
+    "result": "upstream content"
+  },
+  {
+    "path": "scripts/sync-to-codex-plugin.sh",
+    "upstream": "90b2117068f55fa095960d1f2c60c389a1b3131958bd132617aabdea49b52ec5",
+    "base": "60359ee4b2f46aa537d09b4513cbc2cf24cabf4160876d84b2e9c908721e2835",
+    "candidate": "c86f0090551db7f0e93dd8ceb61aa65db83e5bb742583bffdce62a352519882e",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "skills/brainstorming/SKILL.md",
+    "upstream": "6ee10d1481b8a2580d5336ff66c5c08acc9d4b251b13bbc3bfd31be99c261d43",
+    "base": "562d012332389cf13344c2fe73254f0cdddea085846a4083c04a50b8a9da70cf",
+    "candidate": "9ceec375d76ddfd54b666e551b06569ed6f7a129dcd123477000d7bdb55b3099",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "skills/brainstorming/builder-check-prompt.md",
+    "upstream": "36d51a4723d6f0a3ce5811a0ea3b3a8424f07533947e1355f5d8cb8cce40c55e",
+    "base": null,
+    "candidate": null,
+    "result": "consolidated into existing reviewer"
+  },
+  {
+    "path": "skills/brainstorming/scripts/server.cjs",
+    "upstream": "763abf96510e0b892a1141397b31aa82ef900cf87ed34dde94bc8782baf4a7ca",
+    "base": "a95c7341fe7dfaa43cd34ec66ca5a72e44f97af9cdef370a137c1deb434b6d40",
+    "candidate": "4afe6ce82842ff3974fad21ced601b747d7f2d17f2fce3c5a3b8fc5c60c30f6e",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "skills/brainstorming/spec-document-reviewer-prompt.md",
+    "upstream": null,
+    "base": "b9bd7237458bf2a8c9ae57df4a78a005f35c59e7e9a3f04a9332b2b351ef987b",
+    "candidate": "5e4ced60ecc304848aa97f4518787f686f21fb4963595b9836cd00bdda1b821c",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "skills/executing-plans/scripts/task-done",
+    "upstream": "d0d4f2397c85a4426443ea955e699ef12568b41b408ec6122d4ec2433ee3a5f6",
+    "base": "f689ce445150a0980cf598c77d1a9d3ade038eceda1c3d7b53393a22f628b3ac",
+    "candidate": "f689ce445150a0980cf598c77d1a9d3ade038eceda1c3d7b53393a22f628b3ac",
+    "result": "unchanged fork"
+  },
+  {
+    "path": "skills/requesting-code-review/SKILL.md",
+    "upstream": "2180e14a448e9410bec88e6646a2d1f0ce7fdd58de27388c1e052e929679d2bc",
+    "base": "f4ff132a79419c891891342b51e56466f4d0f46f087bbaaa302c55d6d4f50491",
+    "candidate": "f4ff132a79419c891891342b51e56466f4d0f46f087bbaaa302c55d6d4f50491",
+    "result": "unchanged fork"
+  },
+  {
+    "path": "skills/subagent-driven-development/scripts/sdd-workspace",
+    "upstream": "4fd9770e7a49b6bde488c0e92bac1b3bd01fcbdaf8f06b6c4efbe3a1abd99f86",
+    "base": "bf56374791fbe393a9565e1cdbf49ee070378479c170f7b649499ff8de0829e3",
+    "candidate": "9d5d8dfb4d1905f4c8b89f28d567662044737a1341843b36b99da735bbe55096",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "skills/systematic-debugging/SKILL.md",
+    "upstream": "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202",
+    "base": "847da1cd563c5a97940805cd9e232d610b413b966e8f8ea0647ac52dda65251a",
+    "candidate": "247ccb7e4e12e274f9033f2be3611ea4a3afd91e929e1f09f61eceae7484cf76",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "tests/antigravity/test-antigravity-tools.sh",
+    "upstream": "c38a501650f5ba63337514044083636998824749adb4c564431253f3cc66254c",
+    "base": "8114d937d2ff960262e5d281a7e1ea2f95eb05ceb1690ac91b0db059e0c83799",
+    "candidate": "c38a501650f5ba63337514044083636998824749adb4c564431253f3cc66254c",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/antigravity/test-logo.sh",
+    "upstream": "d7d133df78b917bf00b24c93be19f7b21e185dbcb6d475542993eb3d5c0f3cc3",
+    "base": null,
+    "candidate": "d7d133df78b917bf00b24c93be19f7b21e185dbcb6d475542993eb3d5c0f3cc3",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/antigravity/test-plugin-manifest.sh",
+    "upstream": "627d97c59d806a6d495e54dff5dd57447eba21d8a3293251b472898f28268c12",
+    "base": null,
+    "candidate": "627d97c59d806a6d495e54dff5dd57447eba21d8a3293251b472898f28268c12",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/brainstorm-server/lifecycle.test.js",
+    "upstream": "686e19a12c6ba9b3003f4dedf840161b05f5c42dfb87c49a6b9c8abc596f1156",
+    "base": "8146fc31bd814dec0e497da6dc1c9423e4352e0fb1c3cdebd1b9db42a2ac8d8e",
+    "candidate": "686e19a12c6ba9b3003f4dedf840161b05f5c42dfb87c49a6b9c8abc596f1156",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/brainstorm-server/server.test.js",
+    "upstream": "87e23a66d4ef57c9621ed6a479383cefa530133ec9c12d71b2dc44e11fc554e9",
+    "base": "e72bb1e268b10ec20e226f55d625db556d95a70eca1cec0b7c485f408d177b2f",
+    "candidate": "0c9d51a76ed3eb03e0cbeb36eeda5150cab07d876d9dbe51bd924f0163e47a7f",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "tests/claude-code/test-executing-plans-scripts.sh",
+    "upstream": "4bb8ac69cd96add9d524c5d9d04726853f4e82810aefcb87fd8965d9a55cbc76",
+    "base": "cfd154845857617f850d2663632cdfa7a5f5265f6dbf8f8495c26aeccb70ff5a",
+    "candidate": "cc90fe155c5d4e76f05606e951221e68000fb9f0869150e3f39957a437b1434a",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "tests/claude-code/test-sdd-workspace.sh",
+    "upstream": "dd258732aebae183b0019d480422df661468b7f3664025d3960e0bc5fcb6385d",
+    "base": "f9290dadb27cd8a5df656b4bf2634585c41db25fdc46aac2ba3a6a4bdf9b46be",
+    "candidate": "442f011c7122d2a1f65021af8a9b41d6eb3b6a215dae276de60cf186dea4f8d0",
+    "result": "selective reconciliation"
+  },
+  {
+    "path": "tests/codex-plugin-sync/test-sync-to-codex-plugin.sh",
+    "upstream": "df2dd25436dd61f79912bbd36b76e5921c6cbdef3f12941d4a102d35babbec13",
+    "base": "0fe708303673f20089c611060714cfb86de3fc620f9e6b7820e85c4fbc46fb74",
+    "candidate": "df2dd25436dd61f79912bbd36b76e5921c6cbdef3f12941d4a102d35babbec13",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/hermes/conftest.py",
+    "upstream": "6cf5e434b124d912e1b53b4e6c1287f72c9af8d60aa01e8b49722c98e8a41dc8",
+    "base": "daac0d99bc1848c35cf1aa85694d0dc752628acb876f552f65c15972942dd2f9",
+    "candidate": "6cf5e434b124d912e1b53b4e6c1287f72c9af8d60aa01e8b49722c98e8a41dc8",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/hermes/test_plugin.py",
+    "upstream": "95c48697239d0fe31d60168419fd145c2efad0f210024b307910ab856be46790",
+    "base": "a159fbee0e56b0ff320a85642b5b38f703ba64382d1e3de0200889598af8dfa2",
+    "candidate": "95c48697239d0fe31d60168419fd145c2efad0f210024b307910ab856be46790",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/hooks/test-run-hook-cmd-windows.sh",
+    "upstream": "1630ca0accde617b06cac968d821f5420ec124672a2d7b79eb2bc81c39b94154",
+    "base": null,
+    "candidate": "1630ca0accde617b06cac968d821f5420ec124672a2d7b79eb2bc81c39b94154",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/hooks/test-session-start.sh",
+    "upstream": "036c13ac48192e459c6ad327614161670f8b142fcf70e4e670d05c43775a54ad",
+    "base": "427f5464b635504ab2dc1f2bde9aa0bce348e13be451985e541099219130e92f",
+    "candidate": "036c13ac48192e459c6ad327614161670f8b142fcf70e4e670d05c43775a54ad",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/version-bump/test-bump-version.sh",
+    "upstream": "9979d56389d953449cd1bdb93017e1f9abbab5f5522e80e9b91dcd6a00baf820",
+    "base": "5ee6381b450985934877a6fb3da71f769559f413419c616158cd6b79ff582ff1",
+    "candidate": "9979d56389d953449cd1bdb93017e1f9abbab5f5522e80e9b91dcd6a00baf820",
+    "result": "upstream content"
+  },
+  {
+    "path": "tests/writing-skills/test-render-graphs.sh",
+    "upstream": "e758c2e751fcfa73ceaeac7114251d48cd7ece167ac535dd765c3f9d95a6a9a9",
+    "base": "c977fb34ec6614400673cc3d73e9979eb5428d35e1413c50ab4b1cef47eb7b3b",
+    "candidate": "e758c2e751fcfa73ceaeac7114251d48cd7ece167ac535dd765c3f9d95a6a9a9",
+    "result": "upstream content"
+  }
+]
