@@ -1,0 +1,27 @@
+[
+  {
+    "sample": "sample-01",
+    "variant": "design-regression-r1",
+    "exit": 0
+  },
+  {
+    "sample": "sample-02",
+    "variant": "design-regression-r1",
+    "exit": 0
+  },
+  {
+    "sample": "sample-03",
+    "variant": "design-regression-r1",
+    "exit": 0
+  },
+  {
+    "sample": "sample-04",
+    "variant": "design-regression-r1",
+    "exit": 0
+  },
+  {
+    "sample": "sample-05",
+    "variant": "design-regression-r1",
+    "exit": 0
+  }
+]

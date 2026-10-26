@@ -1,0 +1,29 @@
+{
+  "source_commit": "0da9cdd2c5564e51078a2ed3a43718d0af7fa6f3",
+  "source_hashes": {
+    "skills/frontend-direction/SKILL.md": "4a24f2f46c223d3138ba58ea750e0c9fa26f85e8ec565c148be77990abd23273",
+    "skills/frontend-direction/references/design-source-priority.md": "3e2e7f6bac9ca6eaa1dd8714b60b1a5606be6428c447cc94de30269a81f44af6",
+    "skills/frontend-direction/references/packet-finalization.md": "e800e90ab2101d3738197dc550f8913fd06e9a110fdc38c7197b8bc12b1f45c3",
+    "skills/frontend-direction/references/packet-handoff.md": "7b452c5249702e134e0df107a628031e462eaa94e27f58793916ebc7349e3b93",
+    "skills/frontend-direction/references/packet-schema.md": "916623b220cc6c2d0b159db999e9f44c34e85da668c6ddb7974c397bb3ac9339",
+    "skills/implementing-frontend-design/SKILL.md": "78ec5d94b5450ecc9bb0b454224da8224e5208fa8d904b76df2cfe797a09397a",
+    "skills/implementing-frontend-design/references/source-of-truth.md": "f3e832816c34438d323a968e4f299232ffd20f445e835bc66a7b06abb49ed789",
+    "skills/frontend-direction/references/visual-exploration.md": "bad05ca320bfba8a9808ce643b188715808e08cbec1d9a0df6b6a1f8021d15ac",
+    "skills/frontend-direction/references/task-to-layout.md": "3e6295127bf27f7aab0a8de9ccd12e49f9e7386da21a51d0a07dec689c90f41a",
+    "skills/frontend-direction/references/design-knowledge-selection.md": "fb433f2b32799f2a175a1fa6a230e57d02f734fdd9159be34059687e6fcbc068",
+    "skills/frontend-direction/references/design-knowledge/refactoring-ui.md": "a8e38afe50eddde38d2ac046a57086f800bb6c4cc4577c9861422acbc3ade675",
+    "skills/frontend-direction/references/design-knowledge/design-everyday-things.md": "c38d3d801e536b82f92bb8e1e502a65fcd72cbec3a6ffda4b26fe6701e657f30",
+    "skills/frontend-direction/references/frontend-review-checklist.md": "12f62fd597249d57e1f5d06e0ee21f1db5140244c4f4d05b3c7e092c43e3a52d",
+    "skills/implementing-frontend-design/references/runtime-handoff.md": "69215f59e2d906de16c232bce9cd6500864bf3cee1f112e1f50171d3354e8de2",
+    "skills/implementing-frontend-design/references/implementation-review-checklist.md": "ea2e9c1f533ac42f2dbd7c9b7a32f7170755bf4fe39f5aefd023aa9a43052b08",
+    "skills/brainstorming/visual-companion.md": "970475cbcd2bc37b7897167c65e5dc91d1beeb0796d2dc0876882dce690cea3e",
+    "skills/frontend-direction/references/paper-workflow.md": "8564c9e2aece2e8fadbebbfa2e4608d758891e8b52e00b399dddb4d7aa4d9713",
+    "skills/frontend-direction/references/paper-library.md": "e07f0d67d7ca8418f12377456cfc5451b8433f7fd3f7bfb62b161bf7a1bcf7fe"
+  },
+  "message_sha256": "ad3c7a16bdadd17ac876529fcdd1f6b8b1d9081ce8bfc6f6f5bb3fc10387ff1f",
+  "prior_run": "tests/codex/paper-frontend-behavior/results/runs/candidate-r2",
+  "scenario_sha256": "bb10872502286499d24a7bf8767935c6e9b9ce000ebddb46a696156c8c2c0b80",
+  "rubric_sha256": "cfabb74b3d7d12acd7a880ea80e66f6d4895cf89ca9293cadbadbdc23a617ef7",
+  "samples": 5,
+  "scope": "Unchanged design-handoff scenario/rubric/wrapper, only injected committed source changes; maintenance not repeated because no maintenance/schema rules changed."
+}

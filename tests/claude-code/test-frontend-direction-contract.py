@@ -52,5 +52,16 @@ class FrontendResources(unittest.TestCase):
         self.assertIn(target, skill)
         self.assertTrue((ROOT / 'skills/frontend-direction' / target).is_file())
 
+    def test_paper_operating_resources_are_reachable(self):
+        # Packaging only; fresh actor campaigns establish policy behavior.
+        base = ROOT / 'skills/frontend-direction'
+        entry = (base / 'SKILL.md').read_text()
+        for name in ('paper-workflow.md', 'paper-library.md'):
+            with self.subTest(resource=name):
+                self.assertIn('references/' + name, entry)
+                self.assertTrue((base / 'references' / name).is_file())
+        consumer = (ROOT / 'skills/implementing-frontend-design/SKILL.md').read_text()
+        self.assertIn('../frontend-direction/references/paper-library.md', consumer)
+
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "run_id": "candidate-r2",
+  "variant": "candidate",
+  "variant_revision": "099e1087e4c9217e56fa3c45a8e620cf153c5e58",
+  "scenario_revision": {
+    "design-handoff": "bb10872502286499d24a7bf8767935c6e9b9ce000ebddb46a696156c8c2c0b80",
+    "maintenance-boundaries": "22f91887250c752488b5684651afcfde0ea4c26528eca118660a3555c45908a2"
+  },
+  "harness": "Codex CLI / codex exec --ephemeral",
+  "harness_version": "0.164.0",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "plugins": "Installed-plugin versions not independently enumerated; same host/session tool inventory required for pair",
+  "typed_roles_available": [
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_reviewer",
+    "sp_topic_context",
+    "default",
+    "explorer",
+    "worker"
+  ],
+  "expected_samples": {
+    "design-handoff": 5,
+    "maintenance-boundaries": 5
+  },
+  "fork_turns": "not applicable: fresh ephemeral CLI process; no resume/fork/history",
+  "status": "awaiting-actors",
+  "sources_manifest_sha256": "5a90f34294f26922370626cd410c02e7b009cfc068b5beafa5fa39c663af06b9",
+  "actor_packets_manifest_sha256": "b4c4c6d6906bc3a974908207298be7a354b93098179e03069bb07170a172b1ef",
+  "rubric_sha256": "cfabb74b3d7d12acd7a880ea80e66f6d4895cf89ca9293cadbadbdc23a617ef7",
+  "fixtures_sha256": {
+    "library-after-reference.json": "8af6224974aaa48e6f2bfe631420f1e6ab029592fe3eee06bc181e9acafa1170",
+    "library-before.json": "0d6a7028986f20cbed18839706f8d3eb1ba2f8d92fcf0739428efdfe4a0d6d01"
+  },
+  "actor_environment_sha256": "d7574660e87ad5dd7a907c26a84d4535c38cdb7563ebd4ec1a52a246ff3f46ec",
+  "limitations": "Policy application through complete content injection, not implicit discovery or isolation from ambient CLI instructions. Any actor tool invocation invalidates the sample. Controller records observed runtime environment from event trace.",
+  "non_run_lanes": [
+    "Claude Code",
+    "Quorum"
+  ],
+  "candidate_root": "/private/tmp/paper-frontend-candidate",
+  "baseline_root": "/private/tmp/paper-frontend-baseline",
+  "how_deviation": "Fresh independent ephemeral CLI sessions replace literal collaboration fork_turns:none; no inherited conversation. This avoids transcription of large complete packets. Controller explicitly selected before first actor.",
+  "baseline_run": "baseline-r2",
+  "added_source_paths": [
+    "skills/frontend-direction/references/paper-workflow.md",
+    "skills/frontend-direction/references/paper-library.md"
+  ],
+  "pairing": "Baseline-r2 exact scenario/rubric/fixture/environment bytes and actor wrapper; same existing source paths/order plus preapproved full new Paper references. Sources are committed blobs only.",
+  "prior_candidate_run": "candidate-r1",
+  "iteration_reason": "D10 startup project scope and M08 retained captures; original failed evidence preserved. M13 semantic ruling requires no policy fix."
+}

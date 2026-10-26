@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 74.43,
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "sandbox": "read-only",
+  "ephemeral": true,
+  "purpose": "one native installed-skill discovery/source-identity smoke; not a behavior campaign"
+}

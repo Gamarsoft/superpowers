@@ -1,0 +1,42 @@
+{
+  "design-handoff": {
+    "path": "/private/tmp/paper-frontend-candidate/tests/codex/paper-frontend-behavior/results/runs/baseline-r1/actor-messages/design-handoff.md",
+    "sha256": "a6671b0a80468ed42c8b41f931e81528dcfcb1be81ecc9de5b95cb0ca0003a97",
+    "bytes": 108129,
+    "words": 14457,
+    "sources": [
+      "skills/frontend-direction/SKILL.md",
+      "skills/frontend-direction/references/design-source-priority.md",
+      "skills/frontend-direction/references/packet-finalization.md",
+      "skills/frontend-direction/references/packet-handoff.md",
+      "skills/frontend-direction/references/packet-schema.md",
+      "skills/implementing-frontend-design/SKILL.md",
+      "skills/implementing-frontend-design/references/source-of-truth.md",
+      "skills/frontend-direction/references/visual-exploration.md",
+      "skills/frontend-direction/references/task-to-layout.md",
+      "skills/frontend-direction/references/design-knowledge-selection.md",
+      "skills/frontend-direction/references/design-knowledge/refactoring-ui.md",
+      "skills/frontend-direction/references/design-knowledge/design-everyday-things.md",
+      "skills/frontend-direction/references/frontend-review-checklist.md",
+      "skills/implementing-frontend-design/references/runtime-handoff.md",
+      "skills/implementing-frontend-design/references/implementation-review-checklist.md",
+      "skills/brainstorming/visual-companion.md"
+    ]
+  },
+  "maintenance-boundaries": {
+    "path": "/private/tmp/paper-frontend-candidate/tests/codex/paper-frontend-behavior/results/runs/baseline-r1/actor-messages/maintenance-boundaries.md",
+    "sha256": "cea66c379c7af8367ea41974c2c178ae19dab07445d0f31b0205a2491c137152",
+    "bytes": 41945,
+    "words": 5182,
+    "sources": [
+      "skills/frontend-direction/SKILL.md",
+      "skills/frontend-direction/references/design-source-priority.md",
+      "skills/frontend-direction/references/packet-finalization.md",
+      "skills/frontend-direction/references/packet-handoff.md",
+      "skills/frontend-direction/references/packet-schema.md",
+      "skills/implementing-frontend-design/SKILL.md",
+      "skills/implementing-frontend-design/references/source-of-truth.md",
+      "skills/implementing-frontend-design/references/runtime-handoff.md"
+    ]
+  }
+}

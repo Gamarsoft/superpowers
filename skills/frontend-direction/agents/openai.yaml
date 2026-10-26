@@ -1,4 +1,4 @@
 interface:
   display_name: "Frontend Direction"
-  short_description: "Explore and prototype a stronger frontend direction"
-  default_prompt: "Use $frontend-direction to improve this screen or develop this feature's visual direction through image concepts and an interactive browser prototype, preserving the approved target for implementation."
+  short_description: "Compose and verify a stronger frontend direction"
+  default_prompt: "Use $frontend-direction to improve this screen or develop this feature's direction, using Paper for substantial composition and focused actual-component evidence for behavior and feasibility. Honor explicit medium choices and bounded library upkeep. Preserve the approved target for implementation."

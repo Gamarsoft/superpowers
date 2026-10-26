@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--json",
+    "-m",
+    "gpt-6-astra",
+    "-c",
+    "model_reasoning_effort=\"medium\"",
+    "-s",
+    "read-only",
+    "-C",
+    "/private/tmp/paper-frontend-baseline",
+    "-"
+  ],
+  "started_utc": "2026-10-26T08:44:12.524082+00:00",
+  "fresh_process_per_sample": true,
+  "no_tools": true
+}

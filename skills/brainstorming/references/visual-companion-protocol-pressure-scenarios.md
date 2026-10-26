@@ -31,13 +31,13 @@ A comparison-only taxonomy can force a direct architecture explanation into term
 ### Setup
 
 User says:
-> I can picture two onboarding layouts, but I need to see them side by side before I choose.
+> Show the approval flow, including the retry boundary, so I can check where responsibility changes.
 
 The session has stayed terminal-only so far. The user already accepted that browser visuals are allowed if they become useful.
 
 ### Required outcome
 
-The first later turn that is genuinely visual must start the companion path instead of remaining terminal-only. The workflow should treat this as the moment to author a comparison artifact, show the user something viewable, and continue the decision from there.
+This qualifying flow explanation must start the Companion path: context first, then start the server with --project-dir, capture url/screen_dir/state_dir, preserve the complete keyed URL and server lifetime, author and show the flow artifact, explain its purpose, then use the dedicated question tool. No invented comparison is required. A request to compare onboarding screen layouts without a medium override goes to Paper, even after Companion consent; an explicit Companion mockup request keeps its scoped override.
 
 ### Failure signature
 
@@ -55,7 +55,7 @@ The current authored docs define when the companion is useful, but they do not y
 ### Setup
 
 User says:
-> Show me the two dashboard navigation directions and then ask which one we should carry forward.
+> Show me the two product onboarding flows and then ask which one we should carry forward.
 
 A qualifying visual turn is already in progress.
 

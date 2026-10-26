@@ -1,0 +1,6 @@
+2026-10-26T08:44:13.717148Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-26T08:44:13.734399Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-26T08:44:13.761209Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-26T08:44:13.785148Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-26T08:44:15.369667Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 53.999761417s)... turn_id=01a17761-b2e3-7403-a79b-cf8648280e82 retries=1 max_retries=5 sampling_error=exceeded retry limit, last status: 429 Too Many Requests
+2026-10-26T08:47:34.072557Z  WARN codex_core::shell_snapshot: Failed to delete shell snapshot at AbsolutePathBuf("/Users/gamarsoft/.codex/shell_snapshots/01a17761-b00f-7e41-b96d-bd3dd35356c8.1793004253699391000.sh"): Os { code: 2, kind: NotFound, message: "No such file or directory" }

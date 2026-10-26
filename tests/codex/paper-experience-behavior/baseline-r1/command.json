@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "codex",
+    "exec",
+    "--ephemeral",
+    "--ignore-user-config",
+    "--json",
+    "-m",
+    "gpt-6-astra",
+    "-c",
+    "model_reasoning_effort=\"medium\"",
+    "-s",
+    "read-only",
+    "-C",
+    "/private/tmp/paper-frontend-baseline",
+    "--image",
+    "/private/tmp/paper-frontend-candidate/tests/codex/paper-experience-behavior/fixtures/desktop-1440.png",
+    "--image",
+    "/private/tmp/paper-frontend-candidate/tests/codex/paper-experience-behavior/fixtures/narrow-390.png",
+    "-"
+  ],
+  "started_utc": "2026-10-26T08:40:06.646681+00:00",
+  "cwd": "/private/tmp/paper-frontend-baseline",
+  "cli_version": "codex-cli 0.164.0",
+  "no_tools": true,
+  "fresh_process_per_sample": true
+}

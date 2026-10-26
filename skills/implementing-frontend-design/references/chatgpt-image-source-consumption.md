@@ -1,6 +1,6 @@
 # ChatGPT Images Source Consumption
 
-Use this only when the packet lists approved generated image files as implementation references.
+Historical image-pack consumption is retired. Leave historical files and paths untouched as reference material only. Use this reference only for explicitly requested image-based concepts retained with approved scoped intent in a current version-2 packet. No image pack bypasses the shared v2 validation, approval or required runtime-evidence gates.
 
 ## Rules
 

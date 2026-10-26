@@ -1,5 +1,5 @@
 ---
-description: "Refine and polish an already implemented frontend from the best available product contract: frontend direction packet when present, otherwise approved spec plus any available selected-route planning context, otherwise the existing source code, design system, and rendered UI."
+description: "Refine and polish an already implemented frontend from the best available product contract: approved version-2 frontend direction packet when present, otherwise approved spec plus any available selected-route planning context, otherwise the existing source code, design system, and rendered UI."
 name: "ui-refinery"
 argument-hint: "Goal, relevant route or component, where the spec, selected-route planning context, packet, screenshots, or captures live if they exist, what feels wrong, and whether you want subtle polish or a stronger but still contract-safe refinement."
 tools:
@@ -43,7 +43,7 @@ Use the strongest available source:
 2. approved spec plus any available planning context from the confirmed delivery route
 3. current product UI, source code, shared design system, retained screenshots, browser captures, and rendered behavior
 
-Temporary HTML companion artifacts are comparison aids only. Use them only when they still clarify an unresolved decision.
+Temporary HTML companion artifacts are comparison aids only. Use them only when they still clarify an unresolved decision. A required-pending or invalid packet cannot fall through to a weaker contract mode. Recover the expected v2 handoff before dependent changes.
 
 Do not invent a new product direction. In no-packet mode, preserve and clarify the existing brownfield language.
 
@@ -108,4 +108,4 @@ Include:
 - assumptions and remaining concerns
 - the explicit `askQuestions` checkpoint
 
-Approved frontend targets: consume the exact approved prototype source/version, launch/state setup, final captures and supersession from the packet. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.
+Approved frontend targets: consume the exact approved v2 design manifest/payload, separate runtime evidence and recoverable source/version, launch/state setup, final captures and supersession from the packet. Preserve its complete producing handoff identity and validate expected revision/hash. Missing or unsupported versions block dependent work; historical packets are reference material only, with no legacy fallback or migration. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.

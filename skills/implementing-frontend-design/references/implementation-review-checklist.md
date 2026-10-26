@@ -4,13 +4,14 @@ Use before declaring UI work done.
 
 ## 1. Input Fidelity
 
-- Did canonical signals select [packet validation](../../frontend-direction/references/packet-finalization.md), including supplied expected revision/descriptor SHA-256? Did missing or invalid canonical metadata block dependent work instead of falling back to legacy? Inputs with no canonical signal retain legacy approval/intent handling.
+- Did the v2 handoff pass [packet validation](../../frontend-direction/references/packet-finalization.md) with supplied expected revision/descriptor SHA-256? Did missing, unsupported or invalid metadata block dependent work? Historical references never supply a legacy implementation path.
 - Are exact packet identity and state acceptance sources carried into implementation tasks, with current source/references distinguished from history? Were approval evidence and visual quality assessed separately from hashes?
-- Did you read the approved brief/spec, available workflow context, frontend direction packet, exact approved prototype/version and state setup when provided, `screen-index.md`, `brownfield-ui-extraction.md`, selected visual-truth source, and available screenshots/captures first?
+- Does the complete [shared handoff record](../../frontend-direction/references/packet-handoff.md) match the producing handoff, including expected revision/hash, approval reference and accepted limitations?
+- Did you read the approved brief/spec, available workflow context, frontend direction packet, exact approved design manifest/payload and separate runtime records/source versions and state setup, `screen-index.md`, `brownfield-ui-extraction.md`, selected visual-truth source, and available screenshots/captures first?
 - If a handoff or `CONTEXT.md` said frontend packet status was `required` or `required-pending`, did you stop instead of implementing from degraded assumptions?
-- If ChatGPT Images 2 is selected, did you read the exact approved generated image files and their approved reference intent?
+- If explicitly selected image references are retained in the v2 packet, did you read the exact approved generated image files and their approved reference intent?
 - If brownfield, did you inspect existing tokens, components, shell patterns, interaction patterns, and current rendered UI?
-- If no packet or approved visual-truth source existed, did you state degraded mode honestly?
+- If no packet is required for a mechanical change, is that scope explicit? If a packet is required, did missing evidence remain pending rather than becoming an implicit degraded approval?
 
 ## 2. Reference-Intent Gate
 
@@ -60,6 +61,7 @@ A waiver requires human approval and names the source, approved intent, mismatch
 ## 5. Interaction And Accessibility
 
 - For changed web composites or asynchronous controls, use the [control transition checks](control-transitions.md) to follow keyboard access and focus through the relevant states.
+- Are hierarchy, grouping, useful density, typography, spacing, alignment, readable contrast, action clarity and feedback/recovery faithful and usable in the rendered app?
 - Are keyboard and screen-reader paths preserved?
 - Are overlays, dialogs, forms, and responsive layouts usable and predictable?
 - For native/mobile-first work, did mobile interaction guidance cover navigation, forms, gestures, permissions, text scaling, tap targets, semantics, safe areas, and compact constraints?
@@ -74,7 +76,10 @@ A waiver requires human approval and names the source, approved intent, mismatch
 
 ## 7. Fresh Visual Review
 
+- Is the [implementation runtime block](runtime-handoff.md) supplied with checkout/build and dirty-source identity, start command/cwd, URL/route, readiness, fresh auth/fixture setup, viewports and server owner/lifetime?
+- Did the reviewer confirm the served source/build and establish required state independently? Unknown server provenance or inaccessible authentication/state setup blocks approval.
 - For non-trivial UI work, did a fresh-context reviewer perform the final visual quality review?
+- Did that existing review consume the packet’s experience brief and rendered quality findings, and judge the actual app for useful feedback, task ordering, interaction load and state clarity as well as fidelity? A faithful implementation of a consequential design defect requires changes in the affected scope; valid hashes and functioning controls do not resolve it.
 - Did the reviewer read project instructions first, including `AGENTS.md`, `PRODUCT.md`, `DESIGN.md`, the task file, and workflow or milestone context only when present?
 - For web targets, did the visual reviewer use a fresh browser context and avoid reusing the implementer's browser session, storage, console state, or previously opened page?
 - Did the visual reviewer independently open the target route/screen and recapture required evidence?
@@ -84,5 +89,6 @@ A waiver requires human approval and names the source, approved intent, mismatch
 ## 8. Recovery
 
 - Can another agent recover the same frontend references from your recorded output?
+- Were affected library entries reconciled within allowance, or left explicitly pending with unchanged last verified revision/source/evidence? Was app delivery reported separately without waiving defects?
 - Did you keep `Frontend References` current when workflow artifacts are in scope?
 - Did you avoid claiming completion from tests, DOM checks, or screenshot capture without reference-intent inspection?

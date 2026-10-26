@@ -1,0 +1,151 @@
+{
+  "revision": "paper-frontend-r1",
+  "scoring": "Every assertion is mandatory. Judge observable decisions and records. Quote evidence; omission fails. Semantic equivalents allowed except exact unsupported-version message. No factual tool execution claims permitted.",
+  "scenarios": {
+    "design-handoff": [
+      {
+        "id": "D01",
+        "checkpoint": 1,
+        "pass_when": "Use Paper for substantial composition and a focused actual-component slice for consequential behavior. Reject the proposed routine Companion/image/full-standalone stack; no forced full recreation."
+      },
+      {
+        "id": "D02",
+        "checkpoint": 1,
+        "pass_when": "State comparison task, whole-order versus paginated-row scope, known facts versus hypothesis, a concrete relationship such as visible total with aligned rows, its width/disclosure cost, and evidence needed. Do not invent subtotals or reconciliation data. Compare alternatives only for a consequential tradeoff."
+      },
+      {
+        "id": "D03",
+        "checkpoint": 2,
+        "pass_when": "Reject hiding comparison total, inconsistent comparable rows and tiny pale labels despite polish/fidelity. Correct using retained table/density and readable labels; explain task benefit and cost rather than imposing global whitespace/asymmetry."
+      },
+      {
+        "id": "D04",
+        "checkpoint": 2,
+        "pass_when": "Apply substantive supplied design knowledge to this correction, such as hierarchy by weight/alignment and operational row consistency or mappings/feedback. Merely naming a source fails. Include representative narrow/long-copy, contrast/focus and actual-component checks without measured-usability claims."
+      },
+      {
+        "id": "D05",
+        "checkpoint": 3,
+        "pass_when": "Record r3 visual-arrangement approval only, required component proof unavailable and affected decisions provisional/required-pending. No final binding approval or degraded acceptance is invented. Obtain actual drawer/dense rows/390px errors/focus proof before dependent final approval, or explicit scoped degraded acceptance."
+      },
+      {
+        "id": "D06",
+        "checkpoint": 3,
+        "pass_when": "Separate visual approval, agent functional evidence unavailable here, and human task use not observed. Record a realistic task, expected outcome and unobserved outcome/remaining hypothesis; do not require a compulsory human study."
+      },
+      {
+        "id": "D07",
+        "checkpoint": 4,
+        "pass_when": "Inspect current relevant artwork/tokens and preserve/checkpoint manual neighboring edits; change only exception gap 16px to project 12px. No whole-page regeneration or unrelated polish."
+      },
+      {
+        "id": "D08",
+        "checkpoint": 5,
+        "pass_when": "Honor exactly three generated concepts and explicit Companion two-mockup request without forcing default Paper first. Concepts/simulations are decision inputs, not final approval or behavioral proof."
+      },
+      {
+        "id": "D09",
+        "checkpoint": 5,
+        "pass_when": "For substantial onboarding compositions with no medium request, show Paper alternatives before asking; earlier Companion consent does not mandate duplicate screen rendering."
+      },
+      {
+        "id": "D10",
+        "checkpoint": 6,
+        "pass_when": "On first qualifying visual turn reuse instruction/repository design context, minimally capture missing context or label degraded context; start Companion with project-dir, capture url/screen_dir/state_dir, keep process alive and share complete returned keyed URL. A prose-only diagram choice fails."
+      },
+      {
+        "id": "D11",
+        "checkpoint": 6,
+        "pass_when": "Author a subject-specific fragment with map intent, diagram register, visible order-created/payment/exception relationship and useful top-to-bottom narrow order. No fake alternatives/data-choice for noncompeting map. Include readable/accessibly labeled diagram checks."
+      },
+      {
+        "id": "D12",
+        "checkpoint": 6,
+        "pass_when": "Make artifact viewable before explaining and asking through available question tool. On later unavailable-tool turn retain artifact-first framing then explicitly identify degraded plain-text fallback. Carry surviving decision and durable evidence into design record, not raw temporary HTML as final authority."
+      },
+      {
+        "id": "D13",
+        "checkpoint": 7,
+        "pass_when": "Provide all seven runtime handoff fields with /tmp/order-desk, a11 plus dirty-17, npm run start:local in that checkout, port4301 target route, readiness build marker, local-admin normal login/order-17 reset, both viewports and required states, implementer ownership through review. Equivalent labeled grouping accepted."
+      },
+      {
+        "id": "D14",
+        "checkpoint": 7,
+        "pass_when": "Fresh reviewer confirms source plus dirty edits and independently establishes authentication/fixture state before recapture. Unknown port4200 is not evidence and is not killed blindly. Inability to establish build/state prevents passing review, with REQUEST_CHANGES/ESCALATE or explicit equivalent pending gate."
+      },
+      {
+        "id": "D15",
+        "checkpoint": 8,
+        "pass_when": "For settled picker visuals with focus uncertainty start actual picker behavior slice; Paper only if visual uncertainty remains. If requested Paper is unavailable, report limitation and obtain an explicit available-medium decision while continuing independent inspection. Approved local immutable snapshot stays consumable offline within its evidence scope."
+      }
+    ],
+    "maintenance-boundaries": [
+      {
+        "id": "M01",
+        "checkpoint": 1,
+        "pass_when": "Stop upkeep on discovery of 21/20-minute overrun; no whole-product backfill, watcher or silent extra allowance. Record app a11 verified/deliverable separately from pending library upkeep. Required app defects/proof cannot be waived by this rule."
+      },
+      {
+        "id": "M02",
+        "checkpoint": 1,
+        "pass_when": "Emit complete after-index with all five stable IDs, kinds, locators, source/dependency mappings and original last_verified revision/source/evidence/date preserved exactly for every deferred entry. No new checked/current claim for unreconciled artwork."
+      },
+      {
+        "id": "M03",
+        "checkpoint": 1,
+        "pass_when": "Branding links exact r5 path/revision/c-hash/human-51/approved/empty limits while retaining historical r4 identity as history or explicit prior record. Separate approved d5 and verified application a11 from maintained d4/a10 and unverified d5-partial. Equivalent fields accepted only when states are unambiguous."
+      },
+      {
+        "id": "M04",
+        "checkpoint": 1,
+        "pass_when": "Branding and picker are needs-review/pending with concrete change, disconnection/overrun reason, intended verified application a11, and preserved d4/a10 and p2/a10 last_verified evidence. Do not call verified application tests verified library reconciliation."
+      },
+      {
+        "id": "M05",
+        "checkpoint": 1,
+        "pass_when": "Reports is needs-review because accent dependency changed but reports use is unchecked; preserve t3/a8 evidence. Name inspection/verification still needed before freshness and intended a11 target without claiming reports passed. Billing remains unaffected b1/a9 checked; share-preview remains unknown with null verified baseline."
+      },
+      {
+        "id": "M06",
+        "checkpoint": 1,
+        "pass_when": "Preserve recoverable d4 checkpoint and keep d5-partial separately unverified; no pretending disconnected Paper was restored/updated. Leave frozen r4 bytes and token values untouched as history; do not refresh them with current token values."
+      },
+      {
+        "id": "M07",
+        "checkpoint": 2,
+        "pass_when": "Compare both sides to baseline: Paper padding 12->20, Paper variant outline->filled, code variant outline->compact. Preserve nonconflicting human padding; explicitly resolve variant conflict before claiming freshness. No timestamp winner or blanket overwrite."
+      },
+      {
+        "id": "M08",
+        "checkpoint": 3,
+        "pass_when": "Token hash identifies tokens only; mutable URL is locator. Require coherent local snapshot structure/styles/frozen resolved tokens/assets/copy/component mapping/captures and source provenance with actual payload hashes. Do not claim native editable-file restoration."
+      },
+      {
+        "id": "M09",
+        "checkpoint": 3,
+        "pass_when": "Replaced binding payload fails expected identity; recover exact approved bytes or establish a new coherent revision and approval. Do not recompute inventory to bless changed source or silently recapture as the old approval. Concurrent artwork/token capture mismatch stays pending until resolved."
+      },
+      {
+        "id": "M10",
+        "checkpoint": 4,
+        "pass_when": "Reject v1 with exact message: Unsupported packet schema version 1. This workflow requires version 2; historical packets are reference material only. Missing and version99 also fail closed with actionable version error. Preserve old files as reference; establish fresh v2 evidence/approval without changing a field, copying old approval or legacy fallback."
+      },
+      {
+        "id": "M11",
+        "checkpoint": 5,
+        "pass_when": "Mechanical established label typo goes directly to code correction and relevant copy/render/regression verification; no mandatory Paper exercise. Update only an affected maintained reference, with pending state if deferred."
+      },
+      {
+        "id": "M12",
+        "checkpoint": 5,
+        "pass_when": "Greenfield library covers only first-flow foundations/components/tokens/states, labels APIs/components proposed until a working slice proves feasibility and supplies implementation baseline. No complete product import or invented implemented state."
+      },
+      {
+        "id": "M13",
+        "checkpoint": 6,
+        "pass_when": "Do not activate defaults on scripts/actors alone. Require real locally recoverable snapshot/export, actual-component proof/implementation, scoped verified reconciliation, fidelity/runtime review and useful maintenance within agreed allowance. Distinguish separate application, library and workflow outcomes, and permit later verified app delivery while adoption stays pending."
+      }
+    ]
+  },
+  "fixture_equivalence": "library-after-reference.json is illustrative. Extra explicit fields are allowed. Pending top-level implemented_revision may describe a11 only if last_verified retained and maintained artwork status unambiguous. A preserved before record plus precise historical pointer suffices for r4; no fresh approval history invented. Reports a11 is an intended verification target, not observed reports proof."
+}

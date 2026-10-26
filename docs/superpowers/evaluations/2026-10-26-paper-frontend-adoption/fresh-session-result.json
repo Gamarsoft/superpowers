@@ -1,0 +1,65 @@
+{
+  "catalog_entries": [
+    {
+      "name": "superpowers:frontend-direction",
+      "advertised_path": "r0/superpowers/frontend-direction/SKILL.md",
+      "resolved_path": "/Users/gamarsoft/.codex/superpowers/skills/frontend-direction/SKILL.md",
+      "sha256": "4a24f2f46c223d3138ba58ea750e0c9fa26f85e8ec565c148be77990abd23273"
+    },
+    {
+      "name": "superpowers:implementing-frontend-design",
+      "advertised_path": "r0/superpowers/implementing-frontend-design/SKILL.md",
+      "resolved_path": "/Users/gamarsoft/.codex/superpowers/skills/implementing-frontend-design/SKILL.md",
+      "sha256": "78ec5d94b5450ecc9bb0b454224da8224e5208fa8d904b76df2cfe797a09397a"
+    }
+  ],
+  "installed_repository": "/Users/gamarsoft/.codex/superpowers",
+  "installed_revision": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+  "contracts": [
+    {
+      "name": "Installed discovery and source identity",
+      "verified": true,
+      "evidence": "Catalog root r0 is /Users/gamarsoft/.codex/skills. Both advertised paths resolved uniquely and were read and SHA-256 hashed directly. Git confirms all inspected sources are tracked; their diff against HEAD is empty."
+    },
+    {
+      "name": "Paper owns substantial composition",
+      "verified": true,
+      "evidence": "frontend-direction/SKILL.md, Design loop step 2, assigns substantial hierarchy, density, typography and screen composition to Paper. references/paper-workflow.md supplies editable composition and recoverable extraction requirements."
+    },
+    {
+      "name": "Current app anchors brownfield work and owns behavior/delivery",
+      "verified": true,
+      "evidence": "references/design-source-priority.md binds verified behavior and retained brand/shell while allowing approved layout changes. paper-workflow.md starts from current app/source/tokens. implementing-frontend-design/SKILL.md requires integration and runtime verification in the actual stack."
+    },
+    {
+      "name": "Task-to-layout and design-quality reasoning retained",
+      "verified": true,
+      "evidence": "frontend-direction/SKILL.md steps 1–3 require task-to-layout and substantive design guidance before composition. Step 5 and paper-workflow.md require rendered quality judgments connecting visible defects, task consequences and corrections."
+    },
+    {
+      "name": "Exact design approval precedes dependent implementation",
+      "verified": true,
+      "evidence": "frontend-direction/SKILL.md distinguishes concept selection from final approval. packet-finalization.md freezes the exact approved revision and carries its descriptor hash and approval reference. implementing-frontend-design/SKILL.md blocks dependent implementation for absent or unapproved required targets and requires matching producer identity."
+    },
+    {
+      "name": "Current handoffs are version 2 only",
+      "verified": true,
+      "evidence": "Both skills and packet-schema.md require v2 and reject historical handoffs. scripts/frontend_packet.py:144–148 rejects any non-integer-2 schema version, including 1, with the specified unsupported-version response; missing versions also fail closed. No helper was executed."
+    },
+    {
+      "name": "Affected-only library upkeep with bounded stopping",
+      "verified": true,
+      "evidence": "references/paper-library.md requires reconciliation only of affected maintained entries and stopping when the allowance is reached or would be exceeded. Deferred work preserves last_verified revision/source/evidence and records change, reason and intended verified application revision. Pending upkeep does not waive delivery gates."
+    },
+    {
+      "name": "Complementary Companion, image-generation and prototype roles",
+      "verified": true,
+      "evidence": "references/visual-exploration.md excludes routine Companion screen composition and generated UI screenshots, while honoring explicit scoped requests. design-source-priority.md treats temporary Companion sketches as decision context. Actual-component slices resolve behavior/component risks; standalone prototypes are provisional fallbacks. Image generation is unnecessary for Paper composition."
+    }
+  ],
+  "limitations": [
+    "These are installed-source contract observations, not measured agent behavior, runtime verification, pilot results or workflow-adoption evidence.",
+    "Only the two installed SKILL.md files, necessary linked references and relevant helper source were inspected. No files/settings were modified; no tests, services, workflows, agents, Paper, browser or remote connectors were run.",
+    "The initial heredoc read failed because the shell could not create a temporary file; subsequent reads used a non-heredoc command successfully."
+  ]
+}

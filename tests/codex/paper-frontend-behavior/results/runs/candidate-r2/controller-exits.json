@@ -1,0 +1,42 @@
+[
+  {
+    "sample": "design-handoff-01",
+    "exit_code": 0
+  },
+  {
+    "sample": "design-handoff-04",
+    "exit_code": 0
+  },
+  {
+    "sample": "design-handoff-05",
+    "exit_code": 0
+  },
+  {
+    "sample": "design-handoff-02",
+    "exit_code": 0
+  },
+  {
+    "sample": "design-handoff-03",
+    "exit_code": 0
+  },
+  {
+    "sample": "maintenance-boundaries-02",
+    "exit_code": 0
+  },
+  {
+    "sample": "maintenance-boundaries-03",
+    "exit_code": 0
+  },
+  {
+    "sample": "maintenance-boundaries-01",
+    "exit_code": 0
+  },
+  {
+    "sample": "maintenance-boundaries-05",
+    "exit_code": 0
+  },
+  {
+    "sample": "maintenance-boundaries-04",
+    "exit_code": 0
+  }
+]

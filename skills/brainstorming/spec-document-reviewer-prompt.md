@@ -14,6 +14,7 @@ Use this template when dispatching a spec reviewer subagent.
 - `[REVIEW_STAGE]` — one of: `neutral-artifacts`, `selected-adapter`
 - `[FRONTEND_DIRECTION_FOLLOW_ON_PROMPT_OR_NONE]`
 - `[FRONTEND_PACKET_STATUS]` — one of: `not-required`, `required-pending`, `approved`, `approved-with-degraded-evidence`
+- `[FRONTEND_PACKET_HANDOFF]` — the complete record from `frontend-direction/references/packet-handoff.md`: entry, expected revision, expected descriptor SHA-256, approval reference, status and accepted limitations. Pending/not-required inputs use that contract's explicit handling. Current approved handoffs require v2; historical packets are reference material only, never a legacy implementation route.
 - `[CONFIRMED_DELIVERY_ROUTE_OR_NONE]`
 - `[SELECTED_ROUTE_ADAPTER_OR_NONE]`
 - `[TRACK]` — one of:
@@ -48,6 +49,7 @@ Artifacts:
 - Approved neutral spec: [SPEC_FILE_PATH]
 - Frontend direction follow-on prompt: [FRONTEND_DIRECTION_FOLLOW_ON_PROMPT_OR_NONE]
 - Frontend packet status: [FRONTEND_PACKET_STATUS]
+- Frontend packet handoff: [FRONTEND_PACKET_HANDOFF]
 - Confirmed delivery route: [CONFIRMED_DELIVERY_ROUTE_OR_NONE]
 - Selected route adapter: [SELECTED_ROUTE_ADAPTER_OR_NONE]
 - Track: [TRACK]
@@ -88,6 +90,7 @@ Look especially hard for:
 - options with no real trade-offs, or invented alternatives to a settled direction
 - missing choice ownership or agent assumptions presented as user decisions
 - contradictions between the spec, packet, and the selected adapter when one exists
+- approved canonical handoffs missing or changing the producing entry/revision/hash, approval reference or accepted limitations; verify the supplied expected identity rather than deriving a replacement from the candidate
 - missing example mapping or vague acceptance language
 - brownfield safety gaps
 - UI-heavy work with no frontend-direction follow-on prompt

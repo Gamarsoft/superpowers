@@ -1,0 +1,18 @@
+{
+  "source_commit": "3ad8a833e842d5a9c5e6dee971eb6498b25ebfed",
+  "sources": {
+    "skills/frontend-direction/SKILL.md": "4a24f2f46c223d3138ba58ea750e0c9fa26f85e8ec565c148be77990abd23273",
+    "skills/frontend-direction/references/task-to-layout.md": "2ef7d4102b80dba16f651d6aa2048efccc2ac120e606be432697ff0298a693d3",
+    "skills/frontend-direction/references/visual-exploration.md": "bad05ca320bfba8a9808ce643b188715808e08cbec1d9a0df6b6a1f8021d15ac",
+    "skills/frontend-direction/references/frontend-review-checklist.md": "12f62fd597249d57e1f5d06e0ee21f1db5140244c4f4d05b3c7e092c43e3a52d",
+    "skills/frontend-direction/references/paper-workflow.md": "8564c9e2aece2e8fadbebbfa2e4608d758891e8b52e00b399dddb4d7aa4d9713",
+    "skills/frontend-direction/references/frontend-direction-template.md": "d08df3a728c0ea0bc2371613a166717ef47801fb891439121a4174a1a1e2c03b"
+  },
+  "images": {
+    "desktop-1440.png": "1746efe734c541b711e0e72a201cd8d32572c7b01a02bc2e7e6e3de45ae0d767",
+    "narrow-390.png": "6e31cbdd87219921b7a3e118c36461c3e213b35e089dbda82c6d5228666162cb"
+  },
+  "scenario_sha256": "3426ff8888be5ed90c0fa1053c6f8e544d88b1938b63982b4f3309d970c2d15d",
+  "acceptance_sha256": "af4da2a0110c0f2c55376b911fc7384ff20b69175cd5cfc2620e1e9f31f65471",
+  "message_sha256": "e99b28addff5503522264fc29c738e606bcc5d3bec5a06dea42edc7c605c6c09"
+}

@@ -1,0 +1,11 @@
+{
+  "valid_completed_traces": 10,
+  "unique_threads": 10,
+  "tool_calls": 0,
+  "baseline_runs_byte_identical_to": "b0911c0",
+  "generic_scorer_unchanged_from": "b0911c0",
+  "installed_files_unchanged": 172,
+  "assertions_passed": 135,
+  "assertions_total": 140,
+  "paired_gate": "FAIL"
+}

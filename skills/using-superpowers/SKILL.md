@@ -124,7 +124,8 @@ When multiple skills could apply, use this order:
 1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
 2. **Implementation skills second** (implementing-frontend-design, mcp-builder) - these guide execution
 
-"Let's build X" → brainstorming first, then implementation skills.
+"Let's build X" → brainstorming first when product goals or behavior need shaping, then implementation skills.
+Settled behavior with substantial unresolved screen composition → frontend-direction with Paper and focused actual-component evidence. Explicit medium requests govern their task. Current approved v2 target or mechanical UI correction → implementing-frontend-design in the active lane. Companion supports useful explanations, flows and product comparisons; it is not a default composition stage.
 "Fix this bug" → debugging first, then domain-specific skills.
 
 ## Skill Types

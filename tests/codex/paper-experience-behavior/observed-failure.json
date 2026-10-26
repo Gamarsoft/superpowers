@@ -1,0 +1,18 @@
+{
+  "user_feedback_sha256": "8fb9cd8d4498e17e21ec67891e026636261e6f843f3a6b8b9e020d03d5c4cf69",
+  "rejected_revision": "branding-paper-r1-20261026",
+  "rejected_descriptor_sha256": "398c671d8e72fa063c9fbd25e1995d258246826fe460d7797f782b364478ff00",
+  "rejection": "Explicit human rejection; no design approval",
+  "prior_validation": "Only status/approval absent; structural validity is not quality",
+  "confirmed_framing": [
+    {
+      "question": "Main usage frequency",
+      "answer": "Branding is done once for each parkings, but then rebranding does not happen that often."
+    },
+    {
+      "question": "Are supplied branding assets ready?",
+      "answer": "Logos and brand color are ready"
+    }
+  ],
+  "historical_evidence": "Prior campaign and pilot bytes unchanged; this is additional evidence, not rescoring old samples."
+}

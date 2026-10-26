@@ -1,8 +1,8 @@
 # Refactoring UI — substantive design sections
 
-This is adapted knowledge from the MIT-licensed Wondel.ai skill, not the book or an official publication by its authors. Source revision: `c172996495bed0fcd26896a9416b2093fd7073f0`. [License](LICENSE.txt). Use alongside the [selection and authority rules](../design-knowledge-selection.md). Original examples are retained to support application; they are not product requirements. Third-party workflow, scoring and unrelated reference links are omitted.
+This is adapted knowledge from the MIT-licensed Wondel.ai skill, not the book or an official publication by its authors. Source revision: `c172996495bed0fcd26896a9416b2093fd7073f0`. [License](LICENSE.txt). Use alongside the [selection and authority rules](../design-knowledge-selection.md). Examples are adapted for readable labels, checked contrast pairs and task-specific operational states; they are not product requirements. Third-party workflow, scoring and unrelated reference links are omitted.
 
-Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations correct contrast units and replace universal density, scale, width and label prescriptions with project-scoped choices. Tailwind examples illustrate relationships; they do not authorize adding Tailwind.
+Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations correct contrast units and replace universal density, scale, width and label prescriptions with project-scoped choices. Reuse product typography and elevation tokens; font combinations, tinting and shadows are choices within that system. Tailwind examples illustrate relationships; they do not authorize adding Tailwind.
 
 ### 1. Visual Hierarchy
 
@@ -19,9 +19,9 @@ Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations co
 
 | Context | Hierarchy Technique | Example |
 |---------|---------------------|---------|
-| **Form fields** | De-emphasize labels, emphasize values | Small uppercase label above large value |
+| **Form fields** | Keep labels discoverable while emphasizing entered values | Readable sentence-case label beside or above a compact input; long labels wrap without breaking alignment |
 | **Dashboards** | Key metric large, context small | "$42,300" large, "vs last month" small |
-| **Tables** | De-emphasize headers, emphasize data | Headers uppercase small gray, data normal |
+| **Tables** | Align comparable values and keep column meaning visible | Readable sentence-case headers; consistent row treatment and aligned amounts |
 
 **Design patterns:**
 - Three-level hierarchy: Size (large/base/small), Weight (bold/medium/normal), Color (dark/medium/light gray)
@@ -81,13 +81,13 @@ Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations co
 
 ### 4. Color
 
-**Core concept:** Build a systematic palette with 5-9 shades per color, add subtle saturation to grays, and design in grayscale first.
+**Core concept:** Use the product's semantic palette and sufficient contrast. A shade scale or grayscale study can help when the system is still being defined.
 
 **Why it works:** Random colors clash; a predefined shade system ensures consistency, and HSL adjustments create natural-feeling lighter and darker variants.
 
 **Key insights:**
 - A palette may use several shades from near-white to near-black; reuse the project palette. The sample uses `#111827` as a dark neutral.
-- Pure grays look lifeless — tint them (cool UI: blue like `#64748b`; warm UI: yellow/brown like `#78716c`)
+- Neutral tinting is a choice within the product palette. Preserve established neutral and semantic roles; a new tint is not inherently an improvement.
 - HSL: lighter = raise lightness, lower saturation, hue toward 60°; darker = the reverse, hue toward 0°/240°
 - Contrast minimums: 4.5:1 body text, 3:1 qualifying large text (18pt regular or 14pt bold, approximately 24px or 18.67px); use `#374151` (gray-700) on white, not lighter grays
 
@@ -97,10 +97,10 @@ Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations co
 |---------|---------------|---------|
 | **Primary palette** | 9 shades (50-900) of brand color | Blue-500 buttons, Blue-100 backgrounds |
 | **Semantic colors** | Success/warning/error with shade ranges | Green-500 success, Red-500 errors |
-| **Text colors** | Three levels: dark, medium, light | `text-gray-900`, `text-gray-600`, `text-gray-400` |
+| **Text colors** | Separate roles while retaining readable contrast | On `#ffffff`: `#111827` primary, `#374151` secondary; use weight and placement for further hierarchy |
 
 **CSS patterns:**
-- `text-gray-900`(dark) `text-gray-600`(medium) `text-gray-400`(light)
+- Checked pairs: `#111827` on `#ffffff` is about 17.74:1; `#374151` on `#ffffff` is about 10.31:1. Recheck actual foreground/background pairs in dark, hover, selected and error states; class names alone do not establish contrast.
 - `bg-blue-50` for subtle backgrounds, `bg-blue-500` for primary actions
 - `border-gray-200` for subtle borders, `border-gray-300` for stronger
 
@@ -140,7 +140,7 @@ Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations co
 - Size icons relative to context; use sets with consistent stroke width and style
 - Never stretch or distort — use `object-fit: cover` with fixed aspect ratios and crop deliberately
 - Text over images needs an overlay (semi-transparent gradient)
-- Empty states are an opportunity — use illustrations plus a clear CTA, not just text
+- Distinguish first use, no matches, no permission and failed loading. Explain the actual state; show an action only when the product supports a useful next step. Illustration is optional and should not displace operational context.
 
 **Product applications:**
 
@@ -148,7 +148,8 @@ Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations co
 |---------|---------------------|---------|
 | **Hero images** | Semi-transparent gradient overlay | Text readable over any photo |
 | **Avatars** | Consistent size, rounded, fallback initials | 40px circle, object-fit cover |
-| **Empty states** | Custom illustration + CTA | Friendly illustration with "Get started" |
+| **No matches** | Preserve the query and explain the result | "No shipments match these filters"; offer clearing filters only when supported |
+| **Failed loading** | Preserve context and explain recovery | Loading failed; offer retry when available, without labeling it empty |
 
 **CSS patterns:**
 - `object-fit: cover` with fixed `aspect-ratio` for consistent display
@@ -164,7 +165,7 @@ Source: `refactoring-ui/SKILL.md`, version 1.5.1; sections 1–7. Adaptations co
 **Key insights:**
 - Left-align by default; center only short headlines, heroes, single-action CTAs, and empty states
 - Cards don't need to contain everything — let images bleed to edges or overlap containers
-- Vary visual treatment in lists and feeds — feature some items, minimize others
+- Editorial feeds can vary emphasis by importance. Comparable operational records use consistent alignment and treatment; mark meaningful exceptions through supported status semantics.
 - Use alignment to create relationships between unrelated elements
 
 **Product applications:**

@@ -7,9 +7,9 @@ User says:
 > I want to build a smart internal portal for the team.
 
 Failure if:
-- the skill asks several open-ended questions in a row
+- the skill asks questions that investigate no concrete gap, or invents options before understanding the user's goal
 - no framing brief appears
-- no recommended option is given
+- no grounded recommendation is given once enough evidence supports a real choice
 
 ## Scenario 2 — too-big platform request
 User says:
@@ -43,8 +43,8 @@ User says:
 > I don't know, what do you think is best?
 
 Failure if:
-- the skill responds with another open-ended question
-- it does not sharpen the recommendation
+- the next question repeats known information or explores no material gap
+- it invents a recommendation while intent remains unclear, or fails to sharpen one once the decision is understood
 
 ## Scenario 6 — bugfix
 User says:
@@ -60,7 +60,8 @@ User says:
 > I'm torn between two onboarding layouts.
 
 Failure if:
-- the skill does not offer the visual companion as its own message
+- the skill routes screen composition to Companion by default, even after earlier consent, instead of the Paper frontend-direction loop
+- it ignores an explicit Companion mockup or image-concept override
 - it uses the browser for non-visual trade-offs
 
 ## Scenario 8 — platform question tool

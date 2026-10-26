@@ -19,7 +19,7 @@ any part of this assignment. Work only in [WORKTREE].
 The approved specification and brief govern observable WHAT. Existing code and
 tests govern idiomatic HOW when both can be satisfied. Read every codebase
 pointer in the brief before editing. For frontend work, inspect the exact approved
-packet entry, validated canonical revision/descriptor SHA-256 when present, binding prototype/capture versions, launch/state setup, state acceptance and supersession
+packet handoff record from frontend-direction/references/packet-handoff.md, including expected canonical identity, approval and accepted limits, binding v2 design-source/capture versions, runtime evidence and recoverable source, launch/state setup, state acceptance and supersession
 from the task inputs; use implementing-frontend-design for runtime fidelity.
 Carry these targets and comparison results into the report rather than rebuilding
 direction from neighboring legacy screens.

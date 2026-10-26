@@ -1,0 +1,53 @@
+=== Test: Frontend visual review policy ===
+
+  [PASS] Skill policy reads project instructions
+  [PASS] Skill policy names AGENTS.md
+  [PASS] Skill policy names PRODUCT.md
+  [PASS] Skill policy names DESIGN.md
+  [PASS] Skill policy requires fresh browser context
+  [PASS] Skill policy forbids reusing implementer browser
+  [PASS] Skill policy requires independent route opening
+  [PASS] Skill policy rejects implementer proof as substitute
+  [PASS] Skill policy names runtime unreachable failures
+  [PASS] Skill policy blocks approval without runtime proof
+  [PASS] Skill policy requires completion gates
+  [PASS] Skill policy records browser-isolation fallback
+  [PASS] Skill policy gates approved reference checklist
+  [PASS] Skill policy gates desktop/mobile scope
+  [PASS] Skill policy gates console/network checks
+  [PASS] GSD AGENTS policy reads project instructions
+  [PASS] GSD AGENTS policy names AGENTS.md
+  [PASS] GSD AGENTS policy names PRODUCT.md
+  [PASS] GSD AGENTS policy names DESIGN.md
+  [PASS] GSD AGENTS policy requires fresh browser context
+  [PASS] GSD AGENTS policy forbids reusing implementer browser
+  [PASS] GSD AGENTS policy requires independent route opening
+  [PASS] GSD AGENTS policy rejects implementer proof as substitute
+  [PASS] GSD AGENTS policy names runtime unreachable failures
+  [PASS] GSD AGENTS policy blocks approval without runtime proof
+  [PASS] GSD AGENTS policy requires completion gates
+  [PASS] GSD AGENTS policy records browser-isolation fallback
+  [PASS] GSD AGENTS policy gates approved reference checklist
+  [PASS] GSD AGENTS policy gates desktop/mobile scope
+  [PASS] GSD AGENTS policy gates console/network checks
+  [PASS] GSD hook policy reads project instructions
+  [PASS] GSD hook policy names AGENTS.md
+  [PASS] GSD hook policy names PRODUCT.md
+  [PASS] GSD hook policy names DESIGN.md
+  [PASS] GSD hook policy requires fresh browser context
+  [PASS] GSD hook policy forbids reusing implementer browser
+  [PASS] GSD hook policy requires independent route opening
+  [PASS] GSD hook policy rejects implementer proof as substitute
+  [PASS] GSD hook policy names runtime unreachable failures
+  [PASS] GSD hook policy blocks approval without runtime proof
+  [PASS] GSD hook policy requires completion gates
+  [PASS] GSD hook policy records browser-isolation fallback
+  [PASS] GSD hook policy gates approved reference checklist
+  [PASS] GSD hook policy gates desktop/mobile scope
+  [PASS] GSD hook policy gates console/network checks
+  [PASS] Implementation checklist covers instruction sources
+  [PASS] Implementation checklist covers fresh browser isolation
+  [PASS] Implementation checklist covers independent recapture
+  [PASS] Implementation checklist blocks approval on runtime blockage
+
+=== Frontend visual review policy test passed ===

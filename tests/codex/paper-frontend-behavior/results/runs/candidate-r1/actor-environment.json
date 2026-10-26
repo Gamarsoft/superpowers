@@ -1,0 +1,67 @@
+{
+  "harness": "Codex CLI / codex exec --ephemeral",
+  "harness_version": "0.164.0",
+  "cli_version": "0.164.0",
+  "actor_model": "gpt-6-astra",
+  "actor_effort": "medium",
+  "fork_turns": "not applicable: fresh ephemeral CLI process; no resume/fork/history",
+  "actor_tools": "prohibited by actor prompt; tool calls invalidate sample",
+  "tool_namespaces": [
+    "builtin",
+    "clock",
+    "image_gen",
+    "mcp__artifact_session",
+    "mcp__atlassian_rovo",
+    "mcp__code_review",
+    "mcp__codex_app",
+    "mcp__codex_apps",
+    "mcp__codex_security",
+    "mcp__context7",
+    "mcp__dashpark_lsp",
+    "mcp__node_repl",
+    "mcp__openai_docs",
+    "web"
+  ],
+  "plugins": "Installed-plugin versions not independently enumerated; same host/session tool inventory required for pair",
+  "advertised_roles": [
+    "sp_implementer",
+    "sp_implementer_deep",
+    "sp_reviewer",
+    "sp_topic_context",
+    "default",
+    "explorer",
+    "worker"
+  ],
+  "limitations": "Policy application through complete content injection, not implicit discovery or isolation from ambient CLI instructions. Any actor tool invocation invalidates the sample. Controller records observed runtime environment from event trace.",
+  "model_authority": "User explicitly requests Astra for brainstorming/planning and evaluation, before any samples ran",
+  "working_directory": "/private/tmp/paper-frontend-baseline",
+  "command": "codex exec --ephemeral --ignore-user-config --json -m gpt-6-astra -c model_reasoning_effort=\"medium\" -s read-only -C /private/tmp/paper-frontend-baseline -",
+  "input": "Complete actor message on stdin",
+  "output": "Preserve stderr and every JSON event, including full final response",
+  "pairing": "Identical B working directory, configuration flags and ambient inputs for baseline and candidate; only injected source payload changes",
+  "how_deviation": "Fresh independent ephemeral CLI sessions replace literal collaboration fork_turns:none; no inherited conversation. This avoids transcription of large complete packets. Controller explicitly selected before first actor.",
+  "ambient_instruction_candidates": {
+    "/AGENTS.md": {
+      "exists": false,
+      "sha256": null
+    },
+    "/private/AGENTS.md": {
+      "exists": false,
+      "sha256": null
+    },
+    "/private/tmp/AGENTS.md": {
+      "exists": false,
+      "sha256": null
+    },
+    "/private/tmp/paper-frontend-baseline/AGENTS.md": {
+      "exists": true,
+      "sha256": "28c88405f9357e01b06fb460fce2078ed0c264b5113160cff59ec6c5ee3cf74f"
+    },
+    "/Users/gamarsoft/.codex/AGENTS.md": {
+      "exists": true,
+      "sha256": "d232e23cc684fe3b791492c8bfefb5a43c8bcb221246a9edb09197d2c3e19e11"
+    }
+  },
+  "ambient_limit": "Observed file identities only; actual automatic instruction loading must be established from CLI events/configuration and held constant.",
+  "controller_execution_permissions": "Controller retries with sandbox escalation solely for local CLI app-server/state database initialization; actor CLI remains --ephemeral --ignore-user-config --json, Astra/medium, -s read-only and no tools per prompt."
+}

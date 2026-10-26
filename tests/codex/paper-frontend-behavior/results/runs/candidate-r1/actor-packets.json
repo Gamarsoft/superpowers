@@ -1,0 +1,56 @@
+{
+  "design-handoff": {
+    "path": "/private/tmp/paper-frontend-candidate/tests/codex/paper-frontend-behavior/results/runs/candidate-r1/actor-messages/design-handoff.md",
+    "sha256": "9cf58cf03b7749613577087629486429f2b9fda35ab890e5af3278a40b45393c",
+    "bytes": 133357,
+    "words": 17624,
+    "sources": [
+      "skills/frontend-direction/SKILL.md",
+      "skills/frontend-direction/references/design-source-priority.md",
+      "skills/frontend-direction/references/packet-finalization.md",
+      "skills/frontend-direction/references/packet-handoff.md",
+      "skills/frontend-direction/references/packet-schema.md",
+      "skills/implementing-frontend-design/SKILL.md",
+      "skills/implementing-frontend-design/references/source-of-truth.md",
+      "skills/frontend-direction/references/visual-exploration.md",
+      "skills/frontend-direction/references/task-to-layout.md",
+      "skills/frontend-direction/references/design-knowledge-selection.md",
+      "skills/frontend-direction/references/design-knowledge/refactoring-ui.md",
+      "skills/frontend-direction/references/design-knowledge/design-everyday-things.md",
+      "skills/frontend-direction/references/frontend-review-checklist.md",
+      "skills/implementing-frontend-design/references/runtime-handoff.md",
+      "skills/implementing-frontend-design/references/implementation-review-checklist.md",
+      "skills/brainstorming/visual-companion.md",
+      "skills/frontend-direction/references/paper-workflow.md",
+      "skills/frontend-direction/references/paper-library.md"
+    ],
+    "added_sources": [
+      "skills/frontend-direction/references/paper-workflow.md",
+      "skills/frontend-direction/references/paper-library.md"
+    ],
+    "wrapper_sha256": "b741253fd0c36716d6a623098b348ba1b85897a6a1bc425684e371bf9a4f4f34"
+  },
+  "maintenance-boundaries": {
+    "path": "/private/tmp/paper-frontend-candidate/tests/codex/paper-frontend-behavior/results/runs/candidate-r1/actor-messages/maintenance-boundaries.md",
+    "sha256": "41768f0eb29a5171b488036065c86f12ae02ed6f9bf97745074d82d559b783a9",
+    "bytes": 64894,
+    "words": 8053,
+    "sources": [
+      "skills/frontend-direction/SKILL.md",
+      "skills/frontend-direction/references/design-source-priority.md",
+      "skills/frontend-direction/references/packet-finalization.md",
+      "skills/frontend-direction/references/packet-handoff.md",
+      "skills/frontend-direction/references/packet-schema.md",
+      "skills/implementing-frontend-design/SKILL.md",
+      "skills/implementing-frontend-design/references/source-of-truth.md",
+      "skills/implementing-frontend-design/references/runtime-handoff.md",
+      "skills/frontend-direction/references/paper-workflow.md",
+      "skills/frontend-direction/references/paper-library.md"
+    ],
+    "added_sources": [
+      "skills/frontend-direction/references/paper-workflow.md",
+      "skills/frontend-direction/references/paper-library.md"
+    ],
+    "wrapper_sha256": "b741253fd0c36716d6a623098b348ba1b85897a6a1bc425684e371bf9a4f4f34"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "judgment_resolution",
+  "assertion_id": "M13",
+  "original_provisional_judgment": {
+    "id": "M13",
+    "passed": false,
+    "evidence": "Adoption requires real pilot and reconciliation, but omits useful maintenance within the agreed allowance as the adoption threshold. Bounded reconciliation/measurement (01) or generic acceptable maintenance effort (04) does not bind the agreed allowance. Independent checkpoint01 cap is not an adoption criterion in checkpoint06.\nDirect checkpoint excerpt:\nAdoption gate\n\nProposed outcome record:\n\n```json\n{\n  \"application\": \"No completed real-screen delivery established by this checkpoint\",\n  \"library\": \"No scoped verified reconciliation demonstrated\",\n  \"workflow\": \"candidate\",\n  \"default_activation\": \"deferred\",\n  \"supplied_evidence\": \"Structural packet tests and policy actors pass\",\n  \"remaining_evidence\": [\n    \"Regression and fresh-session behavior checks\",\n    \"Real pilot completing v2 Paper export and exact handoff\",\n    \"Actual-component implementation with acceptable fidelity and required runtime review\",\n    \"Scoped verified library reconciliation naming entries and evidence\",\n    \"Acceptable maintenance effort with separate setup, iteration, export, correction and upkeep measurements\"\n  ]\n}\n```\n\nReport export friction, manual repairs, repeated authoring and pending work. A later verified app may ship while upkeep remains pending and the workflow remains a candidate. Default activation requires a separate evidence-based decision; passing scripts or delivering one screen does not establish long-term savings or general usability improvement.\nComplete checkpoint retained in response."
+  },
+  "independent_judgment": {
+    "passed": true,
+    "scorer": "/root/paper_eval_m13, GPT-6 Astra/medium, fresh context",
+    "complete_ruling_file": "judgments/u3-m13-semantic-ruling.md",
+    "sha256": "a62a7b69a7fb21e70b4f74f8c89934061a4390b06aa2d968320f0f5c2bdd4ec5"
+  },
+  "controller_disposition": "PASS: evaluate the complete response. Prior explicit maintenance allowance and stopping rule plus bounded/acceptable verified reconciliation supply the agreed-effort adoption semantics. No rubric change and no M13 policy correction."
+}

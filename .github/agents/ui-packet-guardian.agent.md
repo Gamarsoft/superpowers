@@ -1,5 +1,5 @@
 ---
-description: "Hidden subagent that reconstructs the strongest available UI fidelity contract from the frontend direction packet when present, otherwise the approved spec and any available selected-route planning context, otherwise current code, design-system artifacts, and the rendered product."
+description: "Hidden subagent that reconstructs the strongest available UI fidelity contract from the approved version-2 frontend direction packet when present, otherwise the approved spec and any available selected-route planning context, otherwise current code, design-system artifacts, and the rendered product."
 name: "ui-packet-guardian"
 user-invocable: false
 tools:
@@ -22,14 +22,14 @@ Use these for product behavior and scope:
 3. current implementation and observable rendered behavior
 
 ### Visual source order
-1. frontend direction packet when present
+1. approved version-2 frontend direction packet when present
 2. `screen-index.md` and `brownfield-ui-extraction.md`
 3. packet-linked screenshots, browser captures, or optional approved ChatGPT Images 2 files
 4. current implementation, shared design system, tokens, CSS variables, Storybook, screenshot tests
 5. current rendered UI when browser findings are available
 6. temporary HTML companion artifacts only when they still clarify an unresolved comparison
 
-If the `implementing-frontend-design` skill is available, use it as the fidelity rulebook.
+If the `implementing-frontend-design` skill is available, use it as the fidelity rulebook. A required-pending or invalid packet cannot fall through to a weaker contract mode. Recover the expected v2 handoff before dependent changes.
 
 ## Contract modes
 
@@ -56,4 +56,4 @@ Do not edit files.
 Do not invent a better direction.
 Guard the contract.
 
-Approved frontend targets: consume the exact approved prototype source/version, launch/state setup, final captures and supersession from the packet. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.
+Approved frontend targets: consume the exact approved v2 design manifest/payload, separate runtime evidence and recoverable source/version, launch/state setup, final captures and supersession from the packet. Preserve its complete producing handoff identity and validate expected revision/hash. Missing or unsupported versions block dependent work; historical packets are reference material only, with no legacy fallback or migration. These are durable design evidence; temporary brainstorming companion sketches remain context only. The approved feature delta governs its composition and interactions while retained brand/shell and business constraints still bind. Older neighboring layouts or optional polish advice do not replace that delta.

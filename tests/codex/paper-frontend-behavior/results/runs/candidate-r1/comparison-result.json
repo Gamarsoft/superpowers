@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "tests/codex/sdd-behavior/score-results.py",
+    "tests/codex/paper-frontend-behavior/results/runs/candidate-r1",
+    "--baseline",
+    "tests/codex/paper-frontend-behavior/results/runs/baseline-r2"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "ERROR: design-handoff: candidate must pass every sample\n"
+}

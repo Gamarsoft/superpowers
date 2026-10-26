@@ -1,0 +1,14 @@
+{
+  "valid_completed_traces": 10,
+  "unique_threads": 10,
+  "tool_calls": 0,
+  "baseline_runs_byte_identical_to": "b0911c0",
+  "candidate_r1_byte_identical_to": "e05407b",
+  "generic_scorer_unchanged_from": "b0911c0",
+  "installed_files_unchanged": 172,
+  "source_git_blobs_verified": "099e1087e4c9217e56fa3c45a8e620cf153c5e58",
+  "ambient_instruction_identities_unchanged": true,
+  "assertions_passed": 140,
+  "assertions_total": 140,
+  "paired_gate": "PASS"
+}

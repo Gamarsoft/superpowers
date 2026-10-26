@@ -101,9 +101,16 @@ not-required | required-pending | approved | approved-with-degraded-evidence
 `required-pending` is part of the shared vocabulary but is invalid in a generated GSD handoff. Stop before generating this template until the packet becomes `approved` or the user explicitly approves every degraded constraint as `approved-with-degraded-evidence`.
 
 ### Frontend direction packet
-- [path or none]
+Copy the complete shared record from `frontend-direction/references/packet-handoff.md` unchanged:
+- Frontend packet entry: [actual resolved path or not-required]
+- Expected revision: [from producing handoff]
+- Expected descriptor SHA-256: [from producing handoff]
+- Approval reference: [actual human decision]
+- Status and accepted limitations: [preserve exactly]
 
 ### Supporting frontend artifacts
+- v2 design_source manifest and immutable extraction payload:
+- separate runtime_evidence records and recoverable source:
 - `brownfield-ui-extraction.md`:
 - `screen-index.md`:
 - retained current UI screenshots / browser captures:
@@ -121,9 +128,9 @@ not-required | required-pending | approved | approved-with-degraded-evidence
   - `implementing-frontend-design`
   - [repo-local framework or design-system guidance]
 - Evidence to preserve:
-  - approved packet path
+  - complete packet handoff record, including expected identity, approval and limits
   - retained screenshots and runtime captures
-  - approved generated image paths and prompt pack metadata, if used
+  - explicitly requested image references and provenance retained with scoped intent in v2, if used
   - source evidence from current UI, product docs, or design docs
 
 ### UX implementation contract
@@ -139,6 +146,7 @@ not-required | required-pending | approved | approved-with-degraded-evidence
 
 ### Frontend implementation gate
 - `not-required` means no frontend packet is needed for this scope.
+- Historical packets are untouched reference material only. Missing/unsupported versions fail closed under the shared v2 schema; no compatibility or migration path.
 - `approved` means the linked frontend packet is the durable UI implementation contract.
 - `approved-with-degraded-evidence` means the linked packet and every explicitly approved degraded constraint are the durable UI implementation contract.
 - `required-pending` must never reach this generated handoff; resolve that gate in brainstorming before GSD routing or generation.
@@ -229,7 +237,11 @@ A good steering note is:
 Primary artifacts:
 - Spec: docs/superpowers/specs/YYYY-MM-DD--{slug}.md
 - GSD handoff: docs/superpowers/specs/YYYY-MM-DD--{slug}--gsd-handoff.md
-- Frontend direction: docs/superpowers/specs/YYYY-MM-DD--{slug}--frontend-direction.md (if present)
+- Frontend packet entry: [actual resolved entry from the producing handoff; new packets use ...--frontend/packet.md]
+- Expected revision: [copy from producing handoff]
+- Expected descriptor SHA-256: [copy from producing handoff]
+- Approval reference: [copy actual human decision reference]
+- Status and accepted limitations: [copy exactly]
 - Frontend packet status: not-required / approved / approved-with-degraded-evidence
 
 Use the spec as the product and behavior contract.
@@ -251,7 +263,7 @@ After the frontend direction packet exists, also consume:
 - screen-index.md
 - retained current UI screenshots and browser captures
 - implementation runtime screenshots and browser captures
-- approved generated image paths and prompt pack metadata, if used
+- explicitly requested image references and provenance retained with scoped intent in v2, if used
 - visual reference intent approvals
 
 For frontend implementation after the packet exists, load:
@@ -261,7 +273,7 @@ For frontend implementation after the packet exists, load:
 Use the frontend packet, runtime captures, retained screenshots, and approved generated image references as durable UI inputs after they exist.
 Respect approved visual reference intent modes in the packet. `visual-truth` references require visual parity; `semantic-guidance` references require behavior, content-priority, and state-fit; `reference-only` references are not acceptance targets.
 If visual reference intent is missing or pending after frontend-direction, ask for confirmation or record degraded current-UI mode before treating the reference as a redesign or visual parity target.
-Carry exact approved prototype/capture versions, source/launch/state setup and supersession into implementation tasks. Do not treat temporary HTML companion screens from brainstorming as binding unless the separate frontend-direction packet captures the decision in durable prose, screenshots, browser captures, or approved generated images.
+Carry exact approved v2 design-source/capture versions, separate runtime evidence and recoverable source/launch/state setup, state acceptance and supersession into implementation tasks. Temporary HTML companion screens remain decision context; the separate approved v2 packet must capture any binding decision.
 Do not invent a new visual direction unless the handoff explicitly says redesign.
 Only ask follow-up questions about unresolved items, contradictions, or missing implementation-shaping decisions.
 ```

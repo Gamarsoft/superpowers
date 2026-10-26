@@ -1,0 +1,72 @@
+I do not approve the current Branding design, branding-paper-r1-20261026.
+
+The pilot has exposed a weakness we need to address in the ongoing frontend workflow improvement. Brainstorming frames business and technical requirements well, but frontend-direction appears to inherit that framing without sufficiently discussing and shaping the user experience. The result preserves requirements yet feels visually generic, overly complicated and text-heavy.
+
+Treat this as feedback on the workflow itself, using DashPark Branding as the concrete test case. Improving export fidelity alone will not resolve it.
+
+1. Diagnose the missing experience-design work
+
+Inspect the actual candidate instructions, pilot decisions and rendered screens. Distinguish missing guidance from guidance that existed but was poorly applied or evaluated. Do not assume adding another checklist will fix the problem.
+
+Frontend-direction should translate the approved product requirements into an experience brief, with focused discussion where decisions remain unresolved:
+- Who uses this screen, how often, and with what familiarity?
+- What are they trying to accomplish, and what must they understand or decide?
+- What should be immediately visible, secondary, contextual or progressively disclosed?
+- What feedback lets them judge their changes and act confidently?
+- What interaction model, density, vocabulary and visual character suit this product?
+
+Reuse established business context. Ask only questions that materially affect the experience. Bring concrete recommendations and tradeoffs rather than making me invent the design.
+
+2. Strengthen design exploration and selection
+
+For substantial design work with unresolved composition choices, compare a small number of meaningfully different approaches before polishing one. Use inexpensive sketches or rough Paper layouts. Variants must differ in task flow, information hierarchy or interaction structure, not merely colors and card styling.
+
+Choose based on ease of use, clarity, visual quality and fit with the product. Avoid making multiple alternatives mandatory for routine changes or already-settled patterns.
+
+Preserve business behavior and legitimate technical constraints, but distinguish those from inherited presentation choices. If an existing business rule creates significant UX friction, surface that explicitly for a separate decision. Do not silently change it or compensate with paragraphs of explanatory text.
+
+3. Apply the new frontend-design skill selectively
+
+Read:
+ /Users/gamarsoft/.agents/skills/frontend-design/SKILL.md
+
+Assess which parts should inform frontend-direction. Its emphasis on intentional choices, restraint, typography, subject-specific design and plain-language copy seems useful. Do not simply add another overlapping orchestrator.
+
+Adapt its guidance to brownfield admin software. Distinctiveness does not require a hero, new fonts, animation, novelty or rebranding. Existing product consistency, accessibility and operational clarity remain important.
+
+4. Make design quality consequential
+
+A design should be able to fail review despite valid packets, complete exports and functioning components.
+
+Evaluate the rendered proposal for:
+- Clear hierarchy and an obvious next action.
+- Appropriate interaction patterns and manageable cognitive load.
+- Useful visual feedback rather than duplicated field values.
+- Concise, user-facing language without implementation terminology.
+- Deliberate typography, spacing, alignment and grouping.
+- Responsive task organization rather than indiscriminate stacking.
+- Appropriate empty, editing, error and completion states.
+
+Ground critiques in visible problems and their consequences. Avoid ceremonial principle citations, arbitrary scores or claims of usability testing that did not happen. Integrate this into the existing review cadence rather than adding an unbounded chain of reviewers.
+
+5. Use Branding to demonstrate the improvement
+
+Reconsider the experience before decorating the current composition. In particular:
+- Make the preview useful for judging the resulting identity.
+- Reconsider the prominence and duplication of current/draft information.
+- Treat logo selection and preview as visual interactions.
+- Reduce repeated instructions and technical wording.
+- Give first publication and subsequent editing appropriate emphasis.
+- Reconsider the mobile hierarchy and narrow-picker compromise.
+
+These are problems to solve, not a prescribed final layout. Keep existing publication and parking-save semantics unless I explicitly approve a change.
+
+6. Preserve the current execution boundaries
+
+Keep completed work and historical evaluation evidence intact. Revise only affected workflow/spec/plan sections and rerun the relevant checks and evaluations. Include evidence about the quality of the resulting design, not only whether agents followed instructions.
+
+Continue in the isolated candidate and feature branches. Preserve the version-2-only cutover, maintenance stopping rule, fixture prerequisites and exact pilot-design approval gate. Installed defaults remain unchanged until adoption evidence supports them.
+
+Use GPT-6 Astra for design reasoning and evaluation. Account for the existing pilot allowance and report before exceeding it.
+
+Start with a concise diagnosis and the smallest effective workflow correction. Then lead the focused UI/UX framing discussion needed for the next Branding proposal. Do not start application implementation or mistake this feedback for approval of the current design.

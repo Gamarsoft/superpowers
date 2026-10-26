@@ -1,0 +1,161 @@
+{
+  "entries": [
+    {
+      "id": "branding",
+      "kind": "screen",
+      "paper": {
+        "file": "ops",
+        "page": "screens",
+        "node": "brand-1"
+      },
+      "source": "src/branding.component.ts",
+      "dependencies": [
+        "picker",
+        "accent"
+      ],
+      "approved_packet": {
+        "entry": "/tmp/branding-r5--frontend/packet.md",
+        "revision": "r5",
+        "descriptor_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "approval_reference": "human-51",
+        "status": "approved",
+        "accepted_limits": []
+      },
+      "design_revision": "d4",
+      "implemented_revision": "a10",
+      "freshness": "needs-review",
+      "last_verified": {
+        "revision": "d4",
+        "source": "a10",
+        "evidence": "verify/branding-a10.md",
+        "date": "2026-10-20"
+      },
+      "pending": {
+        "change": "Reconcile maintained Branding artwork to approved d5 and verified a11, including accent #2563EB",
+        "reason": "Paper disconnected; 21 minutes spent exceeds the 20-minute allowance; d5-partial is unverified",
+        "intended_application_revision": "a11"
+      },
+      "historical_approved_packets": [
+        {
+          "entry": "/tmp/branding-r4--frontend/packet.md",
+          "revision": "r4",
+          "descriptor_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "approval_reference": "human-40",
+          "status": "approved",
+          "accepted_limits": []
+        }
+      ],
+      "unverified_draft": {
+        "revision": "d5-partial",
+        "status": "preserve separately; do not replace d4 checkpoint"
+      }
+    },
+    {
+      "id": "picker",
+      "kind": "component",
+      "paper": {
+        "file": "ops",
+        "page": "components",
+        "node": "picker-2"
+      },
+      "source": "src/shared/picker.component.ts",
+      "dependencies": [
+        "accent"
+      ],
+      "approved_packet": {
+        "entry": "/tmp/picker-r2--frontend/packet.md",
+        "revision": "r2",
+        "descriptor_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "approval_reference": "human-21",
+        "status": "approved",
+        "accepted_limits": []
+      },
+      "design_revision": "p2",
+      "implemented_revision": "a10",
+      "freshness": "needs-review",
+      "last_verified": {
+        "revision": "p2",
+        "source": "a10",
+        "evidence": "verify/picker-a10.md",
+        "date": "2026-10-20"
+      },
+      "pending": {
+        "change": "Reconcile picker accent #2563EB from verified a11",
+        "reason": "No verified library reconciliation; Paper disconnected and allowance exhausted",
+        "intended_application_revision": "a11"
+      }
+    },
+    {
+      "id": "reports",
+      "kind": "screen",
+      "paper": {
+        "file": "ops",
+        "page": "screens",
+        "node": "reports-3"
+      },
+      "source": "src/reports.component.ts",
+      "dependencies": [
+        "accent"
+      ],
+      "approved_packet": null,
+      "design_revision": "t3",
+      "implemented_revision": "a8",
+      "freshness": "needs-review",
+      "last_verified": {
+        "revision": "t3",
+        "source": "a8",
+        "evidence": "verify/reports-a8.md",
+        "date": "2026-10-18"
+      },
+      "pending": {
+        "change": "Inspect reports dependency on changed accent, then reconcile if affected",
+        "reason": "Maintained dependent was not inspected; no reports verification at a11",
+        "intended_application_revision": "a11",
+        "verification_required": true
+      }
+    },
+    {
+      "id": "billing",
+      "kind": "screen",
+      "paper": {
+        "file": "ops",
+        "page": "screens",
+        "node": "billing-1"
+      },
+      "source": "src/billing.component.ts",
+      "dependencies": [],
+      "approved_packet": null,
+      "design_revision": "b1",
+      "implemented_revision": "a9",
+      "freshness": "checked",
+      "last_verified": {
+        "revision": "b1",
+        "source": "a9",
+        "evidence": "verify/billing-a9.md",
+        "date": "2026-10-19"
+      },
+      "pending": null
+    },
+    {
+      "id": "share-preview",
+      "kind": "pattern",
+      "paper": {
+        "file": "ops",
+        "page": "drafts",
+        "node": "share-new"
+      },
+      "source": null,
+      "dependencies": [],
+      "approved_packet": null,
+      "design_revision": "proposal-1",
+      "implemented_revision": null,
+      "freshness": "unknown",
+      "last_verified": null,
+      "pending": {
+        "change": "Assess proposed preview",
+        "reason": "Draft only, no verified implementation",
+        "intended_application_revision": null
+      }
+    }
+  ]
+}

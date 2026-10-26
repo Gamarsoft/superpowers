@@ -1,7 +1,7 @@
 # Visual Companion Guide
 
-Use the visual companion for temporary, subject-relevant browser artifacts when seeing the structure, sequence, relationship, state, or visual direction materially improves the current brainstorming step.
-If a choice survives, carry it into the frontend-direction follow-on prompt. The later frontend-direction session must capture it in packet prose, screenshots, browser captures, or approved generated images before treating it as durable direction.
+Use the visual companion for temporary explanations, flows and product comparisons when seeing the structure, sequence or relationship materially improves the current brainstorming step. Screen composition belongs in Paper through frontend-direction even after Companion consent. An explicit Companion mockup request overrides that default for its scoped task; the runtime and product-mockup recipes remain supported.
+If a choice survives, carry it into the frontend-direction follow-on prompt. The later frontend-direction session must capture it in the approved v2 design source and scoped evidence before treating it as durable direction.
 
 ## Useful-artifact authoring contract
 
@@ -14,7 +14,7 @@ Choose the smallest useful artifact intent for the current viewing task. These i
 3. **map**
    - Show architecture, data flow, state, sequence, dependency, journey, or relationship structure.
 4. **experience**
-   - Show a mockup, wireframe, prototype fragment, layout, or interaction-state preview.
+   - For an explicit mockup request, show a mockup, wireframe, prototype fragment, layout, or interaction-state preview.
    - [retry-policy product review](examples/visual-companion/retry-policy-review.html) is an `experience` exemplar: it demonstrates a simulated product surface inside the existing useful-artifact flow.
 5. **synthesize**
    - Show a chosen direction, still-open questions, or carry-forward summary.
@@ -66,7 +66,9 @@ Root the fragment at `class="vc-canvas" data-vc-register="diagram"`. Compose one
 
 ### Product mockup register recipe
 
-Root the fragment at `class="vc-canvas" data-vc-register="product-mockup"`. Compose a coherent application state with a `vc-stage`, contextual `vc-rail`, and `vc-section` / `vc-cluster` groupings; use `vc-split` or rails for the proposed change, guardrails, and evidence. Only real decisions become `.options` containing `.option.vc-choice` elements with `data-choice` and `toggleSelect(this)`. Label the artifact as a simulated product surface and simulated evidence where applicable. At narrow width, preserve context → title → proposed change → guardrails → evidence → actions; put wide data in a labeled scroll region rather than making the viewport scroll sideways.
+Root the fragment at `class="vc-canvas" data-vc-register="product-mockup"`. Compose the actual product task, domain information, controls and state in a `vc-stage`; use `vc-section` / `vc-cluster` groupings and add `vc-split` or a `vc-rail` only when the task needs them. Derive narrow DOM and reading order from that task. For shipment search, preserve search scope and filters, comparable results, selected details and relevant actions; preserve inputs and context through empty/error states. Put necessary wide data in a labeled local scroll region. Keep design-review commentary outside the simulated product surface. Only real decisions become `.options` containing `.option.vc-choice` elements with `data-choice` and `toggleSelect(this)`. Label the artifact as a simulated product surface and simulated evidence where applicable.
+
+**Approval/policy-review example:** the retry-policy review uses a stage and contextual rail for context → title → proposed change → guardrails → evidence → actions. That order belongs to an approval task; search, booking, editing and comparison screens derive their own composition and responsive order.
 
 ### Editorial / synthesis register recipe
 
@@ -97,15 +99,9 @@ If Impeccable is unavailable, continue with the native kit and examples. Its abs
 
 ## Frontend-design alignment
 
-When frontend direction is required, the companion should usually show one of these:
+When frontend direction is required, the Companion may clarify a product flow, explain existing evidence or summarize a product decision. It does not routinely recreate the Paper screen composition. Explicit mockup requests keep the supported experience register and honest simulated fidelity.
 
-- annotated screenshots from the current product
-- wireframe-to-direction comparisons
-- HTML comparison layouts that the follow-on frontend-direction session can translate into packet prose and durable evidence if chosen
-- carry-forward summaries of the chosen visual direction
-
-The companion is still for **decision-making**, not for pretending the chosen reference or screenshot is already final implemented UI.
-The follow-on frontend-direction packet should point to durable packet decisions, screenshots, browser captures, or approved generated images, not to raw HTML companion files.
+The companion is still for **decision-making**, not for pretending the chosen reference or screenshot is already final implemented UI. The follow-on packet captures retained decisions in approved v2 design evidence, not raw temporary Companion files.
 
 ## Browser surface rule
 
@@ -169,7 +165,7 @@ Even after acceptance, decide per turn whether browser output helps more than te
 
 Test: **Is this materially easier to judge by seeing than by reading?**
 
-If yes, the first later genuinely visual question starts the companion path instead of remaining terminal-only, and each qualifying visual turn stays artifact-first: author or refresh the visual artifact first, make it viewable, tell the user what they are viewing and what decision it supports, then ask the decision or confirmation in terminal with the platform question tool when available.
+If this is a qualifying explanation, flow or product comparison, or an explicit Companion mockup request, the first such turn starts the companion path instead of remaining terminal-only. Complete the first-use context workflow, then fill the startup record below with the actual project directory before starting the server. Capture `url`, `screen_dir` and `state_dir`, share the complete keyed URL, and retain the server lifetime across turns. Each qualifying visual turn stays artifact-first: author or refresh the visual artifact first, make it viewable, tell the user what they are viewing and what decision it supports, then ask the decision or confirmation in terminal with the platform question tool when available.
 
 Even after earlier browser use, that terminal decision prompt still applies on later qualifying visual turns.
 
@@ -253,17 +249,16 @@ All examples stay fragment-first and use only the existing `data-choice` interac
 
 ### Start session
 
-```bash
-# Start after consent. --open opens the first pushed screen and --project-dir
-# persists the session for a same-port restart.
-bash scripts/start-server.sh --project-dir /path/to/project --open
+The first-use startup action includes this record. Fill the project directory from the task's actual repository or project root; retain that input alongside the returned session fields.
+
+```text
+Project directory: <actual absolute project root>
+Start command: bash <skill-dir>/scripts/start-server.sh --project-dir <same project root> --open
+Server lifetime: <platform session/process kept alive across turns>
+Returned session: url=<complete keyed URL>; screen_dir=<path>; state_dir=<path>
 ```
 
-Capture:
-
-- `url`
-- `screen_dir`
-- `state_dir`
+Start after consent, using the platform lifecycle below. `--open` opens the first pushed screen. Record returned values only after startup succeeds; a proposed action names its project directory and leaves unreturned fields pending.
 
 With `--open`, still share the returned URL as a fallback for headless or remote setups. The URL contains a session key (`?key=…`): always give the user the **complete** URL from the `url` field, never a bare `http://host:port`. The key gates HTTP and WebSocket access; after first load the browser remembers it in a cookie.
 

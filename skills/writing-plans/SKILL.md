@@ -124,7 +124,7 @@ Each task contains:
 - [Name the sole mutation owner for shared files]
 
 **Interfaces and contracts:**
-- Consumes: [earlier output, signature, state, or `none`; for frontend work, approved packet entry, validated canonical revision/descriptor SHA-256 when present, exact binding prototype/capture versions, launch/state setup, state acceptance and supersession]
+- Consumes: [earlier output, signature, state, or `none`; for frontend work, the complete unchanged frontend-direction/references/packet-handoff.md record, exact binding v2 design-source/capture versions, runtime evidence and recoverable source, launch/state setup, state acceptance and supersession]
 - Produces: [exact downstream interface, state, or artifact]
 - [Public names, types, compatibility rules, and specification anchors]
 

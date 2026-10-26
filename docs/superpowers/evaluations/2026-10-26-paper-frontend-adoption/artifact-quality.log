@@ -1,0 +1,80 @@
+=== Test: brainstorming artifact quality gates ===
+
+  [PASS] Spec template has a quality bar
+  [PASS] Spec quality bar names audience
+  [PASS] Spec quality bar names problem
+  [PASS] Spec quality bar names chosen direction
+  [PASS] Spec quality bar names scope boundary
+  [PASS] Spec quality bar names risks
+  [PASS] Spec quality bar names behavior detail
+  [PASS] Spec quality bar requires handoff consistency
+  [PASS] Spec template preserves track-specific guidance
+  [PASS] Spec template preserves durable wireframe appendix guidance
+  [PASS] Spec template preserves UX copy acceptance detail
+  [PASS] Spec template preserves runtime visual evidence links
+  [PASS] Spec template preserves visual reference intent modes
+  [PASS] Spec template provides the confirmed delivery route section
+  [PASS] Delivery Route records best-fit recommendation evidence
+  [PASS] Delivery Route records selected-adapter review evidence
+  [PASS] Spec template keeps routing out until confirmation
+  [PASS] Delivery router recommends by delivery fit
+  [PASS] Delivery router warns once on explicit mismatch
+  [PASS] Delivery router removes unavailable routes
+  [PASS] Delivery router stops late rerouting for reconciliation
+  [PASS] GSD handoff template has a quality bar
+  [PASS] GSD handoff quality bar names requirement buckets
+  [PASS] GSD handoff quality bar requires reconciliation
+  [PASS] GSD handoff preserves reused requirement detail
+  [PASS] GSD handoff preserves reactivated requirement detail
+  [PASS] GSD handoff preserves narrowed requirement detail
+  [PASS] GSD handoff preserves superseded requirement detail
+  [PASS] GSD handoff preserves deferred requirement detail
+  [PASS] GSD handoff quality bar names first milestone
+  [PASS] GSD handoff quality bar names implementation constraints
+  [PASS] GSD handoff quality bar names frontend inputs
+  [PASS] GSD handoff quality bar names slice thinking
+  [PASS] GSD handoff preserves downstream frontend guidance
+  [PASS] GSD handoff preserves reference-intent approvals
+  [PASS] GSD handoff blocks unapproved visual truth
+  [PASS] GSD handoff preserves steering instructions
+  [PASS] GSD handoff preserves follow-up question boundary
+  [PASS] Brainstorming skill states compact is not lossy
+  [PASS] Brainstorming skill preserves implementation-shaping details
+  [PASS] Brainstorming skill preserves state coverage
+  [PASS] Brainstorming skill preserves failure behavior
+  [PASS] Brainstorming skill preserves rollout detail
+  [PASS] Brainstorming skill preserves open questions
+  [PASS] Brainstorming defaults to an approved neutral spec
+  [PASS] Brainstorming loads the central delivery router
+  [PASS] Brainstorming makes the GSD handoff route-specific
+  [PASS] Brainstorming defines the Native Codex terminal output
+  [PASS] Brainstorming keeps Codex plan mode authoring-only
+  [PASS] Brainstorming prohibits implementation in plan mode
+  [PASS] Brainstorming enforces neutral review through transition in canonical order
+  [PASS] Selected-adapter review validates Delivery Route metadata
+  [PASS] Selected-adapter review validates adapter cardinality
+  [PASS] Selected-adapter review rejects unselected adapters
+  [PASS] Selected-adapter review validates route-specific completeness
+  [PASS] Selected-adapter review requires an independent reviewer dispatch
+  [PASS] Selected-adapter approval is recorded before transition
+  [PASS] Brainstorming removes the legacy pending packet status
+  [PASS] Brainstorming records pending frontend work with shared status vocabulary
+  [PASS] Spec template stays free of removed workflow terms
+  [PASS] GSD handoff template stays free of removed workflow terms
+  [PASS] GSD handoff template uses the shared packet-status vocabulary
+  [PASS] GSD handoff cannot send pending frontend work back from GSD
+  [PASS] GSD handoff is generated only after frontend packet approval
+  [PASS] GSD handoff permits explicitly approved degraded evidence
+  [PASS] Architecture-led neutral artifacts do not mandate a GSD milestone
+  [PASS] Architecture-led work recommends workflow-neutral delivery boundaries
+  [PASS] Frontend follow-on prompt consumes the approved neutral spec
+  [PASS] Frontend follow-on prompt blocks premature routing
+  [PASS] Spec review validates only the selected route adapter
+  [PASS] Spec review rejects unselected route artifacts
+  [PASS] Neutral review rejects premature route metadata
+  [PASS] Pressure scenarios cover premature route metadata
+  [PASS] Pressure scenarios cover unverifiable delivery approval
+  [PASS] Spec reviewer rejects routing before frontend packet approval
+  [PASS] Spec reviewer conditionally validates the selected adapter
+
+=== Brainstorming artifact quality gates test passed ===

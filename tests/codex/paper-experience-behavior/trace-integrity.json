@@ -1,0 +1,79 @@
+[
+  {
+    "variant": "candidate-r1",
+    "sample": "sample-01",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17761-b014-7081-af07-0c72c2f0e62a"
+  },
+  {
+    "variant": "candidate-r1",
+    "sample": "sample-02",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17761-b014-7ce2-8e2d-6bde67b5dc76"
+  },
+  {
+    "variant": "design-regression-r1",
+    "sample": "sample-01",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17761-b00f-7e41-b96d-bd3dd35356c8"
+  },
+  {
+    "variant": "design-regression-r1",
+    "sample": "sample-02",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17761-b010-7112-873f-f0eb2e575a11"
+  },
+  {
+    "variant": "design-regression-r1",
+    "sample": "sample-03",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17763-247e-7df3-b61a-2a7714a7584a"
+  },
+  {
+    "variant": "design-regression-r1",
+    "sample": "sample-04",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17763-3631-78f3-9b85-6da8ce533e5d"
+  },
+  {
+    "variant": "design-regression-r1",
+    "sample": "sample-05",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17763-b867-7e33-b4aa-3d0aa2538571"
+  },
+  {
+    "variant": "baseline-r1",
+    "sample": "experience-01",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a1775d-ef5b-7213-bcb2-ca9347404497"
+  },
+  {
+    "variant": "baseline-r1",
+    "sample": "experience-02",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a1775d-ef5b-7ac3-8a60-10ae1e8836d0"
+  },
+  {
+    "variant": "candidate-r2",
+    "sample": "sample-01",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17770-5ad0-7390-bf8d-3fb3761329ed"
+  },
+  {
+    "variant": "candidate-r2",
+    "sample": "sample-02",
+    "completed": true,
+    "non_message_items": 0,
+    "thread_id": "01a17770-5ad0-7b20-a8b2-8631ea469780"
+  }
+]

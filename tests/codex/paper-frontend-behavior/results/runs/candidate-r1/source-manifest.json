@@ -1,0 +1,110 @@
+{
+  "skills/frontend-direction/SKILL.md": {
+    "sha256": "99cf5c6516880af23db1d8d540fbe454bd5fe0b7656ac1ec27bd3d4541236246",
+    "bytes": 8434,
+    "words": 1066,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/SKILL.md"
+  },
+  "skills/frontend-direction/references/design-source-priority.md": {
+    "sha256": "3e2e7f6bac9ca6eaa1dd8714b60b1a5606be6428c447cc94de30269a81f44af6",
+    "bytes": 2718,
+    "words": 375,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/design-source-priority.md"
+  },
+  "skills/frontend-direction/references/packet-finalization.md": {
+    "sha256": "e800e90ab2101d3738197dc550f8913fd06e9a110fdc38c7197b8bc12b1f45c3",
+    "bytes": 5296,
+    "words": 655,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/packet-finalization.md"
+  },
+  "skills/frontend-direction/references/packet-handoff.md": {
+    "sha256": "7b452c5249702e134e0df107a628031e462eaa94e27f58793916ebc7349e3b93",
+    "bytes": 2234,
+    "words": 285,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/packet-handoff.md"
+  },
+  "skills/frontend-direction/references/packet-schema.md": {
+    "sha256": "916623b220cc6c2d0b159db999e9f44c34e85da668c6ddb7974c397bb3ac9339",
+    "bytes": 11706,
+    "words": 1444,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/packet-schema.md"
+  },
+  "skills/implementing-frontend-design/SKILL.md": {
+    "sha256": "78ec5d94b5450ecc9bb0b454224da8224e5208fa8d904b76df2cfe797a09397a",
+    "bytes": 8605,
+    "words": 1050,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/implementing-frontend-design/SKILL.md"
+  },
+  "skills/implementing-frontend-design/references/source-of-truth.md": {
+    "sha256": "f3e832816c34438d323a968e4f299232ffd20f445e835bc66a7b06abb49ed789",
+    "bytes": 799,
+    "words": 93,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/implementing-frontend-design/references/source-of-truth.md"
+  },
+  "skills/frontend-direction/references/visual-exploration.md": {
+    "sha256": "70787192dc2ed010cd9b7340a7093e70fc571151e44f052294c9e03f6990db36",
+    "bytes": 8003,
+    "words": 1088,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/visual-exploration.md"
+  },
+  "skills/frontend-direction/references/task-to-layout.md": {
+    "sha256": "c3c2fe0a5f02cc133a2a6acc9b0e7767260e0973ed62310131576f8f2d6639a9",
+    "bytes": 3496,
+    "words": 514,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/task-to-layout.md"
+  },
+  "skills/frontend-direction/references/design-knowledge-selection.md": {
+    "sha256": "fb433f2b32799f2a175a1fa6a230e57d02f734fdd9159be34059687e6fcbc068",
+    "bytes": 3244,
+    "words": 432,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/design-knowledge-selection.md"
+  },
+  "skills/frontend-direction/references/design-knowledge/refactoring-ui.md": {
+    "sha256": "a8e38afe50eddde38d2ac046a57086f800bb6c4cc4577c9861422acbc3ade675",
+    "bytes": 11538,
+    "words": 1624,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/design-knowledge/refactoring-ui.md"
+  },
+  "skills/frontend-direction/references/design-knowledge/design-everyday-things.md": {
+    "sha256": "c38d3d801e536b82f92bb8e1e502a65fcd72cbec3a6ffda4b26fe6701e657f30",
+    "bytes": 11626,
+    "words": 1714,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/design-knowledge/design-everyday-things.md"
+  },
+  "skills/frontend-direction/references/frontend-review-checklist.md": {
+    "sha256": "2da2143d3dde88fa8f8788fb17ffc66bb1b4d3724c96285928d01c1b9c35a1bf",
+    "bytes": 2349,
+    "words": 312,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/frontend-review-checklist.md"
+  },
+  "skills/implementing-frontend-design/references/runtime-handoff.md": {
+    "sha256": "69215f59e2d906de16c232bce9cd6500864bf3cee1f112e1f50171d3354e8de2",
+    "bytes": 2108,
+    "words": 296,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/implementing-frontend-design/references/runtime-handoff.md"
+  },
+  "skills/implementing-frontend-design/references/implementation-review-checklist.md": {
+    "sha256": "4bde565a96e9d2a98a0c8733048783656d3032549e31d8840ee9ed925e4547ac",
+    "bytes": 7571,
+    "words": 1020,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/implementing-frontend-design/references/implementation-review-checklist.md"
+  },
+  "skills/brainstorming/visual-companion.md": {
+    "sha256": "59f4f6490b3bd95239736ca0df2b4044a5e911d618d8eb3c38c02d194bb54dd1",
+    "bytes": 20625,
+    "words": 2796,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/brainstorming/visual-companion.md"
+  },
+  "skills/frontend-direction/references/paper-workflow.md": {
+    "sha256": "5f788e077cf059fc66aadb9ffcf16f84148fcabf55f41c3f1f6627b26c852c2f",
+    "bytes": 6667,
+    "words": 860,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/paper-workflow.md"
+  },
+  "skills/frontend-direction/references/paper-library.md": {
+    "sha256": "e07f0d67d7ca8418f12377456cfc5451b8433f7fd3f7bfb62b161bf7a1bcf7fe",
+    "bytes": 6781,
+    "words": 877,
+    "origin": "git:cd2c0f2442a0077d0da063194fcf2ce44917930d:skills/frontend-direction/references/paper-library.md"
+  }
+}

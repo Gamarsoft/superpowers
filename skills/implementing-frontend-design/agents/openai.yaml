@@ -1,4 +1,4 @@
 interface:
   display_name: "Implementing Frontend Design"
   short_description: "Implement and verify an approved frontend design"
-  default_prompt: "Use $implementing-frontend-design to implement this approved visual and interaction target, preserve its scoped design changes, and verify the result in the running UI."
+  default_prompt: "Use $implementing-frontend-design to implement this exact approved version-2 visual and interaction target, preserve its scoped design changes, and verify the result in the running UI."

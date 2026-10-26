@@ -123,16 +123,22 @@ Default path:
 [Optional. Link to durable wireframe files in a sibling `{spec-slug}-wireframes/` folder.]
 
 ## Appendix E. Frontend Direction
-[Only if applicable. Link to the follow-on prompt now, and later to `{spec-slug}--frontend-direction.md` and the supporting asset folder.]
+[Only if applicable. Link to the follow-on prompt while pending. Once approved, copy the complete shared record from `frontend-direction/references/packet-handoff.md`, using the actual resolved paths from the producing handoff. Current handoffs require version 2 at `...--frontend/packet.md`; historical packets stay untouched at their existing paths as reference material only, never current handoffs.]
+
+- Frontend packet entry: [resolved path or required-pending/not-required]
+- Expected revision: [from producing handoff]
+- Expected descriptor SHA-256: [from producing handoff]
+- Approval reference: [actual human decision]
+- Status and accepted limitations: [preserve exactly]
 
 Example:
 - [Frontend-direction follow-on prompt](#) - prompt to create the frontend packet in a separate session
-- [Frontend direction packet]({spec-slug}--frontend-direction.md) - selected visual direction, state coverage, responsive rules, and implementation contract
+- [Frontend direction packet](<resolved-packet-entry>) - selected visual direction, state coverage, responsive rules, and implementation contract
 - [Screen index]({spec-slug}--frontend/screen-index.md) - key screens and state coverage
 - [Brownfield UI extraction]({spec-slug}--frontend/brownfield-ui-extraction.md) - preserve vs improve analysis for current product truth
 - [Runtime screenshots and browser captures]({spec-slug}--frontend/) - retained current UI evidence and implementation proof
-- [Approved generated image references]({spec-slug}--frontend/) - optional ChatGPT Images 2 references, if explicitly used and approved
-- [Reference intent notes]({spec-slug}--frontend-direction.md) - visual-truth, semantic-guidance, reference-only, or degraded current-UI mode decisions
+- [Approved generated image references]({spec-slug}--frontend/) - optional explicitly requested image references retained with scoped intent in the approved v2 packet
+- Reference intent notes: [same resolved packet entry] - visual-truth, semantic-guidance, reference-only, or degraded current-UI mode decisions
 
 ## Appendix F. Decisions / ADR Notes
 [Only if architectural trade-offs matter]

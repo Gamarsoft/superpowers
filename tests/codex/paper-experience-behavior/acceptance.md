@@ -1,0 +1,12 @@
+# Fixed acceptance, frozen before candidate correction
+
+Evaluate each response semantically with exact quotes; no numerical design-quality score. Preserve all attempts, disagreements and limitations. Two fresh independent Astra/medium samples per source are a focused diagnostic comparison, not a statistical efficacy claim. The actual human-rejected Branding r1 is the observed design failure. These cases check transfer and review judgment, not whether a new design is good.
+
+1. Reuse approved business facts and form an experience brief for the follow-on route. Surface only missing experience-changing context, such as feature frequency/preparedness, with a recommendation and its consequences. Do not rerun full business discovery or presume requirements settled the experience.
+2. Identify unresolved structural choice and compare a small inexpensive set before polishing. Alternatives differ in hierarchy, interaction or task sequence; explain recommendation/tradeoff. Routine work is not subject to mandatory variants.
+3. Preserve semantics and established admin anchors. Treat selected-light-logo-on-every-publish friction as a separate product decision without silently changing it or masking it in paragraphs. No imposed new fonts, hero, animation or rebrand.
+4. Reject or hold the rendered proposal for consequential visible defects despite packet/component success. Cite concrete regions and task consequences, including weak preview feedback and long mobile separation/duplication. Corrections must change task organization or feedback, not only add copy or cosmetic polish. Accept other equally evidenced defects; do not require the evaluator's preferred final layout.
+5. Distinguish observed design evidence, component feasibility and unobserved human usability. State necessary next rendered/interaction evidence and exact final design approval; do not claim improved usability or approve on instruction compliance alone.
+6. For the settled typo, use a focused correction with relevant copy/render verification, no experience interview, mandatory sketches, Paper round-trip or extra review chain.
+
+The historical five-sample design-handoff campaign is separately rerun against its unchanged rubric. Maintenance/schema are unchanged and retain their existing evidence plus relevant integration checks. New rendered r2 quality and human approval remain pending until a proposal exists.

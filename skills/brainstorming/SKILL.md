@@ -1,9 +1,14 @@
 ---
 name: brainstorming
-description: Use when product or feature work is still being shaped before implementation, especially for repo-specific requests where scope, trade-offs, brownfield continuity, or UI direction are not yet stable.
+description: Use when product or feature goals, scope, business behavior, or product trade-offs still need shaping before implementation, including repo-specific brownfield work.
 ---
 
 # Brainstorming
+
+For settled product behavior with unresolved screen hierarchy or interaction,
+enter `frontend-direction` directly using its standalone brief. An approved
+target or mechanical change goes to the implementation workflow. Use this
+skill when product goals, scope or business behavior still need shaping.
 
 ## Overview
 
@@ -97,18 +102,18 @@ When frontend direction is required:
 
 - stay in brainstorming long enough to stabilize product behavior, flows, states, constraints, and first delivery boundary
 - allow the visual companion for decision support during brainstorming
-- do not create the frontend direction packet or screenshots in the same default brainstorming session
+- do not create the frontend direction packet or screen compositions in the same default brainstorming session; the follow-on uses Paper for substantial composition and focused actual-component evidence
 - write the neutral spec with `packet status: required-pending`
 - produce a follow-on prompt for a separate `frontend-direction` session
 - include any visual-companion decisions as context for that follow-on prompt
 
 ## Visual Companion
 
-Use the visual companion only when the decision is materially easier to judge by seeing than by reading. For conceptual, scope, and text-first turns, stay in terminal.
+Use the visual companion for an explanation, flow or product comparison only when the decision is materially easier to judge by seeing than by reading. Screen composition belongs in Paper through frontend-direction, even after earlier Companion consent. An explicit Companion mockup request overrides that default for its scoped task. For conceptual, scope, and text-first turns, stay in terminal.
 
 Before authoring, name the viewing task: what the user should inspect, understand, compare, or decide after seeing the artifact. Choose the smallest useful artifact intent—compare, explain, map, experience, or synthesize. These intents are examples, not a whitelist: a direct subject-specific diagram is appropriate when it explains structure or sequence better than prose. Keep the established comparison patterns first-class, but do not invent alternatives merely to force a comparison. Reject irrelevant decoration; revise a weak artifact or stay in terminal.
 
-After the user accepts the companion, the first later genuinely visual question must start the companion path instead of remaining terminal-only. Each qualifying visual turn remains artifact-first: author or refresh the visual artifact, make it viewable, then ask the decision in terminal.
+After the user accepts the companion, the first qualifying explanation, flow or product comparison must start the companion path instead of remaining terminal-only. Each qualifying visual turn remains artifact-first: author or refresh the visual artifact, make it viewable, then ask the decision in terminal.
 
 The terminal decision prompt must stay present for qualifying visual turns even after the companion has already been opened earlier in the session. If the platform question tool is unavailable, the agent may fall back to plain terminal text, but that is degraded behavior and should be named as such.
 
@@ -118,6 +123,8 @@ follow first-use workflow in order:
 2. repo design-context source if present
 3. one-time minimal session capture
 4. degraded mode
+5. fill the startup record in `visual-companion.md`: name the actual absolute project directory, start `bash <skill-dir>/scripts/start-server.sh --project-dir <same project root>` using its platform lifecycle, then capture `url`, `screen_dir` and `state_dir`; retain the directory input, complete keyed URL and server lifetime across turns
+6. author the artifact, make it viewable and explain its purpose, then ask with the dedicated question tool when available
 
 preserve compatibility boundary language:
 
@@ -264,6 +271,8 @@ Create a task for each of the following and complete them in order.
     - When frontend direction is required and no current packet exists, keep packet status as `required-pending`, deliver the follow-on prompt, and stop this workflow until the separate frontend-direction session returns an approved packet.
     - Resume only when the user explicitly approves the packet as `approved` or explicitly approves every degraded constraint and records `approved-with-degraded-evidence`.
     - A degraded evidence note without explicit approval does not satisfy this gate.
+    - Require version 2; historical packets remain untouched reference material only and cannot satisfy this gate. Missing or unsupported versions fail closed under the shared schema.
+    - Copy the producing packet's complete `frontend-direction/references/packet-handoff.md` record into the spec and carry it unchanged into selected-adapter review, the selected adapter and implementation tasks.
 
 18. **Confirm the delivery route**
     - Read `references/delivery-routing.md`.
@@ -277,7 +286,7 @@ Create a task for each of the following and complete them in order.
 
 19. **Create the selected adapter**
     - Append the compact Delivery Route section to the approved spec.
-    - Produce exactly one adapter for the confirmed route: GSD handoff and steering note, a single Superpowers `writing-plans` invocation bound to the approved spec, or a Native Codex inline proposed plan.
+    - Produce exactly one adapter for the confirmed route: GSD handoff and steering note, an inert Superpowers `writing-plans` invocation record bound to the approved spec and frontend handoff, or a Native Codex inline proposed plan. Preparation does not execute `writing-plans`; step 21 invokes it once after review.
     - Do not create or retain any adapter for an unselected route.
     - Generate the GSD handoff only when GSD is confirmed and packet status is `not-required`, `approved`, or `approved-with-degraded-evidence`; for UI-heavy work it consumes the approved packet and never sends work back to frontend direction.
     - If a route change is requested after adapter or workflow state exists, stop for reconciliation; never reroute automatically.
@@ -334,7 +343,7 @@ When comparing options:
 - prefer reversible choices when confidence is low
 - name what each option makes harder, not just what it makes possible
 - when UI direction is in scope, prefer clarity, hierarchy, brownfield continuity, and design-system fit over generic visual flourish
-- when HTML companion screens are used, prefer them for comparison speed only; durable truth must still converge into packet prose, screenshots, browser captures, or approved generated images
+- when Companion artifacts are useful, keep them scoped to explanations, flows and product comparisons by default; explicit mockup requests retain their override. Durable truth must converge into approved v2 design evidence
 
 Use `references/decision-lens.md` for a consistent rubric.
 

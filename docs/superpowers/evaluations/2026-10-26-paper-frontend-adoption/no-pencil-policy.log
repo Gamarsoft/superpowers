@@ -1,0 +1,32 @@
+=== Test: no Pencil frontend policy ===
+
+  [PASS] Removed path absent: skills/pencil-design-core
+  [PASS] Removed path absent: skills/pencil-design-angular-nebular
+  [PASS] Removed path absent: skills/pencil-design-react-tailwind
+  [PASS] Removed path absent: skills/pencil-design-flutter-material
+  [PASS] Removed path absent: docs/pencil
+  [PASS] Removed path absent: skills/frontend-direction/references/pencil-workset-template.md
+  [PASS] Removed path absent: skills/frontend-direction/references/pencil-skill-selection.md
+  [PASS] Removed path absent: skills/implementing-frontend-design/references/pencil-source-consumption.md
+  [PASS] Removed path absent: skills/implementing-frontend-design/references/pencil-skills-integration.md
+  [PASS] Removed path absent: skills/brainstorming/references/pencil-skill-selection.md
+  [PASS] Removed path absent: skills/brainstorming/README.md
+  [PASS] Removed path absent: skills/frontend-direction/README.md
+  [PASS] Removed path absent: skills/implementing-frontend-design/README.md
+  [PASS] Active frontend guidance has no Pencil/.pen references
+  [PASS] UI refinery scan fails with diagnostics on ripgrep errors
+  [PASS] UI refinery scan classifies the same GSD input by explicit route context
+  [PASS] Active UI refinery guidance accepts route-neutral planning context
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.009s
+
+OK
+  [PASS] Brainstorming routes only after the frontend packet is approved
+  [PASS] Track selection does not require an unconditional GSD handoff
+  [PASS] Brainstorming metadata retains neutral output and confirmed routing
+  [PASS] Brainstorming metadata does not promise a GSD handoff
+  [PASS] UI refinery keeps the route-neutral contract
+  [PASS] Packet guardian accepts confirmed-route context
+  [PASS] Refinement prompt stays route-neutral
+=== No Pencil frontend policy test passed ===

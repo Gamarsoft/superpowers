@@ -1,0 +1,12 @@
+[
+  {
+    "sample": "sample-01",
+    "variant": "candidate-r1",
+    "exit": 0
+  },
+  {
+    "sample": "sample-02",
+    "variant": "candidate-r1",
+    "exit": 0
+  }
+]

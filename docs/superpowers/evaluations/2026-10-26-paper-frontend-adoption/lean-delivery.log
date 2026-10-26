@@ -1,0 +1,222 @@
+PASS: plan header carries the spec path
+PASS: plan header carries the spec revision
+PASS: plan header carries risk class
+PASS: plan header carries named risk triggers
+PASS: plan header carries verification lanes
+PASS: plan author owns a whole-plan self-review
+PASS: named risk gets one holistic readiness gate
+PASS: planning correction circuit breaker is bounded
+PASS: controller retains plan mutation ownership
+PASS: approved self-hosting route is preserved
+PASS: per-chunk review loop is removed
+PASS: separable subsystems become separate plans
+PASS: scope split condition is not reversed
+PASS: all not-ready outcomes block handoff
+PASS: human decisions return through the readiness gate
+PASS: all protected decision classes route to the human
+PASS: readiness dispositions persist in the plan
+PASS: the complete readiness ruling survives compaction
+PASS: self-hosting plan declares its first delivery boundary
+PASS: self-hosting plan records a separate spec revision
+PASS: self-hosting plan records its execution worktree
+PASS: self-hosting plan records its implementation base
+PASS: self-hosting plan uses the shared author-review heading
+PASS: self-hosting plan persists holistic readiness evidence
+PASS: self-hosting plan is ready before implementation handoff
+PASS: behavior probe covers complete-suite failure
+PASS: behavior probe covers failed-head non-retry
+PASS: behavior probe covers producer-return archival
+PASS: behavior probe preserves the final-evidence breaker
+PASS: behavior probe requires refreshed evidence at a new head
+PASS: missing-role probe requires executed fallback dispatches
+PASS: missing-role probe omits unavailable typed roles
+PASS: missing-role probe gives fallback agents fresh context
+PASS: missing-role probe records only observed actions
+PASS: missing-role probe requires durable operational proof
+PASS: implementation marker proves prompt scope
+PASS: review marker proves shared dispositions
+PASS: review marker proves exact-range evidence
+PASS: review marker proves read-only isolation
+PASS: holistic readiness reviewer prompt exists
+PASS: per-chunk plan reviewer prompt is removed
+PASS: readiness reviewer consumes the full spec
+PASS: readiness reviewer consumes the full plan
+PASS: readiness prompt defines blocking findings
+PASS: readiness prompt defines decision findings
+PASS: readiness prompt defines follow-up findings
+PASS: readiness prompt defines invalid findings
+PASS: findings require a causal connection to changed work
+PASS: findings require evidence
+PASS: load-bearing findings require causality
+PASS: adjacent real defects remain follow-ups
+PASS: SDD task briefs carry global TDD mechanics
+PASS: task brief reserves complete suite for finishing
+PASS: implementer prompt reserves complete suite for finishing
+PASS: implementer no longer repeats the complete suite
+PASS: inline execution consumes contract-shaped tasks
+PASS: inline execution does not require legacy step boilerplate
+PASS: inline execution preserves an explicit route override
+PASS: inline execution is the honest no-subagent route
+PASS: inline execution validates the shared plan contract
+PASS: inline execution uses the plan-scoped workspace
+PASS: inline execution writes a finishing handoff
+PASS: inline execution records absent independent review
+PASS: inline execution does not fabricate SDD guarantees
+PASS: inline execution uses a reviewer only when one exists
+PASS: inline optional review checks available reviewer roles
+PASS: inline optional review uses the unified typed reviewer when available
+PASS: inline optional review gives reviewers fresh context
+PASS: inline optional review has a generic reviewer fallback
+PASS: inline optional review uses a fresh generic fallback
+PASS: inline generic fallback preserves review coverage
+PASS: inline review does not depend on the typed role
+PASS: inline reviewer cannot delegate its evidence check
+PASS: inline reviewer receives the approved contract
+PASS: inline reviewer receives the recorded range
+PASS: inline reviewer receives cumulative diff evidence
+PASS: inline reviewer receives selected review depth
+PASS: inline reviewer receives existing verification evidence
+PASS: inline reviewer requires causal findings
+PASS: inline reviewer receives an explicit output contract
+PASS: inline reviewer returns the shared finding table
+PASS: inline reviewer reports specification compliance
+PASS: inline reviewer reports implementation quality
+PASS: inline reviewer reports inspected evidence
+PASS: inline reviewer uses the shared readiness rule
+PASS: inline execution leaves complete verification to finishing
+PASS: inline execution has the shared correction budget
+PASS: inline execution trips the shared correction breaker
+PASS: inline execution can resume a failed finishing handoff
+PASS: inline finishing return cannot reset the correction budget
+PASS: inline execution stops for a missing specification
+PASS: inline execution stops for repeated verification failure
+PASS: inline execution stops for unresolved product authority
+PASS: inline report binds the implementation revision
+PASS: inline report requires a clean implementation state
+PASS: shared execution-report contract exists
+PASS: execution report carries Plan:
+PASS: execution report carries Spec:
+PASS: execution report carries Spec revision:
+PASS: execution report carries Final-evidence correction count:
+PASS: execution report carries Completed work
+PASS: execution report carries Focused verification
+PASS: execution report carries Integration verification
+PASS: execution report carries Controller rulings
+PASS: execution report carries Deviations
+PASS: execution report carries Follow-ups
+PASS: execution report carries Remaining risks
+PASS: execution report carries Decisions
+PASS: execution report carries Reviewer availability
+PASS: execution report carries Implementation HEAD:
+PASS: duplicate refining-plans skill is removed
+PASS: plan-fixer role is removed
+PASS: plan-simulator role is removed
+PASS: plugin manifest has no refining-plans route
+PASS: live skill and role references to removed planning lane are absent
+PASS: public requesting review has a narrow boundary
+PASS: standalone review requires an explicit contract source
+PASS: standalone review requires an exact recorded range
+PASS: standalone review never guesses a one-commit base
+PASS: standalone review relinquishes SDD ownership
+PASS: standalone Codex reviewer gets fresh context
+PASS: standalone review has generic role fallback
+PASS: public reviewer requires causality for blockers
+PASS: review pressure is classified without relabeling approved behavior
+PASS: public reviewer defines BLOCKING
+PASS: public reviewer defines DECISION
+PASS: public reviewer defines FOLLOW_UP
+PASS: public reviewer defines INVALID
+PASS: public reviewer has no second severity ladder
+PASS: profile selection is evidence-triggered
+PASS: default review remains stack-neutral
+PASS: security depth has a conditional profile
+PASS: Java depth has a conditional profile
+PASS: brainstorming reviewer defines BLOCKING
+PASS: brainstorming reviewer defines DECISION
+PASS: brainstorming reviewer defines FOLLOW_UP
+PASS: brainstorming reviewer defines INVALID
+PASS: brainstorming reviewer requires causality
+PASS: brainstorming reviewer requires evidence
+PASS: brainstorming reviewer returns the shared readiness verdict
+PASS: brainstorming reviewer drops the legacy output taxonomy
+PASS: brainstorming checklist uses shared blocking disposition
+PASS: brainstorming checklist uses shared decision disposition
+PASS: brainstorming checklist uses shared follow-up disposition
+PASS: brainstorming checklist uses shared invalid disposition
+PASS: Java profile does not restore a critical severity tier
+PASS: Java profile does not restore an important severity tier
+PASS: Java profile remains subordinate to shared dispositions
+PASS: receiving review handles only external feedback
+PASS: external feedback is verified before mutation
+PASS: receiving review defines BLOCKING
+PASS: receiving review defines DECISION
+PASS: receiving review defines FOLLOW_UP
+PASS: receiving review defines INVALID
+PASS: receiving review relinquishes SDD ownership
+PASS: receiving review excludes internal SDD findings
+PASS: finishing requires the producer handoff
+PASS: stale reports stop before complete verification
+PASS: stale reports return to final review
+PASS: finishing has sole one-shot complete verification
+PASS: failed finishing attempts cannot rerun against one implementation head
+PASS: finishing persists its return transition
+PASS: finishing return evidence identifies the failed revision
+PASS: unidentifiable handoffs do not fabricate return identity
+PASS: finishing validates the explicit correction count
+PASS: shared return schema excludes unidentifiable handoffs
+PASS: durable report path is implementation-head suffixed
+PASS: only the completed report is staged
+PASS: report range is checked against implementation head
+PASS: report commit rejects implementation changes
+PASS: invalid report ranges never trigger a second suite
+PASS: all non-discard paths preserve evidence
+PASS: finishing stops rather than overwriting evidence
+PASS: finishing can resume after its report commit
+PASS: finishing resume is idempotent
+PASS: README describes bounded ordinary batches
+PASS: README describes risk-scaled review cadence
+PASS: README describes the bounded correction breaker
+PASS: README keeps public review outside SDD orchestration
+PASS: README assigns the sole complete suite to finishing
+PASS: README documents missing-role fallback
+PASS: README removes unconditional per-task dispatch
+PASS: README removes public-review task-loop ownership
+PASS: README removes the obsolete severity ladder
+PASS: README removes the obsolete broad-review wording
+PASS: delivery routing advertises the new review model
+PASS: delivery routing removes unconditional per-task review
+PASS: brainstorming review loops use the shared breaker
+PASS: brainstorming names the shared two-round breaker
+PASS: both brainstorming review gates route decisions to the human
+PASS: testing guide names the local Codex behavior suite
+PASS: testing guide documents immutable behavior evidence
+PASS: testing guide distinguishes local probes from Drill
+PASS: release notes identify the fork-only unreleased changes
+PASS: release notes disclose the removed planning lane
+PASS: release notes disclose role consolidation
+PASS: smoke spec defines duplicate status and retained result
+PASS: smoke plan names finishing command exactly
+PASS: smoke plan declares its goal
+PASS: smoke plan declares its first boundary
+PASS: smoke plan declares an explicit base ref
+PASS: smoke plan declares a root-reachable specification
+PASS: smoke plan omits an unused cross-task trigger
+PASS: smoke plan carries readiness evidence
+PASS: smoke begins with a readiness blocker
+PASS: every smoke task declares ownership
+PASS: every smoke task declares contracts
+PASS: every smoke task declares dependencies
+PASS: every smoke task declares acceptance
+PASS: every smoke task declares errors
+PASS: every smoke task declares risk
+PASS: every smoke task declares focused verification
+PASS: every smoke task declares codebase pointers
+PASS: three label tasks form an ordinary checkpoint batch
+PASS: ordinary label batch does not claim a public-contract trigger
+PASS: ordinary label batch does not claim every helper is public
+PASS: smoke shape test remains valid after implementation
+PASS: smoke shape test does not reject completed work
+PASS: smoke factory creates its declared implementation base
+PASS: generated smoke checkout resolves its implementation base
+PASS: generated smoke checkout resolves its declared specification
+All lean-delivery contract tests passed

@@ -1,0 +1,2 @@
+2026-10-23T17:11:11.568455Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-10-23T17:11:11.637760Z  WARN codex_core::shell_snapshot: Failed to delete shell snapshot at "/Users/gamarsoft/.codex/shell_snapshots/01a169b8-fae5-7cc0-b925-bd24e776fed2.1792775092981583000.sh": Os { code: 2, kind: NotFound, message: "No such file or directory" }

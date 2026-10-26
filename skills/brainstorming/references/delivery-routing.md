@@ -21,6 +21,12 @@ Route availability means the required skills and platform capability are actuall
 
 ## Confirmed route adapters
 
+Every frontend adapter carries the complete
+[packet handoff record](../../frontend-direction/references/packet-handoff.md)
+from the approved spec unchanged, including expected identity, approval and
+accepted limits. Current frontend handoffs require v2 design source and separate runtime evidence; historical packets cannot satisfy this gate. Missing/unsupported versions fail closed under the shared schema with no migration or legacy fallback. Prepare the selected adapter as reviewable text before
+executing its transition.
+
 ### GSD
 
 - Write the GSD handoff using `gsd-handoff-template.md`.
@@ -29,7 +35,8 @@ Route availability means the required skills and platform capability are actuall
 
 ### Superpowers
 
-- Invoke `writing-plans` with the approved spec as its source of truth.
+- Prepare an inert `writing-plans` invocation record naming the approved spec and complete frontend packet handoff when applicable. Creating this record does not execute the skill.
+- After independent selected-adapter review approves and its reference is recorded, invoke `writing-plans` once with those exact inputs.
 - Do not also create a GSD handoff, GSD steering note, or Native Codex plan.
 
 ### Native Codex

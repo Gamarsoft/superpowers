@@ -761,9 +761,15 @@ function assertM003FirstQualifyingVisualTurnStartup() {
 
   assertIncludes(
     skillVisualSection,
-    'the first later genuinely visual question must start the companion path instead of remaining terminal-only.',
+    'the first qualifying explanation, flow or product comparison must start the companion path instead of remaining terminal-only.',
     'SKILL.md first qualifying visual turn startup rule'
   );
+  // Contract reachability only; fresh actors verify actual startup decisions.
+  for (const field of ['--project-dir', '`url`', '`screen_dir`', '`state_dir`', 'complete keyed url', 'server lifetime']) {
+    assertIncludes(skillVisualSection, field, 'SKILL.md complete first-use startup contract');
+  }
+  assertIncludes(skillVisualSection, 'screen composition belongs in paper', 'default composition boundary');
+  assertIncludes(skillVisualSection, 'explicit companion mockup request', 'explicit medium override');
 }
 
 function assertM003ArtifactFirstSequencing() {

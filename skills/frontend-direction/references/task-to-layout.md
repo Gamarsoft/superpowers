@@ -2,6 +2,22 @@
 
 Use for substantial layout or interaction decisions before concept generation, then reuse the reasoning during prototype refinement. Record only decisions that materially affect the task in the packet's existing evidence section.
 
+## Frame the experience
+
+For follow-on and standalone work, put a short experience brief in the packet's existing evidence. Reuse the product spec and observed facts; distinguish unknowns from assumptions. Cover:
+
+- Who uses this screen, how often, and with what familiarity.
+- Their job, decisions and what they must understand to proceed.
+- Essential information now; secondary, contextual or disclosed details.
+- Feedback that lets them judge the result, beyond repeating entered values.
+- Suitable interaction model, density, vocabulary and visual character.
+
+Ask only about gaps that materially change those choices. Bring a recommendation and its tradeoff, rather than asking the human to invent a layout. Existing product answers need no repeated interview or separate sign-off.
+
+Separate business invariants from inherited presentation and implementation choices. When a retained rule forces repeat work, a workaround or an interruption to the user’s task, record the rule, the concrete user cost and the separate product decision needed to change it. Preserve the behavior while that decision is unresolved; help text does not resolve the friction.
+
+Ground visual choices in this product's actual content and audience. In brownfield admin software, use the established typography and spacing vocabulary deliberately, quiet competing emphasis, and remove decoration or repeated copy that serves no task. Subject-specific design does not require a hero, new fonts, motion or rebranding. Plain labels and action/result language should help the user decide; technical implementation terms belong in evidence, not interface copy.
+
 ## Establish the information model
 
 Name the user's next decision, the facts needed to make it and what confirms the result. For each prominent value or state, establish its meaning, source and scope: a row, loaded page, filtered set, whole account or particular time period. Separate known product facts from design hypotheses.

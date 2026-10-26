@@ -1,0 +1,101 @@
+[
+  {
+    "name": "packet",
+    "command": [
+      "python3",
+      "tests/claude-code/test-frontend-packet.py"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 4.29,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/packet.log"
+  },
+  {
+    "name": "resources",
+    "command": [
+      "python3",
+      "tests/claude-code/test-frontend-direction-contract.py"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.06,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/resources.log"
+  },
+  {
+    "name": "companion-contract",
+    "command": [
+      "node",
+      "tests/brainstorm-server/visual-companion-contract.test.js"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.18,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/companion-contract.log"
+  },
+  {
+    "name": "companion-design-kit",
+    "command": [
+      "node",
+      "tests/brainstorm-server/visual-companion-design-kit.test.js"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.18,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/companion-design-kit.log"
+  },
+  {
+    "name": "visual-review-policy",
+    "command": [
+      "bash",
+      "tests/claude-code/test-frontend-visual-review-policy.sh"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.29,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/visual-review-policy.log"
+  },
+  {
+    "name": "no-pencil-policy",
+    "command": [
+      "bash",
+      "tests/claude-code/test-no-pencil-frontend-policy.sh"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.14,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/no-pencil-policy.log"
+  },
+  {
+    "name": "artifact-quality",
+    "command": [
+      "bash",
+      "tests/claude-code/test-brainstorming-artifact-quality.sh"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.18,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/artifact-quality.log"
+  },
+  {
+    "name": "custom-policy",
+    "command": [
+      "bash",
+      "tests/claude-code/test-custom-policy-contracts.sh"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.1,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/custom-policy.log"
+  },
+  {
+    "name": "lean-delivery",
+    "command": [
+      "bash",
+      "tests/claude-code/test-lean-delivery-contracts.sh"
+    ],
+    "head": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+    "exit_code": 0,
+    "elapsed_seconds": 0.5,
+    "log": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/lean-delivery.log"
+  }
+]

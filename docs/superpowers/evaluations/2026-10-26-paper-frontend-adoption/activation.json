@@ -1,0 +1,28 @@
+{
+  "status": "adopted with accepted follow-ups",
+  "adopted_source_revision": "f60fa2c9bd0be1eff533b707a1668966090fda60",
+  "reviewed_implementation_revision": "f44961cb0dee13f5d660f58523488b32cd710705",
+  "branch": "codex/adopt-paper-frontend-workflow",
+  "repository": "/Users/gamarsoft/.codex/superpowers",
+  "previous_head": "b97ddc0f5205c36185bce8dd555ea2db58c3bac3",
+  "previous_branch": "codex/frontend-design-audit-fixes",
+  "installation_alias": "/Users/gamarsoft/.codex/skills/superpowers",
+  "resolved_skills": "/Users/gamarsoft/.codex/superpowers/skills",
+  "tracked_skill_files_verified": 169,
+  "skill_source_changes_from_reviewed_candidate": [],
+  "focused_checks_passed": 9,
+  "fresh_native_session_passed": true,
+  "fresh_session_model": "gpt-6-astra",
+  "activation_failures": [],
+  "pilot_status": "closed",
+  "accepted_followups": [
+    "Mixed revised-artifact approval result remains 6/6 and 5/6; exact approval remains mandatory in normal implementation.",
+    "Historical 75/75 design-handoff regression belongs to 0da9cdd, not a later campaign.",
+    "Claude/Quorum coverage unavailable; no new campaign required for this initial adoption.",
+    "Human usability, broad cross-browser quality, repeat-use savings and long-term maintenance efficiency unmeasured.",
+    "Scoped color-pattern reconciliation pending with last_verified retained; full-screen coverage unknown."
+  ],
+  "rollback_command": "git -C /Users/gamarsoft/.codex/superpowers switch codex/frontend-design-audit-fixes",
+  "planning_originals_backup": "/Users/gamarsoft/.codex/superpowers/.superpowers/sdd/2026-10-26-paper-frontend-adoption/pre-adoption-originals",
+  "planning_originals_history_revision": "cf2603aed51ad69631033e43a30e9da8b0f420ee"
+}
