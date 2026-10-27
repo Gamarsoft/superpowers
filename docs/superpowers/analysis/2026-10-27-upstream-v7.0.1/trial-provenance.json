@@ -1,0 +1,11 @@
+{
+  "method": "Independent forward actor received the complete skill and raw repository, with read-only access and an isolated output directory. It did not see synthetic test cases, rubric, candidate outputs or controller conclusions.",
+  "controller_checks": {
+    "source_hashes_verified_against_git": 152,
+    "decisions_cover_inventory": 64,
+    "implemented_records": 0,
+    "relative_links": "pass"
+  },
+  "persistence": "Copied worker reports and evidence. Replaced duplicate raw patch links with an immutable GitHub compare URL; omitted repeated source opening snippets, keeping verified revision/path/bytes/hash identities. Trimmed Markdown trailing whitespace. Raw working artifacts remain in the temporary trial directory.",
+  "source_patch_sha256": "942d3be23a6560f3a17aaa20e15fbc5834ae2472df90447b0a06ff6ba0504fb7"
+}

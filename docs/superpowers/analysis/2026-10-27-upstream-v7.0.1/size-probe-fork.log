@@ -1,0 +1,3 @@
+FAIL: skills/brainstorming/SKILL.md is 28279 bytes (limit: under 20000)
+FAIL: skills/writing-skills/SKILL.md is 26636 bytes (limit: under 20000)
+Move content the skill only needs sometimes into its references/ directory.

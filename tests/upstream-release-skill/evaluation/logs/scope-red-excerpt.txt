@@ -1,0 +1,13 @@
+Deduplicated output lines from the fixture-corrected failing run; full local diagnostic retained in the temporary evaluation directory.
+
+cd+++++++ .agents/
+cd+++++++ .agents/skills/
+cd+++++++ .agents/skills/fork-maintenance/
+>f+++++++ .agents/skills/fork-maintenance/SKILL.md
+>f....... .agents/skills/fork-maintenance/SKILL.md
+  [FAIL] Preview excludes repository-scoped skills
+  [FAIL] Clean no-op local apply exits successfully
+  [FAIL] Clean no-op local apply reports no changes
+  [FAIL] Clean no-op local apply leaves destination checkout on its original branch
+  [FAIL] Clean no-op local apply does not create sync branch in destination checkout
+FAILED: 5 assertion(s) failed.

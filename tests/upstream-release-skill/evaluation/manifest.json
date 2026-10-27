@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "method": "Fresh collaboration.spawn_agent context for each two-case run; no skill control versus complete candidate SKILL.md and release-workflow.md. No model/effort overrides. Each arm has five independent runs, two cases clustered per run. Controller manually read all outputs against frozen rubric.",
+  "actor_model": "Runtime inherited default; exact model and reasoning identifiers not exposed by spawn result.",
+  "harness": "Codex desktop collaboration API; exact harness build unavailable from tool result.",
+  "fixtures": "Synthetic fixtures inspired by actual release. A deliberately uses illustrative entrypoint sizes and a fixture dependency; they are not measured v7.0.1 results. B uses a fictional later release and fork commit. Real v7.0.1 assessment is separate.",
+  "scope": "Actors may read only cases; candidate also reads skill and reference. No action tools after those reads, other skills, subagents, or mutation. Evidence files were saved verbatim in a separate follow-up after final responses.",
+  "rubric_before_candidate": true,
+  "control_before_candidate": true,
+  "primary_observation": "All five controls omit a before/after evaluation plan for suggested behavior edits. All five candidates provide it. Controls also omit explicit remote identities in the output record; candidates include them. Fork-preservation and authorization boundaries remain satisfied in the supplied scenarios.",
+  "limits": [
+    "Small prompt-level sample, not end-to-end integrations.",
+    "Non-blinded controller scoring.",
+    "A and B within each run are correlated.",
+    "No latency, token cost, long-conversation reliability or production improvement measurement.",
+    "One candidate version; no observed new rationalization requiring revision."
+  ],
+  "candidate_source_sha256": {
+    "SKILL.md": "e04c5db00bdbfa0e3304274f63a3959776d68f5176f9dd7908960d8b7c988699",
+    "references/release-workflow.md": "38ebfcc235bf522f0c17183bb32e621fe0291b66247392c355d3f8d5c762e136",
+    "agents/openai.yaml": "06d28ce8c304d15ffff6739cadcdac5d83263b3d8c20f292fde78e67ef79f4b4",
+    "scripts/release_inventory.py": "e8a439f8cd88efc6bc8f7a880e95000a0ce6530bd8696827103dbc8e861ec38c"
+  },
+  "input_sha256": {
+    "cases.md": "bf2ac6aab482a2aa352cabf4dd4e8d025d57d0a8cb599d4c1cc08b94dda78889",
+    "rubric.md": "dd3b14fef46715b429f11be1297ba54bfe11360797504cb64426780e4f9d1460",
+    "pressure-1.md": "2a3eb04fc021f47e0ab4aed9cfa74e1bcd28867f953ef8152d3c54b2ef9d8c0e",
+    "pressure-2.md": "5cba8dc31dd05159af7c6b97137d0dfeb610240354a92852f5bc805bb07ea3e6"
+  },
+  "pressure_tests": "Two additional independent fresh actors; both pass. These are candidate-only boundary checks, not comparative efficacy evidence.",
+  "log_formatting": "Executable-check logs trim trailing whitespace/terminal blank lines for repository style; scope RED excerpt deduplicates matching emitted lines. Behavioral final responses are unchanged."
+}

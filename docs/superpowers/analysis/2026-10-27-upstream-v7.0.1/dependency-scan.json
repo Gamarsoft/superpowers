@@ -1,0 +1,154 @@
+{
+  "moved-support-files": {
+    "pattern": "CLAUDE_MD_TESTING|anthropic-best-practices|graphviz-conventions|persuasion-principles|testing-skills-with-subagents",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:.gsd/milestones/M003/M003-RESEARCH.md:86:- `writing-skills` explicitly requires a RED baseline scenario before skill edits, and `test-driven-development` explicitly requires watching the failure first; M003\u2019s validation loop should inherit that standard directly (source: `skills/writing-skills/SKILL.md`, `skills/writing-skills/testing-skills-with-subagents.md`, `skills/test-driven-development/SKILL.md`).",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-04-06-worktree-rototill.md:7:**Architecture:** Two skill files are rewritten (`using-git-worktrees`, `finishing-a-development-branch`), three files get one-line integration updates (`executing-plans`, `subagent-driven-development`, `writing-plans`). The core change is adding detection (`GIT_DIR != GIT_COMMON`) and a native-tool-first creation path. These are markdown skill instruction files, not application code \u2014 \"tests\" are agent behavior tests using the testing-skills-with-subagents TDD framework.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-04-06-worktree-rototill.md:23:- Read: `skills/writing-skills/testing-skills-with-subagents.md` (TDD framework)",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-04-06-worktree-rototill.md:34:# Framework: RED-GREEN-REFACTOR per testing-skills-with-subagents.md",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-07-31-visual-companion-design-kit.md:389:- `skills/writing-skills/SKILL.md` and `testing-skills-with-subagents.md`: mandatory RED/GREEN/REFACTOR and five-rep micro-test method.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-09-11-frontend-direction-rework.md:58:**Codebase pointers:** All current frontend-direction references and metadata; upload-pack prompt structure; `writing-skills/testing-skills-with-subagents.md`; saved controls and `manifest.json`.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-10-23-paper-frontend-workflow.md:95:**Codebase pointers:** `tests/codex/frontend-design-behavior/scenario.md`, `tests/codex/sdd-behavior/README.md`, `skills/writing-skills/testing-skills-with-subagents.md`.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-config-refs-design.md:21:  - `skills/writing-skills/examples/CLAUDE_MD_TESTING.md` \u2014 the entire file is a worked example testing CLAUDE.md content variants. The filename, body, and the reference from `testing-skills-with-subagents.md` all stay; normalizing them defeats the example.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-config-refs-design.md:67:- `grep -rn \"CLAUDE\\.md\" skills/` should return only the documented carve-outs (CREATION-LOG, CLAUDE_MD_TESTING and its inbound reference, the priority list in using-superpowers).",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-config-refs-design.md:72:- Do not rename `examples/CLAUDE_MD_TESTING.md` or change its content.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md:14:- `skills/writing-skills/anthropic-best-practices.md`",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md:28:- **`anthropic-best-practices.md` filename** \u2014 the file remains named after its source even though we rewrite the prose inside it.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md:61:| `skills/writing-skills/anthropic-best-practices.md` | ~30 |",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md:62:| `skills/writing-skills/examples/CLAUDE_MD_TESTING.md` | ~1 \u2014 filename stays (it's a CLAUDE.md test artifact); the \"Variant C: Claude.AI Emphatic Style\" heading also stays (it's a label naming a specific style) |",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md:72:2. **Active skills prose** \u2014 generic \"Claude\" \u2192 \"agent\" forms across `skills/*/SKILL.md` and supporting `.md`, excluding `anthropic-best-practices.md`.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-05-05-platform-neutral-prose-design.md:73:3. **`anthropic-best-practices.md` prose** \u2014 same substitution rules. Separate commit because this file is a vendored adaptation of an external doc; isolating the change makes future reconciliation with upstream easier to read.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/systematic-debugging/CREATION-LOG.md:57:Created 4 validation tests following skills/meta/testing-skills-with-subagents:",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/writing-skills/SKILL.md:20:**Official guidance:** For Anthropic's official skill authoring best practices, see anthropic-best-practices.md. This document provides additional patterns and guidelines that complement the TDD-focused approach in this skill.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/writing-skills/SKILL.md:316:See `graphviz-conventions.dot` in this directory for graphviz style rules.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/writing-skills/SKILL.md:484:**Psychology note:** Understanding WHY persuasion techniques work helps you apply them systematically. See persuasion-principles.md for research foundation (Cialdini, 2021; Meincke et al., 2025) on authority, commitment, scarcity, social proof, and unity principles.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/writing-skills/SKILL.md:589:**Testing methodology:** See [testing-skills-with-subagents.md](testing-skills-with-subagents.md) for the complete testing methodology:",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/writing-skills/testing-skills-with-subagents.md:15:**Complete worked example:** See examples/CLAUDE_MD_TESTING.md for a full test campaign testing CLAUDE.md documentation variants.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/writing-skills/testing-skills-with-subagents.md:142:**Why this works:** See persuasion-principles.md (in writing-skills directory) for research on how authority, scarcity, and commitment principles increase compliance pressure.",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:tests/claude-code/test-worktree-native-preference.sh:3:# Framework: RED-GREEN-REFACTOR per testing-skills-with-subagents.md"
+    ]
+  },
+  "removed-diagnosis-template": {
+    "pattern": "diagnosis_report\\.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-08-27-diagnosing-superpowers-design.md:267:   `diagnosis_report.md` template, which applies both labels for any",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/diagnosing-superpowers/references/github-issues.md:39:Without `gh`, hand over a prefilled link on the `diagnosis_report.md`",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:skills/diagnosing-superpowers/references/github-issues.md:43:https://github.com/obra/superpowers/issues/new?template=diagnosis_report.md&title=<url-encoded title>&body=<url-encoded body>"
+    ]
+  },
+  "docs/superpowers/plans/2026-01-22-document-review-system.md": {
+    "pattern": "2026-01-22-document-review-system.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-02-19-visual-brainstorming-refactor.md": {
+    "pattern": "2026-02-19-visual-brainstorming-refactor.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-03-11-zero-dep-brainstorm-server.md": {
+    "pattern": "2026-03-11-zero-dep-brainstorm-server.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-03-23-codex-app-compatibility.md": {
+    "pattern": "2026-03-23-codex-app-compatibility.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-05-06-lift-drill-into-evals.md:1372:- [ ] `git diff dev..HEAD docs/superpowers/plans/2026-04-06-worktree-rototill.md docs/superpowers/plans/2026-03-23-codex-app-compatibility.md RELEASE-NOTES.md` shows annotations only, no path rewrites"
+    ]
+  },
+  "docs/superpowers/plans/2026-04-06-worktree-rototill.md": {
+    "pattern": "2026-04-06-worktree-rototill.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-05-06-lift-drill-into-evals.md:1372:- [ ] `git diff dev..HEAD docs/superpowers/plans/2026-04-06-worktree-rototill.md docs/superpowers/plans/2026-03-23-codex-app-compatibility.md RELEASE-NOTES.md` shows annotations only, no path rewrites",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:tests/claude-code/test-worktree-path-policy.sh:13:ROTOTILL_PLAN=\"$REPO_ROOT/docs/superpowers/plans/2026-04-06-worktree-rototill.md\""
+    ]
+  },
+  "docs/superpowers/plans/2026-05-06-lift-drill-into-evals.md": {
+    "pattern": "2026-05-06-lift-drill-into-evals.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-05-07-pi-extension-and-evals.md": {
+    "pattern": "2026-05-07-pi-extension-and-evals.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-06-09-sdd-task-scoped-review-dispatch.md": {
+    "pattern": "2026-06-09-sdd-task-scoped-review-dispatch.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-06-09-visual-companion-issues.md": {
+    "pattern": "2026-06-09-visual-companion-issues.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md:46:- Modify: `docs/superpowers/plans/2026-06-09-visual-companion-issues.md`",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md:924:- Modify: `docs/superpowers/plans/2026-06-09-visual-companion-issues.md`",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md:943:In `docs/superpowers/plans/2026-06-09-visual-companion-issues.md`, replace the disposition rows for A2, D1, D2, D3, and D4 with:",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md:986:git diff -- skills/brainstorming/visual-companion.md docs/superpowers/plans/2026-06-09-visual-companion-issues.md",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md:996:git add skills/brainstorming/visual-companion.md docs/superpowers/plans/2026-06-09-visual-companion-issues.md"
+    ]
+  },
+  "docs/superpowers/plans/2026-06-10-visual-companion-auth-hardening.md": {
+    "pattern": "2026-06-10-visual-companion-auth-hardening.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md": {
+    "pattern": "2026-06-11-visual-companion-final-hardening-fixup.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-07-06-sdd-plan-scoped-workspace.md": {
+    "pattern": "2026-07-06-sdd-plan-scoped-workspace.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-07-06-sdd-plan-scoped-workspace-eval-results.md:8:- **Spec:** 2026-07-06-sdd-plan-scoped-workspace.md"
+    ]
+  },
+  "docs/superpowers/plans/2026-07-15-sdd-fix-loop-redesign.md": {
+    "pattern": "2026-07-15-sdd-fix-loop-redesign.md",
+    "exit_code": 1,
+    "matches": []
+  },
+  "docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md": {
+    "pattern": "2026-07-30-codex-efficiency-fixes.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-09-28-upstream-v6.4.2/file-decisions.md:32:| `docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md` | A | No | No | 6 | Import dated upstream design/plan history unchanged; not current execution authority |",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-09-28-upstream-v6.4.2/inventory.json:243:      \"path\": \"docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md\",",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/specs/2026-07-30-codex-efficiency-fixes-design.md:208:  `superpowers-autoresearch/logs/2026-07-30-codex-efficiency-fixes.md`"
+    ]
+  },
+  "docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md": {
+    "pattern": "2026-08-06-hermes-version-bump-wiring.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-09-28-upstream-v6.4.2/file-decisions.md:33:| `docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md` | A | No | No | 6 | Import dated upstream design/plan history unchanged; not current execution authority |",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-09-28-upstream-v6.4.2/inventory.json:252:      \"path\": \"docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md\","
+    ]
+  },
+  "docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md": {
+    "pattern": "2026-08-27-diagnosing-superpowers.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-09-28-upstream-v6.4.2/file-decisions.md:34:| `docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md` | A | No | No | 6 | Import dated upstream design/plan history unchanged; not current execution authority |",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-09-28-upstream-v6.4.2/inventory.json:261:      \"path\": \"docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md\","
+    ]
+  },
+  "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md": {
+    "pattern": "2026-10-06-antigravity-marketplace.md",
+    "exit_code": 0,
+    "matches": [
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-10-13-upstream-v7.0.0/file-decisions.md:27:| `docs/superpowers/plans/2026-10-06-antigravity-marketplace.md` | no | no | Retain historical docs | Preserve upstream design provenance in an ancestry-preserving integration; these documents do not authorize fork policy changes. |",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-10-13-upstream-v7.0.0/inventory.json:39:    \"docs/superpowers/plans/2026-10-06-antigravity-marketplace.md\",",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-10-13-upstream-v7.0.0/inventory.json:275:      \"path\": \"docs/superpowers/plans/2026-10-06-antigravity-marketplace.md\",",
+      "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f:docs/superpowers/analysis/2026-10-13-upstream-v7.0.0/resolved-paths.json:129:    \"path\": \"docs/superpowers/plans/2026-10-06-antigravity-marketplace.md\","
+    ]
+  }
+}

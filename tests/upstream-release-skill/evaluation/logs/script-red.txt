@@ -1,0 +1,54 @@
+test_observation_preserves_dirty_index_and_worktree (test_inventory.InventoryTests.test_observation_preserves_dirty_index_and_worktree) ... FAIL
+test_ours_ancestry_does_not_erase_explicit_reviewed_delta (test_inventory.InventoryTests.test_ours_ancestry_does_not_erase_explicit_reviewed_delta) ... FAIL
+test_pins_annotated_tags_and_covers_renames_deletions_and_overlap (test_inventory.InventoryTests.test_pins_annotated_tags_and_covers_renames_deletions_and_overlap) ... FAIL
+test_rejects_unknown_or_reversed_release_baseline (test_inventory.InventoryTests.test_rejects_unknown_or_reversed_release_baseline) ...
+  test_rejects_unknown_or_reversed_release_baseline (test_inventory.InventoryTests.test_rejects_unknown_or_reversed_release_baseline) (base='unknown', target='v2') ... FAIL
+  test_rejects_unknown_or_reversed_release_baseline (test_inventory.InventoryTests.test_rejects_unknown_or_reversed_release_baseline) (base='v2', target='v1') ... FAIL
+
+======================================================================
+FAIL: test_observation_preserves_dirty_index_and_worktree (test_inventory.InventoryTests.test_observation_preserves_dirty_index_and_worktree)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gamarsoft/.codex/superpowers/tests/upstream-release-skill/test_inventory.py", line 86, in test_observation_preserves_dirty_index_and_worktree
+    self.assertEqual(result.returncode, 0, result.stderr)
+AssertionError: 2 != 0 : /Users/gamarsoft/.pyenv/versions/3.12.6/bin/python3: can't open file '/private/tmp/superpowers-upstream-skill-20261027/candidate/integrating-superpowers-upstream/scripts/release_inventory.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_ours_ancestry_does_not_erase_explicit_reviewed_delta (test_inventory.InventoryTests.test_ours_ancestry_does_not_erase_explicit_reviewed_delta)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gamarsoft/.codex/superpowers/tests/upstream-release-skill/test_inventory.py", line 102, in test_ours_ancestry_does_not_erase_explicit_reviewed_delta
+    self.assertEqual(result.returncode, 0, result.stderr)
+AssertionError: 2 != 0 : /Users/gamarsoft/.pyenv/versions/3.12.6/bin/python3: can't open file '/private/tmp/superpowers-upstream-skill-20261027/candidate/integrating-superpowers-upstream/scripts/release_inventory.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_pins_annotated_tags_and_covers_renames_deletions_and_overlap (test_inventory.InventoryTests.test_pins_annotated_tags_and_covers_renames_deletions_and_overlap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gamarsoft/.codex/superpowers/tests/upstream-release-skill/test_inventory.py", line 66, in test_pins_annotated_tags_and_covers_renames_deletions_and_overlap
+    self.assertEqual(result.returncode, 0, result.stderr)
+AssertionError: 2 != 0 : /Users/gamarsoft/.pyenv/versions/3.12.6/bin/python3: can't open file '/private/tmp/superpowers-upstream-skill-20261027/candidate/integrating-superpowers-upstream/scripts/release_inventory.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_rejects_unknown_or_reversed_release_baseline (test_inventory.InventoryTests.test_rejects_unknown_or_reversed_release_baseline) (base='unknown', target='v2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gamarsoft/.codex/superpowers/tests/upstream-release-skill/test_inventory.py", line 97, in test_rejects_unknown_or_reversed_release_baseline
+    self.assertIn('inventory:', result.stderr)
+AssertionError: 'inventory:' not found in "/Users/gamarsoft/.pyenv/versions/3.12.6/bin/python3: can't open file '/private/tmp/superpowers-upstream-skill-20261027/candidate/integrating-superpowers-upstream/scripts/release_inventory.py': [Errno 2] No such file or directory\n"
+
+======================================================================
+FAIL: test_rejects_unknown_or_reversed_release_baseline (test_inventory.InventoryTests.test_rejects_unknown_or_reversed_release_baseline) (base='v2', target='v1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/gamarsoft/.codex/superpowers/tests/upstream-release-skill/test_inventory.py", line 97, in test_rejects_unknown_or_reversed_release_baseline
+    self.assertIn('inventory:', result.stderr)
+AssertionError: 'inventory:' not found in "/Users/gamarsoft/.pyenv/versions/3.12.6/bin/python3: can't open file '/private/tmp/superpowers-upstream-skill-20261027/candidate/integrating-superpowers-upstream/scripts/release_inventory.py': [Errno 2] No such file or directory\n"
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.917s
+
+FAILED (failures=5)

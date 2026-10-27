@@ -1,0 +1,16 @@
+{
+  "comparison.md": "220fc8166892b25a7e55d1aa8f266b5b987038a70f829e92fa079aed433dca9c",
+  "decisions.json": "5e3077f8321a3e52395a179012fddc460974b483904a2704bce1eee0548f67cc",
+  "dependency-scan.json": "418757d498f074c52fa6f1c02043416470c081c48947180422306813922a8f2e",
+  "evaluation-plan.md": "d1375a3a0eeed6bf55da450a2cf2bdf2be3bff91a7a2aabf3fa452574a873a60",
+  "file-decisions.md": "a6e641418eb15e382d42b846db595bf14c8ba1414a08e28b5b1dd4303547dd87",
+  "identity.json": "7fe9ecd2969f8805d6a3403c89b74277c3f730cbdd4b80482410e7b9de2d97da",
+  "inventory.json": "4939493856c6cd43fab7212e56c198327fd5650c4c3b4cae650fa9fad32c7334",
+  "size-probe-fork.log": "bfd03137e1c8442b62d99e386f5c2118cf9ef0b49148746d0f5fade82a21906d",
+  "size-probe-target.log": "bea93e60d2892c30104e0c4743cb72d61396d347ddfc468aeba4de4afe46fd1f",
+  "size-probes.json": "b51f2e840e4e857caa48a319dcd1b61531e78bb9637df22319e7252bdc6c95dc",
+  "source-findings.md": "00f2a21cda1e86116c5b6aa339b173f1ca3e5698769830f60d851a79e0218bd0",
+  "source-records.json": "ead941135c2ab44e130fd71da7f13e48bbb638e515deb4fddb3322b7208327d1",
+  "trial-provenance.json": "4fdf2fe3881f76e948c39ddfa06b9bebe79d7d599775b5c4f3ab5e6f323244b0",
+  "validation.json": "348a7d95d88c8d01ad235047481a876de591cd148510d56fde455be7f19a2a4c"
+}

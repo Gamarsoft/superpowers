@@ -44,6 +44,7 @@ DEST_REL="plugins/superpowers"
 # (.DS_Store is intentionally unanchored — Finder creates them everywhere.)
 EXCLUDES=(
   # Dotfiles and infra — top-level only
+  "/.agents/skills/"
   "/.antigravity-plugin/"
   "/.claude/"
   "/.claude-plugin/"

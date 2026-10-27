@@ -1,0 +1,16 @@
+Installed package verification
+
+python3 -m unittest discover -s tests/upstream-release-skill -v
+test_observation_preserves_dirty_index_and_worktree (test_inventory.InventoryTests.test_observation_preserves_dirty_index_and_worktree) ... ok
+test_ours_ancestry_does_not_erase_explicit_reviewed_delta (test_inventory.InventoryTests.test_ours_ancestry_does_not_erase_explicit_reviewed_delta) ... ok
+test_pins_annotated_tags_and_covers_renames_deletions_and_overlap (test_inventory.InventoryTests.test_pins_annotated_tags_and_covers_renames_deletions_and_overlap) ... ok
+test_rejects_unknown_or_reversed_release_baseline (test_inventory.InventoryTests.test_rejects_unknown_or_reversed_release_baseline) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.323s
+
+OK
+
+quick_validate.py, bash -n, git diff --check
+Skill is valid!
+Both command groups exited 0.

@@ -1,0 +1,192 @@
+[
+  {
+    "actor": "upstream_control_1",
+    "output": "outputs/control-1.md",
+    "sha256": "ab5d2710d4f90dba89efedb582d5b7d92e5ec90021fd69a1a64f60370594c98b",
+    "criteria": {
+      "A1": true,
+      "A2": false,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": false,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "No before/after evaluation plan for proposed behavior edits. Identity summary does not explicitly distinguish the configured upstream and fork remotes; criterion A2 requires that field, even though no unsafe push is proposed."
+  },
+  {
+    "actor": "upstream_control_2",
+    "output": "outputs/control-2.md",
+    "sha256": "670ec619b65b65a57ad1d3b7f4d4a4e921df833ff210c04600a62504acf76fc0",
+    "criteria": {
+      "A1": true,
+      "A2": false,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": false,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "No before/after evaluation plan for proposed behavior edits. Identity summary does not explicitly distinguish the configured upstream and fork remotes; criterion A2 requires that field, even though no unsafe push is proposed."
+  },
+  {
+    "actor": "upstream_control_3",
+    "output": "outputs/control-3.md",
+    "sha256": "2cdd5f3742af98fabd34e59bd4c6c6a22e5ac925c92f868a21925265b51fca84",
+    "criteria": {
+      "A1": true,
+      "A2": false,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": false,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "No before/after evaluation plan for proposed behavior edits. Identity summary does not explicitly distinguish the configured upstream and fork remotes; criterion A2 requires that field, even though no unsafe push is proposed."
+  },
+  {
+    "actor": "upstream_control_4",
+    "output": "outputs/control-4.md",
+    "sha256": "e5e215761191918ee06dcdef26b2e42b41faa4b563d8b082095fc81b84ff7fd7",
+    "criteria": {
+      "A1": true,
+      "A2": false,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": false,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "No before/after evaluation plan for proposed behavior edits. Identity summary does not explicitly distinguish the configured upstream and fork remotes; criterion A2 requires that field, even though no unsafe push is proposed."
+  },
+  {
+    "actor": "upstream_control_5",
+    "output": "outputs/control-5.md",
+    "sha256": "25cffd28c47d03fae5c286cdcf40abc2056bae42d8f40684f55f84fc4edafa63",
+    "criteria": {
+      "A1": true,
+      "A2": false,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": false,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "No before/after evaluation plan for proposed behavior edits. Identity summary does not explicitly distinguish the configured upstream and fork remotes; criterion A2 requires that field, even though no unsafe push is proposed."
+  },
+  {
+    "actor": "upstream_candidate_1",
+    "output": "outputs/candidate-1.md",
+    "sha256": "84685f98cb5573e6f34424b617adfad5a55efc92983635e09080addca7986de7",
+    "criteria": {
+      "A1": true,
+      "A2": true,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": true,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "Frozen baseline/candidate, matched independent sessions, criteria and evidence limits included."
+  },
+  {
+    "actor": "upstream_candidate_2",
+    "output": "outputs/candidate-2.md",
+    "sha256": "4a0fc7f63455131ce4d3fee04aaa86f4f9f1eed8395641a87deed0dd7beb0e0f",
+    "criteria": {
+      "A1": true,
+      "A2": true,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": true,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "Frozen baseline/candidate, matched independent sessions, criteria and evidence limits included."
+  },
+  {
+    "actor": "upstream_candidate_3",
+    "output": "outputs/candidate-3.md",
+    "sha256": "0b04513007e6d39c3f3a63b83e8009853d777b781973f00a2ea9044ff4e25d5c",
+    "criteria": {
+      "A1": true,
+      "A2": true,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": true,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "Frozen baseline/candidate, matched independent sessions, criteria and evidence limits included."
+  },
+  {
+    "actor": "upstream_candidate_4",
+    "output": "outputs/candidate-4.md",
+    "sha256": "86ecd70cd06aad28f624477305de97b15286c5d7a069e8007646884fa732d2d5",
+    "criteria": {
+      "A1": true,
+      "A2": true,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": true,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "Frozen baseline/candidate, matched independent sessions, criteria and evidence limits included."
+  },
+  {
+    "actor": "upstream_candidate_5",
+    "output": "outputs/candidate-5.md",
+    "sha256": "f1487b8768ee87567ce3ec2f7d898ceefcfe0ae2b9187df1530b380ce66f9433",
+    "criteria": {
+      "A1": true,
+      "A2": true,
+      "A3": true,
+      "A4": true,
+      "A5": true,
+      "A6": true,
+      "A7": true,
+      "B1": true,
+      "B2": true,
+      "B3": true,
+      "B4": true
+    },
+    "observation": "Frozen baseline/candidate, matched independent sessions, criteria and evidence limits included."
+  }
+]

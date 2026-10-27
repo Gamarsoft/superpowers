@@ -1,0 +1,20 @@
+{
+  "status": "assessment-only",
+  "recorded_utc": "2026-10-27T15:00:18.791106+00:00",
+  "repo": "/Users/gamarsoft/.codex/superpowers",
+  "fork": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+  "reviewed_base": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "target": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+  "remote_urls": "gamarsoft\thttps://github.com/Gamarsoft/superpowers.git (fetch)\ngamarsoft\thttps://github.com/Gamarsoft/superpowers.git (push)\nigor\thttps://github.com/IgorTavcar/superpowers.git (fetch)\nigor\thttps://github.com/IgorTavcar/superpowers.git (push)\norigin\thttps://github.com/obra/superpowers.git (fetch)\norigin\thttps://github.com/obra/superpowers.git (push)\n",
+  "remote_tag_evidence": "7f043e5eaf3522dc19178c673b76328de9b0c355\trefs/tags/v7.0.0\nbb92a77741419a4ab5f06e711a283343f1ada0c3\trefs/tags/v7.0.0^{}\ncfd50a286baea35041505ed068c878d389ca9f7f\trefs/tags/v7.0.1\n2ce8aa15d05bd57213e6f746f953aafb7ded7a8b\trefs/tags/v7.0.1^{}\n",
+  "local_tags": "7f043e5eaf3522dc19178c673b76328de9b0c355\nbb92a77741419a4ab5f06e711a283343f1ada0c3\ncfd50a286baea35041505ed068c878d389ca9f7f\n2ce8aa15d05bd57213e6f746f953aafb7ded7a8b\n",
+  "integration_parents": "638657926d42f9a8c7fe14ffbf09af322fd2e518 7d5c52b7e42936c6f186deac892e1c781c1341b6 bb92a77741419a4ab5f06e711a283343f1ada0c3\n",
+  "subsequent_history": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f 9fe25c61535f7867cbc9555610adc070b70ec9f7 feat(frontend)!: adopt Paper design workflow\n9fe25c61535f7867cbc9555610adc070b70ec9f7 2011478a8c7fea1b2f9b6655a8396b6e39980988 docs: preserve v7 integration report\n",
+  "working_status_observed_after_probe": " M docs/gsd/preferences.md\n M scripts/sync-to-codex-plugin.sh\n M tests/codex-plugin-sync/test-sync-to-codex-plugin.sh\n?? .agents/skills/\n?? tests/upstream-release-skill/\n",
+  "initial_working_status": [
+    " M docs/gsd/preferences.md",
+    " M tests/codex-plugin-sync/test-sync-to-codex-plugin.sh",
+    "?? tests/upstream-release-skill/"
+  ],
+  "initial_status_note": "Subsequent concurrent script edits are outside this assessment; every source decision uses frozen committed HEAD."
+}

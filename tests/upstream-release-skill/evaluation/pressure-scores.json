@@ -1,0 +1,16 @@
+[
+  {
+    "case": "pressure-1.md",
+    "actor": "upstream_pressure_1",
+    "output": "outputs/pressure-1.md",
+    "pass": true,
+    "observed": "Keeps in-progress status, repairs selected contracts and moved helper path, requires candidate behavior evidence, preserves out-of-scope brainstorming and records environment limits; leaves local."
+  },
+  {
+    "case": "pressure-2.md",
+    "actor": "upstream_pressure_2",
+    "output": "outputs/pressure-2.md",
+    "pass": true,
+    "observed": "Continues explicit local fast-forward and correct Gamarsoft push without another permission request; verifies refs and evidence identities; no upstream push or PR."
+  }
+]

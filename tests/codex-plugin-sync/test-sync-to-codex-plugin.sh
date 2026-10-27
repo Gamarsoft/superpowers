@@ -174,6 +174,7 @@ write_upstream_fixture() {
     local with_pure_ignored="${2:-1}"
 
     mkdir -p \
+        "$repo/.agents/skills/fork-maintenance" \
         "$repo/.antigravity-plugin" \
         "$repo/.codex-plugin" \
         "$repo/.kimi-plugin" \
@@ -189,6 +190,7 @@ write_upstream_fixture() {
     fi
 
     cp "$SYNC_SCRIPT_SOURCE" "$repo/scripts/sync-to-codex-plugin.sh"
+    printf 'repository maintenance only\n' > "$repo/.agents/skills/fork-maintenance/SKILL.md"
 
     cat > "$repo/package.json" <<EOF
 {
@@ -305,6 +307,7 @@ EOF
     fi
 
     git -C "$repo" add \
+        .agents/skills/fork-maintenance/SKILL.md \
         .antigravity-plugin/plugin.json \
         .codex-plugin/plugin.json \
         .kimi-plugin/plugin.json \
@@ -668,6 +671,7 @@ main() {
     assert_contains "$preview_output" "Version:  $MANIFEST_VERSION" "Preview uses manifest version"
     assert_not_contains "$preview_output" "Version:  $PACKAGE_VERSION" "Preview does not use package.json version"
     assert_contains "$preview_section" ".codex-plugin/plugin.json" "Preview includes manifest path"
+    assert_not_contains "$preview_section" ".agents/skills/fork-maintenance" "Preview excludes repository-scoped skills"
     assert_not_contains "$preview_section" ".kimi-plugin/plugin.json" "Preview excludes Kimi manifest from Codex sync"
     assert_not_contains "$preview_section" ".antigravity-plugin/plugin.json" "Preview excludes Antigravity manifest from Codex sync"
     assert_not_contains "$preview_section" "assets/antigravity-logo.png" "Preview excludes Antigravity logo from Codex sync"

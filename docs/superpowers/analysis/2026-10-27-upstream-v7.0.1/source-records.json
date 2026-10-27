@@ -1,0 +1,1299 @@
+[
+  {
+    "status": "M",
+    "path": ".antigravity-plugin/plugin.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".antigravity-plugin/plugin.json",
+      "sha256": "5541e8d6a744ad570e1a6b5e68d5e5d84242268c8e8ede3ca7b79619bffafd0f",
+      "bytes": 668
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".antigravity-plugin/plugin.json",
+      "sha256": "5541e8d6a744ad570e1a6b5e68d5e5d84242268c8e8ede3ca7b79619bffafd0f",
+      "bytes": 668
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".antigravity-plugin/plugin.json",
+      "sha256": "59d3191313f359668f608c2a3951faeb7717ee60f9c5fc740002f8a534f2da75",
+      "bytes": 668
+    }
+  },
+  {
+    "status": "M",
+    "path": ".claude-plugin/marketplace.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "c730744e1f3b159652a7d2ee43b3f5e9e177d692d619212638a01f24eb3267a5",
+      "bytes": 514
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "c730744e1f3b159652a7d2ee43b3f5e9e177d692d619212638a01f24eb3267a5",
+      "bytes": 514
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "aa23337d43302fffa00927f3700205e92b6c09b79dfe4a13bf66b7b15122604a",
+      "bytes": 514
+    }
+  },
+  {
+    "status": "M",
+    "path": ".claude-plugin/plugin.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "f1e28bae51b4a6af9ea340868b140362b4a00ba72bd722e7037cec37c23aa0bb",
+      "bytes": 497
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "f1e28bae51b4a6af9ea340868b140362b4a00ba72bd722e7037cec37c23aa0bb",
+      "bytes": 497
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".claude-plugin/plugin.json",
+      "sha256": "fa3b15088f102c31b7cf1abd4d329fd50d76a99222083638aab810d81930b162",
+      "bytes": 497
+    }
+  },
+  {
+    "status": "M",
+    "path": ".codex-plugin/plugin.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "58c36fd4185719c9bee12fab1a03ce6cce48051c36ee9bdd9492235dd7ab2cfd",
+      "bytes": 1730
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "58c36fd4185719c9bee12fab1a03ce6cce48051c36ee9bdd9492235dd7ab2cfd",
+      "bytes": 1730
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "fef198cdbcaa5544e4244ff74cb83a2a797d18c9cfb9af26a18418206bb806c3",
+      "bytes": 1730
+    }
+  },
+  {
+    "status": "M",
+    "path": ".cursor-plugin/plugin.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".cursor-plugin/plugin.json",
+      "sha256": "a623f01abe3ce86c053ece5f94f9efe1928c8602664201173f187e7ff0c0a04c",
+      "bytes": 578
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".cursor-plugin/plugin.json",
+      "sha256": "a623f01abe3ce86c053ece5f94f9efe1928c8602664201173f187e7ff0c0a04c",
+      "bytes": 578
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".cursor-plugin/plugin.json",
+      "sha256": "4f0755b6150bf762c1d8fb2f63bd323bea020e6cd11f9f1d7c68b69ff690cf99",
+      "bytes": 578
+    }
+  },
+  {
+    "status": "M",
+    "path": ".devin-plugin/plugin.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".devin-plugin/plugin.json",
+      "sha256": "ac7daa69cf87d44d2a7a67f9a929d62638cef0af4519a99b4c9557d90155c985",
+      "bytes": 575
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".devin-plugin/plugin.json",
+      "sha256": "ac7daa69cf87d44d2a7a67f9a929d62638cef0af4519a99b4c9557d90155c985",
+      "bytes": 575
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".devin-plugin/plugin.json",
+      "sha256": "ee1269c4d4325006fa590fa8ccb20ea302cd11992363c3bc9bc4ac62a2d4792a",
+      "bytes": 575
+    }
+  },
+  {
+    "status": "M",
+    "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "sha256": "32a5b6e5ad3528daac479ad0025502dfad9dd06fe457242c1506ac19c77d6e46",
+      "bytes": 1593
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "sha256": "32a5b6e5ad3528daac479ad0025502dfad9dd06fe457242c1506ac19c77d6e46",
+      "bytes": 1593
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "sha256": "c766d3023f9a12280019055997ad2424887778d9b701b4118ea86a7fbf1f7fdb",
+      "bytes": 2338
+    }
+  },
+  {
+    "status": "D",
+    "path": ".github/ISSUE_TEMPLATE/diagnosis_report.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".github/ISSUE_TEMPLATE/diagnosis_report.md",
+      "sha256": "42f87b4f856c872d01e933d2b2f4e1176e2811d1c36631679af6b9e76c3ee072",
+      "bytes": 1018
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".github/ISSUE_TEMPLATE/diagnosis_report.md",
+      "sha256": "42f87b4f856c872d01e933d2b2f4e1176e2811d1c36631679af6b9e76c3ee072",
+      "bytes": 1018
+    },
+    "target": null
+  },
+  {
+    "status": "M",
+    "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "sha256": "59ad1c8a7b5faca0273fa310f6c78fe2a3ec4917d9f3e12fb1220d5381c8f783",
+      "bytes": 1604
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "sha256": "59ad1c8a7b5faca0273fa310f6c78fe2a3ec4917d9f3e12fb1220d5381c8f783",
+      "bytes": 1604
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "sha256": "a7aac80c9df2e46fce9a3c89a6e9e73e8d81e6de311dbd634ed9d5dfacb0bdc8",
+      "bytes": 2164
+    }
+  },
+  {
+    "status": "M",
+    "path": ".github/ISSUE_TEMPLATE/platform_support.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".github/ISSUE_TEMPLATE/platform_support.md",
+      "sha256": "006109a23ce39dbf252cc9f8acb59765cc755a1edfeb840efc79035f2c1d44a9",
+      "bytes": 974
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".github/ISSUE_TEMPLATE/platform_support.md",
+      "sha256": "006109a23ce39dbf252cc9f8acb59765cc755a1edfeb840efc79035f2c1d44a9",
+      "bytes": 974
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".github/ISSUE_TEMPLATE/platform_support.md",
+      "sha256": "19f6d78322bf53b62ac8d7baf117492de3bbfae80851657c24c102980ea2aa26",
+      "bytes": 1525
+    }
+  },
+  {
+    "status": "M",
+    "path": ".github/PULL_REQUEST_TEMPLATE.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "b5cde91d5809bec88f6d11f6e295695549a59ea9fc5e32469ea12ad485cb37fb",
+      "bytes": 5814
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "b5cde91d5809bec88f6d11f6e295695549a59ea9fc5e32469ea12ad485cb37fb",
+      "bytes": 5814
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "d837f95474fafb23298bb6e295409ecc522d4c4db6a2e1eff955bbfb7a4a40d9",
+      "bytes": 6626
+    }
+  },
+  {
+    "status": "M",
+    "path": ".hermes-plugin/plugin.yaml",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".hermes-plugin/plugin.yaml",
+      "sha256": "3c9a8f57352a5ebc608bc05de8e2be42a86cf887a0a3fbd1f03287aa8df58187",
+      "bytes": 151
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".hermes-plugin/plugin.yaml",
+      "sha256": "3c9a8f57352a5ebc608bc05de8e2be42a86cf887a0a3fbd1f03287aa8df58187",
+      "bytes": 151
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".hermes-plugin/plugin.yaml",
+      "sha256": "956c7257fa4549a00d6501c2b81ea43805eb1f26b3a2cfd60920751ce3c63fe2",
+      "bytes": 151
+    }
+  },
+  {
+    "status": "M",
+    "path": ".kimi-plugin/plugin.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".kimi-plugin/plugin.json",
+      "sha256": "defa5c228f2ecd51ca4a51af928aa482dd8cda4687006e272d40cf85c466b479",
+      "bytes": 3090
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".kimi-plugin/plugin.json",
+      "sha256": "defa5c228f2ecd51ca4a51af928aa482dd8cda4687006e272d40cf85c466b479",
+      "bytes": 3090
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".kimi-plugin/plugin.json",
+      "sha256": "40af10480f1c943386c8bb1a1da4c5349262d162818bb2e561fc2c4c62730f92",
+      "bytes": 3090
+    }
+  },
+  {
+    "status": "M",
+    "path": ".muse-plugin/marketplace.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".muse-plugin/marketplace.json",
+      "sha256": "9001163777872ee0f934602a64b3217f66b3bcff688e135b241756796f6460c4",
+      "bytes": 507
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".muse-plugin/marketplace.json",
+      "sha256": "9001163777872ee0f934602a64b3217f66b3bcff688e135b241756796f6460c4",
+      "bytes": 507
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".muse-plugin/marketplace.json",
+      "sha256": "8107646e9dedc1aea1aad369da66a1ba30e1f5faa53ab840e928a7e8ac4a7701",
+      "bytes": 507
+    }
+  },
+  {
+    "status": "M",
+    "path": ".muse-plugin/plugin.json",
+    "fork_changed_paths": [
+      ".muse-plugin/plugin.json"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".muse-plugin/plugin.json",
+      "sha256": "1e1b379d71d7fb7b5a9f5a30f7aecd7be100e01ea037d44e2b732ff7442b61d9",
+      "bytes": 2286
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".muse-plugin/plugin.json",
+      "sha256": "e6e9f45c7c769cb4c32e97549b094bfc8c61ec435c210f6684d0bf3109c780c0",
+      "bytes": 3676
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".muse-plugin/plugin.json",
+      "sha256": "901b5b2fcd5aa32f904f5659f1f8199cb8d4db9635e465649a775fa658ac6c1c",
+      "bytes": 2286
+    }
+  },
+  {
+    "status": "M",
+    "path": ".opencode/INSTALL.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": ".opencode/INSTALL.md",
+      "sha256": "5233998c438ef1cef1b1af953e46f965ae7b122876ee16971b0a76d231e2d3a8",
+      "bytes": 5379
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": ".opencode/INSTALL.md",
+      "sha256": "5233998c438ef1cef1b1af953e46f965ae7b122876ee16971b0a76d231e2d3a8",
+      "bytes": 5379
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": ".opencode/INSTALL.md",
+      "sha256": "0594f252048cf87e98d56faa876b7f1c3d4ae1119cf8fc77bbf5a5b63729296f",
+      "bytes": 5379
+    }
+  },
+  {
+    "status": "M",
+    "path": "AGENTS.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "AGENTS.md",
+      "sha256": "28c88405f9357e01b06fb460fce2078ed0c264b5113160cff59ec6c5ee3cf74f",
+      "bytes": 8983
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "AGENTS.md",
+      "sha256": "28c88405f9357e01b06fb460fce2078ed0c264b5113160cff59ec6c5ee3cf74f",
+      "bytes": 8983
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "AGENTS.md",
+      "sha256": "3d7c31b2ed1592d0816e436a90549c8af5829627bcb663fe1c886a30f427cabe",
+      "bytes": 9911
+    }
+  },
+  {
+    "status": "M",
+    "path": "README.md",
+    "fork_changed_paths": [
+      "README.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "README.md",
+      "sha256": "9b7be460027bf53c29f628eee72dceeebb83e52dd5e94a1b6f9828a64c579198",
+      "bytes": 14589
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "README.md",
+      "sha256": "e37f92b8f1dd44250c455fb1ba712c2b73827785964bc148d4ca7cba040f887b",
+      "bytes": 16633
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "README.md",
+      "sha256": "79f29f50c735862d2e304ea547b4c9aa67d9db6909ff6fb7b5ea922d7bcbc3e7",
+      "bytes": 14847
+    }
+  },
+  {
+    "status": "M",
+    "path": "RELEASE-NOTES.md",
+    "fork_changed_paths": [
+      "RELEASE-NOTES.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "RELEASE-NOTES.md",
+      "sha256": "fbe2d94c8b823a448c2b878fa4767a4164c3943de2b8e7be2a46463d94eea6ab",
+      "bytes": 108999
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "RELEASE-NOTES.md",
+      "sha256": "86e9c39d75248ead14b3e14fa8847ae40b31366a5e3d1cd8d9d61b3cc5631aa1",
+      "bytes": 113335
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "RELEASE-NOTES.md",
+      "sha256": "7340c58689fd50b55010767bc2714d944aabcaf4ccdeeb8e6be4452516db669b",
+      "bytes": 112907
+    }
+  },
+  {
+    "status": "M",
+    "path": "docs/README.opencode.md",
+    "fork_changed_paths": [
+      "docs/README.opencode.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/README.opencode.md",
+      "sha256": "7eebb57660c2e6f6c205643a752e4e26b1f4aae2a8d8f92d16b38ab637980e8f",
+      "bytes": 8758
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/README.opencode.md",
+      "sha256": "aa33ea419d20feec8e091c66244fa57afd8844c4bec27831481937bd36ac1bb6",
+      "bytes": 9346
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "docs/README.opencode.md",
+      "sha256": "17ae31ae43f88ef40fd4b5dcb03bd9ad761fed46f4a7e1697fb824433c105433",
+      "bytes": 8758
+    }
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-01-22-document-review-system.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-01-22-document-review-system.md",
+      "sha256": "92875a4d7db7acef7737ace512ed5a6ae29ab76aff421633276a4a824c5d5cf7",
+      "bytes": 8999
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-01-22-document-review-system.md",
+      "sha256": "92875a4d7db7acef7737ace512ed5a6ae29ab76aff421633276a4a824c5d5cf7",
+      "bytes": 8999
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-02-19-visual-brainstorming-refactor.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-02-19-visual-brainstorming-refactor.md",
+      "sha256": "fbc67c4e7c5e42ff6e8e647951b749a2610ca2e13639903867258032c175bbbe",
+      "bytes": 18804
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-02-19-visual-brainstorming-refactor.md",
+      "sha256": "fbc67c4e7c5e42ff6e8e647951b749a2610ca2e13639903867258032c175bbbe",
+      "bytes": 18804
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-03-11-zero-dep-brainstorm-server.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-03-11-zero-dep-brainstorm-server.md",
+      "sha256": "d1e3b19e1111cab0a113519a9d2d9e881080c5fe13c3227e6c22fa88d08dc11d",
+      "bytes": 15576
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-03-11-zero-dep-brainstorm-server.md",
+      "sha256": "d1e3b19e1111cab0a113519a9d2d9e881080c5fe13c3227e6c22fa88d08dc11d",
+      "bytes": 15576
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-03-23-codex-app-compatibility.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-03-23-codex-app-compatibility.md",
+      "sha256": "28b0335e97ceea066ab2eefa9a02eea6bf30d3e580788ce462976efce13dc709",
+      "bytes": 19177
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-03-23-codex-app-compatibility.md",
+      "sha256": "28b0335e97ceea066ab2eefa9a02eea6bf30d3e580788ce462976efce13dc709",
+      "bytes": 19177
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-04-06-worktree-rototill.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-04-06-worktree-rototill.md",
+      "sha256": "98d21b8bbbee1d7359aaf65ba74a9f1313d9f5114000613301a00244a415f61f",
+      "bytes": 29210
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-04-06-worktree-rototill.md",
+      "sha256": "98d21b8bbbee1d7359aaf65ba74a9f1313d9f5114000613301a00244a415f61f",
+      "bytes": 29210
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-05-06-lift-drill-into-evals.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-05-06-lift-drill-into-evals.md",
+      "sha256": "3b1b5c8748dde0754872181631ef8b6188d0221b2723106ab2a82d2b9290accd",
+      "bytes": 48218
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-05-06-lift-drill-into-evals.md",
+      "sha256": "3b1b5c8748dde0754872181631ef8b6188d0221b2723106ab2a82d2b9290accd",
+      "bytes": 48218
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-05-07-pi-extension-and-evals.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-05-07-pi-extension-and-evals.md",
+      "sha256": "887dda265dc5f61ad4a04b9d0da98c059f6d93d08ff79180afbdafa7a000d75e",
+      "bytes": 5748
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-05-07-pi-extension-and-evals.md",
+      "sha256": "887dda265dc5f61ad4a04b9d0da98c059f6d93d08ff79180afbdafa7a000d75e",
+      "bytes": 5748
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-06-09-sdd-task-scoped-review-dispatch.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-06-09-sdd-task-scoped-review-dispatch.md",
+      "sha256": "1597b91dbf9f8113533c6da8410607c5ac6c47db92b043a1284fff075b037aa8",
+      "bytes": 28766
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-06-09-sdd-task-scoped-review-dispatch.md",
+      "sha256": "1597b91dbf9f8113533c6da8410607c5ac6c47db92b043a1284fff075b037aa8",
+      "bytes": 28766
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-06-09-visual-companion-issues.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-06-09-visual-companion-issues.md",
+      "sha256": "bf939ca1e1398f54e1950193299084836e45767cb00735342e3d7c31ff1fe31e",
+      "bytes": 18930
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-06-09-visual-companion-issues.md",
+      "sha256": "bf939ca1e1398f54e1950193299084836e45767cb00735342e3d7c31ff1fe31e",
+      "bytes": 18930
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-06-10-visual-companion-auth-hardening.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-06-10-visual-companion-auth-hardening.md",
+      "sha256": "7387fa4ddbc9bf071088372802c9aed6e44b224875291d2309007d76929af2f2",
+      "bytes": 23632
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-06-10-visual-companion-auth-hardening.md",
+      "sha256": "7387fa4ddbc9bf071088372802c9aed6e44b224875291d2309007d76929af2f2",
+      "bytes": 23632
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md",
+      "sha256": "5604d33566ba5ca9940924819892a6d3f095a8704e2705e3fcc64a23334ca2f3",
+      "bytes": 36149
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-06-11-visual-companion-final-hardening-fixup.md",
+      "sha256": "5604d33566ba5ca9940924819892a6d3f095a8704e2705e3fcc64a23334ca2f3",
+      "bytes": 36149
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-07-06-sdd-plan-scoped-workspace.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-07-06-sdd-plan-scoped-workspace.md",
+      "sha256": "2d1b484cd2a4ead41fd5be842ccbc4c114b7b5eb52135c79190a6f756acbfd39",
+      "bytes": 48630
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-07-06-sdd-plan-scoped-workspace.md",
+      "sha256": "2d1b484cd2a4ead41fd5be842ccbc4c114b7b5eb52135c79190a6f756acbfd39",
+      "bytes": 48630
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-07-15-sdd-fix-loop-redesign.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-07-15-sdd-fix-loop-redesign.md",
+      "sha256": "83189840f8591276c481187dc742f99f3e6add14eec0f7a782b5150a89024648",
+      "bytes": 77641
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-07-15-sdd-fix-loop-redesign.md",
+      "sha256": "83189840f8591276c481187dc742f99f3e6add14eec0f7a782b5150a89024648",
+      "bytes": 77641
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md",
+      "sha256": "78e7b8cd163ee78ac16a9ba9fbfffe3ae98b7711c092d75c7283bd325fdf42f7",
+      "bytes": 52609
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-07-30-codex-efficiency-fixes.md",
+      "sha256": "78e7b8cd163ee78ac16a9ba9fbfffe3ae98b7711c092d75c7283bd325fdf42f7",
+      "bytes": 52609
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md",
+      "sha256": "3a9669467c0db792fb1465ccee38e086349b8415aa7077e1d6b8633f47eab208",
+      "bytes": 9551
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-08-06-hermes-version-bump-wiring.md",
+      "sha256": "3a9669467c0db792fb1465ccee38e086349b8415aa7077e1d6b8633f47eab208",
+      "bytes": 9551
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md",
+      "sha256": "a8a57533a032af65e649a63b9f0f9a306913cc319d3638ec609befcb6c77b7fd",
+      "bytes": 76309
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-08-27-diagnosing-superpowers.md",
+      "sha256": "a8a57533a032af65e649a63b9f0f9a306913cc319d3638ec609befcb6c77b7fd",
+      "bytes": 76309
+    },
+    "target": null
+  },
+  {
+    "status": "D",
+    "path": "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md",
+      "sha256": "5948b389d7c0b263d2b3175a52fbc32790f6c5d5056e430bb7ae9cc11a76a10b",
+      "bytes": 27810
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/plans/2026-10-06-antigravity-marketplace.md",
+      "sha256": "5948b389d7c0b263d2b3175a52fbc32790f6c5d5056e430bb7ae9cc11a76a10b",
+      "bytes": 27810
+    },
+    "target": null
+  },
+  {
+    "status": "M",
+    "path": "docs/superpowers/specs/2026-08-27-diagnosing-superpowers-design.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "docs/superpowers/specs/2026-08-27-diagnosing-superpowers-design.md",
+      "sha256": "da21af32ea629de17c3221f08dc4825c0f26d7bea4902f217eba9e5caf7b966d",
+      "bytes": 27042
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "docs/superpowers/specs/2026-08-27-diagnosing-superpowers-design.md",
+      "sha256": "da21af32ea629de17c3221f08dc4825c0f26d7bea4902f217eba9e5caf7b966d",
+      "bytes": 27042
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "docs/superpowers/specs/2026-08-27-diagnosing-superpowers-design.md",
+      "sha256": "396a4951cda08633501deb638a77961a638560441b7fde53fb43fc1a6497d0bf",
+      "bytes": 27158
+    }
+  },
+  {
+    "status": "M",
+    "path": "gemini-extension.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "gemini-extension.json",
+      "sha256": "c8b2431e50b1fb626931d9e36a2fb0e00e4c757c430a936db5f1b80820f11d14",
+      "bytes": 187
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "gemini-extension.json",
+      "sha256": "c8b2431e50b1fb626931d9e36a2fb0e00e4c757c430a936db5f1b80820f11d14",
+      "bytes": 187
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "gemini-extension.json",
+      "sha256": "8b7e69416536746b5948f49979fb34448c85fa10aabbdc9c6f4c2f4ded5fa985",
+      "bytes": 187
+    }
+  },
+  {
+    "status": "M",
+    "path": "package.json",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "package.json",
+      "sha256": "cac93fa9fd478b35465e56b9df4fbf91909f78c8810070f23c202c7cb5474656",
+      "bytes": 433
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "package.json",
+      "sha256": "cac93fa9fd478b35465e56b9df4fbf91909f78c8810070f23c202c7cb5474656",
+      "bytes": 433
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "package.json",
+      "sha256": "b4ca961ce1aead5d08e40507b2fca8c04c61dea054866bac92259308d24527e3",
+      "bytes": 433
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/brainstorming/SKILL.md",
+    "fork_changed_paths": [
+      "skills/brainstorming/SKILL.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/brainstorming/SKILL.md",
+      "sha256": "6ee10d1481b8a2580d5336ff66c5c08acc9d4b251b13bbc3bfd31be99c261d43",
+      "bytes": 10073
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/brainstorming/SKILL.md",
+      "sha256": "df16355bd02b4466d45fac7aea149d956110ede2465090ca0f8cca7df69b73cf",
+      "bytes": 28279
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/brainstorming/SKILL.md",
+      "sha256": "61a7ef918652108c76a3fd01e02dd92d39996c6b46d4cb2819cbd03f6c45e46a",
+      "bytes": 13602
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/diagnosing-superpowers/SKILL.md",
+    "fork_changed_paths": [
+      "skills/diagnosing-superpowers/SKILL.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/diagnosing-superpowers/SKILL.md",
+      "sha256": "5a652f8132cc901eb5ca61f89157839f87a2f20aed037fc7a2b51051bc37cd19",
+      "bytes": 6904
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/diagnosing-superpowers/SKILL.md",
+      "sha256": "993b4caca59487ceff3cbff700ab6ae034fda4aad4641fd0a4bae14ffe921d97",
+      "bytes": 6970
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/diagnosing-superpowers/SKILL.md",
+      "sha256": "3143de8695c5a2d63e8b1675f33837578076f464deb127c2ebdd0b46fceef886",
+      "bytes": 6941
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/diagnosing-superpowers/references/github-issues.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/diagnosing-superpowers/references/github-issues.md",
+      "sha256": "a656f5e15b21c7a200c39c038f5ede74b9d6ea3ceeb90f39af7e930c8d8424d6",
+      "bytes": 1644
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/diagnosing-superpowers/references/github-issues.md",
+      "sha256": "a656f5e15b21c7a200c39c038f5ede74b9d6ea3ceeb90f39af7e930c8d8424d6",
+      "bytes": 1644
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/diagnosing-superpowers/references/github-issues.md",
+      "sha256": "d26ef9197b4a6ae5159ae6d11abd162bcc624d95fc7ccf508e07b68f916a1b19",
+      "bytes": 1636
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/diagnosing-superpowers/templates/issue.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/diagnosing-superpowers/templates/issue.md",
+      "sha256": "8f28dbfe60602f77dda76d81815cb4e2dce7d3e2a93348890e1581be8310ac1f",
+      "bytes": 1851
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/diagnosing-superpowers/templates/issue.md",
+      "sha256": "8f28dbfe60602f77dda76d81815cb4e2dce7d3e2a93348890e1581be8310ac1f",
+      "bytes": 1851
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/diagnosing-superpowers/templates/issue.md",
+      "sha256": "afd21779e5de5bc5adfe2f5a50a04e44ab8d50d9ad0f829243de248d6f023eed",
+      "bytes": 2680
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/executing-plans/SKILL.md",
+    "fork_changed_paths": [
+      "skills/executing-plans/SKILL.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/executing-plans/SKILL.md",
+      "sha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
+      "bytes": 20405
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/executing-plans/SKILL.md",
+      "sha256": "574be62de1db9f28f6fa541a24f6ac658127e3bd09381cb063228d9e207670bd",
+      "bytes": 9328
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/executing-plans/SKILL.md",
+      "sha256": "e4649e59880ef2643d1da128e3d607e87e3f969410d72095a5bf65811b6036dc",
+      "bytes": 18103
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/subagent-driven-development/SKILL.md",
+    "fork_changed_paths": [
+      "skills/subagent-driven-development/SKILL.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "sha256": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
+      "bytes": 32577
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "sha256": "c03bf7297f5c8ea6b47ba983e565cf399c15f97c99b4797ba7b4134a10b5ffae",
+      "bytes": 19103
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "sha256": "ba41f697136cba88a7962d60c8e2f97488ba04a8688b1d0fbeb27f6953808e75",
+      "bytes": 19506
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/batching.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/batching.md",
+      "sha256": "b54dc7e23dbfb90db89bcb2fb3af591aabf6a271a165fbc0da4c6f9439980eac",
+      "bytes": 583
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/cannot-verify.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/cannot-verify.md",
+      "sha256": "e698713a15e0eabf1a2ab26ffe1bb04bf70c9d6d2e2060d44a0f9a1bdd4408bf",
+      "bytes": 513
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/final-review.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/final-review.md",
+      "sha256": "2fd999d86e5dd0b9b32aaf93f2a41663ef30b3e3cb78fb2fd5cb450eb59eb9de",
+      "bytes": 2447
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/fix-loop.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/fix-loop.md",
+      "sha256": "eafff1f801af2ced86e8761f3eeef04b701860d986ba5d0a8b20d506a75104bb",
+      "bytes": 4249
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/handling-reports.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/handling-reports.md",
+      "sha256": "8f759cdd4936220c38aab05b6d6c48c6df8ac8f146b0f37a6d2facbf87133c67",
+      "bytes": 1062
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/preflight.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/preflight.md",
+      "sha256": "3ea21c5fc1af1a190ac8a9d19ceb0849b47bf2ffe27b87dffcc21b6a0539776c",
+      "bytes": 1353
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/subagent-driven-development/references/resuming.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/subagent-driven-development/references/resuming.md",
+      "sha256": "ff6e38bde2276faa2a7e93513086caded0ea10edbf2ec7f349a7e3b0d7c668c4",
+      "bytes": 614
+    }
+  },
+  {
+    "status": "M",
+    "path": "skills/writing-skills/SKILL.md",
+    "fork_changed_paths": [
+      "skills/writing-skills/SKILL.md"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/writing-skills/SKILL.md",
+      "sha256": "bbdfe742f853562e643a3d40d64476359d47881e39cef80a189283fa26d11ab9",
+      "bytes": 26623
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/writing-skills/SKILL.md",
+      "sha256": "edd8f00ca272807c78f5b49256bf514b68b3de69d402e6f9a19c914e158aab64",
+      "bytes": 26636
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/SKILL.md",
+      "sha256": "8cb3ac68c6d8c4bb46886b998b09af7989643cab8bd0e46ee86dd62e64546bbe",
+      "bytes": 16738
+    }
+  },
+  {
+    "status": "R100",
+    "path": "skills/writing-skills/references/CLAUDE_MD_TESTING.md",
+    "old_path": "skills/writing-skills/examples/CLAUDE_MD_TESTING.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/writing-skills/examples/CLAUDE_MD_TESTING.md",
+      "sha256": "0b379a3415e185d3c434b3ad283d8aa132f3022c2a4f210f168865b5986bcef0",
+      "bytes": 5423
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/writing-skills/examples/CLAUDE_MD_TESTING.md",
+      "sha256": "0b379a3415e185d3c434b3ad283d8aa132f3022c2a4f210f168865b5986bcef0",
+      "bytes": 5423
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/CLAUDE_MD_TESTING.md",
+      "sha256": "0b379a3415e185d3c434b3ad283d8aa132f3022c2a4f210f168865b5986bcef0",
+      "bytes": 5423
+    }
+  },
+  {
+    "status": "R100",
+    "path": "skills/writing-skills/references/anthropic-best-practices.md",
+    "old_path": "skills/writing-skills/anthropic-best-practices.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/writing-skills/anthropic-best-practices.md",
+      "sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a",
+      "bytes": 46197
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/writing-skills/anthropic-best-practices.md",
+      "sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a",
+      "bytes": 46197
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/anthropic-best-practices.md",
+      "sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a",
+      "bytes": 46197
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/writing-skills/references/bulletproofing.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/bulletproofing.md",
+      "sha256": "9397023e6bc85b556a57f3097371363bf03e28e755c57f403f470bcda90e0a23",
+      "bytes": 2577
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/writing-skills/references/discovery.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/discovery.md",
+      "sha256": "c6bbc74af3be90f693f7cbc986af6fa94e8df75f65109b52e96032587f5b92af",
+      "bytes": 7616
+    }
+  },
+  {
+    "status": "A",
+    "path": "skills/writing-skills/references/flowcharts.md",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/flowcharts.md",
+      "sha256": "8b1f542391f274f0d33f3457ac099a3d317d6877eaa3b8d3b1ebef151b55fda7",
+      "bytes": 1262
+    }
+  },
+  {
+    "status": "R100",
+    "path": "skills/writing-skills/references/graphviz-conventions.dot",
+    "old_path": "skills/writing-skills/graphviz-conventions.dot",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/writing-skills/graphviz-conventions.dot",
+      "sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694",
+      "bytes": 5970
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/writing-skills/graphviz-conventions.dot",
+      "sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694",
+      "bytes": 5970
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/graphviz-conventions.dot",
+      "sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694",
+      "bytes": 5970
+    }
+  },
+  {
+    "status": "R100",
+    "path": "skills/writing-skills/references/persuasion-principles.md",
+    "old_path": "skills/writing-skills/persuasion-principles.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/writing-skills/persuasion-principles.md",
+      "sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03",
+      "bytes": 5901
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/writing-skills/persuasion-principles.md",
+      "sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03",
+      "bytes": 5901
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/persuasion-principles.md",
+      "sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03",
+      "bytes": 5901
+    }
+  },
+  {
+    "status": "R097",
+    "path": "skills/writing-skills/references/testing-skills-with-subagents.md",
+    "old_path": "skills/writing-skills/testing-skills-with-subagents.md",
+    "fork_changed_paths": [],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "skills/writing-skills/testing-skills-with-subagents.md",
+      "sha256": "c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade",
+      "bytes": 12558
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "skills/writing-skills/testing-skills-with-subagents.md",
+      "sha256": "c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade",
+      "bytes": 12558
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "skills/writing-skills/references/testing-skills-with-subagents.md",
+      "sha256": "ed8a6862c085900135962390530d9dc7637ad6d650b4324ce3b051287a5c3f22",
+      "bytes": 12557
+    }
+  },
+  {
+    "status": "M",
+    "path": "tests/brainstorm-server/server.test.js",
+    "fork_changed_paths": [
+      "tests/brainstorm-server/server.test.js"
+    ],
+    "base": {
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "path": "tests/brainstorm-server/server.test.js",
+      "sha256": "87e23a66d4ef57c9621ed6a479383cefa530133ec9c12d71b2dc44e11fc554e9",
+      "bytes": 24805
+    },
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "path": "tests/brainstorm-server/server.test.js",
+      "sha256": "0c9d51a76ed3eb03e0cbeb36eeda5150cab07d876d9dbe51bd924f0163e47a7f",
+      "bytes": 27895
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "tests/brainstorm-server/server.test.js",
+      "sha256": "a8f2effba4647767e0e66b0c681ae63e89355cb6bb5e20a4f86d48149c3957e6",
+      "bytes": 26676
+    }
+  },
+  {
+    "status": "A",
+    "path": "tests/skill-size/test-skill-size.sh",
+    "fork_changed_paths": [],
+    "base": null,
+    "fork": null,
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "path": "tests/skill-size/test-skill-size.sh",
+      "sha256": "82aa688a6f17cb04006954f2c7e6894578ef13009c273fd40777f90c87d8b99a",
+      "bytes": 1099
+    }
+  }
+]

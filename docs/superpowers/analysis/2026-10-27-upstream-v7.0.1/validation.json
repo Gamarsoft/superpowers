@@ -1,0 +1,12 @@
+{
+  "record_coverage": 64,
+  "renames_with_both_endpoints": 5,
+  "implemented_records": 0,
+  "source_links_checked": 117,
+  "missing_source_links": [],
+  "r100_hash_checks": "pass",
+  "no_match_claim_checks": "pass",
+  "head_still_pinned": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+  "final_working_status_observed": "A  .agents/skills/integrating-superpowers-upstream/SKILL.md\nA  .agents/skills/integrating-superpowers-upstream/agents/openai.yaml\nA  .agents/skills/integrating-superpowers-upstream/references/release-workflow.md\nA  .agents/skills/integrating-superpowers-upstream/scripts/release_inventory.py\n M docs/gsd/preferences.md\nM  scripts/sync-to-codex-plugin.sh\nM  tests/codex-plugin-sync/test-sync-to-codex-plugin.sh\nAM tests/upstream-release-skill/evaluation/REPORT.md\nAM tests/upstream-release-skill/evaluation/SHA256SUMS.json\nA  tests/upstream-release-skill/evaluation/cases.md\nA  tests/upstream-release-skill/evaluation/logs/installed-verification.txt\nA  tests/upstream-release-skill/evaluation/logs/scope-green.txt\nA  tests/upstream-release-skill/evaluation/logs/scope-red-excerpt.txt\nA  tests/upstream-release-skill/evaluation/logs/script-red.txt\nAM tests/upstream-release-skill/evaluation/manifest.json\nA  tests/upstream-release-skill/evaluation/outputs/candidate-1.md\nA  tests/upstream-release-skill/evaluation/outputs/candidate-2.md\nA  tests/upstream-release-skill/evaluation/outputs/candidate-3.md\nA  tests/upstream-release-skill/evaluation/outputs/candidate-4.md\nA  tests/upstream-release-skill/evaluation/outputs/candidate-5.md\nA  tests/upstream-release-skill/evaluation/outputs/control-1.md\nA  tests/upstream-release-skill/evaluation/outputs/control-2.md\nA  tests/upstream-release-skill/evaluation/outputs/control-3.md\nA  tests/upstream-release-skill/evaluation/outputs/control-4.md\nA  tests/upstream-release-skill/evaluation/outputs/control-5.md\nA  tests/upstream-release-skill/evaluation/outputs/pressure-1.md\nA  tests/upstream-release-skill/evaluation/outputs/pressure-2.md\nA  tests/upstream-release-skill/evaluation/pressure-1.md\nA  tests/upstream-release-skill/evaluation/pressure-2.md\nA  tests/upstream-release-skill/evaluation/pressure-scores.json\nA  tests/upstream-release-skill/evaluation/rubric.md\nAM tests/upstream-release-skill/evaluation/scores.json\nA  tests/upstream-release-skill/test_inventory.py\n",
+  "note": "Controller owns concurrent branch/index/worktree changes. This assessment wrote only the assigned temporary output directory."
+}

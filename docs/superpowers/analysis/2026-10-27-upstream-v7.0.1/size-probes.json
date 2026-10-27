@@ -1,0 +1,255 @@
+{
+  "guard_source": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b:tests/skill-size/test-skill-size.sh",
+  "guard_sha256": "82aa688a6f17cb04006954f2c7e6894578ef13009c273fd40777f90c87d8b99a",
+  "arms": {
+    "fork": {
+      "revision": "6bd5a431939b0b05eb94d8749a3d9c3fc8781a1f",
+      "skill_count": 27,
+      "command": [
+        "/bin/bash",
+        "/private/tmp/superpowers-upstream-skill-20261027/forward-v7.0.1/size-probe/fork/tests/skill-size/test-skill-size.sh"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: skills/brainstorming/SKILL.md is 28279 bytes (limit: under 20000)\nFAIL: skills/writing-skills/SKILL.md is 26636 bytes (limit: under 20000)\nMove content the skill only needs sometimes into its references/ directory.\n",
+      "oversize": [
+        {
+          "path": "skills/brainstorming/SKILL.md",
+          "bytes": 28279,
+          "sha256": "df16355bd02b4466d45fac7aea149d956110ede2465090ca0f8cca7df69b73cf"
+        },
+        {
+          "path": "skills/writing-skills/SKILL.md",
+          "bytes": 26636,
+          "sha256": "edd8f00ca272807c78f5b49256bf514b68b3de69d402e6f9a19c914e158aab64"
+        }
+      ],
+      "sizes": [
+        {
+          "path": "skills/auditing-ai-generated-code/SKILL.md",
+          "bytes": 7997,
+          "sha256": "c2fac53723e83cf9014e2c0e2619b989367d77bf05f3aa9ce1418370b247e5f8"
+        },
+        {
+          "path": "skills/brainstorming/SKILL.md",
+          "bytes": 28279,
+          "sha256": "df16355bd02b4466d45fac7aea149d956110ede2465090ca0f8cca7df69b73cf"
+        },
+        {
+          "path": "skills/context7-research/SKILL.md",
+          "bytes": 5252,
+          "sha256": "74b7c10efb8d90fb3c360064a2bce37a27aa63f8347cb684fb63142cd58c5967"
+        },
+        {
+          "path": "skills/diagnosing-superpowers/SKILL.md",
+          "bytes": 6970,
+          "sha256": "993b4caca59487ceff3cbff700ab6ae034fda4aad4641fd0a4bae14ffe921d97"
+        },
+        {
+          "path": "skills/dispatching-parallel-agents/SKILL.md",
+          "bytes": 6494,
+          "sha256": "9c0277cd9646c7cfbf7383a6b0bf2ea0c00bede6dd2312d67bf421d38d0716bc"
+        },
+        {
+          "path": "skills/executing-plans/SKILL.md",
+          "bytes": 9328,
+          "sha256": "574be62de1db9f28f6fa541a24f6ac658127e3bd09381cb063228d9e207670bd"
+        },
+        {
+          "path": "skills/finishing-a-development-branch/SKILL.md",
+          "bytes": 11404,
+          "sha256": "21557a253fab0519b230ff45ae3a3371cb197ff79517afbdfeccf225dda89409"
+        },
+        {
+          "path": "skills/frontend-direction/SKILL.md",
+          "bytes": 9112,
+          "sha256": "4a24f2f46c223d3138ba58ea750e0c9fa26f85e8ec565c148be77990abd23273"
+        },
+        {
+          "path": "skills/gathering-topic-context/SKILL.md",
+          "bytes": 10281,
+          "sha256": "a8cf2ae05d81f7904fadf896bd96353a8462b9d3d2dc71f0ed332d2b55e2c09d"
+        },
+        {
+          "path": "skills/implementing-frontend-design/SKILL.md",
+          "bytes": 8605,
+          "sha256": "78ec5d94b5450ecc9bb0b454224da8224e5208fa8d904b76df2cfe797a09397a"
+        },
+        {
+          "path": "skills/mobile-design-review/SKILL.md",
+          "bytes": 3688,
+          "sha256": "b8e66c7cf64ec49de8bb9520206f6dacbc0045bf7a582603154869869de6d15d"
+        },
+        {
+          "path": "skills/mobile-interaction-and-usability/SKILL.md",
+          "bytes": 4002,
+          "sha256": "78c77bbbc7057d305f0934eaf379622f28bf5ce446fb7b5f7a4c352b13398b58"
+        },
+        {
+          "path": "skills/mobile-product-direction/SKILL.md",
+          "bytes": 3533,
+          "sha256": "7c6c04dd6a0833ce72c87550bef86bea7c8ebcc5056bf87e7e2ad4e87b5059a6"
+        },
+        {
+          "path": "skills/mobile-visual-design/SKILL.md",
+          "bytes": 3727,
+          "sha256": "58e91e32bcc8d01f9e4b242c1d67c5ca4faaf7873d30d6a30d6f864b99a31a69"
+        },
+        {
+          "path": "skills/receiving-code-review/SKILL.md",
+          "bytes": 3056,
+          "sha256": "a10f6e2c5de0c7e475b7c409e8aeda9e4f38744e694bafe13210227dd0a07dc0"
+        },
+        {
+          "path": "skills/requesting-code-review/SKILL.md",
+          "bytes": 3951,
+          "sha256": "f4ff132a79419c891891342b51e56466f4d0f46f087bbaaa302c55d6d4f50491"
+        },
+        {
+          "path": "skills/subagent-driven-development/SKILL.md",
+          "bytes": 19103,
+          "sha256": "c03bf7297f5c8ea6b47ba983e565cf399c15f97c99b4797ba7b4134a10b5ffae"
+        },
+        {
+          "path": "skills/systematic-debugging/SKILL.md",
+          "bytes": 10143,
+          "sha256": "247ccb7e4e12e274f9033f2be3611ea4a3afd91e929e1f09f61eceae7484cf76"
+        },
+        {
+          "path": "skills/test-driven-development/SKILL.md",
+          "bytes": 9496,
+          "sha256": "1321c8af3dfc3fb5651d56a0a556e34fe7c57c0d1d4d6dfb9186f3c57c3d6037"
+        },
+        {
+          "path": "skills/using-feature-branches-with-submodules/SKILL.md",
+          "bytes": 8288,
+          "sha256": "a36081c71c624b70972d52f883c571a70c53e7ec432b47f9b105f7f4784873be"
+        },
+        {
+          "path": "skills/using-git-worktrees/SKILL.md",
+          "bytes": 6813,
+          "sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd"
+        },
+        {
+          "path": "skills/using-superpowers/SKILL.md",
+          "bytes": 7474,
+          "sha256": "7896adeadff49587db1a24147d191d6cc92b612dedd0fae7fe1af5964ac15dac"
+        },
+        {
+          "path": "skills/verification-before-completion/SKILL.md",
+          "bytes": 4409,
+          "sha256": "a7e6435bc2fb4841d0bb4c1674421ef16446644b4f0330e12476610edd0ca298"
+        },
+        {
+          "path": "skills/webapp-testing/SKILL.md",
+          "bytes": 5941,
+          "sha256": "14429718508a82b79886f4f3239f854541d18c91b54ff1dc3463322a68768ea3"
+        },
+        {
+          "path": "skills/writing-plans/SKILL.md",
+          "bytes": 12298,
+          "sha256": "7ddc826168a18832bd28c85bcdf3dcfc0f241eec096b413e55157475d01e3ff5"
+        },
+        {
+          "path": "skills/writing-skills/SKILL.md",
+          "bytes": 26636,
+          "sha256": "edd8f00ca272807c78f5b49256bf514b68b3de69d402e6f9a19c914e158aab64"
+        },
+        {
+          "path": "skills/writing-ux-copy/SKILL.md",
+          "bytes": 5676,
+          "sha256": "5988a6013c097f98b1dbe8195f4892be434437fa459f55e06ee205731e39fe94"
+        }
+      ]
+    },
+    "target": {
+      "revision": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
+      "skill_count": 15,
+      "command": [
+        "/bin/bash",
+        "/private/tmp/superpowers-upstream-skill-20261027/forward-v7.0.1/size-probe/target/tests/skill-size/test-skill-size.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: every SKILL.md is under 20000 bytes\n",
+      "stderr": "",
+      "oversize": [],
+      "sizes": [
+        {
+          "path": "skills/brainstorming/SKILL.md",
+          "bytes": 13602,
+          "sha256": "61a7ef918652108c76a3fd01e02dd92d39996c6b46d4cb2819cbd03f6c45e46a"
+        },
+        {
+          "path": "skills/diagnosing-superpowers/SKILL.md",
+          "bytes": 6941,
+          "sha256": "3143de8695c5a2d63e8b1675f33837578076f464deb127c2ebdd0b46fceef886"
+        },
+        {
+          "path": "skills/dispatching-parallel-agents/SKILL.md",
+          "bytes": 6078,
+          "sha256": "1968923066f3b707eb01d1992cdf4c42284c3855f70253b9cd5000ff45fca13c"
+        },
+        {
+          "path": "skills/executing-plans/SKILL.md",
+          "bytes": 18103,
+          "sha256": "e4649e59880ef2643d1da128e3d607e87e3f969410d72095a5bf65811b6036dc"
+        },
+        {
+          "path": "skills/finishing-a-development-branch/SKILL.md",
+          "bytes": 7781,
+          "sha256": "8db5a922b242dd4e1bf824cb91c13b3e8d8e8a86d6ceaf7f0774eb9cce909d65"
+        },
+        {
+          "path": "skills/receiving-code-review/SKILL.md",
+          "bytes": 6203,
+          "sha256": "091df1629510af1b92fc4abd6f96732ebedb4cb2c0f3457e8f2740b0504a2438"
+        },
+        {
+          "path": "skills/requesting-code-review/SKILL.md",
+          "bytes": 2974,
+          "sha256": "2180e14a448e9410bec88e6646a2d1f0ce7fdd58de27388c1e052e929679d2bc"
+        },
+        {
+          "path": "skills/subagent-driven-development/SKILL.md",
+          "bytes": 19506,
+          "sha256": "ba41f697136cba88a7962d60c8e2f97488ba04a8688b1d0fbeb27f6953808e75"
+        },
+        {
+          "path": "skills/systematic-debugging/SKILL.md",
+          "bytes": 9530,
+          "sha256": "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202"
+        },
+        {
+          "path": "skills/test-driven-development/SKILL.md",
+          "bytes": 9578,
+          "sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d"
+        },
+        {
+          "path": "skills/using-git-worktrees/SKILL.md",
+          "bytes": 6813,
+          "sha256": "8cfb86f121269e8f7f12361e6795c4f6738828340e28964c9229d365666c9edd"
+        },
+        {
+          "path": "skills/using-superpowers/SKILL.md",
+          "bytes": 3192,
+          "sha256": "82c5c8866ad7f5dd4440ce66bd7806ba48a2f13771beae5cf112e53f08fe36ba"
+        },
+        {
+          "path": "skills/verification-before-completion/SKILL.md",
+          "bytes": 3646,
+          "sha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3"
+        },
+        {
+          "path": "skills/writing-plans/SKILL.md",
+          "bytes": 10335,
+          "sha256": "a6c67c1900064347c2a329990dd3c555657c51c3ec53b259a08aa01a2c26139a"
+        },
+        {
+          "path": "skills/writing-skills/SKILL.md",
+          "bytes": 16738,
+          "sha256": "8cb3ac68c6d8c4bb46886b998b09af7989643cab8bd0e46ee86dd62e64546bbe"
+        }
+      ]
+    }
+  }
+}
