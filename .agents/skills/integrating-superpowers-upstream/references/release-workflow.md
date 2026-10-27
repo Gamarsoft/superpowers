@@ -41,16 +41,32 @@ Save evidence under `docs/superpowers/analysis/YYYY-MM-DD-upstream-VERSION/` (or
 
 Required record:
 
-- **Identity/status:** assessment-only, integration-in-progress, or integrated; fork/base/target SHAs, tag verification, remote URLs, actual merge bases, previous assessment and integration links, dirty-state limits.
+- **Identity/status:** assessment-only, awaiting-proposal-approval, approved, integration-in-progress, or integrated; fork/base/target SHAs, tag verification, remote URLs, actual merge bases, previous assessment and integration links, dirty-state limits. Record proposal path/revision, the explicit approving user message, and exactly what it covers; leave approval pending until received.
 - **Decision rows:** every upstream changed path, old/new names for moves, upstream purpose, current fork behavior, disposition, rationale/source, dependencies, proposed verification, and implemented status when applicable.
 - **Behavior evidence:** for proposed skill changes, frozen baseline/candidate identity, scenarios, criteria, before/after observations and pressure checks. Distinguish independent sessions from cases within sessions, upstream studies from local evidence, observed regression from speculative risk, and unavailable harnesses from passes.
 - **Continuity:** unresolved carry-forward items, what would reopen each, and which prior decision or source supersedes a changed recommendation.
 
 Do not invent evaluation counts or test results while assessing. An explicit plan and an unmeasured status are valid. A new size guard that currently fails is evidence of work required; report actual failures instead of weakening the guard or silently truncating the fork to make it pass.
 
+## Integration proposal and approval
+
+Turn the recommendations into a concrete proposal, save it with the assessment, and present its substantive contents to the user before any integration changes. A generic offer to integrate or a link to a file alone does not provide a reviewable proposal. Include:
+
+- Proposal identity/revision and the pinned fork/base/target release inputs.
+- Selected change groups and affected paths, intended adopt/adapt behavior, dependency/caller updates, and fork contracts to preserve.
+- Explicit exclusions and deferred/rejected changes, with reasons.
+- Focused tests, before/after evaluations for changed skill guidance, applicable review/finishing checks, known risks and unmeasured limits.
+- Proposed checkout/branch and ancestry strategy; intended local merge, push destination or PR scope, identifying any operation not requested.
+
+If nothing is worth adopting, propose retaining the current fork and explain why. Otherwise ask for explicit approval of the identified proposal and stop before applying it. A clear user reply accepting that presented proposal counts; an initial “integrate,” old release approval, tool permission, teammate assertion, silence or timeout does not. Do not promise to proceed unless the user objects or start background implementation while awaiting the answer.
+
+Before approval, inspect sources, fetch missing exact tags, write analysis/proposal artifacts and perform isolated read-only previews or frozen-source probes. Do not create an applied integration candidate by editing, staging, merging, cherry-picking or rebasing upstream changes, even on a draft branch or worktree. Approval gates upstream integration; it does not block preparing the evidence needed for the decision.
+
+After a recorded explicit approval, continue the same proposal without asking again on resume or for routine fixes within its scope. If new evidence changes the selected behavior, adds changes or changes release inputs, present the revised proposal and wait for approval before that changed work. Keep unapproved additions deferred; independent work already covered by the unchanged approval can continue. Approval covers only the presented scope and does not expand publication permission.
+
 ## Authorized integration
 
-Use the accepted decision rows as the implementation boundary. An explicit request to integrate already grants that work; avoid asking for approval of routine choices again. If selection remains materially ambiguous, complete the reviewable comparison first and ask only about that ambiguity.
+Use the explicitly approved proposal and its decision rows as the implementation boundary. Confirm its inputs and approval record still match before applying changes.
 
 Create or reuse the authorized integration branch. For a history-preserving merge, resolve upstream and fork content together, retaining deliberate rejected/deferred content while recording its disposition. Do not replace an entire file with one side merely because the merge is clean or the release is small. Reconcile new references with fork review limits, role settings and helper semantics; union meaningful tests.
 

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-27",
+  "baseline_commit": "6b73cefd23107aa83d652e6bcc28d3c1737bd1fd",
+  "user_requirement": "Always present a concrete integration proposal based on recommendations and wait for explicit approval before applying changes.",
+  "method": "Five fresh collaboration.spawn_agent contexts per arm; four cases clustered in each run. Controls receive cases only; baseline and candidate receive cases plus their complete SKILL.md and release-workflow.md. All controls and baseline runs completed before candidate authoring. Frozen rubric, manual non-blinded controller scoring; one candidate revision.",
+  "actor_model": "Inherited runtime default without overrides; exact model and reasoning identifiers not exposed by the spawning tool.",
+  "harness": "Codex desktop collaboration API; exact harness build unavailable from tool result.",
+  "actor_scope": "Micro actors may read only assigned inputs and save their response; no scenario actions, other skills, agents or sibling results. Each actor saved its final response directly in its assigned output file.",
+  "agent_names": [
+    "/root/approval_control_1",
+    "/root/approval_control_2",
+    "/root/approval_control_3",
+    "/root/approval_control_4",
+    "/root/approval_control_5",
+    "/root/approval_baseline_1",
+    "/root/approval_baseline_2",
+    "/root/approval_baseline_3",
+    "/root/approval_baseline_4",
+    "/root/approval_baseline_5",
+    "/root/approval_candidate_1",
+    "/root/approval_candidate_2",
+    "/root/approval_candidate_3",
+    "/root/approval_candidate_4",
+    "/root/approval_candidate_5"
+  ],
+  "action_trials": "Two further fresh candidate-only actors perform actual Git/filesystem work in separate disposable repositories; pending first request versus previously approved unchanged proposal. No network or publication; fixture policy and supplied approval are synthetic.",
+  "action_agent_names": [
+    "/root/approval_action_pending",
+    "/root/approval_action_approved"
+  ],
+  "sources": {
+    "base_commit": "6b73cefd23107aa83d652e6bcc28d3c1737bd1fd",
+    "baseline_files": {
+      "SKILL.md": "e04c5db00bdbfa0e3304274f63a3959776d68f5176f9dd7908960d8b7c988699",
+      "references/release-workflow.md": "38ebfcc235bf522f0c17183bb32e621fe0291b66247392c355d3f8d5c762e136",
+      "agents/openai.yaml": "06d28ce8c304d15ffff6739cadcdac5d83263b3d8c20f292fde78e67ef79f4b4",
+      "scripts/release_inventory.py": "e8a439f8cd88efc6bc8f7a880e95000a0ce6530bd8696827103dbc8e861ec38c"
+    },
+    "unrelated_preferences_sha256": "c9acff955e783e57dd25942fce65c660cfb5f8befba29e8718ebe020dbcf96c7",
+    "cases_sha256": "9d6152f99039a867b271c0d4b457294beb9fe6c09da2591efbc6bd8721a5c907",
+    "rubric_sha256": "79075073ef51f01f1a91ff0f86d1bdd7583a3194136806409092a5598acec46a",
+    "candidate_files": {
+      "SKILL.md": "a55c3638375c4642a75a8654e43f8be86f9496952403e094cd9ed9ae6e4ad0bb",
+      "references/release-workflow.md": "c91d927c22f42a1d4fc8114c45a1a904f5e3c1b2311d22d740514cb1ece62438",
+      "agents/openai.yaml": "06d28ce8c304d15ffff6739cadcdac5d83263b3d8c20f292fde78e67ef79f4b4",
+      "scripts/release_inventory.py": "e8a439f8cd88efc6bc8f7a880e95000a0ce6530bd8696827103dbc8e861ec38c"
+    }
+  },
+  "limits": [
+    "Five independent runs per arm, not twenty; cases within each actor are correlated.",
+    "Small synthetic prompt-level sample; scoring is manual and non-blinded.",
+    "Action trials are candidate-only coverage, not comparative efficacy evidence.",
+    "No real v7.0.1 integration, other-harness, long-conversation, cost or latency measurement.",
+    "Complete underlying tool traces are not exported; retained final responses and controller Git inspections are the available evidence."
+  ],
+  "historical_evidence": "Parent evaluation directory describes the original skill at the baseline commit. It remains historical evidence; this change supersedes its initial integration-authorization shortcut.",
+  "response_formatting": "All responses are byte-identical to actor output except candidate-3.md, whose extra terminal blank line is removed for Git whitespace checks. Exact candidate-3 original text and SHA256 are retained in outputs/candidate-3.raw.json; scoring is unchanged."
+}

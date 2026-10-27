@@ -1,0 +1,384 @@
+{
+  "pending": {
+    "result": "PASS: concrete proposal and pending record created; baseline policy, HEAD, base branch and index tree unchanged; no integration branch or merge in progress.",
+    "inputs": {
+      "repo": "/private/tmp/superpowers-upstream-approval-20261027/pending-action",
+      "fork": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348",
+      "target": "e745b4b5a5276ad65400ae67cbcac2a06b68eb38",
+      "baseline_contents": "wait=fixed\nreview_rounds=2\n",
+      "scope": "Local disposable fixture only; no network, no publication."
+    },
+    "head": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348",
+    "branch": "gamarsoft",
+    "contents": "wait=fixed\nreview_rounds=2\n",
+    "status": "?? assessment/approval-state.json\n?? assessment/proposal-r1.md",
+    "commands": [
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "branch",
+          "--show-current"
+        ],
+        "exit": 0,
+        "stdout": "gamarsoft\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "gamarsoft"
+        ],
+        "exit": 0,
+        "stdout": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "ls-files",
+          "--unmerged"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "--cached"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "status",
+          "--porcelain=v1",
+          "--untracked-files=all"
+        ],
+        "exit": 0,
+        "stdout": "?? assessment/approval-state.json\n?? assessment/proposal-r1.md\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "show-ref"
+        ],
+        "exit": 0,
+        "stdout": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348 refs/heads/gamarsoft\ne745b4b5a5276ad65400ae67cbcac2a06b68eb38 refs/heads/upstream-release\nc36033d4ab128eb0e4e9944bfb4761dccc0cc348 refs/tags/v7.0.0\ne745b4b5a5276ad65400ae67cbcac2a06b68eb38 refs/tags/v7.0.1\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "reflog",
+          "--all",
+          "--format=%H %gs"
+        ],
+        "exit": 0,
+        "stdout": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348 commit (initial): Initial fixture\ne745b4b5a5276ad65400ae67cbcac2a06b68eb38 commit: Upstream fixture release\nc36033d4ab128eb0e4e9944bfb4761dccc0cc348 branch: Created from HEAD\nc36033d4ab128eb0e4e9944bfb4761dccc0cc348 checkout: moving from upstream-release to gamarsoft\ne745b4b5a5276ad65400ae67cbcac2a06b68eb38 commit: Upstream fixture release\nc36033d4ab128eb0e4e9944bfb4761dccc0cc348 checkout: moving from gamarsoft to upstream-release\nc36033d4ab128eb0e4e9944bfb4761dccc0cc348 commit (initial): Initial fixture\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff-index",
+          "--cached",
+          "--quiet",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "branch",
+          "--list",
+          "codex/*"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  "approved": {
+    "result": "PASS: unchanged prior proposal approval reused; local merge has both pinned parents, requested wait value and preserved two-round limit; clean state, base branch unchanged.",
+    "inputs": {
+      "repo": "/private/tmp/superpowers-upstream-approval-20261027/approved-action",
+      "fork": "da270ac6a9120f4b309aa3c16b1f1f841a7cb804",
+      "target": "72aa775f6b95ad43240d43714fd245f00b036b52",
+      "baseline_contents": "wait=fixed\nreview_rounds=2\n",
+      "scope": "Local disposable fixture only; no network, no publication."
+    },
+    "head": "fb62a7d9e99dad9c38f626a7322e17a06f949bf3",
+    "branch": "codex/fixture-integration",
+    "contents": "wait=condition\nreview_rounds=2\n",
+    "status": "",
+    "commands": [
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "fb62a7d9e99dad9c38f626a7322e17a06f949bf3\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "branch",
+          "--show-current"
+        ],
+        "exit": 0,
+        "stdout": "codex/fixture-integration\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "rev-parse",
+          "gamarsoft"
+        ],
+        "exit": 0,
+        "stdout": "da270ac6a9120f4b309aa3c16b1f1f841a7cb804\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "ls-files",
+          "--unmerged"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "--cached"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "status",
+          "--porcelain=v1",
+          "--untracked-files=all"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "show-ref"
+        ],
+        "exit": 0,
+        "stdout": "fb62a7d9e99dad9c38f626a7322e17a06f949bf3 refs/heads/codex/fixture-integration\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 refs/heads/gamarsoft\n72aa775f6b95ad43240d43714fd245f00b036b52 refs/heads/upstream-release\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 refs/tags/v7.0.0\n72aa775f6b95ad43240d43714fd245f00b036b52 refs/tags/v7.0.1\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "reflog",
+          "--all",
+          "--format=%H %gs"
+        ],
+        "exit": 0,
+        "stdout": "fb62a7d9e99dad9c38f626a7322e17a06f949bf3 commit (merge): fix(fixture): Integrate approved wait policy\nfb62a7d9e99dad9c38f626a7322e17a06f949bf3 commit (merge): fix(fixture): Integrate approved wait policy\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 branch: Created from HEAD\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 checkout: moving from gamarsoft to codex/fixture-integration\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 commit (initial): Initial fixture\n72aa775f6b95ad43240d43714fd245f00b036b52 commit: Upstream fixture release\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 branch: Created from HEAD\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 checkout: moving from upstream-release to gamarsoft\n72aa775f6b95ad43240d43714fd245f00b036b52 commit: Upstream fixture release\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 checkout: moving from gamarsoft to upstream-release\nda270ac6a9120f4b309aa3c16b1f1f841a7cb804 commit (initial): Initial fixture\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "show",
+          "HEAD:watcher-policy.txt"
+        ],
+        "exit": 0,
+        "stdout": "wait=condition\nreview_rounds=2\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "show",
+          "-s",
+          "--format=%P",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "da270ac6a9120f4b309aa3c16b1f1f841a7cb804 72aa775f6b95ad43240d43714fd245f00b036b52\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "merge-base",
+          "--is-ancestor",
+          "72aa775f6b95ad43240d43714fd245f00b036b52",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "--check",
+          "da270ac6a9120f4b309aa3c16b1f1f841a7cb804",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "--name-only",
+          "da270ac6a9120f4b309aa3c16b1f1f841a7cb804",
+          "HEAD"
+        ],
+        "exit": 0,
+        "stdout": "integration-evidence.md\nwatcher-policy.txt\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "-c",
+          "core.fsmonitor=false",
+          "diff",
+          "da270ac6a9120f4b309aa3c16b1f1f841a7cb804",
+          "HEAD",
+          "--",
+          "watcher-policy.txt"
+        ],
+        "exit": 0,
+        "stdout": "diff --git a/watcher-policy.txt b/watcher-policy.txt\nindex ea9398c..148b300 100644\n--- a/watcher-policy.txt\n+++ b/watcher-policy.txt\n@@ -1,2 +1,2 @@\n-wait=fixed\n+wait=condition\n review_rounds=2\n",
+        "stderr": ""
+      }
+    ]
+  }
+}

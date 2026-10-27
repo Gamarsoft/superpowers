@@ -1,0 +1,15 @@
+**A — Apply the selected integration under the existing authorization.** Freeze the recommendations and governing workflow, announce the concrete scope and Git plan, then prepare and verify the candidate. Neither the deadline nor the clean merge substitutes for verification. The user explicitly authorized integration and a fork push; the skill does not require a second approval merely because the implementation plan has not yet been presented.
+
+Message: “I’ll integrate the recommended v7.0.1 fixes from verified F1/U1 on `codex/integrate-v7.0.1`, using a real upstream-ancestry merge. I’ll adapt the watcher-test waits, relocate writing-skills references and update their callers, preserve the two-round review limit and Paper/v2 approval, and retain the deferred SDD policy and historical plans. I’ll run focused server regressions, reference/caller and packaging checks, and the applicable review and finishing checks, with matched behavior evaluations for any wording changes. After those pass, I’ll push the integration branch to the fork remote `gamarsoft` and report the exact tested revision. If verification cannot finish within the window, I’ll leave the candidate local and report what remains.”
+
+**B — Resume P1 revision 2 without another approval.** Freeze its unchanged boundary and governing instructions, create or reuse the specified branch, and implement the approved merge and watcher-test adaptation. Preserve deferred content and run the agreed checks.
+
+Message: “Your approval of P1 revision 2 still applies. I’ll proceed on `codex/integrate-v7.0.1` with only the watcher-test wait changes, preserve every fork case and deferred release change, and run the focused regressions and finishing checks. I’ll leave the branch local as approved.”
+
+**C — Exclude the proposed deletions and continue approved work.** Seventeen historical-plan deletions are outside P1 and expressly deferred. The older cleanup approval does not override the current proposal. Record the remaining test dependency and any proposed cleanup separately; do not remove the plans or alter their caller to smuggle the addition into this integration.
+
+Message: “I’ll keep the seventeen historical plans in this integration, as P1 revision 2 requires. One still has a fork-test caller, so cleanup also needs dependency work. I’ll record that finding for a separate scope decision and continue the approved watcher-test changes and verification.”
+
+**D — Keep implementation pending; do not prepare an integration candidate.** Approval of a temporary directory authorizes that operation only. Elapsed time supplies no answer. A draft branch with integrated changes or a staged patch would still implement the pending proposal.
+
+Message: “P2 revision 1 is still awaiting your decision. I’ll keep the integration unapplied while I verify source identities, inspect dependencies and callers, refine the decision ledger and evaluation plan, and collect baseline evidence without changing tracked content. I’ll begin the candidate once its scope is approved; the temporary-directory approval does not approve P2.”

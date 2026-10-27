@@ -1,0 +1,15 @@
+{
+  "status": "awaiting-proposal-approval",
+  "proposal_id": "local-v7.0.1-watcher-r1",
+  "proposal_path": "/private/tmp/superpowers-upstream-approval-20261027/pending-action/assessment/proposal-r1.md",
+  "fork": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348",
+  "base_tag": "v7.0.0",
+  "base": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348",
+  "target_tag": "v7.0.1",
+  "target": "e745b4b5a5276ad65400ae67cbcac2a06b68eb38",
+  "merge_base": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348",
+  "approving_user_message": null,
+  "implemented": false,
+  "network_used": false,
+  "publication_permitted": false
+}

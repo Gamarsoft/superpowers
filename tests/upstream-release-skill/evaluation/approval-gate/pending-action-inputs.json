@@ -1,0 +1,7 @@
+{
+  "repo": "/private/tmp/superpowers-upstream-approval-20261027/pending-action",
+  "fork": "c36033d4ab128eb0e4e9944bfb4761dccc0cc348",
+  "target": "e745b4b5a5276ad65400ae67cbcac2a06b68eb38",
+  "baseline_contents": "wait=fixed\nreview_rounds=2\n",
+  "scope": "Local disposable fixture only; no network, no publication."
+}
