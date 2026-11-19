@@ -1,6 +1,6 @@
 ---
 name: writing-ux-copy
-description: Use when writing, auditing, or approving UI copy, microcopy, error messages, empty states, CTAs, confirmations, helper text, i18n strings, UX writing, or ChatGPT Images prompt visible text for frontend specs, packets, image prompts, or implementation.
+description: Use when a feature introduces user-facing text or when writing, auditing, or approving UI copy, microcopy, French interface wording (libellés, messages d’erreur), CTAs, error messages, empty states, confirmations, helper text, i18n strings, or visible text in frontend specs, packets, and ChatGPT Images prompts.
 ---
 
 # Writing UX Copy
@@ -9,32 +9,29 @@ description: Use when writing, auditing, or approving UI copy, microcopy, error 
 
 User-visible copy is part of the product contract. Approve labels, messages, prompts, and generated-image visible text before UI work relies on them.
 
+For one label, tooltip or status message, return the exact words to paste into the interface, in the requested language. Use the people, places, objects and controls from this screen. For a full screen, flow, implementation handoff or image prompt, also read the [screen and image guidance](references/screen-and-image-handoffs.md).
+
 ## Core Rule
 
 Do not let agents, image models, or code invent user-facing words from technical semantics. Write state-level copy in the user's language, then carry it into specs, packets, ChatGPT Images prompts, i18n files, and verification.
 
 ## Source Order
 
-Product terminology and existing i18n win first, then current UI patterns, design-system content rules, platform conventions, accessibility/localization, and general UX writing heuristics.
+Use terms this audience knows from its work, an approved glossary or translation, or established screens. For a name found only in code or a new mockup, describe its observable effect in words the reader uses. Then check design-system, platform, accessibility and locale conventions.
 
-If a technical term or backend service name is not already product-visible, avoid exposing it in UI copy. Translate the user effect instead.
+Read the heading, controls and message together. A check tells people what they can do. A preview says what would change. A confirmation says what changed. When another party still has to confirm, say what may still be possible there. Mention a next step when one is available.
 
-## Workflow
+## Français clair dans l’interface
 
-1. Get context: screen/state, user goal, stress level, locale, product terms, component length, translation, and variables.
-2. Inventory copy states: default, loading, empty, success, pending, warning, validation, error, permission, destructive confirmation, and read-only.
-3. Write a copy deck:
+Nommez qui agit et choisissez un verbe courant (« vérifier » pour « procéder à la vérification »). Gardez une idée par phrase, les mots métier connus du public et le ton du produit. Après une vérification, dites ce que la personne peut faire. Si deux boutons se ressemblent, dites ce qu’elle retrouvera après chaque geste.
 
-| State | Element | Final copy | Purpose | i18n / variables | Notes |
-| --- | --- | --- | --- | --- | --- |
-| warning | heading | `Date de début dans le passé` | Name the risk | final French copy needs accents | Approved |
+Lisez le titre puis le message. Si le titre annonce déjà l’enregistrement d’une demande, précisez qui doit encore la confirmer et ce qui reste possible jusque-là. Conservez les conditions et les échéances connues. Le lecteur peut-il dire ce qui a changé, où, et ce qu’il peut encore faire ?
 
-4. Review every line: purposeful, concise, conversational, and clear.
-5. Add acceptance criteria: approved strings or copy deck path, stable terminology, i18n keys/variables, formatting rules, and states to verify.
+Pour toute rédaction ou relecture destinée à un public francophone, même pour un seul bouton, appliquez la [référence de français clair](references/francais-clair.md). Prenez le vocabulaire et les faits dans le produit en cours.
 
 ## Keep copy useful to its audience
 
-For each proposed label, helper, status detail or diagnostic value, name the user's decision, action, outcome or recovery step it supports. Keep that purpose in the existing copy deck. Remove a repeated explanation or an indicator with no supported purpose, such as a character count when no limit or task depends on it. A returned API field is not by itself a reason to display it.
+For each proposed label, helper, status detail or diagnostic value, identify the user's decision, action, outcome or recovery step it supports. When preparing a copy deck, record that purpose there. Remove a repeated explanation or an indicator with no supported purpose, such as a character count when no limit or task depends on it. A returned API field is not by itself a reason to display it.
 
 For nontechnical task interfaces, express the outcome and next action in product language. Keep audit flags, transport codes and retry identities in diagnostics. If a verified support procedure requires the user to copy an incident reference, show the actual available reference at that recovery step. An engineer's search console alone does not establish that operator handoff; record it as unresolved instead of inventing a reference or a copy action. In an engineering diagnostic interface, the same codes can be necessary task content.
 
@@ -45,7 +42,7 @@ Simplification preserves required information, confirmations, uncertainty and re
 | Pattern | Required shape |
 | --- | --- |
 | CTA | Verb + outcome: `Save changes`, not `Submit` |
-| Error | What happened + consequence + recovery. |
+| Error | What happened and its effect. Give the cause when known and a recovery step when available. |
 | Empty state | What is empty + why it matters + next action |
 | Confirmation | Consequence in title/body + specific confirm/cancel labels |
 | Permission | What is visible, what is blocked, who can act. |
@@ -61,43 +58,3 @@ Simplification preserves required information, confirmations, uncertainty and re
 - Keep labels visible; placeholders are examples, not instructions.
 - Add accessible names for icon-only controls.
 - Leave room for translation expansion and truncation.
-
-## ChatGPT Images Prompt Copy
-
-Before a ChatGPT Images prompt is complete, audit every `Example Visible Text`, warning, empty state, CTA, table label, and dialog string.
-
-Rules:
-- Put production-quality visible copy in the final target locale.
-- Quote exact visible strings; do not ask the image model to improvise copy.
-- Keep technical semantics in `State Semantics`, not in visible UI text.
-- If `backfill`, `ruleset`, or a backend service name is internal, replace it with the operator-facing effect unless the product already uses that term.
-- Do not use ASCII-only substitutions when the UI locale needs accents.
-
-Example:
-
-| Weak prompt text | Better visible UI text |
-| --- | --- |
-| `Gateway rechargera l'etat serveur apres activation.` | `L'état se mettra à jour après l'activation.` |
-| `Customer Service marquera le backfill comme requis.` | `Une reprise des données sera à traiter après l'activation.` |
-
-Use accents in final French copy.
-
-## Output
-
-Return:
-
-- UX writing summary
-- missing copy states
-- copy deck
-- i18n and accessibility notes
-- acceptance criteria additions
-
-## Common Mistakes
-
-| Mistake | Fix |
-| --- | --- |
-| Reviewing only layout states | Review the words in every state too. |
-| Leaving backend terms in UI | Name the user-visible consequence. |
-| Letting image prompts contain rough copy | Finalize prompt visible text before generation. |
-| Using vague CTAs | Name the outcome. |
-| Deferring copy to implementation | Approve copy before UI code or visual-truth images depend on it. |
