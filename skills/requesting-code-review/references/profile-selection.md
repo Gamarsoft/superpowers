@@ -8,6 +8,7 @@ plan with no profiles does not mean the diff has no applicable risks.
 
 | Profile | Select only when | Instruction path |
 | --- | --- | --- |
+| UX copy | The diff changes words people see or hear in the interface, or changes the behavior those words describe. A named risk can also identify affected interface wording. | `ux-copy-checklist.md` |
 | Structural design | The diff changes public boundaries, dependency direction, module responsibilities, or a named architecture/maintainability risk | `solid-checklist.md` |
 | Security | The diff changes authentication, authorization, secrets, cryptography, trust boundaries, input validation, data exposure, or carries a named security/privacy, concurrency, idempotency, or recovery risk | `security-checklist.md` |
 | Java 21 / Spring / persistence / GKE | Changed files or requirements involve Java/Kotlin, Maven/Gradle, Spring, JPA, SQL persistence access, containers, Kubernetes, Helm, GKE, or deployment/runtime configuration | `java-21-spring-gke-checklist.md` |

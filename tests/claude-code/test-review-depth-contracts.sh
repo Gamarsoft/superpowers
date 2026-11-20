@@ -8,6 +8,13 @@ from pathlib import Path
 root = Path('skills')
 shared = root / 'requesting-code-review/references/review-method.md'
 assert shared.is_file(), 'missing shared review method'
+selector = shared.with_name('profile-selection.md').read_text()
+ux_profile = shared.with_name('ux-copy-checklist.md')
+assert any(row.startswith('| UX copy |') and ux_profile.name in row
+           for row in selector.splitlines()), 'missing shared UX copy profile'
+ux_guide = '../../writing-ux-copy/SKILL.md'
+assert f']({ux_guide})' in ux_profile.read_text() and (ux_profile.parent / ux_guide).is_file(), \
+    'UX copy review must point to the writing skill'
 method = shared.read_text()
 for field in ('Contract and behavior', 'Failure paths', 'Boundary conditions',
               'Compatibility and integration', 'Test adequacy', 'Maintainability',
@@ -19,6 +26,7 @@ for name in ('requesting-code-review/code-reviewer.md',
              'subagent-driven-development/final-reviewer-prompt.md'):
     text = (root / name).read_text()
     assert 'review-method.md' in text, f'{name} bypasses shared method'
+    assert 'profile-selection.md' in text, f'{name} bypasses profile selection'
     assert 'coverage' in text.lower(), f'{name} omits coverage output'
 for name in ('requesting-code-review/SKILL.md', 'subagent-driven-development/SKILL.md'):
     text = (root / name).read_text()
